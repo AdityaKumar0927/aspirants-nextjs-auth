@@ -1,0 +1,2303 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Analog Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vfbp13SDu7ASWPHb",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bjt-and-mosfet-biasing",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A transistor circuit is given below. The Zener diode breakdown voltage is $$5.3$$ $$V$$ as shown. Take base to emitter voltage drop to be $$0.6$$ V. The value of the current gain  $$\\beta $$ is ________.\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/HuIEJ6kECY3todRuj/aduj0C1Tri4d973kCYY8SbrKJ4GYJ/p43HkzBMSsi8p3VFs7IqXi/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2016 Set 1 Analog Electronics - Bjt and Mosfet Biasing Question 24 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "19",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-transistor-circuit-is-given-below-the-zener-diode-breakdow-gate-ee-2016-set-1-marks-1-vfbp13sdu7aswphb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                }
+            ],
+            "title": "Analog Electronics"
+        },
+        {
+            "_id": "Control Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BxFJ2U1qBdIXFYfO",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "polar-nyquist-and-bode-plot",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The phase cross-over frequency of the transfer function $$G\\left( s \\right) = {{100} \\over {{{\\left( {s + 1} \\right)}^3}}}\\,\\,$$ in $$rad/s$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\sqrt 3 }$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over {\\sqrt 3 }}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${3\\sqrt 3 }$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-phase-cross-over-frequency-of-the-transfer-function-glef-gate-ee-2016-set-1-marks-1-bxfj2u1qbdixfyfo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "15nXKtjZwB1JbOZD",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "routh-hurwitz-stability",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given the following polynomial equation $${s^3} + 5.5{s^2} + 8.5s + 3 = 0$$ the number of roots of the polynomial which have real parts strictly less than $$-1$$ is _____________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-the-following-polynomial-equation-s3-55s2-85s-3-0-the-gate-ee-2016-set-1-marks-2-15nxktjzwb1jbozd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Txsh5bot1hXatjIQ",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "polar-nyquist-and-bode-plot",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The transfer function of a system is $${{Y\\left( s \\right)} \\over {R\\left( s \\right)}} = {s \\over {s + 2}}.$$ The steady state $$y(t)$$ is $$Acos$$$$\\left( {2t + \\phi } \\right)$$ for the input $$\\cos \\left( {2t} \\right).$$ The values of $$A$$ and $$\\phi ,$$ respectively are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over {\\sqrt 2 }}, - {45^0}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over {\\sqrt 2 }}, + {45^0}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\sqrt 2 ,\\, - {45^0}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\sqrt 2 ,\\, + {45^0}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-transfer-function-of-a-system-is-yleft-s-right-over-rlef-gate-ee-2016-set-1-marks-1-txsh5bot1hxatjiq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "osMujr9U03812qmR",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "polar-nyquist-and-bode-plot",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following asymptotic Bode magnitude plot  ($${\\omega \\,\\,}$$ is in $$rad/s$$)\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/VxbjcP34JyKdbJPuF/HUiJeWfLNkbtiDqlPTYYd0sxO7jHW/FTFvvanXYOyaU9sq4hj1gp/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2016 Set 1 Control Systems - Polar Nyquist and Bode Plot Question 21 English\"> \n<p>Which one of the following transfer functions is best represented by the above Bode magnitude plot? </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{2s} \\over {\\left( {1 + 0.5s} \\right){{\\left( {1 + 0.25} \\right)}^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{4\\left( {1 + 0.5s} \\right)} \\over {s\\left( {1 + 0.25s} \\right)}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{2s} \\over {\\left( {1 + 2s} \\right)\\left( {1 + 4s} \\right)}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{4s} \\over {\\left( {1 + 2s} \\right){{\\left( {1 + 4s} \\right)}^2}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-asymptotic-bode-magnitude-plot-omega-gate-ee-2016-set-1-marks-2-osmujr9u03812qmr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rVPiuatd0NvEZf0z",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "polar-nyquist-and-bode-plot",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Loop transfer function of a feedback system is $$G\\left( s \\right)H\\left( s \\right) = {{s + 3} \\over {{s^2}\\left( {s - 3} \\right)}}.$$\nTake the Nyquist contour in the clockwise direction. Then, the Nyquist plot of $$G(s)$$ $$H(s)$$ encircles $$-1+j0$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "once in clockwise direction "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "twice in clockwise direction "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "once in anticlockwise direction "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "twice in anticlockwise direction "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "loop-transfer-function-of-a-feedback-system-is-gleft-s-right-gate-ee-2016-set-1-marks-2-rvpiuatd0nvezf0z.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "D39lFGIUDJK7KUen",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "state-variable-analysis",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following state - space representation of a linear time-invariant system.\n<br>$$\\mathop x\\limits^ \\bullet  \\left( t \\right) = \\left[ {\\matrix{\n   1 &amp; 0  \\cr \n   0 &amp; 2  \\cr \n\n } } \\right]\\,\\,x\\left( t \\right),\\,\\,y\\left( t \\right) = {c^T}x\\left( t \\right),\\,c = \\left[ {\\matrix{\n   1  \\cr \n   1  \\cr \n\n } } \\right]$$ and \n<br>$$x\\left( 0 \\right) = \\left[ {\\matrix{\n   1  \\cr \n   1  \\cr \n\n } } \\right]$$\n<p>The value of $$y(t)$$ for $$t\\,\\,\\, = \\,\\,{\\log _e}2$$ ___________.</p>\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "5.9 to 6.1",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-state-space-representation-of-a-linea-gate-ee-2016-set-1-marks-2-d39lfgiudjk7kuen.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                }
+            ],
+            "title": "Control Systems"
+        },
+        {
+            "_id": "Digital Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jVRGRkpsUwSgGcIe",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinational-circuits",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following circuit which uses a $$2$$-to-$$1$$ multiplexer as shown in the figure below. The Boolean expression for output $$F$$ in terms of $$A$$ and $$B$$ is \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/Z9H41FYWzPKGcIn5V/6C9ov7DcY1G21pJ8Q3SulepYyfG9M/51qUNM5UQivg38mc5wrQwm/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2016 Set 1 Digital Electronics - Combinational Circuits Question 12 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$A \\oplus B$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\overline {A + B} $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$A + B$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\overline {A \\oplus B} $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-circuit-which-uses-a-2-to-1-m-2016-set-1-marks-1-jvrgrkpsuwsggcie.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Q7ptt3DbBgIWGkoe",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The current state $${Q_A}{Q_B}$$ of a two $$JK$$ flip-flop system is $$00.$$ Assume that the clock rise-time is much smaller than the delay of the $$JK$$ flip-flop. The next state of the system is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/RD8nNdEeJB2QlI8zE/W5EeB7q7NVMweQWjrRXqim5RHTzvC/zA4e5LeMNdKcOEkaJ2X8ap/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2016 Set 1 Digital Electronics - Sequential Circuits Question 9 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$00$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$01$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$11$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$10$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-current-state-qaqb-of-a-two-jk-flip-flop-s-2016-set-1-marks-2-q7ptt3dbbgiwgkoe.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YfhYgjSFZSN5bFzF",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analog-to-digital-and-digital-to-analog-converter",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$2$$-bit flash Analog to Digital Converter $$(ADC)$$ is given below. The input is $$0 \\le {V_N} \\le 3$$ Volts. The expression for the $$LSB$$ of the output $${B_0}$$ as  Boolean function of $${X_2},\\,{X_1}$$ and $${X_0}$$ is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/3rCu5evGLEQg3Q7AN/MNZkOsgZZt6vq7dyDbvPEuc0Onva8/YzeqOCcbMmwPXSb6aAZYvl/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2016 Set 1 Digital Electronics - Analog to Digital and Digital to Analog Converter Question 3 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${X_0}\\left[ {\\overline {{X_2} \\oplus {X_1}} } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\overline {{X_0}} \\left[ {\\overline {{X_2} \\oplus {X_1}} } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${X_0}\\left[ {{X_2} \\oplus {X_1}} \\right]$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\overline {{X_0}} \\left[ {{X_2} \\oplus {X_1}} \\right]$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-2-bit-flash-analog-to-digital-converter-adc-is-g-2016-set-1-marks-2-yfhygjsfzsn5bfzf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                }
+            ],
+            "title": "Digital Electronics"
+        },
+        {
+            "_id": "Electric Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8932a55abdc",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "R<sub>A</sub> and R<sub>B</sub> are the input resistances of circuits as shown below. The circuits extend infinitely in\nthe direction shown. Which one of the following statements is TRUE?<br>\n<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1kzp7gy1d/db06d1c8-eb92-4a61-a04c-610849825310/35f54c10-8ef6-11ec-9059-3bcaa805de06/file-1kzp7gy1e.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1kzp7gy1d/db06d1c8-eb92-4a61-a04c-610849825310/35f54c10-8ef6-11ec-9059-3bcaa805de06/file-1kzp7gy1e.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 50vh\" alt=\"GATE EE 2016 Set 1 Electric Circuits - Network Elements Question 53 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "R<sub>A</sub> = R<sub>B</sub>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "R<sub>A</sub> = R<sub>B</sub> = 0"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "R<sub>A</sub> &lt; R<sub>B</sub>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "R<sub>B</sub> = R<sub>A</sub>/(1+R<sub>A</sub>)"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "ra-and-rb-are-the-input-resistances-of-circuits-as-shown-bel-gate-ee-2016-set-1-marks-1-5a8932a55abdc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8b3636eafd5",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-theorems",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit shown below, the node voltage V<sub>A</sub> is _________ V.\n<img alt=\"GATE EE 2016 Set 1 Electric Circuits - Network Theorems Question 25 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/04c7b6a434d47f53083eb1acaf0bfa2be333e9dbd50b82695d9db323e0e17056.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "11.42",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-below-the-node-voltage-va-is-v-gate-ee-2016-set-1-marks-2-5a8b3636eafd5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8bcdc370820",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transient-response",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit shown, switch S<sub>2</sub> has been closed for a long time. A time t = 0 switch S<sub>1</sub> is closed. At\nt=0<sup>+</sup> , the rate of change of current through the inductor, in amperes per second, is _______.\n<img alt=\"GATE EE 2016 Set 1 Electric Circuits - Transient Response Question 29 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/3e209dcbc8f8aefad10cb10ab6233ffb26a59763f12fb5df2dc0bf115b57a372.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-switch-s2-has-been-closed-for-a-long-ti-gate-ee-2016-set-1-marks-2-5a8bcdc370820.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8bc1599d425",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transient-response",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the given circuit, the current supplied by the battery, in ampere, is ________.\n<img alt=\"GATE EE 2016 Set 1 Electric Circuits - Transient Response Question 35 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/cd5b5b3525de5677db84aa83ec6a9f958b641def899ac346626f6d4036a8d829.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.5",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-given-circuit-the-current-supplied-by-the-battery-in-gate-ee-2016-set-1-marks-1-5a8bc1599d425.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8c2366a063a",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-analysis",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit shown below, the supply voltage is 10sin(1000t) volts. The peak value of the steady\nstate current through the 1\u03a9 resistor, in amperes, is _________.\n<img alt=\"GATE EE 2016 Set 1 Electric Circuits - Sinusoidal Steady State Analysis Question 52 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/e55a246b74cead6ed0ba783d54393724b3f7f4bbdb2da2bd623c33af51e43f26.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-below-the-supply-voltage-is-10sin1000t-gate-ee-2016-set-1-marks-2-5a8c2366a063a.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8c22e662e66",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-analysis",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The circuit below is excited by a sinusoidal source. The value of R, in \u03a9, for which the\nadmittance of the circuit becomes a pure conductance at all frequencies is ________.\n<img alt=\"GATE EE 2016 Set 1 Electric Circuits - Sinusoidal Steady State Analysis Question 53 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/4fa478e6d72a03e5175b9595c730d87192c3b2d947d1a5940045d2c4dcda81a1.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "14.14",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-circuit-below-is-excited-by-a-sinusoidal-source-the-valu-gate-ee-2016-set-1-marks-2-5a8c22e662e66.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8930f819bad",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the portion of a circuit shown, if the heat generated in 5 \u03a9 resistance is 10 calories per second\nthen heat generated by the 4 \u03a9 resistance, the calories per second, is ______.\n<img alt=\"GATE EE 2016 Set 1 Electric Circuits - Network Elements Question 54 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/42a34c84b5d435b224d16c7aec4e44739a5dd22c153ae968a14259a20ba69576.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.9 to 2.1",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-portion-of-a-circuit-shown-if-the-heat-generated-in-5-gate-ee-2016-set-1-marks-1-5a8930f819bad.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                }
+            ],
+            "title": "Electric Circuits"
+        },
+        {
+            "_id": "Electrical and Electronics Measurement",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BXtdaIY97Itw5YBT",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-indicating-instruments",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A dc voltage with ripple is given by $$v\\left( t \\right)\\,\\,\\,\\, = \\,\\,\\,\\,\\left[ {100 + 10\\sin \\left( {\\omega t} \\right) - 5\\sin \\left( {3\\omega t} \\right)} \\right]$$ volts. Measurements of this voltage $$v\\left( t \\right),$$ made by moving-coil and moving iron voltmeters, show readings of $${V_1}$$ and $${V_2}$$ respectively. The value of $${V_2} - {V_1},$$ in volts, is _______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.30 to 0.33",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-dc-voltage-with-ripple-is-given-by-vleft-t-right-left-100-gate-ee-2016-set-1-marks-2-bxtdaiy97itw5ybt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                }
+            ],
+            "title": "Electrical and Electronics Measurement"
+        },
+        {
+            "_id": "Electrical Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GXzEheBbvogIIuxD",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A three-phase, $$50$$ $$Hz$$ salient-pole synchronous motor has a per-phase direct-axis reactance $$\\left( {{X_d}} \\right)$$ of $$0.8$$ $$pu$$ and a per-phase quadrature-axis reactance $$\\left( {{X_q}} \\right)$$ of $$0.6$$ $$pu.$$ Resistance of the machine is negligible. It is drawing full-load current at $$0.8$$ $$pf$$ (leading). When the terminal voltage is $$1$$ $$pu,$$ per-phase induced voltage, in $$pu,$$ is ______________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.58 to 1.62",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-three-phase-50-hz-salient-pole-synchronous-motor-2016-set-1-marks-2-gxzehebbvogiiuxd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a98131186b8d",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 4-pole, lap-connected, separately excited dc motor is drawing a steady current of 40 A while\nrunning at 600 rpm. A good approximation for the waveshape of the current in armature\nconductor of the motor is given by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img src=\"https://gateclass.cdn.examgoal.net/examside/questions/8ff7b05bf197fbed8b8a4f9f40acf3e25d9af100751f6df3d873722238fec1f5.jpg\" style=\"text-align:center;height:auto;max-width:100%;\" loading=\"lazy\" alt=\"GATE EE 2016 Set 1 Electrical Machines - D.C Machines Question 54 English Option 1\">"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img src=\"https://gateclass.cdn.examgoal.net/examside/questions/89be5882fa2f51158a6d130416b2c93a053ac703729ebbcbf05c3c0b3e082d4f.jpg\" style=\"text-align:center;height:auto;max-width:100%;\" loading=\"lazy\" alt=\"GATE EE 2016 Set 1 Electrical Machines - D.C Machines Question 54 English Option 2\">"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img src=\"https://gateclass.cdn.examgoal.net/examside/questions/4a6d0dd3fc29631dcedf81bfeb4cfcd0fce9d98e44f5cd271cfba805a0e1d8e5.jpg\" style=\"text-align:center;height:auto;max-width:100%;\" loading=\"lazy\" alt=\"GATE EE 2016 Set 1 Electrical Machines - D.C Machines Question 54 English Option 3\">"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img src=\"https://gateclass.cdn.examgoal.net/examside/questions/d77477e02508777b02cb5064ae1b42f269d6c5862afdfe87bbecffad5af3069e.jpg\" style=\"text-align:center;height:auto;max-width:100%;\" loading=\"lazy\" alt=\"GATE EE 2016 Set 1 Electrical Machines - D.C Machines Question 54 English Option 4\">"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-4-pole-lap-connected-separately-excited-dc-motor-is-drawin-gate-ee-2016-set-1-marks-1-5a98131186b8d.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a9d427f46aa5",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A DC shunt generator delivers 45 A at a terminal voltage of 220 V. The armature and the shunt\nfield resistance are 0.01 \u03a9 and 44 \u03a9 respectively. The stray losses are 375 W. The percentage\nefficiency of the DC generator is ______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "86.84",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-dc-shunt-generator-delivers-45-a-at-a-terminal-voltage-of-gate-ee-2016-set-1-marks-2-5a9d427f46aa5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a9ee03bcb948",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If an ideal transformer has an inductive load element at port 2 as shown in the figure below, the\nequivalent inductance at port 1 is\n<img alt=\"GATE EE 2016 Set 1 Electrical Machines - Transformers Question 77 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/7751f435afaa61ed7b522c558f11f16164e8c83bf3668355a588b413ecb86c52.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "nL"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "n<sup>2</sup>L"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\frac{\\mathrm n}{\\mathrm L}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\frac{\\mathrm n^2}{\\mathrm L}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-an-ideal-transformer-has-an-inductive-load-element-at-por-gate-ee-2016-set-1-marks-1-5a9ee03bcb948.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a9ef716b858a",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single-phase 400 V, 50 Hz transformer has an iron loss of 5000 W at the condition. When\noperated at 200 V, 25 Hz, the iron loss is 2000 W. When operated at 416 V, 52 Hz, the value of the\nhysteresis loss divided by the eddy current loss is ________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.4423",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-single-phase-400-v-50-hz-transformer-has-an-iron-loss-of-5-gate-ee-2016-set-1-marks-2-5a9ef716b858a.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a9ef89ab6ed0",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the star side of the star-delta transformer shown in the figure is excited by a negative sequence voltage, then\n<img alt=\"GATE EE 2016 Set 1 Electrical Machines - Transformers Question 72 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/5b8a4fc0c899f37b4c527fd8a221fce5a3c3983c99ed7fe481678f4f703851dd.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "V<sub>AB</sub> leads V<sub>ab</sub> by 60\u00ba"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "V<sub>AB</sub> lags V<sub>ab</sub> by 60\u00ba"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "V<sub>AB</sub> leads V<sub>ab</sub> by 30\u00ba"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "V<sub>AB</sub> lags V<sub>ab</sub> by 30\u00ba"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-star-side-of-the-star-delta-transformer-shown-in-the-gate-ee-2016-set-1-marks-2-5a9ef89ab6ed0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a9ef5b4d77ca",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single-phase, 22 kVA, 2200 V/220 V, 50 Hz, distribution transformer is to be connected as an autotransformer\nto get an output voltage of 2420 V. Its maximum kVA rating as an auto-transformer is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "22"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "24.2"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "242"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2420"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-single-phase-22-kva-2200-v220-v-50-hz-distribution-transfo-gate-ee-2016-set-1-marks-2-5a9ef5b4d77ca.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa505434efb6",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "induction-machines",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a constant V/f induction motor drive, the slip at the maximum torque",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "is directly proportional to the synchronous speed"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "remains constant with respect to the synchronous speed"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "has an inverse relation with the synchronous speed"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "has no relation with the synchronous speed"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-constant-vf-induction-motor-drive-the-slip-at-the-maxim-gate-ee-2016-set-1-marks-1-5aa505434efb6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                }
+            ],
+            "title": "Electrical Machines"
+        },
+        {
+            "_id": "Electromagnetic Fields",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8deac28fc9d",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetic-fields",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "electrostatics",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two electric charges q and -2q are placed at (0,0) and (6,0) on the x-y plane. The equation of the\nzero equipotential curve in the x-y plane is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "x=-2"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "y=2"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$x^2+y^2=2$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left(x+2\\right)^2+y^2=16$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-electric-charges-q-and-2q-are-placed-at-00-and-60-on-the-gate-ee-2016-set-1-marks-2-5a8deac28fc9d.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8efedc4b654",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electromagnetic-fields",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "time-varying-fields",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In cylindrical coordinate system, the potential produced by a uniform ring charge is given $$\\phi=f\\left(r,\\;z\\right)$$, where f is a continuous function of r and z. Let $$\\overrightarrow E$$\nbe the resulting electric field. Then\nthe magnitude of $$\\nabla\\times\\overrightarrow E$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "increases with r"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "is 0"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "is 3"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "decreases with z"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-cylindrical-coordinate-system-the-potential-produced-by-a-gate-ee-2016-set-1-marks-1-5a8efedc4b654.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                }
+            ],
+            "title": "Electromagnetic Fields"
+        },
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fMqc7ZgibsgW3X9A",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Candidates were asked to come to an interview with $$3$$ pens each. Black, blue, green and red were the permitted pen colours that the candidate could bring. The  probability that a candidate comes with all $$3$$ pens having the same colour is _______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.02",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "candidates-were-asked-to-come-to-an-interview-with-3-pens-ea-gate-ee-2016-set-1-marks-2-fmqc7zgibsgw3x9a.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gD1nqJrDYj9SjMFC",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A function $$y(t),$$ such that $$y(0)=1$$ and $$\\,y\\left( 1 \\right) = 3{e^{ - 1}},\\,\\,$$ is a solution of the differential  equation $$\\,\\,{{{d^2}y} \\over {d{t^2}}} + 2{{dy} \\over {dt}} + y = 0\\,\\,$$ Then $$y(2)$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$5{e^{ - 1}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$5{e^{ - 2}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$7{e^{ - 1}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$7{e^{ - 2}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-function-yt-such-that-y01-and-yleft-1-right-3e-1-is-a-solu-gate-ee-2016-set-1-marks-2-gd1nqjrdyj9sjmfc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9hTs8rsjVvunKTwx",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The maximum value attained by the function $$f(x)=x(x-1) (x-2)$$ in the interval $$\\left[ {1,2} \\right]$$ is _________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0 ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-maximum-value-attained-by-the-function-fxxx-1-x-2-in-the-gate-ee-2016-set-1-marks-1-9hts8rsjvvunktwx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8LIOMeykMYdEl5oB",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of the integral $$\\oint\\limits_c {{{2z + 5} \\over {\\left( {z - {1 \\over 2}} \\right)\\left( {{z^2} - 4z + 5} \\right)}}} dz$$ over the contour $$\\left| z \\right| = 1,$$ taken in the anti-clockwise direction,  would be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{24\\pi i} \\over {13}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{48\\pi i} \\over {13}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{24} \\over {13}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{12} \\over {13}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-the-integral-ointlimitsc-2z-5-over-left-z-1-ove-gate-ee-2016-set-1-marks-2-8liomeykmydel5ob.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vFNH7OJppFpXPq42",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$A$$ be a $$4 \\times 3$$ real matrix which rank$$2.$$ Which one of the following statement is <b>TRUE</b>? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Rank of A<sup>T</sup> is less than $$2$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Rank of A<sup>T</sup>A is equal to $$2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Rank of  A<sup>T</sup>A  is greater than $$2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Rank of A<sup>T</sup>A can be any number between $$1$$ and $$3$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-a-be-a-4-times-3-real-matrix-which-rank2-which-one-of-th-gate-ee-2016-set-1-marks-2-vfnh7ojppfpxpq42.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GWduZ6gyB3kSLqhY",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let the eigenvalues of a $$2 \\times 2$$ matrix $$A$$ be $$1,-2$$ with eigenvectors $${x_1}$$ and $${x_2}$$ respectively. Then the eigenvalues and eigenvectors of the matrix $${A^2} - 3A + 4{\\rm I}$$ would respectively, be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2,14;{\\,x_1},{x_2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2,14;{x_1} + {x_2}:{x_1} - {x_2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2,0;{\\,x_1},{x_2}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2,0;\\,{x_1} + {x_2},\\,{x_1} - {x_2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-the-eigenvalues-of-a-2-times-2-matrix-a-be-1-2-with-eige-gate-ee-2016-set-1-marks-2-gwduz6gyb3kslqhy.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cUL29qGq2QvSmBAI",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider $$3 \\times 3$$ matrix with every element being equal to $$1.$$ Its only non-zero eigenvalue is __________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-3-times-3-matrix-with-every-element-being-equal-to-gate-ee-2016-set-1-marks-1-cul29qgq2qvsmbai.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "90UzM2jItawZbraY",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$\\,\\,S = \\sum\\limits_{n = 0}^\\infty  {n{\\alpha ^n}} \\,\\,$$ where $$\\,\\,\\left| \\alpha  \\right| &lt; 1.\\,\\,$$ The value of $$\\alpha $$ in the range $$\\,\\,0 &lt; \\alpha  &lt; 1,\\,\\,$$ such that $$\\,\\,S = 2\\alpha \\,\\,$$ is ___________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.2928",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-s-sumlimitsn-0infty-nalpha-n-where-left-alpha-right-1-th-gate-ee-2016-set-1-marks-2-90uzm2jitawzbray.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Power Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0kTt0S2nX2Ay81xx",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "power-semiconductor-devices",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A steady dc current of 100 A is flowing through a power module (S, D) as shown in Figure (a). The V-I characteristics of the IGBT (S) and the diode (D) are shown in Figures (b) and (c), respectively. The conduction power loss in the power module (S, D), in watts, is ________.\n <img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/CHZTdwSYUf88MCPn3/3Q069A5vRul58sHPfPrqv2EaerTE6/tOJMGZ3Ah19iuapIOla3ZX/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2016 Set 1 Power Electronics - Power Semiconductor Devices Question 15 English 1\"> \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/GZHk8RpaJN4KErnzk/oYydKfvYDwPy8MaffjqoIA4fAG3FB/UUT5s4LWK70j6sYUdidNpx/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2016 Set 1 Power Electronics - Power Semiconductor Devices Question 15 English 2\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "169 to 171",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-steady-dc-current-of-100-a-is-flowing-through-a-power-modu-gate-ee-2016-set-1-marks-1-0ktt0s2nx2ay81xx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Y7tVoYKNwJqpCyEL",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "choppers-and-commutation-techniques",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A buck converter, as shown in Figure $$(a)$$ below, is working in steady state. The output voltage and the inductor current can be assumed to be ripple free. Figure $$(b)$$ shows the inductor voltage $${V_L}$$ during a complete switching interval. Assuming all devices are ideal, the duty cycle of the buck converter is ________.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/XXNDVtVHJ2JuWmsRc/xYBUuMgLkOQ8vm9HFKScUhUHdUAPq/IKFhogYhuQ2UepM2U4yZwq/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2016 Set 1 Power Electronics - Choppers and Commutation Techniques Question 36 English 1\">\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/0FYwLVMuKdyKd57Ip/AqyDBCUFpRg0wCcpYsL0kUStNEwel/G4PV0vT8Cv4wYV7hEOEArI/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2016 Set 1 Power Electronics - Choppers and Commutation Techniques Question 36 English 2\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.39 to 0.41",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-buck-converter-as-shown-in-figure-a-below-is-working-in-st-gate-ee-2016-set-1-marks-1-y7tvoyknwjqpcyel.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iRRmTEZcakA4GCGq",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "inverters",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The switches $$T1$$ and $$T2$$ in Figure are switched in a complementary fashion with sinusoidal pulse width modulation technique. The modulating voltage $${v_m}\\left( t \\right) = 0.8\\sin \\left( {200\\pi t} \\right)\\,\\,V$$ and the triangular carrier $$\\left( {{V_c}} \\right),$$ voltage $$\\left( {{V_c}} \\right)$$ are as shown in figure $$(b).$$ The carrier frequency is $$5$$ $$kHz.$$ The peak value of the $$100$$ $$Hz$$ component of the load current $$\\left( {{i_L}} \\right)$$ in Ampere, is ______.\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/Ni0m6erZAAKGy2xFZ/hSxIJ7ezNItxJp0e5KSrOBA94Rq6u/OXXqFDECUvcHvCYxON3ELD/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2016 Set 1 Power Electronics - Inverters Question 7 English 1\"> \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/rJV2ztyNTTgFszHHk/47SsGgpeGU4j7Liw3lehKmLE18V91/atlcCfkfSKoSRduxKWGVca/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2016 Set 1 Power Electronics - Inverters Question 7 English 2\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "9.9 to 10.1",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-switches-t1-and-t2-in-figure-are-switched-in-a-complemen-gate-ee-2016-set-1-marks-2-irrmtezcaka4gcgq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                }
+            ],
+            "title": "Power Electronics"
+        },
+        {
+            "_id": "Power System Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "eaS3mRPSGcSE5dVA",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single-phase transmission line has two conductors each of 10 mm radius. These are fixed at a center-to-center distance of 1 m in a horizontal plane. This is now converted to a three-phase transmission line by introducing a third conductor of the same radius. This conductor is fixed at an equal distance D from the two single-phase conductors. The three-phase line is fully transposed. The positive sequence inductance per phase of the three phase system is to be 5% more than that of the inductance per conductor of the single phase system. The distance D, in meters, is  ________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.42to1.45",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-single-phase-transmission-line-has-two-conductors-each-of-gate-ee-2016-set-1-marks-2-eas3mrpsgcse5dva.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lCJGE21ENiZPE3ar",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A three-phase cable is supplying $$800$$ kW and $$600$$ kVAr to an inductive load. It is intended to supply an additional resistive load of $$100$$ kW through the same cable without increasing the heat dissipation in the cable, by providing a three-phase bank of capacitors connected in star across the load. Given the line voltage is $$3.3$$ kV, $$50$$ Hz, the capacitance per phase of the bank expressed in microfarads, is ________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "47to49",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-three-phase-cable-is-supplying-800-kw-and-600-kvar-to-an-i-gate-ee-2016-set-1-marks-2-lcjge21enizpe3ar.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lDWnONLbbmlgWIpu",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "symmetrical-components-and-symmetrical-and-unsymmetrical-faults",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 30 MVA, 3-phase, 50Hz, 13.8 kV, star-connected synchronous generator has positive, negative and zero sequence reactances, 15%, 15% and 5% respectively. A reactance (X<sub>n</sub>) is connected between the neutral of the generator and ground. A double line to ground fault takes place involving phases \u2018b\u2019 and \u2018c\u2019, with a fault impedance of j0.1 p.u. The value of X<sub>n</sub> (in p.u.) that will limit the positive sequence generator current to 4270 A is __________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.05 to 1.15",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-30-mva-3-phase-50hz-138-kv-star-connected-synchronous-gene-gate-ee-2016-set-1-marks-2-ldwnonlbbmlgwipu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FMwhojVDGAgSjAkd",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "load-flow-studies",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The magnitude of three-phase fault currents at buses A and B of a power system are 10 pu and 8 pu, respectively. Neglect all resistances in the system and consider the pre-fault system to be unloaded. The pre-fault voltage at all buses in the system is 1.0 pu. The voltage magnitude at bus B during a three-phase fault at bus A is 0.8 pu. The voltage magnitude at bus A during a three-phase fault at bus B in pu, is __________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.83 to 0.85",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-magnitude-of-three-phase-fault-currents-at-buses-a-and-b-gate-ee-2016-set-1-marks-1-fmwhojvdgagsjakd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2rRbgH7tb5V8OSjJ",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "load-flow-studies",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a 100 bus power system, there are 10 generators. In a particular iteration of Newton Raphson load flow technique (in polar coordinates), two of the PV buses are converted to PQ type. In this iteration.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "the number of unknown voltage angles increases by two and the number of unknown voltage magnitudes increases by two.\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the number of unknown voltage angles remains unchanged and the number of unknown voltage magnitudes increases by two."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the number of unknown voltage angles increases by two and the number of unknown voltage magnitudes decreases by two.\n"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "the number of unknown voltage angles remains unchanged and the number of unknown voltage magnitudes decreases by two "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-100-bus-power-system-there-are-10-generators-in-a-parti-gate-ee-2016-set-1-marks-1-2rrbgh7tb5v8osjj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                }
+            ],
+            "title": "Power System Analysis"
+        },
+        {
+            "_id": "Signals and Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a97096009a24",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "miscellaneous",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The output of a continuous-time, linear time-invariant system is denoted by T{x(t)} where x(t) is\nthe input signal. A signal z(t) is called eigen-signal of the system T, when T{z(t)}= yz(t),\nwhere $$\\gamma$$ is a complex number, in general, and is called an eigen value of T. suppose the impulse\nresponse of the system T is real and even. Which of the following statements is TRUE?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "cos(t) is and eigen-signal but sin(t) is not"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "cos(t) is and sin(t) are both eigen-signal but with different eigen values"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "sin(t) is an eigen-signal but cos(t) is not"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "cos(t) and sin(t) are both eigen-signal with identical eigen values"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-output-of-a-continuous-time-linear-time-invariant-system-gate-ee-2016-set-1-marks-2-5a97096009a24.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a90498f63bfe",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-and-discrete-time-signals",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of $$\\int_{-\\infty}^{+\\infty}e^{-t}\\partial\\left(2t-2\\right)dt$$. where $$\\partial\\left(t\\right)$$ is the Dirac delta function, is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\frac1{2e}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\frac2e$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\frac1{e^2}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\frac1{2e^2}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-int-inftyinftye-tpartialleft2t-2rightdt-where-p-gate-ee-2016-set-1-marks-1-5a90498f63bfe.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a9081fa9abe1",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-time-invariant-systems",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a continuous-time system with input x(t) and output y(t) given by\n$$y\\left(t\\right)=x\\left(t\\right)\\cos\\left(t\\right)$$. This system is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "linear and time-invariant"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Non-linear and time-invariant"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "linear and time-varying"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Non-linear and time-varying"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-continuous-time-system-with-input-xt-and-output-y-gate-ee-2016-set-1-marks-1-5a9081fa9abe1.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a9335ced5461",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-signal-fourier-transform",
+                    "year": 2016,
+                    "paperTitle": "GATE EE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose x<sub>1</sub>(t) and x<sub>2</sub>(t) have the Fourier transforms as shown below.\n<img alt=\"GATE EE 2016 Set 1 Signals and Systems - Continuous Time Signal Fourier Transform Question 9 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/5e009fe686b01f91e8ef04b9a00434fc6f63095c5868565b047eb4591ef6cad9.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">\nWhich one of the following statements is TRUE?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "x<sub>1</sub>(t) and x<sub>2</sub>(t) are complex and x<sub>1</sub>(t)x<sub>2</sub>(t) is also complex with nonzero imaginary part"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "x<sub>1</sub>(t) and x<sub>2</sub>(t)  are real and x<sub>1</sub>(t)x<sub>2</sub>(t) is also real"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "x<sub>1</sub>(t) and x<sub>2</sub>(t)  are complex but x<sub>1</sub>(t)x<sub>2</sub>(t) is real"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "x<sub>1</sub>(t) and x<sub>2</sub>(t)  are imaginary but x<sub>1</sub>(t)x<sub>2</sub>(t) is real"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-x1t-and-x2t-have-the-fourier-transforms-as-shown-bel-gate-ee-2016-set-1-marks-2-5a9335ced5461.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2016-set-1"
+                }
+            ],
+            "title": "Signals and Systems"
+        }
+    ]
+}

@@ -1,0 +1,235 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gYPw9V6yRptLezaH",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2006,
+                    "paperTitle": "GATE IN 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a given $$2x2$$ matrix $$A,$$ it is observved that $$A\\left[ {\\matrix{\n   1  \\cr \n   { - 1}  \\cr \n\n } } \\right] =  - 1\\left[ {\\matrix{\n   1  \\cr \n   { - 1}  \\cr \n\n } } \\right]$$ and \n<br>$$A\\left[ {\\matrix{\n   1  \\cr \n   { - 2}  \\cr \n\n } } \\right] =  - 2\\left[ {\\matrix{\n   1  \\cr \n   { - 2}  \\cr \n\n } } \\right]$$ then the matrix $$A$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$A = \\left[ {\\matrix{\n   1 &amp; 1  \\cr \n   { - 1} &amp; { - 2}  \\cr \n\n } } \\right]\\,\\,\\left[ {\\matrix{\n   1 &amp; 0  \\cr \n   1 &amp; 2  \\cr \n\n } } \\right]\\,\\,\\left[ {\\matrix{\n   2 &amp; 1  \\cr \n   { - 1} &amp; { - 1}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$A = \\left[ {\\matrix{\n   1 &amp; 1  \\cr \n   { - 1} &amp; { - 2}  \\cr \n\n } } \\right]\\,\\,\\left[ {\\matrix{\n   1 &amp; 0  \\cr \n   1 &amp; 2  \\cr \n\n } } \\right]\\,\\,\\left[ {\\matrix{\n   2 &amp; 1  \\cr \n   { - 1} &amp; { - 1}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$A = \\left[ {\\matrix{\n   1 &amp; 1  \\cr \n   { - 1} &amp; { - 2}  \\cr \n\n } } \\right]\\,\\,\\left[ {\\matrix{\n   { - 1} &amp; 0  \\cr \n   0 &amp; { - 2}  \\cr \n\n } } \\right]\\,\\,\\left[ {\\matrix{\n   2 &amp; 1  \\cr \n   { - 1} &amp; { - 1}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$A = \\left[ {\\matrix{\n   0 &amp; { - 2}  \\cr \n   1 &amp; { - 3}  \\cr \n\n } } \\right]$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-given-2x2-matrix-a-it-is-observved-that-aleft-matrix-1-gate-in-2006-marks-2-gypw9v6yrptlezah.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aL6QGsys1hvAUWcw",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2006,
+                    "paperTitle": "GATE IN 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A system of linear simultaneous equations is given as $$AX=b$$ \n<br>where $$A = \\left[ {\\matrix{\n   1 &amp; 0 &amp; 1 &amp; 0  \\cr \n   0 &amp; 1 &amp; 0 &amp; 1  \\cr \n   1 &amp; 1 &amp; 0 &amp; 0  \\cr \n   0 &amp; 0 &amp; 0 &amp; 1  \\cr \n\n } } \\right]\\,\\,\\&amp; \\,\\,b = \\left[ {\\matrix{\n   0  \\cr \n   0  \\cr \n   0  \\cr \n   1  \\cr \n\n } } \\right]$$ \n<p>Then the rank of matrix $$A$$ is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2$$  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-system-of-linear-simultaneous-equations-is-given-as-axb-wh-gate-in-2006-marks-2-al6qgsys1hvauwcw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PdPFjWg3OIBXlImA",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2006,
+                    "paperTitle": "GATE IN 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A system of linear simultaneous equations is given as $$AX=b$$ \n<br>where $$A = \\left[ {\\matrix{\n   1 &amp; 0 &amp; 1 &amp; 0  \\cr \n   0 &amp; 1 &amp; 0 &amp; 1  \\cr \n   1 &amp; 1 &amp; 0 &amp; 0  \\cr \n   0 &amp; 0 &amp; 0 &amp; 1  \\cr \n\n } } \\right]\\,\\,\\&amp; \\,\\,b = \\left[ {\\matrix{\n   0  \\cr \n   0  \\cr \n   0  \\cr \n   1  \\cr \n\n } } \\right]$$  \n<p>Which of the following statement is true?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$x$$ is a null vector "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$x$$ is unique "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$x$$ does not exist "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$x$$ has infinitely many values "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-system-of-linear-simultaneous-equations-is-given-as-axb-wh-gate-in-2006-marks-2-pdpfjwg3oibxlima.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iQ2OEaKUxPPrf4Ln",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2006,
+                    "paperTitle": "GATE IN 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For initial value problem $$\\,\\mathop y\\limits^{ \\bullet  \\bullet }  + 2\\,\\mathop y\\limits^ \\bullet   + \\left( {101} \\right)y = \\left( {10.4} \\right){e^x},y\\left( 0 \\right) = 1.1\\,\\,$$ and $$y(0)=-0.9.$$  Various solutions are written in the following groups. Match the type of solution with the correct expression. \n<p><b>Group-$${\\rm I}$$</b>\n<br>$$P.$$$$\\,\\,\\,\\,$$ General solution of Homogeneous equations \n<br>$$Q.$$$$\\,\\,\\,\\,$$ Particular integral\n<br>$$R.$$$$\\,\\,\\,\\,$$ Total solution satisfying boundary Conditions</p>\n<p><b>Group-$${\\rm II}$$</b>\n<br>$$(1)$$$$\\,\\,\\,\\,$$ $$0.1\\,{e^x}$$ \n<br>$$(2)$$$$\\,\\,\\,\\,$$ $$\\,{e^{ - x}}\\left[ {A\\,\\cos \\,10x + B\\,\\sin \\,10x} \\right]$$\n<br>$$(3)$$$$\\,\\,\\,\\,$$ $${e^{ - x}}\\,\\cos \\,10x + 0.1\\,{e^x}$$</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P - 2,\\,\\,Q - 1,\\,\\,R - 3$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P - 1,\\,\\,Q - 3,\\,\\,R - 2$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P - 1,\\,\\,Q - 2,\\,\\,R - 3$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P - 3,\\,\\,Q - 2,\\,\\,R - 1$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-initial-value-problem-mathop-ylimits-bullet-bullet-2math-gate-in-2006-marks-2-iq2oeakuxpprf4ln.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2006"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        }
+    ]
+}

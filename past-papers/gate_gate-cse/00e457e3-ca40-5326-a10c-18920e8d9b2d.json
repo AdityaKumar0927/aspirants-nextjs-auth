@@ -1,0 +1,1732 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Algorithms",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HrtedFLbuc8l3hkP",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complexity-analysis-and-asymptotic-notations",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Express T(n) in terms of the harmonic number H<sub>n</sub> = $$\\sum\\limits_{t = 1}^n {1/i,n \\ge 1} $$ where T(n) satisfies the recurrence relation, T(n) = $${{n + 1} \\over 2}$$ T(n-1) + 1, for $$n \\ge 2$$ and T(1) = 1 What is the the asymptotic behavior of T(n) as a function of n?",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve by yourself",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "express-tn-in-terms-of-the-harmonic-number-hn-sumlimitst-1n-gate-cse-1990-marks-2-hrtedflbuc8l3hkp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0cBIjGlVkCyng33F",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "searching-and-sorting",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the pairs in the following:\n<p><b>List - I</b></p>\n(a) Straseen's matrix multiplication algorithm\n<br>(b) Kruskal's minimum spanning tree algorithm\n<br>(c) Bioconnected components algorithm\n<br>(d) Floyd's shortest path algorithm\n<p><b>List - II</b></p>\n(p) Greedy method\n<br>(q) Dynamic programming\n<br>(r) Divide and Conquer\n<br>(s) Depth first search",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a - r, b - p, c - s, d - q"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a - r, b - p, c - q, d - s"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "a - r, b - s, c - p, d - q"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a - q, b - p, c - s, d - r"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-pairs-in-the-followinglist-ia-straseens-matrix-mul-gate-cse-1990-marks-2-0cbijglvkcyng33f.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ipVXFmDrZvoP7sci",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "searching-and-sorting",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the pairs in the following:\n<p><b>List - I</b></p>\n(a) Heap construction\n<br>(b) Constructing hash table witn linear probing\n<br>(c) AVL Tree construction\n<br>(d) Digital tree construction\n<p><b>List - II</b></p>\n(p) $$\\Omega \\left( {n\\log _{10}^n} \\right)$$\n<br>(q) O(n)\n<br>(r) O(n<sup>2</sup>)\n<br>(s) $$\\Omega \\left( {n\\log _2^n} \\right)$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a - r, b - q, c - s, d - p"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a - q, b - r, c - p, d - s"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "a - q, b - r, c - s, d - p"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a - q, b - s, c - r, d - p"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-pairs-in-the-followinglist-ia-heap-constructionb-c-gate-cse-1990-marks-2-ipvxfmdrzvop7sci.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                }
+            ],
+            "title": "Algorithms"
+        },
+        {
+            "_id": "Compiler Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LTCJWROm3HvFEPO8",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "lexical-analysis",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the following: \n <p><b>List - I </b></p>\n(a) Lexical Analysis \n<br>(b) Code Optimization \n<br>(c) Code Generation \n<br>(d) Abelian Group \n <p><b>List - II </b></p>\n(p) DAG's \n<br>(q) Syntax trees \n<br>(r) Push Down automata \n<br>(s) Finite automata",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a - s, b - p, c - q, d - r"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a - r, b - p, c - q, d - s"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "a - s, b - q, c - p, d - r"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a - s, b - p, c - r, d - q"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-following-list-i-a-lexical-analysis-b-code-optimiz-gate-cse-1990-marks-1-ltcjwrom3hvfepo8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "I4drgFbnv9dB0NrC",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "code-generation-and-optimization",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Match the followings: </p>\n<p> <b>Group-I</b> </p>\n(a) Pointer data type \n<br>(b) Activation Record\n<br>(c) Repeat -Until \n<br>(d) Coercion \n<p> <b>Group-II</b> </p>\n(p) Type Conversion \n<br>(q) Dynamic Data Structure \n<br>(r) Recursion \n<br>(s) Nondeterministic loop",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a - p, b - r, c - s, d - q"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a - q, b - r, c - s, d - p"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "a - q, b - s, c - r, d - p"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a - r, b - q, c - s, d - p"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-followings-group-i-a-pointer-data-type-b-activatio-gate-cse-1990-marks-1-i4drgfbnv9db0nrc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                }
+            ],
+            "title": "Compiler Design"
+        },
+        {
+            "_id": "Computer Organization",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3qaf9vFR0Z4Y3VTv",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-interfacing",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A block -set associative cache memory consists of $$128$$ blocks divided into four block sets. The main memory consists of $$16,384$$ blocks and each blocks contains $$256$$ eight bit words. \n<p>(i) How many bits are required for addressing the main memory?</p> \n<p>(ii) How many bits are needed to represent the TAG, SET and WORD fields?</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(i) $$22$$ bits\n<p>(ii) TAG $$=9$$ bits\n<br>SET $$=5$$ bits\n<br>WORD $$=8$$ bits</p>\n",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-block-set-associative-cache-memory-consists-of-128-blocks-gate-cse-1990-marks-2-3qaf9vfr0z4y3vtv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gO3CGJqL4A0nFK9k",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "computer-arithmetic",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "State the Both's algorithm for multiplication of two numbers, Draw a block diagram for the implementation of the Booth's algorithm for determining the product of two $$8-$$bit signed numbers.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "state-the-boths-algorithm-for-multiplication-of-two-numbers-gate-cse-1990-marks-5-go3cgjql4a0nfk9k.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                }
+            ],
+            "title": "Computer Organization"
+        },
+        {
+            "_id": "Digital Logic",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "u7gK8TTjUFJAXx1U",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinational-circuits",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Fill in the blanks:\n<br>In the two bit full-adder/sub tractor unit shown in Fig., when the switch is in position $$2.$$   $$.....$$ using $$.....$$ arithmetic.\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/EALKTecUqCXtUFzzS/VMWaN4qXF93Ydg4sWG478m4KLpppr/fsVUrA95cKMtEAkfZx7yHr/image.svg\" loading=\"lazy\" alt=\"GATE CSE 1990 Digital Logic - Combinational Circuits Question 13 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$B$$ is substracted from $$A,$$ \n<br>$$2's$$ complement",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "fill-in-the-blanksin-the-two-bit-full-addersub-tractor-unit-gate-cse-1990-marks-2-u7gk8ttjufjaxx1u.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QgJSAcgXRgIN4A0L",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 1.5,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the synchronous counter shown in fig. write the truth table of $${Q_0},\\,\\,{Q_1}$$ and $${Q_2}$$ after each pulse starting from $${Q_0} = {Q_1} = {Q_2} = 0$$ and determine the counting sequenced also the modulus of the counter\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Y5lNSUORleZ2hrrOB/pCgBap7wlx4ZNVsLkXBClZWxbbnHh/IbAu4Z1fCHU3b4ls0JJ5rI/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1990 Digital Logic - Sequential Circuits Question 12 English\"> \n<p>What is the modules of the counter with initial state $${Q_2}\\,{Q_1}\\,{Q_0} = 000$$</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$4$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$6$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-synchronous-counter-shown-in-fig-write-the-truth-tab-gate-cse-1990-marks-5-qgjsacgxrgin4a0l.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XD7yFvea5NWQTFJe",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two $$NAND$$ gates having open collector outputs are tied together as shown in fig. The logic function $$Y,$$ implemented by the circuit is.\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/Xmk7NEDsUikukwUs3/m6aC8AQoWizKBCfWAGX942cIs9QJD/3MrNvQiZIZKDsH0zEyVQMP/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1990 Digital Logic - Boolean Algebra Question 21 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$Y = A\\overline {BC}  + \\overline {DE} $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$Y = ABC + DE$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$Y = \\overline {ABC} .\\overline {DE} $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$Y = ABC\\,.\\,DE$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-nand-gates-having-open-collector-outputs-are-tied-togeth-gate-cse-1990-marks-2-xd7yfvea5nwqtfje.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BxMU2xEsPpt5J8X8",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "number-systems",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the number given by the decimal expression. \n<br>$${16^3} \\times 9 + {16^2} \\times 7 + 16 \\times 5 + 3$$\n<p>The number of $$1's$$ in the unsigned binary representation of the number is _______.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "9",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-number-given-by-the-decimal-expression-163-time-gate-cse-1990-marks-2-bxmu2xesppt5j8x8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "l0ZFTJkAgkwNbneH",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Find the minimum product of sums of the following expression\n<br>$$f = ABC + \\overline A \\,\\overline B \\,\\overline C .$$ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$f = \\left( {\\overline B  + C} \\right)\\left( {\\overline A  + B} \\right)\\left( {A + \\overline C } \\right)$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "find-the-minimum-product-of-sums-of-the-following-expression-gate-cse-1990-marks-5-l0zftjkagkwnbneh.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Or6OKb5AWMqwbI4p",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Show with the help of a block diagram represent Boolean function: \n<br>$$f=AB+BC+CA$$ can be realized using only $$4:1$$ multiplexer. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "show-with-the-help-of-a-block-diagram-represent-boolean-func-gate-cse-1990-marks-5-or6okb5awmqwbi4p.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                }
+            ],
+            "title": "Digital Logic"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oi4Zvq8mvW6pAaSF",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A graph is planar if and only if,",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "it does not contain subgraphs homeomorphic to K<sub>5</sub> and K<sub>3, 3.</sub>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "it does not contain subgraphs isomorphic to K<sub>5</sub> or K<sub>3, 3.</sub> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "it does not contain subgraphs isomorphic to K<sub>5</sub> and K<sub>3, 3.</sub>  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "it does not contain subgraphs homeomorphic to K<sub>5</sub> or K<sub>3, 3.</sub> "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-graph-is-planar-if-and-only-if-gate-cse-1990-marks-2-oi4zvq8mvw6paasf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iyBjl5Di8z769T0w",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Indicate which of the following well-formed formula are valid: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {\\left( {{\\rm P} \\Rightarrow Q} \\right) \\wedge \\left( {Q \\Rightarrow R} \\right)} \\right) \\Rightarrow \\left( {{\\rm P} \\Rightarrow R} \\right).$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {{\\rm P} \\Rightarrow Q} \\right) \\Rightarrow \\left( { \\sim P \\Rightarrow  \\sim Q} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {{\\rm P}\\, \\wedge \\,\\left( { \\sim {\\rm P}\\,\\,V \\sim Q} \\right)} \\right) \\Rightarrow Q\\left( { \\sim {\\rm P} \\Rightarrow  \\sim Q} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {\\left( {{\\rm P} \\Rightarrow R} \\right) \\vee \\left( {Q \\Rightarrow R} \\right)} \\right) \\Rightarrow \\left( {\\left( {\\left( {{\\rm P} \\vee Q} \\right) \\Rightarrow R} \\right)} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "indicate-which-of-the-following-well-formed-formula-are-vali-gate-cse-1990-marks-2-iybjl5di8z769t0w.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FXoYCwk0vretKVfx",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "State whether the following statements are TRUE or FALSE with reason.\n<br>The Link-load -and-go loading scheme required less storange space than the Link-and-go loading scheme.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "state-whether-the-following-statements-are-true-or-false-wit-gate-cse-1990-marks-2-fxoycwk0vretkvfx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "biBPV8ITk8BevBor",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the pairs in the following Question.\n<br>$$\\eqalign{\n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,List:\\,{\\rm I}  \\cr \n  &amp; \\left( A \\right)\\,\\,Criotical\\,\\,region  \\cr \n  &amp; \\left( B \\right)\\,\\,Wait/Signal  \\cr \n  &amp; \\left( C \\right)\\,\\,Working\\,\\,set  \\cr \n  &amp; \\left( D \\right)\\,\\,Deadlock  \\cr \n  &amp;   \\cr \n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,List:\\,{\\rm I}{\\rm I}  \\cr \n  &amp; \\left( p \\right)\\,\\,Hoare's\\,\\,monitor  \\cr \n  &amp; \\left( q \\right)\\,\\,Mutual\\,\\,exclusion  \\cr \n  &amp; \\left( r \\right)\\,\\,\\Pr inciple\\,\\,of\\,\\,locality  \\cr \n  &amp; \\left( s \\right)\\,\\,Circular\\,\\,Wait \\cr} $$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$A - q,\\,\\,B - p,\\,\\,C - r,\\,\\,D - s$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-pairs-in-the-following-questioneqalign-listrm-i-cr-gate-cse-1990-marks-2-bibpv8itk8bevbor.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aNMRUsM97EZk7WLn",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Under paged memory management scheme simple lock and key memory protection arrangement may still be required if the  $$........$$ processors do not have address mapping hardware.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Input-output",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "under-paged-memory-management-scheme-simple-lock-and-key-mem-gate-cse-1990-marks-2-anmrusm97ezk7wln.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SJV9fjw3eqBX5KDh",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "State whether the following statements are TRUE or FALSE with reason. Transferring data in blocks from the main memory to the cache memory enables an interleaved main memory unit to operate unit at its maximum speed.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "state-whether-the-following-statements-are-true-or-false-wit-gate-cse-1990-marks-2-sjv9fjw3eqbx5kdh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hrfk6oHxJZ5wtC7b",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a two -level virtual memory, the memory access time for main memory, $${t_M} = {10^{ - 8}}\\sec $$ and the memory access time for the secondary memory, tag  $$ = {10^{ - 3}}.$$ What must be the hit ratio, $$H$$ such that the access efficiency is within $$80$$ percent of its maximum value?",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Hit ratio must be less than or equal to $$80$$% ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-two-level-virtual-memory-the-memory-access-time-for-mai-gate-cse-1990-marks-2-hrfk6ohxjz5wtc7b.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FmEuHgO6ZFcwrv10",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "State whether the following statement are TRUE or FALSE with reason. The data transfer between memory and $${\\rm I}/O$$ devices using programmed $${\\rm I}/O$$ is fasterthan interrrupt-driven $${\\rm I}/O$$.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "state-whether-the-following-statement-are-true-or-false-with-gate-cse-1990-marks-2-fmeuhgo6zfcwrv10.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "COvhSoTdYU0y44Gr",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A certain moving arm disk-storage device has the following specifications:\n<br>Number of tracks per surface $$=4004$$\n<br>Track storage capacity $$=130030$$ bytes\n<br>Disk speed $$=3600$$ rpm\n<br>Average seek time $$=30$$ m secs.\n<br>Estimate the average latency the disk storage capacity and the data transfer rate.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Disk capacity $$=1.2$$ MB\n<br>Latency $$=9$$ ms\n<br>Data Transfer rate $$=7000$$ Bytes/sec",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-certain-moving-arm-disk-storage-device-has-the-following-s-gate-cse-1990-marks-5-covhsotdyu0y44gr.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SwBmnsYecjGyFLm2",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Assuming the current disk cylinder to be $$50$$ and the sequence for the cylinders to be\n<br>$$1, 36, 49, 65, 53, 1, 2, 3, 20, 55, 16, 65$$ and $$78$$ find the sequences of servicing using\n<br>(i) shortest-seek time first $$(SSTF)$$\n<br>(ii) elevator disk scheduling polices.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(i) $$49, 53, 55, 65, 78, 36, 20, 16, 12, 3, 1$$\n<br>(ii) $$53, 55, 65, 78, 49, 36, 20, 12, 3, 1$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "assuming-the-current-disk-cylinder-to-be-50-and-the-sequence-gate-cse-1990-marks-5-swbmnsyecjgyflm2.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BykXP1ytLAOX0X5d",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The highest-response ratio next scheduling policy favours $$.......$$ jobs, but it also limits the waiting time of $$ .....$$ jobs.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Shorter ;  Longer ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-highest-response-ratio-next-scheduling-policy-favours-jo-gate-cse-1990-marks-2-bykxp1ytlaox0x5d.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ClBXSLSBRHMU01yG",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronization-and-concurrency",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Semaphore operations are atomic because they are implemented within the OS",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Kernel",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "semaphore-operations-are-atomic-because-they-are-implemented-gate-cse-1990-marks-2-clbxslsbrhmu01yg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                }
+            ],
+            "title": "Operating Systems"
+        },
+        {
+            "_id": "Programming Languages",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "14KtvvsRBMG830KM",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the pairs in the following:\n<p><b>List - I</b></p>\n(A) Pointer data type\n<br>(B) Activation record\n<br>(C) Repeat-until\n<br>(D) Coercion\n<p><b>List - II</b></p>\n(p) Type conversion\n<br>(q) Dynamic data structure\n<br>(r) Recursion\n<br>(s) Nondeterministic loop",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "A - q; B - r; C - s; D - p"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "A - r; B - q; C - s; D - p"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "A - q; B - r; C - p; D - s"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "A - r; B - s; C - q; D - p"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-pairs-in-the-followinglist-ia-pointer-data-typeb-a-gate-cse-1990-marks-2-14ktvvsrbmg830km.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yiZKZFu2fm85Gur5",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the pairs in the following:\n<p><b>List - I</b></p>\n(A) Small talk\n<br>(B) LISP\n<br>(C) Prolog\n<br>(D) VAL\n<p><b>List - II</b></p>\n(p) Logic programming\n<br>(q) Data flow programming\n<br>(r) Functional programming\n<br>(s) Object-Oriented programming",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "A - s; B - r; C - p; D - q"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "A - r; B - s; C - p; D - q"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "A - s; B - r; C - q; D - p"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "A - s; B - p; C - r; D - q"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-pairs-in-the-followinglist-ia-small-talkb-lispc-pr-gate-cse-1990-marks-2-yizkzfu2fm85gur5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                }
+            ],
+            "title": "Programming Languages"
+        },
+        {
+            "_id": "Theory of Computation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "s8Nb6ioCh7J0Sbv1",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "undecidability",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "It is decidable whether: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "An arbitrary Turing machine halts after 10 steps."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "A Turing machine prints a specific letter."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "A Turing machine computes the product of two numbers."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above."
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "<br><br>Case (a): <br>Just run the TM for 10 steps and see it halts or not. So this is decideable. <br><br>Case (b): <br>The printing problem of TMs is Undecidable. This can be reduce to the halting problem when the TM halts let it print something. <br><br>Case (c): <br>Multiplication, Addition can be done by TM so this is decidable."
+                        }
+                    },
+                    "permalink": "it-is-decidable-whether-gate-cse-1990-marks-2-s8nb6ioch7j0sbv1.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "30IfTFyBfdAaiZWD",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "recursively-enumerable-language-and-turing-machine",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Recursive languages are:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "A proper superset of context free languages."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Always recognizable by pushdown automata."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Also called Type $$(0)$$ languages."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Recognizable by Turing machines."
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "recursive-languages-are-gate-cse-1990-marks-2-30iftfybfdaaizwd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NL3sja7M5D0BErBz",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $${R_1}$$ and $${R_2}$$ be regular sets defined over the alphabet $$\\sum \\, $$ then:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${R_1} \\cap R{}_2$$ is not regular."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${R_1} \\cup R{}_2$$ is regular."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\sum {^{^ * }} $$ $$-$$ $${R_1}$$ is regular. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${R_1}{}^ * $$ is not regular."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-r1-and-r2-be-regular-sets-defined-over-the-alphabet-sum-gate-cse-1990-marks-2-nl3sja7m5d0berbz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "S0i956VDb7n3TFs4",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "State whether the following statement is TRUE / FALSE.\n<p>All subjects of regular sets are regular.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "state-whether-the-following-statement-is-true-falseall-subje-gate-cse-1990-marks-1-s0i956vdb7n3tfs4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rHjEq5qsK8ph2LtE",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "State whether the following statement is TRUE / FALSE.\n<p>A minimal $$DFA$$ that is equivalent to an $$NFDA$$  with $$n$$ modes has always 2<sup>n</sup> states</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "state-whether-the-following-statement-is-true-falsea-minimal-gate-cse-1990-marks-1-rhjeq5qsk8ph2lte.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "IA5yqU1SMkNyf9sm",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "State whether the following statement is TRUE / FALSE.\n<p>Regularity is preserved under the operation of string reversal.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "state-whether-the-following-statement-is-true-falseregularit-gate-cse-1990-marks-1-ia5yqu1smknyf9sm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nXNjZJxEB2PTcZLR",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "State whether the following statement is TRUE / FALSE.\n<p>A is recursive if both a and its complement are accepted by Turing Machine M accepts.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "state-whether-the-following-statement-is-true-falsea-is-recu-gate-cse-1990-marks-1-nxnjzjxeb2ptczlr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nIkPAY203QwC2fQ3",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "State whether the following statement is TRUE / FALSE.\n<p>The intersection of two $$CFL's$$ is also $$CFL.$$</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "state-whether-the-following-statement-is-true-falsethe-inter-gate-cse-1990-marks-1-nikpay203qwc2fq3.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dXdqXw1tGXlo3u0M",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 1990,
+                    "paperTitle": "GATE CSE 1990",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "State whether the following statement is TRUE / FALSE.\nThe problem is to whether a Turing Machine M accepts input $$w$$ is un-decidable.<p></p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "state-whether-the-following-statement-is-true-falsethe-probl-gate-cse-1990-marks-1-dxdqxw1tgxlo3u0m.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1990",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1990"
+                }
+            ],
+            "title": "Theory of Computation"
+        }
+    ]
+}

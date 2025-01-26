@@ -1,0 +1,1440 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "djCY4NPkySt0JVR2",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The differential equation $${{{d^4}y} \\over {d{x^4}}} + P{{{d^2}y} \\over {d{x^2}}} + ky = 0\\,\\,$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Linear of fourth order "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Non - Linear of fourth order"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Non - Homogeneous "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Linear and fourth degree "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-differential-equation-d4y-over-dx4-pd2y-over-dx2-ky-0-is-gate-ce-1994-marks-2-djcy4npkyst0jvr2.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dZ4uoC7b0cfI4VsB",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The necessary &amp; sufficient condition for the differential equation of the form $$\\,\\,M\\left( {x,y} \\right)dx + N\\left( {x,y} \\right)dy = 0\\,\\,$$ to be exact is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$M=N$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{\\partial M} \\over {\\partial x}} = {{\\partial N} \\over {\\partial y}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{\\partial M} \\over {\\partial y}} = {{\\partial N} \\over {\\partial x}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{{\\partial ^2}M} \\over {\\partial {x^2}}} = {{{\\partial ^2}N} \\over {\\partial {y^2}}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-necessary-sufficient-condition-for-the-differential-equa-gate-ce-1994-marks-1-dz4uoc7b0cfi4vsb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vxp3ihaBHA4jYVji",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of $$\\varepsilon $$ in the mean value theoram of $$f\\left( b \\right) - f\\left( a \\right) = \\left( {b - a} \\right)\\,\\,f'\\left( \\varepsilon  \\right)$$ for  $$f\\left( x \\right) = A{x^2} + Bx + C$$ in $$(a, b)$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$b + a$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$b - a$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{b + a} \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{b - a} \\over 2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-varepsilon-in-the-mean-value-theoram-of-fleft-b-gate-ce-1994-marks-1-vxp3ihabha4jyvji.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Geotechnical Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a27182926052",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "geotechnical-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "definitions-and-properties-of-soils",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The void ratio of a soil sample is 1. The corresponding porosity of the sample is _______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.5",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-void-ratio-of-a-soil-sample-is-1-the-corresponding-poros-gate-ce-1994-marks-1-5a27182926052.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                }
+            ],
+            "title": "Geotechnical Engineering"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "51Q4pajwWbMf1qkn",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "prestressed-concrete",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A prestressed concrete rectangular beam of size $$300\\,\\,mm \\times 900\\,\\,mm$$ is prestressed with an intial prestressing force of $$700$$ $$kN$$ at an eccentricity of $$350$$ $$mm$$ at midspan. Stress at top due to prestress alone, in $$N/m{m^2}$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-3.46$$ (tension)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2.59$$ (compression) "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$8.64$$ (compression)  "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-prestressed-concrete-rectangular-beam-of-size-300mm-1994-marks-2-51q4pajwwbmf1qkn.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pAhX9RD93QtOHUc3",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "singly-reinforced-sections",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$IS$$ $$456$$-$$2000$$ recommends providing certain minimum steel in a $$RCC$$ beam",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "to ensure compression failure"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "to avoid rupture of steel in case a flexural failure occurs"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "to hold the stirrup steel in position"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "to provide enough ductility to the beam"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "is-456-2000-recommends-providing-certain-minimum-1994-marks-1-pahx9rd93qtohuc3.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1aad4cd5356",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Grading of aggregate in a concrete mix is necessary to achieve",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Adequate workability"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Higher density"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Reduction in Voids"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Better durability"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "grading-of-aggregate-in-a-concrete-mix-is-necessary-to-achie-gate-ce-1994-marks-1-5a1aad4cd5356.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "I95ITe6dqgfRzx1z",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "propped-cantilever-beam",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A beam fixed at the ends and subjected to lateral loads only is statically indeterminate and the degree of indeterminacy is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "One "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Two "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Three "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Four "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-beam-fixed-at-the-ends-and-subjected-to-lateral-loads-only-1994-marks-1-i95ite6dqgfrzx1z.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JSIveOuKcFix8p6I",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "propped-cantilever-beam",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The fixed end moment of a uniform beam of span $$l$$ fixed at the ends, subjected to a central point load $$P$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{P\\ell } \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{P\\ell } \\over 8}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${P \\over 8}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${P \\over 16}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-fixed-end-moment-of-a-uniform-beam-of-span-l-fixed-a-1994-marks-1-jsiveoukcfix8p6i.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ADFOJEOPAdcAYBap",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "columns-and-struts",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "When a column is fixed at both ends corresponding to Euler's criterion load is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{{n^2}E{\\rm I}} \\over {{L^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{2{n^2}E{\\rm I}} \\over {{L^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{3{n^2}E{\\rm I}} \\over {{L^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{4{n^2}E{\\rm I}} \\over {{L^2}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "when-a-column-is-fixed-at-both-ends-corresponding-to-eulers-1994-marks-1-adfojeopadcaybap.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lDN5ycrmHduNt7WE",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A cantilever beam of span $$l$$ subjected to a uniformly distributed load $$'w'$$ per unit length resting on a rigid prop at the tip of cantilever. The magnitude of the reaction of at the prop is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over 8}w\\ell $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${2 \\over 8}w\\ell $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${3 \\over 8}w\\ell $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${4 \\over 8}w\\ell $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cantilever-beam-of-span-l-subjected-to-a-uniformly-dis-1994-marks-2-ldn5ycrmhdunt7we.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kjFrEPUEIssbXlyK",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-stress-in-beams",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a given shear force across a symmetrical $${\\rm I}$$-section, the intensity of shear is maximum at ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Extreme fibres "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Centroid of the section "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "At the junction of the flange and the web on the web "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "At the junction of the flange and the web but on the flange "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-given-shear-force-across-a-symmetrical-rm-i-sec-1994-marks-1-kjfrepueissbxlyk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Ns1a49ifyjgwlqZ6",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-force-and-bending-moment",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A cantilever beam curved in plan and subjected to lateral loads will develop at any section",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Bending moment and shearing force "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Bending moment and twisting moment "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Twisting moment and shearing force "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Bending moment, twisting moment and shearing force"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cantilever-beam-curved-in-plan-and-subjected-to-lateral-lo-1994-marks-1-ns1a49ifyjgwlqz6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wH0v76FahyOe02ZN",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-stress",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The state of two dimensional stresses acting on a concrete lamina consists of a direct tensile  stress, $${\\sigma _x} = 1.5\\,\\,N/m{m^2},$$ and shear stress, $$\\tau  = 1.20\\,N/m{m^2},$$ which cause cracking of concrete. Then the tensile strength of the concrete in $$N/m{m^2}$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.50$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2.08$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2.17$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2.29$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-state-of-two-dimensional-stresses-acting-on-a-concrete-l-1994-marks-2-wh0v76fahyoe02zn.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "d4mcUK7TCKL0sRF2",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$'YY'$$ is the centroidal axis of a $$T$$-beam section, subjected to plastic moment, $${M_P},$$ the neutral axis lies\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Drw98pZEQRt0fNoHN/HmQm4wpF9kok571LVEJdnWwZ2etsG/18hdkiaHvkQfhvUTy68kFY/image.png\" loading=\"lazy\" alt=\"GATE CE 1994 Structural Analysis - Plastic Analysis Question 14 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "above $$'ZZ'$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "between $$YY$$ and $$ZZ$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "between $$XX$$ and $$YY$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "between low $$XX$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-yy-is-the-centroidal-axis-of-a-t-beam-section-1994-marks-1-d4mcuk7tckl0srf2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iM5YWSKZqB7Wd8kR",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The ratio of the stiffness of a beam at the near end when the far end is hinged to the stiffness of the beam at the near end when the far end is fixed is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${3 \\over 4}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${4 \\over 3}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-ratio-of-the-stiffness-of-a-beam-at-the-near-end-when-th-1994-marks-1-im5ywskzqb7wd8kr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GkuOLcgOZikcmTJl",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single bay portal frame of height $$'h'$$ fixed at the base is subjected to a horizontal displacement $$'\\delta '$$ at the top. The base moments developed is proportional to _____, where $$'{\\rm I}'$$ is the moment of inertia of the cross section.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\rm I}/h$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\rm I}/{h^2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\rm I}/{h^3}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-single-bay-portal-frame-of-height-h-fixed-at-the-bas-1994-marks-1-gkuolcgozikcmtjl.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "06D5af3cIXfqrMwQ",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "methods-of-analysis",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following statements is true with regard to the flexibility method of analysis.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The method is used to analyze determine structures."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The method is used only for manual analysis of Indeterminate structures "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The method is used for analysis of flexible structures. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The method is used for analysis of indeterminate structures with lesser degree of static indeterminacy. "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-statements-is-true-with-regard-to-the-1994-marks-1-06d5af3cixfqrmwq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2M8dtdu2wl9ZPBSD",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "methods-of-analysis",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Flexibility of a structure may be defined as the displacement caused by ----------------- force and stiffness of a structure may be defined as the force required for ----------------- displacement ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Unit, Unit ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "flexibility-of-a-structure-may-be-defined-as-the-displacemen-1994-marks-1-2m8dtdu2wl9zpbsd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fegoGpxI3sY6SvMg",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "methods-of-analysis",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In flexibility method the unknown quantities are ----------------- whereas in stiffness method the unknown quantities are --------------",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Forces, displacement ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-flexibility-method-the-unknown-quantities-are-1994-marks-1-fegogpxi3sy6svmg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mI6monPJNzzvd6ot",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "influence-line-diagram",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The influence line diagram for the force in member $$'a'$$ of the truss shown below is given by \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/EhuI0TbY8oEEtbiYJ/rMwofa1KwPz7HgNSOXM7OU0vWYDau/oOBfQYG6XT2BhimsLVQI2N/image.png\" loading=\"lazy\" alt=\"GATE CE 1994 Structural Analysis - Influence Line Diagram Question 11 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/kXCr7O3sYidS7geE9/UYl35UJep5p7KHCmcturbvvzLJK6J/KIoADSNWFFv3IRYcOl5Aah/image.png\" loading=\"lazy\" alt=\"GATE CE 1994 Structural Analysis - Influence Line Diagram Question 11 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/E0xlZgyQUFANLSV5X/1NLQ6SFYUw6NGupMkvjOe7zpmymw4/6NlJKbH7hmT8dBdyOEV0Od/image.png\" loading=\"lazy\" alt=\"GATE CE 1994 Structural Analysis - Influence Line Diagram Question 11 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/xNexGJbZwpDhf2laN/xkwDvyXRMdaOuOkR7y7hAKRpas1dz/3YfIiHTTbFUXdZ1saLa6jk/image.png\" loading=\"lazy\" alt=\"GATE CE 1994 Structural Analysis - Influence Line Diagram Question 11 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/MkMmdSmJxPAJacLkq/6hCnXoBSs1KpukqPf15Y6Jl80EHD8/z3ILgMjHiVXK2LrEVMY327/image.png\" loading=\"lazy\" alt=\"GATE CE 1994 Structural Analysis - Influence Line Diagram Question 11 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-influence-line-diagram-for-the-force-in-member-a-o-1994-marks-1-mi6monpjnzzvd6ot.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Np8UYygGmpzRZAWb",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "influence-line-diagram",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Influence line for redundant structures can be obtained by ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Castigliano's theoram"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Muller Breslau principle "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Unit load theorem "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Maxwell-Betti reciprocal theorem "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "influence-line-for-redundant-structures-can-be-obtained-by-1994-marks-1-np8uyyggmpzrzawb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YmTrNeetZD407hfd",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "indeterminacy",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Kinematic Indeterminacy of plane frame shown below is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/PTjE3HGLbmGEFMaAB/MQpcTDAVrx67IXLx8btKhVQJkvy4t/BlKaygJDNK2DozORUClIW9/image.png\" loading=\"lazy\" alt=\"GATE CE 1994 Structural Analysis - Indeterminacy Question 11 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "zero "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-kinematic-indeterminacy-of-plane-frame-shown-below-is-1994-marks-1-ymtrneetzd407hfd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Dcf0jYFlW7SJqj4I",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "indeterminacy",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The kinematic indeterminacy of single bay portal frame fixed at the base is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "One "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Two "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Three "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Zero "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-kinetic-indeterminacy-of-single-bay-portal-frame-fixed-a-1994-marks-1-dcf0jyflw7sjqj4i.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a188e5bd7428",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stability-and-static-indeterminacy",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A beam fixed at the ends and subjected to lateral loads only is statically indeterminate and the degree of indeterminacy is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "One"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Two"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Three"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Four"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-beam-fixed-at-the-ends-and-subjected-to-lateral-loads-only-gate-ce-1994-marks-1-5a188e5bd7428.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                }
+            ],
+            "title": "Structural Analysis"
+        },
+        {
+            "_id": "Transportation Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a3242ff60bb7",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "transportation-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "highway-devolopment-and-planning",
+                    "year": 1994,
+                    "paperTitle": "GATE CE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Nagpur road plan is based on",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Block pattern"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Star and grid pattern"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Star and circular pattern"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Hexagonal pattern"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "nagpur-road-plan-is-based-on-gate-ce-1994-marks-1-5a3242ff60bb7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1994"
+                }
+            ],
+            "title": "Transportation Engineering"
+        }
+    ]
+}

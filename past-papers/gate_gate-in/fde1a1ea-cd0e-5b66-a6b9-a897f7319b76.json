@@ -1,0 +1,571 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Xs5qRAZ4Uf25ogtH",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2005,
+                    "paperTitle": "GATE IN 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Identity which one of the following is an eigen vectors of the matrix $$A = \\left[ {\\matrix{\n   1 &amp; 0  \\cr \n   { - 1} &amp; { - 2}  \\cr \n\n } } \\right]$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\left[ {\\matrix{\n   { - 1} &amp; 1  \\cr \n\n } } \\right]^T}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\left[ {\\matrix{\n   {  3} &amp; -1  \\cr \n\n } } \\right]^T}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\left[ {\\matrix{\n   {  1} &amp; -1  \\cr \n\n } } \\right]^T}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\left[ {\\matrix{\n   { - 2} &amp; 1  \\cr \n\n } } \\right]^T}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "identity-which-one-of-the-following-is-an-eigen-vectors-of-t-gate-in-2005-marks-1-xs5qraz4uf25ogth.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8fdibGX2pzYYbSkH",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2005,
+                    "paperTitle": "GATE IN 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$A$$ be $$3 \\times 3$$ matrix with rank $$2.$$  Then $$AX=O$$ has",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "only the trivial solution $$X=O$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "one independent solution "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "two independent solutions "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "three independent solutions "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-a-be-3-times-3-matrix-with-rank-2-then-axo-has-gate-in-2005-marks-1-8fdibgx2pzyybskh.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lPnGqBLfm1j68Blz",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2005,
+                    "paperTitle": "GATE IN 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of the integral $$\\int\\limits_{ - 1}^1 {{1 \\over {{x^2}}}dx} \\,\\,\\,$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "does not exist "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$-2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ \\propto $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-the-integral-intlimits-11-1-over-x2dx-is-gate-in-2005-marks-1-lpngqblfm1j68blz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RZwBrrfG2GLX8cmL",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2005,
+                    "paperTitle": "GATE IN 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$f = {a_0}\\,{x^n} + {a_1}\\,{x^{n - 1}}\\,y +  -  -  + \\,{a_{n - 1}}\\,x\\,{y^{n - 1}} + {a_n}\\,{y^n}$$ \n<br>where $$\\,\\,{a_i}\\,\\,$$ ($$i=0$$ to $$n$$) are constants then $$x{{\\partial f} \\over {\\partial x}} + y{{\\partial f} \\over {\\partial y}}\\,\\,\\,$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${f \\over n}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${n \\over f}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$n$$ $$f$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$n\\sqrt f $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "f-a0xn-a1xn-1y-an-1xyn-1-anyn-where-ai-i0-to-n-are-constants-gate-in-2005-marks-1-rzwbrrfg2glx8cml.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HKJlDIcoAbS7URJq",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2005,
+                    "paperTitle": "GATE IN 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If a vector $$\\overrightarrow R \\left( t \\right)$$ has a constant magnitude then ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\overrightarrow R .{{d\\overrightarrow R } \\over {dt}} = 0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\overrightarrow R  \\times {{d\\overrightarrow R } \\over {dt}} = 0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\overrightarrow R .\\overrightarrow R {{d\\overrightarrow R } \\over {dt}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\overrightarrow R  \\times \\overrightarrow R {{d\\overrightarrow R } \\over {dt}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-a-vector-overrightarrow-r-left-t-right-has-a-constant-mag-gate-in-2005-marks-1-hkjldicoabs7urjq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xLI5JxnJi7OvQQhM",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2005,
+                    "paperTitle": "GATE IN 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A scalar field is given by $$f = {x^{2/3}} + {y^{2/3}},$$ where $$x$$ and $$y$$ are the Cartesian coordinates. The derivative of $$'f'$$ along the line $$y=x$$ directed away from the origin at the point $$(8, 8)$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{\\sqrt 2 } \\over 3}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{\\sqrt 3 } \\over 2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${2 \\over {\\sqrt 3 }}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${3 \\over {\\sqrt 2 }}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-scalar-field-is-given-by-f-x23-y23-where-x-and-y-are-the-c-gate-in-2005-marks-2-xli5jxnji7ovqqhm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7EhpbT75C6NwLuZz",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2005,
+                    "paperTitle": "GATE IN 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The probability that there are $$53$$ Sundays in a randomly chosen leap year is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over 7}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over 14}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${1 \\over 28}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${2 \\over 7}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-probability-that-there-are-53-sundays-in-a-randomly-chos-gate-in-2005-marks-1-7ehpbt75c6nwluzz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BfNPV80rrEVPleCo",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2005,
+                    "paperTitle": "GATE IN 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The general solution of the differential equation $$\\left( {{D^2} - 4D + 4} \\right)y = 0$$  is of the form (given $$D = {d \\over {dx}}$$  and $${C_1},{C_2}$$ are constants) ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${C_1}\\,{e^{2x}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${C_1}\\,{e^{2x}} + {C_2}\\,{e^{ - 2x}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${C_1}\\,{e^{2x}} + {C_2}\\,{e^{2x}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${C_1}\\,{e^{2x}} + {C_2}\\,x\\,{e^{2x}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-general-solution-of-the-differential-equation-left-d2-4d-gate-in-2005-marks-1-bfnpv80rrevpleco.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GbiQdaIUoqdjEfN8",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2005,
+                    "paperTitle": "GATE IN 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the circle $$\\left| {z\\, - 5\\, - 5i} \\right|\\, = \\,2$$ in the complex number plane (x, y) with z = x + iy. The minimum distance from the origin to the circle is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$5\\sqrt 2  - 2$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\sqrt {54} $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\sqrt {34} $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$5\\sqrt 2 $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-circle-left-z-5-5i-right-2-in-the-complex-numbe-gate-in-2005-marks-1-gbiqdaiuoqdjefn8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2PO8CYIxxtMDV9Gb",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2005,
+                    "paperTitle": "GATE IN 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $${z^3}\\, = \\,\\overline z $$, where z is a complex number not equal to zero. Then z is a solution of",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${z^2} = 1$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${z^3} = 1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${z^4} = 1$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${z^9} = 1$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-z3-overline-z-where-z-is-a-complex-number-not-equal-to-z-gate-in-2005-marks-1-2po8cyixxtmdv9gb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2005"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        }
+    ]
+}

@@ -1,0 +1,67 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Fluid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "re4ic0oLChH1eH1o",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-statics",
+                    "year": 2014,
+                    "paperTitle": "GATE ME 2014 Set",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a completely submerged body with centre of gravity $$\u2018G\u2019$$ and centre of buoyancy $$\u2018B\u2019,$$ the condition of stability will be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$G$$ is located below $$B$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$G$$ is located above $$B$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$G$$ and $$B$$ are coincident "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Independent of the locations of $$G$$ and $$B$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-completely-submerged-body-with-centre-of-gravity-g-and-gate-me-2014-set-marks-1-re4ic0olchh1eh1o.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2014-set",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2014-set"
+                }
+            ],
+            "title": "Fluid Mechanics"
+        }
+    ]
+}

@@ -1,0 +1,3284 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Analog Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ViYVCl28OECnQ4Ql",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "555-timer",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An analog electronic circuit that measures $$rms$$ value of the input voltage by averaging  the square of the instantaneous voltage level, responds slowly to changes in the input signal due to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "the ''square'' function built into the circuit "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the ''square-root'' function built into the circuit"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the averaging function built into the circuit"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "none of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-analog-electronic-circuit-that-measures-rms-value-of-2000-marks-1-viyvcl28oecnq4ql.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "US2USLpGKc62U51P",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An active filter consisting of an op-amp, resistor $${R_1},\\,\\,{R_2},\\,\\,{R_3}$$ and two capacitors of value $$C$$ each, has a transfer function\n<br> $$T\\left( s \\right) = {{{{ - s} \\over {\\left( {{R_1}C} \\right)}}} \\over {{s^2} + {{2s} \\over {\\left( {{R_3}C} \\right)}} + {1 \\over {\\left( {R{R_3}{C^2}} \\right)}}}}$$\n<br>where, $$R = {R_1}||{R_2}$$\n<br>If $${R_1} = 2k\\Omega ,{R_2} = 2/3\\,k\\Omega ,\\,\\,{R_3} = 200\\,k\\Omega $$ and $$C = 0.1\\,\\,\\mu F,$$ determine the center frequency $${\\omega _0},$$ gain $${A_0}$$ and the $$Q$$ of the filter.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${\\omega _0} = {10^3}\\,\\,\\,$$ radiuns \n<br>Gain $$\\,\\,\\,{A_0} = 50$$\n<br>$$Q=10$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-active-filter-consisting-of-an-op-amp-resistor-r1-2000-marks-2-us2uslpgkc62u51p.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DmDhuy1nvyfwaFeP",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The feedback factor for the circuit shown in fig. is \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/QytFksdjcECaEB2hv/sqOUe8btNdnxsMMZgfh5mIyFZBaaX/6LUBOVq4hTQH2zeO4rdZmr/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2000 Analog Electronics - Operational Amplifier Question 63 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${9 \\over {100}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${9 \\over {10}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${1 \\over {9}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${1 \\over {10}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-feedback-factor-for-the-circuit-shown-in-fig-is-gate-ee-2000-marks-1-dmdhuy1nvyfwafep.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WSWHMOD77EiXOnni",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "small-signal-modeling",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A current amplifier has an input resistance of $$10\\Omega ,$$ an output resistance of $$10\\,\\,k\\Omega $$ and a Current gain of $$1000.$$ It is feed by a current source having a source resistance of $$10$$ $$k\\Omega $$ and its output connected to a $$10\\,\\,k\\Omega $$ load resistance. Find the voltage gain and the power gain  ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Voltage gain $$ = 0.998$$\n<br>Power gain $$=997$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-current-amplifier-has-an-input-resistance-of-10omega-2000-marks-5-wswhmod77eixonni.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uNPB7MIeZQkM8iHc",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bjt-and-mosfet-biasing",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit of figure, the value of the base current $${{\\rm I}_B}$$ will be\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/ZQm1QfsMdfwWpyLTs/2qIMETlyd3Qu4Cwa1akBIeWQURVyg/B0AsCi2Pgo3aUTdeMS1l9Y/image.svg\" loading=\"lazy\" alt=\"GATE EE 2000 Analog Electronics - Bjt and Mosfet Biasing Question 21 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0\\,\\mu A$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$18.2\\,\\mu A$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$26.7\\,\\mu A$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$40\\,\\mu A$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-of-figure-the-value-of-the-base-current-rm-ib-gate-ee-2000-marks-2-unpb7miezqkm8ihc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LLoxADBeyNWZKNLx",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The type of power amplifier which exhibits crossover distortion in its output is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Class A "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Class B "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Class AB "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Class C"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-type-of-power-amplifier-which-exhibits-crossover-distort-gate-ee-2000-marks-1-lloxadbeynwzknlx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HcD3koiaFT8LgjyO",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The circuit shown in figure uses an ideal op-amp working with $$+5V$$ and $$-5V$$ power supplies. The output voltage $${V_0}$$ is equal to \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/eoJHp3MSz8AwyGCyE/24EDrHKomHTecLHHG6GgvQbs2Bwyc/GPu5ZV7ZcuprQoohHOlvDJ/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2000 Analog Electronics - Operational Amplifier Question 64 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$+5V$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-5V$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$+1V$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$-1V$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-circuit-shown-in-figure-uses-an-ideal-op-amp-working-wit-gate-ee-2000-marks-1-hcd3koiaft8lgjyo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                }
+            ],
+            "title": "Analog Electronics"
+        },
+        {
+            "_id": "Control Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "F1ijTqCC8K6oBcWN",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basics-of-control-system",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Feedback control systems are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "insensitive to both forward and feedback path parameter changes."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "less sensitive to feedback path parameter changes than to forward path parameter changes."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "less sensitive to forward-path parameter changes than to feedback path parameter changes."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "equally sensitive to forward and feedback path parameter changes."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "feedback-control-systems-are-gate-ee-2000-marks-1-f1ijtqcc8k6obcwn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gSh0bO7AQGdvJ47M",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basics-of-control-system",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A linear time-invariant system initially at rest, when subjected to a unit-step input, gives a response $$y\\left( t \\right) = t{e^{ - t}},\\,\\,t &gt; 0.$$ The transfer function of the system is: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over {{{\\left( {s + 1} \\right)}^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over {s{{\\left( {s + 1} \\right)}^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${s \\over {{{\\left( {s + 1} \\right)}^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${1 \\over {s\\left( {s + 1} \\right)}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-linear-time-invariant-system-initially-at-rest-when-subjec-gate-ee-2000-marks-1-gsh0bo7aqgdvj47m.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bjiyFYZrTg6f7dif",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "time-response-analysis",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A unity feedback system has open loop transfer function $$G(s).$$ The steady-state error is zero for",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "step input and type $$\u20131$$ $$G(s)$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "ramp input and type $$\u20131$$ $$G(s)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "step input and type $$-$$  $$G(s)$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "ramp input and type $$-$$ $$0$$ $$G(s)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-a-unity-feedback-system-has-open-loop-transfer-function-gs-gate-ee-2000-marks-1-bjiyfyzrtg6f7dif.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "58F45dK2kvfNN3P6",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "time-response-analysis",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A unity feedback system has open-loop transfer function $$G\\left( s \\right) = {{25} \\over {s\\left( {s + 6} \\right)}}.$$ The peak overshoot in the step-input response of the system is approximately equal to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$5\\% $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$10\\% $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$15\\% $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$20\\% $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-unity-feedback-system-has-open-loop-transfer-function-glef-gate-ee-2000-marks-2-58f45dk2kvfnn3p6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CJD0gX75akh46qZM",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "root-locus-techniques",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A unity feedback system has open loop transfer function $$G\\left( s \\right) = {{K\\left( {s + 5} \\right)} \\over {s\\left( {s + 2} \\right)}};K \\ge 0$$  \n<br>(a) Draw a rough sketch of the root locus plot; given that the complex roots ofthe characteristic equation move along a circle.\n<br>(b) As K increases, does the system become less stable? Justify your answer.\n<br>(c) Find the value of $$K$$ (if it exists) so that the damping $$\\xi $$ of the complex closed loop poles is $$0.3.$$ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(b) When $$'K'$$ increases then stability increases as root locus is moving towards left side.\n<br>(c) Such $$'K'$$ does not exists.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-unity-feedback-system-has-open-loop-transfer-function-glef-gate-ee-2000-marks-5-cjd0gx75akh46qzm.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "C3MjYiJ7XAwGxKBK",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "polar-nyquist-and-bode-plot",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Open-loop transfer function of a unity - feedback system is \n$$$G\\left( s \\right) = {G_1}\\left( s \\right).{e^{ - s{\\tau _D}}} = {{{e^{ - s{\\tau _D}}}} \\over {s\\left( {s + 1} \\right)\\left( {s + 2} \\right)}}$$$\n<br>Given : $$\\,\\left| {{G_1}\\left( {j\\omega } \\right)} \\right| \\approx 1$$ when $$\\omega  = 0.446$$\n<p>(a) Determine the phase margin when $${\\tau _D} = 0$$\n<br>(b) Comment in one sentence on the effect of dead time on the stability of the system.\n<br>(c) Determine the maximum value of dead time $${\\tau _D}$$ for the closed-loop system to be stable.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a) $${52^ \\circ }$$ \n<br>(b) When dead time increases the stability of the system decreases\n<br>(c) $${\\tau _D}$$ $$=1.947$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "open-loop-transfer-function-of-a-unity-feedback-system-is-gl-gate-ee-2000-marks-5-c3mjyij7xawgxkbk.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GGIS4jMky8fp08rM",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "controller-and-compensator",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$D\\left( s \\right) = {{\\left( {0.5s + 1} \\right)} \\over {\\left( {0.05s + 1} \\right)}}$$  Maximum phase lead of the compensator is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$52$$ deg at 4 rad/sec"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$52$$ deg at $$10$$ rad/sec"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$55$$ deg at $$12$$ rad/sec"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "none of the answers is correct"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "dleft-s-right-left-05s-1-right-over-left-005s-1-right-maximu-gate-ee-2000-marks-2-ggis4jmky8fp08rm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XjtAJAkeTiWAJ86u",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "state-variable-analysis",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the state equation $$\\mathop X\\limits^ \\bullet  \\left( t \\right) = Ax\\left( t \\right)$$ \n<br>Given : $${e^{AT}} = \\left[ {\\matrix{\n   {{e^{ - t}} + t{e^{ - t}}} &amp; {t{e^{ - t}}}  \\cr \n   { - t{e^{ - t}}} &amp; {{e^{ - t}} - t{e^{ - t}}}  \\cr \n\n } } \\right]$$ \n<p>(a) Find a set of states $${x_1}\\left( 1 \\right)$$ and $${x_2}\\left( 1 \\right)$$ such that $${x_1}\\left( 2 \\right) = 2.$$\n<br>(b) Show  that $$\\,{\\left( {s{\\rm I} - A} \\right)^{ - t}} = \\Phi \\left( s \\right) = {1 \\over \\Delta }\\left[ {\\matrix{\n   {s + 2} &amp; 1  \\cr \n   { - 1} &amp; s  \\cr \n\n } } \\right];$$  $$\\Delta  = {\\left( {s + 1} \\right)^2}$$ \n<br>(c) From $$\\Phi \\left( s \\right),$$ find the matrix $$A$$.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a) \n<br>$$\\eqalign{\n  &amp; {x_1}\\left( 1 \\right) = 0.74\\,{x_1}\\left( 0 \\right) + 0.37\\,{x_2}\\left( 0 \\right)  \\cr \n  &amp; {x_2}\\left( 1 \\right) =  - 0.37\\,{x_1}\\left( 0 \\right) \\cr} $$\n<br>(c) $$A = \\left[ {\\matrix{\n   0 &amp; 1  \\cr \n   { - 1} &amp; { - 2}  \\cr \n\n } } \\right]$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-state-equation-mathop-xlimits-bullet-left-t-rig-gate-ee-2000-marks-5-xjtajaketiwaj86u.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                }
+            ],
+            "title": "Control Systems"
+        },
+        {
+            "_id": "Digital Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vKfI6fGINc28vSle",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinational-circuits",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The minimal product-of-sums function described by the <b>$$K$$-map</b> given in Fig.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/bG8q9A06oySDF7PBC/mXAxSdGRwbz9MGEUqFCwLEYHdq9CO/CkZF6pvj3XHpFUapPh4IYw/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2000 Digital Electronics - Combinational Circuits Question 9 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\overline A \\overline C $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\overline A  + \\overline C $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$A+C$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$AC$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-minimal-product-of-sums-function-described-by-the-k-2000-marks-2-vkfi6fginc28vsle.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1nULlooFrc4T22Ll",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A dual-slope analog-to-digital converter uses an $$N$$-bit counter. When the input signal $${V_a}$$ is being integrated, the counter is allowed to count up to a value:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "equal to $${2^N} - 2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "equal to $${2^N} - 1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "proportional to $${V_a}$$  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "inversely proportional to $${V_a}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-dual-slope-analog-to-digital-converter-uses-an-n-bit-c-2000-marks-2-1nulloofrc4t22ll.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uiQTFRk1khH9b7bt",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The counter shown in Fig. is initially in state $${Q_2} = 0,\\,{Q_1} = 1,\\,{Q_0} = 0.$$ With reference to the $$CLK$$ input, draw waveforms for $${Q_2},{Q_1},{Q_0}$$ and $$P$$ for the next three $$CLK$$ cycles.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/lQ8DB0RZP3rKOdn5D/JcM9srbkBxzqb40CuAvyTJvZmJjKq/we1eRUd89Ia8h93BPemJei/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2000 Digital Electronics - Sequential Circuits Question 19 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.  ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-counter-shown-in-fig-is-initially-in-state-q2-0-2000-marks-2-uiqtfrk1khh9b7bt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "22soels3FOLKw5oA",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "microprocessor",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following is not a vected interrupt?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$TRAP$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$INTR$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$RST$$ $$7.5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$RST$$ $$3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-is-not-a-vected-interrupt-2000-marks-1-22soels3folkw5oa.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                }
+            ],
+            "title": "Digital Electronics"
+        },
+        {
+            "_id": "Electric Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Ifz1LWWWhp6TbdZq",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A voltage wafeform $$v\\left( t \\right) = 12\\,{t^2}$$ is applied across a $$1$$ $$H$$  inductor for $$t \\ge 0,$$ with initial current through it being zero. The current through the inductor for $$t \\ge 0$$ is given by:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$12$$ $$t$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$24$$ $$t$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$12{t^3}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4{t^3}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-voltage-wafeform-vleft-t-right-12t2-is-appl-2000-marks-1-ifz1lwwwhp6tbdzq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RroLn2gcJBd7EkiN",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The circuit shown Fig. is equivalent to a load of \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/IBEO12iARuyjtFUKi/fo39PDmSuXzauAaD3ZhZeCpWIZxTS/LgbNraGtyHAvH79EoWiOzX/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2000 Electric Circuits - Network Elements Question 23 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${4 \\over 3}\\,\\Omega $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${8 \\over 3}\\,\\Omega $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$4\\,\\Omega $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2\\,\\Omega $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-circuit-shown-fig-is-equivalent-to-a-load-of-2000-marks-2-rroln2gcjbd7ekin.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mtsIucxo1WBI7lDU",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-theorems",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Predict the current $${\\rm I}$$ in Fig. in response to a voltage of $$20\\angle {0^0}\\,V.$$ The impedance values are given in $$ohms.$$ Use Thevenin's theorem. \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/C4bJSllE4mvr2cdxg/O936b2wAnpNdjWj0tuB10Gh4aJsqU/eS6NlDRGcG5odI7VHMjBQe/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2000 Electric Circuits - Network Theorems Question 15 English\"> \n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$0.32\\,\\angle  - {108.43^ \\circ }\\,A$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "predict-the-current-rm-i-in-fig-in-response-to-a-vol-2000-marks-5-mtsiucxo1wbi7ldu.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "z2jjzXHz5pTVZyja",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-analysis",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The impedance seen by the source in the circuit in Fig. is given by\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/w3RQRZHm2ADPnuEuO/4StO5K8WSlTT6IguCppvH1eGE0JAa/kYzzJfzjuFfCzHAbiCJOv4/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2000 Electric Circuits - Sinusoidal Steady State Analysis Question 22 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {0.54 + j0.313} \\right)\\,ohms$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {4 - j2} \\right)\\,ohms$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {4.54 - j1.69} \\right)\\,ohms$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {4 + j2} \\right)\\,ohms$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-impedance-seen-by-the-source-in-the-circuit-in-fig-is-g-2000-marks-2-z2jjzxhz5ptvzyja.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xhGr3zezB1lvuvsz",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-analysis",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If an $$ac$$ voltage wave is corrupted with an arbitrary number of harmonics, then the overall voltage waveform differs from its fundamental frequency component in terms of",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "only the peak values "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "only the $$rms$$ values "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "only the average values "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "all the three measures (peak, $$rms$$ and average values)  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-an-ac-voltage-wave-is-corrupted-with-an-arbitrary-num-2000-marks-2-xhgr3zezb1lvuvsz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "J3V6GCotSTnbi7Ur",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "two-port-networks",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A two-port device is defined by the following pair of equations: \n<br>$${i_1} = 2{v_1} + {v_2}$$ and $${i_2} = {v_1} + {v_2}$$\n<br>Its impedance parameters $$\\left( {{z_{11}},\\,\\,{z_{12}},\\,\\,{z_{21}},\\,\\,{z_{22}}} \\right)$$ are given by ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {2,\\,\\,1,\\,\\,1,\\,\\,1} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {1,\\,\\, - 1,\\,\\, - 1,\\,\\,2} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {1,\\,\\,1,\\,\\,1,\\,\\,2} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {2,\\,\\, - 1,\\,\\, - 1,\\,\\,1} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-two-port-device-is-defined-by-the-following-pair-of-equati-2000-marks-2-j3v6gcotstnbi7ur.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                }
+            ],
+            "title": "Electric Circuits"
+        },
+        {
+            "_id": "Electrical and Electronics Measurement",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "avkLVrV4FfQkjWLn",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "measurement-of-energy-and-power",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The two wattmeter method is used to measure active power on a three phase, three wire system. If the phase voltage is unbalanced, then the power reading is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "affected by both negative sequence and zero sequence voltages "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "affected by negative sequence voltages but not by zero sequence voltages "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "affected by zero sequence voltages but not by negative sequence voltages "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "not affected by negative or zero sequence voltages  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-two-wattmeter-method-is-used-to-measure-active-power-on-gate-ee-2000-marks-2-avklvrv4ffqkjwln.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "005NMIZuQgWwzHpm",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "measurement-of-energy-and-power",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$3$$ - $$\\phi $$ load operates with balanced voltages applied to its terminals, and draws balanced currents. The potential coil of a moving coil wattmeter is connected from $$R$$ to $$Y$$ terminals of the load. The current coil of the meter is connected in series with phase $$B.$$ by appropriate derivation, show that the quantity indicated by this wattmeter is proportional to the reactive power drawn by the load",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-3-phi-load-operates-with-balanced-voltages-applied-to-its-gate-ee-2000-marks-5-005nmizuqgwwzhpm.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BrEQa60ChmwkwjIA",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "potentiometer-and-instrument-transformers",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Instrument transformers are known to introduce magnitude and phase errors in measurements. These are primarily due to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "improper connections on the primary side"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "measurement errors inherent in the meter connected to the transformer secondary"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "open and short circuit parameters of the instrument transformers"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "none "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "instrument-transformers-are-known-to-introduce-magnitude-and-gate-ee-2000-marks-1-breqa60chmwkwjia.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                }
+            ],
+            "title": "Electrical and Electronics Measurement"
+        },
+        {
+            "_id": "Electrical Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rfP66hP9lJWaiekE",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$2300$$ $$V,$$ $$3$$-phase synchronous motor driving a pump is provided with a line ammeter and a field rheostat. When the rheostat is adjusted such that the $$ac$$ line current is minimum. The ammeter reads $$8.8$$ $$A.$$ What is the power being delivered to the pump, neglecting losses? How should the rheostat be adjusted so that the motor operates at $$0.8$$ leading power factor? How many $$kVARs$$ is the motor supplying to the system at this new power factor?",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Power delivered $$=35.05$$ $$kW$$\n<br>$$kVAR$$ supplied to the system $$=26.29$$ $$kVAR$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-2300-v-3-phase-synchronous-motor-driving-a-pu-2000-marks-5-rfp66hp9ljwaieke.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a9730bdada33",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Ratio of the rotor reactance X to the rotor resistance R for a two-phase\nservomotor",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "is equal to that of a normal induction motor"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "is less than that of a normal induction motor"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "is greater than that of a normal induction motor"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "may be less or greater than that of a normal induction motor"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "ratio-of-the-rotor-reactance-x-to-the-rotor-resistance-r-for-gate-ee-2000-marks-1-5a9730bdada33.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a973047be97c",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 1.8\u00b0 step, 4-phase stepper motor has a total of 40 teeth on 8 poles of stator.\nThe number of rotor teeth for this motor will be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "40"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "50"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "100"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "80"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-18-step-4-phase-stepper-motor-has-a-total-of-40-teeth-on-8-gate-ee-2000-marks-1-5a973047be97c.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a983b8aa3549",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 240 V dc series motor takes 40A when giving its rated output at 1500 rpm. Its\nresistance is 0.3 ohms. The value of resistance which must be added to obtain\nrated torque at 1000 rpm is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "6 ohms"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "5.7 ohms"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2.2 ohms"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1.9 ohms"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-240-v-dc-series-motor-takes-40a-when-giving-its-rated-outp-gate-ee-2000-marks-2-5a983b8aa3549.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a984496ce741",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A permanent magnet dc commutator motor has a no load speed of 6000 rpm when connected to a 120V dc supply. The armature resistance is 2.5 ohms and other losses may be neglected. The speed of the motor with supply voltage of 60V developing a torque 0.5 Nm, is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "3000 rpm"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2673 rpm"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2836 rpm"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "5346 rpm"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-permanent-magnet-dc-commutator-motor-has-a-no-load-speed-o-gate-ee-2000-marks-2-5a984496ce741.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a9dc4012ef90",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a constant voltage transformer (CVT), the output voltage remains constant\ndue to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "capacitor"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "input inductor"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "saturation"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "tapped windings"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-constant-voltage-transformer-cvt-the-output-voltage-rem-gate-ee-2000-marks-1-5a9dc4012ef90.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a9dc4d0746ba",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If an ac voltage wave is corrupted with an arbitrary number of harmonics, then\nthe overall voltage waveform differs from its fundamental frequency component\nin terms of",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "only the peak values"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "only the rms values"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "only the average values"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "all the three measures (peak, rms and average values)"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-an-ac-voltage-wave-is-corrupted-with-an-arbitrary-number-gate-ee-2000-marks-1-5a9dc4d0746ba.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa062123a46d",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 3-phase delta/star transformer is supplied at 6000 V on the delta-connected\nside. The terminal voltage on the secondary side when supplying full load as 0.8\nlagging power-factor is 415 V. The equivalent resistance and reactance drops for\nthe transformer are 1% and 5% respectively. The turn's ratio of the transformer\nis:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "14"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "24"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "42"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "20"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-3-phase-deltastar-transformer-is-supplied-at-6000-v-on-the-gate-ee-2000-marks-2-5aa062123a46d.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa508218f003",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "induction-machines",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A three phase, wound rotor induction motor is to be operated with slip energy\nrecovery in the constant torque mode, when it delivers an output power P<sub>0</sub> at slop\n's'. then theoretically, the maximum power that is available for recovery at the\nrotor terminals, is equal to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "P<sub>0</sub>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "P<sub>0.s</sub>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\frac{P_0}{\\left(1-s\\right)}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\frac{P_0S}{\\left(1-s\\right)}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-three-phase-wound-rotor-induction-motor-is-to-be-operated-gate-ee-2000-marks-2-5aa508218f003.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa5078de566c",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "induction-machines",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The power input to a 415 V, 50 Hz, 6 pole, 3-phase induction motor running at\n975 rpm is 40 kW. The stator losses are 1kW and friction and windage losses\ntotal 2 kW. The efficiency of the motor is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "92.5%"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "90%"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "91%"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "88%"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-power-input-to-a-415-v-50-hz-6-pole-3-phase-induction-mo-gate-ee-2000-marks-2-5aa5078de566c.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa506f73534f",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "induction-machines",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 3-phase, 4-pole squirrel cage induction motor has 36 stator and 28 rotor slots.\nThe number of phases in the rotor is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "3"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "9"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "7"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "8"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-3-phase-4-pole-squirrel-cage-induction-motor-has-36-stator-gate-ee-2000-marks-2-5aa506f73534f.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa8194bdd255",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The phase sequence of a three-phase alternator will reverse if",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "the field current is reversed keeping the direction of rotation same"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the field current remains the same but the direction of rotation is reversed"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the field current is reversed and the number of poles is doubled"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "the number of poles is doubled without reversing the field current"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-phase-sequence-of-a-three-phase-alternator-will-reverse-gate-ee-2000-marks-1-5aa8194bdd255.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa93f5098d8f",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single-phase, 2000 V alternator has armature resistance and reactance of 0.8\nohms and 4.94 ohms respectively. The voltage regulation of the alternator at\n100 A load at 0.8 leading power-factor is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "7%"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "-8.9%"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "14%"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0%"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-single-phase-2000-v-alternator-has-armature-resistance-and-gate-ee-2000-marks-2-5aa93f5098d8f.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a973029ec1ea",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The compensating winding in a dc machine",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "is located in armature slots for compensation of the armature reaction"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "is located on commutating poles for improving the commutation"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "is located on pole shoes for avoiding the flashover at the commutator surface"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "is located on poles shoes to avoid the sparking at the brushes."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-compensating-winding-in-a-dc-machine-gate-ee-2000-marks-1-5a973029ec1ea.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                }
+            ],
+            "title": "Electrical Machines"
+        },
+        {
+            "_id": "Electromagnetic Fields",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fBCc9oU1bjNgevEc",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetic-fields",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "electrostatics",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Show via the construction of a suitable Gaussian surface, that the capacitance of a spherical capacitor consisting of  two concentric shells of radii $$a$$ and $$b$$ is given by $$C = 4\\pi {\\varepsilon _0}{{ab} \\over {\\left( {b - a} \\right)}}$$ where $${\\varepsilon _0}$$ is the free space permittivity.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "show-via-the-construction-of-a-suitable-gaussian-surface-th-2000-marks-5-fbcc9ou1bjngevec.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4scpJn5g2l5GDEas",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electromagnetic-fields",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "magnetostatics",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An electron with velocity $$'u'$$ is placed in an electric field, $$E$$ and magnetic field, $$B.$$ The force experienced by the electron is given by ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$ - eE$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$ - eu \\times B$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$ - e\\left( {u \\times E + B} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ - e\\left( {E + u \\times B} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-electron-with-velocity-u-is-placed-in-an-electric-f-2000-marks-1-4scpjn5g2l5gdeas.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8P10j6SG0vmKK5WV",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetic-fields",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "magnetostatics",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A current $${\\rm I}$$ in the short conducting  element shown in Fig. produces a flux density $${B_1}$$ at point $$1.$$ Determine the magnitude and the direction of the  flux density vector at point $$2$$ \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/M4xDYP03SkCfc99dC/JXakuA8GqzmEbv4lZ8YW2bsEURgED/SjNaE2FsATmap2l7S4EB88/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2000 Electromagnetic Fields - Magnetostatics Question 8 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${\\overrightarrow B _2} =  - {1 \\over {8\\sqrt 2 }}\\,\\overrightarrow {{B_1}} $$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-current-rm-i-in-the-short-conducting-element-shown-2000-marks-5-8p10j6sg0vmkk5wv.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                }
+            ],
+            "title": "Electromagnetic Fields"
+        },
+        {
+            "_id": "Power Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aQSkjpGXPddTLLAT",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "single-and-three-phase-rectifier",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A thyristorised three phase fully controlled converter feeds a $$dc$$ load that draws a constant current. Then the input $$ac$$ line current to the converter has ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "An $$r.m.s$$ value equal to the $$dc$$ load current "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "An average value equal to the $$dc$$ load current "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "A peak value equal to the $$dc$$ load current "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "A fundamental frequency component, whose $$r.m.s$$ value is equal to the $$dc$$ load current"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-thyristorised-three-phase-fully-controlled-converter-feeds-gate-ee-2000-marks-1-aqskjpgxpddtllat.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vzxZx5I66uViwa2N",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "choppers-and-commutation-techniques",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A step down chopper operates from a $$dc$$ voltage source $${V_s}$$ feeds a $$dc$$ motor armature with a back $$e.m.f$$ $$\\,\\,{E_b}.$$ From oscilloscope traces, it is found that the current increases for time $${t_r}$$ falls to zero over time $${t_f},$$ and remains zero for time $${t_0}$$ in every chopping cycle, then the average $$dc$$ voltage across the freewheeling diode is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{{V_s}\\,{t_r}} \\over {\\left( {{t_r} + {t_f} + {t_0}} \\right)}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{\\left( {{V_s}\\,{t_r} + {E_b}\\,{t_f}} \\right)} \\over {\\left( {{t_r} + {t_f} + {t_0}} \\right)}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{\\left( {{V_s}\\,{t_r} + {E_b}\\,{t_0}} \\right)} \\over {\\left( {{t_r} + {t_f} + {t_0}} \\right)}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{{V_s}\\,{t_r} + {E_b}\\left[ {{t_f} + {t_0}} \\right]} \\over {\\left( {{t_r} + {t_f} + {t_0}} \\right)}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-step-down-chopper-operates-from-a-dc-voltage-source-vs-fee-gate-ee-2000-marks-2-vzxzx5i66uviwa2n.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "65GFoum4A6UTzzLk",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "choppers-and-commutation-techniques",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$dc$$ motor with armature resistance $${R_a}$$\nis fed from a step down chopper in the\ncontinuous mode, and operates at some known speed and known excitation current. The motor current rises from $${I_{\\min }}\\,\\,$$ to $${I_{\\max }}\\,\\,$$ in the $${T_{on}}$$ period Ton of the chopper; and drops from $${I_{\\max }}\\,\\,$$ to $${I_{\\min }}\\,\\,$$ in the $${T_{off}}$$ period Toff of the same circuit. Both the rise and fall of the current may be assumed to be approximately linear.\nWhat is the average power loss in the machine armature?\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Average power loss $$ = {\\left( {{{{{\\rm I}_{\\max }} + {{\\rm I}_{\\min }}} \\over 2}} \\right)^2}\\,\\,{R_a}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-dc-motor-with-armature-resistance-rais-fed-from-a-step-dow-gate-ee-2000-marks-5-65gfoum4a6utzzlk.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CAowWPIXlnHu8HGz",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "inverters",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Triangular $$PWM$$ control, when applied to a $$BJT$$ based three phase voltage source inverter, introduces. ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "low order harmonic voltages on the $$dc$$ side."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "very high order harmonic voltage on the $$dc$$ side "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "low order harmonic voltage on the $$ac$$ side "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "very high order harmonic voltage on the $$ac$$ side"
+                                }
+                            ],
+                            "correct_options": [
+                                "B",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "triangular-pwm-control-when-applied-to-a-bjt-based-three-pha-gate-ee-2000-marks-1-caowwpixlnhu8hgz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "o0UjMCMSmXjJe6o6",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "inverters",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A three phase voltage source inverter supplies a purely inductive three phase load. Upon Fourier analysis, the output voltage waveform is found to have an $${h^{th}}$$ order harmonic of magnitude \u03b1 h times that of the fundamental frequency\ncomponent $$\\left( {{\\alpha _h} &lt; 1} \\right),$$ the load current would then have an $${h^{th}}$$ order harmonic of magnitude\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{\\alpha _h}}$$ times the fundamental frequency component "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${h{\\alpha _h}}$$ times the fundamental frequency component "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\raise0.5ex\\hbox{$\\scriptstyle {{\\alpha _h}}$}\n\\kern-0.1em/\\kern-0.15em\n\\lower0.25ex\\hbox{$\\scriptstyle h$}}$$ times the fundamental frequency component"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-three-phase-voltage-source-inverter-supplies-a-purely-indu-gate-ee-2000-marks-2-o0ujmcmsmxjje6o6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "V3wOjtQJjAhDn1YO",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "ac-voltage-controllers",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single phase voltage source of magnitude $${V_s}$$ and frequency $$\\omega \\,\\,\\left( {rad\\,/\\,\\sec } \\right)$$ is connected to an inductance $$L$$ through an antiparallel back-to-back pair of thyristors. The forward and reverse conducting thyristors are fired at an angle of $$\\alpha  \\ge \\pi /2$$ from the positive going and negative going zer crossings of the supply voltage respectively, in each cycle. Obtain an expression for the inductor current in each cycle for a given value of $$\\alpha .$$ The voltage drop across the thyristors, when either of them is in conduction, may be assumed to be negligible. \n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${i_0} = {{{V_m}} \\over {WL}}\\left[ {\\cos x - \\cos wt} \\right]$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-single-phase-voltage-source-of-magnitude-vs-and-frequency-gate-ee-2000-marks-5-v3wojtqjjahdn1yo.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                }
+            ],
+            "title": "Power Electronics"
+        },
+        {
+            "_id": "Power System Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bDXPNTgol342DCwY",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "power-generation-cost",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The incremental cost characteristic of two generators delivering $$200$$ $$MW$$ are as follows \n$$\\,\\,\\,{{d{F_1}} \\over {d{P_1}}} = 20 + 0.1{P_1},\\,\\,{{d{F_2}} \\over {d{P_2}}} = 16 + 0.2{P_2}$$ \n<br>For economic operation, the generations $${P_1}$$ and $${P_2}$$ should be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${P_1} = {P_2} = 100\\,MW$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${P_1} = 80MW,\\,\\,{P_2} = 120\\,MW$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${P_1} = 200MW,\\,\\,{P_2} = 0\\,MW$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${P_1} = 120MW,\\,\\,{P_2} = 80\\,MW$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-incremental-cost-characteristic-of-two-generators-delive-gate-ee-2000-marks-2-bdxpntgol342dcwy.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VQZU359Zosw9bwVD",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A transmission line has equal voltages at the two ends, maintained constant by two sources. A third source is to be provided to maintain constant voltage (equal to end voltages) at either the midpoint of the line or at $$75$$% of the distance from\nthe sending end. Then the maximum power transfer capabilities of the line in the original case and the other two cases respectively will be in the following ratios.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1:1:1$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1:2:{1 \\over {0.75}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1:2:4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1:4:6$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-transmission-line-has-equal-voltages-at-the-two-ends-maint-gate-ee-2000-marks-2-vqzu359zosw9bwvd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AaeaWlIlhqQ0l1Wy",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The corona loss on a particular system at 50 Hz is 1 kW/km per phase. The corona loss at 60 Hz would be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1 kW/km per phase"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.83 kW/km per phase"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1.2 kW/km per phase"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1.13 kW/km per phase  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-corona-loss-on-a-particular-system-at-50-hz-is-1-kwkm-pe-gate-ee-2000-marks-2-aaeawlilhqq0l1wy.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "C0quF7XMHZQx0yN7",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$275$$ $$kV,$$ $$3$$-phase, $$50$$ $$Hz,$$ $$400$$ $$km$$ lossless line has following parameters:\n<br>$$x=0.05$$ $$ohms/km,$$ line charging susceptance $$y=3.0$$ micro-Siemens/k.\n<p>(a) Calculate the receiving end voltage on open circuit using justifiable assumptions.</p>\n<p>(b) What load at the receiving end will result in a flat voltage profile on the line?</p>\n<p>(c) If the flat voltage profile is to be achieved at $$1.2$$ times the loading in (b), what will be the nature and quantum of uniformly distributed compensation required? </p>\n ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a) $$278.3$$ $$kV$$ \n<br>(b) $$12.9$$ $$\\Omega $$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-275-kv-3-phase-50-hz-400-km-lossless-line-has-following-pa-gate-ee-2000-marks-5-c0quf7xmhzqx0yn7.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "j3MAP2NES0ljRYil",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "power-system-stability",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A synchronous generator, having a reactance of 0.15 p.u., is connected to an infinite bus through two identical parallel transmission lines having reactance of 0.3 p.u. each. In steady state, the generator is delivering 1 p.u. Power to the infinite bus. For a three phase fault at the receiving end of one line, calculate the rotor angle at the end of first time step of 0.05 seconds. Assume the voltage behind transient reactance for the generator as 1.1 p.u. and infinite bus voltage as 1.0 p.u. Also indicate how the accelerating powers will be evaluated for the next time step if the breaker clears the fault.\n<p>(i) at the end of an interval\n<br>(ii) at the middle of an interval.</p>\n ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Rotor angle = 27.08<sup>0</sup>\n<br>(i) In this case accelerating power will be average of before and after faults. \n<br>(ii) In this case accelerating power same as that of begining of that interval.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-synchronous-generator-having-a-reactance-of-015-pu-is-conn-gate-ee-2000-marks-5-j3map2nes0ljryil.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dsuuvJk5YkugGZW3",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "symmetrical-components-and-symmetrical-and-unsymmetrical-faults",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The severity of line-to-ground and three phase faults at the terminals of an unloaded synchronous generator is to be same. If the terminal voltage is \n<br>$$1.0$$ p.u. and $${Z_1} = {Z_2} = j0.1\\,\\,$$ p.u., \n<br>$$\\,{Z_0} = j0.05\\,\\,\\,\\,\\,$$ p.u., for the alternator, then the required inductive reacttance for neutral grounding is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.0166$$ p.u."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.05$$  p.u."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.1$$ p.u."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.15$$ p.u."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-severity-of-line-to-ground-and-three-phase-faults-at-the-gate-ee-2000-marks-2-dsuuvjk5ykuggzw3.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PYc747wf91k0dgh6",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "symmetrical-components-and-symmetrical-and-unsymmetrical-faults",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the configuration shown in figure, the breaker connecting a large system to bus $$2$$ is initially open. The system $$3$$-phase fault level at bus $$3$$ under this condition is not known. After closing the system breaker, the $$3$$-phase fault level at bus $$1$$ was found to be $$5.0$$ p.u. What will be the new $$3$$-phase fault level at system bus $$3,$$ after the interconnection? All per unit values are on common base. Prefault load currents are neglected and prefault voltages are assumed to be $$1.0$$ p.u. at all buses.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/0AA8pkAWquZOYY2PH/BXEhHwq61fzZ6UEx8tBwQ03FXYMSK/f2Zm0hlzWvhC2VUKl5qhK3/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2000 Power System Analysis - Symmetrical Components and Symmetrical and Unsymmetrical Faults Question 7 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "New fault current = 11.43 pu",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-configuration-shown-in-figure-the-breaker-connecting-gate-ee-2000-marks-5-pyc747wf91k0dgh6.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ewH5TtWw67Ks4Tvr",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "switch-gear-and-protection",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a 3-step distance protection, the reach of the three zones of the relay at the beginning of the first line typically extends upto",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "100% of the first line, 50% of the second line and 20% of the third line."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "80% of the first line, 50% of the second line and 20% of the third line. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "80% of the first line, 20% of the second line and 10% of the third line. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "50% of first line, 50% of second line and 20% of the third line."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-3-step-distance-protection-the-reach-of-the-three-zones-gate-ee-2000-marks-1-ewh5ttww67ks4tvr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Imwz3bfQhf3Wr1Qc",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "switch-gear-and-protection",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In an inverse definite minimum time, electromagnetic type over-current relay, the minimum time feature is achieved because of",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Saturation of the magnetic circuit"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Proper mechanical design"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Appropriate time delay element."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Electromagnetic damping."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-an-inverse-definite-minimum-time-electromagnetic-type-ove-gate-ee-2000-marks-1-imwz3bfqhf3wr1qc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LXujXl0OLvnjrAzv",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "switch-gear-and-protection",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The plug setting of a negative sequence relay is $$0.2$$ $$A.$$ The current transformer ratio is $$5:1$$. The minimum value of line to line fault current for the operation of the relay is \n ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1A$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over {1.732}}A$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.732$$ $$A$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{0.2} \\over {1.732}}A$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-plug-setting-of-a-negative-sequence-relay-is-02-a-the-cu-gate-ee-2000-marks-2-lxujxl0olvnjrazv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "70L3MAM1aeBRSn2r",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "generating-power-station",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a thermal  power plant, the feed water coming to the economiser is heated using ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "H.P steam "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "L.P steam "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Direct heat in the furnance "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Flue gases."
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-thermal-power-plant-the-feed-water-coming-to-the-econom-gate-ee-2000-marks-1-70l3mam1aebrsn2r.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Mk6pTsFRxlbkveua",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "high-voltage-dc-transmission",
+                    "year": 2000,
+                    "paperTitle": "GATE EE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Out of the considerations (i) to (iv) listed below,\n<br>(i) No distance limitation related to steady state stability\n<br>(ii) No reactive power requirement from the system at the two terminals\n<br>(iii) No substantial effect on fault level of the two systems at the terminals inspite of the inter connection\n<br>(iv) no corona problems\n<br>The considerations which constitute advantages of HVDC transmission are  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "All of the above "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "(i) &amp; (iii)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "(iii) &amp; (iv) "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "(ii) &amp; (iv)"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "out-of-the-considerations-i-to-iv-listed-belowi-no-distance-gate-ee-2000-marks-1-mk6ptsfrxlbkveua.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2000"
+                }
+            ],
+            "title": "Power System Analysis"
+        }
+    ]
+}

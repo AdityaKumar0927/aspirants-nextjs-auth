@@ -1,0 +1,2633 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Analog Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1020d9d4afc",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "diodes",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a given sample-and-hold circuit, if the value of the hold capacitor is increased, then ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Droop rate decreases and acquisition time decreases "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Droop rate decreases and acquisition time increases "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Droop rate increases and acquisition time decreases "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Droop rate increases and acquisition time increases"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-given-sample-and-hold-circuit-if-the-value-of-the-hold-gate-ece-2014-set-4-marks-1-5a1020d9d4afc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NTBsAxGdGkeHFfje",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bipolar-junction-transistor",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the emitter resistance in a common-emitter voltage amplifier is not bypassed, it will",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "reduce both the voltage gain and the input impedance "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "reduce the voltage gain and increase the input impedance "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "increase the voltage gain and reduce the input impedance "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "increase both the voltage gain and the input impedance "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-emitter-resistance-in-a-common-emitter-voltage-amplif-gate-ece-2014-set-4-marks-1-ntbsaxgdgkehffje.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "M3Hs8l3lSC1JeYIS",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bipolar-junction-transistor",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the common-collector amplifier in the figure (bias circuitry ensures that the transistor\noperates in forward active region, but has been omitted for simplicity). Let I<sub>C</sub>  be the  collector\ncurrent, V<sub>BE</sub>  be the base-emitter voltage and V<sub>T</sub>  be the thermal voltage. Also, \ud835\udc54<sub>m</sub> and \ud835\udc5f<sub>o</sub> are the small-signal transconductance and output resistance of the transistor, respectively. Which one of the\nfollowing conditions ensures a nearly constant small signal voltage gain for a wide range of values\nof R<sub>E</sub>?  \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/0132c099a695185329c852f5349c36c339704107f26c3be7e29406a9969075a2.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 4 Analog Circuits - Bipolar Junction Transistor Question 16 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${g_m}{R_E} &lt;  &lt; \\,1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${I_C}{R_E} &gt;  &gt; \\,{V_T}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${g_m}{R_o} &gt;  &gt; \\,1$$  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${V_{BE}}\\, &gt;  &gt; {V_T}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-common-collector-amplifier-in-the-figure-bias-c-gate-ece-2014-set-4-marks-2-m3hs8l3lsc1jeyis.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "k6rVZAqJrKhOwE0h",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bipolar-junction-transistor",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A BJT in common-base configuration is used to amplify a signal received by a $$50\\,\\Omega $$  antena. Assume kT/q = 25 mV. The value of the collector bias current ( in mA ) required to match the input impedance of the amplifier to the impedance of the antena is ______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.5",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-bjt-in-common-base-configuration-is-used-to-amplify-a-sign-gate-ece-2014-set-4-marks-2-k6rvzaqjrkhowe0h.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Z7YkxrLoS681SXWh",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bipolar-junction-transistor",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the common collector amplifier shown in the figure, the BJT has high $${V_{CE\\left( {sat} \\right)}},$$  and $${V_{BE}}$$ $$\\, = \\,\\,0.7\\,\\,\\,V$$. The maximum undistorted peak-to-peak output voltage $${V_o}$$ (in Volts) is _____.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/43b20cc9ed389296d82438487fefa9c7767615c465b3860c3601339c0417942b.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 4 Analog Circuits - Bipolar Junction Transistor Question 14 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "9.4",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-common-collector-amplifier-shown-in-the-figure-the-b-gate-ece-2014-set-4-marks-2-z7ykxrlos681sxwh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Zd17EN0Jd6ukFpjc",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The circuit shown represents\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/c32a4065fba11394c7c981443fc7d08700eb421c8c462cfe1cfdeb2331a4f54b.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 4 Analog Circuits - Operational Amplifier Question 68 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a bandpass filter "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a voltage controlled oscillator "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "an amplitude modulator "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a monostable multivibrator"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-circuit-shown-represents-gate-ece-2014-set-4-marks-1-zd17en0jd6ukfpjc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                }
+            ],
+            "title": "Analog Circuits"
+        },
+        {
+            "_id": "Communications",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5Yy9oiutmCnEdtvN",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "digital-communication-systems",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An M - level PSK modulation scheme is used to transmit independent binary digits over a band-pass channel with bandwidth 100 kHz. The bit rate is 200 kbps and the system characteristic is a raised-cosine spectrum with 100% excess bandwidth. The minimum value of M is ___________________________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "16",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-m-level-psk-modulation-scheme-is-used-to-transmit-indepen-gate-ece-2014-set-4-marks-2-5yy9oiutmcnedtvn.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OPuarorbJMwtRxey",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fundamentals-of-information-theory",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the Z- channel given in the figure. The input is 0 or 1 with equal probability.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/AR64cPpJNSYEBms9O/hlib69Y4CupxaOFg3h0kiXKJ5v0gS/6kbBM1gAEpKEWayAaEOT72/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 4 Communications - Fundamentals of Information Theory Question 11 English\">\nIf the output is 0, the probability that the input is also 0 equals____________________________________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.8",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-z-channel-given-in-the-figure-the-input-is-0-or-gate-ece-2014-set-4-marks-2-opuarorbjmwtrxey.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3rucNSm6Cu0vm1PN",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "random-signals-and-noise",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If calls arrive at a telephone exchange such that the time of arrival of any call is independent of the time of arrival of earlier or future calls, the probability distribution function of the total number of calls in a fixed time interval will be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Poisson "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Gaussian "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Exponential  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Gamma  "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-calls-arrive-at-a-telephone-exchange-such-that-the-time-o-gate-ece-2014-set-4-marks-1-3rucnsm6cu0vm1pn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ezQEtwxxbps4jipM",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "noise-in-digital-communication",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a communication scheme where the binary valued signal X satisfies P{X = + 1} = 0.75 and P {X = - 1} = 0.25. The received signal Y = X + Z, where Z is a Gaussian random variable with zero mean and variance $${\\sigma ^2}$$. The received signal Y is fed to the threshold detector. The output of the threshold detector $${\\hat X}$$ is:\n$$$\\hat X:\\left\\{ {\\matrix{\n   { + \\,1,} &amp; {Y\\, &gt; \\tau }  \\cr \n   { - \\,1,} &amp; {Y\\, \\le \\,\\,\\tau .}  \\cr \n\n } } \\right.$$$\nTo achieve a minimum probability of error $$P\\{ \\hat X\\, \\ne \\,X\\} $$, the threshold $$\\tau $$ should be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "strictly positive "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "strictly negative "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "strictly positive, zero, or strictly negative depending on the nonzero value of $${\\sigma ^2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-communication-scheme-where-the-binary-valued-sign-gate-ece-2014-set-4-marks-2-ezqetwxxbps4jipm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KH9iy1i14ZFCR03L",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "noise-in-digital-communication",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a discrete-time channel Y = X + Z, where the additive noise Z is signal- dependent. In particular, given the trasmitted symbol $$X\\, \\in \\,\\{ \\, - \\,a,\\,\\, + \\,a\\} $$ at any instant, the noise sample Z is chosen independently from a Gaussian distribution with mean $$\\beta X$$ and unit variance. Assume a threshold detector with zero threshold at the receiver. When $$\\beta $$ = 0 the BER was found to be $$Q\\,(a) = 1\\, \\times \\,{10^{ - 8}}$$.\n$$\\left( {Q\\,\\,(v)\\, = {1 \\over {\\sqrt {2\\,\\pi } }}\\,\\int\\limits_v^\\infty  {{e^{ - {u^2}/2}}} } \\right.$$  du, and for v &gt; 1,\n<br> use $$Q\\,(v) \\approx \\,{e^{ - {v^2}/2}}$$\n<br> When $$\\beta  =  - \\,0.3,\\,$$ the BER is closed to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${10^{ - 7}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${10^{ - 6}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${10^{ - 4}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${10^{ - 2}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-discrete-time-channel-y-x-z-where-the-additive-no-gate-ece-2014-set-4-marks-2-kh9iy1i14zfcr03l.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                }
+            ],
+            "title": "Communications"
+        },
+        {
+            "_id": "Control Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0c6b27d5c87",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "time-response-analysis",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the second order closed-loop system shown in the figure, the natural frequency (in rad/s)\nis \n<img alt=\"GATE ECE 2014 Set 4 Control Systems - Time Response Analysis Question 50 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/8d87b14c04fcf10cb5420915fdebdccd264cf1de1cfb9308b01f99b9b89f2d5d.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "16"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "4"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-second-order-closed-loop-system-shown-in-the-figure-gate-ece-2014-set-4-marks-1-5a0c6b27d5c87.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0e03d7d5e6b",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stability",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a transfer function $$G_p\\left(s\\right)\\;=\\;\\frac{ps^2+3ps\\;-2}{s^2+\\left(3+p\\right)s\\;+\\left(2-p\\right)}$$ with 'p' a positive real parameter.\nThe maximum value of 'p' until which G<sub>p</sub> remains stable is ________. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-transfer-function-gpleftsrightfracps23ps-2s2left3-gate-ece-2014-set-4-marks-2-5a0e03d7d5e6b.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0ed8d151fd0",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "root-locus-diagram",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The characteristic equation of a unity negative feedback system 1 + KG(s) = 0. The open loop\ntransfer function G(s) has one pole at 0 and two poles at -1. The root locus of the system for\nvarying K is shown in the figure.\n<img alt=\"GATE ECE 2014 Set 4 Control Systems - Root Locus Diagram Question 13 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/13466c6621ac700ba584e82aaf1027d84f1df3cc6490c431318cb47af69ca154.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">\n\n<p>The constant damping ratio line, for $$\\xi$$ = 0.5 , intersects the root locus at point A. The distance\nfrom the origin to point A is given as 0.5. The value of K at point A is ________ .</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.375",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-characteristic-equation-of-a-unity-negative-feedback-sys-gate-ece-2014-set-4-marks-2-5a0ed8d151fd0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZNAhK1lbRR7gUGtY",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "frequency-response-analysis",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a Bode magnitude plot, which one of the following slopes would be exhibited at high\nfrequencies by a 4<sup>th</sup> order all-pole system? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "\u2013 80 dB/decade "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "\u2013 40 dB/decade "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "+40 dB/decade "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "+80 dB/decade "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-bode-magnitude-plot-which-one-of-the-following-slopes-w-gate-ece-2014-set-4-marks-1-znahk1lbrr7gugty.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tiYtON3ne1V7irVQ",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "state-space-analysis",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The state transition matrix $$\\phi \\left( t \\right)$$ of a system  $$$\\left[ {\\matrix{\n   {\\mathop {{x_1}}\\limits^ \\bullet  }  \\cr \n   {\\mathop {{x_2}}\\limits^ \\bullet  }  \\cr \n\n } } \\right] = \\left[ {\\matrix{\n   0 &amp; 1  \\cr \n   0 &amp; 0  \\cr \n\n } } \\right]\\left[ {\\matrix{\n   {{x_1}}  \\cr \n   {{x_2}}  \\cr \n\n } } \\right] is$$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left[ {\\matrix{\n   t &amp; 1  \\cr \n   1 &amp; 0  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left[ {\\matrix{\n   1 &amp; 0  \\cr \n   t &amp; 1  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left[ {\\matrix{\n   0 &amp; 1  \\cr \n   1 &amp; t  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left[ {\\matrix{\n   1 &amp; t  \\cr \n   0 &amp; 1  \\cr \n\n } } \\right]$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-the-state-transition-matrixphi-left-t-right-of-a-system-lef-gate-ece-2014-set-4-marks-2-tiyton3ne1v7irvq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                }
+            ],
+            "title": "Control Systems"
+        },
+        {
+            "_id": "Digital Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sgPkTvhKtIQI2lCD",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logic-gates",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit shown in the figure, if C = 0, the expression for Y is\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/4efe0208cb24ec72f80f778a60896ae1a2386a4b3d278f8fdb5a98586a96a7c1.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 4 Digital Circuits - Logic Gates Question 20 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Y= $$A\\overline B  + \\overline A B$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Y=A+B"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Y= $$\\,\\overline A \\, \\overline B $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Y=A B"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-in-the-figure-if-c-0-the-expression-for-gate-ece-2014-set-4-marks-1-sgpktvhktiqi2lcd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7jyOWGWkYnP2lXRt",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinational-circuits",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 16-bit ripple carry adder is realized using 16 identical full adders (FA) as shown in the figure.\nThe carry-propagation delay of each FA is 12 ns and the sum-propagation delay of each FA is\n15 ns. The worst case delay (in ns) of this 16-bit adder will be_______________.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/a9ed07fdb7ac219323cd4266d931cda815a5e3bd56ceea4950a5bac8b9f75e41.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 4 Digital Circuits - Combinational Circuits Question 24 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "195",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-16-bit-ripple-carry-adder-is-realized-using-16-identical-f-gate-ece-2014-set-4-marks-2-7jyowgwkynp2lxrt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Ab28Ll5eGSQb7CzT",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinational-circuits",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An 8-to-1 multiplexer is used to implement a logical function Y as shown in the figure. The output Y is given by\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/3ec932b144072c4bc7e100872057d1effdf3b1b38fe801ea34c459f3ebe54482.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 4 Digital Circuits - Combinational Circuits Question 25 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Y= A$$\\overline B \\,C + A\\overline C D$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$Y = \\overline A BC + A\\overline B D$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$Y = AB\\overline C  + \\overline A CD$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$Y = \\overline A \\,\\overline B D + A\\overline B C$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-8-to-1-multiplexer-is-used-to-implement-a-logical-functio-gate-ece-2014-set-4-marks-2-ab28ll5egsqb7czt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "t0gkAXousAPzInHf",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logic-families",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The output (Y) of the circuit shown in the figure is\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/b5d8f7c437b08fcff4451770774722cddec55f00cc6c13745cd2dda59c853840.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 4 Digital Circuits - Logic Families Question 9 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\overline A  + \\overline B  + \\overline C $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$A + \\overline B \\,\\overline {.\\,C}  + A.\\,\\overline C $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\overline A  + B + \\overline C $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$A.B.\\overline C $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-output-y-of-the-circuit-shown-in-the-figure-is-gate-ece-2014-set-4-marks-1-t0gkaxousapzinhf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                }
+            ],
+            "title": "Digital Circuits"
+        },
+        {
+            "_id": "Electromagnetics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lVGjuFmeZXdJMCh8",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "antennas",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For an antenna radiating in free space, the electric field at a distance of 1 km is found to be 12 m V/m. Given that intrinsic impedance of the free space is 120$$\\pi \\Omega $$, the magnitude of average power density due to this antenna at a ditance of 2 km from the antenna (in n W/$${m^2}$$) is ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "47.7",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-an-antenna-radiating-in-free-space-the-electric-field-at-gate-ece-2014-set-4-marks-1-lvgjufmezxdjmch8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LBVjv6CvQotnbNh4",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "antennas",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match column A with column B.\n<p> <b> Column </b> \n<br> 1. Point electromagnetic source\n<br> 2. Dish antenna\n<br> 3. Yagi-Uda antenna </p>\n<p> <b> Column </b> \n<br> P. Highly directional \n<br> Q. End fire\n<br> R. Isotropic </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1 = P, 2 = Q, 3 = R"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1 = R, 2 = P, 3 = Q"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1 = Q, 2 = P, 3 = R"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1 = R, 2 = Q, 3 = P"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-column-a-with-column-b-column-1-point-electromagnetic-gate-ece-2014-set-4-marks-1-lbvjv6cvqotnbnh4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a12c006d5f0e",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "maxwell-equations",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$\\overrightarrow{\\mathrm E}=-\\left(2\\mathrm y^2\\;-3\\mathrm{yz}^2\\right)\\widehat{\\mathrm x}\\;-\\left(6\\mathrm{xy}^2-3\\mathrm{xz}^2\\right)\\widehat{\\mathrm y}+\\left(6\\mathrm{xyz}\\right)\\widehat{\\mathrm z}$$ <p>is the electric field in a source free\nregion, a valid expression for the electrostatic potential is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "xy<sup>3</sup> - yz<sup>2</sup>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2xy<sup>3</sup> - xyz<sup>2</sup>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "y<sup>3</sup> + xyz<sup>2</sup>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2xy<sup>3</sup> - 3xyz<sup>2</sup>"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-overrightarrowmathrm-e-left2mathrm-y2-3mathrmyz2rightwide-gate-ece-2014-set-4-marks-2-5a12c006d5f0e.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a12c2d9457d3",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "maxwell-equations",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The electric field (assumed to be one-dimensional) between two points A and B is shown. Let\n$$\\psi_A$$ and $$\\psi_B$$ be the electrostatic potentials at A and B, respectively. The value of  $$\\psi_A$$ \u2212 $$\\psi_B$$ in\nVolts is ________.\n<img alt=\"GATE ECE 2014 Set 4 Electromagnetics - Maxwell Equations Question 22 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/0f4715be8abe6fd02959ac9dc5ca2becd4afc2d3c90b896ccc3e29c8f7638b73.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "-15",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-electric-field-assumed-to-be-one-dimensional-between-two-gate-ece-2014-set-4-marks-2-5a12c2d9457d3.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                }
+            ],
+            "title": "Electromagnetics"
+        },
+        {
+            "_id": "Electronic Devices and Vlsi",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa5746e4dfe2",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bjt-and-fet",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider two BJT's biased at the same collector current with area A<sub>1</sub> = 0.2 \u03bcm \u00d7 0.2 \u03bcm and\nA<sub>2</sub> = 300 \u03bcm \u00d7 300 \u03bcm. Assuming that all other device parameters are identical, kT/q = 26\nmV, the intrinsic carrier concentration is 1 \u00d7 10<sup>10</sup> cm<sup>-3</sup>, and q = 1.6 \u00d7 10<sup>-19</sup> C, the difference\nbetween the base-emitter voltages (in mV) of the two BJT's (i.e., V<sub>BE1</sub> \u2013 V<sub>BE2</sub>) is___________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "381",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-two-bjts-biased-at-the-same-collector-current-with-gate-ece-2014-set-4-marks-2-5aa5746e4dfe2.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0f5370d6fa5",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "semiconductor-physics",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the figure ln(\u03c1<sub>i</sub>) is plotted as a function of 1/T, where \u03c1<sub>i</sub>\nthe intrinsic resistivity of silicon,\nT is is the temperature, and the plot is almost linear. \n<img alt=\"GATE ECE 2014 Set 4 Electronic Devices and VLSI - Semiconductor Physics Question 32 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/ebe648b12fed05a82464a6000bd20c9c21ef8d4a77103d9b57d1d7cd0e13ad59.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">\n<p>The slope of the line can be used to estimate</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Band gap energy of silicon (E<sub>g</sub>)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Sum of electron and hole mobility in silicon $$\\left(\\mu_n+\\mu_p\\right)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Reciprocal of the sum of electron and hole mobility in silicon $$\\left(\\mu_n+\\mu_p\\right)^{-1}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Intrinsic carrier concentration of silicon (n<sub>i</sub>)"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-figure-lni-is-plotted-as-a-function-of-1t-where-ithe-gate-ece-2014-set-4-marks-1-5a0f5370d6fa5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0f585881340",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "semiconductor-physics",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The cut-off wavelength (in \u00b5m) of light that can be used for intrinsic excitation of a\nsemiconductor material of bandgap E<sub>g</sub>= 1.1 eV is ________.\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.13",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-cut-off-wavelength-in-m-of-light-that-can-be-used-for-in-gate-ece-2014-set-4-marks-1-5a0f585881340.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a10171fe8ea3",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "semiconductor-physics",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a silicon sample doped with N<sub>D</sub> = 1\u00d710<sup>15</sup>/cm<sup>3</sup> donor atoms. Assume that the\nintrinsic carrier concentration n<sub>i</sub> = 1.5\u00d710<sup>10</sup>/cm<sup>3</sup>. If the sample is additionally doped with N<sub>A</sub> = 1\u00d710<sup>18</sup>/cm<sup>3</sup> acceptor atoms, the approximate number of electrons/cm<sup>3</sup> in the sample, at\nT=300 K, will be _________________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "225.2",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-silicon-sample-doped-with-nd-11015cm3-donor-atoms-gate-ece-2014-set-4-marks-2-5a10171fe8ea3.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a101d601f73e",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "semiconductor-physics",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An N-type semiconductor having uniform doping is biased as shown in the figure. \n<img alt=\"GATE ECE 2014 Set 4 Electronic Devices and VLSI - Semiconductor Physics Question 13 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/842773f6ae60d3aab6ff6dfe8b9690202a1dc95e9e9076851dd506abd9705830.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">\n<p>If E<sub>C</sub> is the lowest energy level of the conduction band, E<sub>V</sub> is the highest energy level of the\nvalance band and E<sub>F</sub> is the Fermi level, which one of the following represents the energy\nband diagram for the biased N-type semiconductor? \n</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img src=\"https://gateclass.cdn.examgoal.net/examside/questions/81d33ee7e9e84fbf665dd0eb68c2c2aadc4a1d9d8ceae5be1749b428231c36d7.jpg\" style=\"text-align:center;height:auto;max-width:100%;\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 4 Electronic Devices and VLSI - Semiconductor Physics Question 13 English Option 1\">"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img src=\"https://gateclass.cdn.examgoal.net/examside/questions/708aa2f4bbfbff690ae58a50384b57129995966c1d245cd80524126d9d5cd5b8.jpg\" style=\"text-align:center;height:auto;max-width:100%;\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 4 Electronic Devices and VLSI - Semiconductor Physics Question 13 English Option 2\">"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img src=\"https://gateclass.cdn.examgoal.net/examside/questions/f20dfefbd2933768159556300ed6d0242122286a107928c7b1d3964077df8617.jpg\" style=\"text-align:center;height:auto;max-width:100%;\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 4 Electronic Devices and VLSI - Semiconductor Physics Question 13 English Option 3\">"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img src=\"https://gateclass.cdn.examgoal.net/examside/questions/268d28c18eab7845d88b7863ce74bd213fc284a5bf325b2fb591ceb7b45ed614.jpg\" style=\"text-align:center;height:auto;max-width:100%;\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 4 Electronic Devices and VLSI - Semiconductor Physics Question 13 English Option 4\">"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-n-type-semiconductor-having-uniform-doping-is-biased-as-s-gate-ece-2014-set-4-marks-2-5a101d601f73e.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                }
+            ],
+            "title": "Electronic Devices and Vlsi"
+        },
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3co0JEPux15gQ28F",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a right angled triangle, if the sum of the lengths of the hypotenuse and a side is kept constant, in order to have maximum area of the triangle, the angle between the hypotenuse and the side is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${12^ \\circ }$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${36^ \\circ }$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${60^ \\circ }$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${45^ \\circ }$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-right-angled-triangle-if-the-sum-of-the-lengths-of-the-gate-ece-2014-set-4-marks-2-3co0jepux15gq28f.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jEiDncFVkDfEKmZ0",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The series $$\\sum\\limits_{n = 0}^\\infty  {{1 \\over {n!}}\\,} $$ converges to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2$$ $$ln$$ $$2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\sqrt 2 }$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$e$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-series-sumlimitsn-0infty-1-over-n-converges-to-gate-ece-2014-set-4-marks-1-jeidncfvkdfekmz0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VfkjoV5Hc4o4pwVp",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The magnitude of the gradient for the function $$f\\left( {x,y,z} \\right) = {x^2} + 3{y^2} + {z^3}\\,\\,$$ at the point $$(1,1,1)$$ is _________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "7",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-magnitude-of-the-gradient-for-the-function-fleft-xyz-rig-gate-ece-2014-set-4-marks-1-vfkjov5hc4o4pwvp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9ZUhv1Rb5UTfI5Nk",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The directional derivative  of $$f\\left( {x,y} \\right) = {{xy} \\over {\\sqrt 2 }}\\left( {x + y} \\right)$$ at $$(1, 1)$$  in the direction of the unit vector at an angle of $${\\pi  \\over 4}$$ with $$y-$$axis,  is given by ________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-directional-derivative-of-fleft-xy-right-xy-over-sqrt-2-gate-ece-2014-set-4-marks-1-9zuhv1rb5utfi5nk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7f4ZPae6ndmvRzkT",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given $$\\,\\,\\overrightarrow F  = z\\widehat a{}_x + x\\widehat a{}_y + y\\widehat a{}_z.\\,\\,$$ If  $$S$$  represents the portion of the sphere $${x^2} + {y^2} + {z^2} = 1$$ for $$\\,z \\ge 0,$$ then $$\\int\\limits_s {\\left( {\\nabla  \\times \\overrightarrow F .} \\right)\\overrightarrow {ds} \\,\\,} $$  is ________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3.14",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-overrightarrow-f-zwidehat-ax-xwidehat-ay-ywidehat-az-i-gate-ece-2014-set-4-marks-2-7f4zpae6ndmvrzkt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SRd1bMUEQc5yxjFY",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$X$$ be a zero mean unit variance Gaussian random variable. $$E\\left[ {\\left| X \\right|} \\right]$$ is equal to ______",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.8",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-x-be-a-zero-mean-unit-variance-gaussian-random-variable-gate-ece-2014-set-4-marks-1-srd1bmueqc5yxjfy.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "38BtkXBQYOeZ7b6m",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Parcels from sender $$S$$ to receiver $$R$$ pass sequentially through two post - offices. Each post - office has a probability $${1 \\over 5}$$ of losing an incoming parcel, independently of all other parcels. Given that a parcel is lost, the probability that it was  lost by the second post - office is _________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.44",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "parcels-from-sender-s-to-receiver-r-pass-sequentially-throug-gate-ece-2014-set-4-marks-2-38btkxbqyoez7b6m.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "glwbHN6EdNAf24TO",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If calls arrive at a telephone exchange such that the time of arrival of any call is independent of the time of arrival of earlier of future calls,  the probability distribution function of the total number  of calls in a fixed time interval will be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Poisson "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Gaussian "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Exponential "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Gamma "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-calls-arrive-at-a-telephone-exchange-such-that-the-time-o-gate-ece-2014-set-4-marks-1-glwbhn6ednaf24to.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bjME8Kxd6iQXe7an",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "With initial values $$\\,\\,\\,y\\left( 0 \\right) = y'\\left( 0 \\right) = 1,\\,\\,\\,$$ the solution of the differential  equation $$\\,\\,{{{d^2}y} \\over {d{x^2}}} - 4{{dy} \\over {dx}} + 4y = 0\\,\\,$$ at $$x=1$$ is ________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.54",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "with-initial-values-yleft-0-right-yleft-0-right-1-the-soluti-gate-ece-2014-set-4-marks-2-bjme8kxd6iqxe7an.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SlFy2ImoK8O64nNc",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$a$$ and $$b$$  are constants, the most general solution of the differential equation $$\\,{{{d^2}x} \\over {d{t^2}}} + 2{{dx} \\over {dt}} + x = 0$$  is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$a{e^{ - t}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$a{e^{ - t}} + bt{e^{ - t}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$a{e^t} + bt{e^{ - t}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$a{e^{ - 2t}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-a-and-b-are-constants-the-most-general-solution-of-the-di-gate-ece-2014-set-4-marks-1-slfy2imok8o64nnc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1AVNlYx73F3qVU75",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The unilateral Laplace transform of $$f(t)$$ is $${1 \\over {{s^2} + s + 1}}$$. Which one of the following is the unilateral Laplace transform of $$g\\left( t \\right) = t.f\\left( t \\right)?$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{ - s} \\over {{{\\left( {{s^2} + s + 1} \\right)}^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{ - \\left( {2s + 1} \\right)} \\over {{{\\left( {{s^2} + s + 1} \\right)}^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${s \\over {{{\\left( {{s^2} + s + 1} \\right)}^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{2s + 1} \\over {{{\\left( {{s^2} + s + 1} \\right)}^2}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-unilateral-laplace-transform-of-ft-is-1-over-s2-s-1-whic-gate-ece-2014-set-4-marks-1-1avnlyx73f3qvu75.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Microprocessors",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Xyicn3gjfsezs35W",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "microprocessors",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "instruction-set-and-programming-with-8085",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An 8085 microprocessor executes \u201cSTA 1234H\u201d with starting address location 1FFEH (STA copies the contents of the\n Accumulator to the 16-bit address location). While the instruction is fetched and executed, the sequence of values  written\n at the address pins $${A_{15}}$$ \u2212 $${A_{8}}$$ is\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1FH, 1FH, 20H, 12H"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1FH, FEH, 1FH, FFH, 12H "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1FH, 1FH, 12H, 12H  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1FH, 1FH, 12H, 20H, 12H "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-8085-microprocessor-executes-sta-1234h-with-starting-addr-gate-ece-2014-set-4-marks-2-xyicn3gjfsezs35w.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                }
+            ],
+            "title": "Microprocessors"
+        },
+        {
+            "_id": "Network Theory",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1c8QxkNSST13wred",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-response",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The steady state output of the circuit shown in the figure is given by \n$$$y\\left( t \\right) = {\\rm A}\\left( \\omega  \\right)\\sin \\left( {\\omega t + \\phi \\left( \\omega  \\right)} \\right)$$$\n<p>If the amplitude $$\\left| {{\\rm A}\\left( \\omega  \\right)} \\right| = 0.25$$, then the frequency $$\\omega $$ is </p>\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/SfEV9P2fPoppvFMPe/pZMT2LAHolVE7uo1tapByVHEu8OlI/hByUplTA2Gz4kBuktIbUQG/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 4 Network Theory - Sinusoidal Steady State Response Question 22 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over {\\sqrt 3 \\,R\\,C}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${2 \\over {\\sqrt 3 \\,R\\,C}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${1 \\over {R\\,C}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${2 \\over {R\\,C}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-steady-state-output-of-the-circuit-shown-in-the-figure-i-gate-ece-2014-set-4-marks-2-1c8qxknsst13wred.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4eALZW41lFDDUAtu",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "two-port-networks",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>The equivalent resistance in the infinite ladder network shown in the figure, is$${R_e}$$ \n</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l9irntvg/b386e363-6866-4cd2-9b9b-7dea675544f2/d93c7c40-5165-11ed-960b-4518cb703937/file-1l9irntvp.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l9irntvg/b386e363-6866-4cd2-9b9b-7dea675544f2/d93c7c40-5165-11ed-960b-4518cb703937/file-1l9irntvp.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2014 Set 4 Network Theory - Two Port Networks Question 18 English\">\n<p>The value of $${R_e}/R$$ is _______________</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2.6",
+                            "explanation": "Given circuit can be replaced by circuit shown below,<br><br><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l9irvndf/2060460e-4d8a-41ef-9a5c-64d8ce13865d/b2aed630-5166-11ed-960b-4518cb703937/file-1l9irvndg.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l9irvndf/2060460e-4d8a-41ef-9a5c-64d8ce13865d/b2aed630-5166-11ed-960b-4518cb703937/file-1l9irvndg.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2014 Set 4 Network Theory - Two Port Networks Question 18 English Explanation\"><br><br>$${R_{eq}} = R + {{R \\times {R_{eq}}} \\over {R + {R_{eq}}}}$$<br><br>$${R_{eq}} = {{{R^2} + R{R_{eq}} + R{R_{eq}}} \\over {(R + {R_{eq}})}}$$<br><br>$${R_{eq}}(R + {R_{eq}}) = {R^2} + R{R_{eq}} + R{R_{eq}}$$<br><br>$$R{R_{eq}} + R_{eq}^2 = {R^2} + 2R{R_{eq}}$$<br><br>$$R_{eq}^2 - R{R_{eq}} - {R^2} = 0$$<br><br>$${R_{eq}} = {{R \\pm \\sqrt {{R^2} + 4{R^2}} } \\over 2} = {{R \\pm \\sqrt 5 R} \\over 2}$$<br><br>R<sub>eq</sub> cannot be negative. So,<br><br>$${R_{eq}} = \\left[ {{{1 + \\sqrt 5 } \\over 2}} \\right]R = 1.618R$$<br><br>Therefore, $${R_e} = R + {R_{eq}}$$<br><br>$${R_e} = R + 1.618R = 2.618R$$<br><br>$${{{R_e}} \\over R} = 2.618 = 2.62$$"
+                        }
+                    },
+                    "permalink": "the-equivalent-resistance-in-the-infinite-ladder-network-sho-gate-ece-2014-set-4-marks-2-4ealzw41lfdduatu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a05706d57bca",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-theorems",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>The magnitude of current (in mA) through the resistor R<sub>2</sub> in the figure shown is _____.\n</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l9iqk1ep/4ad5a5d1-7f5f-40ed-a8fc-cbe1b7bfff1d/86afa910-5161-11ed-9e1b-71fa89240131/file-1l9iqk1eq.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l9iqk1ep/4ad5a5d1-7f5f-40ed-a8fc-cbe1b7bfff1d/86afa910-5161-11ed-9e1b-71fa89240131/file-1l9iqk1eq.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2014 Set 4 Network Theory - Network Theorems Question 39 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2.8",
+                            "explanation": "<p>Using source transformation, meaning, replacing the\ncurrent source and parallel resistance into equivalent\nvoltage source and series resistance,\n</p>\n<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l9iqqf2f/4848fff8-4e65-4309-bc84-353f3b7d954e/38179d70-5162-11ed-9e1b-71fa89240131/file-1l9iqqf2g.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l9iqqf2f/4848fff8-4e65-4309-bc84-353f3b7d954e/38179d70-5162-11ed-9e1b-71fa89240131/file-1l9iqqf2g.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2014 Set 4 Network Theory - Network Theorems Question 39 English Explanation\">\n<br><br>Applying KVL in the above circuit, we get\n<br><br>$$\n20-2 \\times 10^3 I-1 \\times 10^3 I-4 \\times 10^3 I+8-3 \\times 10^3 I=0\n$$\n<br><br>Therefore,\n<br><br>$$\nI=\\frac{28}{10 \\times 10^3} \\mathrm{~A}=2.8 \\mathrm{~mA}\n$$"
+                        }
+                    },
+                    "permalink": "the-magnitude-of-current-in-ma-through-the-resistor-r2-in-th-gate-ece-2014-set-4-marks-1-5a05706d57bca.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a08cc259e05e",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transient-response",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>In the circuit shown in the figure, the value of V<sub>0</sub>(t) (in Volts) for $$t\\rightarrow\\infty$$ is ______.</p>\n<img alt=\"GATE ECE 2014 Set 4 Network Theory - Transient Response Question 24 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/f7f81551d843b32ea581f95c25436fddb44a7582563d29f0cea7a04d886c6164.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "31.25",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-in-the-figure-the-value-of-v0t-in-volts-gate-ece-2014-set-4-marks-2-5a08cc259e05e.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0b05325b861",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "two-port-networks",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the two-port network shown in the figure, the impedance (Z) matrix (in \u03a9) is\n<img alt=\"GATE ECE 2014 Set 4 Network Theory - Two Port Networks Question 40 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/c26017fa134062b9128b97bf93d9fbddc10f6aa90d4083ea59dff0f5de58dde7.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\begin{bmatrix}6&amp;24\\\\42&amp;9\\end{bmatrix}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\begin{bmatrix}9&amp;8\\\\8&amp;24\\end{bmatrix}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\begin{bmatrix}9&amp;6\\\\6&amp;24\\end{bmatrix}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\begin{bmatrix}42&amp;6\\\\6&amp;60\\end{bmatrix}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-two-port-network-shown-in-the-figure-the-impedance-z-gate-ece-2014-set-4-marks-2-5a0b05325b861.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a00e4f4aa0b8",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>The circuit shown in the figure represents a </p>\n<img alt=\"GATE ECE 2014 Set 4 Network Theory - Network Elements Question 29 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/14eb2ed7ce2acb34815ea8ed45425329572719a56f217728c44d79f7f6f06d9d.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Voltage controlled voltage source"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Voltage controlled current source "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Current controlled current source "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Current controlled voltage source "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "From figure, I<sub>0</sub> = A<sub>i</sub>I<sub>i</sub> (output current depends on input current)<br/><br/>It is a current source, controlled by current I<sub>i</sub>.<br/><br/>So, it is current controlled current source."
+                        }
+                    },
+                    "permalink": "the-circuit-shown-in-the-figure-represents-a-gate-ece-2014-set-4-marks-1-5a00e4f4aa0b8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                }
+            ],
+            "title": "Network Theory"
+        },
+        {
+            "_id": "Signals and Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lkx2lqOIHXkYicXx",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-signal-laplace-transform",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The unilateral Laplace transform of F(t) is $${1 \\over {{s^2} + s + 1}}$$. Which one of the following is the unilateral Laplace transform of g(t) =  $$t \\cdot f\\left( t \\right)$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{ - s} \\over {{{\\left( {{s^2} + s + 1} \\right)}^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{ - \\left( {2s + 1} \\right)} \\over {{{\\left( {{s^2} + s + 1} \\right)}^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${s \\over {{{\\left( {{s^2} + s + 1} \\right)}^2}}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{2s + 1} \\over {{{\\left( {{s^2} + s + 1} \\right)}^2}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-unilateral-laplace-transform-of-ft-is-1-over-s2-s-1-whic-gate-ece-2014-set-4-marks-2-lkx2lqoihxkyicxx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GmbCNYwRCNXtBep0",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-signal-laplace-transform",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A stable linear time invariant (LTI) system has a transfer function H(s) = $${1 \\over {{s^2} + s - 6}}$$. To make this system casual it needs to be cascaded with another LTI system having a transfer function H<sub>1</sub>(s). A correct choice for H<sub>1</sub>(s) among the following options is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "s + 3 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "s - 2 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "s - 6 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "s + 1"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-stable-linear-time-invariant-lti-system-has-a-transfer-fun-gate-ece-2014-set-4-marks-2-gmbcnywrcnxtbep0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "x3yoT3l0k63yfRsj",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-signal-laplace-transform",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A casual LTI system has zero initial conditions and impulse response h(t). Its input x(t) and output y(t) are related through the linear constant - coefficient differential equation \n$$${{{d^2}y\\left( t \\right)} \\over {d{t^2}}} + \\alpha {{dy\\left( t \\right)} \\over {dt}} + {\\alpha ^2}y\\left( t \\right) = x\\left( t \\right).$$$\n<p>Let another signal g(t) be defined as $$\\left( t \\right) = {\\alpha ^2}\\int_0^t {h\\left( \\tau  \\right)d\\tau  + {{dh\\left( t \\right)} \\over {dt}} + \\alpha h\\left( t \\right)} $$.</p>\n<p>If G(s) is the Laplace transform of g(t), then the number of poles of G(s) is ______.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-casual-lti-system-has-zero-initial-conditions-and-impulse-gate-ece-2014-set-4-marks-2-x3yot3l0k63yfrsj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XstwkhNePtDWicbW",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "discrete-fourier-transform-and-fast-fourier-transform",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The N-point DFT X of a sequence x[n]  0 \u2264 n \u2264 N \u2212 1 is given  by\n<br> $$X\\left[ k \\right] = {1 \\over {\\sqrt N }}\\,\\,\\sum\\limits_{n = 0}^{N - 1} x \\,[n\\,]e{\\,^{ - j{{2\\pi } \\over N}nk}}$$, 0$$ \\le k \\le N - 1$$\n<br> Denote this relation as X = DFT(x). For N= 4 which one of the following sequences satisfies DFT (DFT(x) ) = ___________.\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "x = $$\\left[ {1\\,2\\,3\\,4} \\right]$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "x = $$\\left[ {1\\,2\\,3\\,2} \\right]$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "x = $$\\left[ {1\\,3\\,2\\,2} \\right]$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "x = $$\\left[ {1\\,2\\,2\\,3} \\right]$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-n-point-dft-x-of-a-sequence-xn-0-n-n-1-is-given-by-xleft-gate-ece-2014-set-4-marks-2-xstwkhneptdwicbw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8ZFjUkz9olx8gaWX",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "discrete-time-signal-z-transform",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The sequence x $$\\left[ n \\right]$$ = $${0.5^n}$$ u[n],  where u$$\\left[ n \\right]$$  is the unit step sequence, is convolved with itself to obtain y $$\\left[ n \\right]$$ . Then $$\\sum\\limits_{n = \\infty }^{ + \\infty } y \\left[ n \\right]$$ is ____________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "4",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-sequence-x-left-n-right-05n-un-where-uleft-n-right-is-th-gate-ece-2014-set-4-marks-1-8zfjukz9olx8gawx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TJuNMzWFXu4jQbVe",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transmission-of-signal-through-continuous-time-lti-systems",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A real - values signal x(t) limited to the frequency band $$\\left| f \\right| \\le {W \\over 2}$$ is passed through a linear time invariant system whose frequency response is\n<br> $$H(f) = \\left\\{ {\\matrix{\n   {{e^{ - j4\\pi f}},} &amp; {\\left| f \\right| \\le \\,{W \\over 2}}  \\cr \n   {0,} &amp; {\\left| f \\right| &gt; \\,{W \\over 2}}  \\cr \n\n } } \\right.$$\n<p> The output of the system is </p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "x(t + 4)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "x(t - 4)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "x(t + 2)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "x(t - 2)"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-real-values-signal-xt-limited-to-the-frequency-band-left-f-gate-ece-2014-set-4-marks-1-tjunmzwfxu4jqbve.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5Vm4OAWuYax4R19w",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "discrete-time-signal-fourier-series-fourier-transform",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 4",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A Fourier transform pair is given by $${\\left( {{2 \\over 3}} \\right)^n}$$ u $$\\left[ {n + 3} \\right]\\,\\mathop  \\Leftrightarrow \\limits^{FT} \\,{{A{e^{ - j6\\pi f}}} \\over {1 - \\left( {{2 \\over 3}} \\right){e^{ - j2\\pi f}}}}$$ , \n<br> where u(n) donotes the unit step sequence. The values of A is_______________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3.375",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-fourier-transform-pair-is-given-by-left-2-over-3-rightn-u-gate-ece-2014-set-4-marks-1-5vm4oawuyax4r19w.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-4",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-4"
+                }
+            ],
+            "title": "Signals and Systems"
+        }
+    ]
+}

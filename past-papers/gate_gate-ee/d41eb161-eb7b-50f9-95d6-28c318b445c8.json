@@ -1,0 +1,3288 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Analog Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XsL0MhogzvaFR4bv",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An op-amp, having a slew rate of $$62.8$$ $$V/\\mu \\,$$sec, is connected in a voltage follower configuration. If the maximum amplitude of the input sinusoidal is $$10$$ Volts. Then the minimum frequency at which the slew rate limited distortion would set in at the output is \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$ $$MHz$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$6.28$$ $$MHz$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$10$$ $$MHz$$  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$62.8$$ $$MHz$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-op-amp-having-a-slew-rate-of-628-vmu-sec-i-2001-marks-2-xsl0mhogzvafr4bv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MSqfPQ3vNFbIwTXP",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the oscillator circuit shown in figure, the expression for the time period of oscillations can be given by (where $$\\tau  = RC$$ )\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/YEfKKKWVRQSCfzNFe/oCINB1gy4CFm7VTsN6c9tvUygPiZY/kZRCdN6uVxpXlJgC2tGfiz/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2001 Analog Electronics - Operational Amplifier Question 39 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\tau \\,\\ln \\,3$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2\\tau \\,\\ln \\,3$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\tau \\,\\ln \\,2$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2\\tau \\,\\ln \\,2$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-oscillator-circuit-shown-in-figure-the-expression-f-2001-marks-2-msqfpq3vnfbiwtxp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fvwygw2qrFX3aGoM",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the op-amp circuit shown in figure. Determine the output voltage $${v_0}.$$ Assume that the op-amps are ideal\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/2sNJ1gKy4WIORUM9d/yF3BejON9kZtKyzdFw9WCbRSStgLr/YAYUhIcwpIJSUYq1jLCSbK/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2001 Analog Electronics - Operational Amplifier Question 13 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${V_0} = 0.4\\,V$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-op-amp-circuit-shown-in-figure-determine-the-output-2001-marks-5-fvwygw2qrfx3agom.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kzSv1dkTRuA6fTzf",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A simple active filter is shown in figure. Assume ideal op-amp. Derive the transfer function $${v_0}/{v_i}$$ of the circuit, and state the type of the filter (i.e., high-pass, low-pass, band-pass, or band-reject). Determine the required values of $${R_1},{R_2}$$ and $$C$$ in order for the filter to have a $$3$$-$$dB$$ frequency of $$1$$ $$kHz,$$ a high frequency input resistance of $$100\\,\\,k\\Omega $$ and a high frequency gain  magnitude of $$10.$$\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/ZsUicfS9Wsfa4ptQp/J23i758NeEG7sVhFZwp6Eg678vtfF/v4rtkckA7uUeqSVnVQRGyc/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2001 Analog Electronics - Operational Amplifier Question 12 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$\\eqalign{\n  &amp; {R_1} = 100\\,\\,k\\Omega   \\cr \n  &amp; {R_2} = 1\\,\\,M\\Omega   \\cr \n  &amp; C = 1.5912\\,\\,nF \\cr} $$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-simple-active-filter-is-shown-in-figure-assume-ideal-op-a-2001-marks-5-kzsv1dktrua6ftzf.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nCYYf3hn6JX95Mvz",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "feedback-amplifiers-and-oscillator-circuits",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An op-amp has an open-loop gain of $${10^5}$$ and an open-loop upper cutoff frequency of $$10$$ $$Hz.$$ If this op-amp is connected as an amplifier with a closed-loop gain of $$100,$$ then the new upper cutoff frequency is  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$10$$ $$Hz$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$100$$ $$Hz$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$10$$ $$kHz$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$100$$ $$kHz$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-op-amp-has-an-open-loop-gain-of-105-and-an-open-lo-2001-marks-1-ncyyf3hn6jx95mvz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "STSmjRRgpB0dqh3f",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "small-signal-modeling",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the single stage transistor amplifier circuit shown in figure, the capacitor $${C_E}$$ is removed. Then the ac small signal midband voltage gain of the amplifier\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/ivIiCM1FUeg7GZuqk/0aZEIAHil6QZTJg4xR1kpFF9wRZ1w/1PyrDmBIPNVn9S0HyrtDHX/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2001 Analog Electronics - Small Signal Modeling Question 9 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Increases "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Decreases "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Is unaffected "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Drops to zero "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-single-stage-transistor-amplifier-circuit-shown-in-fi-2001-marks-1-stsmjrrgpb0dqh3f.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kKb8xXbJI2GAn4zD",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "frequency-response",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A sample-and-hold $$(S/H)$$ circuit, having a holding capacitor of $$0.1$$ $$nF,$$ is used at the input of an $$ADC$$ (analog-to-digital converter). The conversion time of the $$ADC$$ is $$1\\,\\,\\mu \\sec ,$$ and during this time, the capacitor should not lose more than $$0.5\\% $$ of the charge put across it during the sampling time. The maximum value of the input signal to the $$S/H$$ circuit is $$5V.$$ The leakage current of the $$S/H$$ circuit should be less than ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2.5$$ $$mA$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.25$$ $$mA$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$25.0$$ $$\\mu A$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2.5$$ $$\\mu A$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-sample-and-hold-sh-circuit-having-a-holding-capaci-2001-marks-2-kkb8xxbji2gan4zd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "r660eZHRtRGE99op",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "small-signal-modeling",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The transistor in the amplifier circuit shown in the figure is biased at $${{\\rm I}_C} = mA.$$ Use $${V_T}\\left( { = {{kT} \\over q}} \\right) = 26\\,mV,$$ $${\\beta _0} = 2000,\\,{r_b} = 0$$ and $${r_0} \\Rightarrow \\infty $$ \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/23uHwxmAIf8s6DCqY/Jh6AlWCs8zPXjbdLvJoK0CX2Axffb/5jQufuCdbhGOlCbrBNvQyL/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2001 Analog Electronics - Small Signal Modeling Question 5 English\"> \n<br>$$(a)$$ Determine the AC small signal midband voltage gain $$\\left( {{\\raise0.5ex\\hbox{$\\scriptstyle {{V_o}}$}\n\\kern-0.1em/\\kern-0.15em\n\\lower0.25ex\\hbox{$\\scriptstyle {{V_i}}$}}} \\right)$$ of the circuit\n<br>$$(b)$$ Determine the required value of $${C_E}$$ for the circuit to have a lower cutoff frequency of $$10Hz$$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$(a)$$ $$\\,\\,\\,\\,\\, - 3.623$$\n<br>$$(b)$$ $$\\,\\,\\,\\,265\\,\\mu F$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-transistor-in-the-amplifier-circuit-shown-in-the-figure-2001-marks-5-r660ezhrtrge99op.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pzHa5TRqkyvaxJh4",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bjt-and-mosfet-biasing",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An $$N$$-channel $$JFET$$ having a pinch-off voltage $$\\left( {{V_P}} \\right)$$ of $$-5V$$ shows a transconductance (gm) of $$1$$ $$mA/V$$ when the applied Gate to source voltage $$\\left( {{V_{GS}}} \\right)$$ is $$-3V.$$ Its maximum transconductance (in $$mA/V$$) is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.5$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2.0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2.5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3.0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-n-channel-jfet-having-a-pinch-off-voltage-left-vp-right-o-gate-ee-2001-marks-2-pzha5trqkyvaxjh4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                }
+            ],
+            "title": "Analog Electronics"
+        },
+        {
+            "_id": "Control Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "i5bmbq6QPquYQc8F",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "root-locus-techniques",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given the characteristic equation $${s^3} + 2{s^2} + Ks + K = 0.$$ Sketch the root focus as $$K$$ varies from zero to infinity. Find the angle and real axis intercept of the asymptotes, break-away / break-in points, and imaginary axis crossing points, if any ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Angle of asymptotes $$ = {90^0},\\, - {90^0}$$ \n<br>Break away point $$S=0$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-the-characteristic-equation-s3-2s2-ks-k-0-sketch-the-r-gate-ee-2001-marks-5-i5bmbq6qpquyqc8f.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7pXhW8GwEBV47QtI",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "polar-nyquist-and-bode-plot",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The polar plot of a type-$$1, 3$$-pole, open-loop system is shown in Fig. below.  The closed loop system is \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/SPAY6FKrYu2obb5QG/1aRXWjAdrRjflq46dzz6W5n6Yzr5k/vqrgWqdRCFFzUWjtCPuk0d/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2001 Control Systems - Polar Nyquist and Bode Plot Question 49 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "always stable "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "marginally stable "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "unstable with one pole on the right half $$s$$-plane "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "unstable with two poles on the right half $$s$$-plane."
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-polar-plot-of-a-type-1-3-pole-open-loop-system-is-shown-gate-ee-2001-marks-1-7pxhw8gwebv47qti.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "K3V73Xm6H7XQ0kqb",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "polar-nyquist-and-bode-plot",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The asymptotic approximation of the log-magnitude versus frequency plot of a minimum phase system with real poles and one zero is shown in Fig. Its transfer functions is  \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/K0yctDXdsv8L0A1GK/lZ8upwwQm7Dq6iEecxwfhM7i6szyI/it6P9Bu95wfC60M16Ug2mB/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2001 Control Systems - Polar Nyquist and Bode Plot Question 48 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{20\\left( {s + 5} \\right)} \\over {s\\left( {s + 2} \\right)\\left( {s + 25} \\right)}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{10\\left( {s + 5} \\right)} \\over {{{\\left( {s + 2} \\right)}^2}\\left( {s + 25} \\right)}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{20\\left( {s + 5} \\right)} \\over {{s^2}\\left( {s + 2} \\right)\\left( {s + 25} \\right)}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{50\\left( {s + 5} \\right)} \\over {{s^2}\\left( {s + 2} \\right)\\left( {s + 25} \\right)}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-asymptotic-approximation-of-the-log-magnitude-versus-fre-gate-ee-2001-marks-1-k3v73xm6h7xq0kqb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rmzWaPaVfov5E3lG",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "polar-nyquist-and-bode-plot",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A unity feedback system has an open-loop transfer function of $$G\\left( s \\right) = {{10000} \\over {s{{\\left( {s + 10} \\right)}^2}}}$$\n<br>(a) Determine the magnitude of $$G\\left( {j\\omega } \\right)$$ in dB at an angular frequency of $$\\omega  = 20rad/\\sec .$$\n<br>(b) Determine the phase margin in degrees.\n<br>(c) Determine the gain margin in $$dB.$$ \n<br>(d) Is the system stable or unstable?",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a) $$0$$ $$dB$$ \n<br>(b) Phase margin $$ =  - {36^0}$$\n<br>(c) Gain margin $$-14$$ $$dB$$\n<br>(d) As Gain margin and phase margin both are negative then system is unstable.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-unity-feedback-system-has-an-open-loop-transfer-function-o-gate-ee-2001-marks-5-rmzwapavfov5e3lg.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5umtYle8T7VElKob",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "state-variable-analysis",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given the homogeneous state-space equation  $$\\mathop X\\limits^ \\bullet   = \\left[ {\\matrix{\n   { - 3} &amp; 1  \\cr \n   0 &amp; { - 2}  \\cr \n\n } } \\right]x$$ the steady state value of $$\\,\\,{x_{ss}}\\,\\, = \\mathop {Lim}\\limits_{t \\to \\infty } x\\left( t \\right),$$ given the initial state value of $$x\\left( 0 \\right) = {\\left[ {10 - 10} \\right]^T},\\,\\,is$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${x_{ss}} = \\left[ {\\matrix{\n   0  \\cr \n   0  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${x_{ss}} = \\left[ {\\matrix{\n   { - 3}  \\cr \n   { - 2}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${x_{ss}} = \\left[ {\\matrix{\n   { - 10}  \\cr \n   {10}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${x_{ss}} = \\left[ {\\matrix{\n   \\infty   \\cr \n   \\infty   \\cr \n\n } } \\right]$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-the-homogeneous-state-space-equation-mathop-xlimits-bu-gate-ee-2001-marks-1-5umtyle8t7velkob.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                }
+            ],
+            "title": "Control Systems"
+        },
+        {
+            "_id": "Digital Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NjTn9LQuXC09f75d",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logic-gates",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The output of a logic gate is $$''1''$$ when all its inputs are at logic $$''0''.$$ The gate is either ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a $$NAND$$ or an $$EX$$-$$OR$$ gate"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a $$NOR$$ or an $$EX$$-$$OR$$ gate"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "an $$AND$$ or an $$EX$$-$$NOR$$ gate"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a $$NOR$$ or an $$EX$$-$$NOR$$ gate"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-output-of-a-logic-gate-is-1-when-all-its-inputs-2001-marks-1-njtn9lquxc09f75d.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lFyaMEpTIslBTmN4",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinational-circuits",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The output $$f$$ of the $$4$$- to- $$1$$ $$MUX$$ shown in fig. is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/DHsm6PiAB6YZzt3rN/LFLRUjfabN6AU8Rp1uBfUOR8JOX5h/qn68T5IZI9CVtZSL7WLGO0/image.png\" loading=\"lazy\" alt=\"GATE EE 2001 Digital Electronics - Combinational Circuits Question 13 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\overline {xy}  + x$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$x+y$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\overline x  + \\overline y $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$xy + \\overline x $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-output-f-of-the-4-to-1-mux-shown-in-fi-2001-marks-1-lfyameptislbtmn4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "d06C2fJc4r4iogBj",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the ring counter shown in Fig. find the steady state sequence if the initial state of the counters is $$1110\\,\\,(i.e.,\\,\\,{Q_3},{Q_2},{Q_1},{Q_0} = 1110).$$ Determine the MOD number of the counter.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/RRAns6A1T9WBypIuB/Nzwfn6wkp4XxXS2yg7cejE1PfkDsZ/OzY4otzqiZ6ZdvofJIiUaN/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2001 Digital Electronics - Sequential Circuits Question 5 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "This is MOD $$-4$$ counter",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-ring-counter-shown-in-fig-find-the-steady-state-seq-2001-marks-5-d06c2fjc4r4iogbj.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "I2TchLWQGJXOzzcm",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analog-to-digital-and-digital-to-analog-converter",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Among the following four, the slowest $$ADC$$ (analog-to-digital converter) is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "parallel-comparator (i.e., flash) type"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "successive approximation type "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "integrating type"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "counting type "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "among-the-following-four-the-slowest-adc-analog-to-dig-2001-marks-1-i2tchlwqgjxozzcm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GZ1K2e1I9B8LqpTK",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "microprocessor",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An Intel $$8085$$ processor is executing the program given below.\n<br>$$\\eqalign{\n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,MVIA,\\,\\,10H  \\cr \n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,MVIB,\\,\\,10H  \\cr \n  &amp; BACK:\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,NOP  \\cr \n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,ADD\\,\\,B  \\cr \n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,RLC  \\cr \n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,JNC\\,\\,BACK  \\cr \n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,HLT \\cr} $$\n<p>The number of times that the operation $$NOP$$ will be executed is equal to</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-intel-8085-processor-is-executing-the-program-given-b-2001-marks-2-gz1k2e1i9b8lqptk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                }
+            ],
+            "title": "Digital Electronics"
+        },
+        {
+            "_id": "Electric Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hOKNj9DsqwDEfAxH",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two incandescent light bulbs of $$40$$ $$W$$ and $$60$$ $$W$$ rating are connected in series across the mains. Then ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "the bulbs together consume $$100$$ $$W$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the bulbs together consume $$50$$ $$W$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the $$60$$ $$W$$ bulbs glows brighter "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "the $$40$$ $$W$$ bulb glows brighter "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-incandescent-light-bulbs-of-40-w-and-60-w-2001-marks-1-hoknj9dsqwdefaxh.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LW8lzey4n0iowJaw",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given two coupled inductors $${L_1}$$ and $${L_2}$$, their mutual inductance $$M$$ satisfies",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$M = \\sqrt {L_1^2 + L_2^2} $$  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$M &gt; {{\\left( {{L_1} + {L_2}} \\right)} \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$M &gt; \\sqrt {{L_1}\\,{L_2}} $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$M \\le \\sqrt {{L_1}{L_2}} $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-two-coupled-inductors-l1-and-l2-their-m-2001-marks-1-lw8lzey4n0iowjaw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OeeQ0D7M492efg4v",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the star network shown in Fig. The resistance between terminals $$A$$ and $$B$$ with $$C$$ open is $$6\\,\\Omega ,$$  between terminals $$B$$ and $$C$$ with $$A$$ open is $$11\\,\\Omega ,$$  and between terminals $$C$$ and $$A$$ with $$B$$ open is $$9\\,\\Omega $$ . The values of $${R_A},\\,\\,{R_B},\\,\\,{R_C}$$ are:\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/PnFrW0Dw6XRvEjDgq/JR46GRaWrXTeQp5fYexpqKjY2FAt8/a9UBlplTaS18DB5lDGiyLm/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2001 Electric Circuits - Network Elements Question 22 English\"> \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${R_A} = 4\\,\\Omega ,\\,\\,{R_B} = 2\\,\\Omega ,\\,\\,{R_C} = 5\\,\\Omega $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${R_A} = 2\\,\\Omega ,\\,\\,{R_B} = 4\\,\\Omega ,\\,\\,{R_C} = 7\\,\\Omega $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${R_A} = 3\\,\\Omega ,\\,\\,{R_B} = 3\\,\\Omega ,\\,\\,{R_C} = 4\\,\\Omega $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${R_A} = 5\\,\\Omega ,\\,\\,{R_B} = 1\\,\\Omega ,\\,\\,{R_C} = 10\\,\\Omega $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-star-network-shown-in-fig-the-resistance-betwe-2001-marks-2-oeeq0d7m492efg4v.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cCHwSaPQ1AnLFIbu",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transient-response",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A unit step voltage is applied at $$t = 0$$ to a series $$RL$$ circuit with zero initial conditions.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "It is possible for the current to be oscillatory. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The voltage across the resistor at $$t = {0^ + }$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The energy stored in the inductor in the steady state is zero. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The resistor current eventually falls to zero.  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-unit-step-voltage-is-applied-at-t-0-to-a-series-rl-2001-marks-1-cchwsapq1anlfibu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kKEcMESJFxMZZeZp",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-analysis",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a series $$RLC$$ circuit at resonance, the magnitude of the voltage developed across the capacitor",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "is always zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "can never be greater than the input voltage "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "can be greater than the input voltage, however, it is $${90^ \\circ }$$ out of phase with the input voltage "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "can be greater than the input voltage, and is in phase with the input voltage.  "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-series-rlc-circuit-at-resonance-the-magnitude-of-t-2001-marks-1-kkecmesjfxmzzezp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Zm3vvmtJDFXtL66m",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-analysis",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Determine the resonance frequency and the $$Q$$ $$-$$ factor of the circuit shown in Fig.<p></p> \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/7byvQgfesnrBKY3eo/AcDnxcP4WpCg1RVawIb3v7BGsWBpa/M1xCDg6UxQTun4sC2g4Ibd/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2001 Electric Circuits - Sinusoidal Steady State Analysis Question 6 English\"> \n<br>Data: $$\\,\\,\\,\\,\\,R = 10\\,\\Omega ,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,C = 3\\,\\mu F,$$\n<br>$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,{L_1} = 40\\,mH,\\,\\,\\,\\,\\,\\,\\,\\,{L_2} = 10\\,mH$$\n<br>and $$\\,\\,\\,\\,\\,\\,\\,\\,M = 10\\,mH.$$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Resonance frequency $$ = {{{{10}^4}} \\over {6\\,\\,\\pi }}Hz$$\n<br>$$Q$$ $$-$$ factor $$=10$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "determine-the-resonance-frequency-and-the-q-factor-2001-marks-5-zm3vvmtjdfxtl66m.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8c97c6cc1a7",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "two-port-networks",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A passive 2-port network is in a steady state.Compare to its input, the steady state output can never offer",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "higher voltage"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "lower impedance"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "greater power"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "better regulation"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-passive-2-port-network-is-in-a-steady-statecompare-to-its-gate-ee-2001-marks-1-5a8c97c6cc1a7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                }
+            ],
+            "title": "Electric Circuits"
+        },
+        {
+            "_id": "Electrical and Electronics Measurement",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "g3YFsRNDKqvjef8S",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "error-analysis-and-measurement",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Resistances $${R_1}$$ and $${R_2}$$ have, respectively, nominal values of $$10\\Omega $$ and $$5\\Omega ,$$ and tolerances of $$ \\pm 5\\% $$ and $$ \\pm 10\\% $$. The range of values for the parallel combination of $${R_1}$$ and $${R_2}$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3.077\\,\\Omega \\,\\,\\,$$  to $$\\,\\,3.636\\,\\Omega $$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2.805\\,\\Omega \\,\\,\\,$$  to $$\\,\\,3.371\\,\\Omega $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3.237\\,\\Omega \\,\\,\\,$$  to $$\\,\\,3.678\\,\\Omega $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3.192\\,\\Omega \\,\\,\\,$$  to $$\\,\\,3.435\\,\\Omega $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "resistances-r1-and-r2-have-respectively-nominal-values-of-10-gate-ee-2001-marks-2-g3yfsrndkqvjef8s.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7eJGppyJrq3utpfi",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-indicating-instruments",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$100$$ $$\\mu A$$ ammeter has an internal resistance of $$100\\,\\Omega $$. For extending its range to measure $$500$$ $$\\mu A$$, the shunt required is of resistance (in $$\\Omega $$)  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$20.0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$22.22$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$25.0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$50.0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-100-mu-a-ammeter-has-an-internal-resistance-of-100omega-fo-gate-ee-2001-marks-2-7ejgppyjrq3utpfi.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qK6qhUN94mFmHidy",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "measurement-of-energy-and-power",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The minimum number of wattmeter(s) required to measure 3 $$-$$ phase, 3 $$-$$ wire balanced or unbalanced power is \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "3 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "4 "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-minimum-number-of-wattmeters-required-to-measure-3-phase-gate-ee-2001-marks-1-qk6qhun94mfmhidy.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                }
+            ],
+            "title": "Electrical and Electronics Measurement"
+        },
+        {
+            "_id": "Electrical Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WaT1JeOWdbTHiNzQ",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$50$$ $$kW$$ synchronous motor is tested by driving it by another motor. When the excitation is not switched on, the driving motor takes $$800$$ $$W.$$ When the armature is short-circuited and the rated armature current of $$10$$ $$A$$ is passed through it, the driving motor requires $$2500$$ $$W.$$ On open-circuiting the armature with rated excitation, the driving motor takes $$1800$$ $$W.$$ Calculate the efficiency of the synchronous motor at $$50\\% $$ load. Neglect the losses in the driving motor.\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "efficiency $$ = 95.9\\% $$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-50-kw-synchronous-motor-is-tested-by-driving-it-by-2001-marks-5-wat1jeowdbthinzq.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rZJjc36cUn1KzjCa",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two identical synchronous generators, each of $$100$$ $$MVA,$$ are working in parallel supplying $$100$$ $$MVA$$ at $$0.8$$ lagging $$p.f.$$ at rated voltage. Initially the machines are sharing load equally. If the field current of first generator is reduced by $$5\\% $$ and of the second generator increased by $$5\\% ,$$ find the sharing of load ($$MW$$ and $$MVAR$$) between the generators. \n<br>Assume$${X_d} = {X_q} = 0.8\\,\\,p.u.$$ no field saturation and rated voltage across load. Reasonable approximations may be made. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$\\eqalign{\n  &amp; MW = 48\\,p.u.  \\cr \n  &amp; MVAR = 0.36\\,p.u. \\cr} $$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-identical-synchronous-generators-each-of-100-mva-2001-marks-5-rzjjc36cun1kzjca.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cuyVkQk5IaobZNh1",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a $$dc$$ motor running at $$2000$$ $$rpm,$$ the hysteresis and eddy current losses are $$500$$ $$W$$ and $$200$$ $$W$$ respectively. If the flux remains constant, calculate the speed at which the total iron losses are halved. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$1140$$ $$rpm$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-dc-motor-running-at-2000-rpm-the-hysteresi-2001-marks-5-cuyvkqk5iaobznh1.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SQbWLPPHmYVndHEJ",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$dc$$ series motor is rated $$230V,$$ $$1000$$ $$rpm,$$ $$80$$ $$A$$ (refer to Figure). The series field resistance is $$0.11\\,\\Omega ,$$ and the armature resistance is $$0.14\\,\\Omega .$$ If the flux at an armature current of $$20A$$ is $$0.4$$ times of that under rated condition, calculate the speed at this reduced armature current of $$20$$ $$A.$$\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/UVWSndylUC61LhaSo/EONDXK3iS2qjx67U6DyqGdBSe7QvU/jTXlLwKvBdNgOQWF57khrV/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2001 Electrical Machines - D.C Machines Question 11 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$2678.57$$ $$rpm$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-dc-series-motor-is-rated-230v-1000-rpm-2001-marks-5-sqbwlpphmyvndhej.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UYtUHHHFoN8ucMXJ",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An ideal transformer has a linear $$B-H$$ characteristic with a finite slope and a turns ratio of $$1:1.$$ The primary of the transformer is energized with an ideal current source, producing the signal i as shown in figure. Sketch the shape (neglecting the scale factor) of the following signals, labeling the time axis clearly\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/qr6PiRsGy0WL0C3oS/A1sSMDN6YYcPDdB8gJ73yLo7qK3kX/RtVdHxB9bbJttm2mXtTc49/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2001 Electrical Machines - Transformers Question 12 English\"> \n<p>$$(a)$$ $$\\,\\,\\,\\,\\,$$ the core flux $${\\phi _{oc}}$$ with the secondary of the transformer open  \n<br>$$(b)$$ $$\\,\\,\\,\\,\\,$$ the open-circuited secondary terminal voltage $${V_2}\\left( t \\right).$$ \n<br>$$(c)$$ $$\\,\\,\\,\\,\\,$$ the short-circuited secondary current $${i_2}\\left( t \\right)$$ \n<br>$$(d)$$ $$\\,\\,\\,\\,\\,$$ the core flux $${\\phi _{sc}},$$ with the secondary of the transformer short-circuited.  </p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-ideal-transformer-has-a-linear-b-h-characteristic-wit-2001-marks-5-uytuhhhfon8ucmxj.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a973150b149b",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In case of an armature controlled separately excited dc motor drive with closed loop\nspeed control, an inner current loop is useful because it",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "limits the speed of the motor to a safe value"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "helps in improving the drive energy efficiency"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "limits the peak current of the motor to the permissible value"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "reduces the steady state speed error"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-case-of-an-armature-controlled-separately-excited-dc-moto-gate-ee-2001-marks-1-5a973150b149b.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a98450ed1307",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An electric motor with 'constant output power' will have a torque speed\ncharacteristic in the form of a",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "straight line through the origin"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "straight line parallel to the speed axis"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "circle about the origin"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "rectangular hyperbola"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-electric-motor-with-constant-output-power-will-have-a-tor-gate-ee-2001-marks-2-5a98450ed1307.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a9dc58913bc7",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single-phase transformer is to be switched to the supply to have minimum\ninrush current. The switch should be closed at\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "maximum supply voltage"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "zero supply voltage"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\frac1{\\sqrt2}$$ maximum supply voltage"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\frac12$$ maximum supply voltage"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-single-phase-transformer-is-to-be-switched-to-the-supply-t-gate-ee-2001-marks-1-5a9dc58913bc7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a9dc686b955d",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The core flux of a practical transformer with a resistive load",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "is strictly constant with load changes"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "increases linearly with load"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "increases as the square root of the load"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "decreases with increased load"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-core-flux-of-a-practical-transformer-with-a-resistive-lo-gate-ee-2001-marks-1-5a9dc686b955d.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa05fb2df3e0",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 3-phase transformer has rating of 20 MVA, 220 kV (star) / 33 kV (delta) with\nleakage reactance of 12%. The transformer reactance (in ohms) referred to each\nphase of the L.V. delta-connected side is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "23.5"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "19.6"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "18.5"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "8.7"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-3-phase-transformer-has-rating-of-20-mva-220-kv-star-33-kv-gate-ee-2001-marks-2-5aa05fb2df3e0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa060ec343c1",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The hysteresis loop of a magnetic material has an area of 5 cm<sup>2</sup> with the scales\ngiven as 1 cm = 2 AT and 1 cm = 50 mWb. At 50 Hz, the total hysteresis loss is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "15 W"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "20 W"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "25 W"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "50 W"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-hysteresis-loop-of-a-magnetic-material-has-an-area-of-5-gate-ee-2001-marks-2-5aa060ec343c1.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa819ca61322",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "It is desirable to eliminate 5<sup>th</sup> harmonic voltage from the phase voltage of an\nalternator. The coils should be short-pitched by an electrical angle of",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "30\u00b0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "36\u00b0"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "72\u00b0"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "18\u00b0"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "it-is-desirable-to-eliminate-5th-harmonic-voltage-from-the-p-gate-ee-2001-marks-1-5aa819ca61322.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa81b052c52d",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Figure shows the magnetization curves of an alternator at rated armature\ncurrent, unity power factor and also at no load. The magnetization curve for rated\narmature current, 0.8 power factor leading is given by\n<img alt=\"GATE EE 2001 Electrical Machines - Synchronous Machines Question 73 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/b1d40deabcd7d22d92344785bd3772bfbe78ed6e76885274feb79e77259bfc04.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "curve A"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "curve B"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "curve C"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "curve D"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "figure-shows-the-magnetization-curves-of-an-alternator-at-ra-gate-ee-2001-marks-1-5aa81b052c52d.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa81cfb3b504",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "X<sub>d</sub>, X<sub>d</sub><sup>'</sup> and X<sub>d</sub><sup>\"</sup> are steady stated-axis synchronous reactance, transient d-axis\nreactance and sub-transient d-axis reactance of a synchronous machine\nrespectively. Which of the following statements is true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "X<sub>d</sub> &gt; X<sub>d</sub><sup>'</sup> &gt; X<sub>d</sub><sup>\"</sup>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "X<sub>d</sub><sup>\"</sup> &gt; X<sub>d</sub><sup>'</sup> &gt; X<sub>d</sub>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "X<sub>d</sub><sup>'</sup> &gt; X<sub>d</sub><sup>\"</sup> &gt; X<sub>d</sub>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "X<sub>d</sub> &gt; X<sub>d</sub><sup>\"</sup> &gt; X<sub>d</sub><sup>'</sup>"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "xd-xd-and-xd-are-steady-stated-axis-synchronous-reactance-tr-gate-ee-2001-marks-1-5aa81cfb3b504.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa940423ef03",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A star-connected 440 V, 50 Hz alternators has per phase synchronous reactance\nof 10 \u03a9. It supplies a balanced capacitive load current of 20 A, as shown in the\nper phase equivalent circuit of Figure. It is desirable to have zero voltage\nregulation. The load power factor should be\n<img alt=\"GATE EE 2001 Electrical Machines - Synchronous Machines Question 58 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/92eb64c49e7268c3cad373eb56ae40d47472b84b2fa7c29f7f8e16d07d887110.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0.82"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.47"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0.39"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0.92"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-star-connected-440-v-50-hz-alternators-has-per-phase-synch-gate-ee-2001-marks-2-5aa940423ef03.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                }
+            ],
+            "title": "Electrical Machines"
+        },
+        {
+            "_id": "Electromagnetic Fields",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0luOGWCl1SuQ2HE4",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetic-fields",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "electrostatics",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The electric field $$\\overrightarrow E $$  (in volts/metre) at the point $$(1, 1, 0)$$ due to a point charge of $$+1$$ $$\\mu C$$ located at $$\\left( { - 1,\\,1,\\,1} \\right)$$ (coordinates in metres) is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{{{10}^{ - 6}}} \\over {20\\sqrt 5 \\pi {\\varepsilon _0}}}\\left( {2i - k} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{{{10}^{ - 6}}} \\over {20\\pi {\\varepsilon _0}}}\\left( {2i - k} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{ - {{10}^{ - 6}}} \\over {20\\sqrt 5 \\pi {\\varepsilon _0}}}\\left( {2i - k} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{ - {{10}^{ - 6}}} \\over {20\\pi {\\varepsilon _0}}}\\left( {2i - k} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-electric-field-overrightarrow-e-in-voltsmetre-2001-marks-1-0luogwcl1suq2he4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gS1kbPpHgowFTrBQ",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetic-fields",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "electrostatics",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given the potential function in free space to be $$V\\left( x \\right) = \\left( {50{x^2} + 50{y^2} + 50{z^2}} \\right)$$  volts, the magnitude (in volts /metre) and the direction of the electric field at a point $$\\left( {1,\\,\\, - 1,\\,\\,1} \\right),$$ where the dimensions are in metres, are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$100\\,\\,\\,\\,;\\left( {i + j + k} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$100/\\sqrt 3 ;\\,\\,\\left( {i - j + k} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$100\\sqrt 3 ;\\,\\,\\left[ {\\left( { - i - j - k} \\right) - \\sqrt 3 } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$100\\sqrt 3 ;\\,\\,\\left[ {\\left( { - i + j - k} \\right) - \\sqrt 3 } \\right]$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-the-potential-function-in-free-space-to-be-vleft-x-2001-marks-1-gs1kbpphgowftrbq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "etbIjGrWjTkeYa37",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetic-fields",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "magnetostatics",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The conductors of a $$10$$ $$km$$ long, single phase, two wire line are separated by a distance of $$1.5$$ $$m.$$ The diameter of each conductor is $$1$$ $$cm.$$ If the conductors are of copper, the inductance of the circuit is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$50.0$$ $$mH$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$45.3$$ $$mH$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$23.8$$ $$mH$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$19.6$$ $$mH$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-conductors-of-a-10-km-long-single-phase-two-wi-2001-marks-2-etbijgrwjtkeya37.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                }
+            ],
+            "title": "Electromagnetic Fields"
+        },
+        {
+            "_id": "Power Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Q1brGblgJ0Obyqc6",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "choppers-and-commutation-techniques",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A voltage commutated thyristor chopper circuit is shown in fig. The chopper is operated at $$500$$ $$Hz$$ with $$50\\% $$ duty ratio. The load takes a constant current of $$20A$$\n<p>(a) Evaluate the circuit turn off time for the main thyristor $$T{h_1}$$ \n<br>(b) Calculate the value of inductor $$L,$$ if the peak current through the main thyristor $$Th,$$ is limited to $$180$$% of the load current.\n<br>(c)Calculate the maximum instantaneous output voltage of the chopper</p>\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/5OvJDHzYNFZBOwLSd/Zen3QhwRdQSYlTba7EpkAqqjpIB9z/LTM8K8rFnmbiUlivChKl8a/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2001 Power Electronics - Choppers and Commutation Techniques Question 15 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a) $$30$$ $$\\mu \\sec $$\n<br>(b) $$0.23$$ $$mH$$\n<br>(c) $$200$$ $$V$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-voltage-commutated-thyristor-chopper-circuit-is-shown-in-f-gate-ee-2001-marks-5-q1brgblgj0obyqc6.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "guV2EfGeQeDJu7v9",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "inverters",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single - phase full-bridge voltage source inverter feeds a purely inductive load, as shown in figure. when $${T_1},{T_2},\\,\\,\\,\\,\\,{T_3},{T_4}$$ are power transistors and $${D_1},{D_2},\\,{D_3},{D_4}$$ are feedback diodes. The inverter is operated in square-wave mode with a frequency of $$50$$ $$Hz.$$ If the average load current is zero, what is the time duration of conduction of each feedback diode in a cycle? \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/QMCBYj4zC1DaURX56/fDffM1U5xF3mO4nshLs4KNvoq51jj/CXSPdMykQc5VAaYQL34HA7/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2001 Power Electronics - Inverters Question 22 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$5\\,\\,m\\,\\,\\sec $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$10\\,\\,m\\,\\,\\sec $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$20\\,\\,m\\,\\,\\sec $$  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2.5\\,\\,m\\,\\,\\sec $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-single-phase-full-bridge-voltage-source-inverter-feeds-a-p-gate-ee-2001-marks-2-guv2efgeqedju7v9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "q2t8eGFrxE4ezkJA",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "single-and-three-phase-rectifier",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A half-wave thyristor converter supplies a purely inductive load, as shown in figure. If the triggering angle of the thyristor is $${120^ \\circ }$$, the extinction angle will be \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/hCi8T33PtrLKa4RQX/SDOcgWCWbiAY5njYUU6zqe7GiA31Y/Rx9ajrWLTp2ZYzij9f1Zpq/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2001 Power Electronics - Single and Three Phase Rectifier Question 41 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${240^ \\circ }$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${180^ \\circ }$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${200^ \\circ }$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${120^ \\circ }$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-half-wave-thyristor-converter-supplies-a-purely-inductive-gate-ee-2001-marks-2-q2t8egfrxe4ezkja.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ABckemF9pytzHzo7",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "single-and-three-phase-rectifier",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$AC$$ to $$DC$$ circulating current dual converters are operated with the following relationship between their triggering angles $$\\left( {{\\alpha _1}} \\right.$$ and $$\\left. {{\\alpha _2}} \\right).$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\alpha _1} + {\\alpha _2} = {180^0}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\alpha _1} + {\\alpha _2} = {360^0}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\alpha _1} - {\\alpha _2} = {180^0}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\alpha _1} + {\\alpha _2} = {90^0}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "ac-to-dc-circulating-current-dual-converters-are-operated-wi-gate-ee-2001-marks-1-abckemf9pytzhzo7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                }
+            ],
+            "title": "Power Electronics"
+        },
+        {
+            "_id": "Power System Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WOrJ24tnlEJkZKCS",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "symmetrical-components-and-symmetrical-and-unsymmetrical-faults",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$50$$ Hz alternator is rated $$500$$ $$MVA,$$ $$20$$ $$kV,$$ with $${X_d} = 1.0$$ per unit and $$X'{'_d} = 0.2$$ per unit. It supplies a purely resistive load of $$400$$ $$MW$$ at $$20$$ $$kV.$$ The load is connected directly across the generator terminals when a symmetrical fault occurs at the load terminals. The initial rms current in the generator in per units is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$7.22$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$6.4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3.22$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2.2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-50-hz-alternator-is-rated-500-mva-20-kv-with-xd-10-per-uni-gate-ee-2001-marks-2-worj24tnlejkzkcs.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jZLQLNflzirhd5hP",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A lossless radial transmission line with surge impedance loading",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Takes negative VAR at sending end and zero VAR at receiving end."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Takes positive VAR at sending end and zero VAR at receiving end."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Has flat voltage profile and unity power factor at all points along it."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Has sending end voltage higher than receiving end voltage and unity power factor at sending end."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-lossless-radial-transmission-line-with-surge-impedance-loa-gate-ee-2001-marks-1-jzlqlnflzirhd5hp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iHys4GvC5ugtxab9",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the model shown in figure of a transmission line with a series capacitor at its mid-point. The maximum voltage on the line is at the location \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/u8XMHbZtwCS9e0Lmz/cM09YteUK0SANj7JD6VGF6MdbeqfW/edf5WKZ9E657WRgjCnCVSK/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2001 Power System Analysis - Parameters and Performance of Transmission Lines Question 48 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${P_1}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${P_2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${P_3}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${P_4}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-model-shown-in-figure-of-a-transmission-line-wi-gate-ee-2001-marks-2-ihys4gvc5ugtxab9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YZFq3m5y2tnkvKZ0",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The conductors of a $$10$$ km long, single phase, two wire line are separated by a distance of $$1.5$$ m. The diameter of each conductor is $$1$$ cm. If the conductors are of copper, the inductance of the circuit is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$50.0$$ mH "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$45.3$$ mH"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$23.8$$ mH"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$19.6$$ mH"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-conductors-of-a-10-km-long-single-phase-two-wire-line-ar-gate-ee-2001-marks-2-yzfq3m5y2tnkvkz0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FBzwUgYwcuAeuU0q",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 132 kV transmission line AB is connected to a cable BC. The characteristic impedances of the overhead line and the cable are 400$$\\Omega $$ and 80$$\\Omega $$ respectively. Assume that these are purely resistive. A 250 kV switching surge travels from A to B.\n<p>(a) Calculate the value of this voltage surge when it first reaches C.</p>\n<p>(b) Calculate the value of the reflected component of this surge when the first reflection reaches A.</p>\n<p>(c) Calculate the surge current in the cable BC.  </p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a) 83.3 kV\n<br>(b) $$-$$ 166.67 kV\n<br>(c) 1041.6 A",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-132-kv-transmission-line-ab-is-connected-to-a-cable-bc-the-gate-ee-2001-marks-5-fbzwugywcuaeuu0q.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4rhDziXpnZbvSLGO",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "power-system-stability",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A synchronous generator is connected to an infinite bus through a lossless double circuit transmission line. The generator is delivering 1.0 per unit power at a load angle of $${30^0}$$  when a sudden fault reduces the peak power that can be transmitted to 0.5 per unit. After clearance of fault, the peak power that can be transmitted becomes 1.5 per unit. Find the critical clearing angle.\n ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Critical clearing angle = 70.4<sup>0</sup>",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-synchronous-generator-is-connected-to-an-infinite-bus-thro-gate-ee-2001-marks-5-4rhdzixpnzbvslgo.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "x41bQsPINOjGPtRK",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "symmetrical-components-and-symmetrical-and-unsymmetrical-faults",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single line-to-ground fault occurs on an unloaded generator in phase a positive, negative, and zero sequence impedances of the generator are j0.25 p.u., j0.25  p.u., and j0.15 p.u. respectively. The generator neutral is grounded through a reactance of j0.05 p.u. The prefault generator terminal voltage is 1.0 p.u.\n<br>(a) Draw the positive, negative, and zero sequence networks for the fault given.\n<br>(b) Draw the interconnection of the sequence networks for the fault analysis.\n<br>(c) Determine the fault current. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(c) Fault current = 3.75$$\\angle $$-90<sup>0</sup> pu",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-single-line-to-ground-fault-occurs-on-an-unloaded-generato-gate-ee-2001-marks-5-x41bqspinojgptrk.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rMAkFWhRJK2pSgBr",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "power-generation-cost",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A power system has two generators with the following cost curves\n<br>Generator $$1:$$ $${C_1}\\left( {{P_{G1}}} \\right) = 0.006\\,P_{G1}^2 + 8{P_{G1}} + 350$$ (Thousand Rupees/Hour)\n<br>Generator $$2:$$ $${C_2}\\left( {{P_{G2}}} \\right) = 0.006\\,P_{G2}^2 + 7{P_{G2}} + 400$$ (Thousand Rupees/Hour)\n<br>The generator limits are \n<br>$$\\eqalign{\n  &amp; 100\\,MW \\le {P_{G1}} \\le 650\\,MW  \\cr \n  &amp; 50\\,MW \\le {P_{G2}} \\le 500\\,MW \\cr} $$\n<p>A load demand of $$600$$ $$MW$$ is supplied by the generators in an optimal manner. Neglecting losses in the transmission network, determine the optimal generation of each generator.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${P_{G1}} = 326.67\\,\\,MW$$\n<br>$${P_{G2}} = 273.33\\,\\,MW$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-power-system-has-two-generators-with-the-following-cost-cu-gate-ee-2001-marks-5-rmakfwhrjk2psgbr.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qaqJFsNF4Suxjfb3",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "generating-power-station",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A power system has two synchronous generators. The Governor-turbine characteristics corresponding to the generators are\n<br>P<sub>1</sub> = 50(50 \u2013 f), P<sub>2</sub> = 100 (51 \u2013 f)\n<br>Where f denotes the system frequency in Hz, and P<sub>1</sub> and P<sub>2</sub> are, respectively, the power outputs (in MW) of turbines 1 and 2. assuming the generators and transmission network to be lossless, the system frequency for a total load of 400 MW is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "47.5 Hz "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "48.0 Hz "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "48.5 Hz "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "49.0 Hz "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-power-system-has-two-synchronous-generators-the-governor-t-gate-ee-2001-marks-2-qaqjfsnf4suxjfb3.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VODggKLNSvf5MLzG",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "load-flow-studies",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the $$Y$$-$$bus$$ matrix given in per unit values, where the first, second, third and fourth row refers to bus $$1, 2, 3$$ and $$4$$ respectively, draw the reactance diagram.\n$$${Y_{bus}} = j\\left[ {\\matrix{\n   { - 6} &amp; 2 &amp; {2.5} &amp; 0  \\cr \n   2 &amp; { - 10} &amp; {2.5} &amp; 4  \\cr \n   {2.5} &amp; {2.5} &amp; { - 9} &amp; 4  \\cr \n   0 &amp; 4 &amp; {4 - 8} &amp; {}  \\cr \n\n } } \\right]$$$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-for-the-y-bus-matrix-given-in-per-unit-values-where-the-fir-gate-ee-2001-marks-5-vodggklnsvf5mlzg.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Pjt6dj3cDJxqI6U2",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "per-unit-system",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$75$$ MVA, $$10$$ kV synchronous generator has X<sub>d</sub> $$= 0.4$$ p.u. The X<sub>d</sub> value (in p.u.) is a base of $$100$$ MVA, $$11$$ kV is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.578$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.279$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.412$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.44$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-75-mva-10-kv-synchronous-generator-has-xd-04-pu-the-xd-val-gate-ee-2001-marks-2-pjt6dj3cdjxqi6u2.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                }
+            ],
+            "title": "Power System Analysis"
+        },
+        {
+            "_id": "Signals and Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "t0GQDBDeWyZ0ShI8",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-time-invariant-systems",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given the relationship between the input $$u(t)$$ and the output $$y(t)$$ to be\n<br>$$y\\left( t \\right) = \\int\\limits_0^t {\\left( {2 + t - \\tau } \\right){e^{ - 3\\left( {t - \\tau } \\right)}}} u\\left( \\tau  \\right)d\\tau $$ \n<br>the transfer function $$Y\\left( s \\right)/U\\left( s \\right)$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{2{e^{ - 2s}}} \\over {s + 3}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{s + 2} \\over {{{\\left( {s + 3} \\right)}^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{2s + 5} \\over {s + 3}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{2s + 7} \\over {{{\\left( {s + 3} \\right)}^2}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-the-relationship-between-the-input-ut-and-the-ou-2001-marks-2-t0gqdbdewyz0shi8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "p5NFQAvtWsaBV1A1",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-periodic-signal-fourier-series",
+                    "year": 2001,
+                    "paperTitle": "GATE EE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the voltage waveform $$V,$$ shown in Fig. Find. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/0YSoPSgjs2ibwwh4R/0BDteMLn4StbOOukMZaCk0mzgyz8R/x47pzHBf34GJEATri2gzBB/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2001 Signals and Systems - Continuous Time Periodic Signal Fourier Series Question 4 English\"> \n<br>$$(a)$$$$\\,\\,\\,\\,\\,\\,\\,\\,$$  the dc component of $$V,$$\n<br>$$(b)$$$$\\,\\,\\,\\,\\,\\,\\,\\,$$  the amplitude of the fundamental component of $$V,$$ and \n<br>$$(c)$$$$\\,\\,\\,\\,\\,\\,\\,\\,$$  the $$rms$$ value of the ac part of $$V$$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$(a)$$$$\\,\\,\\,\\,\\,\\,\\,\\,$$  $$0.2$$ $$V$$ \n<br>$$(b)$$$$\\,\\,\\,\\,\\,\\,\\,\\,$$  $$1.21$$ $$V$$ \n<br>$$(c)$$$$\\,\\,\\,\\,\\,\\,\\,\\,$$  $$0.98$$ $$V$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-voltage-waveform-v-shown-in-fig-find-2001-marks-5-p5nfqavtwsabv1a1.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2001"
+                }
+            ],
+            "title": "Signals and Systems"
+        }
+    ]
+}

@@ -1,0 +1,1719 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cIJ8Msnk0ViNf6li",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The differential equation $${{dy} \\over {dx}} + py = Q,$$  is a linear equation of first order only if, ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P$$ is a constant but $$Q$$ is a function of $$y$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P$$ and $$Q$$ are functions of $$y$$ (or) constants "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P$$ is a function of $$y$$ but $$Q$$ is a constant "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P$$ and $$Q$$ are functions of $$x$$ (or) constants"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-differential-equation-dy-over-dx-py-q-is-a-linear-equati-gate-ce-1997-marks-2-cij8msnk0vinf6li.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YalzBG3wotr6Cxcm",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$${e^z}$$ is a periodic with a period of",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2\\pi $$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2\\pi i$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\pi $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$i\\pi $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "ez-is-a-periodic-with-a-period-of-gate-ce-1997-marks-1-yalzbg3wotr6cxcm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "A7ry2Fd53w5hVtoD",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the differential equation $$f\\left( {x,y} \\right){{dy} \\over {dx}} + g\\left( {x,y} \\right) = 0\\,\\,$$ to be exact is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\,{{\\partial f} \\over {\\partial y}} = {{\\partial g} \\over {\\partial x}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{\\partial f} \\over {\\partial x}} = {{\\partial g} \\over {\\partial y}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$f=g$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{{\\partial ^2}f} \\over {\\partial {x^2}}} = {{{\\partial ^2}g} \\over {\\partial {y^2}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-differential-equation-fleft-xy-rightdy-over-dx-gleft-gate-ce-1997-marks-1-a7ry2fd53w5hvtod.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vFKz32Rt2TcUPRBB",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$\\varphi \\left( x \\right) = \\int\\limits_0^{{x^2}} {\\sqrt t \\,dt\\,} $$ then $${{d\\varphi } \\over {dx}} = \\_\\_\\_\\_\\_\\_\\_.$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2\\,{x^2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\sqrt x $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-varphi-left-x-right-intlimits0x2-sqrt-t-dt-then-dvarphi-o-gate-ce-1997-marks-1-vfkz32rt2tcuprbb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jfKY4DtnF5lwClED",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$y = \\left| x \\right|$$ for $$x &lt; 0$$ and $$y=x$$ for $$x \\ge 0$$  then ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{dy} \\over {dx}}$$ is discontinuous at $$x=0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$y$$ is discontinuous at $$x=0$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$y$$ is not defined at $$x=0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Both $$y$$ and $${{dy} \\over {dx}}$$ are discontinuous at $$x=0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-y-left-x-right-for-x-0-and-yx-for-x-ge-0-then-gate-ce-1997-marks-1-jfky4dtnf5lwcled.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GZZKsqePOg8onhKA",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the determinant of the matrix $$\\left[ {\\matrix{\n   1 &amp; 3 &amp; 2  \\cr \n   0 &amp; 5 &amp; { - 6}  \\cr \n   2 &amp; 7 &amp; 8  \\cr \n\n } } \\right]$$ is $$26,$$ then the determinant of \n<br>the matrix $$\\left[ {\\matrix{\n   2 &amp; 7 &amp; 8  \\cr \n   0 &amp; 5 &amp; { - 6}  \\cr \n   1 &amp; 3 &amp; 2  \\cr \n\n } } \\right]$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-26$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$26$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$52$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-determinant-of-the-matrix-left-matrix-1-3-2-cr-0-5-6-gate-ce-1997-marks-1-gzzksqepog8onhka.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UaaSshlGu9Fh0Zdv",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Inverse of matrix $$\\left[ {\\matrix{\n   0 &amp; 1 &amp; 0  \\cr \n   0 &amp; 0 &amp; 1  \\cr \n   1 &amp; 0 &amp; 0  \\cr \n\n } } \\right]$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left[ {\\matrix{\n   0 &amp; 0 &amp; 1  \\cr \n   1 &amp; 0 &amp; 0  \\cr \n   0 &amp; 1 &amp; 0  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left[ {\\matrix{\n   1 &amp; 0 &amp; 0  \\cr \n   0 &amp; 0 &amp; 1  \\cr \n   0 &amp; 1 &amp; 0  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left[ {\\matrix{\n   1 &amp; 0 &amp; 0  \\cr \n   0 &amp; 1 &amp; 0  \\cr \n   0 &amp; 0 &amp; 1  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left[ {\\matrix{\n   0 &amp; 0 &amp; 1  \\cr \n   0 &amp; 1 &amp; 0  \\cr \n   1 &amp; 0 &amp; 0  \\cr \n\n } } \\right]$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "inverse-of-matrix-left-matrix-0-1-0-cr-0-0-1-cr-1-0-0-cr-rig-gate-ce-1997-marks-1-uaasshlgu9fh0zdv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rYrj6tuSIUHBE0s0",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$A$$ and $$B$$ are two matrices and $$AB$$ exists then $$BA$$ exists, ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "only if $$A$$ has as many rows as $$B$$ has columns "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "only if both $$A$$ and $$B$$ are square matrices "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "only if $$A$$ and $$B$$ are skew matrices "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "only if both $$A$$ and $$B$$ are symmetric"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-a-and-b-are-two-matrices-and-ab-exists-then-ba-exists-gate-ce-1997-marks-1-ryrj6tusiuhbe0s0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Environmental Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2e342a36df6",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "environmental-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "quality-control-of-water",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "MPN index is measure of one of the following:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Coliform bacteria"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$BOD_5$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Dissolved Oxygen content"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Hardness"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "mpn-index-is-measure-of-one-of-the-following-gate-ce-1997-marks-1-5a2e342a36df6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2e330b3b821",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "environmental-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "quality-control-of-water",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Alkalinity of water can be defined correctly in one of the following ways",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "it is the measure of ability of water to neutralize oxygen"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "it is the measure of ability of water to neutralize carbonates"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "it is the presence of ions in water that will neutralize hydrogen ions"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "it is the measure of ability of water to neutralize hydroxides"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "alkalinity-of-water-can-be-defined-correctly-in-one-of-the-f-gate-ce-1997-marks-1-5a2e330b3b821.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                }
+            ],
+            "title": "Environmental Engineering"
+        },
+        {
+            "_id": "Geotechnical Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a271faadbb77",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "geotechnical-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "definitions-and-properties-of-soils",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the porosity of a soil sample is 20%, the void ratio is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0.20"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.80"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1.00"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0.25"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-porosity-of-a-soil-sample-is-20-the-void-ratio-is-gate-ce-1997-marks-1-5a271faadbb77.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                }
+            ],
+            "title": "Geotechnical Engineering"
+        },
+        {
+            "_id": "Hydrology",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2c3f5748def",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "hydrology",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "evaporation-and-transpiration",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Lysimeter and Tensiometer are used to measure respectively, one of the following groups of quantities:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Capillary potential and permeability"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Evapotranspiration and capillary potential"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Velocity in channels and vapour pressure"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Velocity in pipes and pressure head"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "lysimeter-and-tensiometer-are-used-to-measure-respectively-o-gate-ce-1997-marks-1-5a2c3f5748def.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2c36a6cd2b4",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "hydrology",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "precipitation-and-frequency-of-rainfall-data",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Hyetograph is a graph representing",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "rainfall volume with time"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "rainfall intensity with time"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "rainfall intensity with duration"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "rainfall intensity over an area"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "hyetograph-is-a-graph-representing-gate-ce-1997-marks-1-5a2c36a6cd2b4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                }
+            ],
+            "title": "Hydrology"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "v9ViFQ19W0v4H4cP",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "prestressed-concrete",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A prestressed concrete rectangular beam of size $$300\\,\\,mm \\times 900\\,\\,mm$$ is prestressed with an intial prestressing force of $$700$$ $$kN$$ at an eccentricity of $$350$$ $$mm$$ at midspan. Stress at top due to prestress alone, in $$N/m{m^2}$$ is  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-3.46$$ (tension) "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2.59$$ (compression)  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "zero  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$8.64$$ (compression)   "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-prestressed-concrete-rectangular-beam-of-size-300mm-1997-marks-2-v9vifq19w0v4h4cp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6nZtWa8Jv0HH4aRP",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-collapse-compression",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Design a square $$R.C$$ column to resist an axial load of $$400$$ $$kN$$ due to dead load and $$240$$ $$kN$$ due to live load at service  stage. Design the section as a short axially loaded column. Use $$M25$$ concrete and steel of grade $$415$$ $$N/m{m^2}.$$ Give a near sketch of the cross section.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "design-a-square-rc-column-to-resist-an-axial-load-of-1997-marks-2-6nztwa8jv0hh4arp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "IdzdnaaUBtopV5T7",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-collapse-shear",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A simply supported beam of a beam and slab system, rests on a support of width $$450$$ $$mm.$$ The clear span of the beam is $$10.0$$ $$m.$$ The thickness of the slab is $$120$$ $$mm.$$ The depth of the beam below the slab is $$480$$ $$mm$$ and the width of the beam is $$250$$ $$mm.$$ The beam is reinforced with one row of $$32$$ $$mm$$ diameter steel rods. The total load including the super imposed dead load, live load and its own weight is $$25.0$$ $$kN/m$$ at service stage. Compute the maximum nominal design shear stress in the concrete _______________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.21",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-simply-supported-beam-of-a-beam-and-slab-system-rests-on-1997-marks-2-idzdnaaubtopv5t7.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "exql9NwrJgRAa5kV",
+                    "exam": "gate-ce",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "flanged-beams",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A hall is covered by a beam and slab system with beams placed at $$3.0$$ $$m$$ center. The effective span of the beam is $$8.35$$ $$m.$$ The thickness of the slab is $$120$$ $$mm.$$ The size of the beam below the slab is $$230$$ $$mm$$ width and $$380$$ $$mm$$  depth. The beam  is reinforced with two numbers of $$32$$ $$mm$$ diameter steel rods of grade $$415\\,\\,N/m{m^2}.$$ Compute the Maximum total load/$$m$$ run, the beam can carry, including its own weight at service stage.  Grade of concrete is $$M$$ $$25.$$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$19.47$$ $$kN/m$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-hall-is-covered-by-a-beam-and-slab-system-with-beams-place-1997-marks-5-exql9nwrjgraa5kv.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1ac3b2ed21c",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The permissible tensile stress in concrete made of M 25 concrete is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "3.5 N/mm<sup>2</sup>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "60 N/mm<sup>2</sup>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2.5 N/mm<sup>2</sup>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-permissible-tensile-stress-in-concrete-made-of-m-25-conc-gate-ce-1997-marks-1-5a1ac3b2ed21c.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1aafa5e6560",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The cylinder strength of the concrete is less than the cube strength because of",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The difference in the shape of the cross-section of the specimens"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The difference in the slenderness ratio of the specimens"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The friction between the concrete specimens and the steel plate of the testing machine"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The cubes are tested without capping but the cylinders are tested with capping"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-cylinder-strength-of-the-concrete-is-less-than-the-cube-gate-ce-1997-marks-1-5a1aafa5e6560.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Steel Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YA22C0346vjDqCcc",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "beams",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Allowable average shear stress in an unstiffened web for beams made of steel of grade $$250\\,\\,N/m{m^2}$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$250\\,\\,N/m{m^2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$165\\,\\,N/m{m^2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$150\\,\\,N/m{m^2}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$100\\,\\,N/m{m^2}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "allowable-average-shear-stress-in-an-unstiffened-web-for-bea-1997-marks-1-ya22c0346vjdqccc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Cc9GQz8lVcddPIuA",
+                    "exam": "gate-ce",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "compression-members",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A compound steel column consisting of $$2$$ $$ISHB$$ $$400$$ placed at $$320$$ $$mm$$ centers, carries a total axial load of $$2500$$ $$kN.$$ Minimum slenderness ratio of the compound column is $$30.$$ Width of the flange of one $$ISHB$$ section is $$250$$ $$mm$$ and its minimum radius of gyration is $$51.6$$ $$mm$$. Design a suitable single flat lacing. $$20$$ $$mm$$ diameter single rivet is used to connect the lacings to the column. Rivet capacity need not be calculated. The following table may be used.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/fqYrZ1iBiKM3AQa8O/1QCS4G5Y22P3Sas6kCQvFIUwATwXa/SQML71jwQ3vgjMo9NnpPoR/image.png\" loading=\"lazy\" alt=\"GATE CE 1997 Steel Structures - Compression Members Question 2 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-compound-steel-column-consisting-of-2-ishb-400-1997-marks-5-cc9gqz8lvcddpiua.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "I9DhnIcRmWsLfDTa",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welded-connections",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Maximum size of a fillet weld for a plate of square edge is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.5$$ $$mm$$ less than the thickness of the plate "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "one half of the thickness of the plate"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "thickness of the plate itself"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1.5$$ $$mm$$ more than the thickness of the plate "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "maximum-size-of-a-fillet-weld-for-a-plate-of-square-edge-is-1997-marks-2-i9dhnicrmwslfdta.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2184ab79fc8",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "materials-and-specifications",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Factor of safety adopted by IS: 800-1984 while arriving at the permissible stress in axial compression is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2.00"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1.00"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1.67"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1.50"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "factor-of-safety-adopted-by-is-800-1984-while-arriving-at-th-gate-ce-1997-marks-1-5a2184ab79fc8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                }
+            ],
+            "title": "Steel Structures"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RHrGCS4KKDSOSYaX",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A cantilever beam of span $$'L'$$ is loaded with a concentrated load $$'P'$$ at the free end. Deflection of the beam at the free end is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{P{L^3}} \\over {78EI}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{5P{L^3}} \\over {384EI}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{P{L^3}} \\over {3EI}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{P{L^3}} \\over {6EI}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cantilever-beam-of-span-l-is-loaded-with-a-concentra-1997-marks-2-rhrgcs4kkdsosyax.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aWBOIOJoTIye1kGc",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-stress",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A small element at the critical section of component  is in a state of stress with the two principal stresses being $$360$$ $$MPa$$  and $$140$$ $$MPa$$ . The maximum shear stress is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$220$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$180$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$314$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$330$$ $$MPa$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-small-element-at-the-critical-section-of-component-is-in-1997-marks-1-awboiojotiye1kgc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "y4YZUEnxe9u911i1",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "matrix-method",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The order for the flexibility matrix for a structure is, ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "equal to the number of redundant forces"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "more than the number of redundant forces"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "less than the number of redundant forces "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "equal to the number of redundant forces plus three"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-order-for-the-flexibility-matrix-for-a-structure-is-1997-marks-2-y4yzuenxe9u911i1.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5HZhb8FiCIGiRCcE",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "truss",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The force in the member $$DE$$ of the truss shown in the fig. is, \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/J8DWIfqcD4Hh1FK3i/FetdrCrbGc2oAHKwXdD1w3SUDFEgo/px32GAJOcwAYxMckcX7AI1/image.png\" loading=\"lazy\" alt=\"GATE CE 1997 Structural Analysis - Truss Question 9 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$100.0$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Zero "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$35.5$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$25.0$$ $$kN$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-force-in-the-member-de-of-the-truss-shown-in-the-fig-1997-marks-1-5hzhb8ficigircce.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1pj7ZHGXNUEBFb6l",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A propped cantilever beam of span $$'L'$$ is loaded with $$u.d.l$$ of intensity $$w$$/unit length, all through the span. Bending Moment at the fixed end is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$ - W{L^2}/8$$  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$  W{L^2}/2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$  W{L^2}/12$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$  W{L^2}/824$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-propped-cantilever-beam-of-span-l-is-loaded-with-u-1997-marks-2-1pj7zhgxnuebfb6l.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "X0zOfZIqJ1NuIJE5",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the frame shown in the Fig. the maximum bending moment in the column is, \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/0mPjobFRv2UjZoFNJ/ddbS5dURHSvAh09pn0Z0XW4niTIIw/lV1TGjrCBdSJFMxxYI50Qc/image.png\" loading=\"lazy\" alt=\"GATE CE 1997 Structural Analysis - Moment Distribution Method Question 10 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$400$$ $$kN$$-$$m$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$100$$ $$kN$$-$$m$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$200$$ $$kN$$-$$m$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-frame-shown-in-the-fig-the-maximum-bending-moment-i-1997-marks-2-x0zofziqj1nuije5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6zLYu6epPEOeyJgx",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "indeterminacy",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The degree of Kinematic Indeterminacy of the rigid frame with clamped ends at $$A$$ and $$D$$ shown in the fig. is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/gShfmc9opptPPNNfA/UfnXv8XRHBA74gDWb4nApCNoAjEJq/jibaSrDBktK4XkEQ88U8SM/image.png\" loading=\"lazy\" alt=\"GATE CE 1997 Structural Analysis - Indeterminacy Question 4 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$4$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Zero "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-degree-of-kinematic-indeterminacy-of-the-rigid-frame-wit-1997-marks-2-6zlyu6eppeoeyjgx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                }
+            ],
+            "title": "Structural Analysis"
+        },
+        {
+            "_id": "Transportation Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a32bdab23561",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "transportation-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "highway-geometric-design",
+                    "year": 1997,
+                    "paperTitle": "GATE CE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of camber recommended for CC roads in area of heavy rainfall is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1 in 33"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1 in 40"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1 in 50"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1 in 60"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-camber-recommended-for-cc-roads-in-area-of-heav-gate-ce-1997-marks-1-5a32bdab23561.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1997"
+                }
+            ],
+            "title": "Transportation Engineering"
+        }
+    ]
+}

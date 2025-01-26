@@ -1,0 +1,1549 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yGjlgmHczPtFpBu3",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The radial displacement in a rotating disc is governed by the differential equation $$\\,\\,{{{d^2}u} \\over {d{x^2}}} + {1 \\over x}{{du} \\over {dx}} - {u \\over {{x^2}}} = 8x.\\,\\,\\,$$  where $$u$$ is the displacement and $$x$$ is the radius. If $$u=0$$ at $$x=0$$ and $$u=2$$ at $$x=1,$$  calculate the displacement at $$\\,x = {1 \\over {2.}}$$ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-radial-displacement-in-a-rotating-disc-is-governed-by-th-gate-me-1998-marks-2-ygjlgmhczptfpbu3.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "b2HhM4SIojTX9j23",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The general solution of the differential equation  $${x^2}{{{d^2}y} \\over {d{x^2}}} - x{{dy} \\over {dx}} + y = 0$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$Ax + B{x^2}$$  ($$A, B$$ are constants)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$Ax + B\\log x$$  ($$A, B$$ are constants)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$Ax + B{x^2}\\log x$$  ($$A, B$$ are constants) "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$Ax + Bx\\log x$$  ($$A, B$$ are constants)"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-general-solution-of-the-differential-equation-x2d2y-over-gate-me-1998-marks-1-b2hhm4siojtx9j23.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bahFQFvaCJamIMED",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The probability that two friends share the same birth-month is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1/6$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1/12$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1/144$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1/24$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-probability-that-two-friends-share-the-same-birth-month-gate-me-1998-marks-1-bahfqfvacjamimed.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Engineering Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZqG9ntqdMHwOC0vQ",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "engineering-mechanics-static-and-dynamics",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A car moving with uniform acceleration covers 450 m in a 5 second interval, and covers 700 m in the next 5 second interval. The acceleration of the car is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "7m/s<sup>2</sup>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "50m/s<sup>2</sup>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "25m/s<sup>2</sup>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "10m/s<sup>2</sup>"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-car-moving-with-uniform-acceleration-covers-450-m-in-a-5-s-gate-me-1998-marks-1-zqg9ntqdmhwoc0vq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                }
+            ],
+            "title": "Engineering Mechanics"
+        },
+        {
+            "_id": "Fluid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GTUsckLvUmNoFdu5",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "turbulent-flow",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The discharge velocity at the pipe exit in figure is \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/LDCDSFb75eSUaQHiG/XqqGSvncKgfIMOaIpAXKqn2SdVduw/PdCIWcGGdngR3r2fLMIwkB/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1998 Fluid Mechanics - Turbulent Flow Question 1 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\sqrt {2gH} $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\sqrt {2gh} $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\sqrt {g\\left( {H + h} \\right)} $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-discharge-velocity-at-the-pipe-exit-in-figure-is-gate-me-1998-marks-2-gtuscklvumnofdu5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MJ6h9y87K0SiZZ2h",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-statics",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A cylinder of mass $$10$$ kg and area of cross-section $$0.1$$ $${m^2}$$ is tied down with string in a vessel containing two liquids as shown in Figure. Calculate gauge pressure on the cylinder bottom and the tension in the string. Density of water $$ = 1000\\,\\,kg/{m^3}.$$ Specific gravity of $$A=0.8$$. Specific gravity of $$B$$ (water) $$=1.0$$ \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/nhVsyWh8hIvNdl7Jd/4yZdCtnU6Pw2JjocXUJros4l9FRC8/WPGbLsQWfQFRzNV9nfXfZj/image.svg\" loading=\"lazy\" alt=\"GATE ME 1998 Fluid Mechanics - Fluid Statics Question 7 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Gauge Pressure $$ = 2.01\\,\\,KN/{m^2}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cylinder-of-mass-10-kg-and-area-of-cross-section-01-m2-is-gate-me-1998-marks-5-mj6h9y87k0sizz2h.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                }
+            ],
+            "title": "Fluid Mechanics"
+        },
+        {
+            "_id": "Heat Transfer",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sFAsUXBngUHulguR",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "heat-exchangers",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A hot fluid at $${200^ \\circ }C$$ enters a heat exchanger at a mass flow rate of $${10^4}\\,\\,kg/hr.$$ Its specific heat is $$2000$$ $$J/kg$$-$$K.$$ It is to be cooled by another fluid entering at $${25^ \\circ }C$$ with a mass flow rate $$2500$$ $$kg/hr$$ and specific heat $$400$$ $$J/kg$$-$$K$$. The overall heat transfer coefficient based on outside area of $$20\\,\\,{m^2}$$ is $$250\\,\\,\\,W/{m^2}K.$$ Find the exit temperature of the hot fluid when the fluids are in parallel flow. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${191.7^ \\circ }C$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-hot-fluid-at-200-circ-c-enters-a-heat-exchanger-at-a-mass-gate-me-1998-marks-5-sfasuxbnguhulgur.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9rPwkKzxjp1qnhHb",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "heat-exchangers",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Hot water flows with a velocity of $$0.1$$ $$m/s$$ in a $$100mm$$ long, $$0.1m$$ diameter pipe. Heat lost from the pipe outer wall is uniform and equal to $$420$$ $$W/{m^2}$$. If the inlet water temperature is $${80^ \\circ }C,$$ calculate the water temp at the exit. Neglect effect of pipe wall thickness. $${C_p}$$ (water) $$=4.2$$ $$kJ/kg$$-$$K$$ and density of water $$=1000$$ $$kg/\\,{m^3}.$$ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${79.99^ \\circ }C$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "hot-water-flows-with-a-velocity-of-01-ms-in-a-100mm-long-01m-gate-me-1998-marks-5-9rpwkkzxjp1qnhhb.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KyfSl3h1lDfm37RF",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "convection",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Heat transfer coefficients for free convection in gasses, forced convection in gases and vapors, and for boiling water lie, respectively, in the range of ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$5-15, 20-200$$ and $$3000-50000$$ $$W/{m^2}K$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$20-50, 200-500,$$ and $$50000-100000$$ $$W/{m^2}K$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$50-100, 500-1000$$ and $$100000-1000000$$ $$W/{m^2}K$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$20-100, 200-1000$$ and a constant $$1000000$$ $$W/{m^2}K$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "heat-transfer-coefficients-for-free-convection-in-gasses-for-gate-me-1998-marks-1-kyfsl3h1ldfm37rf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pqioS65HeLbdWJ0Y",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "conduction",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A gas filled tube has $$2$$ $$mm$$ inside diameter and $$25$$ $$cm$$ length. The gas is heated by an electrical wire of diameter $$50$$ microns ($$0.05$$ $$mm$$) located along the axis of the tube. Current and voltage drop across the heating element are $$0.5$$ amps and $$4$$ volts, respectively. If the measured wire and inside tube wall temperatures are $${175^ \\circ }C$$ and $${150^ \\circ }C$$ respectively, find the thermal conductivity of the gas filling the tube.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$0.1878 $$ $$W/mK$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-gas-filled-tube-has-2-mm-inside-diameter-and-25-cm-length-gate-me-1998-marks-5-pqios65helbdwj0y.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MHKhpLJSrrrRl5Hd",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "conduction",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The temp variation under steady heat conduction across a composite slab of two materials with thermal conductivies $${K_1}$$ and $${K_2}$$ is shown in fig. then, which one of the following  statements holds? \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/vn65f2sT1ROCJnS1c/XkMW6aYU5g2AiEvmjamhgN0LmSzHr/VNU0qvX9vcRp9WxjFg3Nu8/image.svg\" loading=\"lazy\" alt=\"GATE ME 1998 Heat Transfer - Conduction Question 31 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${K_1} &gt; {K_2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${K_1} = {K_2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${K_1} = 0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${K_1} &lt; {K_2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-temp-variation-under-steady-heat-conduction-across-a-com-gate-me-1998-marks-2-mhkhpljsrrrrl5hd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                }
+            ],
+            "title": "Heat Transfer"
+        },
+        {
+            "_id": "Industrial Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rkbo73vhiIwWeWf7",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "scheduling",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A job shop has $$6$$ orders to be completed by a single turning center. The processing times and due dates are as follows:  \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/N1lOLc9iH27T3Q9zN/u8SQAp2V23RqxTSqmjoARwVCGnF6l/VTn539BxQgKJJV6sNecWqs/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1998 Industrial Engineering - Scheduling Question 3 English\"> \n<p>Assume that all orders are ready for processing. Give a production schedule that minimizes the average flow time. Compare this schedule with one that minimizes tardiness (lateness). </p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-job-shop-has-6-orders-to-be-completed-by-a-single-turn-1998-marks-5-rkbo73vhiiwwewf7.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BoeVQ2owwdayMSwJ",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "forecasting",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following forecasting techniques is not suited for making forecasts for planning production schedules in the short range?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Moving average "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Exponential moving average "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Regression analysis "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Delphi  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-forecasting-techniques-is-not-sui-1998-marks-1-boevq2owwdaymswj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DD4nV4R6uwKbJmIh",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "inventory-control",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "One of the following statements about $$PRS$$ (Periodic Reordering System) is not true. Identify.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$PRS$$ requires continuous monitoring of inventory levels"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$PRS$$ is useful in control of perishable items"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$PRS$$ provides basis for adjustments to account for variations in demand"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "In $$PRS,$$ inventory holding costs are higher than in Fixed Recorder Quantity System "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "one-of-the-following-statements-about-prs-periodic-reor-1998-marks-1-dd4nv4r6uwkbjmih.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hdT3vmBzOhMbfpLn",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "inventory-control",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In inventory planning, extra inventory is unnecessarily carried to the end of the planning period when using one of the following lot size decision policies:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Lot \u2013 for \u2013 lot production"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Economic Order Quantity $$(EOQ)$$ lot size"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Period Order Quantity $$(POQ)$$ lot size "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Part Period total cost balancing  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-inventory-planning-extra-inventory-is-unnecessarily-carr-1998-marks-1-hdt3vmbzohmbfpln.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                }
+            ],
+            "title": "Industrial Engineering"
+        },
+        {
+            "_id": "Machine Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mHRJPWtACoLLqmoa",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "design-of-bearings",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The basic load rating of a ball bearing is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "the maximum static radial load that can be applied without causing any plastic deformation of bearing components "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the radial load at which $$90$$% of the group of apparently identical bearings run for one million revolutions before the first evidence of failure."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the maximum radial load that can be applied during operation without any plastic deformation of bearing components "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a combination of radial and axial loads that can be applied without any plastic deformation "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-basic-load-rating-of-a-ball-bearing-is-gate-me-1998-marks-1-mhrjpwtacollqmoa.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DaIP4SibXyCoe2VY",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bolted-riveted-and-welded-joints",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Bolts in the flanged end of pressure vessel are usually pre- tensioned. Indicate which of the following statements is not true",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Pre- tensioning helps to seal the pressure vessel "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Pre- tensioning increase the fatigue life of the bolts "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Pre- tensioning reduces the maximum tensile stress in the bolts "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Pre- tensioning helps to reduce the effect of pressure pulsations in the pressure vessels"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "bolts-in-the-flanged-end-of-pressure-vessel-are-usually-pre-gate-me-1998-marks-1-daip4sibxycoe2vy.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NFpeeckWHePunkas",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "design-for-static-loading",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which theory of failure will you use for aluminium components under steady loading is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "principal stress theory "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "principal strain theory "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "strain energy theory "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "maximum shear stress theory "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-theory-of-failure-will-you-use-for-aluminium-component-gate-me-1998-marks-1-nfpeeckwhepunkas.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                }
+            ],
+            "title": "Machine Design"
+        },
+        {
+            "_id": "Production Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OrudUa16EXJLhhML",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "advance-machine-tools",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A cylinder of $$155$$ $$mm$$ is to be reduced $$150$$ $$mm$$ diameter in one turning cut with a feed of $$0.15$$ $$mm$$/ revolution and a cutting speed of $$150$$ $$m/min$$ on a $$NC$$ lathe. What are the programmed spindle speeds programmed feed rate, and the material removal rate? ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Program feed rate $$46.22$$ $$mm/min$$\n<br>Material removal rate $$ = 56250\\,\\,m{m^3}$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cylinder-of-155-mm-is-to-be-reduced-150-mm-1998-marks-2-orudua16exjlhhml.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "R9LeUKdHwCANe8t8",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In orthogonal machining operation, the chip thickness and the uncut chip thickness are equal to $$0.45mm$$. If the tool rake angle is $$0$$ deg. The shear plane angle is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$45$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$30$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$18$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$60$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-orthogonal-machining-operation-the-chip-thickness-and-the-gate-me-1998-marks-2-r9leukdhwcane8t8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "R6cVrYdu6rIhWWhI",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 1.5,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding-process",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The voltage-arc length characteristics of a $$DC$$ arc is given by $$V=20+4L.$$ Where $$L$$ is in $$mm$$. During a welding operation arc length is expected to vary between $$4$$ and $$6$$ $$mm$$ with the welding current limited between $$450$$ and $$550$$amps.\n<p>If the power source has a linear characteristic, the open circuit voltage is.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$36$$ $$V$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$44$$ $$V$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$72$$ $$V$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$80$$ $$V$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-voltage-arc-length-characteristics-of-a-dc-arc-is-given-gate-me-1998-marks-5-r6cvrydu6rihwwhi.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xXgK81sn1AOGM4hF",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 1.5,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding-process",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The voltage-arc length characteristics of a $$DC$$ arc is given by $$V=20+4L.$$ Where $$L$$ is in $$mm$$. During a welding operation arc length is expected to vary between $$4$$ and $$6$$ $$mm$$ with the welding current limited between $$450$$ and $$550$$amps.\n<p>The arc power at an arc length of $$5mm$$ is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$10$$ $$kW$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$14$$ $$kW$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$20$$ $$kW$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$80$$ $$kW$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-voltage-arc-length-characteristics-of-a-dc-arc-is-given-gate-me-1998-marks-5-xxgk81sn1aogm4hf.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xzY071zP1ku0XAgP",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A strip with sectional area $$150mm\\,\\, \\times \\,\\,4.5mm$$ is being rolled with $$20\\% $$ reduction of area using $$450mm$$ diameter rollers. The angle subtended by the deformation zone at the roll center is (in radians) ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.01$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.02$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.03$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.06$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-strip-with-sectional-area-150mm-times-45mm-is-being-rolled-gate-me-1998-marks-2-xzy071zp1ku0xagp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "doo1ZLnXyyt3IWoZ",
+                    "exam": "gate-me",
+                    "marks": 4,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "casting",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two castings of the same metal have the same surface area  one casting is in the form of a sphere and the other is a cube. What is the ratio of the solidification time for the sphere to that of cube.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$1.91$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-castings-of-the-same-metal-have-the-same-surface-area-on-gate-me-1998-marks-4-doo1zlnxyyt3iwoz.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "du17ORldSXyBge1x",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "casting",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<b>Match the following</b>\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/atIPhDEsktgmXvJd1/8O1RlA9PowMOFFVZneeBGxcO1q8j1/twEDa5amG1CkcAkUaaqxaX/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1998 Production Engineering - Casting Question 39 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$A - 5,\\,\\,B - 3,\\,\\,C - 1,\\,\\,D - 2$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-following-gate-me-1998-marks-2-du17orldsxybge1x.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                }
+            ],
+            "title": "Production Engineering"
+        },
+        {
+            "_id": "Theory of Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EDU7dkFvofVUGk2X",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "flywheel",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A flywheel of moment of inertia $$9.8$$ kg m<sup>2</sup> fluctuates by $$30$$ rpm for a fluctuation in energy of $$1936$$ Jouls.  The mean speed of the flywheel is (in rpm)",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$600$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$900$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$968$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$29470$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-flywheel-of-moment-of-inertia-98-kg-m2-fluctuates-by-30-rp-gate-me-1998-marks-2-edu7dkfvofvugk2x.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                }
+            ],
+            "title": "Theory of Machines"
+        },
+        {
+            "_id": "Thermodynamics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3caq1mWuY0bcgcho",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "rankine-cycle",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A Curtis stage, Rateau stage and a $$50$$% reaction stage in a steam turbine are examples of",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "different types of impulse stages "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "different types of reaction stages "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "a simple impulse stage, a velocity compounded impulse stage and reaction stage "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a velocity compounded impulse stage, a simple impulse stage and a reaction stage \n"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-curtis-stage-rateau-stage-and-a-50-reaction-stage-in-a-ste-gate-me-1998-marks-1-3caq1mwuy0bcgcho.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mKqhxeDZCXyxGJD6",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "rankine-cycle",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A Rankine cycle operates between pressures of $$80$$ bar and $$0.1$$ bar. The maximum cycle temperature is $${600^ \\circ }C.$$ If the steam turbine and condensate pump efficiencies are $$0.9$$ and $$0.8$$, respectively, calculate the specific work and thermal efficiency. Relevant steam table extract is given below:\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/uAq4is1NNYJwRQV5Y/RQPlYsYdLrFK7hisBYQhRFHWQJTNa/kfj5iZmglVWMvRxw6eSdxm/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1998 Thermodynamics - Rankine Cycle Question 9 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Thermal efficiency $$=0.3677$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-rankine-cycle-operates-between-pressures-of-80-bar-and-01-gate-me-1998-marks-5-mkqhxedzcxyxgjd6.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "y81dmtLhG1VFkgvO",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "rankine-cycle",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The isentropic heat drop in the nozzle of an impulse steam turbine with a nozzle efficiency $$0.9,$$ blade velocity ratio $$0.5,$$ and mean blade velocity $$150$$ $$m/s$$ in $$kJ/kg$$ is \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$50$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$40$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$60$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$75$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-isentropic-heat-drop-in-the-nozzle-of-an-impulse-steam-t-gate-me-1998-marks-2-y81dmtlhg1vfkgvo.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "K1TdvbHCghyvp6eg",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "rankine-cycle",
+                    "year": 1998,
+                    "paperTitle": "GATE ME 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$\\,\\,{V_N}\\,\\,$$ and $$\\alpha $$ are the nozzle exit velocity and nozzle angle in an impulse turbine, the optimum blade velocity is given by ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${V_N}\\,\\,\\,\\cos \\,\\,\\,2\\alpha $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${V_N}\\,\\,\\,sin\\,\\,\\,2\\alpha $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{{V_N}\\,\\,\\,\\cos \\,\\,\\,\\alpha } \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{{V_N}\\,\\,\\,sin\\,\\,\\,\\alpha } \\over 2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-vn-and-alpha-are-the-nozzle-exit-velocity-and-nozzle-angl-gate-me-1998-marks-1-k1tdvbhcghyvp6eg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1998"
+                }
+            ],
+            "title": "Thermodynamics"
+        }
+    ]
+}

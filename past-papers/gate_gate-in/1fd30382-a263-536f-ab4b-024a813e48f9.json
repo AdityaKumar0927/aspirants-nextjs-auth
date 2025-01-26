@@ -1,0 +1,67 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vwMU8IPXcerY6i3h",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2000,
+                    "paperTitle": "GATE IN 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The rank of matrix $$A = \\left[ {\\matrix{\n   1 &amp; 2 &amp; 3  \\cr \n   3 &amp; 4 &amp; 5  \\cr \n   4 &amp; 6 &amp; 8  \\cr \n\n } } \\right]$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-rank-of-matrix-a-left-matrix-1-2-3-cr-3-4-5-cr-4-6-8-cr-gate-in-2000-marks-1-vwmu8ipxcery6i3h.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2000"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        }
+    ]
+}

@@ -1,0 +1,2025 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Algorithms",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DjQZ4QMohNjNFShj",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complexity-analysis-and-asymptotic-notations",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The concatenation of two lists is to be performed on 0(1) time. Which of the following implementations of a list should be used?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Singly linked list"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Doubly linked list"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Circular doubly linked list"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Array implementation of list"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "For Circular Doubly linked list there will be no traversal for concatenation.\n<br><br>\nExcept for circular linked lists for all other lists we need to reach till end to attach the second list."
+                        }
+                    },
+                    "permalink": "the-concatenation-of-two-lists-is-to-be-performed-on-01-time-gate-cse-1997-marks-1-djqz4qmohnjnfshj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aMdk8CFOnYoicxvv",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "searching-and-sorting",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The correct matching for the following pairs is\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;border:none;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;}\n.tg .tg-l711{border-color:inherit}\n.tg .tg-yw4l{vertical-align:top}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-yw4l\"></th>\n    <th class=\"tg-yw4l\"></th>\n  </tr>\n  <tr>\n    <td class=\"tg-l711\">A. All pairs shortest path</td>\n    <td class=\"tg-l711\">1. Greedy</td>\n  </tr>\n  <tr>\n    <td class=\"tg-l711\">B. Quick Sort</td>\n    <td class=\"tg-l711\">2. Depth-First Search</td>\n  </tr>\n  <tr>\n    <td class=\"tg-l711\">C. Minimum weight spanning tree</td>\n    <td class=\"tg-l711\">3. Dynamic Programming</td>\n  </tr>\n  <tr>\n    <td class=\"tg-l711\">D. Connected Components</td>\n    <td class=\"tg-l711\">4. Divide and Conquer</td>\n  </tr>\n</tbody></table>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\text{A-2 B-4 C-1 D-3}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\text{A-3 B-4 C-1 D-2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\text{A-3 B-4 C-2 D-1}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\text{A-4 B-1 C-2 D-3}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-correct-matching-for-the-following-pairs-istg-border-col-gate-cse-1997-marks-1-amdk8cfonyoicxvv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "N3frh007kVcCVfAI",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "divide-and-conquer-method",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let T(n) be the function defined by $$T(1) =1, \\: T(n) = 2T (\\lfloor \\frac{n}{2} \\rfloor ) + \\sqrt{n}$$<br>\nWhich of the following statements is true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$T(n) = O \\sqrt{n}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$T(n)=O(n)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$T(n) = O (\\log n)$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$T(n) = O (\\log n)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-tn-be-the-function-defined-by-t1-1-tn-2t-lfloor-fracn2-r-gate-cse-1997-marks-2-n3frh007kvccvfai.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                }
+            ],
+            "title": "Algorithms"
+        },
+        {
+            "_id": "Compiler Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "y9gndlIW74Yv282g",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "syntax-directed-translation",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>In the following grammar:</p>\n$$\\eqalign{\n  &amp; X:: = X \\oplus {Y \\over Y}  \\cr \n  &amp; Y:: = Z*{Y \\over Z}  \\cr \n  &amp; Z:: = id \\cr} $$\n<p>Which of the following is true?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$' \\oplus '$$ is left associative while $$'*'$$ is right associative"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Both $$' \\oplus '$$and $$'*'$$ is left associative"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$' \\oplus '$$ is right associative while $$'*'$$ is left associative"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-following-grammareqalign-x-x-oplus-y-over-y-cr-y-zy-o-gate-cse-1997-marks-1-y9gndliw74yv282g.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                }
+            ],
+            "title": "Compiler Design"
+        },
+        {
+            "_id": "Computer Organization",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vtFf7vPOtBbl5BYX",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "io-interface",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The correct matching for the following pairs is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/1s0kM0YEOH8uObk1r/HwzSiLGZgKSBenJzv7FhvrXZEN6M7/41zEKWZrjNvG4OiCycwoqv/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1997 Computer Organization - IO Interface Question 22 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$a - 4,\\,\\,b - 3,\\,\\,c - 1,\\,\\,d - 2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$a - 2,\\,\\,b - 1,\\,\\,c - 3,\\,\\,d - 4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$a - 4,\\,\\,b - 3,\\,\\,c - 2,\\,\\,d - 1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$a - 2,\\,\\,b - 3,\\,\\,c - 4,\\,\\,d - 1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-correct-matching-for-the-following-pairs-is-gate-cse-1997-marks-1-vtff7vpotbbl5byx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hDpVi1cWiRI7vTOC",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "computer-arithmetic",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An $$N$$-bit carry look ahead adder, where $$N$$ is a multiple of $$4,$$ employs $${\\rm I}cs$$ $$74181$$ ($$4$$bit $$ALU$$) and $$74182$$ ($$4$$ bit carry look ahead generator). The minimum addition time using the best architecture for this adder is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "proportional to $$N$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "proportional to log $$N$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "a constant "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above  "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-n-bit-carry-look-ahead-adder-where-n-is-a-multiple-of-4-e-gate-cse-1997-marks-1-hdpvi1cwiri7vtoc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                }
+            ],
+            "title": "Computer Organization"
+        },
+        {
+            "_id": "Data Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "23chj2A7EViuhpl3",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stacks-and-queues",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following is essential for converting an infix expression to the postfix form efficiently? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "An operator stack "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "An operand stack"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "An operand stack and an operator stack"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "A parse tree"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-is-essential-for-converting-an-infix-gate-cse-1997-marks-1-23chj2a7eviuhpl3.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8CzHXUq5UDNNdA6T",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stacks-and-queues",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A priority queue Q is used to implement a stack that stores characters. PUSH (C) is implemented INSERT (Q, C, K) where K is an appropriate integer key chosen by the implementation. POP is implemented as DELETEMIN(Q). For a sequence of operations, the keys chosen are in ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "non-increasing order"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "non-decreasing order"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "strictly increasing order "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "strictly decreasing order"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-priority-queue-q-is-used-to-implement-a-stack-that-stores-gate-cse-1997-marks-2-8czhxuq5udnnda6t.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oDdMoJx3dn2ERqBv",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A binary search tree contains the value 1, 2, 3, 4, 5, 6, 7, 8. The tree is traversed in pre-order and the values are printed out. Which of the following sequences is a valid output?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "5 3 1 2 4 7 8 6 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "5 3 1 2 6 4 8 7 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "5 3 2 4 1 6 7 8 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "5 3 1 2 4 7 6 8"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-binary-search-tree-contains-the-value-1-2-3-4-5-6-7-8-the-gate-cse-1997-marks-2-oddmojx3dn2erqbv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                }
+            ],
+            "title": "Data Structures"
+        },
+        {
+            "_id": "Database Management System",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6x2RxdhWk5UjvyVx",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "functional-dependencies-and-normalization",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a database relation $$R(a,b,c,d),$$ where the domains of $$a, b, c, d$$ include only atomic values, only the following functional dependencies and those that can be inferred from them hold:\n<br>$$a \\to c\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,b \\to d$$\n<br>This relation is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "In $$1$$ $$NF$$ but not in $$2$$ $$NF$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "In $$2$$ $$NF$$ but not in $$3$$ $$NF$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "In $$3$$ $$NF$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-database-relation-rabcd-where-the-domains-of-a-b-c-d-i-gate-cse-1997-marks-2-6x2rxdhwk5ujvyvx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vwfeQY9JePkLpmaC",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "functional-dependencies-and-normalization",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$R (a, b, c)$$ and $$S(d, e, f)$$ be two relations in which $$d$$ is the foreign key of $$S$$ that refers to the primary key of $$R.$$ Consider the following four operations $$R$$ and $$S$$\n<br>(a) Insert into $$R$$ (b) Insert into $$S$$\n<br>(c) Delete from $$R$$ (d) Delete from $$S$\n<p>Which of the following statements is true about the referential integrity constraint above?  </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "None of (a), (b), (c) or (d) can cause its violation"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "All of (a), (b), (c) and (d) can cause its violation "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Both (a) and (d) can cause its violation"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Both (b) and (c) can cause its violation"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-r-a-b-c-and-sd-e-f-be-two-relations-in-which-d-is-the-fo-gate-cse-1997-marks-2-vwfeqy9jepklpmac.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                }
+            ],
+            "title": "Database Management System"
+        },
+        {
+            "_id": "Digital Logic",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XpBCitrVWxZB7fqs",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "number-systems",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given $$\\sqrt {\\left( {224} \\right),}  = {\\left( {13} \\right)_r},$$ \n<br>The value of the radix' $$r$$ is: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$10$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$8$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$6$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-sqrt-left-224-right-left-13-rightr-the-value-of-the-ra-gate-cse-1997-marks-2-xpbcitrvwxzb7fqs.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "w3Eq8V7mK9LuCNLL",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$^ * $$ be defined as $${x^ * }y = \\overline x  + y,$$ Let $$z = {x^ * }y.$$ Value of $${z^ * }x$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\overline x  + y$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$x$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-be-defined-as-x-y-overline-x-y-let-z-x-y-value-of-z-x-is-gate-cse-1997-marks-1-w3eq8v7mk9lucnll.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6Z3zcWUOB5M4KZT6",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$f\\left( {x,y,z} \\right) = \\overline x  + \\overline y x + xz$$ be a switching function. Which one of the following is valid? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\overline y x$$ is a prime implicates of $$f$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$xz$$ is a minters of $$f$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$xz$$ is an implicant of $$f$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "y is a prime applicant of $$f$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-fleft-xyz-right-overline-x-overline-y-x-xz-be-a-switchin-gate-cse-1997-marks-2-6z3zcwuob5m4kzt6.htm",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "522We3J2F8SIXpr9",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the logic circuit shown in Figure below. The functions $${f_1},$$ $${f_2}$$ and $$f$$ (in canonical sum of products form in decimal notation) are: \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/HauXr1WpHwtWsXU0Z/kmlO2ZEc6o9AvmtlIkTnGVfGOjEzX/XtTQwXL9AootscB61bJdvO/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1997 Digital Logic - Boolean Algebra Question 39 English\"> \n<p>$${f_1}\\left( {w,\\,x,\\,y,\\,z} \\right) = \\sum {8,9,10} $$ \n<br>$${f_2}\\left( {w,\\,x,\\,y,\\,z} \\right) = \\sum {7,8,12,13,18,15} $$\n<br>$$f\\left( {w,\\,x,\\,y,\\,z} \\right) = \\sum {\\left( {8,9} \\right)} $$</p>\n<p>The function $${f_3}$$ is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\sum {9,\\,10} $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\sum 9 $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\sum {1,8,9} $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\sum {8,10,15} $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-logic-circuit-shown-in-figure-below-the-functio-gate-cse-1997-marks-2-522we3j2f8sixpr9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                }
+            ],
+            "title": "Digital Logic"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DmYaKyuWSgbpgPMo",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of equivalence relations on the set $$\\left\\{ {1,2,3,4} \\right\\}$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$15$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$16$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$24$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-equivalence-relations-on-the-set-left-1234-rig-gate-cse-1997-marks-1-dmyakyuwsgbpgpmo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9FMQQn1UNo7OfKFm",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The determination of the matrix\n$$$\\left[ {\\matrix{\n   6 &amp; { - 8} &amp; 1 &amp; 1  \\cr \n   0 &amp; 2 &amp; 4 &amp; 6  \\cr \n   0 &amp; 0 &amp; 4 &amp; 8  \\cr \n   0 &amp; 0 &amp; 0 &amp; { - 1}  \\cr \n\n } } \\right]\\,\\,is$$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "11"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "- 48"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "- 24"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-determination-of-the-matrixleft-matrix-6-8-1-1-cr-0-2-4-gate-cse-1997-marks-1-9fmqqn1uno7ofkfm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TD4kR58TS3zHQuTE",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$A = ({a_{ij}})$$ be and n-rowed square matrix and $${I_{12}}$$ be the matrix obtained by interchanging the first and second rows of the n-rowed Identity matrix. Then$${AI_{12}}$$ is such that its first ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "row is the same as its second row"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "row is the same as the second row of A"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "column is the same as the second column A"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "row is all zero"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-a-aij-be-and-n-rowed-square-matrix-and-i12-be-the-matrix-gate-cse-1997-marks-2-td4kr58ts3zhqute.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sp2lz0aPDXhiuzP5",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the maximum value of the function \n<br>$$f\\left( x \\right) = 2{x^2} - 2x + 6$$ in the interval $$\\left[ {0,2} \\right]$$?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$6$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$10$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$12$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$5.5$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-the-maximum-value-of-the-function-fleft-x-right-2x2-gate-cse-1997-marks-2-sp2lz0apdxhiuzp5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PYjCdyPN5YBj2iXe",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The probability that it will rain today is 0.5. The probability that it will rain tomorrow is 0.6. The probability that it will rain either today or tomorrow is 0.7. That is the probability that it will rain today and tomorrow?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0.3"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.25"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0.35"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0.4"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-probability-that-it-will-rain-today-is-05-the-probabilit-gate-cse-1997-marks-1-pyjcdypn5ybj2ixe.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "x0vIU2y9h6tIKUXb",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Locality of reference implies that the page reference being made by a process",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Will always be to the page used in the previous page reference"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Is likely to be to one of the pages used in the last few page references"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Will always be to one of the pages existing in memory"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Will always lead to a page fault"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "locality-of-reference-implies-that-the-page-reference-being-gate-cse-1997-marks-1-x0viu2y9h6tikuxb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YcoSu9VAG9oaB5Gt",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Thrashing",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Reduces page $$I/O$$\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Decreases the degree of multiprogramming"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Implies excessive page $$I/O$$\n"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Improve the system performance"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "thrashing-gate-cse-1997-marks-1-ycosu9vag9oab5gt.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fUlo1EcSB5bDdtj2",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Dirty bit for a page in a page table",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Helps avoid unnecessary writes on a paging device"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Helps maintain $$LRU$$ information"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Allows only read on a page "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "dirty-bit-for-a-page-in-a-page-table-gate-cse-1997-marks-1-fulo1ecsb5bddtj2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ym9gT6uTTbuvgM0S",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$I/O$$ redirection",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Implies changing the name of a file "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Can be employed to use an existing file as input file for a program"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Implies connection $$2$$ programs through a pipe"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "io-redirection-gate-cse-1997-marks-1-ym9gt6uttbuvgm0s.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TQ2JSDAnFuKbO6Dg",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The correct matching for the following pairs is \n<br><b>$$\\,\\,\\,\\,\\,$$ List - $${\\rm I}$$</b>\n<br>(a) $$DMA$$ $$\\,\\,$$ $${\\rm I}/O$$\n<br>(b) Cache\n<br>(c) Interrupt $${\\rm I}/O$$\n<br>(d) Condition Code Register\n<p><b>$$\\,\\,\\,\\,\\,$$ List - $${\\rm II}$$</b>\n<br>(1) High speed $$RAM$$\n<br>(2) Disk\n<br>(3) Printer\n<br>(4) $$ALU$$</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$a - 4,\\,\\,b - 3,\\,\\,c - 1,\\,\\,d - 2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$a - 2,\\,\\,b - 1,\\,\\,c - 3,\\,\\,d - 4$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$a - 4,\\,\\,b - 3,\\,\\,c - 2,\\,\\,d - 1$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$a - 2,\\,\\,b - 3,\\,\\,c - 4,\\,\\,d - 1$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-correct-matching-for-the-following-pairs-is-list-rm-ia-d-gate-cse-1997-marks-1-tq2jsdanfukbo6dg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hvwyZ9d4Lcx0ZY1M",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "When an interrupt occurs, an Operating System",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Ignore the interrupt "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Always changes state of interrupted process after processing the interrupt"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Always resumes execution of interrupted process after processing the interrupt"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "May change state of interrupted processes to ''blocked'' and schedule another process."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "when-an-interrupt-occurs-an-operating-system-gate-cse-1997-marks-1-hvwyz9d4lcx0zy1m.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MCjj7iqDcM7F21T0",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The correct matching for the following pairs is \n<p>(a) Disk scheduling $$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$(1) Round robin\n<br>(b) Batch processing $$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ (2) $$SCAN$$\n<br>(c) Time sharing $$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ (3) $$LIFO$$\n<br>(d) Interrupt processing  $$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$(4) $$FIFO$$</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$a - 3,\\,\\,b - 4,\\,\\,c - 2,\\,\\,d - 1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$a - 4,\\,\\,b - 3,\\,\\,c - 2,\\,\\,d - 1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$a - 2,\\,\\,b - 4,\\,\\,c - 1,\\,\\,d - 3$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$a - 3,\\,\\,b - 4,\\,\\,c - 3,\\,\\,d - 2$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-correct-matching-for-the-following-pairs-is-a-disk-sched-gate-cse-1997-marks-1-mcjj7iqdcm7f21t0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3YytulGH5MtT6Wne",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deadlocks",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An operating system contains 3 user processes each requiring 2 units of resource R.The minimum number of units of R such that no deadlocks will ever arise is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "3"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "5"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "4"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "6"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-operating-system-contains-3-user-processes-each-requiring-gate-cse-1997-marks-2-3yytulgh5mtt6wne.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZCC5u44JeCBYspAH",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronization-and-concurrency",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Each process P<sub>i</sub>,i=1.....9 is coded as follows\n<pre><code>\n  Repeat\n  P(mutex){\n  critical section\n  }\n  V(mutex)\n  Forever\n</code></pre>\n\nThe code for P<sub>10</sub> is identical except that it uses V(mutex) in place of P(mutex). What is the largest number of processes that can be inside the critical section at any moment? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "3"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "each-process-pii19-is-coded-as-follows-repeat-pmutex-critica-gate-cse-1997-marks-2-zcc5u44jecbyspah.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                }
+            ],
+            "title": "Operating Systems"
+        },
+        {
+            "_id": "Programming Languages",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JvUTpy7TlyogsFrM",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Heap allocation is required for languages.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "that support recursion"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "that support dynamic data structures"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "that use dynamic scope rules"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>Heap allocation is primarily associated with languages that support dynamic data structures.</p>\n<h3>Explanation:</h3>\n<p>Heap allocation is a memory management technique that allows for dynamic memory allocation. It is especially useful in scenarios where the size or the lifespan of data structures cannot be determined at compile time.</p>\n<p>Dynamic data structures such as linked lists, trees, and graphs often require heap allocation because they can grow and shrink during runtime. This flexibility is essential for implementing various algorithms and managing resources efficiently.</p>\n<p>Here are the options analyzed:</p>\n<p><p><strong>Option A: that support recursion</strong></p>\n\n<p>Recursion by itself does not necessitate heap allocation. Recursive calls typically use the stack for storing function calls and local variables. However, if recursion involves dynamic data structures, heap allocation will be necessary.</p></p>\n<p><p><strong>Option B: that support dynamic data structures</strong></p>\n\n<p>Dynamic data structures inherently require the ability to allocate and deallocate memory at runtime, making heap allocation crucial.</p></p>\n<p><p><strong>Option C: that use dynamic scope rules</strong></p>\n\n<p>Dynamic scope rules determine variable binding at runtime, but this concept does not inherently require heap allocation.</p></p>\n<p><p><strong>Option D: None of the above</strong></p>\n\n<p>Since dynamic data structures do require heap allocation, this is not the correct option.</p></p>\n<p>Therefore, the correct answer is <strong>Option B</strong>.</p>\n<pre><code class=\"markdown language-markdown\">- Option A: that support recursion\n\n- Option B: that support dynamic data structures\n\n- Option C: that use dynamic scope rules\n\n- Option D: None of the above\n\nCorrect Answer: Option B\n\n</code></pre>"
+                        }
+                    },
+                    "permalink": "heap-allocation-is-required-for-languages-gate-cse-1997-marks-1-jvutpy7tlyogsfrm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iZxutWewHZS21cSi",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Given the following Pascal like program segment:</p> \n<pre><code class=\"pascal\">Procedure A;\n<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x,y:intger;\n<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure B;\n<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x,z:real;\n<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S1\n<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end B;\n<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure C;\n<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i:integer;\n<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S2;\n<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end C;\n<br>end A;</code></pre>\n<p>The variables accessible in S1 and S2 are</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "x or A, y, x of B and z in S1 and\nx of B, y and i in S2"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "x or B, y and z in S1 and\nx of B, i and z in S2"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "x or B, z and y in S1 and\nx of A, i and y in S2"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-the-following-pascal-like-program-segment-procedure-an-gate-cse-1997-marks-2-izxutwewhzs21csi.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                }
+            ],
+            "title": "Programming Languages"
+        },
+        {
+            "_id": "Theory of Computation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yOGMzPr4JM9vdePP",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "recursively-enumerable-language-and-turing-machine",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following is not decidable?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Given a Turing machine $$M,$$ a stings s and an integer $$k,$$ $$M$$ accepts $$s$$ within $$k$$ steps"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Equivalence of two given Turing machines "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Language accepted by a given finite state machine is not empty "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Language generated by a context free grammar is non empty "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-is-not-decidable-gate-cse-1997-marks-2-yogmzpr4jm9vdepp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Iht1ifJxSn2EKz9p",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$\\sum { = \\left\\{ {a,b} \\right\\},\\,\\,} $$ which one of the following sets is not countable.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Set of all strings over $$\\sum {} $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Set of all languages over $$\\sum {} $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Set of all regular languages over $$\\sum {} $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Set of all languages over $$\\sum {} $$ accepted by Turing Machines. "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "Only option B is correct as set of all languages are uncountable.<br>Remember: As set of all Turing Machine are countable.So we can say that <br>(1) Set of all Recursively Enumerable Language are countable.<br>(2) Set of all Recursively Language are countable.<br>(3) Set of all Context-Sensitive Language are countable.<br>(4) Set of all Context Free Language are countable.<br>(5) Set of all Regular Language are countable."
+                        }
+                    },
+                    "permalink": "sum-left-ab-right-which-one-of-the-following-sets-is-not-cou-gate-cse-1997-marks-1-iht1ifjxsn2ekz9p.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yeVQw2E2kIrw55tv",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following regular expressions over $$\\left\\{ {0,\\,\\,1} \\right\\}$$ denotes the set of all strings not containing $$100$$ as substring?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${0^ * }{\\left( {1 + 0} \\right)^ * }$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${0^ * }\\,\\,{1010^ * }$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${0^ * }\\,\\,{1^ * }\\,\\,{01^ * }$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${0^ * }{\\left( {10 + 1} \\right)^ * }$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-regular-expressions-over-left-01-gate-cse-1997-marks-2-yevqw2e2kirw55tv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZXq7jezFqTyX5BYB",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 1997,
+                    "paperTitle": "GATE CSE 1997",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following languages over $$\\left\\{ {a,b,c} \\right\\}$$ is accepted by Deterministic push down automata?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left\\{ {w \\subset {w^R}\\left| {w \\in \\left\\{ {a,b} \\right\\}{}^ * } \\right.} \\right\\}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left\\{ {w{w^R}\\left| {w \\in \\left\\{ {a,b,c} \\right\\}{}^ * } \\right.} \\right\\}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left\\{ {{a^n}{b^n}{c^n}\\left| {n \\ge 0} \\right.} \\right\\}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left\\{ {w\\left| w \\right.} \\right.$$ is palindrome over $$\\left. {\\left\\{ {a,b,c} \\right\\}} \\right\\}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>Consider each option one by one :</p>\n<p><b>Option (A) :</b> $\\left\\{w c w^R \\mid w \\in\\{a, b\\}^*\\right\\}$</p>\n<p>$w c w^r$ can be realized using a deterministic pushdown automata because we know the center of palindrome which is $c$ here .</p>\n<p><b>Option (B) :</b> $\\left\\{w w^R \\mid w \\in\\{a, b, c\\}^*\\right\\}$</p>\n<p>$w w^r$ can be realized using a non deterministic pushdown automata. Here we don't know the center of palindrome.</p>\n<p><b>Option (C) :</b> $\\left\\{a^n b^n c^n \\mid n \\geq 0\\right\\}$</p>\n<p>It is a context sensitive language.</p>\n<p><b>Option (D) :</b> $\\{w \\mid w$ is a palindrome over $\\{a, b$, c}}</p>\n<p>$\\{w \\mid w$ is a palindrome over $\\{a, b, c\\}\\}$ is realized using non deterministic pushdown automata because we don't know the center of palindrome.</p>\n<p>Hence the correct option is (A).</p>"
+                        }
+                    },
+                    "permalink": "which-of-the-following-languages-over-left-abc-right-is-acce-gate-cse-1997-marks-2-zxq7jezfqtyx5byb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1997",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1997"
+                }
+            ],
+            "title": "Theory of Computation"
+        }
+    ]
+}

@@ -1,0 +1,235 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "odAXMyvIh2GoiiIu",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2011,
+                    "paperTitle": "GATE IN 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The matrix $$M = \\left[ {\\matrix{\n   { - 2} &amp; 2 &amp; { - 3}  \\cr \n   2 &amp; 1 &amp; 6  \\cr \n   { - 1} &amp; { - 2} &amp; 0  \\cr \n\n } } \\right]$$  has eigen values $$-3, -3, 5.$$ An eigen vector corresponding  to the eigen value $$5$$ is $${\\left[ {\\matrix{\n   1 &amp; 2 &amp; { - 1}  \\cr \n\n } } \\right]^T}.$$ One of the eigen vector of the matrix $${M^3}$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\left[ {\\matrix{\n   1 &amp; 8 &amp; { - 1}  \\cr \n\n } } \\right]^T}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\left[ {\\matrix{\n   1 &amp; 2 &amp; { - 1}  \\cr \n\n } } \\right]^T}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\left[ {\\matrix{\n   1 &amp; {\\root 3 \\of 2 } &amp; { - 1}  \\cr \n\n } } \\right]^T}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\left[ {\\matrix{\n   1 &amp; 1 &amp; { - 1}  \\cr \n\n } } \\right]^T}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-matrix-m-left-matrix-2-2-3-cr-2-1-6-cr-1-2-0-cr-right-ha-gate-in-2011-marks-1-odaxmyvih2goiiiu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Vlbm12bhWTM1120d",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2011,
+                    "paperTitle": "GATE IN 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The series $$\\,\\,\\sum\\limits_{m = 0}^\\alpha  {{1 \\over {{4^m}}}{{\\left( {x - 1} \\right)}^{2m}}\\,\\,\\,} $$ converges for ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$ - 2 &lt; x &lt; 2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$ - 1 &lt; x &lt; 3$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$ - 3 &lt; x &lt; 1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$x &lt; 3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-series-sumlimitsm-0alpha-1-over-4mleft-x-1-right2m-conve-gate-in-2011-marks-1-vlbm12bhwtm1120d.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hFCNpmaDFChzY2yd",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2011,
+                    "paperTitle": "GATE IN 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The box $$1$$ contains chips numbered $$3, 6, 9,$$  $$12$$ and $$15$$. The box $$2$$ contains chips numbered $$6, 11, 16, 21$$ and $$26$$.  Two chips, one from each box are drawn at random. The numbers written on these chips are multiplied.  The probability for the product to be an even number is ______________. ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${6 \\over {25}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${2 \\over {5}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${3 \\over {5}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${19 \\over {25}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-box-1-contains-chips-numbered-3-6-9-12-and-15-the-box-2-gate-in-2011-marks-2-hfcnpmadfchzy2yd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sMta46CHbIqlGs1N",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2011,
+                    "paperTitle": "GATE IN 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the differential equation  $$\\mathop y\\limits^{ \\bullet  \\bullet }  + 2\\,\\mathop y\\limits^ \\bullet   + y = 0\\,\\,$$  with boundary conditions $$y(0)=1$$ &amp; $$y(1)=0.$$  The value of $$y(2)$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$ - {e^{ - 1}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$ - {e^{ - 2}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${e^2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-differential-equation-mathop-ylimits-bullet-bul-gate-in-2011-marks-2-smta46chbiqlgs1n.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2011"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        }
+    ]
+}

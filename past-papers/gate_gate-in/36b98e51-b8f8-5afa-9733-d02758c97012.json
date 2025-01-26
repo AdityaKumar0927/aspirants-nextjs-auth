@@ -1,0 +1,402 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "W77tn9FaPa90TdkT",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2014,
+                    "paperTitle": "GATE IN 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A scalar valued function is defined as $$f\\left( x \\right){x^T}Ax + {b^T}x + c,$$ where $$A$$ is a symmetric positive definite matrix with dimension $$n \\times n;$$ $$b$$ and $$x$$ are vectors of dimension $$n \\times 1$$. The minimum value of $$f(x)$$ will occur when $$x$$ equals. ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\left( {{A^T}A} \\right)^{ - 1}}B$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$ - {\\left( {{A^T}A} \\right)^{ - 1}}B$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$ - \\left( {{{{A^{ - 1}}B} \\over 2}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{{A^{ - 1}}B} \\over 2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-scalar-valued-function-is-defined-as-fleft-x-rightxtax-btx-gate-in-2014-marks-1-w77tn9fapa90tdkt.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2014"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SEwBfE7Hz3tA4lzn",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2014,
+                    "paperTitle": "GATE IN 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the matrix $$A$$  satisfying the equation given below, the eigen values are \n$$$\\left[ A \\right]\\left[ {\\matrix{\n   1 &amp; 2 &amp; 3  \\cr \n   7 &amp; 8 &amp; 9  \\cr \n   4 &amp; 5 &amp; 6  \\cr \n\n } } \\right] = \\left[ {\\matrix{\n   1 &amp; 2 &amp; 3  \\cr \n   4 &amp; 5 &amp; 6  \\cr \n   7 &amp; 8 &amp; 9  \\cr \n\n } } \\right]$$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$(1,-j,j)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$(1,1,0)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$(1,1,-1)$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$(1,0,0)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-matrix-a-satisfying-the-equation-given-below-the-eig-gate-in-2014-marks-1-sewbfe7hz3ta4lzn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2014"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nyMBsGLlleT0jYHG",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2014,
+                    "paperTitle": "GATE IN 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given $$x\\left( t \\right) = 3\\,\\sin \\,\\left( {1000\\pi t} \\right)\\,\\,$$ and $$\\,\\,y\\left( t \\right) = 5\\cos \\,\\left( {1000\\pi t{\\pi  \\over t}} \\right)$$ \n<br>The $$x$$-yplot will be \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a circle "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a mulit-loop closed curve "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "a hyperbola "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "an ellipse"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-xleft-t-right-3sin-left-1000pi-t-right-and-yleft-t-rig-gate-in-2014-marks-1-nymbsglllet0jyhg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2014"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uWdLnyhmuT5Bfmmg",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2014,
+                    "paperTitle": "GATE IN 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$A$$ vector is defined as $$f = y\\widehat i + x\\widehat j + z\\widehat k\\,\\,$$.  Where $$\\widehat i,\\widehat j,$$ and $$\\widehat k$$ are unit vectors in cartesian $$(x, y, z)$$ coordinate system. The surface integral   -\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/DC4en36sCubm1ygWl/6ViA531G7dRdxTqOkUIWv3DsOc8Fl/uV7N0yPonj7iXvMdfrDirT/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE IN 2014 Engineering Mathematics - Vector Calculus Question 3 English\"> \n-over the closed surface $$S$$ of a cube with vertices having the following coordinates: $$(0,0,0), (1, 0, 0), (0, 1, 0), (0,0,1), (1, 0, 1), (1,1,1), (0, 1, 1), (1, 1, 0)$$  is _______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-vector-is-defined-as-f-ywidehat-i-xwidehat-j-zwidehat-k-wh-gate-in-2014-marks-1-uwdlnyhmut5bfmmg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2014"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dZfevGxhcNHJwKSk",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2014,
+                    "paperTitle": "GATE IN 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given that $$x$$ is a random variable in the range $$\\left[ {0,\\infty } \\right]$$ with a probability density function $${{{e^{ - {x \\over 2}}}} \\over K},$$ the value of the constant $$K$$ is _______",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-that-x-is-a-random-variable-in-the-range-left-0infty-r-gate-in-2014-marks-2-dzfevgxhcnhjwksk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2014"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "x3TWBlhyuEGLWjv6",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2014,
+                    "paperTitle": "GATE IN 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The figure shown the schematic of a production process with machines $$A, B$$ and $$C.$$ An input job needs to be pre-processed either by $$A$$ or by $$B$$ before it is fed to $$C,$$ from which the final finished product comes out. The probabilities of failure of the machines are given as:\n<br>$${P_{\\rm A}} = 0.15,\\,\\,{P_{\\rm B}} = 0.05\\,\\,\\&amp; \\,\\,{P_C} = 0.1$$\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/0GRQGfgtAl7wVfJj5/dx0OFkxBJsn2qZDmVfHNAlNVgXFND/eHIudyhKdI9rxDF5NR8yw6/image.svg\" loading=\"lazy\" alt=\"GATE IN 2014 Engineering Mathematics - Probability and Statistics Question 6 English\"> \n<p>Assuming independence of failures of the machines, the probability that a given job is successfully processed (up to the third decimal place) is _____.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.89",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-figure-shown-the-schematic-of-a-production-process-with-gate-in-2014-marks-2-x3twblhyueglwjv6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2014"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HdzqA1EIrJzxf8R9",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2014,
+                    "paperTitle": "GATE IN 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The figure shows the plot of $$y$$ as a function of $$x$$ \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/F2IP7IEbndD0OasW3/SiD8yBDYaOF7S4XLzr8xkdPlP1uxW/WvV0qJtd7clxQAkS8vZe4T/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE IN 2014 Engineering Mathematics - Differential Equations Question 2 English\"> \n<p>The function shown in the solution of the differential equation (assuming all initial conditions to be zero) is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{{d^2}y} \\over {d{x^2}}} = 1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{dy} \\over {dx}} =  + x$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{dy} \\over {dx}} =  - x$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{dy} \\over {dx}} = \\left| x \\right|$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-figure-shows-the-plot-of-y-as-a-function-of-x-the-functi-gate-in-2014-marks-1-hdzqa1eirjzxf8r9.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2014"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MeQ0iYcFpGtZt5mx",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2014,
+                    "paperTitle": "GATE IN 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The iteration step in order to solve for the cube roots of a given number $$'N'$$ using the Newton-Raphson's method is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${x_{k + 1}} = {x_k} + {1 \\over 3}\\left( {N - x_k^3} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${x_{k + 1}} = {1 \\over 3}\\left( {2{x_k} + {N \\over {x_k^2}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${x_{k + 1}} = {x_k} - {1 \\over 3}\\left( {N - x_k^3} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${x_{k + 1}} = {1 \\over 3}\\left( {2{x_k} - {N \\over {x_k^2}}} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-iteration-step-in-order-to-solve-for-the-cube-roots-of-a-gate-in-2014-set-1-marks-1-meq0iycfpgtzt5mx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2014"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        }
+    ]
+}

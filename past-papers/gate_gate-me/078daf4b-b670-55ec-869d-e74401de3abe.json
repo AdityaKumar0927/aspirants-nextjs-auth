@@ -1,0 +1,500 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "question_id": "40599u36kxfwkai7",
+                    "chapter": "linear-algebra",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-me",
+                    "examGroup": "gate",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-me-2020-set-2",
+                    "paperTitle": "GATE ME 2020 Set 2",
+                    "permalink": "the-sum-of-two-normally-distributed-random-variables-x-and-y-gate-me-engineering-mathematics-linear-algebra-2ibjia2eoixuqnrb",
+                    "question": {
+                        "en": {
+                            "direction": null,
+                            "comprehension": null,
+                            "content": "The sum of two normally distributed random variables X and Y is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "always normally distributed"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "normally distributed, only if X and Y are independent"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "normally distributed, only if X and Y have the same standard deviation"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "normally distributed, only if X and Y have the same mean"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "engineering-mathematics",
+                    "subjectGroup": null,
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2020,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2020-set-2"
+                },
+                {
+                    "question_id": "40599u3hkxfwkamw",
+                    "chapter": "calculus",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-me",
+                    "examGroup": "gate",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-me-2020-set-2",
+                    "paperTitle": "GATE ME 2020 Set 2",
+                    "permalink": "let-i--mathop-smallint-nolimitsx--01-mathop-sma-gate-me-engineering-mathematics-linear-algebra-ey1u4elkyrtlqtp4",
+                    "question": {
+                        "en": {
+                            "direction": null,
+                            "comprehension": null,
+                            "content": "Let $$I = \\mathop \\smallint \\nolimits_{x = 0}^1 \\mathop \\smallint \\nolimits_{y = 0}^{{x^2}} x{y^2}dydx.$$&nbsp;Then, I may also be expressed as",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\mathop \\smallint \\nolimits_{y = 0}^1 \\mathop \\smallint \\nolimits_{x = 0}^{\\sqrt y } x{y^2}dxdy$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\mathop \\smallint \\nolimits_{y = 0}^1 \\mathop \\smallint \\nolimits_{x = \\sqrt y }^1 y{x^2}dxdy$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\mathop \\smallint \\nolimits_{y = 0}^1 \\mathop \\smallint \\nolimits_{x = \\sqrt y }^1 x{y^2}dxdy$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\mathop \\smallint \\nolimits_{y = 0}^1 \\mathop \\smallint \\nolimits_{x = 0}^{\\sqrt y } y{x^2}dxdy$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "engineering-mathematics",
+                    "subjectGroup": null,
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2020,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2020-set-2"
+                },
+                {
+                    "question_id": "40599u3hkxfwkb2c",
+                    "chapter": "linear-algebra",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-me",
+                    "examGroup": "gate",
+                    "languages": [
+                        "en",
+                        "hi"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-me-2020-set-2",
+                    "paperTitle": "GATE ME 2020 Set 2",
+                    "permalink": "the-process-that-uses-a-tapered-horn-to-amplify-and-focus-t-gate-me-engineering-mathematics-linear-algebra-kixakrgpm1wslyod",
+                    "question": {
+                        "en": {
+                            "direction": null,
+                            "comprehension": null,
+                            "content": "The process, that uses a tapered horn to amplify and focus the mechanical energy for machining of glass, is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "electrochemical machining"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "electrical discharge machining"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "ultrasonic machining"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "abrasive jet machining"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        },
+                        "hi": {
+                            "direction": null,
+                            "comprehension": null,
+                            "content": "\u0915\u093e\u0902\u091a \u0915\u0947 \u092e\u0936\u0940\u0928\u093f\u0902\u0917 \u0915\u0947 \u0932\u093f\u090f \u092f\u093e\u0902\u0924\u094d\u0930\u093f\u0915 \u090a\u0930\u094d\u091c\u093e \u0915\u094b \u092a\u0930\u093f\u0935\u0930\u094d\u0927\u093f\u0924 \u0914\u0930 \u0915\u0947\u0902\u0926\u094d\u0930\u093f\u0924 \u0915\u0930\u0928\u0947 \u0915\u0947 \u0932\u093f\u090f \u091f\u0947\u092a\u0930\u093f\u0924 \u0939\u0949\u0930\u094d\u0928 \u0915\u093e \u092a\u094d\u0930\u092f\u094b\u0917 \u0915\u0930\u0928\u0947 \u0935\u093e\u0932\u0940 \u092a\u094d\u0930\u0915\u094d\u0930\u093f\u092f\u093e \u0915\u094c\u0928-\u0938\u0940 \u0939\u0948?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "\u0935\u093f\u0926\u094d\u092f\u0941\u0924 \u0930\u093e\u0938\u093e\u092f\u0928\u093f\u0915 \u092e\u0936\u0940\u0928\u093f\u0902\u0917&nbsp;"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "\u0935\u093f\u0926\u094d\u092f\u0941\u0924\u0940\u092f \u0928\u093f\u0930\u094d\u0935\u0939\u0928 \u092e\u0936\u0940\u0928\u093f\u0902\u0917"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "\u092a\u0930\u093e\u0927\u094d\u0935\u0928\u093f\u0915 \u092e\u0936\u0940\u0928\u093f\u0902\u0917&nbsp;"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "\u0905\u092a\u0918\u0930\u094d\u0937\u0915 \u091c\u0947\u091f \u092e\u0936\u0940\u0928\u093f\u0902\u0917&nbsp;"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "engineering-mathematics",
+                    "subjectGroup": null,
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2020,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2020-set-2"
+                },
+                {
+                    "question_id": "40599u3hkxfwkfl4",
+                    "chapter": "differential-equations",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-me",
+                    "examGroup": "gate",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-me-2020-set-2",
+                    "paperTitle": "GATE ME 2020 Set 2",
+                    "permalink": "the-solution-of-fracd2ydt2-y--1nbsp-gate-me-engineering-mathematics-linear-algebra-cx5h9gp4xcvnwj0d",
+                    "question": {
+                        "en": {
+                            "direction": null,
+                            "comprehension": null,
+                            "content": "The solution of $$\\frac{{{d^2}y}}{{d{t^2}}} - y = 1,$$&nbsp;which additionally satisfies $${\\left. y \\right|_{t = 0}} = {\\left. {\\frac{{dy}}{{dt}}} \\right|_{t = 0}} = 0$$&nbsp;in the Laplace s-domain is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\frac{1}{{s\\left( {s + 1} \\right)\\left( {s - 1} \\right)}}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\frac{1}{{s\\left( {s + 1} \\right)}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\frac{1}{{s\\left( {s - 1} \\right)}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\frac{1}{{s - 1}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "engineering-mathematics",
+                    "subjectGroup": null,
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2020,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2020-set-2"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Engineering Mechanics",
+            "questions": [
+                {
+                    "question_id": "40599u3hkxfwkax4",
+                    "chapter": "engineering-mechanics-static-and-dynamics",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-me",
+                    "examGroup": "gate",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-me-2020-set-2",
+                    "paperTitle": "GATE ME 2020 Set 2",
+                    "permalink": "pthe-equation-of-motion-of-a-spring-mass-damper-system-is-gate-me-engineering-mathematics-linear-algebra-lvz1rcotxqdkcmst",
+                    "question": {
+                        "en": {
+                            "direction": null,
+                            "comprehension": null,
+                            "content": "<p>The equation of motion of a spring-mass-damper system is given by</p>\n\n<p>$$\\frac{{{d^2}x}}{{d{t^2}}} + 3\\frac{{dx}}{{dt}} + 9x = 10\\sin \\left( {5t} \\right)$$</p>\nThe damping factor for the system is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0.25"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.5"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "3"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "engineering-mechanics",
+                    "subjectGroup": null,
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2020,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2020-set-2"
+                }
+            ],
+            "title": "Engineering Mechanics"
+        },
+        {
+            "_id": "General Aptitude",
+            "questions": [
+                {
+                    "question_id": "40599u3hkxfwk9vk",
+                    "chapter": "verbal-ability",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-me",
+                    "examGroup": "gate",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-me-2020-set-2",
+                    "paperTitle": "GATE ME 2020 Set 2",
+                    "permalink": "while-i-agree--his-proposal-this-time-i-do-not-often-gate-me-engineering-mathematics-linear-algebra-rgoeziovixnlznsn",
+                    "question": {
+                        "en": {
+                            "direction": null,
+                            "comprehension": null,
+                            "content": "While I agree ______ his proposal this time, I do not often agree ______ him.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "to, with"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "with, to"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "with, with"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "to, to"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "general-aptitude",
+                    "subjectGroup": null,
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2020,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2020-set-2"
+                },
+                {
+                    "question_id": "40599u36kxfwka1s",
+                    "chapter": "verbal-ability",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-me",
+                    "examGroup": "gate",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-me-2020-set-2",
+                    "paperTitle": "GATE ME 2020 Set 2",
+                    "permalink": "select-the-word-that-fits-the-analogybr-white--whitening-gate-me-engineering-mathematics-linear-algebra-frmdywagfz4uwyqy",
+                    "question": {
+                        "en": {
+                            "direction": null,
+                            "comprehension": null,
+                            "content": "Select the word that fits the analogy:<br>\nWhite : Whitening \u2237 Light : _____",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Lightning"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Lightening"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Lighting"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Enlightening"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "general-aptitude",
+                    "subjectGroup": null,
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2020,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2020-set-2"
+                },
+                {
+                    "question_id": "40599u3hkxfwkfet",
+                    "chapter": "verbal-ability",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-me",
+                    "examGroup": "gate",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-me-2020-set-2",
+                    "paperTitle": "GATE ME 2020 Set 2",
+                    "permalink": "the-recent-measures-to-improve-the-output-would--the-l-gate-me-engineering-mathematics-linear-algebra-eyefzergqxxl5bvg",
+                    "question": {
+                        "en": {
+                            "direction": null,
+                            "comprehension": null,
+                            "content": "The recent measures to improve the output would ______ the level of production to our satisfaction.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "increase"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "decrease"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "speed"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "equalise"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "general-aptitude",
+                    "subjectGroup": null,
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2020,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2020-set-2"
+                }
+            ],
+            "title": "General Aptitude"
+        }
+    ]
+}

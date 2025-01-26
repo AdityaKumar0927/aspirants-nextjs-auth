@@ -1,0 +1,67 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6z5jGfejdlaRcr4v",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1999,
+                    "paperTitle": "GATE IN 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$\\mathop {Lim}\\limits_{x \\to 0} \\,{1 \\over {10}}\\,\\,{{1 - {e^{ - j5x}}} \\over {1 - {e^{ - jx}}}} = \\_\\_\\_\\_.$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "mathop-limlimitsx-to-0-1-over-101-e-j5x-over-1-e-jx-gate-in-1999-marks-1-6z5jgfejdlarcr4v.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-1999"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        }
+    ]
+}

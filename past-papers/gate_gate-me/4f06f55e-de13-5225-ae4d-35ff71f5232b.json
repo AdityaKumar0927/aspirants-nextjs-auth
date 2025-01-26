@@ -1,0 +1,2886 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jju23q4eR3u0JFCe",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The particular solution for the differential equation $${{{d^2}y} \\over {d{t^2}}} + 3{{dy} \\over {dx}} + 2y = 5\\cos x$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.5\\,Cos\\,x + 1.5\\,Sin\\,x$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.5\\,Cos\\,x + 0.5\\,Sin\\,x$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.5\\,Sin\\,x$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.5\\,Cos\\,x$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-particular-solution-for-the-differential-equation-d2y-ov-gate-me-1996-marks-1-jju23q4er3u0jfce.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6Ru8dKJYgFV6b3xs",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The eigen values of $$\\left[ {\\matrix{\n   1 &amp; 1 &amp; 1  \\cr \n   1 &amp; 1 &amp; 1  \\cr \n   1 &amp; 1 &amp; 1  \\cr \n\n } } \\right]$$ are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0,0,0$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0,0,1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0,0,3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1,1,1$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-eigen-values-of-left-matrix-1-1-1-cr-1-1-1-cr-1-1-1-cr-r-gate-me-1996-marks-1-6ru8dkjygfv6b3xs.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bRDJOJZZc2kKr0ev",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the Gauss - elimination for a solving system of linear algebraic equations, triangularization leads to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "diagonal matrix "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "lower triangular matrix "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "upper triangular matrix "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "singular matrix"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-gauss-elimination-for-a-solving-system-of-linear-alge-gate-me-1996-marks-1-brdjojzzc2kkr0ev.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "urAj54xnyJgTfbCM",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If a function is continuous at a point its first derivative ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "may or may not exist "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "exists always "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "will not exist "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "has a unique value "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-a-function-is-continuous-at-a-point-its-first-derivative-gate-me-1996-marks-1-uraj54xnyjgtfbcm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Eh2vm7t3DSyE7r7K",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The expression curl $$\\left( {grad\\,f} \\right)$$ where $$f$$ is a scalar function is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Equal to $${\\nabla ^2}f$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Equal to $$div\\left( {grad\\,f} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "A scalar of zero magnitude "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "A vector of zero magnitude "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-expression-curl-left-gradf-right-where-f-is-a-scalar-fun-gate-me-1996-marks-1-eh2vm7t3dsye7r7k.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WV527JiHDuby5hDZ",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The one dimensional heat conduction partial difference equation $$\\,\\,{{\\partial T} \\over {\\partial t}} = {{{\\partial ^2}T} \\over {\\partial {x^2}}}\\,\\,$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "parabolic "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "hyperbolic "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "elliptic"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "mixed"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-one-dimensional-heat-conduction-partial-difference-equat-gate-me-1996-marks-1-wv527jihduby5hdz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "betA7L7FdD9vrF6T",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$${i^i}$$, where $$i\\, = \\,\\sqrt { - 1} $$ is given by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${e^{ - {\\pi  \\over 2}}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\pi  \\over 2}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "ii-where-i-sqrt-1-is-given-by-gate-me-1996-marks-1-beta7l7fdd9vrf6t.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Engineering Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BozeAPfSt9XHtfoJ",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "engineering-mechanics-static-and-dynamics",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A wheel of mass m and radius r is in accelerated rolling motion without slip under a steady axial torque $$T$$. If the coefficient of kinetic friction is $$\\mu $$, the friction force from the ground on the wheel is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\mu $$mg"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$T$$/r"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "none of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-wheel-of-mass-m-and-radius-r-is-in-accelerated-rolling-mot-gate-me-1996-marks-1-bozeapfst9xhtfoj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ndQUmTdlhTZtBqCd",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "engineering-mechanics-static-and-dynamics",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "AB and CD tow uniform and identical bars of mass 10kg each, as shown. The hinges at A and B are frictionless. The assembly is released from rest and motion occurs in the vertical plane. At the instant that the hinge B passes the point B, the angle between the two bars will be \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/E0WycO8UZTrHpO882/JDEQpna4e27AZBttPUpFJhg6EKAkr/4HgzaHH7oC0rdxQYNswUyD/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1996 Engineering Mechanics - Engineering Mechanics Static and Dynamics Question 66 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "60 degrees "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "37.4 degrees "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "30 degrees "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "45 degrees "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "ab-and-cd-tow-uniform-and-identical-bars-of-mass-10kg-each-a-gate-me-1996-marks-2-ndqumtdlhtztbqcd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZqQad0OceFvl4iZh",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "engineering-mechanics-static-and-dynamics",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match 4 correct pairs between <b>List $$I$$</b> and <b>List $$II$$</b>.  No credit will be given for partially correct matching\n<p><b>List $$I$$</b>\n<br>(a) Collision of particles\n<br>(b) Stability \n<br>(C) Satellite motion\n<br>(D) Spinning top</p>\n<p><b>List $$II$$</b>\n<br>(1) Euler\u2019s equation of motion\n<br>(2) Minimum kinetic energy \n<br>(3) Minimum potential energy\n<br>(4) Impulse-momentum principle\n<br>(5) Conservation of moment of momentum </p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$\\left( a \\right) - 4,\\left( b \\right) - 3,\\left( c \\right) - 1,\\left( d \\right) - 5$$ \n",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-4-correct-pairs-between-list-i-and-list-ii-no-credit-w-gate-me-1996-marks-2-zqqad0ocefvl4izh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "y4FJKadBFttqKB1c",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "engineering-mechanics-static-and-dynamics",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A rod of length 1m is sliding in a corner as shown in. At an instant when the rod makes an angle of 60 degrees with the horizontal plane, the velocity of point A on the rod is 1m/s. The angular velocity of the rod at this instant is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/MOrGkxngthmjXftMo/sY3Gk8BtDxKOhW32L0n6S1wVIVz4u/rNkgVjfNddVUIeXGoZyM9N/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1996 Engineering Mechanics - Engineering Mechanics Static and Dynamics Question 65 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2 rad/s"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1.5 rad/s"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0.5 rad/s"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0.75 rad/s "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-rod-of-length-1m-is-sliding-in-a-corner-as-shown-in-at-an-gate-me-1996-marks-2-y4fjkadbfttqkb1c.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "IbpyL0ucrdZx8WiK",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "engineering-mechanics-static-and-dynamics",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A ball A of mass m falls under gravity from a height h and strikes another ball B of mass m which supported at rest on a spring of stiffness k. Assume perfectly elastic impact. Immediately after the impact \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "the velocity of ball A is $${1 \\over 2}\\sqrt {2gh} $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the velocity of ball A is zero  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the velocity of both ball is $${1 \\over 2}\\sqrt {2gh} $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above \n "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-ball-a-of-mass-m-falls-under-gravity-from-a-height-h-and-s-gate-me-1996-marks-1-ibpyl0ucrdzx8wik.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                }
+            ],
+            "title": "Engineering Mechanics"
+        },
+        {
+            "_id": "Fluid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MfHpfdEIfHsrM5x6",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "laminar-flow",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For laminar flow through a long pipe, the pressure drop per unit length increases.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "in linear proportion to the cross-sectional area "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "in proportion to the diameter of the pipe"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "in inverse proportion to the cross-sectional area\n "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "in inverse proportion to the square of cross-sectional area "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-laminar-flow-through-a-long-pipe-the-pressure-drop-per-u-gate-me-1996-marks-2-mfhpfdeifhsrm5x6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sUaW9D06lBQiGtxU",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-properties",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A fluid is one which can be defined as a substance that: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "has that same shear stress at all points "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "can deform indefinitely under the action of the smallest shear force "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "has the small shear stress in all directions "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "is practically incompressible "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-fluid-is-one-which-can-be-defined-as-a-substance-that-gate-me-1996-marks-1-suaw9d06lbqigtxu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nkrca2A9YOwtx6vB",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-properties",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The dimension of surface tension is : ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$M{L^{ - 1}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${L^2}{T^{ - 1}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$M{L^{ - 1}}\\,{T^{ - 1}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$M{T^{ - 2}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-dimension-of-surface-tension-is-gate-me-1996-marks-1-nkrca2a9yowtx6vb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yfDP7Y96SGEhrv68",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-statics",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A mercury manometer is used to measure the static pressure at a point in a water pipe as shown in Fig. The level difference of mercury in the two limbs is $$10$$ $$mm.$$ The gauge pressure at that point is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/gkAcUgy23X0aBG4hQ/5sKTxlY2c5kacUu3Y1KpPUSAUA26i/XYeAzbgyCqJKRFThtM1S79/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1996 Fluid Mechanics - Fluid Statics Question 27 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1236$$ $$Pa$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1333$$ $$Pa$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Zero "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$98$$ $$Pa$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-mercury-manometer-is-used-to-measure-the-static-pressure-a-gate-me-1996-marks-1-yfdp7y96sgehrv68.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                }
+            ],
+            "title": "Fluid Mechanics"
+        },
+        {
+            "_id": "Heat Transfer",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "84miLugtqoSvtWKR",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "conduction",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a given heat flow and for the same thickness, the temp drop across the material will be maximum for ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Copper "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Steel "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Glass wool "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Refractory brick "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-given-heat-flow-and-for-the-same-thickness-the-temp-dr-gate-me-1996-marks-1-84milugtqosvtwkr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bbxASc09EfqUsv7U",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "conduction",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a current carrying wire of $$20$$ $$mm$$ diameter and having $$k=0.5W/mK$$ is exposed to air $$\\left( {h = 20W/{m^2}K} \\right),$$ maximum heat dissiption occurs when thickness of insulation is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$30$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$25$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$20$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$15$$ $$mm$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-current-carrying-wire-of-20-mm-diameter-and-having-k05-gate-me-1996-marks-2-bbxasc09efqusv7u.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UjLU3VvPwgBr31OJ",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "convection",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<b>Match List - $${\\rm I}$$ with List - $${\\rm II}$$ and select the correct answer using the code given below the Lists: </b>\n<p><b>List - $${\\rm I}$$</b>\n<br>$$A.$$ Grashof number\n<br>$$B.$$ Schmid number\n<br>$$C.$$ Weber number\n<br>$$D.$$ Fourier number</p>\n<p><b>List - $${\\rm II}$$</b>\n<br>$$1.$$ Mass diffusion\n<br>$$2.$$ Transient heat conduction \n<br>$$3.$$ Free convection \n<br>$$4.$$ Forced convection\n<br>$$5.$$ Surface tension\n<br>$$6.$$ Radiation</p>\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$A - 3,\\,\\,B - 1,\\,\\,C - 5,\\,\\,D - 2$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-list-rm-i-with-list-rm-ii-and-select-the-correct-answe-gate-me-1996-marks-2-ujlu3vvpwgbr31oj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                }
+            ],
+            "title": "Heat Transfer"
+        },
+        {
+            "_id": "Industrial Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0DhnIifREfRhpe3E",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "line-balancing",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In an assembly line for assembling toys, five workers are assigned tasks which take times of $$10, 8, 6, 9$$ and $$10$$ minutes respectively. The balance delay for the line is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$43.3\\% $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$14.8\\% $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$14.0\\% $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$16.3\\% $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-an-assembly-line-for-assembling-toys-five-workers-are-as-1996-marks-2-0dhniifrefrhpe3e.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "v7LaalqLepSqBOpy",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-programming",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If at the optimum in a linear programming problem, a dual variable corresponding to a particular primal constraint is zero, then it means that",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Right hand side of the primal constraint can be altered without affecting the optimum solution"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Changing the right hand side of the primal constraint will disturb the optimum solution"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The objective function is unbounded "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The problem is degenerate  "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-at-the-optimum-in-a-linear-programming-problem-a-dual-va-1996-marks-1-v7laalqlepsqbopy.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oG25kTy2ADCQfhRc",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "scheduling",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A job shop incurs a cost of Rs.$$60$$/- per day for each day a job is in the shop. At the beginning of a month there are five jobs in the shop with the following data:\n <img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/lDl7SY6bFahBckXuS/7mB1VbMq7hcFnngRUeGv5iHEM68SO/z0RMgtwyhOFb2AGUEwV6Bk/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1996 Industrial Engineering - Scheduling Question 4 English\">\n<p>Which schedule will minimize the total cost? \n<br>What is the minimum total cost? \n<br>Which jobs (if any) fail to meet their due dates?</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$SPT$$ schedule will minimize total cost.\n<br>Minimum total cost $$=3,420.$$ \n<br>$$2$$ jobs will fail.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-job-shop-incurs-a-cost-of-rs60-per-day-for-each-day-1996-marks-5-og25kty2adcqfhrc.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                }
+            ],
+            "title": "Industrial Engineering"
+        },
+        {
+            "_id": "Machine Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yuRBUKX8Gwg5QDEJ",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "design-for-static-loading",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A solid shaft can resist a bending moment of $$3.0$$ $$kNm$$ and a twisting moment of $$4.0$$ $$kNm$$ together, then the maximum torque that can be applied is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$7.0$$ $$kNm$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3.5$$ $$kNm$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$4.5$$ $$kNm$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$5.0$$ $$kNm$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-solid-shaft-can-resist-a-bending-moment-of-30-knm-and-a-tw-gate-me-1996-marks-1-yurbukx8gwg5qdej.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XTbomvF54iMNHMN9",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bolted-riveted-and-welded-joints",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the ratio of the diameter of river hole to the pitch of rivets is $$0.25$$, then the tearing Efficiency of the joint is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.50$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.75$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.25$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.87$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-ratio-of-the-diameter-of-river-hole-to-the-pitch-of-r-gate-me-1996-marks-1-xtbomvf54imnhmn9.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4tMLWqDsdVbqRhWI",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bolted-riveted-and-welded-joints",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The bolts in a rigid flanged coupling connecting two shafts transmitting power are subjected to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "shear force and bending moment "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "axial force "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "torsion "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "torsion and bending moment "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-bolts-in-a-rigid-flanged-coupling-connecting-two-shafts-gate-me-1996-marks-1-4tmlwqdsdvbqrhwi.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "egV7fxsLLfdlOuEZ",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "design-of-spur-gears",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In spur gears,  the circle on which the involute is generated is called the ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "pitch circle "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "clearance angle "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "base circle "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "addendum circle "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-spur-gears-the-circle-on-which-the-involute-is-generated-gate-me-1996-marks-1-egv7fxsllfdlouez.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2WVKDkq5d0tm5x4y",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "design-of-bearings",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In thick film hydrodynamic journal bearings, the coefficient of friction",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "increases with increase in load "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "is independent of load "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "decreases with increase in load "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "may increase or decrease with increase in load "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-thick-film-hydrodynamic-journal-bearings-the-coefficient-gate-me-1996-marks-1-2wvkdkq5d0tm5x4y.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                }
+            ],
+            "title": "Machine Design"
+        },
+        {
+            "_id": "Production Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hBs79bBdbH5NbM02",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "casting",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The pouring basin in a sand mold is $$200$$ $$mm$$ diameter $$100$$ $$mm$$ height. The mould cavity is a cube of $$125$$ $$mm$$ side and must be filled in $$25$$ seconds. The maximum velocity must ensure laminar flow into the mould cavity and in the gates of circular cross-section. Design the sprue to avoid aspiration effects. \n<p>Assume \n<br>(a) constant temperature, \n<br>(b) no loss in the velocity head and \n<br>(c) diameter of gate $$=8$$ times diameter at the sprue base. </p>\n<p>Properties of the molten metal are $$\\gamma  = 0.9\\,\\,m{m^2}$$ per second, $$\\rho  = 700\\,\\,kg/{m^3},$$ &amp; $${C_p} = 33.6\\,\\,J/mol$$-$$K.$$ The diameter of sprue to avoid aspiration effect.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$55.3$$ $$mm$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-pouring-basin-in-a-sand-mold-is-200-mm-diameter-100-mm-h-gate-me-1996-marks-5-hbs79bbdbh5nbm02.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hGL9bKH8QWxkWjlj",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "casting",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Light impurities in the molten metal are prevented from reaching the mold cavity by providing a",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Strainer "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Button well "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Skim bob "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "All of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "light-impurities-in-the-molten-metal-are-prevented-from-reac-gate-me-1996-marks-1-hgl9bkh8qwxkwjlj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2TliYbSgAYKUxjln",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/F9jlEJnjwXSCxtjrs/jO2glk7iuqOjkxiI1IonllbDFisgd/BHgSpF3HuK0JzGfxo479UZ/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1996 Production Engineering - Metal Forming Question 26 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$A - 3,\\,\\,B - 4,\\,\\,C - 5,\\,\\,D - 2$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-gate-me-1996-marks-2-2tliybsgaykuxjln.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cEna9ceuZSwE36Kb",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A wire of $$0.1mm$$ diameter is drawn from a rod of $$15mm$$ diameter dies giving reductions of $$20\\% $$, $$40\\% $$ and $$80\\% $$ are available. For minimum error in the final size, the number of stages and reduction at each stage respectively would be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3$$ stages and $$80\\% $$ reduction for all three stages "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$4$$ stages and $$80\\% $$ reduction for first three stages followed by a finishing stage of $$20\\% $$ reduction"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$5$$ stages and reduction of $$80\\% $$, $$80\\% $$, $$40\\% $$, $$40\\% $$, $$20\\% $$ in sequence "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-wire-of-01mm-diameter-is-drawn-from-a-rod-of-15mm-diameter-gate-me-1996-marks-2-cena9ceuzswe36kb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3VkSnRIL1b22i7Qx",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding-process",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Preheating before welding is done to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Make the steel softer "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Burn away oil, grease, etc., from the plate surface"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Prevent cold cracks "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Prevent plate distortion "
+                                }
+                            ],
+                            "correct_options": [
+                                "B",
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "preheating-before-welding-is-done-to-gate-me-1996-marks-1-3vksnril1b22i7qx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qICiUCiDT7qLxuc9",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding-process",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/scOdYWOl3MdZ8nOkE/JpJSpM0CgpcMRCaUtUtg97fvbbbgg/us1NrFNSBfvjExqalXrlJo/image.svg\" loading=\"lazy\" alt=\"GATE ME 1996 Production Engineering - Welding Process Question 35 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$A - 3,\\,\\,B - 1,\\,\\,C - 4,\\,\\,D - 2$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-gate-me-1996-marks-2-qiciucidt7qlxuc9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oLEnnAhiSSigpafC",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding-process",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The cross section weld bead is shown in fig the profile of the bead and the fusion zone are taken circular for convenience. Bead width and radii of curvature of circular profiles are given in fig. The bead height and depth of penetration are \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/NtHZ18IQWSPRfMqPY/M5q3xR8zwynRusfYjOq2aZ4ptJ3Oo/5TTrSamQW8Eud8Hd0EGtkJ/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1996 Production Engineering - Welding Process Question 9 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Bead height $$=0.64$$ $$mm$$ \n<br>Depth of penetration $$=2.10$$ $$mm$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-cross-section-weld-bead-is-shown-in-fig-the-profile-of-t-gate-me-1996-marks-5-olennahissigpafc.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DKgZcUoQQujRjhIB",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 1.5,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Tool life of a $$10$$ hours is obtained when  cutting with a single point tool at $$63m/min.$$ If Taylor's constant $$C=257.35,$$ tool life on doubling the velocity will be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$5$$ hours "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$25.7$$ $$min$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$38.3$$ $$min$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "unchanged "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "tool-life-of-a-10-hours-is-obtained-when-cutting-with-a-sing-gate-me-1996-marks-5-dkgzcuoqqujrjhib.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2LF4mMj1AE780xMV",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "machining",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The rake angle in drill",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Increases from center to periphery"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Decreases from center to periphery"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Remains constant "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Is irrelevant to the drilling operation."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-rake-angle-in-drill-1996-marks-1-2lf4mmj1ae780xmv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8zsekGeMR9XvImhf",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "machining",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The rake angle in drill",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Increases from center to periphery"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Decreases from center to periphery"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Remains constant "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Is irrelevant to the drilling operation."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-rake-angle-in-drill-1996-marks-1-8zsekgemr9xvimhf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CT4N7oC2hifCZrGX",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sheet-metal-forming-processes",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$50$$ $$mm$$ diameter disc is to be punched out from a carbon steel sheet $$1.0$$ $$mm$$ thick. The diameter of the punch should be  (Take clearance as $$3\\% $$ of sheet thickness) ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$49.925mm$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$50.00mm$$  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$50.075mm$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "none "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-50-mm-diameter-disc-is-to-be-punched-out-from-a-ca-1996-marks-2-ct4n7oc2hifczrgx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dIOrKmsg48Gkz2u4",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metrology-and-inspection",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The fit on a hole-shaft system is specified as $$H7$$-$$s6.$$ The type of fit is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "clearance fit "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "running fit (sliding fit) "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "push fit (transition fit) "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "force fit (interference fit)  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-fit-on-a-hole-shaft-system-is-specified-as-h7-s6-1996-marks-1-diorkmsg48gkz2u4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                }
+            ],
+            "title": "Production Engineering"
+        },
+        {
+            "_id": "Strength of Materials",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lwDs4Nzn7AxWasah",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-stresses",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the two principal strains at a point are 1000 $$ \\times $$ 10<sup>-6</sup> and -600 $$ \\times $$ 10<sup>-6</sup>, then the maximum shear strain is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "800  $$ \\times $$ 10<sup>-6</sup> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "500  $$ \\times $$ 10<sup>-6</sup> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1600  $$ \\times $$ 10<sup>-6</sup> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "200  $$ \\times $$ 10<sup>-6</sup> "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-two-principal-strains-at-a-point-are-1000-times-10-6-gate-me-1996-marks-1-lwds4nzn7axwasah.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "s4lgcafmEPIzE0xK",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-force-and-bending-moment",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two bars AB and BC are connected by a frictionless hinge at B. The assembly is supported and loaded as shown in Fig. Draw the shear force and bending moment diagrams for the combined beam AC, clearly labeling the important values. Also indicate your sign convention.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/JD5NgB5RItLNWZs2S/KTd1u7sfKUAXYIBCgCYq7D00lAulb/liTvBdCZDedmXIvNUY8whT/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1996 Strength of Materials - Shear Force and Bending Moment Question 10 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it. ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-bars-ab-and-bc-are-connected-by-a-frictionless-hinge-at-gate-me-1996-marks-2-s4lgcafmepize0xk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Q2NC8UTHnybQVKxt",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "thin-cylinders",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A thin cylinder of $$100$$mm internal diameter and $$5$$mm thickness is subjected to an internal pressure of $$10$$ MPa and a torque of $$2000$$ Nm. Calculate the magnitudes of the principal stresses.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$\\sigma  = 75 \\pm 35.68$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-thin-cylinder-of-100mm-internal-diameter-and-5mm-thickness-gate-me-1996-marks-2-q2nc8uthnybqvkxt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                }
+            ],
+            "title": "Strength of Materials"
+        },
+        {
+            "_id": "Theory of Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RHfmIQceuGo56xnN",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analysis-of-plane-mechanisms",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A rod of length $$1$$ $$m$$ is sliding in a corner as shown in Fig.$$2.7.$$ At an instant when the rod makes an angle of $$60$$ degrees with the horizontal plane, the velocity of point $$A$$ on the rod is $$1$$ $$m/s$$. The angular velocity of the rod at this instant is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Mjx3PoOK6mbevWVl7/ZBuYoCirT19iN36TeIfN1U42nbHbz/vCJKR4Q7C2vda9v9EJIOWl/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1996 Theory of Machines - Analysis of Plane Mechanisms Question 32 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2$$ rad/s "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.5$$ rad/s "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.5$$ rad/s "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.75$$ rad/s "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-rod-of-length-1-m-is-sliding-in-a-corner-as-shown-in-fig27-gate-me-1996-marks-2-rhfmiqceugo56xnn.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0oJWIo4o1srgMX01",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "gears-and-gear-trains",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Below Fig  show a planetary gear train. Gears 2, 4 and 5 have 24, 40 and 144 teeth respectively. Gear 5 is fixed. Gear 2 is rotating clockwise at 700 rpm. What will be the rpm of the arm and gear 4?\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/8LTXRqzHpqjq5DHGs/F3UfM7aJKuQAGYGtdAiuCzq6evW0d/FEila32uxPnjHctsL9nZHh/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1996 Theory of Machines - Gears and Gear Trains Question 6 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "RPM of arm = 100 rpm\n<br>RPM of gear 4 = 460 rpm",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "below-fig-show-a-planetary-gear-train-gears-2-4-and-5-have-2-gate-me-1996-marks-5-0ojwio4o1srgmx01.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cepeYa2NV1nVqFY7",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vibrations",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A mass of $$1$$ kg is suspended by means of $$3$$ springs as shown in Figure. The spring constants $$\\,{K_1},\\,{K_2}\\,\\,$$ and $$\\,{K_3},$$ are respectively $$1$$ $$kN/m,$$ $$3$$ $$kN/m$$ and $$2$$ $$kN/m.$$ The natural frequency of the system is approximately  )\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/hdFJ3zUkvoc69HZlF/aBG1py7vl3J0XHiUPygRvO12stlSH/0KtWnqwJ2uAJunvRAbIspH/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1996 Theory of Machines - Vibrations Question 50 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$46.90$$ rad/sec"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$52.44$$ rad/sec "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$60.55$$ rad/sec "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$77.46$$ rad/sec "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-mass-of-1-kg-is-suspended-by-means-of-3-springs-as-shown-i-gate-me-1996-marks-2-cepeya2nv1nvqfy7.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QbOjQcIGoZps0AMj",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vibrations",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A cylinder of mass 1 kg and radius 1 m is connected by two identical springs at a height of $$0.5m$$ above the center as shown in the Fig. The cylinder rolls without slipping. If the spring constant is $$30$$ $$kN/m$$ for each spring, find the natural frequency of the system for small oscillations. \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/Ti3MDVo8IjsKlrE5u/RHQLTm4VwmxAgXHnh5aCBrlEA28hK/v3s29IvkoYed5Oh6yDbBrk/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1996 Theory of Machines - Vibrations Question 10 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Natural Frequency $$= 47.74$$  $$Hz$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cylinder-of-mass-1-kg-and-radius-1-m-is-connected-by-two-i-gate-me-1996-marks-5-qbojqcigozps0amj.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                }
+            ],
+            "title": "Theory of Machines"
+        },
+        {
+            "_id": "Thermodynamics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kpoUfmuLCSymereK",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "properties-of-pure-substances",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "When wet steam flows through a throttle valve and remains wet at exit",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Its temperature and quality increases"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Its temperature decreases but quality increases "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Its temperature increases but quality decreases "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Its temperature and quality decreases "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "when-wet-steam-flows-through-a-throttle-valve-and-remains-we-gate-me-1996-marks-1-kpoufmulcsymerek.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "eIAsZNFjdFkeASnI",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-concepts-and-zeroth-law",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The specific heats of an ideal gas depend on its",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Temperature "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Pressure "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Volume"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Molecular weight and structure "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-specific-heats-of-an-ideal-gas-depend-on-its-gate-me-1996-marks-1-eiasznfjdfkeasni.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cQv4x9CxlgGwj1JM",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-concepts-and-zeroth-law",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<b>Match List - $${\\rm I}$$ with List - $${\\rm II}$$</b>\n<p><b>List - $${\\rm I}$$</b>\n<br>$$A.$$ Cetane number \n<br>$$B.$$ Approach and range\n<br>$$C.$$ $${\\left( {{{\\delta T} \\over {\\delta P}}} \\right)_h} \\ne 0$$\n<br>$$D.$$ $$dh = {c_p}\\,\\,dT,$$ even when pressure varies</p>\n<p><b>List - $${\\rm II}$$</b>\n<br>$$1.$$ Ideal gas\n<br>$$2.$$ Vander Waals gas\n<br>$$3.$$ $$S.\\,{\\rm I}.$$ engine\n<br>$$4.$$ $$C.\\,{\\rm I}.$$ engine\n<br>$$5.$$ Cooling towers\n<br>$$6.$$ Heat exchangers</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$A - 4,\\,\\,B - 5,\\,\\,C - 2,\\,\\,D - 1$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-list-rm-i-with-list-rm-iilist-rm-ia-cetane-number-b-ap-gate-me-1996-marks-2-cqv4x9cxlggwj1jm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BPdJnzzEgQDBht8l",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculation-of-work-and-heat",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For reversible adiabatic compression in a steady flow process, the work transfer per unit mass is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\int {Pdv} $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\int {vdP} $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\int {Tds} $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\int {sdT} $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-reversible-adiabatic-compression-in-a-steady-flow-proces-gate-me-1996-marks-1-bpdjnzzegqdbht8l.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8QQS0gtp8LxmNThu",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "second-law-of-thermodynamics",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A solar energy based heat engine which receives $$80$$ $$kJ$$ of heat at $${100^ \\circ }C$$ and rejects $$70$$ $$kJ$$ of heat to the ambient at $${30^ \\circ }C$$ is to be designed. The thermal efficiency of the heat engine is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$70\\% $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$18.8\\% $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$12.5\\% $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Indeterminate"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-solar-energy-based-heat-engine-which-receives-80-kj-of-hea-gate-me-1996-marks-2-8qqs0gtp8lxmnthu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "L3Lm54JQWGJOgUVk",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "second-law-of-thermodynamics",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For two cycles coupled in series, the topping cycle has an efficiency of $$30\\% $$ and the bottoming cycle has an efficiency of $$20\\% $$. The overall combined cycle efficiency is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$50\\% $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$44\\% $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$38\\% $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$55\\% $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-two-cycles-coupled-in-series-the-topping-cycle-has-an-ef-gate-me-1996-marks-2-l3lm54jqwgjoguvk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2xict1ZzU9TXLjIz",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "entropy-and-irreversibility",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An iron cube at a temperature of $$400$$ deg $$C$$ is dropped into an insulated bath containing $$10$$ $$kg$$ water at $${25^ \\circ }C.$$ The water finally reaches a temperature of $${50^ \\circ }C$$ at steady state. Given that the specific heat of water is equal to $$4186$$ $$J/kgK,$$ find the entropy changes for the iron cube and the water. Is the process irreversible ? If so, why? ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Entropy change for iron $$=-2.195$$ $${{kJ} \\over K}$$ \n<br>Entropy change for water $$=3.37$$ $${{kJ} \\over K}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-iron-cube-at-a-temperature-of-400-deg-c-is-dropped-into-a-gate-me-1996-marks-5-2xict1zzu9txljiz.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yghThrb3wydDeF03",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "rankine-cycle",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A steam plant has the boiler efficiency of $$92\\% $$, turbine efficiency (mechanical) of $$94\\% $$, generator efficiency of $$92\\% $$ and cycle efficiency of $$44\\% $$. If $$6\\% $$ of the generated power is used to run the auxiliaries, the overall plant efficiency is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$34\\% $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$39\\% $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$45\\% $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$30\\% $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-steam-plant-has-the-boiler-efficiency-of-92-turbine-effici-gate-me-1996-marks-2-yghthrb3wyddef03.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                }
+            ],
+            "title": "Thermodynamics"
+        },
+        {
+            "_id": "Turbo Machinery",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "B7mETUA08tu8chgr",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "turbo-machinery",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "turbo-machinery",
+                    "year": 1996,
+                    "paperTitle": "GATE ME 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a hydroelectric station, water is available at the rate of $$175{m^3}/s$$ under a head of $$18m.$$ The turbines run at a speed of $$150$$ $$rpm$$ with overall efficiency of $$82\\% $$. Find the number of turbines required if they have the maximum specific speed of $$460.$$ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$2$$ turbines required. ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-hydroelectric-station-water-is-available-at-the-rate-of-gate-me-1996-marks-5-b7metua08tu8chgr.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1996"
+                }
+            ],
+            "title": "Turbo Machinery"
+        }
+    ]
+}

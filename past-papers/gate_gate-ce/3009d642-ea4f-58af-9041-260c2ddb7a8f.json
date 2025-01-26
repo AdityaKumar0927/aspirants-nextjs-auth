@@ -1,0 +1,2231 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cRsbcf3hlBQg0GmP",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The line integral $$\\int {\\,\\,V.dr\\,\\,} $$ of the vector function $$V\\left( r \\right) = 2xyz\\widehat i + {x^2}z\\widehat j + {x^2}y\\widehat k\\,\\,$$ from the origin to the point $$P(1,1,1)$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "is $$1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "is zero "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "is $$-1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "cannot be determined without specifying the path"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-line-integral-int-vdr-of-the-vector-function-vleft-r-rig-gate-ce-2005-marks-2-crsbcf3hlbqg0gmp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "P79NXcwqUl9DZPCU",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a non-homogeneous system of linear equations represents mathematically an over determined system. Such a system will be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Consistent having a unique solution "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Consistent having many solutions."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Inconsistent having a unique solution."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "none "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-non-homogeneous-system-of-linear-equations-repres-gate-ce-2005-marks-1-p79nxcwqul9dzpcu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LVwRAwlbGDApzO6m",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following system of equations in three real variable $${x_1},$$ $${x_2}$$ and $${x_3}:$$\n$$$2{x_1} - {x_2} + 3{x_3} = 1$$$\n$$$3{x_1} + 2{x_2} + 5{x_3} = 2$$$\n$$$ - {x_1} + 4{x_2} + {x_3} = 3$$$\n<p>This system of equations has</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "no solution "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a unique solution "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "more then one but a finite number of solutions."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "an infinite number of solutions."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-system-of-equations-in-three-real-var-gate-ce-2005-marks-1-lvwrawlbgdapzo6m.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Y8VBTAYBMtejjzEl",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the matrices $$\\,{X_{4x3,}}\\,\\,{Y_{4x3}}$$ $$\\,\\,{P_{2x3}}.$$ The order of  $$\\,{\\left[ {P{{\\left( {{X^T}Y} \\right)}^{ - 1}}{P^T}} \\right]^T}$$ will be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2 \\times 2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3 \\times 3$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\,4 \\times 3\\,$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\,3 \\times 4\\,$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-matrices-x4x3y4x3-p2x3-the-order-of-left-pleft-gate-ce-2005-marks-1-y8vbtaybmtejjzel.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PeDGVMcogvKopIhs",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the system of equations, $${A_{nxn}}\\,\\,{X_{nx1}}\\,\\, = \\lambda \\,{X_{nx1}}$$ where $$\\lambda $$ is a scalar. Let $$\\left( {{\\lambda _i},\\,\\,{X_i}} \\right)$$ be an eigen value and its corresponding eigen vector for real matrix $$A$$. Let $${{\\rm I}_{nxn}}$$ be unit matrix. Which one of the following statement is not correct? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "For a homogeneous $$nxn$$ system of linear equations $$\\left( {A - \\lambda {\\rm I}} \\right)X = 0,$$ having a non trivial solution, the rank of $$\\left( {A - \\lambda {\\rm I}} \\right)$$ is less then $$n.$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "For matrix  $${A^m},$$  $$m$$ being a positive integer, $$\\left( {{\\lambda _i}^m,\\,{X_i}^m} \\right)$$ will be eigen pair for all $$i.$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "If $${A^T} = {A^{ - 1}}$$ then $$\\left| {{\\lambda _i}} \\right| = 1$$ for all $$i.$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "If $${A^T} = A$$ then $${{\\lambda _i}}$$ are real for all $$i.$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-system-of-equations-anxnxnx1-lambda-xnx1-where-gate-ce-2005-marks-1-pedgvmcogvkopihs.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "r7g3ys25YybN0Te0",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Value of the integral $$\\,\\,\\oint {xydy - {y^2}dx,\\,\\,} $$ where, $$c$$ is the square cut from the first quadrant by the line $$x=1$$ and $$y=1$$ will be (Use Green's theorem to change the line integral into double integral) ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1/2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3/2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$5/3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "value-of-the-integral-oint-xydy-y2dx-where-c-is-the-square-c-gate-ce-2005-marks-2-r7g3ys25yybn0te0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "shv73LUwfY5HrNzj",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Transformation to linear form by substituting $$v = {y^{1 - n}}$$  of the equation $${{dy} \\over {dt}} + p\\left( t \\right)y = q\\left( t \\right){y^n},\\,\\,n &gt; 0$$  will be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{dv} \\over {dt}} + \\left( {1 - n} \\right)pv = \\left( {1 - n} \\right)q$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{dv} \\over {dt}} + \\left( {1 + n} \\right)pv = \\left( {1 + n} \\right)q$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{dv} \\over {dt}} + \\left( {1 + n} \\right)pv = \\left( {1 - n} \\right)q$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{dv} \\over {dt}} + \\left( {1 - n} \\right)pv = \\left( {1 + n} \\right)q$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "transformation-to-linear-form-by-substituting-v-y1-n-of-the-gate-ce-2005-marks-2-shv73luwfy5hrnzj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qw8kI2AInFpUQXhY",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The  solution $${{{d^2}y} \\over {d{x^2}}} + 2{{dy} \\over {dx}} + 17y = 0;$$ $$y\\left( 0 \\right) = 1,{\\left( {{{d\\,y} \\over {d\\,x}}} \\right)_{x = {\\raise0.5ex\\hbox{$\\scriptstyle \\pi $}\n\\kern-0.1em/\\kern-0.15em\n\\lower0.25ex\\hbox{$\\scriptstyle 4$}}}} = 0\\,\\,$$  in the range $$0 &lt; x &lt; {\\pi  \\over 4}$$ is given  by ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${e^{ - x}}\\left[ {\\cos \\,4x + {1 \\over 4}\\sin \\,4x} \\right]$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${e^x}\\left[ {\\cos \\,4x - {1 \\over 4}\\sin \\,4x} \\right]$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${e^{ - 4x}}\\left[ {\\cos \\,4x - {1 \\over 4}\\sin \\,x} \\right]$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${e^{ - 4x}}\\left[ {\\cos \\,4x - {1 \\over 4}\\sin \\,4x} \\right]$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-solution-d2y-over-dx2-2dy-over-dx-17y-0-yleft-0-right-1l-gate-ce-2005-marks-2-qw8ki2ainfpuqxhy.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vPYk8x95qIdSyKPB",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following is not true for the complex number z<sub>1</sub> and z<sub>2</sub> ?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{{z_1}} \\over {{z_2}}} = {{{z_1}\\overline {{z_2}} } \\over {{{\\left| {{z_2}} \\right|}^2}}}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left| {{z_1}\\, + \\,\\,{z_2}} \\right| \\le \\,\\left| {{z_1}} \\right|\\, + \\,\\left| {{z_2}} \\right|$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left| {{z_1}\\, + \\,\\,{z_2}} \\right| \\le \\,\\left| {\\left| {{z_1}} \\right|\\, - \\,\\left| {{z_2}} \\right|} \\right|$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\left| {{z_1}\\, + \\,\\,{z_2}} \\right|^2}\\, + \\,{\\left| {{z_1}\\, - \\,\\,{z_2}} \\right|^2} = \\,\\,2{\\left| {{z_1}} \\right|^2}\\, + \\,2{\\left| {{z_2}} \\right|^2}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-is-not-true-for-the-complex-numbe-gate-ce-2005-marks-1-vpyk8x95qidsykpb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nk72wE04fAp8tuO6",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider likely applicability of Cauchy's Integral theorem to evaluate the following integral counterclockwise  around the unit circle  C.\n<br><br>$$I\\, = \\,\\oint\\limits_C {\\sec z\\,dz} $$, z being a complex variable. The value of I will be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "I = 0 ; Singularities set = $$\\phi $$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "I = 0 ; Singularities set = $$\\left\\{ { \\pm {{\\left( {2n + 1} \\right)} \\over 2}\\pi \\,\\,;\\,n = 0,1,2,.....} \\right\\}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "I = 0 ; Singularities set = $$\\left\\{ { \\pm \\,n\\pi \\,\\,;\\,n = 0,1,2,.....} \\right\\}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-likely-applicability-of-cauchys-integral-theorem-to-gate-ce-2005-marks-2-nk72we04fap8tuo6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "o50ZKFZqlfanv8QO",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given $$a&gt;0,$$ we wish to calculate it reciprocal value $${1 \\over a}$$ by using Newton - Raphson method for $$f(x)=0.$$ The Newton - Raphson algorithm for the function will be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${X_{k + 1}} = {1 \\over 2}\\left( {{X_k} + {a \\over {{X_k}}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${X_{k + 1}} = {X_k} + {a \\over 2}X_k^2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${X_{k + 1}} = 2{X_k} - aX_k^2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${X_{k + 1}} = 2{X_k} - {a \\over 2}X_k^2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-a0-we-wish-to-calculate-it-reciprocal-value-1-over-a-b-gate-ce-2005-marks-1-o50zkfzqlfanv8qo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "G9eWphhUgx1wXfEL",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given $$a&gt;0,$$ we wish to calculate its reciprocal value $${1 \\over a}$$ by using Newton - Raphson method for $$f(x)=0.$$ For $$a=7$$ and starting with $${x_0} = 0.2\\,\\,$$ the first two iterations will be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.11,$$ $$0.1299$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.12,$$ $$0.1392$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.12,$$ $$0.1416$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.13,$$ $$0.1428$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-a0-we-wish-to-calculate-its-reciprocal-value-1-over-a-gate-ce-2005-marks-2-g9ewphhugx1wxfel.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pkLboEB16I0i8Jyd",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Laplace transform of a function $$f(t)$$ is \n$$$F\\left( s \\right) = {{5{s^2} + 23s + 6} \\over {s\\left( {{s^2} + 2s + 2} \\right)}}$$$\n<br>As $$t \\to  \\propto ,\\,\\,f\\left( t \\right)$$ approaches",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$5$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$17/2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ \\propto $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-laplace-transform-of-a-function-ft-is-fleft-s-right-5s2-gate-ce-2005-marks-1-pklboeb16i0i8jyd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "eZ32iExn6yIxX4UF",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Laplace transform of $$f\\left( t \\right) = \\cos \\left( {pt + q} \\right)$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{s\\,\\cos \\,q - p\\,\\sin \\,q} \\over {{s^2} + {p^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{s\\,\\cos \\,q - p\\,\\sin \\,q} \\over {{s^2} + {p^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{s\\,\\sin \\,q - p\\,\\cos \\,q} \\over {{s^2} + {p^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{s\\,\\sin \\,q + p\\,\\cos \\,q} \\over {{s^2} + {p^2}}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "laplace-transform-of-fleft-t-right-cos-left-pt-q-right-is-gate-ce-2005-marks-2-ez32iexn6yixx4uf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Environmental Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2e376394852",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "environmental-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "quality-control-of-water",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "1 TCU is equivalent to color produced by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1 mg/L of chloroplatinate ion"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1 mg/L of platinum ion"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1 mg/L of Platinum in the form of chloroplatinate ion"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1 mg/L of organo-chloroplatinate ion"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "1-tcu-is-equivalent-to-color-produced-by-gate-ce-2005-marks-1-5a2e376394852.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2e3afc4cc50",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "environmental-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "quality-control-of-water",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If tomato juice is having a pH of 4.1, the hydrogen ion concentration will be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "10.94 x $$10^{-5}$$ mol/l"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "9.94 x $$10^{-5}$$ mol/l"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "8.94 x $$10^{-5}$$ mol/l"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "7.94 x $$10^{-5}$$ mol/l"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-tomato-juice-is-having-a-ph-of-41-the-hydrogen-ion-concen-gate-ce-2005-marks-2-5a2e3afc4cc50.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                }
+            ],
+            "title": "Environmental Engineering"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rAqKzNTH1Kc3aNyv",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-collapse-compression",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A rectangular column section of $$250\\,\\,mm \\times 400\\,mm$$ is reinforced with five steel bars of grade $$Fe$$ $$500,$$ each of $$20$$ $$mm$$ diameters. Concrete mix is $$M30.$$ Axial load on the column section with minimum eccentricity as per $$IS: 456$$ - $$2000$$ using limit state method can be applied upto\n ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1707.37$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1805.30$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1806.40$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1903.7$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-rectangular-column-section-of-250mm-times-400mm-2005-marks-2-raqkznth1kc3anyv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "n6e9KLpnUWA1hGD2",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "prestressed-concrete",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$IS:$$ $$1343 \u2013 1980$$ limits the minimum characteristic strength of pre-stressed concrete for post tensioned works and pretension work as",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "25MPa, 30MPa respectively "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "25MPa, 35MPa respectively "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "30MPa, 35MPa respectively "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$30$$ $$MPa,$$ $$40$$ $$MPa$$ respectively  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "is-1343-1980-limits-the-minimum-characteristic-2005-marks-1-n6e9klpnuwa1hgd2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "R09LVPc27HSoL4P5",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "prestressed-concrete",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "As per Indian standard code of practice for prestressed concrete $$(IS:1343-1980)$$ the minimum grades of concrete to be used for post-tensioned and pre-tensioned structural elements are respectively",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$M20$$ for both "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$M40$$ and $$M30$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$M15$$ and $$M20$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$M30$$ and $$M40$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "as-per-indian-standard-code-of-practice-for-prestressed-conc-2005-marks-1-r09lvpc27hsol4p5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2O4vmSyuxSYWK2I2",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "prestressed-concrete",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A concrete beam of rectangular cross section of $$200\\,\\,mm \\times 400\\,\\,mm$$ is pre-stressed with a force $$400$$ $$kN$$ at eccentricity $$100$$ $$mm.$$ the maximum compressive stress in the concrete is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$12.5\\,\\,N/m{m^2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$7.5\\,\\,N/m{m^2}$$  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$5.0\\,\\,N/m{m^2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2.5\\,\\,N/m{m^2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-concrete-beam-of-rectangular-cross-section-of-200mm-2005-marks-2-2o4vmsyuxsywk2i2.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1acdf0ad607",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The partial factor of safety for concrete as per IS: 456-2000 is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1.50"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1.15"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0.87"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0.446"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-partial-factor-of-safety-for-concrete-as-per-is-456-2000-gate-ce-2005-marks-1-5a1acdf0ad607.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1ace9da57af",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The flexural strength of M30 concrete as per IS: 456-2000 is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "3.83 MPa"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "5.47 MPa"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "21.23 MPa"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "30.0 MPa"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-flexural-strength-of-m30-concrete-as-per-is-456-2000-is-gate-ce-2005-marks-1-5a1ace9da57af.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Steel Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KHkJiA19v0V2c9EG",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welded-connections",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A fillet-welded joint of $$6$$ $$mm$$ size is shown in the figure. The welded surfaces meet at $$60$$ - $$90$$ degree and permissible stress in the fillet weld is $$108$$ $$MPa.$$ The safe load that can be transmitted by the joint is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/5N3l0H5ntMSXlYQqS/uaeqCm6j3ngaTUTjvJUvtIfTezzoc/g0fFs6hVao49WihcBXaNY2/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2005 Steel Structures - Welded Connections Question 9 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$162.7$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$151.6$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$113.4$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$109.5$$ $$kN$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-fillet-welded-joint-of-6-mm-size-is-shown-in-the-f-2005-marks-2-khkjia19v0v2c9eg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bzkkDkQNPxAv9Fs1",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "tension-members",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The permissible stress in axial tension in steel member on the net  effective area of the section shall not exceed the following value ($${{f_y}}$$ is the yield stress) ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.80$$ $${{f_y}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.75$$ $${{f_y}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.60$$ $${{f_y}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.50$$ $${{f_y}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-permissible-stress-in-axial-tension-in-steel-member-on-t-2005-marks-1-bzkkdkqnpxav9fs1.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5XKh9Z2bYz86hBDD",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "beams",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following is NOT correct for steel sections as per $$IS:$$  $$800-1984$$?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The maximum bending stress in tension or in compression in extreme fibre calculated on the effective section of a beam shall not exceed $$0.66\\,\\,{f_y}.$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The bearing stress in any part of a beam when calculated on the net area shall not exceed $$0.75\\,\\,{f_y}.$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The direct stress in compression on the gross sectional area of axial loaded compression member shall not exceed $$0.6\\,\\,{f_y}.$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of these  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-is-not-correct-for-steel-sections-as-2005-marks-1-5xkh9z2byz86hbdd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "p6VsNYa508cGV8A1",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "beams",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An unstiffened web $${\\rm I}$$ section is fabricated from a $$10$$ $$mm$$ thick plate by fillet welding as shown in the figure. If yield stress of steel is $$250$$ $$MPa,$$ the maximum shear load that section can take is\n <img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/kEeQpgE4DISOSZ3pj/ucA8F1lHPS4tRzidn4v46H3L0qx4x/ijcXonUYMF5qsd6mKL2mUN/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2005 Steel Structures - Beams Question 6 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$750$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$350$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$337.5$$ $$kN$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$300$$ $$kN$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-unstiffened-web-rm-i-section-is-fabricated-from-a-2005-marks-1-p6vsnya508cgv8a1.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                }
+            ],
+            "title": "Steel Structures"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Il9muyuJCc1k0vzI",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-stress",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The components of strain tensor at a point in the plane strain case can be obtained by measuring longitudinal strain in following directions.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Along any two arbitrary directions "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Along any three arbitrary directions "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Along two mutually orthogonal directions "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Along any arbitrary direction  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-components-of-strain-tensor-at-a-point-in-the-plane-stra-2005-marks-1-il9muyujcc1k0vzi.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "T6Uvs43zHwCyjfQH",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-force-and-bending-moment",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The bending Moment diagram for a beam is given below:\n <img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/jswCOwJA4RlGy4QW3/xKbClaidXasWnjfDg8LzhhkQaz45Z/YAffyg5KNJOh1KSg9QUJgm/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2005 Strength of Materials Or Solid Mechanics - Shear Force and Bending Moment Question 19 English\"> \n<p>The shear force at sections $$aa'$$ and $$bb'$$ respectively are of the magnitude</p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$100$$ $$kN$$, $$150$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "zero $$10$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "zero, $$50$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$100$$ $$kN$$, $$100$$ $$kN$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-bending-moment-diagram-for-a-beam-is-given-below-the-2005-marks-2-t6uvs43zhwcyjfqh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "f22RkHCIx8KsShkl",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-stress-in-beams",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If a beam of rectangular cross-section is subjected  to a vertical shear force $$V,$$ the shear force carried by the upper one-third of the cross-section is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{7V} \\over {27}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{8V} \\over {27}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${V \\over 3}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-a-beam-of-rectangular-cross-section-is-subjected-to-a-ve-2005-marks-2-f22rkhcix8ksshkl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vTPM1eCMeaxxbCMs",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "torsion",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A circular shaft shown in the figure is subject to torsion $$T$$ at two points $$A$$ and $$B.$$ The torsional rigidity of portions $$CA$$ and $$BD$$ is  $$G{J_1}$$ and that portion $$AB$$ is $$G{J_2}$$. The rotations of shaft at points $$A$$ and $$B$$ are $${\\theta _1}$$ and $${\\theta _2}$$. The rotation $${\\theta _1}$$ is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/nA7WUPN25LmRpWVJF/d1NLbmePUxB9HbvOwIeV2MRLCvgzE/T0ldt0CcN0EnbjV95hxTtc/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2005 Strength of Materials Or Solid Mechanics - Torsion Question 11 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{TL} \\over {G{J_1} + G{J_2}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{TL} \\over {G{J_1}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{TL} \\over {G{J_2}}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{TL} \\over {G{J_1} - G{J_2}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-circular-shaft-shown-in-the-figure-is-subject-to-torsion-2005-marks-2-vtpm1ecmeaxxbcms.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GqCnPohk19Mp0U6q",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "columns-and-struts",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The maximum tensile stress at the section $$X$$ - $$X$$ shown in the figure below is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/fzadZu0Dv5fnTUO8W/Z07b67n03jrQRdMdxBJ08P8ffPJno/BpGwlgkJMfX1xbOxj0US1l/image.png\" loading=\"lazy\" alt=\"GATE CE 2005 Strength of Materials Or Solid Mechanics - Columns and Struts Question 8 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{8P} \\over {bd}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{6P} \\over {bd}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{4P} \\over {bd}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{2P} \\over {bd}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-maximum-tensile-stress-at-the-section-x-x-show-2005-marks-2-gqcnpohk19mp0u6q.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LodJ2gZDfuPQX33j",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-stress",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The symmetry of stress tensor at a point in the body under equilibrium is obtained from",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Conservation of mass "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Force equilibrium equations "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Moment equilibrium equations "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Conservation of energy  "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-symmetry-of-stress-tensor-at-a-point-in-the-body-under-e-2005-marks-1-lodj2gzdfupqx33j.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8QyenYIZa5MWm2Q2",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "All members of the frame shown below have the same flexural rigidity $$EI$$ and length $$L.$$ If a moment $$M$$ is applied at joint $$B,$$ the rotation of the joint is  \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/GsOP2pYwHcTelEHrp/224vXDazpHFmdIjWsyXoYKCzXzzUR/LhqzJVVdo9i5lxooyvLAje/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2005 Structural Analysis - Moment Distribution Method Question 22 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{ML} \\over {12EI}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{ML} \\over {11EI}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{ML} \\over {8EI}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{ML} \\over {7EI}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "all-members-of-the-frame-shown-below-have-the-same-flexural-2005-marks-2-8qyenyiza5mwm2q2.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JG8JtcXjSUA2oZsz",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "indeterminacy",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Considering beam as axially rigid, the degree of freedom of a plane frame shown below is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/qAO5C6MsYuUZdhYup/lKQAEmR05yqscNq3eiaE6lMgmnsJs/v36ydk4f5epQdxcBqJVXMq/image.png\" loading=\"lazy\" alt=\"GATE CE 2005 Structural Analysis - Indeterminacy Question 9 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$9$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$8$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$7$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$6$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "considering-beam-as-axially-rigid-the-degree-of-freedom-of-2005-marks-1-jg8jtcxjsua2ozsz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kd9G77K9vA0QNd6K",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "methods-of-analysis",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match List - $${\\rm I}$$ with List - $${\\rm II}$$ and select the correct answer using the codes given below the lists : \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/edpTlGW4rnQGUS3jv/oJMDrBEo5qmAXBbxAukDoNSn5uBnm/WD7gPXzyYXrlUG4UOfbtGA/image.png\" loading=\"lazy\" alt=\"GATE CE 2005 Structural Analysis - Methods of Analysis Question 3 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$A - 1,\\,\\,B - 2,\\,\\,C - 1,\\,\\,D - 2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$A - 1,\\,\\,B - 1,\\,\\,C - 2,\\,\\,D - 2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$A - 2,\\,\\,B - 2,\\,\\,C - 1,\\,\\,D - 1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$A - 2,\\,\\,B - 1,\\,\\,C - 2,\\,\\,D - 1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-list-rm-i-with-list-rm-ii-and-select-2005-marks-2-kd9g77k9va0qnd6k.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UMRZLxDMBFa5BRxN",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "energy-principle",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A truss is shown in the figure. Members are to equal cross section $$A$$ and same modulus of elasticity $$E.$$ $$A$$ vertical force $$P$$ is applied at point $$C.$$ \n  <img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/zY7gFL6e2gI4Isqro/yS8fwDZYI4X9JrLUHJ1SX9YDfxrx8/B47i05Mo6upj1Drb03K645/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2005 Structural Analysis - Energy Principle Question 11 English\">  \n<p>Deflection of the point $$C$$ is </p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {{{2\\sqrt 2  + 1} \\over 2}} \\right){{PL} \\over {EA}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\sqrt 2 {{PL} \\over {EA}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {2\\sqrt 2  + 1} \\right){{PL} \\over {EA}}$$  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {\\sqrt 2  + 1} \\right){{PL} \\over {EA}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-truss-is-shown-in-the-figure-members-are-to-equal-cross-s-2005-marks-2-umrzlxdmbfa5brxn.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VOToJTFj245tUjoR",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "energy-principle",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A truss is shown in the figure. Members are to equal cross section $$A$$ and same modulus of elasticity $$E.$$ $$A$$ vertical force $$P$$ is applied at point $$C.$$ \n  <img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/zY7gFL6e2gI4Isqro/yS8fwDZYI4X9JrLUHJ1SX9YDfxrx8/B47i05Mo6upj1Drb03K645/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2005 Structural Analysis - Energy Principle Question 12 English\"> \n<p>Force in the member $$AB$$ of the truss is </p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${P \\over {\\sqrt 2 }}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${P \\over {\\sqrt 3 }}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${P \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-truss-is-shown-in-the-figure-members-are-to-equal-cross-s-2005-marks-2-votojtfj245tujor.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ac5pIgNz8AwbnZ62",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A cantilever beam of length $$l,$$ width $$b$$ and depth $$d$$ is loaded with a concentrated vertical load at the tip. If yielding starts at a load $$P,$$ the collapse load shall be\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2.0$$ $$P$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.5$$ $$P$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.2$$ $$P$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cantilever-beam-of-length-l-width-b-and-depth-d-2005-marks-2-ac5pignz8awbnz62.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                }
+            ],
+            "title": "Structural Analysis"
+        },
+        {
+            "_id": "Transportation Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a329aa42bfca",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "transportation-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "highway-devolopment-and-planning",
+                    "year": 2005,
+                    "paperTitle": "GATE CE 2005",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Pradhan Mantri Gram Sadak Yojana (PMGSY), launched in the year 2000 aims to provide rural connectivity with all weather roads. It is proposed to connect the habitations and plain areas of populations more than 500 persons by the year",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2005"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2007"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2010"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2012"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "pradhan-mantri-gram-sadak-yojana-pmgsy-launched-in-the-year-gate-ce-2005-marks-1-5a329aa42bfca.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2005",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2005"
+                }
+            ],
+            "title": "Transportation Engineering"
+        }
+    ]
+}

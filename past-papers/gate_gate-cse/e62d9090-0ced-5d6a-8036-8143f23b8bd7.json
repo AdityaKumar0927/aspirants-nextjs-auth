@@ -1,0 +1,2987 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Algorithms",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MKiN0nk0GLUJqvSf",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complexity-analysis-and-asymptotic-notations",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the worst case, the number of comparisons needed to search a singly linked list of length n for a given element is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "log n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "n/2"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Log<sub>2</sub> n - 1"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "n"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-worst-case-the-number-of-comparisons-needed-to-search-gate-cse-2002-marks-1-mkin0nk0glujqvsf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SVJgUzQlr1rIuEEH",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complexity-analysis-and-asymptotic-notations",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following algorithm for searching for a given number x in an unsorted array A[1..n] having n distinct values:<br>\n1. Choose an i uniformly at random fro 1..n;<br>\n2. If A[i]=x then stop else Goto 1;<br>\nAssuming that x is present A, what is the expected number of comparisons made by the algorithm before it terminates?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "n-1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2n"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "n/2"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-algorithm-for-searching-for-a-given-n-gate-cse-2002-marks-2-svjguzqlr1riueeh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ClKe3Gjfw7YQqwS2",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complexity-analysis-and-asymptotic-notations",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The running time of the following algorithm Procedure A(n)<br>\nIf n&lt;=2 return (1) else return (A([$$\\sqrt n $$]));\nis best described by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "O(n)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "O(log n)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "O(log log n)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "O(1)"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-running-time-of-the-following-algorithm-procedure-anif-n-gate-cse-2002-marks-2-clke3gjfw7yqqws2.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "k7yUtDV9wHDsb1I3",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "divide-and-conquer-method",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The solution to the recurrence equation <br> T(2<sup>k</sup>) = 3 T(2<sup>k-1</sup>) + 1, T (1) = 1, is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2<sup>k</sup>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "(3<sup>k+1</sup> - 1)/2"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "3<sup> log</sup> 2K"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2<sup> log</sup> 3K"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-solution-to-the-recurrence-equation-t2k-3-t2k-1-1-t-1-1-gate-cse-2002-marks-1-k7yutdv9whdsb1i3.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                }
+            ],
+            "title": "Algorithms"
+        },
+        {
+            "_id": "Computer Organization",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yAytO8KpB3xMYgl9",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "machine-instructions-and-addressing-modes",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following is not a form of memory?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Instruction cache"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Instruction register "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Instruction opcode"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Translation look aside buffer"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-is-not-a-form-of-memory-gate-cse-2002-marks-1-yayto8kpb3xmygl9.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oLzK0UlaoDWab7xZ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "computer-arithmetic",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Sign extension is the step in",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Floating point multiplication"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Signed $$16$$ bit integer addition "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Arithmetic left shift "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Converting a signed integer from one size to another "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "sign-extension-is-the-step-in-gate-cse-2002-marks-2-olzk0ulaodwab7xz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qMgeSHBXcjnK5kZt",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pipelining",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The performance of a pipelined processor suffers if",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The pipeline stages have different delays"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Consecutive instructions are depend on each other"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The pipeline stages share single hardware resources"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "All of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-performance-of-a-pipelined-processor-suffers-if-gate-cse-2002-marks-2-qmgeshbxcjnk5kzt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ce0HBBguhl626lxe",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "computer-arithmetic",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In $$2\u2019s$$ complement addition, the overflow",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "is flagged whenever there is carry from sign bit addition "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "cannot occur when $$a$$ $$+$$ $$ve$$ value is added to $$a$$ $$-$$ $$ve$$ value "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "is flagged when the carries from sign bit and previous bit match "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-2s-complement-addition-the-overflow-gate-cse-2002-marks-1-ce0hbbguhl626lxe.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qO8BR1yJ8p8V9Mdv",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "machine-instructions-and-addressing-modes",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In absolute addressing mode ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "the operand is inside the instruction "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the address of the operand is inside the instruction "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the register containing the address of the operand is specified inside the instruction "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "the location of the operand is implicit "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-absolute-addressing-mode-gate-cse-2002-marks-1-qo8br1yj8p8v9mdv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gaeqfDRfiiS57WOp",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "alu-data-path-and-control-unit",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Horizontal micro programming ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "does not require use of signal decoders."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Results in larger sized micro instructions then vertical micro programming"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Uses one bit for each control signal "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "All of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "horizontal-micro-programming-gate-cse-2002-marks-2-gaeqfdrfiis57wop.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xDADAlsUeqkZwtgb",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "io-interface",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In serial data transmission, every byte of data is padded with a $$\u20180\u2019$$ in the beginning and one or two $$\u20181\u2019s$$ at the end of byte because",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Receiver is to be synchronized for byte reception "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Receiver recovers lost $$\u20180\u2019s$$ and $$\u20181\u2019s$$ from these padded bits"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Padded bits are useful in purity computation "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-serial-data-transmission-every-byte-of-data-is-padded-wit-gate-cse-2002-marks-1-xdadalsueqkzwtgb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                }
+            ],
+            "title": "Computer Organization"
+        },
+        {
+            "_id": "Data Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "02HsQ98LcvSkXT9p",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linked-list",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the worst case, the number of comparisons needed to search a singly linked list of length n for a given element is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "log<sub>2</sub> n "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "n/2 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "log<sub>2</sub> n \u2212 1 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "n"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-worst-case-the-number-of-comparisons-needed-to-search-gate-cse-2002-marks-1-02hsq98lcvskxt9p.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oxMJQn4nsrH7rGCD",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of leaf nodes in a rooted tree of n nodes, with each node having 0 or 3 children is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "n/2 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "(n-1)/3 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "(n-1)/2 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "(2n+1)/3"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-leaf-nodes-in-a-rooted-tree-of-n-nodes-with-ea-gate-cse-2002-marks-2-oxmjqn4nsrh7rgcd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                }
+            ],
+            "title": "Data Structures"
+        },
+        {
+            "_id": "Database Management System",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "eFmjSWkF9fLCKrNa",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "functional-dependencies-and-normalization",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Relation $$R$$ with an associated set of functional dependencies, $$F,$$ is decomposed into $$BCNF.$$ The redundancy (arising out of functional dependencies) in the resulting set of relations is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "More than zero but less than that of an equivalent $$3NF$$ decomposition"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Proportional to the size of $${F^ + }$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Indeterminate "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "relation-r-with-an-associated-set-of-functional-dependencies-gate-cse-2002-marks-1-efmjswkf9flckrna.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DsQMS9ItsYhoFb04",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "functional-dependencies-and-normalization",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "From the following instance of a relation schema $$R(A, B, C),$$ we can conclude that:\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/hk5moBwQsiUXvypUd/Z9AXkbtfbozSEbeGxQMloyFTzr9gT/vKedpQsx1KRJUnhG6pDnAB/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2002 Database Management System - Functional Dependencies and Normalization Question 28 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "A functionally determines $$B$$ and $$B$$ functionally determines $$C$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "A functionally determines $$B$$ and $$B$$ does not functionally determines $$C$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$B$$ does not functionally determines $$C$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "A does not functionally determine $$B$$ and $$B$$ does not functionally determine $$C$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "from-the-following-instance-of-a-relation-schema-ra-b-c-we-c-gate-cse-2002-marks-2-dsqms9itsyhofb04.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SivKvql8Tb34W85q",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "functional-dependencies-and-normalization",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Relation $$R$$ is decomposed using a set of functional dependencies, $$F,$$ and relation $$S$$ is decomposed using another set of functional dependencies, $$G.$$ One decomposition is definitely $$BCNF,$$ the other is definitely. $$3NF,$$ but it is not known which is which. To make a guaranteed identification, which one of the following tests should be used on the decompositions? (Assume that the closures of $$F$$ and $$G$$ are available).",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Dependency-preservation "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Lossless-join "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$BCNF$$ definition"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3$$ $$NF$$ definition"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "relation-r-is-decomposed-using-a-set-of-functional-dependenc-gate-cse-2002-marks-2-sivkvql8tb34w85q.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tzlfXVo2LCqFATxq",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "relational-algebra",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "With regard to the expressive power of the formal relational query languages, which of the following statements is true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Relational algebra is more powerful than relational calculus. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Relational algebra has the same power as relational calculus."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Relational algebra has the same power as safe relational calculus."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "with-regard-to-the-expressive-power-of-the-formal-relational-gate-cse-2002-marks-1-tzlfxvo2lcqfatxq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "soNYJeCv4iheGeJn",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-structures-and-indexing",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A B<sup>+</sup> - tree index is to be built on the Name attribute of the relation STUDENT. Assume that all student names are of length 8 bytes, disk blocks are of size 512 bytes, and index pointers are of size 4 bytes. Given this scenario, what would be the best choice of the degree (i.e. the number of pointers per node) of the B<sup>+</sup> - tree?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "16"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "42"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "43"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "44"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-b-tree-index-is-to-be-built-on-the-name-attribute-of-the-r-gate-cse-2002-marks-2-sonyjecv4ihegejn.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                }
+            ],
+            "title": "Database Management System"
+        },
+        {
+            "_id": "Digital Logic",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "p3flENB5gZj6rcUd",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinational-circuits",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following multiplexer where $$10, 11, 12, 13$$ are four data input lines selected by two address line combinations $${A_1}\\,{A_0} = 00,01,10,11$$ respectively and $$f$$ is the output of the multiplex (or). $$EN$$ is the Enable input.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/tGhn2Ql1paQPD6HFh/K44YLuJIVhuUgHORxXFxusLFIbCTb/WtAgKmyyHwIx7zm9w3hmiA/image.svg\" loading=\"lazy\" alt=\"GATE CSE 2002 Digital Logic - Combinational Circuits Question 15 English\">\n<p>The function $$f(x,y,z)$$ implemented by the above circuit is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$ xyz'$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$ xy+z$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$x+y$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-multiplexer-where-10-11-12-13-are-fou-gate-cse-2002-marks-2-p3flenb5gzj6rcud.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WN5fJw1W0a8tohHv",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "number-systems",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The decimal value $$0.25$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "is equivalent to binary $$0.1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "is equivalent to binary $$0.01$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "is equivalent to binary $$0.00111$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "can not be represented precisely in binary "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-decimal-value-025-gate-cse-2002-marks-1-wn5fjw1w0a8tohhv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fMEm9lnVXAvMLYi2",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "number-systems",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Sign extension is the step in ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Floating point multiplication "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Signed $$16$$ bit integer addition "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Arithmetic left shift "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Converting a signed integer from one size to another."
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "sign-extension-is-the-step-in-gate-cse-2002-marks-1-fmem9lnvxavmlyi2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Qo43B7W3Sk6mqLGP",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "number-systems",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The $$2's$$ compliment representation of the decimal value $$-15$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1111$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$11111$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$111111$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$10001$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-2s-compliment-representation-of-the-decimal-value-15-is-gate-cse-2002-marks-1-qo43b7w3sk6mqlgp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Y8qK9cn5rMFvJbyh",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Transform the following logic circuit (without expressing its switching function) into an equivalent logic circuit that employs only $$6$$ $$NAND$$ gates each with $$2$$-inputs.\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/jsbEBNflQZ44dQPqn/cv3gi2dhX3qYvyA4KvWM76aADHSDT/Jc9ABx1qDhcVHzuWKV5cRN/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2002 Digital Logic - Boolean Algebra Question 36 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "transform-the-following-logic-circuit-without-expressing-its-gate-cse-2002-marks-2-y8qk9cn5rmfvjbyh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "krOJtHfffBB9rvnO",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following logic circuit whose inputs are functions $${f_1},$$ $${f_2},$$ $${f_3},$$ and output is $$f.$$ \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/zQFIEP3emgjj2rWQS/FFxv3g20WzQOmgrqRQLVjrWA9DDaR/hcn71TYKvzZBBxkpHdSbLP/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2002 Digital Logic - Boolean Algebra Question 35 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\sum {\\left( {1,4,5} \\right)} $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\sum {\\left( {6,7} \\right)} $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\sum {\\left( {0,1,3,5} \\right)} $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-logic-circuit-whose-inputs-are-functi-gate-cse-2002-marks-2-krojthfffbb9rvno.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "B5TaBb5PWFHDXcA4",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$f\\left( {A,B} \\right) = A' + B$$ Simplified expression for function $$f((x+y,y),z)$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$(x'+z)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$x\\,y\\,z$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$xy' + \\,z$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "fleft-ab-right-a-b-simplified-expression-for-function-fxyyz-gate-cse-2002-marks-2-b5tabb5pwfhdxca4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7vQy5R7RqewzR0tf",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Express the function $$f( x, y, z)= xy'+ yz'$$ with only one complement operation and one or more $$AND/OR$$ operations. Draw the logic circuit implementing the expression obtained, using a single <b>NOT</b> gate and one or more $$AND/OR$$ gates.  ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "express-the-function-f-x-y-z-xy-yz-with-only-one-complement-gate-cse-2002-marks-5-7vqy5r7rqewzr0tf.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "IwjIlE9SUMwiitxX",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "k-maps",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Minimum $$SOP$$ for $$f(w, x, y, z)$$ shown in karnaugh $$-$$ map below is\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/960EJaeyIzq2S5VXV/tYCoKpTNduJnrX8ebrHQqChj1RhhS/fpsx5y3sZj6KSv08tVJ8Qg/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2002 Digital Logic - K Maps Question 11 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$x\\,z + y'\\,z$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$x\\,z' + z\\,x'$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$x'\\,y + z\\,x'$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "minimum-sop-for-fw-x-y-z-shown-in-karnaugh-map-below-is-gate-cse-2002-marks-1-iwjile9sumwiitxx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                }
+            ],
+            "title": "Digital Logic"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XtaVJOywQnOtotnZ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Four fair coins are tossed simultaneously. The probability that at least one head and one tail turn up is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1/16"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1/8"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "7/8"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "15/16"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "four-fair-coins-are-tossed-simultaneously-the-probability-th-gate-cse-2002-marks-2-xtavjoywqnototnz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AjaySvqhZC8Vil0B",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The binary relation $$S = \\phi $$ (emply set) on set A = {1, 2, 3} is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Neither reflexive nor symmetric"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Symmetric and reflexive"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Transitive and reflexive"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Transitive and symmetric"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-binary-relation-s-phi-emply-set-on-set-a-1-2-3-is-gate-cse-2002-marks-2-ajaysvqhzc8vil0b.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "E5pXyQf3QeJaX3tl",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Determine whether each of the following is a tautology, a contradiction, or neither (\"$$ \\vee $$\" is disjunction, \"$$ \\wedge $$\"   is    conjuction,     \"$$ \\to $$\"   is   implication,    \"$$\\neg $$\"   is    negation,   and   \"$$ \\leftrightarrow $$\"   is    biconditional (if and only if).\n<p>(i)$$\\,\\,\\,\\,\\,\\,A \\leftrightarrow \\left( {A \\vee A} \\right)$$ \n<br>(ii)$$\\,\\,\\,\\,\\,\\,\\left( {A \\vee B} \\right) \\to B$$ \n<br>(iii)$$\\,\\,\\,\\,\\,\\,A \\vee \\left( {\\neg \\left( {A \\vee B} \\right)} \\right)$$</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "determine-whether-each-of-the-following-is-a-tautology-a-con-gate-cse-2002-marks-5-e5pxyqf3qejax3tl.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RQXNTJbd73MxpCzs",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinatorics",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The minimum number of colors required to color the vertices of a cycle with $$n$$ nodes in such a way that no two adjacent nodes have the same  colour is: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$n - 2\\left[ {n/2} \\right] + 2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-minimum-number-of-colors-required-to-color-the-vertices-gate-cse-2002-marks-1-rqxntjbd73mxpczs.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JLyKo8cBDJEaZwpF",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The rank of the matrix$$\\left[ {\\matrix{\n   1 &amp; 1  \\cr \n   0 &amp; 0  \\cr \n\n } } \\right]\\,\\,is$$ \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "4 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-rank-of-the-matrixleft-matrix-1-1-cr-0-0-cr-rightis-gate-cse-2002-marks-1-jlyko8cbdjeazwpf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pfZLrNoONRiK1njg",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Maximum number of edges in a n - node undirected graph without self loops is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${n^2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$n\\left( {n - 1} \\right)/2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$n - 1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {n + 1} \\right)\\left( n \\right)/2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "maximum-number-of-edges-in-a-n-node-undirected-graph-without-gate-cse-2002-marks-1-pfzlrnoonrik1njg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OCp4tfGZTu6HCS3P",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "(a) $$S = \\left\\{ { &lt; 1,2 &gt; ,\\, &lt; 2,1 &gt; } \\right\\}$$ is binary relation on set $$A = \\left\\{ {1,2,3} \\right\\}$$. Is it irreflexive?\n<br>Add the minimumnumber of ordered pairs to $$S$$ to make it an $$\\,\\,\\,\\,\\,$$equivalence relation. Give the modified $$S$$. \n<p>(b) Let $$S = \\left\\{ {a,\\,\\,b} \\right\\}\\,\\,\\,\\,$$ and let \u25a2 $$S$$ be the power set of $$S$$. Consider the binary relation $$'\\underline  \\subset  $$ (set inclusion)' on \u25a2 $$S$$. Draw the Hasse diagram  corresponding to the lattice (\u25a2$$(S)$$, $$\\underline  \\subset  $$)</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a) $$S$$ is irreflexive",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-s-left-12-21-right-is-binary-relation-on-set-a-left-123-ri-gate-cse-2002-marks-5-ocp4tfgztu6hcs3p.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Kz6KpMuO1qye7PlS",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$A$$ be a set of $$n\\left( { &gt; 0} \\right)$$ elements. Let $${N_r}$$ be the number of binary relations on $$A$$ and Let $${N_r}$$ be the number of functions from $$A$$ to $$A$$.\n<br>(a) Give the expression for $${N_r}$$  in terms of $$n$$.\n<br>(b) Give the expression for $${N_f}$$  in terms of $$n$$.\n<br>(c) Which is larger for all possible $$n, $$ $${N_r}$$  or $${N_f}$$? ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a) $${N_r} = {2^{{n^2}}}$$ \n<br>(b) $${N_f} = {n^2}$$\n<br>(c) $${N_r}$$ $$&gt;$$ $${N_f}$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-a-be-a-set-of-nleft-0-right-elements-let-nr-be-the-numbe-gate-cse-2002-marks-5-kz6kpmuo1qye7pls.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "m9YfACTA67OSmLL6",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Obtain the eigen values of the matrix\n$$$A = \\left[ {\\matrix{\n   1 &amp; 2 &amp; {34} &amp; {49}  \\cr \n   0 &amp; 2 &amp; {43} &amp; {94}  \\cr \n   0 &amp; 0 &amp; { - 2} &amp; {104}  \\cr \n   0 &amp; 0 &amp; 0 &amp; { - 1}  \\cr \n\n } } \\right]$$$\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Eigen value of $$A = 1,2, - 2, - 1$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "obtain-the-eigen-values-of-the-matrixa-left-matrix-1-2-34-49-gate-cse-2002-marks-2-m9yfacta67osmll6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "s3VHLX0XwGvz5YDb",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The function $$f\\left( {x,y} \\right) = 2{x^2} + 2xy - {y^3}$$ has ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Only one stationary point at $$(0, 0)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Two stationary points at $$(0, 0)$$ and $$\\left( {{1 \\over 6},{{ - 1} \\over 3}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Two stationary points at $$(0, 0)$$ and $$(1, -1)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "no  stationary points."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-function-fleft-xy-right-2x2-2xy-y3-has-gate-cse-2002-marks-2-s3vhlx0xwgvz5ydb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "v4s0pSLY8f7nt3P7",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "\"If X then Y unless Z\" is represented by which of the following formulas in propositional logic? (\" $$\\neg $$ \" is negation, \" $$ \\wedge $$ \" is conjunction, and \" $$ \\to $$ \" is implication)",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {{\\rm X} \\wedge \\neg Z} \\right) \\to Y$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {X \\wedge Y} \\right) \\to \\neg Z$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\rm X} \\to \\left( {Y \\wedge \\neg Z} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {{\\rm X} \\to Y} \\right) \\wedge \\neg Z$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-x-then-y-unless-z-is-represented-by-which-of-the-followin-gate-cse-2002-marks-1-v4s0psly8f7nt3p7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6VpcJd4K6Dfmc32f",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronization-and-concurrency",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following scheduling algorithms is non-preemptive?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Round Robin"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "First-In-First-Out"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Multilevel Queue Scheduling"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Multilevel Queue Scheduling with feedback"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-scheduling-algorithms-is-non-preempti-gate-cse-2002-marks-1-6vpcjd4k6dfmc32f.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jmeE5GNaqg4TMhba",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following is not a form of memory?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Instruction cache "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Instruction register "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Instruction opcode "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Translation look a side buffer"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-is-not-a-form-of-memory-gate-cse-2002-marks-1-jmee5gnaqg4tmhba.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7LC8sQeWCZGHttKk",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The optimal page replacement algorithm will select the page that.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Has not been used for the longest time in the past. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Will not be used for the longest time in the future. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Has been used least number of times. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Has been used most number of times. "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-optimal-page-replacement-algorithm-will-select-the-page-gate-cse-2002-marks-1-7lc8sqewczghttkk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TxAPscUOcAF8TIRi",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Dynamic linking can cause security concerns because",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Security is dynamic "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The path for searching dynamic libraries is not known till runtime "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Linking is insecure\n "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Cryptographic procedures are not available for dynamic linking "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "dynamic-linking-can-cause-security-concerns-because-gate-cse-2002-marks-2-txapscuocaf8tiri.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SLCMDzQwD2oLvwZD",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A computer system uses $$32$$-bit virtual address, and $$32$$-bit physical address. The physical memory is byte addressable, and the page size is $$4$$ kbytes. It is decided to use two level page tables to translate from virtual address to physical address. Equal number of bits should be used for indexing first level and second level page table, and the size of each page table entry is $$4$$ bytes.\n<p>(a) Give a diagram showing how a virtual address would be translated to a physical address.</p>\n<p>(b) What is the number of page table entries that can be contained in each page?</p>\n<p>(c) How many bits are available for storing protection and other information in each page table entry?</p>\n ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(b) No of entries in each page $$ = {2^{10}}$$\n<br>(c) $$12\\,\\,$$ bits.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-computer-system-uses-32-bit-virtual-address-and-32-bit-phy-gate-cse-2002-marks-5-slcmdzqwd2olvwzd.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sxE3teFZVBoOATj2",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the index allocation scheme of blocks to a file, the maximum possible size of the file depends on ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The size of the blocks, and the size of the address of the blocks. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The number of blocks used for the index, and the size of the blocks. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The size of the blocks, the number of blocks used for the index, and the size of the address of the blocks."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-index-allocation-scheme-of-blocks-to-a-file-the-maxim-gate-cse-2002-marks-2-sxe3tefzvbooatj2.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kWTdHFeNVLTTt2L3",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following scheduling algorithms is non-preemptive?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Round Robin  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "First-In First-Out "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Multilevel Queue Scheduling "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Multilevel Queue Scheduling with Feedback  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "Non-preemptive means untill a job gets finished the job is not going to removed from the CPU to execute a new job. FIFO/FCFS is non-preemptive others are preemptive."
+                        }
+                    },
+                    "permalink": "which-of-the-following-scheduling-algorithms-is-non-preempti-gate-cse-2002-marks-1-kwtdhfenvlttt2l3.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "v1bSd8eRc7GFZJGC",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Draw the process state transition diagram of an $$OS$$ in which \n<br>(i) each process is in one of the five states: created, ready, running, blocked (i.e. sleep or\nwait), or terminated, and \n<br>(ii) only non-preemptive scheduling is used by the $$OS.$$ Label the transitions appropriately. \n ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it. ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "draw-the-process-state-transition-diagram-of-an-os-in-which-gate-cse-2002-marks-2-v1bsd8erc7gfzjgc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kGl9WsRHDif5OI55",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which combination of the following features will suffice to characterize an $$OS$$ as a multi-programmed $$OS?$$ <br>$$(a).$$ More than one program may be loaded into main memory at the same time for execution. <br>$$(b).$$ If a program waits for certain events such as $$I/O$$, another program is immediately scheduled for execution. <br>$$(c).$$ If the execution of a program terminates, another program is immediately scheduled for execution.  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$a$$  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$a$$ and $$b$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$a$$ and $$c$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$a, b$$ and $$c$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-combination-of-the-following-features-will-suffice-to-gate-cse-2002-marks-2-kgl9wsrhdif5oi55.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                }
+            ],
+            "title": "Operating Systems"
+        },
+        {
+            "_id": "Programming Languages",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "y6Dx6W8CAZ71uH7m",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "function-and-recursion",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following declaration of a two-dimensional array in C:\n<br><br>char a[100][100];\n<br><br>Assuming that the main memory is byte-addressable and that the array is stored\nstarting from memory address 0, the address of a[40][50] is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "4040"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "4050"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "5040"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "5050"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-declaration-of-a-two-dimensional-arra-gate-cse-2002-marks-2-y6dx6w8caz71uh7m.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rex1v8vt8RsC8aVo",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The results returned by function under value-result and reference parameter\npassing conventions",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Do not differ"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Differ in the presence of loops"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Differ in all cases"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "May differ in the presence of exception"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-results-returned-by-function-under-value-result-and-refe-gate-cse-2002-marks-1-rex1v8vt8rsc8avo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KBzA63znxewba6PT",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "function-and-recursion",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the C language",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "At most one activation record exists between the current activation record\nand the activation record for the main"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The number of activation records between the current activation record and\nthe activation record of the main depends on the actual function calling\nsequence."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The visibility of global variables depends on the actual function calling\nsequence."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Recursion requires the activation record for the recursive function to be\nsaved on a different stack before the recursive fraction can be called."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-c-language-gate-cse-2002-marks-1-kbza63znxewba6pt.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                }
+            ],
+            "title": "Programming Languages"
+        },
+        {
+            "_id": "Theory of Computation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "geuptqS64XkIU466",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "recursively-enumerable-language-and-turing-machine",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following is true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The complement of a recursively language is recursive. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The complement of a recursively enumerable language is recursively enumerable."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The complement of a recursively language is either recursive or recursively enumerable. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The complement of a context-free language is context-free."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-is-true-gate-cse-2002-marks-2-geuptqs64xkiu466.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NT5rt0DrmR5pdlgF",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "recursively-enumerable-language-and-turing-machine",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The $$C$$ language is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "A context free language  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "A context sensitive language"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "A regular language"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Parsable fully only by a Turing machine "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-c-language-is-gate-cse-2002-marks-2-nt5rt0drmr5pdlgf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VqlmOZIkDdDpWQe0",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The smallest finite automaton which accepts the language  \n<br>$$L = \\left. {\\left\\{ x \\right.} \\right|$$ length of $$x$$ is divisible by $$\\left. 3 \\right\\}$$ has ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2$$ states"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3$$ states "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$4$$ states "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$5$$ states "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-smallest-finite-automaton-which-accepts-the-language-l-l-gate-cse-2002-marks-2-vqlmozikdddpwqe0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "U65mnIZo0ZNxDrkx",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Finite state machine described by the following state diagram with $$A$$ as starting state, where an arc label is $$x/y$$ and $$x$$ stands for $$1-bit$$ input and $$y$$ stands for $$2$$-bit output\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/ygrPpI74eS8KwBtwn/wf8r5O8nbt0YwLDDRxkr3dQpoZexD/iknXs0TwLpZCItWDJiYR8g/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2002 Theory of Computation - Finite Automata and Regular Language Question 67 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Outputs the sum of the present and the previous bits of the input."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Outputs $$01$$ whenever the input sequence contains $$11$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Outputs $$00$$ whenever the input sequence contains $$10$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-finite-state-machine-described-by-the-following-state-di-gate-cse-2002-marks-2-u65mnizo0znxdrkx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RttqSFFb0vB6glJD",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 2002,
+                    "paperTitle": "GATE CSE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The language accepted by a pushdown Automation in which the stack is limited to $$10$$ items is best described as ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Context free "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Regular"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Deterministic Context Free "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Recursive "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-language-accepted-by-a-pushdown-automation-in-which-the-gate-cse-2002-marks-1-rttqsffb0vb6gljd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2002"
+                }
+            ],
+            "title": "Theory of Computation"
+        }
+    ]
+}

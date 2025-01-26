@@ -1,0 +1,2243 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TJ2Ai8glfpHnxVzx",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A hydraulic structure has four gates which operate independently. The probability of failure of each gate is $$0.2.$$ Given that gate $$1$$ has failed, the probability that both gates $$2$$ and $$3$$ will fail is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.240$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.200$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.040$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.008$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-hydraulic-structure-has-four-gates-which-operate-independe-gate-ce-2004-marks-2-tj2ai8glfphnxvzx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XFAe0pJ2lgTNxD6x",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Real matrices $$\\,\\,{\\left[ A \\right]_{3x1,}}$$ $$\\,\\,{\\left[ B \\right]_{3x3,}}$$ $$\\,\\,{\\left[ C \\right]_{3x5,}}$$  $$\\,\\,{\\left[ D \\right]_{5x3,}}$$  $$\\,\\,{\\left[ E \\right]_{5x5,}}$$  $$\\,\\,{\\left[ F \\right]_{5x1,}}$$ are given. Matrices $$\\left[ B \\right]$$ and $$\\left[ E \\right]$$  are symmetric. Following statements are made with respect to their matrices. \n<br>$$(I)$$ Matrix product $$\\,\\,{\\left[ F \\right]^T}\\,\\,$$ $$\\,\\,{\\left[ C \\right]^T}\\,\\,$$ $$\\,\\,\\left[ B \\right]\\,\\,$$ $$\\,\\,\\left[ C \\right]\\,\\,$$ $$\\,\\,\\left[ F \\right]\\,\\,$$ is a scalar.\n<br>$$(II)$$ Matrix product $$\\,\\,{\\left[ D \\right]^T}\\,\\,$$ $$\\,\\left[ F \\right]\\,\\,$$ $$\\,\\left[ D \\right]\\,\\,$$ is always symmetric. \n<br>With reference to above statements which of the following applies?  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "statement $$(I)$$ is true but $$(II)$$ is false "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "statement $$(I)$$ is false but $$(II)$$ is true "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "both the statements are true"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "both the statements are false "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "real-matrices-left-a-right3x1-left-b-right3x3-left-c-right3x-gate-ce-2004-marks-1-xfae0pj2lgtnxd6x.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LkVzLc8nVX4wSHOs",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The eigen values of the matrix $$\\left[ {\\matrix{\n   4 &amp; { - 2}  \\cr \n   { - 2} &amp; 1  \\cr \n\n } } \\right]$$ are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1,4$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-1,2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "can not be determined "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-eigen-values-of-the-matrix-left-matrix-4-2-cr-2-1-cr-rig-gate-ce-2004-marks-1-lkvzlc8nvx4wshos.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SgJ7fkQ7my9qHcha",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of the function, $$f\\left( x \\right) = \\mathop {Lim}\\limits_{x \\to 0} {{{x^3} + {x^2}} \\over {2{x^3} - 7{x^2}}}\\,\\,\\,$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${-1 \\over 7}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${1 \\over 7}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\infty $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-the-function-fleft-x-right-mathop-limlimitsx-to-gate-ce-2004-marks-1-sgj7fkq7my9qhcha.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1befUhqH0rKZPKpt",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The function $$f\\left( x \\right) = 2{x^3} - 3{x^2} - 36x + 2\\,\\,\\,$$ has its maxima at ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$x=-2$$ only "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$x=0$$ only "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$x=3$$ only  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "both $$x=-2$$ and $$x=3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-function-fleft-x-right-2x3-3x2-36x-2-has-its-maxima-at-gate-ce-2004-marks-2-1befuhqh0rkzpkpt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rxSQQB304YpruVmu",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Biotransformation of an organic compound having concentration $$(x)$$ can be modeled using an ordinary differential  equation $$\\,{{d\\,x} \\over {dt}} + k\\,{x^2} = 0,$$  where $$k$$ is the reaction rate constant. If $$x=a$$ at $$t=0$$ then solution of the equation is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$x = a\\,{e^{ - kt}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\,{1 \\over x} = {\\raise0.5ex\\hbox{$\\scriptstyle 1$}\n\\kern-0.1em/\\kern-0.15em\n\\lower0.25ex\\hbox{$\\scriptstyle a$}} + k\\,t$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$x = a\\left( {1 - {e^{ - kt}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$x = a\\, + k\\,t$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "biotransformation-of-an-organic-compound-having-concentratio-gate-ce-2004-marks-2-rxsqqb304ypruvmu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "l53wE8v4zfO1bIPL",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A delayed unit step function is defined as \n$$$u\\left( {t - a} \\right) = \\left\\{ {\\matrix{\n   {0,} &amp; {t &lt; a}  \\cr \n   {1,} &amp; {t \\ge a}  \\cr \n\n } } \\right.$$$\n<p>Its Laplace transform is ____________.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$a\\,\\,{e^{ - as}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${e^{ - as}}/s$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${e^{  as}}/s$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${e^{ - as}}/a$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-delayed-unit-step-function-is-defined-as-uleft-t-a-right-l-gate-ce-2004-marks-1-l53we8v4zfo1bipl.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Environmental Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2e2f9107e56",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "environmental-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "water-demand",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The present population of a community is 28000 with an average water consumption of 4200 $$m^3/d$$. The existing water treatment plant has a design capacity of 6000 $$m^3/d$$. It is expected that the population will increase to 44000 during the next 20 years. The number of years from now when the plant will reach it's design capacity, assuming an arithmetic rate of population growth, will be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "5.5 years"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "8.6 years"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "15.0 years"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "16.5 years"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-present-population-of-a-community-is-28000-with-an-avera-gate-ce-2004-marks-2-5a2e2f9107e56.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2e36b23608c",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "environmental-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "quality-control-of-water",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Most of the turbidity meters work on the scattering principle. The turbidity value obtained is expressed in",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "CFU"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FTU"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "JTU"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "NTU"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "most-of-the-turbidity-meters-work-on-the-scattering-principl-gate-ce-2004-marks-1-5a2e36b23608c.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                }
+            ],
+            "title": "Environmental Engineering"
+        },
+        {
+            "_id": "Geotechnical Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a29b2ec1c4fc",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "geotechnical-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "definitions-and-properties-of-soils",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The ratio of saturated unit weight to dry unit weight of a soil is 1.25. If the specific gravity of solids (G<sub>s</sub>) is 2.65, the void ratio of the soil is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0.625"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.663"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0.944"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1.325"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-ratio-of-saturated-unit-weight-to-dry-unit-weight-of-a-s-gate-ce-2004-marks-1-5a29b2ec1c4fc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                }
+            ],
+            "title": "Geotechnical Engineering"
+        },
+        {
+            "_id": "Irrigation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2d70992476a",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "irrigation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "water-requirement-of-crops",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A sprinkler irrigation system is suitable when",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a land gradient is steep and the soil is easily erodable"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the soil is having low permeability"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the water table is low"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "the crops to be grown have deep roots"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-sprinkler-irrigation-system-is-suitable-when-gate-ce-2004-marks-1-5a2d70992476a.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                }
+            ],
+            "title": "Irrigation"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "eneQZFWZ1RyjUoMR",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "singly-reinforced-sections",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the limit state design method of concrete structures, the recommended partial material safety factor $$\\left( {{\\gamma _m}} \\right)$$ for steel according to $$IS:456$$-$$2000$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.15$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.00$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.87$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-limit-state-design-method-of-concrete-structures-the-2004-marks-1-eneqzfwz1ryjuomr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fbvI5iBXCRPDL9fy",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-collapse-torsion",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "At the limit state of collapse, an $$RC$$ beam is subjected to flexural moment $$200$$ $$kN$$-$$m$$, shear force $$20$$ $$kN$$ and torque $$9$$ $$kN$$-$$m$$. The beam is $$300$$ $$mm$$ wide and has a gross depth of $$425$$ $$mm,$$ with an effective cover of $$25$$ $$mm$$. The equivalent nominal shear stress $$\\left( {{\\tau _{ve}}} \\right)$$ as calculated by using the design code turns out to the lesser than the design shear strength $$\\left( {{\\tau _c}} \\right)$$ of the concrete.\n<p>The equivalent shear force $$\\left( {{V_e}} \\right)$$ is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$20$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$54$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$56$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$68$$ $$kN$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "at-the-limit-state-of-collapse-an-rc-beam-is-subjected-2004-marks-2-fbvi5ibxcrpdl9fy.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oPIWTAPyozxk88xt",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-collapse-torsion",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "At the limit state of collapse, an $$RC$$ beam is subjected to flexural moment $$200$$ $$kN$$-$$m$$, shear force $$20$$ $$kN$$ and torque $$9$$ $$kN$$-$$m$$. The beam is $$300$$ $$mm$$ wide and has a gross depth of $$425$$ $$mm,$$ with an effective cover of $$25$$ $$mm$$. The equivalent nominal shear stress $$\\left( {{\\tau _{ve}}} \\right)$$ as calculated by using the design code turns out to the lesser than the design shear strength $$\\left( {{\\tau _c}} \\right)$$ of the concrete.\n<p>The equivalent flexural moment $${M_{{e_1}}}$$ for designing the longitudinal tension steel is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$187$$ $$kN$$-$$m$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$200$$ $$kN$$-$$m$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$209$$ $$kN$$-$$m$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$213$$ $$kN$$-$$m$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "at-the-limit-state-of-collapse-an-rc-beam-is-subjected-2004-marks-2-opiwtapyozxk88xt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5Q7fD8xNljq6Lpit",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-collapse-compression",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An $$RC$$ short column with $$300\\,\\,mm \\times 300\\,mm$$ square cross-section is made of $$M20$$ grade concrete and has $$4$$ numbers, $$20$$ $$mm$$ diameter longitudinal bars of $$Fe$$-$$415$$ steel. It is under the action of a concentric axial compressive load. Ignoring the reduction in the area of concrete due to steel bars, the ultimate axial load carrying capacity of the column is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1659$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1548$$ $$kN$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1198$$ $$kN$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1069$$ $$kN$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-rc-short-column-with-300mm-times-300mm-squ-2004-marks-2-5q7fd8xnljq6lpit.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "IQrXGFqwlnCjNlmi",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "footings",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An $$RC$$ square footing of side length $$2$$ $$m$$ and uniform effective depth $$200$$ $$mm$$ is provided for a $$300$$ $$mm \\times 300\\,mm$$ column. The line of action of the vertical compressive load passes through the centroid of the footing as well as of the column. If the magnitude of the load is $$320$$ $$kN,$$ the nominal transverse (one way) shear stress in the footing is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.26\\,\\,N/m{m^2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.30\\,\\,N/m{m^2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.34\\,\\,N/m{m^2}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.75\\,\\,N/m{m^2}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-rc-square-footing-of-side-length-2-m-and-unif-2004-marks-2-iqrxgfqwlncjnlmi.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Ms9p0El9zzxj3vGf",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "prestressed-concrete",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A simply supported prestressed concrete beam is $$6$$  $$m$$ long and $$300$$ $$mm$$ wide. Its gross depth is $$600$$ $$mm.$$ It is prestressed by horizontal cable tendons at a uniform eccentricity of $$100$$ $$mm.$$ The prestressing tensile force in the cable tendons is $$1000$$ $$kN$$. Neglect the self weight of beam. The maximum normal compressive stress in the beam at transfer is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$5.55\\,\\,N/m{m^2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$11.11\\,\\,N/m{m^2}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$15.68\\,\\,N/m{m^2}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-simply-supported-prestressed-concrete-beam-is-6-m-2004-marks-2-ms9p0el9zzxj3vgf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Steel Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "InLU15RMpHPQMDxM",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "tension-members",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two equal angles $$ISA$$ $$100\\,\\,mm \\times 100\\,\\,mm$$ of thickness $$10$$ $$mm$$ are placed back-to-back and connected to the either side of a gusset plate through a single row of $$16$$ $$mm$$ diameter rivets in double shear. The effective areas of the connected and unconnected legs of each of these angles are $$775$$ $$m{m^2}$$ and $$950$$ $$m{m^2},$$ respectively. If these angles are NOT Tack riveted, the net effective area of this pair of angle is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3650$$ $$m{m^2}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3450$$ $$m{m^2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3076$$ $$m{m^2}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2899$$ $$m{m^2}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-equal-angles-isa-100mm-times-100mm-of-t-2004-marks-2-inlu15rmphpqmdxm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ePKVLoWyEDviLTU2",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "eccentric-connections",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A moment $$M$$ of magnitude $$50$$ $$kN$$-$$m$$ is transmitted to a column flange through a bracket by using four $$20$$ $$mm$$ diameter rivets as shown in the figure. The shear force induced in the rivet $$A$$ is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/5ad2tT8OGNQ3aJvS5/dcXCbjbbtWzDExsklufabmF1ipUx8/M1iOmwEamvjM95jVHyQgL7/image.png\" loading=\"lazy\" alt=\"GATE CE 2004 Steel Structures - Eccentric Connections Question 1 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$250$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$176.8$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$125$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$88.4$$ $$kN$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-moment-m-of-magnitude-50-kn-m-is-transmitt-2004-marks-2-epkvlowyedviltu2.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jqa2rUt2K2bas6lf",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "compression-members",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A strut in a steel truss is composed of two equal angles $$ISA$$ $$150mm \\times 150mm$$ of thickness $$100$$ $$mm$$ connected back-to back to the same side of a gusset plate. The cross sectional area of each angle is $$2921$$ $$m{m^2}$$ and moment of inertia $$\\left( {{{\\rm I}_{XX}} = {{\\rm I}_{YY}}} \\right)$$ is $$6335000$$ $$m{m^4}.$$ The distance of the centroid of the angle from its surface $$\\left( {{C_x} = {C_y}} \\right)$$ is $$40.8$$ $$mm.$$ The minimum radius of gyration of the strut is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$93.2$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$62.7$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$46.6$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$29.8$$ $$mm$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-strut-in-a-steel-truss-is-composed-of-two-equal-angles-i-2004-marks-2-jqa2rut2k2bas6lf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oLGik5iVCLKi091S",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plate-girder",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a plate girder, the web plate is connected to the flange plates by fillet welding. The size of the fillet welds is designed to safely resist",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The bending stresses in the flanges"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The vertical shear force at the section"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The horizontal shear force between the flanges and the web plate"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The forces causing buckling in the web "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-plate-girder-the-web-plate-is-connected-to-the-flange-2004-marks-1-olgik5ivclki091s.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a21968bb41f8",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "riveted-joints-and-bolted-joints",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Rivet value is defined as",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "lesser of the bearing strength of rivet and the shearing strength of the rivet"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "lesser of the bearing strength of rivet and the shearing strength of thinner plate"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "greater of the bearing strength of rivet and the shearing strength of the rivet"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "lesser of the shearing strength of rivet and the shearing strength of thinner plate"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "rivet-value-is-defined-as-gate-ce-2004-marks-1-5a21968bb41f8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                }
+            ],
+            "title": "Steel Structures"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JXTgMAGSTcuLwZLd",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "propped-cantilever-beam",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the linear elastic beam shown in the figure, the flexural rigidity, $$EI$$ is $$781250\\,\\,kN$$ - $${m^2}.$$ When $$w=10$$ $$kN/m,$$ the vertical reaction $${R_A}$$ at $$A$$ is $$50$$ $$kN.$$ The value of $${R_A}$$ for $$w = 100\\,kN/m$$ is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Mkd2FGksWpRFD3Af3/Aq4BVyQv22QotISfa9DLP5W8XFWwl/TGJh5jYRmvcvdbmXTFCRvB/image.png\" loading=\"lazy\" alt=\"GATE CE 2004 Strength of Materials Or Solid Mechanics - Propped Cantilever Beam Question 3 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$500$$ $$kN$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$425$$ $$kN$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$250$$ $$kN$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$75$$ $$kN$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-linear-elastic-beam-shown-in-the-figure-the-flexura-2004-marks-2-jxtgmagstculwzld.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ms4MyOE4WstD4nt6",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "strain-energy-method",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$${U_1}$$ and $${U_2}$$ are the strain energies stored in a prismatic bar due to axial tensile forces $${P_1}$$ and $${P_2},$$ respectively. The strain energy $$U$$ stored in the same bar due to combined action of $${P_1}$$ and $${P_2}$$ will be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$U = {U_1} + {U_2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$U = {U_1}{U_2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$U &lt; {U_1} + {U_2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$U &gt; {U_1} + {U_2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "u1-and-u2-are-the-strain-energies-stored-in-a-2004-marks-2-ms4myoe4wstd4nt6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LOGl2NQ7LgqspygO",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-stress",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If principle stresses in two-dimensional  case are $$\\left(  -  \\right)\\,\\,10\\,MPa$$ and $$20$$ $$MPa$$  respectively, then maximum shear stress at the point is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$10$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$15$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$20$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$30$$ $$MPa$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-principle-stresses-in-two-dimensional-case-are-left-2004-marks-2-logl2nq7lgqspygo.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DDrQLUqOsmwzByqM",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-stress",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a two dimensional analysis, the state of stress at a point is shown below. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/G53gA8XvrhnvkraZ9/skqanDtefTBE7Hr98JMDrxMplQBly/T9r3SLyw9GrFqvnozfXKEU/image.png\" loading=\"lazy\" alt=\"GATE CE 2004 Strength of Materials Or Solid Mechanics - Complex Stress Question 7 English\"> \n<p>If $$\\sigma  = 120\\,\\,MPa$$ and $${\\tau _{xy}} = 70\\,\\,MPa,\\,\\,{\\sigma _x}$$ and $${\\sigma _y},$$ are respectively </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$26.7$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$54$$ $$MPa$$ and $$128$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$67.5$$ $$MPa$$ and $$213.3$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$16$$ $$MPa$$ and $$138$$ $$MPa$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-two-dimensional-analysis-the-state-of-stress-at-a-poin-2004-marks-2-ddrqluqosmwzbyqm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8DB1uP8BEDA7STKX",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-force-and-bending-moment",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A three-span continuous beam has an internal hinge at $$B.$$ Section $$B$$ is at the mid-span of $$A.C.$$ Section $$E$$ is at the mid-span of $$CG$$. The $$20$$ $$kN$$ load is applied at section $$B$$ whereas $$10$$ $$kN$$ loads are applied at sections $$D$$ and $$F$$ as shown in the figure. Span $$GH$$ is subjected to uniformly distributed load of magnitude $$5$$ $$kN/m$$. For the loading shown, shear force immediate to the right of section $$E$$ is $$9.84$$ $$kN$$ upwards and the sagging moment at section $$E$$ is $$10.31$$ $$kN$$-$$m.$$ \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/pliF2dWgu0u8sDq3j/qHbMswRWWVDKL9fn5yr6TuVa7Y7rr/gV704usqqKKMcKGSeZxj1k/image.png\" loading=\"lazy\" alt=\"GATE CE 2004 Strength of Materials Or Solid Mechanics - Shear Force and Bending Moment Question 8 English\"> \n<p>The magnitude of the shear force immediate to the left and immediate to the right of section $$B$$ are, respectively</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ and $$20$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$10$$ $$kN$$ and $$10$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$20$$ $$kN$$ and $$0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$9.84$$ $$kN$$ and $$10.19$$ $$kN$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-three-span-continuous-beam-has-an-internal-hinge-at-b-2004-marks-2-8db1up8beda7stkx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Dt1tekhBQVtEER08",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-force-and-bending-moment",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A three-span continuous beam has an internal hinge at $$B.$$ Section $$B$$ is at the mid-span of $$A.C.$$ Section $$E$$ is at the mid-span of $$CG$$. The $$20$$ $$kN$$ load is applied at section $$B$$ whereas $$10$$ $$kN$$ loads are applied at sections $$D$$ and $$F$$ as shown in the figure. Span $$GH$$ is subjected to uniformly distributed load of magnitude $$5$$ $$kN/m$$. For the loading shown, shear force immediate to the right of section $$E$$ is $$9.84$$ $$kN$$ upwards and the sagging moment at section $$E$$ is $$10.31$$ $$kN$$-$$m.$$ \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/pliF2dWgu0u8sDq3j/qHbMswRWWVDKL9fn5yr6TuVa7Y7rr/gV704usqqKKMcKGSeZxj1k/image.png\" loading=\"lazy\" alt=\"GATE CE 2004 Strength of Materials Or Solid Mechanics - Shear Force and Bending Moment Question 7 English\"> \n<p>The vertical reaction at support $$H$$ is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$15$$ $$kN$$ upward"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$9.84$$ $$kN$$ upward"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$15$$ $$kN$$ downward"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$9.84$$ $$kN$$ downward"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-three-span-continuous-beam-has-an-internal-hinge-at-b-2004-marks-2-dt1tekhbqvteer08.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "noB3QhRuhIAitxbd",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pure-bending",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A homogeneous, simply supported prismatic beam of width $$B,$$ depth $$D$$ and span $$L$$ is subjected to a concentrated load of magnitude $$P.$$ The load can be placed anywhere along the span of the beams. The maximum flexural stress developed in beam is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${2 \\over 3}\\,{{PL} \\over {B{D^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${3 \\over 4}\\,{{PL} \\over {B{D^2}}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${4 \\over 3}\\,{{PL} \\over {B{D^2}}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${3 \\over 2}\\,{{PL} \\over {B{D^2}}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-homogeneous-simply-supported-prismatic-beam-of-width-b-2004-marks-1-nob3qhruhiaitxbd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6sdvtbX9fPz0MsrI",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "torsion",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A circular solid shaft of span $$L=5m$$ is fixed at one end and free at the other end. A twisting moment $$T=100$$ $$kN$$-$$m$$ is applied at the free end. The torsional rigidity $$GJ$$ per unit angular twist is $$50000$$ $$kN$$-$${m^2}/rad.$$ Following statements are made for this shaft: \n<p>$$1.$$ The maximum rotation is $$0.01$$ radius \n<br>$$2.$$ The torsional strain energy is $$1$$ $$kN$$-$$m.$$</p>\n<p>With reference to the above statements, which of the following applies? </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both statements are true "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Statement $$1$$ is true but $$2$$ is false "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Statement $$2$$ is true but $$1$$ is false  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Both the statements are false "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-circular-solid-shaft-of-span-l5m-is-fixed-at-one-end-2004-marks-2-6sdvtbx9fpz0msri.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qs7KrhnQDcFeIrQb",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "indeterminacy",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the plane frame with an overhang as shown below, assuming negligible axial deformation, the degree of static indeterminacy, $$d,$$ and the degree of kinematic indeterminacy, $$k,$$ are \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Hcz0asWMyJyu4JBTM/y2gpU0QqgI4viUyIDetmaNQprHeD1/tb5jleYgHizvufVavpKmzQ/image.png\" loading=\"lazy\" alt=\"GATE CE 2004 Structural Analysis - Indeterminacy Question 3 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$d=3$$ and $$k=10$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$d=3$$ and $$k=13$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$d=9$$ and $$k=10$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$d=9$$ and $$k=13$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-plane-frame-with-an-overhang-as-shown-below-assumin-2004-marks-2-qs7krhnqdcfeirqb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "crWFbLC6yXrvj0s5",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "influence-line-diagram",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A homogeneous, simply supported prismatic beam of width $$B,$$ depth $$D$$ and span $$L$$ is subjected to a concentrated load of magnitude $$P.$$ The load can be placed anywhere along the span of the beam. The maximum flexural stress developed in beam is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${2 \\over 3}{{PL} \\over {B{D^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${3 \\over 4}{{PL} \\over {B{D^2}}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${4 \\over 3}{{PL} \\over {B{D^2}}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${3 \\over 2}{{PL} \\over {B{D^2}}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-homogeneous-simply-supported-prismatic-beam-of-width-b-2004-marks-1-crwfblc6yxrvj0s5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Sw0B6XU7qSfI07Mx",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "arches-and-cable",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A three hinged parabolic arch $$ABC$$ has a span of $$20$$ $$m$$ and a central rise of $$4$$ $$m.$$ The arch has hinges at the ends and at the center. A train of two point loads of $$20$$ $$kN$$ and $$10$$ $$kN$$, $$5$$ $$m$$ apart, crosses this arch from left to right, with $$20$$ $$kN$$ load leading. The maximum thrust induced at the supports is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$25.00$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$28.13$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$31.25$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$32.81$$ $$kN$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-three-hinged-parabolic-arch-abc-has-a-span-of-20-2004-marks-2-sw0b6xu7qsfi07mx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9ulmwaH5Go6cDWgr",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "energy-principle",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The unit load method used in Structural analysis is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "applicable only to statically indeterminate structures "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "another name for stiffness method "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "an extension of Maxwell's reciprocal theorem "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "derived from Castigliano's theorem"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-unit-load-method-used-in-structural-analysis-is-2004-marks-1-9ulmwah5go6cdwgr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xcGu88nbpDLGPWIy",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "energy-principle",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a linear elastic structural system, minimization of potential energy yields",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "compatibility conditions "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "constitutive relations "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "equilibrium equations "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "strain-displacement relation "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-linear-elastic-structural-system-minimization-of-pote-2004-marks-1-xcgu88nbpdlgpwiy.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vAU5G8TjS26ctEkL",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The plane frame below is analyzed by neglecting axial deformations. Following statements are made with respect to the analysis : \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/kddJB8TGTeGDU5dIS/CJGHOO9RdpY3SpJ6Cm0rVe40p6ipc/JTeDEfEv5dx0Rk7AVy49VW/image.png\" loading=\"lazy\" alt=\"GATE CE 2004 Structural Analysis - Moment Distribution Method Question 5 English\"> \n<p>$$1.$$$$\\,\\,\\,\\,\\,\\,\\,$$ Column $$AB$$ carries axial force only.\n<br>$$2.$$$$\\,\\,\\,\\,\\,\\,\\,$$ Vertical deflection at the center of beam $$BC$$ is $$1mm.$$</p>\n<p>Which of the following applies?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both the statements are true"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Statements $$1$$ is true but $$2$$ is false "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Statements $$2$$ is true but $$1$$ is false  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Both the statements are false "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-plane-frame-below-is-analyzed-by-neglecting-axial-deform-2004-marks-2-vau5g8tjs26ctekl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uqaHKoV5WwUVvTAX",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "truss",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the plane truss shown in the figure, the number of zero force members for the given loading is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/vO34Ly27CF5CXEJmp/asXQ3350i3xS6fGJrxMLuj65b3zqR/T3ATfiaTMxtxkIzco81FyJ/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2004 Structural Analysis - Truss Question 10 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$4$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$8$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$11$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$13$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-plane-truss-shown-in-the-figure-the-number-of-zero-2004-marks-1-uqahkov5wwuvvtax.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jZ4xdNRrBuHoGhRc",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "matrix-method",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For linear elastic frame, if stiffness matrix is doubled with respect to the existing stiffness matrix, the deflection of the resulting frame will be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "twice the existing value "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "half the existing value"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the same as existing value "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "indeterminate value"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-linear-elastic-frame-if-stiffness-matrix-is-doubled-wit-2004-marks-1-jz4xdnrrbuhoghrc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                }
+            ],
+            "title": "Structural Analysis"
+        },
+        {
+            "_id": "Transportation Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a32985783e81",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "transportation-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "highway-devolopment-and-planning",
+                    "year": 2004,
+                    "paperTitle": "GATE CE 2004",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The star and grid pattern of road networks are adopted in",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Nagpur road plan"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Lucknow road plan"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Bombay plan"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Delhi road plan"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-star-and-grid-pattern-of-road-networks-are-adopted-in-gate-ce-2004-marks-1-5a32985783e81.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2004",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2004"
+                }
+            ],
+            "title": "Transportation Engineering"
+        }
+    ]
+}

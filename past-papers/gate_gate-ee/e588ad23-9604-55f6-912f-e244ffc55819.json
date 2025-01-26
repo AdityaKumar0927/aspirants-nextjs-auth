@@ -1,0 +1,174 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Electric Circuits",
+            "questions": [
+                {
+                    "question_id": "lb0bivwv",
+                    "chapter": "network-theorems",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2020",
+                    "paperTitle": "GATE EE 2020",
+                    "permalink": "pthe-thevenin-equivalent-voltage-vsubthsub-in-v-ro-gate-ee-electric-circuits-mmnl68pojlyt5czq",
+                    "question": {
+                        "en": {
+                            "direction": null,
+                            "comprehension": null,
+                            "content": "<p>The Thevenin equivalent voltage, V<sub>th</sub>, in V (rounded off to 2 decimal places) of the network shown below, is ________</p>\n\n<p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1lb11ykac/4116c7a4-1661-4429-a43e-97b416a58f70/72162f40-6f40-11ed-b1de-1ff22a7713e1/file-1lb11ykad.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1lb11ykac/4116c7a4-1661-4429-a43e-97b416a58f70/72162f40-6f40-11ed-b1de-1ff22a7713e1/file-1lb11ykad.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE EE 2020 Electric Circuits - Network Theorems Question 8 English\"></p>\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "13.8TO14.2",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "electric-circuits",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2020,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2020"
+                },
+                {
+                    "question_id": "lb0biwt2",
+                    "chapter": "transient-response",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2020",
+                    "paperTitle": "GATE EE 2020",
+                    "permalink": "a-resistor-and-a-capacitor-are-connected-in-series-to-a-10-v-gate-ee-electric-circuits-s1aro47dmyufzrp1",
+                    "question": {
+                        "en": {
+                            "direction": null,
+                            "comprehension": null,
+                            "content": "A resistor and a capacitor are connected in series to a 10 V dc supply through a switch. The switch is closed at t = 0, and the capacitor voltage is found to cross 0 V at t = 0.4\u03c4, where \u03c4 is the circuit time constant. The absolute value of percentage change required in the initial capacitor voltage if the zero crossing has to happen at t = 0.2\u03c4 is _______&nbsp; (rounded off to 2 decimal places).",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "54TO56",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "electric-circuits",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2020,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2020"
+                },
+                {
+                    "question_id": "lb0biybz",
+                    "chapter": "network-theorems",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0.66,
+                    "paperId": "gate-ee-2020",
+                    "paperTitle": "GATE EE 2020",
+                    "permalink": "a-benchtop-dc-power-supply-acts-as-an-ideal-4-a-current-sour-gate-ee-electric-circuits-lhivzqsc93wwk0i3",
+                    "question": {
+                        "en": {
+                            "direction": null,
+                            "comprehension": null,
+                            "content": "A benchtop dc power supply acts as an ideal 4 A current source as long as its terminal voltage is below 10 V. Beyond this point, it begins to behave as an ideal 10 V voltage source for all load currents going down to 0 A. When connected to an ideal rheostat, find the load resistance value at which maximum power is transferred, and the corresponding load voltage and current.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Short, \u221e A, 10 V"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Open, 4 A, 0 V"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2.5 \u03a9, 4 A, 10 V"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2.5 \u03a9, 4 A, 5 V"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "electric-circuits",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2020,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2020"
+                },
+                {
+                    "question_id": "lb0bizi6",
+                    "chapter": "network-elements",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2020",
+                    "paperTitle": "GATE EE 2020",
+                    "permalink": "pcurrents-through-ammeters-asub2sub-and-asub3sub-gate-ee-electric-circuits-wrf6oryqzkvplnom",
+                    "question": {
+                        "en": {
+                            "direction": null,
+                            "comprehension": null,
+                            "content": "<p>Currents through ammeters A<sub>2</sub> and A<sub>3</sub> in the figure are 1\u222010\u00b0 and 1\u222070\u00b0, respectively. The reading of the ammeter A<sub>1</sub> (rounded off to 3 decimal places) is _____ A.</p>\n\n<p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1lb13qj73/9249ee2f-ee4b-4bab-8c42-04d684295a59/650793f0-6f47-11ed-9b7b-bdd42d8501c0/file-1lb13qj74.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1lb13qj73/9249ee2f-ee4b-4bab-8c42-04d684295a59/650793f0-6f47-11ed-9b7b-bdd42d8501c0/file-1lb13qj74.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE EE 2020 Electric Circuits - Network Elements Question 4 English\"></p>\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.70TO1.75",
+                            "explanation": "Given diagram is shown below\n<p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1lb13qj73/9249ee2f-ee4b-4bab-8c42-04d684295a59/650793f0-6f47-11ed-9b7b-bdd42d8501c0/file-1lb13qj74.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1lb13qj73/9249ee2f-ee4b-4bab-8c42-04d684295a59/650793f0-6f47-11ed-9b7b-bdd42d8501c0/file-1lb13qj74.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE EE 2020 Electric Circuits - Network Elements Question 4 English Explanation\"></p>\n<p>Applying KCL at the node,</p>\n\n<p>$\\vec{I}_1=\\vec{I}_2+\\vec{I}_3$\n</p>\n\n<p>$\\vec{I}_1=1 \\angle 10^{\\circ}+1 \\angle 70^{\\circ}$</p>\n\n<p>= (cos 10 + j sin 10) + (cos 70 + j sin 70)</p>\n\n<p>= (cos 10 + cos 70) + j(sin 10 + sin 70)</p>\n\n<p>= 1.3268 + j1.1133 A</p>\n\n<p>$\\left|\\vec{I}_1\\right|=1.732 \\mathrm{~A}$</p>\n"
+                        }
+                    },
+                    "subject": "electric-circuits",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2020,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2020"
+                }
+            ],
+            "title": "Electric Circuits"
+        }
+    ]
+}

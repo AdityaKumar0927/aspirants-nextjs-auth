@@ -1,0 +1,3168 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Algorithms",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "H4ADXG2q90ceo3gJ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dynamic-programming",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Assume that multiplying a matrix $${G_1}$$ of dimension $$p \\times q$$ with another matrix $${G_2}$$ of dimension $$q \\times r$$ requires $$pqr$$ scalar multiplications. Computing the product of $$n$$ matrices $${G_1}{G_2}{G_{3...}}{G_n}$$ can be done by parenthesizing in different ways. Define $${G_i}\\,\\,{G_{i + 1}}$$ as an explicitly computed pair for a given paranthesization if they are directly multiplied. For example, in the matrix multiplication chain $${G_1}{G_2}{G_3}{G_4}{G_5}{G_6}$$ using parenthesization $$\\left( {{G_1}\\left( {{G_2}{G_3}} \\right)} \\right)\\left( {{G_4}\\left( {{G_5}{G_6}} \\right)} \\right),\\,\\,{G_2}{G_3}$$ and $${G_5}{G_6}$$ are the only explicitly computed pairs.\n<p>Consider a matrix multiplication chain $${F_1}{F_2}{F_3}{F_4}{F_5},$$ where matrices $${F_1},{F_2},{F_3},{F_4}$$ and $${F_5}$$ are of dimensions $$2 \\times 25,\\,\\,25 \\times 3,\\,\\,3 \\times 16,\\,\\,16 \\times 1$$ and $$1 \\times 1000,$$ respectively. In the parenthesization of $${F_1}{F_2}{F_3}{F_4}{F_5}$$ that minimizes the total number of scalar multiplications, the explicitly computed pairs is/are</p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${F_1}{F_2}$$ and $${F_3}{F_4}$$ only "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${F_2}{F_3}$$ only "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${F_3}{F_4}$$ only "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${F_1}{F_2}$$ and $${F_4}{F_5}$$ only "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "assume-that-multiplying-a-matrix-g1-of-dimension-p-2018-marks-2-h4adxg2q90ceo3gj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Sbb0x3eM9P2dbQYq",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "greedy-method",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the weights and values of items listed below. Note that there is only one unit of each item. \n<p><style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;border-color:#999;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#fff;background-color:#26ADE4;}\n.tg .tg-b4to{font-weight:bold;font-size:24px;border-color:inherit;text-align:center;vertical-align:top}\n.tg .tg-v15n{font-weight:bold;font-size:24px;border-color:inherit;text-align:center}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-v15n\">Item number</th>\n    <th class=\"tg-v15n\">Weight<br>(in Kgs)</th>\n    <th class=\"tg-v15n\">Value<br>(in Rupees)</th>\n  </tr>\n  <tr>\n    <td class=\"tg-v15n\">1</td>\n    <td class=\"tg-v15n\">10</td>\n    <td class=\"tg-v15n\">60</td>\n  </tr>\n  <tr>\n    <td class=\"tg-v15n\">2</td>\n    <td class=\"tg-v15n\">7</td>\n    <td class=\"tg-v15n\">28</td>\n  </tr>\n  <tr>\n    <td class=\"tg-v15n\">3</td>\n    <td class=\"tg-v15n\">4</td>\n    <td class=\"tg-v15n\">20</td>\n  </tr>\n  <tr>\n    <td class=\"tg-b4to\">4</td>\n    <td class=\"tg-b4to\">2</td>\n    <td class=\"tg-b4to\">24</td>\n  </tr>\n</tbody></table></p>\n<p>The task is to pick a subset of these items such that their total weight is no more than $$11$$ $$Kgs$$ and their total value is maximized. Moreover, no item may be split. The total value of items picked by an optimal algorithm is denoted by $$V$$<sub>opt</sub>. A greedy algorithm sorts the items by their value-to-weight ratios in descending order and packs them greedily, starting from the first item in the ordered list. The total value of items picked by the greedy algorithm is denoted by $$V$$<sub>greedy</sub>.</p>\n<p>The value of $$V$$<sub>opt</sub> $$\u2212$$ $$V$$<sub>greedy</sub> is ____________. </p>   ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "16",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-weights-and-values-of-items-listed-below-note-2018-marks-2-sbb0x3em9p2dbqyq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "W5cwmtltmEgiQlrq",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "searching-and-sorting",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of possible min-heaps containing each value from $$\\left\\{ {1,2,3,4,5,6,7} \\right\\}$$ exactly once is _____. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "80",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-possible-min-heaps-containing-each-value-from-2018-marks-2-w5cwmtltmegiqlrq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vT1zcjRZ1mrQpaP0",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "greedy-method",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following undirected graph $$G: $$\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/nkROG1AtgNpcHq7U9/qDpF6TjJ09LOce9Ho4hitdKZeZwsp/qmy7P4GOrxn3KpmEC1lRTp/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2018 Algorithms - Greedy Method Question 8 English\"> \n<p>Choose a value for $$x$$ that will maximize the number of minimum weight spanning trees  $$(MWSTs)$$ of $$G.$$ The number of $$MWSTs$$ of $$G$$ for this value of $$x$$ is ______. </p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "4",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-undirected-graph-g-choose-a-v-2018-marks-2-vt1zcjrz1mrqpap0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                }
+            ],
+            "title": "Algorithms"
+        },
+        {
+            "_id": "Compiler Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LYsnIKePX2Ag7W0M",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "lexical-analysis",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A lexical analyzer uses the following patterns to recognize three tokens $${T_1},{T_2},$$ and $${T_3}$$ over the alphabet $$\\left\\{ {a,b,c} \\right\\}.$$ \n<p>$$\\eqalign{\n  &amp; {T_1}:\\,\\,\\,a?{\\left( {b|c} \\right)^ * }a  \\cr \n  &amp; {T_2}:\\,\\,\\,b?{\\left( {a|c} \\right)^ * }b  \\cr \n  &amp; {T_3}:\\,\\,\\,c?{\\left( {b|a} \\right)^ * }c \\cr} $$</p>\n<p>Note that $$'x?'$$ means $$0$$ or $$1$$ occurrence of the symbol $$x.$$ Note also that the analyzer outputs the token that matches the longest possible prefix.</p>\n<p>If the string $$bbaacabc$$ is processed by the analyzer, which one of the following is the sequence of tokens it outputs?</p>\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${T_1}{T_2}{T_3}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${T_1}{T_1}{T_3}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${T_2}{T_1}{T_3}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${T_3}{T_3}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-lexical-analyzer-uses-the-following-patterns-to-recognize-2018-marks-2-lysnikepx2ag7w0m.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JnJNXay004uL6Bsn",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parsing",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following parse tree for the expression $$a \\ne b\\$ c\\$ d \\ne e \\ne f,$$  involving two binary operators $$\\$ $$ and $$ \\ne $$.  \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/KGMqetyKS8CF2Ijo3/peAf66NGuvrwASVDFsg6LmdaESSHs/OTx6o3rRmVJP1ZxrFCIOzO/image.svg\" loading=\"lazy\" alt=\"GATE CSE 2018 Compiler Design - Parsing Question 17 English\"> \n<p>Which one of the following is correct for the given parse tree?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\$ $$ has higher precedence and is left associative; $$ \\ne $$ is right associative"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$ \\ne $$ has higher precedence and is left associative; $$\\$ $$ is right associativ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\$ $$ has higher precedence and is left associative; $$ \\ne $$ is left associative "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ \\ne $$ has higher precedence and is right associative; $$\\$ $$ is left associative  "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-parse-tree-for-the-expression-a-ne-2018-marks-2-jnjnxay004ul6bsn.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yJqXo7JS4oWp2GxZ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "lexical-analysis",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following statements is FALSE?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Context-free grammar can be used to specify both lexical and syntax rules. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Type checking is done before parsing. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "High-level language programs can be translated to different Intermediate Representations. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Arguments to a function can be passed using the program stack.  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-which-one-of-the-following-statements-is-false-2018-marks-2-yjqxo7js4owp2gxz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                }
+            ],
+            "title": "Compiler Design"
+        },
+        {
+            "_id": "Computer Networks",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZXu7Lc7eOc1milET",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "tcp-udp-sockets-and-congestion-control",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a long-lived $$TCP$$ session with an end-to-end bandwidth of $$1$$ $$Gbps$$ ($$ = {10^9}\\,$$ bits-persecond). The session starts with a sequence number of $$1234.$$ The minimum time (in seconds, rounded to the closest integer) before this sequence number can be used again is _______.\n ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "34 to 35.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-long-lived-tcp-session-with-an-end-to-end-ban-2018-marks-1-zxu7lc7eoc1milet.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Selhs3sBqCowBU0Z",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "tcp-udp-sockets-and-congestion-control",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider an $$IP$$ packet with a length of $$4,500$$ bytes that includes a $$20$$-byte $$IPv$$$$4$$ header and a $$40$$-byte $$TCP$$ header. The packet is forwarded to an $$IPv4$$ router that supports a Maximum Transmission Unit $$(MTU)$$ of $$600$$ bytes. Assume that the length of the $$IP$$ header in all the outgoing fragments of this packet is $$20$$ bytes. Assume that the fragmentation offset value stored in the first fragment is $$0.$$ \n<p>The fragmentation offset value stored in the third fragment is _______. </p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "144",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-an-ip-packet-with-a-length-of-4500-bytes-t-2018-marks-2-selhs3sbqcowbu0z.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "e2i0gwOivWA6x63T",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "lan-technologies-and-wi-fi",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a simple communication system where multiple nodes are connected by a shared broadcast medium (like Ethernet or wireless). The nodes in the system use the following carrier-sense based medium access protocol. A node that receives a packet to transmit will carrier-sense the medium for $$5$$ units of time. If the node does not detect any other transmission in this duration, it starts transmitting its packet in the next time unit. If the node detects another transmission, it waits until this other transmission finishes, and then begins to carrier-sense for $$5$$ time units again. Once they start to transmit, nodes do not perform any collision detection and continue transmission even if a collision occurs. All transmissions last for $$20$$ units of time. Assume that the transmission signal travels at the speed of $$10$$ meters per unit time in the medium.\n<p>Assume that the system has two nodes $$P$$ and $$Q,$$ located at a distance $$d$$ meters from each other. $$P$$ starts transmitting a packet at time $$t=0$$ after successfully completing its carrier-sense phase. Node $$Q$$ has a packet to transmit at time $$t=0$$ and begins to carrier-sense the medium. </p>\n<p>The maximum distance $$d$$ (in meters, rounded to the closest integer) that allows $$Q$$ to successfully avoid a collision between its proposed transmission and $$P\u2019s$$ ongoing transmission is _____.</p>\n ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "50",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-simple-communication-system-where-multiple-nodes-2018-marks-2-e2i0gwoivwa6x63t.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aHIW2Ebq6WJe25AO",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "tcp-udp-sockets-and-congestion-control",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the following \n<p><style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;border-color:#999;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#fff;background-color:#26ADE4;}\n.tg .tg-nnyo{font-weight:bold;text-decoration:underline;font-size:24px;text-align:center}\n.tg .tg-hgcj{font-weight:bold;text-align:center}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-nnyo\">Field </th>\n    <th class=\"tg-nnyo\">Length in bits </th>\n  </tr>\n  <tr>\n    <td class=\"tg-hgcj\">P. UDP Header\u2019s Port Number </td>\n    <td class=\"tg-hgcj\">I. 48</td>\n  </tr>\n  <tr>\n    <td class=\"tg-hgcj\">Q. Ethernet MAC Address</td>\n    <td class=\"tg-hgcj\">II. 8</td>\n  </tr>\n  <tr>\n    <td class=\"tg-hgcj\">R. IPv6 Next Header</td>\n    <td class=\"tg-hgcj\">III. 32</td>\n  </tr>\n  <tr>\n    <td class=\"tg-hgcj\">S. TCP Header\u2019s Sequence Number</td>\n    <td class=\"tg-hgcj\">IV. 16</td>\n  </tr>\n</tbody></table> </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P - {\\rm I}{\\rm I}{\\rm I},\\,\\,Q - {\\rm I}V,\\,\\,R - {\\rm I}{\\rm I},S - {\\rm I}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P - {\\rm I}{\\rm I},\\,\\,Q - {\\rm I},\\,\\,R - {\\rm I}V,S - {\\rm I}{\\rm I}{\\rm I}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P - {\\rm I}V,\\,\\,Q - {\\rm I},\\,\\,R - {\\rm I}{\\rm I},S - {\\rm I}{\\rm I}{\\rm I}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P - {\\rm I}V,\\,\\,Q - {\\rm I},\\,\\,R - {\\rm I}{\\rm I}{\\rm I},S - {\\rm I}{\\rm I}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-following-tg-border-collapsecollapseborder-2018-marks-2-ahiw2ebq6wje25ao.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jv1lTUag5ThTeFg5",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "tcp-udp-sockets-and-congestion-control",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following statements regarding the slow start phase of the $$TCP$$ congestion control algorithm. Note that $$cwnd$$ stands for the $$TCP$$ congestion window and $$MSS$$ denotes the Maximum Segment Size.\n<p>$$(i)$$ $$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ The $$cwnd$$ increases by $$2$$ $$MSS$$ on every successful acknowledgment.\n<br>$$(ii)$$ $$\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ The $$cwnd$$ approximately doubles on every successful acknowledgement.\n<br>$$(iii)$$ $$\\,\\,\\,\\,\\,\\,\\,$$ The $$cwnd$$ increases by $$1$$ $$MSS$$ every round trip time.\n<br>$$(iv)$$ $$\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ The $$cwnd$$ approximately doubles every round trip time.\n</p><p>Which one of the following is correct?</p>\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Only $$(ii)$$ and $$(iii)$$ are true "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Only $$(i)$$ and $$(iii)$$ are true"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Only $$(iv)$$ is true "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Only $$(i)$$ and $$(iv)$$ are true\n"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-statements-regarding-the-slow-start-p-2018-marks-2-jv1ltuag5thtefg5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                }
+            ],
+            "title": "Computer Networks"
+        },
+        {
+            "_id": "Computer Organization",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4KIoPNpIQEgxKWIY",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-interfacing",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$32$$-bit wide main memory unit with a capacity of $$1$$ $$GB$$ is built using $$256M\\,\\, \\times \\,\\,4$$-bit $$DRAM$$ chips. The number of rows of memory cells in the $$DRAM$$ chip is $${2^{14}}.$$ The time taken to perform one refresh operation is $$50$$ nanoseconds. The refresh period is $$2$$ milliseconds. The percentage (rounded to the closest integer) of the time available for performing the memory read/write operations in the main memory unit is __________.\n \n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "59 to 60",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-32-bit-wide-main-memory-unit-with-a-capacity-of-1-2018-marks-1-4kiopnpiqegxkwiy.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4NYjSDRqZBU2vVaU",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-interfacing",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The size of the physical address space of a processor is $${2^P}$$ bytes. The word length is $${2^W}$$ bytes. The capacity of cache memory is $${2^N}$$ bytes. The size of each cache block is $${2^M}$$ words. For a $$K$$-way set-associative cache memory, the length (in number of bits) of the tag field is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P - N - lo{g_2}K$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P - N + lo{g_2}K$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P - N - M - W - lo{g_2}\\,\\,K$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P - N - M - W + lo{g_2}\\,\\,K$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-size-of-the-physical-address-space-of-a-processor-is-2018-marks-2-4nyjsdrqzbu2vvau.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NaUTfUaF3neapSNw",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "machine-instructions-and-addressing-modes",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A processor has $$16$$ integer registers $$\\left( {R0,\\,\\,R1,\\,\\,..\\,\\,,\\,\\,R15} \\right)$$) and $$64$$ floating point registers $$(F0, F1,\u2026 , F63).$$ It uses a $$2$$-byte instruction format. There are four categories of instructions: Type-$$1,$$ Type-$$2,$$ Type-3, and Type-$$4.$$ Type-$$1$$ category consists of four instructions, each with $$3$$ integer register operands $$(3Rs)$$. Type-$$2$$ category consists of eight instructions, each with $$2$$ floating point register operands $$(2Fs).$$ Type-$$3$$ category consists of fourteen instructions, each with one integer register operand and one floating point register operand $$(1R+1F).$$ Type-$$4$$ category consists of $$N$$ instructions, each with a floating point register operand $$(1F).$$ \n<p>The maximum value of $$N$$ is __________.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "32",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-processor-has-16-integer-registers-left-r0r1-2018-marks-2-nautfuaf3neapsnw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3xfkSiwvcj5LXEIt",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pipelining",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The instruction pipeline of a $$RISC$$ processor has the following stages: Instruction Fetch $$(IF),$$ Instruction Decode $$(ID),$$ Operand Fetch $$(OF),$$ Perform Operation $$(PO)$$ and Writeback $$(WB).$$ The $$IF,$$ $$ID,$$ $$OF$$ and $$WB$$ stages take $$1$$ clock cycle each for every instruction. Consider a sequence of $$100$$ instructions. In the $$PO$$ stage, $$40$$ instructions take $$3$$ clock cycles each, $$35$$ instructions take $$2$$ clock cycles each, and the remaining $$25$$ instructions take $$1$$ clock cycle each. Assume that there are no data hazards and no control hazards.\n<p>The number of clock cycles required for completion of execution of the sequence of instructions is ______.</p>\n ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "219",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-instruction-pipeline-of-a-risc-processor-has-the-fol-2018-marks-2-3xfksiwvcj5lxeit.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mrazkgnuwiIWakbG",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "alu-data-path-and-control-unit",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following processor design characteristics.\n<p>$$\\,\\,\\,\\,\\,\\,\\,{\\rm I}.\\,\\,\\,\\,\\,$$ Register-to-register arithmetic operations only\n<br>$$\\,\\,\\,\\,\\,{\\rm I}{\\rm I}.\\,\\,\\,\\,\\,$$ Fixed-length instruction format\n<br>$$\\,\\,\\,{\\rm I}{\\rm I}{\\rm I}.\\,\\,\\,\\,\\,$$ Hardwired control unit</p>\n<p>Which of the characteristics above are used in the design of a $$RISC$$ processor? </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\rm I}$$ and $${\\rm II}$$ only "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\rm I}$$$${\\rm I}$$ and $${\\rm III}$$ only "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\rm I}$$ and $${\\rm III}$$ only "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\rm I},$$ $${\\rm II}$$ and $${\\rm III}$$ only "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-processor-design-characteristics-2018-marks-2-mrazkgnuwiiwakbg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Hj8movhCf65dRely",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "io-interface",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following are some events that occur after a device controller issues an interrupt while process $$L$$ is under execution.\n<p>$$(P)$$ The processor pushes the process status of $$L$$ onto the control stack.\n<br>$$(Q)$$ The processor finishes the execution of the current instruction.\n<br>$$(R)$$ The processor executes the interrupt service routine.\n<br>$$(S)$$ The processor pops the process status of $$L$$ from the control stack.\n<br>$$(T)$$ The processor loads the new PC value based on the interrupt.</p>\n<p>Which one of the following is the correct order in which the events above occur? </p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$QPTRS$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$PTRSQ$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$TRPQS$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$QTPRS$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-are-some-events-that-occur-after-a-device-cont-2018-marks-2-hj8movhcf65drely.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                }
+            ],
+            "title": "Computer Organization"
+        },
+        {
+            "_id": "Data Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Tv3HnaYyvPiTnMUu",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graphs",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$G$$ be a simple undirected graph. Let $${T_D}$$ be a depth first search tree of $$G.$$ Let $${T_B}$$ be a\nbreadth first search tree of $$G.$$ Consider the following statements.\n<p>$$(I)$$ No edge of $$G$$ is a cross edge with respect to $${T_D}.$$ ($$A$$ cross edge in $$G$$ is between \n<br>$$\\,\\,\\,\\,\\,\\,\\,\\,$$ two nodes neither of which is an ancestor of the other in $${T_D}.$$)\n<br>$$(II)$$ For every edge $$(u,v)$$ of $$G,$$ if $$u$$ is at depth $$i$$ and $$v$$ is at depth $$j$$ in $${T_B}$$, then <br>$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ $$\\left| {i - j} \\right| = 1.$$</p>\n<p>Which of the statements above must necessarily be true?</p>\n ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$I$$ only "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$II$$ only "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Both $$I$$ and $$II$$ only "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Neither $$I$$ nor $$II$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-g-be-a-simple-undirected-graph-let-td-be-a-d-2018-marks-2-tv3hnayyvpitnmuu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2OtwGM3oQAhSq8EQ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The postorder traversal of a binary tree is $$8,9,6,7,4,5,2,3,1.$$ The inorder traversal of the same tree is $$8,6,9,4,7,2,5,1,3.$$ The height of a tree is the length of the longest path from the root to any leaf. The height of the binary tree above is ______.\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "4",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-postorder-traversal-of-a-binary-tree-is-8967452-2018-marks-1-2otwgm3oqahsq8eq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FhfgeItlzl8VhWZB",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graphs",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$G$$ be a graph with $$100!$$ vertices, with each vertex labelled by a distinct permutation of the numbers $$1,2, \u2026 , 100.$$ There is an edge between vertices $$u$$ and $$v$$ if and only if the label of $$u$$ can be obtained by swapping two adjacent numbers in the label of $$v.$$ Let $$\ud835\udc66$$ denote the degree of a vertex in $$G,$$ and $$\ud835\udc67$$ denote the number of connected components in $$G.$$ Then, $$\ud835\udc66 + 10\ud835\udc67 =$$ _____. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "109",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-g-be-a-graph-with-100-vertices-with-each-verte-2018-marks-2-fhfgeitlzl8vhwzb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BPWuanjSDsIkf1C0",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linked-list",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A queue is implemented using a non-circular singly linked list. The queue has a head pointer and a tail pointer, as shown in the figure. Let $$n$$ denote the number of nodes in the queue. Let $$enqueue$$ be implemented by inserting a new node at the head, and $$dequeue$$ be implemented by deletion of a node from the tail.  \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/R29Lhl8veyuyrQIUb/ZdEbniCXYK5Su8efV3d4MPMbVUvX7/iVwoA8o6xmWYzFhJQdlEy2/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2018 Data Structures - Linked List Question 4 English\"> \n<p>Which one of the following is the time complexity of the most time-efficient implementation of $$enqueue$$ and $$dequeue,$$ respectively, for this data structure?</p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\theta \\left( 1 \\right),\\theta \\left( 1 \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\theta \\left( 1 \\right),\\theta \\left( n \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\theta \\left( n \\right),\\theta \\left( 1 \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\theta \\left( n \\right),\\theta \\left( n \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-queue-is-implemented-using-a-non-circular-singly-linked-li-2018-marks-2-bpwuanjsdsikf1c0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                }
+            ],
+            "title": "Data Structures"
+        },
+        {
+            "_id": "Database Management System",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hGwezUJEG1VGrENU",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "relational-algebra",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the relations $$r(A, B)$$ and $$s(B, C),$$ where $$s.B$$ is a primary key and $$r.B$$ is a foreign key referencing $$s.B.$$ Consider the query \n<p>$$Q:$$ $$\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ $$r$$ $$\\,\\,\\,\\,$$  $$\\bowtie$$ $$\\,\\,\\,\\,$$ $$\\left( {{\\sigma _{b &lt; 5}}\\left( s \\right)} \\right)$$</p>\n<p>Let $$LOJ$$ denote the natural left outer-join operation. Assume that $$r$$ and $$s$$ contain no null values.</p>\n<p>Which one of the following queries is NOT equivalent to $$Q$$?</p>\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\sigma _{B &lt; 5}}\\left( {r\\,\\,} \\right.$$ $$\\bowtie$$ $$\\left. {\\,\\,s} \\right)$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\sigma _{B &lt; 5}}\\left( {r\\,\\,LOJ\\,\\,s} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$r\\,\\,LOJ\\,\\,\\left( {{\\sigma _{B &lt; 5}}\\left( s \\right)} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\sigma _{B &lt; 5}}\\left( r \\right)LOJ\\,\\,s$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-relations-ra-b-and-sb-c-where-2018-marks-2-hgwezujeg1vgrenu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GVfPo7SA5AqPJpdC",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "structured-query-language",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following two tables and four queries in SQL.\n<pre><code>Book (<u>isbn</u>, bname), Stock (<u>isbn</u>, copies)</code></pre><b>Query 1:</b> <pre><code>SELECT B.isbn, S.copies\n FROM Book B INNER JOIN Stock S\n ON B.isbn = S.isbn;</code></pre><p></p>\n<b>Query 2:</b> <pre><code>SELECT B.isbn, S.copies\n FROM Book B LEFT OUTER JOIN Stock S\n ON B.isbn = S.isbn;</code></pre>\n<b>Query 3:</b> <pre><code>SELECT B.isbn, S.copies\n FROM Book B RIGHT OUTER JOIN Stock S\n ON B.isbn = S.isbn;</code></pre>\n<b>Query 4:</b> <pre><code>SELECT B.isbn, S.copies\n FROM Book B FULL OUTER JOIN Stock S\n ON B.isbn = S.isbn;</code></pre>\nWhich one of the queries above is certain to have an output that is a superset of the outputs\nof the other three queries?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Query 1"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Query 2"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Query 3"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Query 4"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-two-tables-and-four-queries-in-sql-b-2018-marks-1-gvfpo7sa5aqpjpdc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KU4zpVrBGnpBx4T0",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "er-diagrams",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In an Entity-Relationship $$(ER)$$ model, suppose $$R$$ is a many-to-one relationship from entity set $$E1$$ to entity set $$E2.$$ Assume that $$E1$$ and $$E2$$ participate totally in $$R$$ and that the cardinality of $$E1$$ is greater than the cardinality of $$E2$$ \n<p>Which one of the following is true about $$R$$? </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Every entity in $$E1$$ is associated with exactly one entity in $$E2.$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Some entity in $$E1$$ is associated with more than one entity in $$E2.$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Every entity in $$E2$$ is associated with exactly one entity in $$E1.$$  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Every entity in $$E2$$ is associated with at most one entity in $$E1.$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-an-entity-relationship-er-model-suppose-r-is-a-2018-marks-2-ku4zpvrbgnpbx4t0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                }
+            ],
+            "title": "Database Management System"
+        },
+        {
+            "_id": "Digital Logic",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wKKlNEYBHJkSDaQC",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the sequential circuit shown in the figure, where both flip-flops used are positive edge-triggered $$D$$ flip-flops.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Ijud3FuRiWYutyWdW/gwSk6FcSRKIoEzx2nOBHo51q74pVc/7886sJIZEpOWkcou4c13Dt/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2018 Digital Logic - Sequential Circuits Question 6 English\"> \n<p>The number of states in the state transition diagram of this circuit that have a transition back to the same state on some value of \u201cin\u201d is _____.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-sequential-circuit-shown-in-the-figure-where-b-2018-marks-1-wkklneybhjksdaqc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7UbceVeQT0M6X5ut",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "number-systems",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the unsigned $$8$$-bit fixed point binary number representation below \n$$${b_7}\\,\\,{b_6}\\,\\,{b_5}\\,\\,{b_4}\\,\\,{b_3}\\,\\,.\\,\\,{b_2}\\,\\,{b_1}\\,\\,{b_0}$$$\n<br>where the position of the binary point is between $${b_3}$$ and $${b_2}$$. Assume $${b_7}$$ is the most significant bit. Some of the decimal numbers listed below cannot be represented exactly in the above representation:\n<br> $$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ $$(i)$$ $$31.500$$ $$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ $$(ii)$$ $$0.875$$ $$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ $$(iii)$$ $$12.100$$ $$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ (iv) $$3.001$$\n<p>Which one of the following statements is true?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "None of $$(i), (ii), (iii), (iv)$$ can be exactly represented"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Only $$(ii)$$ cannot be exactly represented "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Only $$(iii)$$ and $$(iv)$$ cannot be exactly represented"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Only $$(i)$$ and $$(ii)$$ cannot be exactly represented  "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-unsigned-8-bit-fixed-point-binary-number-re-2018-marks-2-7ubceveqt0m6x5ut.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OWt9pnrkZRVE3Rc3",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "k-maps",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the minterm list form of a Boolean function \ud835\udc39 given below. $$F\\left( {P,Q,R,S} \\right) = $$ $$\\sum {m\\left( {0,2,5,7,9,11} \\right)} $$ $$ + \\,\\,d\\left( {3,8,10,12,14} \\right)$$ \n<p>Here, $$m$$ denotes a minterm and $$d$$ denotes a don\u2019t care term. The number of essential prime implicants of the function $$F$$ is ______.</p>\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-minterm-list-form-of-a-boolean-function-gi-2018-marks-2-owt9pnrkzrve3rc3.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "r8mqZn43RVQfUrlr",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$ \\oplus $$ and $$ \\odot $$ denote the Exclusive OR and Exclusive NOR operations, respectively.\n<p>Which one of the following is NOT CORRECT?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\overline {P \\oplus Q}  = P \\odot Q$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\overline P  \\oplus Q = P \\odot Q$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\overline P  \\oplus \\overline Q  = P \\oplus Q$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {P \\oplus \\overline P } \\right) \\oplus Q = \\left( {P \\odot \\overline P } \\right) \\odot \\overline Q $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-oplus-and-odot-denote-the-exclusive-or-and-2018-marks-2-r8mqzn43rvqfurlr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                }
+            ],
+            "title": "Digital Logic"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "V0YOKYXJ9e9kXunN",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$G$$ be a finite group on $$84$$ elements. The size of a largest possible proper subgroup of $$G$$ is ________.\n ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "42",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-g-be-a-finite-group-on-84-elements-the-size-of-2018-marks-1-v0yokyxj9e9kxunn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Og0OY7R2NCuUNV1Y",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The chromatic number of the following graph is _______. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Cf0tZGD7ij8ZJXjrL/c6ydGAwuE267xNxWmF8dxFAHDpKbA/1X0Ee59D86nWQmpMLo3DYE/image.svg\" loading=\"lazy\" alt=\"GATE CSE 2018 Discrete Mathematics - Graph Theory Question 23 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-chromatic-number-of-the-following-graph-is-2018-marks-1-og0oy7r2ncuunv1y.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "M2w7BTPrJYzogrGZ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a matrix P whose only eigenvectors are the multiples of  $$\\left[ {\\matrix{\n   1  \\cr \n   4  \\cr \n\n } } \\right].$$\n<p>Consider the following statements.</p>\n<p>$$\\left( {\\rm I} \\right)$$ $$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ $$P$$ does not have an inverse\n<br>$$\\left( {\\rm II} \\right)$$ $$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ $$P$$ has a repeated eigenvalue\n<br>$$\\left( {\\rm III} \\right)$$ $$\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ $$P$$ cannot be diagonalized</p>\n<p>Which one of the following options is correct?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Only $${\\rm I}$$ and $${\\rm III}$$ are necessarily true"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Only $${\\rm II}$$ is necessarily true"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Only $${\\rm I}$$ and $${\\rm II}$$ are necessarily true "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Only $${\\rm II}$$ and $${\\rm III}$$ are necessarily true "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-matrix-p-whose-only-eigenvectors-are-the-multiple-2018-marks-2-m2w7btprjyzogrgz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wDQzOX9sE0f7NcvI",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let N be the set of natural numbers. Consider the following sets.\n<p>$$\\,\\,\\,\\,\\,\\,\\,\\,$$ $$P:$$ Set of Rational numbers (positive and negative)\n <br>$$\\,\\,\\,\\,\\,\\,\\,\\,$$ $$Q:$$ Set of functions from $$\\left\\{ {0,1} \\right\\}$$ to $$N$$\n <br>$$\\,\\,\\,\\,\\,\\,\\,\\,$$ $$R:$$ Set of functions from $$N$$ to $$\\left\\{ {0,1} \\right\\}$$\n <br>$$\\,\\,\\,\\,\\,\\,\\,\\,$$ $$S:$$ Set of finite subsets of $$N.$$</p>\n<p>Which of the sets above are countable?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$Q$$ and $$S$$ only \n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P$$ and $$S$$ only "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P$$ and $$R$$ only"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P, Q$$ and $$S$$ only"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-n-be-the-set-of-natural-numbers-consider-the-following-2018-marks-2-wdqzox9se0f7ncvi.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yfuIsPiQznDy1YJM",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the first-order logic sentence \n<br>$$\\varphi  \\equiv \\,\\,\\,\\,\\,\\,\\,\\exists s\\exists t\\exists u\\forall v\\forall w$$ $$\\forall x\\forall y\\psi \\left( {s,t,u,v,w,x,y} \\right)$$ <br>where $$\\psi $$ $$(\ud835\udc60,\ud835\udc61, \ud835\udc62, \ud835\udc63, \ud835\udc64, \ud835\udc65, \ud835\udc66)$$ is a quantifier-free first-order logic formula using only predicate\nsymbols, and possibly equality, but no function symbols. Suppose $$\\varphi $$ has a model with a universe containing $$7$$ elements. \n<p>Which one of the following statements is necessarily true?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "There exists at least one model of $$\\varphi $$ with universe of size less than or equal to $$3.$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "There exists no model of $$\\varphi $$ with universe of size less than or equal to $$3.$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "There exists no model of $$\\varphi $$ with universe of size greater than $$7.$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Every model of $$\\varphi $$ has a universe of size equal to $$7.$$  "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-first-order-logic-sentence-varphi-equiv-2018-marks-2-yfuispiqzndy1yjm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7yX24SWevlhvrSLs",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider Guwahati $$(G)$$ and Delhi $$(D)$$ whose temperatures can be classified as high $$(H),$$ medium $$(M)$$ and low $$(L).$$ Let $$P\\left( {{H_G}} \\right)$$ denote the probability that Guwahati has high temperature. Similarly, $$P\\left( {{M_G}} \\right)$$ and $$P\\left( {{L_G}} \\right)$$ denotes the probability of Guwahati having medium and low temperatures respectively. Similarly, we use $$P\\left( {{H_D}} \\right),$$ $$P\\left( {{M_D}} \\right)$$ and $$P\\left( {{L_D}} \\right)$$ for\nDelhi.\n<p>The following table gives the conditional probabilities for Delhi\u2019s temperature given Guwahati\u2019s temperature.</p>\n<p><style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;border-color:#999;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#fff;background-color:#26ADE4;}\n.tg .tg-de48{font-weight:bold;font-size:22px;text-align:center}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-de48\"></th>\n    <th class=\"tg-de48\">H<sub>D</sub></th>\n    <th class=\"tg-de48\">M<sub>D</sub></th>\n    <th class=\"tg-de48\">L<sub>D</sub></th>\n  </tr>\n  <tr>\n    <td class=\"tg-de48\">H<sub>G</sub></td>\n    <td class=\"tg-de48\">0.40</td>\n    <td class=\"tg-de48\">0.48</td>\n    <td class=\"tg-de48\">0.12</td>\n  </tr>\n  <tr>\n    <td class=\"tg-de48\">M<sub>G</sub></td>\n    <td class=\"tg-de48\">0.10</td>\n    <td class=\"tg-de48\">0.65</td>\n    <td class=\"tg-de48\">0.25</td>\n  </tr>\n  <tr>\n    <td class=\"tg-de48\">L<sub>G</sub></td>\n    <td class=\"tg-de48\">0.01</td>\n    <td class=\"tg-de48\">0.50</td>\n    <td class=\"tg-de48\">0.49</td>\n  </tr>\n</tbody></table> </p>      \n<p>Consider the first row in the table above. The first entry denotes that if Guwahati has high temperature $$\\left( {{H_G}} \\right)$$ then the probability of Delhi also having a high temperature $$\\left( {{H_D}} \\right)$$ is $$0.40;$$ i.e., $$P\\left( {{H_D}|{H_G}} \\right) = 0.40.$$ Similarly, the next two entries are $$P\\left( {{M_D}|{H_G}} \\right) = 0.48$$ and $$P\\left( {{L_D}|{H_G}} \\right) = 0.12.$$ Similarly for the other rows.</p>\n<p>If it is known that $$P\\left( {{H_G}} \\right) = 0.2,\\,\\,$$ $$P\\left( {{M_G}} \\right) = 0.5,\\,\\,$$ and $$P\\left( {{L_G}} \\right) = 0.3,\\,\\,$$ then the probability (correct to two decimal places) that Guwahati has high temperature given that Delhi has high temperature is _______.</p>\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.60 to 0.62",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-guwahati-g-and-delhi-d-whose-temperatur-2018-marks-2-7yx24swevlhvrsls.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "S9bFPU9jbYqDmJNM",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following is a closed form expression for the generating function of the sequence $$\\left\\{ {{a_n}} \\right\\},$$ where $${a_n} = 2n + 3$$ for all $$n = 0,1,2,....?$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${3 \\over {{{\\left( {1 - x} \\right)}^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{3x} \\over {{{\\left( {1 - x} \\right)}^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\left( {1 - x} \\right)}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{3 - x} \\over {{{\\left( {1 - x} \\right)}^2}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-is-a-closed-form-expression-for-t-2018-marks-2-s9bfpu9jbyqdmjnm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aanX71JsQwsaGgEW",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two people, $$P$$ and $$Q,$$ decide to independently roll two identical dice, each with $$6$$ faces, numbered $$1$$ to $$6.$$ The person with the lower number wins. In case of a tie, they roll the dice repeatedly until there is no tie. Define a trial as a throw of the dice by $$P$$ and $$Q.$$ Assume that all $$6$$ numbers on each dice are equi-probable and that all trials are independent. The probability (rounded to $$3$$ decimal places) that one of them wins on the third trial is _____.\n ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.021 to 0.024",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-people-p-and-q-decide-to-independently-roll-tw-2018-marks-2-aanx71jsqwsaggew.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1v3QWEb0a3BC7pWt",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a matrix $$A = u{v^T}$$ where $$u = \\left( {\\matrix{\n   1  \\cr \n   2  \\cr \n\n } } \\right),v = \\left( {\\matrix{\n   1  \\cr \n   1  \\cr \n\n } } \\right).$$ Note that $${v^T}$$ denotes the transpose of $$v.$$ The largest eigenvalue of $$A$$ is _____.\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-matrix-a-uvt-where-u-left-matrix-2018-marks-1-1v3qweb0a3bc7pwt.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yGSuvAzcT8unvtUU",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of $$\\int_0^{\\pi /4} {x\\cos \\left( {{x^2}} \\right)dx} $$ correct to three decimal places (assuming that $$\\pi  = 3.14$$ ) is ________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.27 to 0.30",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-int0pi-4-xcos-left-x2-right-2018-marks-2-ygsuvazct8unvtuu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "General Aptitude",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8mJSlIlgWNnqSeXL",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "verbal-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "\u201cFrom where are they bringing their books? ________ bringing _______ books from _____.\u201d\n<p>The words that best fill the blanks in the above sentence are</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Their, they\u2019re, there "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "They\u2019re, their, there "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "There, their, they\u2019re "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "They\u2019re, there, there  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "from-where-are-they-bringing-their-books-bringi-2018-marks-1-8mjslilgwnnqsexl.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xK4wVtVykfWK4L0x",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The area of a square is $$\ud835\udc51.$$ What is the area of the circle which has the diagonal of the square as its diameter? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\pi d$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\pi {d^2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${1 \\over 4}\\pi {d^2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${1 \\over 2}\\pi d$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-area-of-a-square-is-what-is-the-area-of-the-ci-2018-marks-1-xk4wvtvykfwk4l0x.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZeHnikjgQCxQHIU9",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "verbal-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "\u201cA _________ investigation can sometimes yield new facts, but typically organized ones are more successful.\u201d\n<p>The word that best fills the blank in the above sentence is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "meandering "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "timely"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "consistent "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "systematic "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-investigation-can-sometimes-yield-new-facts-2018-marks-1-zehnikjgqcxqhiu9.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HKUYVhOYjSk8tFwr",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What would be the smallest natural number which when divided either by $$20$$ or by $$42$$ or by $$76$$ leaves a remainder of $$7$$ in each case?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3047$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$6047$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$7987$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$63847$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-would-be-the-smallest-natural-number-which-when-divided-2018-marks-1-hkuyvhoyjsk8tfwr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4mi2da9Rhxu7CFIY",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In appreciation of the social improvements completed in a town, a wealthy philanthropist decided to gift Rs $$750$$ to each male senior citizen in the town and Rs $$1000$$ to each female senior citizen. Altogether, there were $$300$$ senior citizens eligible for this gift. However, only $$8/9$$<sup>th</sup> of the eligible men and $$2/3$$<sup>rd</sup> of the eligible women claimed the gift. How much money (in Rupees) did the philanthropist give away in total?   ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1,50,000$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2,00,000$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1,75,000$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1,51,000$$\n"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>Let's denote the number of male senior citizens in the town as $$M$$, and the number of female senior citizens as $$F$$.</p>\n\n<p>We know from the problem that there are a total of $$300$$ senior citizens, hence we can write:</p>\n\n<p>$$ M + F = 300 $$</p>\n\n<p>According to the information given, only $$\\frac{8}{9}$$ of the eligible men and $$\\frac{2}{3}$$ of the eligible women claimed the gift.</p>\n\n<p>The total amount of money given to the men who claimed the gift is:</p>\n\n<p>$$ \\frac{8}{9}M \\times 750 $$</p>\n\n<p>The total amount of money given to the women who claimed the gift is:</p>\n\n<p>$$ \\frac{2}{3}F \\times 1000 $$</p>\n\n<p>The total amount of money given away by the philanthropist can therefore be calculated as the sum of the above two expressions:</p>\n\n<p>$$ \\text{Total amount} = \\frac{8}{9}M \\times 750 + \\frac{2}{3}F \\times 1000 $$</p>\n\n<p>Substituting the equation $$M + F = 300$$ where it might be necessary:</p>\n\n<p>Let's work through this algebraically by simplifying the values step by step. First, let's simplify each term:</p>\n\n<p>$$ \\frac{8}{9}M \\times 750 = \\frac{8 \\times 750}{9} M = \\frac{6000}{9} M = 666.67 M $$</p>\n\n<p>$$ \\frac{2}{3}F \\times 1000 = \\frac{2000}{3} F = 666.67 F $$</p>\n\n<p>Thus:</p>\n\n<p>$$ \\text{Total amount} = 666.67 M + 666.67 F $$</p>\n\n<p>Since $$M + F = 300$$:</p>\n\n<p>$$ 666.67 (M + F) = 666.67 \\times 300 = 200001 $$</p>\n\n<p>Since we need to match the value closest to the options provided and considering practical rounding in transaction scenarios:</p>\n\n<p>$$ \\text{Total amount} = 2,00,000 \\text{ (approximated)} $$</p>\n\n<p>Therefore, the correct answer is:</p>\n\n<p>Option B: Rs 2,00,000</p>"
+                        }
+                    },
+                    "permalink": "in-appreciation-of-the-social-improvements-completed-in-a-to-2018-marks-2-4mi2da9rhxu7cfiy.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZUyIUqD1JNMiTmRT",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logical-reasoning",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the missing number in the following sequence?  \n$$$2,\\,12,\\,60,\\,240,\\,720,\\,1440,\\,\\_\\_\\_,\\,0$$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2880$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1440$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$720$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>To find the missing number in the sequence, we first need to identify the pattern. Let's analyze the given numbers:</p>\n\n<p>$$2,\\,12,\\,60,\\,240,\\,720,\\,1440,\\,\\_\\_\\_,\\,0$$</p>\n\n<p>We can start by examining the ratios between consecutive terms:</p>\n\n<p>$$\\frac{12}{2} = 6$$</p>\n\n<p>$$\\frac{60}{12} = 5$$</p>\n\n<p>$$\\frac{240}{60} = 4$$</p>\n\n<p>$$\\frac{720}{240} = 3$$</p>\n\n<p>$$\\frac{1440}{720} = 2$$</p>\n\n<p>Observe that each ratio decreases by 1 as we move through the sequence: 6, 5, 4, 3, 2. If this pattern continues, the next ratio should be 1. Therefore, the next term should be:</p>\n\n<p>$$1440 \\times 1 = 1440$$</p>\n\n<p>So, the missing term is:</p>\n\n<p>$$1440$$</p>\n\n<p>Thus, the correct option is:</p>\n\n<p><b>Option B</b> $$1440$$</p>"
+                        }
+                    },
+                    "permalink": "what-is-the-missing-number-in-the-following-sequence-2-2018-marks-1-zuyiuqd1jnmitmrt.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aIw37XQ3m81rSIi0",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What would be the smallest natural number which when divided either by $$20$$ or by $$42$$ or by $$76$$ leaves a remainder of $$7$$ in each case?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3047$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$6047$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$7987$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$63847$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>To find the smallest natural number that, when divided by 20, 42, or 76, leaves a remainder of 7, we need to solve the following congruences:</p>\n\n<p>\n\n<p>$$ x \\equiv 7 \\pmod{20} $$</p>\n\n</p>\n\n<p>\n\n<p>$$ x \\equiv 7 \\pmod{42} $$</p>\n\n</p>\n\n<p>\n\n<p>$$ x \\equiv 7 \\pmod{76} $$</p>\n\n</p>\n\n<p>Rewriting these congruences, we can express each in the form:</p>\n\n<p>\n\n<p>$$ x = 20k + 7 $$</p>\n\n</p>\n\n<p>\n\n<p>$$ x = 42m + 7 $$</p>\n\n</p>\n\n<p>\n\n<p>$$ x = 76n + 7 $$</p>\n\n</p>\n\n<p>Here, $ k $, $ m $, and $ n $ are integers. For the number $ x $ to satisfy all three conditions simultaneously, $ x $ must be of the form:</p>\n\n<p>\n\n<p>$$ x = \\text{LCM}(20, 42, 76) \\cdot t + 7 $$</p>\n\n</p>\n\n<p>where $ t $ is an integer and $\\text{LCM}(20, 42, 76)$ is the least common multiple of 20, 42, and 76.</p>\n\n<p>First, we find $\\text{LCM}(20, 42, 76)$. The prime factorization of each number is:</p>\n\n<p>\n\n<p>$$ 20 = 2^2 \\times 5 $$</p>\n\n</p>\n\n<p>\n\n<p>$$ 42 = 2 \\times 3 \\times 7 $$</p>\n\n</p>\n\n<p>\n\n<p>$$ 76 = 2^2 \\times 19 $$</p>\n\n</p>\n\n<p>The LCM is found by taking the highest power of each prime number that appears in the factorizations:</p>\n\n<p>\n\n<p>$$ \\text{LCM}(20, 42, 76) = 2^2 \\times 3 \\times 5 \\times 7 \\times 19 $$</p>\n\n</p>\n\n<p>Let's calculate the LCM step-by-step:</p>\n\n<p>\n\n<p>$$ 2^2 = 4 $$</p>\n\n</p>\n\n<p>\n\n<p>$$ 4 \\times 3 = 12 $$</p>\n\n</p>\n\n<p>\n\n<p>$$ 12 \\times 5 = 60 $$</p>\n\n</p>\n\n<p>\n\n<p>$$ 60 \\times 7 = 420 $$</p>\n\n</p>\n\n<p>\n\n<p>$$ 420 \\times 19 = 7980 $$</p>\n\n</p>\n\n<p>Thus, $ \\text{LCM}(20, 42, 76) = 7980$.</p>\n\n<p>Therefore, the smallest number $ x $ that satisfies all conditions is:</p>\n\n<p>\n\n<p>$$ x = 7980 \\cdot t + 7 $$</p>\n\n</p>\n\n<p>For the smallest $ x $, we take $ t = 0 $. Therefore, we get:</p>\n\n<p>\n\n<p>$$ x = 7980 \\cdot 1 + 7 = 7987 $$</p>\n\n</p>\n\n<p>Thus, the smallest natural number which when divided by 20, 42, or 76 leaves a remainder of 7 is:</p>\n\n<p>Option C: 7987</p>"
+                        }
+                    },
+                    "permalink": "what-would-be-the-smallest-natural-number-which-when-divided-2018-marks-1-aiw37xq3m81rsii0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "saSxrLHZ4gCXw4v6",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$pqr \\ne 0$$ and $${p^{ - x}} = {1 \\over q},{q^{ - y}} = {1 \\over r},\\,{r^{ - z}} = {1 \\over p},$$ what is the value of the product $$\ud835\udc65\ud835\udc66\ud835\udc67$$?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over {pqr}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$pqr$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>We are given the conditions:</p>\n\n<p>\n\n<p>$$pqr \\ne 0$$</p>\n\n<p>and</p>\n\n<p>$$p^{-x} = \\frac{1}{q},$$</p>\n\n<p>$$q^{-y} = \\frac{1}{r},$$</p>\n\n<p>$$r^{-z} = \\frac{1}{p}.$$</p>\n\n</p>\n\n<p>Let's first rewrite each equation in a more manageable form:</p>\n\n<p>\n\n<p>Starting with $$p^{-x} = \\frac{1}{q}$$:</p>\n\n</p>\n\n<p>\n\n<p>$$p^{-x} = q^{-1}$$</p>\n\n</p>\n\n<p>\n\n<p>By equating the exponents, we get:</p>\n\n</p>\n\n<p>\n\n<p>$$-x = -1 \\quad \\Rightarrow \\quad x = 1.$$</p>\n\n</p>\n\n<p>\n\n<p>Next, consider $$q^{-y} = \\frac{1}{r}$$:</p>\n\n</p>\n\n<p>\n\n<p>$$q^{-y} = r^{-1}$$</p>\n\n</p>\n\n<p>\n\n<p>By equating the exponents, we get:</p>\n\n</p>\n\n<p>\n\n<p>$$-y = -1 \\quad \\Rightarrow \\quad y = 1.$$</p>\n\n</p>\n\n<p>\n\n<p>Finally, consider $$r^{-z} = \\frac{1}{p}$$:</p>\n\n</p>\n\n<p>\n\n<p>$$r^{-z} = p^{-1}$$</p>\n\n</p>\n\n<p>\n\n<p>By equating the exponents, we get:</p>\n\n</p>\n\n<p>\n\n<p>$$-z = -1 \\quad \\Rightarrow \\quad z = 1.$$</p>\n\n</p>\n\n<p>\n\n<p>Now, we can find the product $$xyz$$:</p>\n\n</p>\n\n<p>\n\n<p>$$xyz = 1 \\cdot 1 \\cdot 1 = 1.$$</p>\n\n</p>\n\n<p>Thus, the value of the product $$xyz$$ is: Option C, $$1$$.</p>"
+                        }
+                    },
+                    "permalink": "if-pqr-ne-0-and-p-x-1-over-qq-y-2018-marks-2-sasxrlhz4gcxw4v6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JXFPoXD7BxtSqAZJ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logical-reasoning",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the figure below, $$\u2220\ud835\udc37\ud835\udc38\ud835\udc36 + \u2220\ud835\udc35\ud835\udc39\ud835\udc36$$ is equal to ____________ .\n <img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/7qJuOLr6esVMp0CEX/syXxjJ0LUWLaoy0QJw69xUxFt1W6E/2Mzm54cmF7fW0sZgpP1B5T/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2018 General Aptitude - Logical Reasoning Question 14 English\">  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\u2220\ud835\udc35\ud835\udc36\ud835\udc37 \u2212 \u2220\ud835\udc35\ud835\udc34\ud835\udc37$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\u2220\ud835\udc35\ud835\udc34\ud835\udc37 + \u2220\ud835\udc35\ud835\udc36\ud835\udc39$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\u2220\ud835\udc35\ud835\udc34\ud835\udc37 + \u2220\ud835\udc35\ud835\udc36\ud835\udc37$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\u2220\ud835\udc36\ud835\udc35\ud835\udc34 + \u2220\ud835\udc34\ud835\udc37\ud835\udc36$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-figure-below-i-2018-marks-2-jxfpoxd7bxtsqazj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MtgQMZFdiOpeP0VY",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A six sided unbiased die with four green faces and two red faces is rolled seven times. Which of the following combinations is the most likely outcome of the experiment?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Three green faces and four red faces. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Four green faces and three red faces. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Five green faces and two red faces. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Six green faces and one red face.  "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-six-sided-unbiased-die-with-four-green-faces-and-two-red-f-2018-marks-2-mtgqmzfdiopep0vy.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MgkKVd4jGxZYOuET",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a party, $$60\\% $$ of the invited guests are male and $$400\\% $$ are female. If $$80\\% $$ of the invited guests attended the party and if all the invited female guests attended, what would be the ratio of males to females among the attendees in the party?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2:3$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1:1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3:2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2:1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>To solve this problem, let's denote the total number of invited guests as $$N$$.</p>\n\n<p>Given that $$60\\%$$ of the invited guests are male and $$40\\%$$ of the invited guests are female, we can express this as:</p>\n\n<p>$$\\text{Number of male guests} = 0.6N$$</p>\n\n<p>$$\\text{Number of female guests} = 0.4N$$</p>\n\n<p>We are also given that $$80\\%$$ of the invited guests attended the party. Therefore, the number of guests who attended the party is:</p>\n\n<p>$$0.8N$$</p>\n\n<p>Since all the invited female guests attended the party, we have:</p>\n\n<p>$$\\text{Number of female attendees} = 0.4N$$</p>\n\n<p>Now, since the total number of attendees is $$0.8N$$, the number of male attendees can be found by subtracting the number of female attendees from the total attendees:</p>\n\n<p>$$\\text{Number of male attendees} = 0.8N - 0.4N = 0.4N$$</p>\n\n<p>Therefore, we have the number of male attendees and the number of female attendees both as $$0.4N$$. To find the ratio of males to females among the attendees:</p>\n\n<p>$$\\text{Ratio of males to females} = \\frac{0.4N}{0.4N} = 1:1$$</p>\n\n<p>The correct answer is therefore:</p>\n\n<p>Option B</p>\n\n<p>$$1:1$$</p>"
+                        }
+                    },
+                    "permalink": "in-a-party-60-of-the-invited-guests-are-male-and-4-2018-marks-2-mgkkvd4jgxzyouet.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                }
+            ],
+            "title": "General Aptitude"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "e1lkaSXIi2x6L5r9",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deadlocks",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a system with $$3$$ processes that share $$4$$ instances of the same resource type. Each process can request a maximum of $$K$$ instances. Resource instances can be requested and released only one at a time. The largest value of $$K$$ that will always avoid deadlock is ____.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-system-with-3-processes-that-share-4-inst-2018-marks-1-e1lkasxii2x6l5r9.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ee5Os9aUeAcHxpL0",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deadlocks",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a system, there are three types of resources:  $$E, F$$ and $$G.$$ Four processes $${P_0},$$ $${P_1},$$ $${P_2}$$ and $${P_3}$$ execute concurrently. At the outset, the processes have declared their maximum resource requirements using a matrix named Max as given below. For example, Max$$\\left[ {{P_{2,}}F} \\right]$$ is the maximum number of instances of $$F$$ that $${{P_{2,}}}$$ would require. The number of instances of the resources allocated to the various processes at any given state is given by a matrix named Allocation.\n<p>Consider a state of the system with the Allocation matrix as shown below, and in which $$3$$ instances of $$E$$ and $$3$$ instances of $$F$$ are the only resources available. </p>\n<p><style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;border-color:#999;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#fff;background-color:#26ADE4;}\n.tg .tg-bn4o{font-weight:bold;font-size:18px;text-align:center;vertical-align:top}\n.tg .tg-asmn{font-weight:bold;font-size:18px;text-align:center}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-asmn\" colspan=\"4\">Allocation</th>\n  </tr>\n  <tr>\n    <td class=\"tg-asmn\"></td>\n    <td class=\"tg-asmn\">E</td>\n    <td class=\"tg-asmn\">F</td>\n    <td class=\"tg-bn4o\">G</td>\n  </tr>\n  <tr>\n    <td class=\"tg-bn4o\">P<sub>0</sub></td>\n    <td class=\"tg-bn4o\">1</td>\n    <td class=\"tg-bn4o\">0</td>\n    <td class=\"tg-bn4o\">1</td>\n  </tr>\n  <tr>\n    <td class=\"tg-bn4o\">P<sub>1</sub></td>\n    <td class=\"tg-bn4o\">1</td>\n    <td class=\"tg-bn4o\">1</td>\n    <td class=\"tg-bn4o\">2</td>\n  </tr>\n  <tr>\n    <td class=\"tg-bn4o\">P<sub>2</sub></td>\n    <td class=\"tg-bn4o\">1</td>\n    <td class=\"tg-bn4o\">0</td>\n    <td class=\"tg-bn4o\">3</td>\n  </tr>\n  <tr>\n    <td class=\"tg-bn4o\">P<sub>3</sub></td>\n    <td class=\"tg-bn4o\">2</td>\n    <td class=\"tg-bn4o\">0</td>\n    <td class=\"tg-bn4o\">0</td>\n  </tr>\n</tbody></table></p>    \n<p><style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;border-color:#999;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#fff;background-color:#26ADE4;}\n.tg .tg-bn4o{font-weight:bold;font-size:18px;text-align:center;vertical-align:top}\n.tg .tg-asmn{font-weight:bold;font-size:18px;text-align:center}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-asmn\" colspan=\"4\">Max</th>\n  </tr>\n  <tr>\n    <td class=\"tg-asmn\"></td>\n    <td class=\"tg-asmn\">E</td>\n    <td class=\"tg-asmn\">F</td>\n    <td class=\"tg-bn4o\">G</td>\n  </tr>\n  <tr>\n    <td class=\"tg-bn4o\">P<sub>0</sub></td>\n    <td class=\"tg-bn4o\">4</td>\n    <td class=\"tg-bn4o\">3</td>\n    <td class=\"tg-bn4o\">1</td>\n  </tr>\n  <tr>\n    <td class=\"tg-bn4o\">P<sub>1</sub></td>\n    <td class=\"tg-bn4o\">2</td>\n    <td class=\"tg-bn4o\">1</td>\n    <td class=\"tg-bn4o\">4</td>\n  </tr>\n  <tr>\n    <td class=\"tg-bn4o\">P<sub>2</sub></td>\n    <td class=\"tg-bn4o\">1</td>\n    <td class=\"tg-bn4o\">3</td>\n    <td class=\"tg-bn4o\">3</td>\n  </tr>\n  <tr>\n    <td class=\"tg-bn4o\">P<sub>3</sub></td>\n    <td class=\"tg-bn4o\">5</td>\n    <td class=\"tg-bn4o\">4</td>\n    <td class=\"tg-bn4o\">1</td>\n  </tr>\n</tbody></table></p>    \n<p>From the perspective of deadlock avoidance, which one of the following is true?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The system is in $$safe$$ state. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The system is not in $$safe$$ state, but would be $$safe$$ if one more instance of $$E$$ were available "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The system is not in $$safe$$ state, but would be $$safe$$ if one more instance of $$F$$ were available "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The system is not in $$safe$$ state, but would be $$safe$$ if one more instance of $$G$$ were available "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-system-there-are-three-types-of-resources-e-f-a-2018-marks-2-ee5os9aueachxpl0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "O9HlQhd02IGjCu0B",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a storage disk with $$4$$ platters (numbered as $$0, 1, 2$$ and $$3$$), $$200$$ cylinders (numbered as $$0, 1,$$ \u2026 , $$199$$), and $$256$$ sectors per track (numbered as $$0, 1, \u2026 , 255$$). The following $$6$$ disk requests of the form [sector number, cylinder number, platter number] are received by the disk controller at the same time: $$[120, 72, 2] , [180, 134, 1] , [60, 20, 0] , [212, 86, 3] , [56, 116, 2] , [118, 16, 1]$$ \n<p>Currently the head is positioned at sector number $$100$$ of cylinder $$80,$$ and is moving towards higher cylinder numbers. The average power dissipation in moving the head over $$100$$ cylinders is $$20$$ milliwatts and for reversing the direction of the head movement once is $$15$$ milliwatts. Power dissipation associated with rotational latency and switching of head between different platters is negligible.</p>\n<p>The total power consumption in milliwatts to satisfy all of the above disk requests using the Shortest Seek Time First disk scheduling algorithm is _______.</p>\n ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "85",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-storage-disk-with-4-platters-numbered-as-0-2018-marks-2-o9hlqhd02igjcu0b.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "32TBxCrou4IJWZuD",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a process executing on an operating system that uses demand paging. The average time for a memory access in the system is $$M$$ units if the corresponding memory page is available in memory, and $$D$$ units if the memory access causes a page fault. It has been experimentally measured that the average time taken for a memory access in the process is $$X$$ units.\n<p>Which one of the following is the correct expression for the page fault rate experienced by the process?</p>\n ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {D - M} \\right)/\\left( {X - M} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {X - M} \\right)/\\left( {D - M} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {D - X} \\right)/\\left( {D - M} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {X - M} \\right)/\\left( {D - X} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-process-executing-on-an-operating-system-that-use-2018-marks-2-32tbxcrou4ijwzud.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                }
+            ],
+            "title": "Operating Systems"
+        },
+        {
+            "_id": "Programming Languages",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ummKIN8b9FjmKuvr",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pointer-and-structure-in-c",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following C program.\n<pre><code class=\"c\">#include&lt; stdio.h &gt;\nstruct Ournode{\n char x,y,z;\n};\nint main(){\n struct Ournode p = {'1', '0', 'a'+2};\n struct Ournode *q = &amp;p;\n printf (\"%c, %c\", *((char*)q+1), *((char*)q+2));\n return 0;\n}</code></pre>\nThe output of this program is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0, c"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0, a+2"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "'0', 'a+2'"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "'0', 'c'"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-c-program-include-stdioh-struct-2018-marks-1-ummkin8b9fjmkuvr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xgVWz15FM32dsGga",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pointer-and-structure-in-c",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following C program:\n<pre><code class=\"c\">#include&lt; stdio.h &gt;\nvoid fun1(char *s1, char *s2){\n  char *tmp;\n  tmp = s1;\n  s1 = s2;\n  s2 = tmp;\n}\nvoid fun2(char **s1, char **s2){\n  char *tmp;\n  tmp = *s1;\n  *s1 = *s2;\n  *s2 = tmp;\n}\nint main(){\n  char *str1 = \"Hi\", *str2 = \"Bye\";\n  fun1(str1, str2); printf(\"%s %s \", str1, str2);\n  fun2(&amp;str1, &amp;str2); printf(\"%s %s\", str1, str2);\n  return 0;\n}</code></pre>\nThe output of the program above is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Hi Bye Bye Hi"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Hi Bye Hi Bye"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Bye Hi Hi Bye"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Bye Hi Bye Hi"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-c-program-include-stdioh-void-f-2018-marks-2-xgvwz15fm32dsgga.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hcEcM2QhYeOd85G3",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "function-and-recursion",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following C program:\n<pre><code class=\"c\">#include &lt; stdio.h &gt;\n  int counter = 0;\n  int calc (int a, int b) {\n  int c;\n  counter++;\n  if (b==3) return (a*a*a);\n  else {\n    c = calc(a, b/3);\n    return (c*c*c);\n }\n}\nint main (){\n  calc(4, 81);\n  printf (\"%d\", counter);\n}</code></pre>\nThe output of this program is _____.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "4",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-c-program-include-stdioh-int-2018-marks-1-hcecm2qhyeod85g3.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ho2DCF3BDI2EyvFJ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "function-and-recursion",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following C code. Assume that <i>unsigned long int</i> type length is 64\nbits.\n<pre><code class=\"c\">unsigned long int fun(unsigned long int n){\n     unsigned long int i, j = 0, sum = 0;\n     for (i = n; i &gt; 1; i = i/2) j++;\n     for ( ; j &gt; 1; j = j/2) sum++;\n     return(sum);\n}</code></pre>\nThe value returned when we call <i>fun</i> with the input $${2^{40}}$$ is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "4"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "5"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "6"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "40"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-c-code-assume-that-unsigned-long-int-2018-marks-2-ho2dcf3bdi2eyvfj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                }
+            ],
+            "title": "Programming Languages"
+        },
+        {
+            "_id": "Theory of Computation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nWD8hLHQG4b2T05e",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following languages:  \n<p>$$\\,\\,\\,\\,\\,\\,\\,\\,{\\rm I}.\\,\\,\\,\\,\\,\\,\\,$$ $$\\left\\{ {{a^m}{b^n}{c^p}{d^q}} \\right.|m + p = n + q,$$ where $$\\left. {m,n,p,q \\ge 0} \\right\\}$$\n<br>$$\\,\\,\\,\\,\\,\\,{\\rm II}.\\,\\,\\,\\,\\,\\,\\,$$ $$\\left\\{ {{a^m}{b^n}{c^p}{d^q}} \\right.|m = n$$ and $$p=q,$$ where $$\\left. {m,n,p,q \\ge 0} \\right\\}$$\n<br>$$\\,\\,\\,\\,{\\rm III}.\\,\\,\\,\\,\\,\\,\\,$$ $$\\left\\{ {{a^m}{b^n}{c^p}{d^q}} \\right.|m = n = p$$ and $$p \\ne q,$$ where $$\\left. {m,n,p,q \\ge 0} \\right\\}$$\n<br>$$\\,\\,\\,\\,{\\rm IV}.\\,\\,\\,\\,\\,\\,\\,$$ $$\\left\\{ {{a^m}{b^n}{c^p}{d^q}} \\right.|mn = p + q,$$ where $$\\left. {m,n,p,q \\ge 0} \\right\\}$$ </p> \n<p>Which of the languages above are context-free?</p>\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\rm I}$$ and $${\\rm IV}$$ only "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\rm I}$$ and $${\\rm II}$$ only"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\rm II}$$ and $${\\rm III}$$ only "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\rm II}$$ and $${\\rm IV}$$ only  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "<h3><strong>Definitions and Concepts:</strong></h3>\n\n<p><p><strong>Context-Free Languages (CFLs):</strong></p></p>\n<p><p>Languages that can be generated by context-free grammars (CFGs).</p></p>\n<p><p>Can be recognized by pushdown automata (PDAs).</p></p>\n<p><p>CFLs are <strong>closed under union, concatenation, and Kleene star</strong>, but <strong>not closed under intersection or complement</strong>.</p></p>\n\n<p><p><strong>Pushdown Automata (PDA):</strong></p></p>\n<p><p>Automata with a stack as memory.</p></p>\n<p><p>Can keep track of <strong>one type of count</strong> (e.g., matching numbers of symbols).</p></p>\n<p><p><strong>Non-Context-Free Languages:</strong></p></p>\n<p><p>Languages that cannot be recognized by PDAs.</p></p>\n<p><p>Examples include languages that require matching counts of more than two types of symbols simultaneously (e.g., $ \\{ a^n b^n c^n \\mid n \\geq 0 \\} $).</p></p>\n<p><p><strong>Pumping Lemma for CFLs:</strong></p></p>\n<p><p>A tool used to prove that certain languages are <strong>not</strong> context-free by showing that they cannot be \"pumped\" according to the lemma's conditions.</p></p>\n\n<hr />\n<h3><strong>Analyzing Each Language:</strong></h3>\n<h4><strong>Language I:</strong></h4>\n<p><strong>$ L_1 = \\{ a^m b^n c^p d^q \\mid m + p = n + q, \\ m,n,p,q \\geq 0 \\} $</strong></p>\n\n<p><p><strong>Constraint:</strong> The total number of $ a $'s and $ c $'s equals the total number of $ b $'s and $ d $'s.</p></p>\n<p><p><strong>Analysis:</strong></p></p>\n<p><p>Since the symbols appear in a fixed order ( $ a^m b^n c^p d^q $ ), we can design a PDA to recognize $ L_1 $:</p>\n\n<p><strong>Push $ a $'s and $ c $'s onto the stack:</strong></p>\n\n<p>For each $ a $ or $ c $ read, push a symbol onto the stack.</p>\n\n<p><strong>Pop for $ b $'s and $ d $'s:</strong></p>\n\n<p>For each $ b $ or $ d $ read, pop a symbol from the stack.</p>\n\n<p><strong>Accept if the stack is empty at the end:</strong></p>\n\n<p>Ensures $ m + p = n + q $.</p></p>\n<p><p><strong>Conclusion:</strong> $ L_1 $ is <strong>context-free</strong>.</p></p>\n\n<h4><strong>Language II:</strong></h4>\n<p><strong>$ L_2 = \\{ a^m b^n c^p d^q \\mid m = n \\text{ and } p = q, \\ m,n,p,q \\geq 0 \\} $</strong></p>\n\n<p><p><strong>Constraints:</strong></p></p>\n<p><p>$ m = n $: Number of $ a $'s equals number of $ b $'s.</p></p>\n<p><p>$ p = q $: Number of $ c $'s equals number of $ d $'s.</p></p>\n<p><p><strong>Analysis:</strong></p></p>\n<p><p>We can design a PDA that uses the stack in two phases:</p>\n\n<p><strong>Match $ a $'s and $ b $'s:</strong></p>\n\n<p><p>Push a symbol for each $ a $.</p></p>\n<p><p>Pop a symbol for each $ b $.</p></p>\n<p><p>Ensure the stack is empty after $ b $'s.</p></p>\n\n<p><strong>Match $ c $'s and $ d $'s:</strong></p>\n\n<p><p>Reuse the stack.</p></p>\n<p><p>Push a symbol for each $ c $.</p></p>\n<p><p>Pop a symbol for each $ d $.</p></p>\n<p><p>Ensure the stack is empty at the end.</p></p></p>\n<p><p><strong>Conclusion:</strong> $ L_2 $ is <strong>context-free</strong>.</p></p>\n\n<h4><strong>Language III:</strong></h4>\n<p><strong>$ L_3 = \\{ a^m b^n c^p d^q \\mid m = n = p \\text{ and } p \\ne q, \\ m,n,p,q \\geq 0 \\} $</strong></p>\n\n<p><p><strong>Constraints:</strong></p></p>\n<p><p>$ m = n = p $: Number of $ a $'s, $ b $'s, and $ c $'s are equal.</p></p>\n<p><p>$ p \\ne q $: Number of $ d $'s is different.</p></p>\n<p><p><strong>Analysis:</strong></p></p>\n<p><p>Matching three counts simultaneously ($ m = n = p $) is similar to the language $ \\{ a^n b^n c^n \\mid n \\geq 0 \\} $, which is <strong>not context-free</strong>.</p></p>\n<p><p>PDAs cannot compare and ensure equality among more than two types of symbols.</p></p>\n<p><p><strong>Conclusion:</strong> $ L_3 $ is <strong>not context-free</strong>.</p></p>\n\n<h4><strong>Language IV:</strong></h4>\n<p><strong>$ L_4 = \\{ a^m b^n c^p d^q \\mid m \\cdot n = p + q, \\ m,n,p,q \\geq 0 \\} $</strong></p>\n\n<p><p><strong>Constraint:</strong> Product of $ m $ and $ n $ equals the sum of $ p $ and $ q $.</p></p>\n<p><p><strong>Analysis:</strong></p></p>\n<p><p>The condition $ m \\cdot n = p + q $ involves multiplication and addition of counts, which a PDA cannot compute.</p></p>\n<p><p>There is no standard PDA mechanism to handle multiplication of variables.</p></p>\n<p><p><strong>Conclusion:</strong> $ L_4 $ is <strong>not context-free</strong>.</p></p>\n\n<hr />\n<h3><strong>Final Answer:</strong></h3>\n\n<p><p><strong>Context-Free Languages:</strong> <strong>$ L_1 $ and $ L_2 $</strong></p></p>\n<p><p><strong>Non-Context-Free Languages:</strong> <strong>$ L_3 $ and $ L_4 $</strong></p></p>\n\n<hr />\n<p><strong>Therefore, the correct option is:</strong></p>\n<hr />\n<p><strong>Answer: Option B</strong></p>"
+                        }
+                    },
+                    "permalink": "consider-the-following-languages-rm-i-2018-marks-2-nwd8hlhqg4b2t05e.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LzJZ8cKb3OepmeqU",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "recursively-enumerable-language-and-turing-machine",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following problems. $$L(G)$$ denotes the language generated by a grammar $$G.$$ $$L(M)$$ denotes the language accepted by a machine $$M.$$\n <p>$$\\,\\,\\,\\,\\,\\,\\,\\,{\\rm I}.\\,\\,\\,\\,\\,\\,\\,$$ For an unrestricted grammar $$G$$ and a string $$W,$$ whether $$w \\in L\\left( G \\right)$$\n<br>$$\\,\\,\\,\\,\\,\\,{\\rm II}.\\,\\,\\,\\,\\,\\,\\,$$ Given a Turing machine $$M,$$ whether $$L(M)$$ is regular\n<br>$$\\,\\,\\,\\,{\\rm III}.\\,\\,\\,\\,\\,\\,\\,$$ Given two grammars $${G_1}$$ and $${G_2}$$, whether $$L\\left( {{G_1}} \\right) = L\\left( {{G_2}} \\right)$$\n<br>$$\\,\\,\\,\\,{\\rm IV}.\\,\\,\\,\\,\\,\\,\\,$$ Given an $$NFA$$ $$N,$$ whether there is a deterministic $$PDA$$ $$P$$ such that $$N$$ \n<br>$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ $$\\,\\,\\,\\,\\,\\,\\,\\\\,\\,\\,$$and $$P$$ accept the same language.</p>\n<p>Which one of the following statements is correct?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Only $${\\rm I}$$ and $${\\rm I}$$$${\\rm I}$$ are undecidable"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Only $${\\rm III}$$ is undecidable "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Only $${\\rm I}$$$${\\rm I}$$ and $${\\rm IV}$$ are undecidable "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Only $${\\rm I}$$, $${\\rm II}$$ and $${\\rm III}$$ are undecidable  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>To determine which of the given statements are <strong>undecidable</strong>, we'll analyze each problem individually using concepts from the theory of computation and decidability.</p>\n<hr />\n<h3><strong>Problem I:</strong></h3>\n<p><strong>\"For an unrestricted grammar $ G $ and a string $ w $, whether $ w \\in L(G) $\"</strong></p>\n<h4><strong>Analysis:</strong></h4>\n\n<p><p><strong>Unrestricted Grammar:</strong></p></p>\n<p><p>Generates recursively enumerable languages.</p></p>\n<p><p>Equivalent to Turing machines in terms of language recognition capability.</p></p>\n<p><p><strong>Membership Problem:</strong></p></p>\n<p><p>Deciding whether a given string $ w $ is generated by an unrestricted grammar $ G $.</p></p>\n<p><p><strong>Decidability:</strong></p></p>\n<p><p><strong>Undecidable.</strong></p></p>\n<p><p>This problem is equivalent to the <strong>Turing machine acceptance problem</strong>, which is undecidable.</p></p>\n<p><p><strong>Reasoning:</strong></p>\n\n<p><p>The halting problem can be reduced to this problem.</p></p>\n<p><p>There's no general algorithm that can determine for every unrestricted grammar and string whether the string belongs to the language.</p></p></p>\n\n<hr />\n<h3><strong>Problem II:</strong></h3>\n<p><strong>\"Given a Turing machine $ M $, whether $ L(M) $ is regular\"</strong></p>\n<h4><strong>Analysis:</strong></h4>\n\n<p><p><strong>Property of Languages Recognized by Turing Machines:</strong></p></p>\n<p><p>Regular languages are a strict subset of recursively enumerable languages.</p></p>\n<p><p><strong>Decidability:</strong></p></p>\n<p><p><strong>Undecidable.</strong></p></p>\n<p><p><strong>Reasoning:</strong></p>\n\n<p><p><strong>Rice's Theorem</strong> applies: any non-trivial property of the languages recognized by Turing machines is undecidable.</p></p>\n<p><p>The property \"the language is regular\" is non-trivial (some languages are regular, others are not).</p></p>\n<p><p>There is no algorithm that can determine whether an arbitrary Turing machine recognizes a regular language.</p></p></p>\n\n<hr />\n<h3><strong>Problem III:</strong></h3>\n<p><strong>\"Given two grammars $ G_1 $ and $ G_2 $, whether $ L(G_1) = L(G_2) $\"</strong></p>\n<h4><strong>Analysis:</strong></h4>\n\n<p><p><strong>Language Equivalence Problem:</strong></p></p>\n<p><p>Determining whether two grammars generate the same language.</p></p>\n<p><p><strong>Decidability:</strong></p></p>\n<p><p><strong>Undecidable.</strong></p></p>\n<p><p><strong>Reasoning:</strong></p>\n\n<p><p>For context-free grammars, the equivalence problem is undecidable.</p></p>\n<p><p>Even more so for unrestricted grammars (which can generate recursively enumerable languages).</p></p>\n<p><p>There's no general algorithm to decide language equivalence for arbitrary grammars.</p></p></p>\n\n<hr />\n<h3><strong>Problem IV:</strong></h3>\n<p><strong>\"Given an NFA $ N $, whether there is a deterministic PDA $ P $ such that $ N $ and $ P $ accept the same language.\"</strong></p>\n<h4><strong>Analysis:</strong></h4>\n\n<p><p><strong>NFA and Regular Languages:</strong></p></p>\n<p><p>NFA recognizes regular languages.</p></p>\n<p><p><strong>Deterministic PDA (DPDA):</strong></p></p>\n<p><p>Recognizes a subset of context-free languages known as deterministic context-free languages.</p></p>\n<p><p>However, <strong>all regular languages are deterministic context-free languages</strong>.</p></p>\n<p><p><strong>Decidability:</strong></p></p>\n<p><p><strong>Decidable.</strong></p></p>\n<p><p><strong>Reasoning:</strong></p>\n\n<p><p>For any regular language recognized by an NFA, we can construct a DPDA that recognizes the same language.</p></p>\n<p><p>Since the answer is always <strong>\"Yes\"</strong>, the problem is trivial and decidable.</p></p>\n<p><p>An algorithm can confirm that for any NFA $ N $, there exists a DPDA $ P $ such that $ L(N) = L(P) $.</p></p></p>\n\n<hr />\n<h3><strong>Conclusion:</strong></h3>\n\n<p><p><strong>Undecidable Problems:</strong> Problems <strong>I</strong>, <strong>II</strong>, and <strong>III</strong> are undecidable.</p></p>\n<p><p><strong>Decidable Problem:</strong> Problem <strong>IV</strong> is decidable.</p></p>\n\n<hr />\n<p><strong>Answer: Option D</strong></p>"
+                        }
+                    },
+                    "permalink": "consider-the-following-problems-lg-denotes-the-langua-2018-marks-2-lzjz8ckb3oepmequ.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "b9F92YvPf0hdxZRp",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given a language $$\ud835\udc3f,$$ define $${L^i}$$ as follows: $${L^0} = \\left\\{ \\varepsilon  \\right\\}$$ \n<br>$${L^i} = {L^{i - 1}}.\\,\\,L$$ for all $$i &gt; 0$$  \n<p>The order of a language $$L$$ is defined as the smallest k such that $${L^k} = {L^{k + 1}}.$$ Consider the language $${L_1}$$ (over alphabet $$0$$) accepted by the following automaton.</p>\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/BmaaYEPG0RHbPqsWW/c32wm37WqR4o8DmlYw9WaAd1HijtO/QpeWSftexyaCIK0WyXS76J/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2018 Theory of Computation - Finite Automata and Regular Language Question 24 English\"> \n<p>The order of $${L_1}$$ is _____.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-a-language-define-li-as-follows-l-2018-marks-2-b9f92yvpf0hdxzrp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fG2yKiNyCpX0mI3N",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "recursively-enumerable-language-and-turing-machine",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The set of all recursively enumerable languages is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "closed under complementation. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "closed under intersection. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "a subset of the set of all recursive languages "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "an uncountable set.  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>To determine which statement about the set of all <strong>recursively enumerable (RE) languages</strong> is correct, we'll analyze each option individually. Understanding the properties of RE languages in the theory of computation will help us make an informed decision.</p>\n<hr />\n<h3><strong>Understanding Recursively Enumerable Languages</strong></h3>\n\n<p><p><strong>Recursively Enumerable Languages (RE):</strong></p></p>\n<p><p>A language is recursively enumerable if there exists a Turing machine that will <strong>accept</strong> any string in the language but may <strong>not halt</strong> for strings not in the language.</p></p>\n<p><p>RE languages are also known as <strong>Turing-recognizable</strong> languages.</p></p>\n<p><p>They are a broader class than <strong>recursive languages</strong>, which are languages for which a Turing machine will halt on <strong>all inputs</strong>, accepting those in the language and rejecting those not in the language.</p></p>\n\n<hr />\n<h3><strong>Analyzing Each Option</strong></h3>\n<h4><strong>Option A: The set of all recursively enumerable languages is closed under complementation.</strong></h4>\n\n<p><p><strong>Explanation:</strong></p></p>\n<p><p><strong>Closure under complementation</strong> means that if a language $ L $ is recursively enumerable, then its complement $ \\overline{L} $ is also recursively enumerable.</p></p>\n<p><p><strong>Fact about RE Languages:</strong></p>\n\n<p><p>The class of recursively enumerable languages is <strong>not closed under complementation</strong>.</p></p>\n<p><p>This is because the complement of a recursively enumerable language may not be recursively enumerable.</p></p>\n<p><p><strong>Counterexample:</strong></p></p>\n<p><p>Let $ L $ be a known non-recursive recursively enumerable language.</p></p>\n<p><p>Then, $ \\overline{L} $ is not recursively enumerable.</p></p></p>\n<p><p><strong>Conclusion:</strong></p>\n\n<p><strong>Option A is incorrect.</strong></p></p>\n\n<h4><strong>Option B: The set of all recursively enumerable languages is closed under intersection.</strong></h4>\n\n<p><p><strong>Explanation:</strong></p></p>\n<p><p><strong>Closure under intersection</strong> means that if $ L_1 $ and $ L_2 $ are recursively enumerable languages, then their intersection $ L_1 \\cap L_2 $ is also recursively enumerable.</p></p>\n<p><p><strong>Fact about RE Languages:</strong></p>\n\n<p><p>The class of recursively enumerable languages is <strong>closed under intersection</strong>.</p></p>\n<p><p><strong>Proof Sketch:</strong></p></p>\n<p><p>Given Turing machines $ M_1 $ and $ M_2 $ that recognize $ L_1 $ and $ L_2 $ respectively.</p></p>\n<p><p>Construct a new Turing machine $ M $ that simulates both $ M_1 $ and $ M_2 $ in parallel (e.g., alternate steps between them) on the input string.</p></p>\n<p><p>$ M $ accepts the input if both $ M_1 $ and $ M_2 $ accept.</p></p>\n<p><p>If the input is in $ L_1 \\cap L_2 $, both machines will accept, and so will $ M $.</p></p>\n<p><p>If the input is not in $ L_1 \\cap L_2 $, at least one machine may loop indefinitely or reject, so $ M $ may not accept.</p></p></p>\n<p><p><strong>Conclusion:</strong></p>\n\n<p><strong>Option B is correct.</strong></p></p>\n\n<h4><strong>Option C: The set of all recursively enumerable languages is a subset of the set of all recursive languages.</strong></h4>\n\n<p><p><strong>Explanation:</strong></p></p>\n<p><p><strong>Relationship between RE and Recursive Languages:</strong></p>\n\n<p><p>Recursive languages are a subset of recursively enumerable languages, not the other way around.</p></p>\n<p><p>Every recursive language is recursively enumerable, but not all recursively enumerable languages are recursive.</p></p></p>\n<p><p><strong>Fact:</strong></p>\n\n<p><p>There exist recursively enumerable languages that are <strong>not recursive</strong>.</p></p>\n<p><p>These are languages for which membership is semi-decidable: acceptance is guaranteed for strings in the language, but non-membership may result in non-termination.</p></p></p>\n<p><p><strong>Conclusion:</strong></p>\n\n<p><strong>Option C is incorrect.</strong></p></p>\n\n<h4><strong>Option D: The set of all recursively enumerable languages is an uncountable set.</strong></h4>\n\n<p><p><strong>Explanation:</strong></p></p>\n<p><p><strong>Countability:</strong></p>\n\n<p><p>A set is countable if its elements can be put into a one-to-one correspondence with the natural numbers.</p></p>\n<p><p><strong>The set of all Turing machines is countable</strong> because Turing machines can be described by finite strings over a finite alphabet, and there are countably many such strings.</p></p>\n<p><p>Since each recursively enumerable language is recognized by some Turing machine, the set of recursively enumerable languages is also countable.</p></p></p>\n<p><p><strong>Contrast with All Languages:</strong></p>\n\n<p><p>The set of all possible languages over an alphabet (the power set of all strings) is <strong>uncountable</strong>.</p></p>\n<p><p>Therefore, there are languages that are not recursively enumerable.</p></p></p>\n<p><p><strong>Conclusion:</strong></p>\n\n<p><strong>Option D is incorrect.</strong></p></p>\n\n<hr />\n<h3><strong>Final Answer</strong></h3>\n<p>After analyzing all options, we find that only <strong>Option B</strong> is correct:</p>\n\n<p><strong>The set of all recursively enumerable languages is closed under intersection.</strong></p>\n\n<hr />\n<p><strong>Answer: Option B</strong></p>"
+                        }
+                    },
+                    "permalink": "the-set-of-all-recursively-enumerable-languages-is-2018-marks-2-fg2ykinycpx0mi3n.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Nnys3TtrGvwCHonh",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2018,
+                    "paperTitle": "GATE CSE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$N$$ be an $$NFA$$ with $$n$$ states. Let $$k$$ be the number of states of a minimal $$DFA$$ which is equivalent to $$N.$$ Which one of the following is necessarily true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$k \\ge {2^n}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$k \\ge n$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$k \\le {n^2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$k \\le {2^n}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "<h3><strong>Understanding NFAs and DFAs:</strong></h3>\n\n<p><p><strong>NFA (Non-deterministic Finite Automaton):</strong></p></p>\n<p><p>An NFA with $ n $ states can have multiple transitions for the same symbol and can include \u03b5-transitions.</p></p>\n<p><p><strong>DFA (Deterministic Finite Automaton):</strong></p></p>\n<p><p>A DFA has exactly one transition for each symbol in the alphabet from every state.</p></p>\n<p><p><strong>Subset Construction:</strong></p></p>\n<p><p>Converts an NFA to an equivalent DFA by creating states that represent subsets of NFA states.</p></p>\n<p><p>The resulting DFA may have up to $ 2^n $ states, corresponding to all possible subsets of the NFA's states.</p></p>\n\n<hr />\n<h3><strong>Analyzing Each Option:</strong></h3>\n<h4><strong>Option A: $ k \\geq 2^n $</strong></h4>\n\n<p><p><strong>Analysis:</strong></p></p>\n<p><p>The subset construction can produce up to $ 2^n $ states, but the minimal DFA may have <strong>fewer</strong> states.</p></p>\n<p><p><strong>Counterexample:</strong></p>\n\n<p><p>Consider an NFA that recognizes a language accepted by a DFA with fewer than $ 2^n $ states.</p></p>\n<p><p>For example, an NFA with $ n $ states that accepts a simple language like $ a^* $ can have a minimal DFA with just <strong>one</strong> state.</p></p></p>\n<p><p><strong>Conclusion:</strong></p></p>\n<p><p><strong>Not necessarily true.</strong></p></p>\n\n<h4><strong>Option B: $ k \\geq n $</strong></h4>\n\n<p><p><strong>Analysis:</strong></p></p>\n<p><p>The minimal DFA can have <strong>fewer</strong> states than the NFA.</p></p>\n<p><p><strong>Counterexample:</strong></p>\n\n<p><p>An NFA with $ n $ states that is overkill for a simple language.</p></p>\n<p><p>For instance, an NFA with multiple redundant states accepting a basic language may have a minimal DFA with fewer states.</p></p></p>\n<p><p><strong>Conclusion:</strong></p></p>\n<p><p><strong>Not necessarily true.</strong></p></p>\n\n<h4><strong>Option C: $ k \\leq n^2 $</strong></h4>\n\n<p><p><strong>Analysis:</strong></p></p>\n<p><p>While $ n^2 $ is less than $ 2^n $ for $ n > 4 $, the subset construction can produce a DFA with up to $ 2^n $ states, which can be greater than $ n^2 $.</p></p>\n<p><p><strong>Counterexample:</strong></p>\n\n<p>For larger $ n $, $ 2^n $ exceeds $ n^2 $, so the minimal DFA may have more than $ n^2 $ states.</p></p>\n<p><p><strong>Conclusion:</strong></p></p>\n<p><p><strong>Not necessarily true.</strong></p></p>\n\n<h4><strong>Option D: $ k \\leq 2^n $</strong></h4>\n\n<p><p><strong>Analysis:</strong></p></p>\n<p><p>The subset construction method guarantees that the equivalent DFA will have at most $ 2^n $ states.</p></p>\n<p><p>The minimal DFA cannot have more states than the DFA produced by the subset construction.</p></p>\n<p><p><strong>Reasoning:</strong></p>\n\n<p><p>Every state in the DFA corresponds to a subset of NFA states.</p></p>\n<p><p>Therefore, the total number of possible subsets (and hence DFA states) is $ 2^n $.</p></p></p>\n<p><p><strong>Conclusion:</strong></p></p>\n<p><p><strong>Necessarily true.</strong></p></p>\n\n<hr />\n<h3><strong>Final Answer:</strong></h3>\n<p>Only <strong>Option D</strong> is necessarily true for any NFA with $ n $ states:</p>\n\n<p><strong>$ k \\leq 2^n $</strong></p>\n\n<p><strong>Answer: Option D</strong></p>"
+                        }
+                    },
+                    "permalink": "let-n-be-an-nfa-with-n-states-let-k-be-the-2018-marks-2-nnys3ttrgvwchonh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2018"
+                }
+            ],
+            "title": "Theory of Computation"
+        }
+    ]
+}

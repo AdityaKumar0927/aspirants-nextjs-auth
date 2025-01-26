@@ -1,0 +1,2080 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TjeiZMWnACacowXp",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following two statements. \n<p>$$(I)$$ The maximum number of linearly independent column vectors of a matrix $$A$$ is called the rank of $$A.$$</p>\n<p>$$(II)$$ If $$A$$ is $$nxn$$ square matrix then it will be non-singular if rank of $$A=n$$</p>\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both the statements are false "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Both the statements are true "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$(I)$$ is true but $$(II)$$ is false "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$(I)$$ is false but $$(II)$$ is true"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-two-statements-i-the-maximum-number-o-gate-ce-2000-marks-1-tjeizmwnacacowxp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xo8OaGMrJflQnZyR",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$A,B,C$$ are square matrices of the same order then $${\\left( {ABC} \\right)^{ - 1}}$$ is equal be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${C^{ - 1}}\\,{A^{ - 1}}\\,{B^{ - 1}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${C^{ - 1}}\\,{B^{ - 1}}\\,{A^{ - 1}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${A^{ - 1}}\\,{B^{ - 1}}\\,{C^{ - 1}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${A^{ - 1}}\\,{C^{ - 1}}\\,{B^{ - 1}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-abc-are-square-matrices-of-the-same-order-then-left-abc-r-gate-ce-2000-marks-1-xo8oagmrjflqnzyr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "svZs8CwloN8AXfBb",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Taylor series expansion of sin $$x$$ about $$x = {\\pi  \\over 6}$$ is given by ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over 2} + {{\\sqrt 3 } \\over 2}\\left( {x - {\\Pi  \\over 6}} \\right) - {1 \\over 4}{\\left( {x - {\\Pi  \\over 6}} \\right)^2} - {{\\sqrt 3 } \\over {12}}{\\left( {x - {\\Pi  \\over 6}} \\right)^3} +  -  - $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$x - {{{x^3}} \\over {3!}} + {{{x^5}} \\over {5!}} - {{{x^7}} \\over {7!}} +  -  -  -  - $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{x - {\\Pi  \\over 6}} \\over {1!}} - {{{{\\left( {x - {\\Pi  \\over 6}} \\right)}^3}} \\over {3!}} + {{{{\\left( {x - {\\Pi  \\over 6}} \\right)}^5}} \\over {5!}} - {{{{\\left( {x - {\\Pi  \\over 6}} \\right)}^7}} \\over {7!}} +  -  -  -  - $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${1 \\over 2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-taylor-series-expansion-of-sin-x-about-x-pi-over-6-is-gi-gate-ce-2000-marks-2-svzs8cwlon8axfbb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FJ2K2IgQqDMP3ors",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Limit of the function \n<br>$$f\\left( x \\right) = {{1 - {a^4}} \\over {{x^4}}}\\,\\,as\\,\\,x \\to \\infty $$ is given by ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${e^{ - {a^4}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\infty $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "limit-of-the-function-fleft-x-right-1-a4-over-x4asx-to-infty-gate-ce-2000-marks-2-fj2k2igqqdmp3ors.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mTSEuR4Z6frssytL",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$f\\left( {x,y,z} \\right) = $$ \n<br>$${\\left( {{x^2} + {y^2} + {z^2}} \\right)^{{\\raise0.5ex\\hbox{$\\scriptstyle { - 1}$}\n\\kern-0.1em/\\kern-0.15em\n\\lower0.25ex\\hbox{$\\scriptstyle 2$}}}},$$ $${{{\\partial ^2}f} \\over {\\partial {x^2}}} + {{{\\partial ^2}f} \\over {\\partial {y^2}}} + {{{\\partial ^2}f} \\over {\\partial {z^2}}}$$ is equal to _______.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ - 3{\\left( {{x^2} + {y^2} + {z^2}} \\right)^{{\\raise0.5ex\\hbox{$\\scriptstyle { - 5}$}\n\\kern-0.1em/\\kern-0.15em\n\\lower0.25ex\\hbox{$\\scriptstyle 2$}}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-fleft-xyz-right-left-x2-y2-z2-rightraise05exhboxscriptsty-gate-ce-2000-marks-2-mtseur4z6frssytl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WDkI4JVC0TqB4WMD",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following integral $$\\mathop {Lim}\\limits_{x \\to 0} \\int\\limits_1^a {{x^{ - 4}}} dx$$ ________.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "diverges "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "converges to $$1/3$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "converges to $${ - {1 \\over {{a^3}}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "converges to $$0$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-integral-mathop-limlimitsx-to-0-intli-gate-ce-2000-marks-1-wdki4jvc0tqb4wmd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SEPMHstDVrZpa1M8",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$F\\left( s \\right) = L\\left[ {f\\left( t \\right)} \\right]$$ denote the Laplace transform of the function $$f(t)$$. Which of the following statements is correct? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/35ZtVu7d4zvfdIM7N/AMtTW9dz0l0WhS0bTnjkVsyefLE4y/w6UY6IttRR2KN9XbUFpKu7/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2000 Engineering Mathematics - Transform Theory Question 12 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/vObZX1S6PTjqfqEuh/vn8zOhHzkJTWDkEhs6pWSIZ5nynFi/XOCzmc4Bh21DF3ZDpqv9n0/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2000 Engineering Mathematics - Transform Theory Question 12 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/2rzIXNikLif3dnh1A/ZW8OJDI1TfMXE8NMxmavCjAPDbiLs/fU2T01MRagJZ1xZR7soCaI/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2000 Engineering Mathematics - Transform Theory Question 12 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/63NcdpxbWxVQg5p9M/rvg0rmceaYnpBJuQb9TYIXanKyrwT/MjqvMOvEiRIF00F2v7ycs6/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2000 Engineering Mathematics - Transform Theory Question 12 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-fleft-s-right-lleft-fleft-t-right-right-denote-the-lapla-gate-ce-2000-marks-2-sepmhstdvrzpa1m8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Environmental Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2e39d47466a",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "environmental-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "quality-control-of-water",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two Samples of Water A and B have pH values of a 4.4 and 6.4 respectively. How many times more acidic sample A is than sample B",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "15"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "100"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "200"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-samples-of-water-a-and-b-have-ph-values-of-a-44-and-64-r-gate-ce-2000-marks-2-5a2e39d47466a.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                }
+            ],
+            "title": "Environmental Engineering"
+        },
+        {
+            "_id": "Fluid Mechanics and Hydraulic Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2a1c78493b2",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics-and-hydraulic-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "properties-of-fluids",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Cavitation is caused by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Hight Velocity"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Low pressure"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "High pressure"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "High temperature"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "cavitation-is-caused-by-gate-ce-2000-marks-1-5a2a1c78493b2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                }
+            ],
+            "title": "Fluid Mechanics and Hydraulic Machines"
+        },
+        {
+            "_id": "Geotechnical Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a29b1272a59b",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "geotechnical-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "definitions-and-properties-of-soils",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A soil sample has a void ratio of 0.5 and its porosity will be closed to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "50%"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "66%"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "100%"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "33%"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-soil-sample-has-a-void-ratio-of-05-and-its-porosity-will-b-gate-ce-2000-marks-1-5a29b1272a59b.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a29b16c41c6f",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "geotechnical-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "definitions-and-properties-of-soils",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A borrow pit soil has a dry density of 17 kN/m<sup>3</sup>. How many cubic meters of this soils will be required to construct an embankment of 100 m<sup>3</sup> volume with a dry density of 16 kN/m<sup>3</sup>.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "94 m<sup>3</sup>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "106 m<sup>3</sup>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "100 m<sup>3</sup>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "90 m<sup>3</sup>"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-borrow-pit-soil-has-a-dry-density-of-17-knm3-how-many-cubi-gate-ce-2000-marks-1-5a29b16c41c6f.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                }
+            ],
+            "title": "Geotechnical Engineering"
+        },
+        {
+            "_id": "Irrigation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2c47d425b1c",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "irrigation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "water-requirement-of-crops",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If duty (D) is 1428 hectares/cumec and base period (B) is 120 days for an irrigated crop, then delta ($$\\Delta$$) in meters is given by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "102.8"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.73"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1.38"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0.01"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-duty-d-is-1428-hectarescumec-and-base-period-b-is-120-day-gate-ce-2000-marks-1-5a2c47d425b1c.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2d74190ffe1",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "irrigation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "water-requirement-of-crops",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A tube well having a capacity of 4 $$m^3 /hour$$ operates for 20 hours each day during the irrigation season. How much area can be commanded if the irrigation interval is 20 days and depth of irrigation is 7 cm?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.71\\times10^4\\;m^2$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.14\\times10^4\\;m^2$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$22.9\\times10^4\\;m^2$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2.29\\times10^4\\;m^2$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-tube-well-having-a-capacity-of-4-m3-hour-operates-for-20-h-gate-ce-2000-marks-2-5a2d74190ffe1.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                }
+            ],
+            "title": "Irrigation"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "m6ADDNVovhL1tNRR",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "singly-reinforced-sections",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The working stress method of design specifies the value of modular ratio, $$m = 280/\\left( {3{\\sigma _{cbc}}} \\right),$$ where $${{\\sigma _{cbc}}}$$ is the allowable stress in bending compression in concrete. To what extent does the above value of $$'m'$$ make any allowance for the creep of concrete?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "No compensation"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Full compensation "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Partial compensation"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The two are unrelated"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-working-stress-method-of-design-specifies-the-value-of-m-2000-marks-1-m6addnvovhl1tnrr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BH8Gc6xFmP9t572d",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "singly-reinforced-sections",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following two statements are made with reference to a simply supported under - reinforced $$RCC$$ beam: \n<p>$${\\rm I}.\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ Failure takes place by crushing of concrete before the steel has yielded.\n<br>$${\\rm II}.\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ The neutral axis moves up as the load is increased.</p>\n<p>With reference to the above statements, which of the following applies? </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both the statements are false "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\rm I}$$ is true but $${\\rm I}$$$${\\rm I}$$ is false "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Both the statements are true"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\rm I}$$ is false but $${\\rm I}$$$${\\rm I}$$ is true "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-two-statements-are-made-with-reference-to-a-si-2000-marks-2-bh8gc6xfmp9t572d.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AonezM4TNVoOdDjP",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "singly-reinforced-sections",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Assume straight line instead of parabola for stress-strain curve of concrete  as given below and partial factor of safety as $$1.0.$$ \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/TigmRus3SeEHMZf9E/mtsgEUXPQC5jr3phXUhvUR0no29Tf/0zdW81pfPbZ4qjBVxuryhg/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Reinforced Cement Concrete - Singly Reinforced Sections Question 6 English\"> \n<p>A rectangular under-reinforced concrete section of $$300$$ $$mm$$ width and $$500$$ $$mm$$ effective depth is reinforced with $$3$$ bars of grade $$Fe$$-$$415,$$ each of $$16$$ $$mm$$ diameter. Concrete mix is $$M20.$$ </p>\n<p>The depth of the neutral axis from the compression fibre is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$76$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$81$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$87$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$100$$ $$mm$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "assume-straight-line-instead-of-parabola-for-stress-strain-c-2000-marks-2-aonezm4tnvooddjp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "G7OIxt2OC6zIHU3F",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "singly-reinforced-sections",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Assume straight line instead of parabola for stress-strain curve of concrete  as given below and partial factor of safety as $$1.0.$$ \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/TigmRus3SeEHMZf9E/mtsgEUXPQC5jr3phXUhvUR0no29Tf/0zdW81pfPbZ4qjBVxuryhg/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Reinforced Cement Concrete - Singly Reinforced Sections Question 5 English\"> \n<p>A rectangular under-reinforced concrete section of $$300$$ $$mm$$ width and $$500$$ $$mm$$ effective depth is reinforced with $$3$$ bars of grade $$Fe$$-$$415,$$ each of $$16$$ $$mm$$ diameter. Concrete mix is $$M20.$$ </p>\n<p>The depth of the neutral axis obtained as per $$IS:$$ $$456$$-$$2000$$ differs from the depth of neutral axis obtained in $$Q.08$$ by </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$15$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$20$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$25$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$32$$ $$mm$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "assume-straight-line-instead-of-parabola-for-stress-strain-c-2000-marks-2-g7oixt2oc6zihu3f.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vOnOlxuTSyrDHaeX",
+                    "exam": "gate-ce",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bond",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A continuous beam $$250\\,mm \\times 450\\,mm$$ carries $$6$$ numbers of $$12$$ $$mm$$ diameter longitudinal bars as shown. The factored shear force at the point of inflection is $$200$$ $$kN.$$ Check if the beam is safe in bond. Assume $$M15$$ mix with $${\\sigma _{ck}} = 15\\,\\,N/m{m^2}$$ and mild steel with $${\\sigma _y} = 250\\,N/m{m^2}.$$ A clear cover of $$25$$ $$mm$$ can be assumed. The design bond stress for mild steel bars in $$M15$$ concrete is specified to be $$1.0\\,N/m{m^2}.$$ \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/ApO7NHvzI5xk9oBdb/3RSYvNRJ1kHL2tCdeueQddjfNhSiL/lmlTqVVCOwNvBMyuXWgDZ9/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Reinforced Cement Concrete - Bond Question 1 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Beam is safe in bond",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-continuous-beam-250mm-times-450mm-carries-6-n-2000-marks-5-vonolxutsyrdhaex.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BaYs0sPrwHONqsLC",
+                    "exam": "gate-ce",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "prestressed-concrete",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A simply supported rectangular prestressed concrete beam $$200$$ $$mm$$  wide and $$400$$ $$mm$$ deep has an effective span of $$12$$ $$m.$$ The prestressing cable has a triangular profile with zero eccentricity at ends and $$70$$ $$mm$$  at the midspan as shown in the figure below. The effective prestress is $$800$$ $$kN$$ after all losses. Determine the value of point load, the beam can support at the midspan if the pressure line passes through the upper kern of the section. The weight density of the material of the beam can be taken to be $$25$$ $$kN/{m^3}$$ \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/ftaYSbOYsywjXma7U/w5LzUgrIpFNsxj1foZu9kxzSgZ9Lz/y7buFBj4U3b9zsL30e1M2L/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Reinforced Cement Concrete - Prestressed Concrete Question 4 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$24.3$$ $$kN$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-simply-supported-rectangular-prestressed-concrete-beam-2-2000-marks-5-bays0sprwhonqslc.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Steel Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hVTnpSsPZqf66Kub",
+                    "exam": "gate-ce",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "eccentric-connections",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$12$$ $$mm$$ bracket plate is connected to a column flange as shown in the figure below. The bracket transmits a load of $$W = 200\\,\\,kN$$ to the column flange. $$A$$ $$10$$ $$mm$$ fillet weld is provided along $$AB,$$ $$BC$$ and $$CD.$$ If $$e=350$$ $$mm,$$ $$b=200$$ $$mm$$ and $$d=600$$ $$mm,$$ Verify if the size of the weld provided is adequate. Allowable shearing stress in the fillet weld can be taken to be $$108$$ $$MPa.$$ \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/bAI5wzuqvI4Uy0DYW/Jg3olHz4pAfM4wtqz9jgMfUPSrLf6/5NYrlZJR0UMZUlkpCgdb84/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Steel Structures - Eccentric Connections Question 3 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Fillet weld size is adequate.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-12-mm-bracket-plate-is-connected-to-a-column-flang-2000-marks-5-hvtnpsspzqf66kub.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                }
+            ],
+            "title": "Steel Structures"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jw9C3FHgRjIQ8gvw",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A two span beam with an internal hinge is shown below.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/OufYhws6LeCG21mwh/8WoeWbmBwxs3bu3enQRpBZlot1TfM/Ks7ehKMFagZcECp7LM5jdo/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Strength of Materials Or Solid Mechanics - Deflection of Beams Question 17 English\"> \n<p>Conjugate beam corresponding to this beam is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/bQYUCvIbHUNPFav8m/b6RT5lk3cYAnbuu90ZeEaxv9Mn3Pb/rYRjX60CGa5F7tCUstN2pz/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2000 Strength of Materials Or Solid Mechanics - Deflection of Beams Question 17 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/aBrwqx6GNMJm3jEq6/hgsV4j1MThIRs0xiD18YsZvb9BFAo/sOvO0yZueu2Os3iGITzjku/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Strength of Materials Or Solid Mechanics - Deflection of Beams Question 17 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/YaqImj7DysoZuRoKE/XqlldPILcSIGE405lWRLH6PBrxj37/4Xq9Xs5WIVAVdFFjp8UtMG/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Strength of Materials Or Solid Mechanics - Deflection of Beams Question 17 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/yntiUNX4mlKCx2I5V/EaswDrzZ0rIHrVnew08TPZfrXPcuz/Q7nKCu17dHmiyiYVyxZdxp/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Strength of Materials Or Solid Mechanics - Deflection of Beams Question 17 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-a-two-span-beam-with-an-internal-hinge-is-shown-below-co-2000-marks-2-jw9c3fhgrjiq8gvw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hVbrEBS9XmCqUwhe",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the structure shown below, the vertical deflection at point $$A$$ is given by \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/3ymYH8k8Sc5yF1xs1/wz2vo5GJjnYMDFCOpZrXdOK47v3yt/layWykRhvd9D2mEo4DbiOB/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Strength of Materials Or Solid Mechanics - Deflection of Beams Question 16 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{P{L^3}} \\over {81EI}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{2P{L^3}} \\over {81EI}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{P{L^3}} \\over {72EI}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-structure-shown-below-the-vertical-deflection-at-po-2000-marks-2-hvbrebs9xmcquwhe.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "IE23gE038T0mzLRB",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "columns-and-struts",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Four column of the same material having identical geometric properties are  supported in different ways as shown below\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/abKI65jMxYQZQXVt0/JtU2r9Cg1OQ6YWibk6IlUnypbS0Do/YWtgX6AJW1tfAt65uQaGEE/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Strength of Materials Or Solid Mechanics - Columns and Struts Question 10 English\"> \n<p>It is required to order these four beams in the increasing order of their respective first buckling loads. The correct order is given by </p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\rm I},$$ $${\\rm II},$$ $${\\rm III},$$ $${\\rm IV}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\rm III},$$ $${\\rm IV},$$ $${\\rm II},$$ $${\\rm I}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\rm II},$$ $${\\rm I},$$ $${\\rm IV},$$ $${\\rm III}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\rm I},$$ $${\\rm II},$$ $${\\rm IV},$$ $${\\rm III}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "four-column-of-the-same-material-having-identical-geometric-2000-marks-1-ie23ge038t0mzlrb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WiIqHOItl95YTmrf",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-force-and-bending-moment",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A frame $$ABCD$$ is supported by a roller at $$A$$ and is on a hinge at $$C$$ as shown below:\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/DV1GK86Qrg07GfqVa/qhhJDbddoJNgJQtMNiTwcPk5SAftY/rmZoze1gudzKPlot51cXYk/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Strength of Materials Or Solid Mechanics - Shear Force and Bending Moment Question 11 English\"> \n<p>The reaction at the roller end $$A$$ is given  by </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2P$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${P \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Zero "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-frame-abcd-is-supported-by-a-roller-at-a-and-is-on-2000-marks-2-wiiqhoitl95ytmrf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1730bc40578",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "simple-stresses",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Pick the incorrect statement from the following four statements:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "On the plane which carries maximum normal stress, the shear stress is zero."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Principal planes are mutually orthogonal."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "On the plane which carries maximum shear stress, the normal stress is zero."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The principal stress axes and principal strain axes coincide for an isotropic material"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "pick-the-incorrect-statement-from-the-following-four-stateme-gate-ce-2000-marks-1-5a1730bc40578.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a171da4742a9",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "simple-stresses",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The stress-strain diagram for two materials A and B is shown below:\n<img alt=\"GATE CE 2000 Strength of Materials Or Solid Mechanics - Simple Stresses Question 16 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/c91a29476d6d98cceb91c1c4f167c3b5114789af277ef691e85d520900559c3d.jpg\" style=\"text-align:center;max-width:100%;height:auto;display:block;\" loading=\"lazy\">\nThe following statements are made based on this diagram:<br>\nI. Material A is more brittle than material B.<br>\nII. The ultimate strength of material B is more than that of A.<br>\nWith reference to the above statements, which of the following applies?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both the statements are false."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Both the statements are true."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "I is true but II is false."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "I is false but II is true."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-stress-strain-diagram-for-two-materials-a-and-b-is-shown-gate-ce-2000-marks-1-5a171da4742a9.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2yBudREJEZSkJIKe",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The four cross sections shown below are required to be ordered in the increasing order of their respective shape factors.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/yK0t1Be0FStO4nilI/HiKa7bfpBobfDz4I70dGtAUzteaoh/5qNqPZ0do2KFCAdvWOkab1/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Structural Analysis - Plastic Analysis Question 10 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\rm I}{\\rm I}{\\rm I},\\,\\,{\\rm I},\\,\\,{\\rm I}V,{\\rm I}{\\rm I}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\rm I},\\,\\,{\\rm I}{\\rm I},\\,\\,{\\rm I}{\\rm I}{\\rm I},{\\rm I}V$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\rm I}{\\rm I}{\\rm I},\\,\\,{\\rm I}V,\\,\\,{\\rm I},\\,\\,{\\rm I}{\\rm I}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\rm I}{\\rm I}{\\rm I},\\,\\,{\\rm I}V,\\,\\,{\\rm I}{\\rm I},\\,\\,{\\rm I}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-four-cross-sections-shown-below-are-required-to-be-order-2000-marks-2-2ybudrejezskjike.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RAuII238hTkfPYRS",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "indeterminacy",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following two statements are made with reference to the planar truss shown below : \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/cklaDaGWgc1L8Sy3a/O4nqHxycr212rklE2o57VYQQOrqeQ/GKAPpEfJTKguT79MD2lyOb/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Structural Analysis - Indeterminacy Question 2 English\"> \n<p>$${\\rm I}.$$ The truss is statically determinate\n<br>$${\\rm II}.$$ The truss is kinematically determinate</p>\n<p>With reference to the above statements, which of the following applies ?</p> \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both statements are true "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Both statements are false "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\rm II}$$ is true but $${\\rm I}$$ is false"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\rm I}$$ is true but $${\\rm II}$$ is false"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-two-statements-are-made-with-reference-to-the-2000-marks-2-rauii238htkfpyrs.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "e4EOTfG5K0gZdFnk",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "influence-line-diagram",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Identify the FALSE statement from the following, pertaining to the methods of structural analysis.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Influence lines for stress resultants in beams can be drawn using Muller Breslau's Principle."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The Moment Distribution Method is a force method of analysis, not a displacement method. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The Principle of Virtual Displacements can be used to establish a condition of equilibrium. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The Substitute Frame Method is not applicable to frames subjects to significant side sway. "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "identify-the-false-statement-from-the-following-pertaining-2000-marks-1-e4eotfg5k0gzdfnk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SEh5ZXzcVSMfm0pO",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "influence-line-diagram",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A simply supported beam with an overhang is traversed by a unit concentrated moment from left to the right as shown below:\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/qYThEFk1jkXD2Fpjs/ZgFLynfGUQ6vNIkPGD2gdCao4ivN6/yx0nmmJuap5Cx8ijLtZPo4/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Structural Analysis - Influence Line Diagram Question 9 English\"> \n<p>The influence line for reaction at $$B$$ is given by </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/qjQPNsiq62mdYHeMD/ohhDxP0Rtlwih7eSKx7l92FgObiS2/jksrC7W537Kp6WLuSDDa4n/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Structural Analysis - Influence Line Diagram Question 9 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/yd0OYoNXHv19gfHJV/I212R7AIUf1xwcQ6PyEgc5x6RNslS/Lg7kSHLwGnJJzJrHGHMc83/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Structural Analysis - Influence Line Diagram Question 9 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/ipw4niT626wRHbOq0/vNBzWtCcoBZhIvfyneBgCZd4tIgaV/HiTL6fY4J8SDvwjNqZBQ97/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Structural Analysis - Influence Line Diagram Question 9 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Zero every where "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-simply-supported-beam-with-an-overhang-is-traversed-by-a-u-2000-marks-2-seh5zxzcvsmfm0po.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "IEjaMiwjBM62a0hq",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "energy-principle",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the structure shown below, the vertical deflection at point $$A$$ is given by\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/MTdNrtvEFjU1q8M8d/f4k87WPm7pBzUgyLl1SD2DmyjkKTb/iEHlUBwoUjUNZCvulQ4qjp/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Structural Analysis - Energy Principle Question 7 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{P{L^3}} \\over {81EI}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{2P{L^3}} \\over {81EI}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Zero"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{P{L^3}} \\over {72EI}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-structure-shown-below-the-vertical-deflection-at-po-2000-marks-2-iejamiwjbm62a0hq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zJoKl3x1RpRhcIhB",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A frame $$ABCD$$ is supported by a roller at $$A$$ and is on a hinge at $$C$$ as shown below. The reaction at the roller end $$A$$ is given by \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/nRvjXJVSAhDdadr4g/sab0q3sRYUE7MolIR8hZuuON7kPUu/IIduScEQWUwOIgAaefuiBC/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Structural Analysis - Moment Distribution Method Question 16 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2P$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${P \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Zero "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-frame-abcd-is-supported-by-a-roller-at-a-and-is-on-2000-marks-1-zjokl3x1rprhcihb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nNHKH9A2LQjoVhuU",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Identify the correct deflection diagram corresponding to the loading in the plane frame shown below : \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/8MR8jgk47cGOnlAnu/ZBCYroFuYOTZa4zA2CCEmkVbAN55g/8zeXXcLDjNXfDu32mjcUiB/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Structural Analysis - Moment Distribution Method Question 15 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/2RwwmL9y8nWx8gCIX/jd5eCearbYpo3GV5TOPMfjTonz3FU/zfD9aR10tgnf8zlNxZI1ud/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Structural Analysis - Moment Distribution Method Question 15 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/dZ2ERXEjwkjHwd54y/VB44xvDcOnqin57MJPaMR1i06dnrG/eoTlVOkFRPBna0ev7yjN3O/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Structural Analysis - Moment Distribution Method Question 15 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Mn7k34SV51Bduln7y/wt1FZmYK3cFByp2gwJ9lx1DXr87nq/f3eliAbNxoq70PNCadLmey/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Structural Analysis - Moment Distribution Method Question 15 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/RFuDc7GKmn5JZUV6c/2FYpv3OQnkfkkmrvHX59LrHFCXpFy/dpY4AIHGpu3c1c6y65UgHb/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Structural Analysis - Moment Distribution Method Question 15 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "identify-the-correct-deflection-diagram-corresponding-to-the-2000-marks-1-nnhkh9a2lqjovhuu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1ZJsGM7tBmRdaibp",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A cantilever beam of length $$L$$ and a cross section with shape factor $$'f'$$ supports a concentrated load $$P$$ as shown below: \n<p>The length $${L_P}$$ of the plastic zone, when the maximum bending moment, equals the plastic moment $${M_P}$$, given by</p>\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/77xHnznnPBIzs38yJ/rSJbNQFPOseAj5iePjXQG2O5oTtYC/PetzJ6n2qhYFtowfar0nIo/image.png\" loading=\"lazy\" alt=\"GATE CE 2000 Structural Analysis - Plastic Analysis Question 9 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{{L_P}} \\over L} = {1 \\over f}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{{L_P}} \\over L} = L\\left( {1 - f} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{{L_P}} \\over L} = 1 - {1 \\over {\\sqrt f }}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{{L_P}} \\over L} = 1 - {1 \\over f}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cantilever-beam-of-length-l-and-a-cross-section-with-s-2000-marks-2-1zjsgm7tbmrdaibp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                }
+            ],
+            "title": "Structural Analysis"
+        },
+        {
+            "_id": "Transportation Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a41b09e9c0bd",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "transportation-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "highway-geometric-design",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The ruling minimum radius of horizontal curve of a national highway in plain terrain for a ruling design speed of 100 km/hour with e = 0.07 and f = 0.15 is close to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "250 m"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "360 m"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "36 m"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "300 m"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-ruling-minimum-radius-of-horizontal-curve-of-a-national-gate-ce-2000-marks-2-5a41b09e9c0bd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a36ec4be62de",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "transportation-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "highway-geometric-design",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Width of carriage way for a single lane is recommended to be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "7.5 m"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "7.0 m"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "3.75 m"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "5.5 m"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "width-of-carriage-way-for-a-single-lane-is-recommended-to-be-gate-ce-2000-marks-1-5a36ec4be62de.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a41b148bf89a",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "transportation-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "highway-geometric-design",
+                    "year": 2000,
+                    "paperTitle": "GATE CE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Design rate of super elevation for horizontal highway curve of radius 450 m for a mixed traffic condition, having a speed of 125 km/hour is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1.0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.05"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0.07"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0.154"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "design-rate-of-super-elevation-for-horizontal-highway-curve-gate-ce-2000-marks-2-5a41b148bf89a.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2000"
+                }
+            ],
+            "title": "Transportation Engineering"
+        }
+    ]
+}

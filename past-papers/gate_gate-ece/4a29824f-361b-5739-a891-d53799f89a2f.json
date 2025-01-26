@@ -1,0 +1,3383 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Analog Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YpYY7wG4eSPYv7WB",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Assume that the OP_AMP in the figure, ideal \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/f731464359fd793d264272895ada462e53c2bce9141e3865a8e618a7006f5f89.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Analog Circuits - Operational Amplifier Question 8 English\"> \n<p>(a) Obtain an expression for V<sub>0</sub> in terms of V<sub>s</sub>, R, and the reverse saturation current I<sub>s</sub>  of the transiostor.</p>\n<p>(b) If R = 1$$\\Omega $$,  I<sub>s</sub> = 1pA and the thermal voltage V<sub>T</sub> = 25mV, then what is the value of the output voltage V<sub>0</sub>  for an input voltage V<sub>s</sub> = 1V?</p>\n<p>(c) Suppose that the transistor in the feedback path is replaced by a p-n junction diode with a reverse saturation current of I<sub>s</sub>. The p-side of the diode is connected to node A and the n-side to node B. Then what is the expression for V<sub>0</sub> in terms V<sub>s</sub>, R and I<sub>s</sub> ?</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a)$${V_0}\\,\\, = \\,{V_T}\\ln {{{I_s}R} \\over {{V_s}}}$$ \n<br>(b)$${V_0}\\, = \\, - 0.69V$$\n<br>(c)$${V_0}\\, = \\,\\pi {V_T}\\ln {{{I_s}R} \\over {{V_s}}}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "assume-that-the-opamp-in-the-figure-ideal-a-obtain-an-expres-gate-ece-2001-marks-5-ypyy7wg4espyv7wb.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2f1a129ebf7",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bipolar-junction-transistor",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The current gain of a BJT is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$g_mr_o$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\frac{g_m}{r_o}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$g_mr_\\mathrm\\pi$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\frac{g_m}{r_\\mathrm\\pi}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-current-gain-of-a-bjt-is-gate-ece-2001-marks-1-5a2f1a129ebf7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "M2HNlXQLqwbQhdKh",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bipolar-junction-transistor",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An emitter-follower amplifier is shown in the figure, Z<sub>i</sub> is the impedance looking into the base of the transistor and Z<sub>0</sub> is the impedance looking into the emitter of the transistor \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/812a018fc48c577a419795f16c139102b207281e3d02a61efeba42c41f4c2ea9.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Analog Circuits - Bipolar Junction Transistor Question 4 English\"> \n<p>(a)Draw the small signal equivalent circuit of the amplifier.\n<br>(b)Obtain an expression for z<sub>i</sub>.\n<br>(c)Obtain an expression for z<sub>0</sub>.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(b) z<sub>i</sub> = $${1 \\over {{1 \\over {{R_B}}} + {1 \\over {{h_{ie}} + \\left( {1 + {h_{ie}}} \\right){R_E}}}}}$$ \n<p>(c)$${Z_0} = {1 \\over {{1 \\over {{R_E}}} + \\left( {{{1 + {h_{fe}}} \\over {{h_{ie}}}}} \\right)}}$$</p>",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-emitter-follower-amplifier-is-shown-in-the-figure-zi-is-t-gate-ece-2001-marks-5-m2hnlxqlqwbqhdkh.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fQMFIi1yGTawQOcu",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "frequency-response",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An npn BJT has g<sub>m</sub> = 38 mA/V, $${C_\\mu }\\, = {10^{ - 14}}$$ F, $${C_\\pi }\\, = 4\\, \\times {10^{ - 13}}\\,F$$ and DC current gain $$\\beta \\, = \\,90$$. For this transistor f<sub>T</sub> and $${f_\\beta }$$ are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\eqalign{\n  &amp; {f_T} = 1.64 \\times {10^8}\\,\\,Hz\\,and  \\cr \n  &amp; {f_\\beta } = 1.47 \\times {10^{10}}\\,\\,Hz \\cr} $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\eqalign{\n  &amp; {f_T} = 1.47 \\times {10^{10}}\\,\\,Hz\\,and  \\cr \n  &amp; {f_\\beta } = 1.64 \\times {10^8}\\,\\,Hz \\cr} $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\eqalign{\n  &amp; {f_T} = 1.33 \\times {10^{12}}\\,\\,Hz\\,and  \\cr \n  &amp; {f_\\beta } = 1.47 \\times {10^{10}}\\,\\,Hz \\cr} $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\eqalign{\n  &amp; {f_T} = 1.47 \\times {10^{10}}\\,\\,Hz\\,and  \\cr \n  &amp; {f_\\beta } = 1.33 \\times {10^{12}}\\,\\,Hz \\cr} $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-npn-bjt-has-gm-38-mav-cmu-10-14-f-cpi-4-times-10-13f-and-gate-ece-2001-marks-2-fqmfii1ygtawqocu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dZOoiXJGGSJ9Bx9u",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "oscillators",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Oscillator circuit shown in the figure is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/ea8ff11d6d75c838b86f6f47f9c8a61518abac81aecf2457c23250081732742a.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Analog Circuits - Oscillators Question 5 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Hartley Oscillator with $${f_{oscillation}}$$= 79.6 MHz"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Colpitts Oscillator with $${f_{oscillation}}$$ =50.3 MHz"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Hartley Oscillator with $${f_{oscillation}}$$= 159.2 MHz"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Colpitts Oscillator with  $${f_{oscillation}}$$=159.2 MHz "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-oscillator-circuit-shown-in-the-figure-is-gate-ece-2001-marks-2-dzooixjggsj9bx9u.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YG8Rf9RNRiN7ZOKd",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The ideal Op-Amp has the following characteristics.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${R_i}\\, = \\,\\infty ,\\,\\,A\\, = \\,\\infty ,\\,{R_0}\\, = \\,0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${R_i}\\, = \\,0,\\,\\,A\\, = \\,\\infty ,\\,{R_0}\\, = \\,0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${R_i}\\, = \\,\\infty ,\\,\\,A\\, = \\,\\infty ,\\,{R_0}\\, = \\,\\infty $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${R_i}\\, = \\,0,\\,\\,A\\, = \\,\\infty ,\\,{R_0}\\, = \\,\\infty $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-ideal-op-amp-has-the-following-characteristics-gate-ece-2001-marks-1-yg8rf9rnrin7zokd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3rwTu2l5Mbszjetg",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "555-timer",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following two statements.\n<p> <b>Statement 1: </b> Astable Multivibrator can be used for generating Square Wave.\n</p><p> <b> Statement 2:  </b> Bistable Multivibrator can be used for storing binary information. \n\n </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "only statement 1is correct"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "only statement 2 is correct "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "both the statement 1 and 2 are correct "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Both the statements 1 and 2 are in correct"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-two-statements-statement-1-astable-mu-gate-ece-2001-marks-1-3rwtu2l5mbszjetg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UjmMvPpyVjSAWre6",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Inverting Op-Amp shown in the figure,  has an Open-loop gain of 100. The closed loop gain $${{{V_o}} \\over {{V_s}}}$$  is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/06577b1749f72dccac1132aa43a00777ce3ec4afdd051ecf1210783ec81ffdaa.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Analog Circuits - Operational Amplifier Question 54 English\"> \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "-8 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "-9 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "-10 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "-11 "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-inverting-op-amp-shown-in-the-figure-has-an-open-loop-ga-gate-ece-2001-marks-2-ujmmvppyvjsawre6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "q12vOqoHYtRtYeTR",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the figure assume the Op-Amps to be ideal. The output V<sub>0</sub> of the circuit is\n\n <img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/5e79251f21fa7946fcd0539da20953c1c8c31d4516ea35d4ca391169bde50b26.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Analog Circuits - Operational Amplifier Question 53 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "10 $$\\cos $$ (100 t)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "10 $$\\int\\limits_0^t {\\cos \\,\\,\\left( {100\\tau } \\right)} \\,\\,d\\tau $$ v"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${10^{ - 4}}\\int\\limits_0^t {\\cos \\,\\,\\left( {100\\tau } \\right)} \\,\\,d\\tau $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${10^{ - 4}}{d \\over {dt}}\\cos \\left( {100t} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-figure-assume-the-op-amps-to-be-ideal-the-output-v0-o-gate-ece-2001-marks-2-q12voqohytrtyetr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LdeHoe54eOH5ucGl",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An Amplifier using an Op-Amp with a Slew-Rate SR =  V/$$\\mu $$sec, has a gain of 40 dB. If this amplifier has to faith fully amplify sinsoidal signals from dc to 20 KHz. Without introducing any Slew Rate induced distortion,  then the input signal level must not exceed.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "795 mV "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "395 mV "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "79.5 mV "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "39.5 mV "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-amplifier-using-an-op-amp-with-a-slew-rate-sr-vmu-sec-has-gate-ece-2001-marks-2-ldehoe54eoh5ucgl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                }
+            ],
+            "title": "Analog Circuits"
+        },
+        {
+            "_id": "Communications",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "saMl7mwbOldkvfCy",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "random-signals-and-noise",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The PDF of a Gaussian random variable X is given by $${p_x}(x) = \\,{1 \\over {3\\sqrt {2\\pi } }}\\,\\exp \\,[ - \\,{(x - 4)^2}/18]$$.\n<p> The probability of the event {X = 4} is </p> \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1/2"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1/\\left( {3\\sqrt {2\\,\\pi } } \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1/4"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-pdf-of-a-gaussian-random-variable-x-is-given-by-pxx-1-ov-gate-ece-2001-marks-1-saml7mwboldkvfcy.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YQLzMG4syaGSWxYq",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "digital-communication-systems",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A band limited signal is sampled at the Nyquist rate. The signal can be recovered by passing the samples through ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "an RC filter "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "an envelope detector "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "a PLL "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "an ideal low-pass filter with the appropriate bandwidth "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-band-limited-signal-is-sampled-at-the-nyquist-rate-the-sig-gate-ece-2001-marks-1-yqlzmg4syagswxyq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sscKOZZQGEl3ZIOd",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "noise-in-digital-communication",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "During transmission over a communication channel, bit errors occur independently with probability 'p'. If a block of n bits is transmitted, the probability of at most one bit error is equal to \n ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1 - {\\left( {1 - p} \\right)^n}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$p + \\left( {n - 1} \\right)\\left( {1 - p} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$np - {\\left( {1 - p} \\right)^{n - 1}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\left( {1 - p} \\right)^n} + np{\\left( {1 - p} \\right)^{n - 1}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "during-transmission-over-a-communication-channel-bit-errors-gate-ece-2001-marks-2-ssckozzqgel3ziod.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CMeb2u45RhgD6C6D",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fundamentals-of-information-theory",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A video transmission system transmits 625 picture frames per second. Each frame consists of a $$400\\,\\, \\times \\,\\,400$$ pixel grid with 64 intensity levels per pixel. The data rate of the system is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "16 Mbps "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "100 Mbps "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "600 Mbps "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "6.4 Gbps  "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-video-transmission-system-transmits-625-picture-frames-per-gate-ece-2001-marks-2-cmeb2u45rhgd6c6d.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                }
+            ],
+            "title": "Communications"
+        },
+        {
+            "_id": "Control Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a87e259af7cf",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "root-locus-diagram",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The root-locus diagram for a closed loop feedback system is shown in Figure. The system is overdamped.\n<img alt=\"GATE ECE 2001 Control Systems - Root Locus Diagram Question 7 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/9e91922a8cc6fc7f674ca1cf6f9b095a38306939966176ebd391540a981682aa.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$only\\;if\\;0\\;\\leq\\;K\\;\\leq\\;1$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$only\\;if\\;1\\;&lt;\\;K\\;&lt;\\;5$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$only\\;if\\;\\;K\\;&gt;\\;5$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$if\\;0\\;\\leq\\;K\\;&lt;\\;1\\;or\\;K\\;&gt;\\;5$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-root-locus-diagram-for-a-closed-loop-feedback-system-is-gate-ece-2001-marks-1-5a87e259af7cf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a096feb70075",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "signal-flow-graph-and-block-diagram",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A feedback control system is shown in figure\n<img alt=\"GATE ECE 2001 Control Systems - Signal Flow Graph and Block Diagram Question 14 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/61f9cb21aa24d4fc0e4f21d0871b8295490b4466c24cfb28e87e49150a6ed74d.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">\n(a) Draw the signal-flow graph that represents the system.<br>\n(b) Find the total number of loops in the graph and determine the loop-gains of\nall the loops.<br>\n(c) Find the number of all possible combination of non-touching loops taken two\nat a time.<br>\n(d) Determine the transfer function of the system using the signal-flow graph.<br>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve by yourself",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-feedback-control-system-is-shown-in-figurea-draw-the-signa-gate-ece-2001-marks-5-5a096feb70075.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0c657b0867a",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "time-response-analysis",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the characteristic equation of a closed-loop system is s<sup>2</sup> + 2s + 2 =0, then the\nsystem is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "overdamped"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "critically damped"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "underdamped"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "undamped"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-characteristic-equation-of-a-closed-loop-system-is-s2-gate-ece-2001-marks-1-5a0c657b0867a.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a79e5c907f2b",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "signal-flow-graph-and-block-diagram",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The equivalent of the block diagram in Figure is given as\n<img alt=\"GATE ECE 2001 Control Systems - Signal Flow Graph and Block Diagram Question 13 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/80b1144c9c8d501cb3f26f63e7e8b51813c92c21b9741f7671572e0d250022c6.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img alt=\"GATE ECE 2001 Control Systems - Signal Flow Graph and Block Diagram Question 13 English Option 1\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/9a2b8a8c559d8fd1a14d0ccb58e6bd83ce0011642b56105935cfb6a3e456b8fe.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img alt=\"GATE ECE 2001 Control Systems - Signal Flow Graph and Block Diagram Question 13 English Option 2\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/36c3ada368f2065aec9d5fa89806002cca5b1086cf71832059778ec956d44288.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img src=\"https://gateclass.cdn.examgoal.net/examside/questions/2322f80363ade8b91e7c8ecce052cfbc8b2e1a6a85c38dbbb04c7617ee1e6e49.jpg\" style=\"text-align:center;height:auto;max-width:100%;\" loading=\"lazy\" alt=\"GATE ECE 2001 Control Systems - Signal Flow Graph and Block Diagram Question 13 English Option 3\">"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img src=\"https://gateclass.cdn.examgoal.net/examside/questions/ef1d386c60a02e63b106dbc68744c82315b472d485246197768b834990255d64.jpg\" style=\"text-align:center;height:auto;max-width:100%;\" loading=\"lazy\" alt=\"GATE ECE 2001 Control Systems - Signal Flow Graph and Block Diagram Question 13 English Option 4\">"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-equivalent-of-the-block-diagram-in-figure-is-given-as-gate-ece-2001-marks-1-5a79e5c907f2b.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a7c8259dfb9f",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "signal-flow-graph-and-block-diagram",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An electrical system and its signal-flow graph representations are shown in Figure\n(a) and (b) respectively. The values of G<sub>2</sub> and H, respectively are \n<img alt=\"GATE ECE 2001 Control Systems - Signal Flow Graph and Block Diagram Question 6 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/505f7c5357d088622ee021f5154b78de8bbe31d4f89ff88df1fcd3787a3e954a.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\frac{Z_3\\left(s\\right)}{Z_2\\left(s\\right)+Z_3\\left(s\\right)+Z_4\\left(s\\right)},\\frac{-Z_3\\left(s\\right)}{Z_1\\left(s\\right)+Z_3\\left(s\\right)}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\frac{-Z_3\\left(s\\right)}{Z_2\\left(s\\right)-Z_3\\left(s\\right)+Z_4\\left(s\\right)},\\frac{-Z_3\\left(s\\right)}{Z_1\\left(s\\right)+Z_3\\left(s\\right)}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\frac{Z_3\\left(s\\right)}{Z_2\\left(s\\right)+Z_3\\left(s\\right)+Z_4\\left(s\\right)},\\frac{Z_3\\left(s\\right)}{Z_1\\left(s\\right)+Z_3\\left(s\\right)}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\frac{-Z_3\\left(s\\right)}{Z_2\\left(s\\right)-Z_3\\left(s\\right)+Z_4\\left(s\\right)},\\frac{Z_3\\left(s\\right)}{Z_1\\left(s\\right)+Z_3\\left(s\\right)}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-electrical-system-and-its-signal-flow-graph-representatio-gate-ece-2001-marks-2-5a7c8259dfb9f.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8579db747bf",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stability",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The feedback control system in Figure is stable\n<img alt=\"GATE ECE 2001 Control Systems - Stability Question 14 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/0bd00919eb922820f3898207736470053fe49fa03b6af134bf61b06729e2231c.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "for all K $$\\geq$$ 0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "only if K $$\\geq$$ 1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "only if 0 $$\\leq$$ K &lt; 1"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "only if 0 $$\\leq$$ K $$\\leq$$ 1"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-feedback-control-system-in-figure-is-stable-gate-ece-2001-marks-2-5a8579db747bf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8716213cf64",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stability",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the feedback control system shown in figure.\n<img alt=\"GATE ECE 2001 Control Systems - Stability Question 4 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/b306883c62117f3f445677c76a204685f0faed95a0efb3a23da7e66a3c4d3816.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">\n<br>(a) Find the transfer function of the system and its characteristic equation.\n<p>(b) Use the Routh-Hurwitz criterion to determine the range of 'K' for which the\nsystem is stable.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "<br>(a) Transfer function = $$\\frac{K\\left(s+1\\right)\\left(s+0.1\\right)}{s^3+3.1s^2+s\\left(K+0.3\\right)+K}$$\n<br>Characteristic equation = $$s^3+3.1s^2+s\\left(K+0.3\\right)+K=0$$\n<br>(b) For K &gt; 0 system is stable.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-feedback-control-system-shown-in-figurea-find-t-gate-ece-2001-marks-5-5a8716213cf64.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a87e28bd3dfe",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "root-locus-diagram",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given the $$G\\left(s\\right)H\\left(s\\right)=\\frac K{s\\left(s+1\\right)\\left(s+3\\right)}$$, the point of intersection of the asymptotes\nof the root loci with the real axis is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "-4"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1.33"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "-1.33"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "4"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-the-gleftsrighthleftsrightfrac-kslefts1rightlefts3righ-gate-ece-2001-marks-1-5a87e28bd3dfe.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "H9pbvVQPmuAL1tb4",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "frequency-response-analysis",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Nyquist plot for the open-loop transfer function G(s) of a unity negative\nfeedback system is shown in figure. if G(s) has no pole in the right half of s-plane,\nthe number of roots of the system characteristic equation in the right half\nof s-plane is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/67758b38420a272b3121690db19445cc834eee7318bc1646fc7a9be473054c25.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Control Systems - Frequency Response Analysis Question 66 English\">\n ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "3"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-nyquist-plot-for-the-open-loop-transfer-function-gs-of-a-gate-ece-2001-marks-1-h9pbvvqpmual1tb4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8sekmGvSXlBrNj6y",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "frequency-response-analysis",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The open-loop DC gain of a unity negative feedback system with closed-loop\ntransfer function $${{s + 4} \\over {{s^2} + 7s + 13}}$$ is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${4 \\over {13}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${4 \\over 9}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$13$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-open-loop-dc-gain-of-a-unity-negative-feedback-system-wi-gate-ece-2001-marks-2-8sekmgvsxlbrnj6y.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hLUJBUuECAwG8UXu",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "compensators",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the feedback control system shown in the figure, the process transfer function is \nG<sub>p</sub>(s) = $${1 \\over {s(s + 1)}},$$ and the amplification factor of the Power amplifier is K$$ \\ge $$0.\nThe design specifications required for the system, time constant is 1 sec and a damping ratio of 0.707.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/542234e1e0eebbac4fae45992e87fec084221162086ed4a4d863f9aca5c7d62c.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Control Systems - Compensators Question 4 English\"> \n<br> (a) Find the desired location of the closed loop poles.\n<br> (b) Write down the requiredcharacteristic equation for the system. Hense determine the PD controller transfer function G<sub>p</sub>(s) when K = 1.\n<br> (c) Sketch the root-locus for the system.\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "<br>(a) The two poles are \n<br>w<sub>1</sub> = -1+1j.\n<br> w<sub>2</sub> = -1 -1j \n<br> (b)  Characteristic equation, is $${s^2} + s\\left( {K{K_D} + 1} \\right) + K{K_P} = 0$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-feedback-control-system-shown-in-the-figure-the-proc-gate-ece-2001-marks-5-hlujbuuecawg8uxu.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                }
+            ],
+            "title": "Control Systems"
+        },
+        {
+            "_id": "Digital Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rfKpugdo8qt58I9G",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logic-gates",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the figure the LED\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/2b8f8ebe6780798c3e1ff1f5de28e86b102c6f4114bd6ffe454976ac6221cbc2.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Digital Circuits - Logic Gates Question 14 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "emits light when both S1 and S2 are closed."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "emits light when both S1 and S2 are open. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "emits light when only S1 or S2 is closed. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "does not emit light, irrespective of the switch positions.  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-figure-the-led-gate-ece-2001-marks-2-rfkpugdo8qt58i9g.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "10f6LKJzKQdepe8f",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logic-gates",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the digital block shown in Figure. 2(a), the output Y=f(S<sub>3</sub>,S<sub>2</sub>,S<sub>1</sub>,S<sub>0</sub>) where S<sub>3</sub>\nis MSB and S<sub>0</sub> is LSB. Y is given in terms of minterms as $$Y\\, = \\,\\sum m\\left( {1,5,6,7,11,12,13,15} \\right)$$ and its complements $$\\overline Y \\, = \\,\\sum m\\left( {0,2,3,4,8,9,10,14} \\right)$$.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/28b4de4172489d28e29ded11dfe4efedf3d6c05bec531e828fa51913dd497598.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Digital Circuits - Logic Gates Question 6 English 1\"> \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/c571f9b11aa6924f89dbd9520376fc4736e37b54a40c0341e52cefb57b58c242.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Digital Circuits - Logic Gates Question 6 English 2\"> \n<p>(a) Enter the logical values in the given Karnaugh map [figure2(b)] for the output\nY.\n<br>(b) Write down the expression for Y in sum-of products from using minimum\nnumber of terms.\n<br>(c) Draw the circuit for the digital logic boxes using four 2-input NAND gates\nonly for each of the boxes. </p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(b)$$Y\\, = \\,{S_3}{S_2}\\overline {{S_1}}  + \\overline {{S_3}} {S_2}{S_1} + \\overline {{S_3}} \\overline {{S_1}} {S_0} + {S_3}{S_1}{S_0}$$\n<br>(c)$$Y\\, = \\,{S_2}\\left[ {{S_3} \\oplus {S_1}} \\right] + {S_0}\\left[ {\\overline {{S_3} \\oplus {S_1}} } \\right]$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-digital-block-shown-in-figure-2a-the-output-yfs3s2s1-gate-ece-2001-marks-5-10f6lkjzkqdepe8f.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9HDX8do8YToywk8G",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The digital block in the figure is realized using two positive edge triggered D flip-flops. Assume that for t &lt; t<sub>0</sub>, Q<sub>1</sub> = Q<sub>2</sub> =0. The circuit in the digital block is given by <br><br>\n<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1kwpa0jw0/e29f0fa2-4cc2-4fcd-8848-bc891cb90db1/83553b00-539b-11ec-bfd6-3905384ffb4d/file-1kwpa0jw1.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1kwpa0jw0/e29f0fa2-4cc2-4fcd-8848-bc891cb90db1/83553b00-539b-11ec-bfd6-3905384ffb4d/file-1kwpa0jw1.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2001 Digital Circuits - Sequential Circuits Question 43 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1kwpa252t/f85fd596-7287-4835-a25f-82ea3c10ab57/af829650-539b-11ec-bfd6-3905384ffb4d/file-1kwpa252u.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1kwpa252t/f85fd596-7287-4835-a25f-82ea3c10ab57/af829650-539b-11ec-bfd6-3905384ffb4d/file-1kwpa252u.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2001 Digital Circuits - Sequential Circuits Question 43 English Option 1\">"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1kwpa30n6/386a8bb2-0bad-4b24-9963-f3e5c9d2f650/c7e4ce20-539b-11ec-bfd6-3905384ffb4d/file-1kwpa30n7.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1kwpa30n6/386a8bb2-0bad-4b24-9963-f3e5c9d2f650/c7e4ce20-539b-11ec-bfd6-3905384ffb4d/file-1kwpa30n7.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2001 Digital Circuits - Sequential Circuits Question 43 English Option 2\">"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1kwpa44i3/5597ee7a-8c2f-4a96-b3cd-86af8870dec2/e6af09b0-539b-11ec-bfd6-3905384ffb4d/file-1kwpa44i4.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1kwpa44i3/5597ee7a-8c2f-4a96-b3cd-86af8870dec2/e6af09b0-539b-11ec-bfd6-3905384ffb4d/file-1kwpa44i4.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2001 Digital Circuits - Sequential Circuits Question 43 English Option 3\">"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1kwpa56hr/53a4a009-bf42-496a-a5e9-7435f25af5fc/0407daf0-539c-11ec-bfd6-3905384ffb4d/file-1kwpa56hs.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1kwpa56hr/53a4a009-bf42-496a-a5e9-7435f25af5fc/0407daf0-539c-11ec-bfd6-3905384ffb4d/file-1kwpa56hs.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2001 Digital Circuits - Sequential Circuits Question 43 English Option 4\">"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-digital-block-in-the-figure-is-realized-using-two-positi-gate-ece-2001-marks-2-9hdx8do8ytoywk8g.htm",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a103bd4e3b2b",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "number-system-and-code-convertions",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The 2\u2019s complement representation of \u201317 is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "01110"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "01111"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "11110"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "10001"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-2s-complement-representation-of-17-is-gate-ece-2001-marks-1-5a103bd4e3b2b.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9vcls9FnVvUYretl",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logic-gates",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the ring oscillator shown in the figure, the propagation delay of each inverter is 100 pico sec. What is the fundamental frequency of the oscillator output?\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/ff6fdf9962c34a71507d4a952137b2ef6d42f381cc68579ab92678815934acd0.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Digital Circuits - Logic Gates Question 26 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "10 MHz"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "100 MHz"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1 GHz"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2 GHz"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-ring-oscillator-shown-in-the-figure-the-propagation-gate-ece-2001-marks-1-9vcls9fnvvuyretl.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CIWQYnFz0XViN3mt",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinational-circuits",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the TTL circuit in Figure 2.11, $${S_0}$$ to $${S_0}$$ are select lines and $${X_7}$$ and $${X_0}$$are input lines. $${S_0}$$ and $${X_0}$$ are LSB'. \n The output Y is\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/3ada25c4dbcb2b58c6a7339496429008ac011773120ef87bc98c3c3418f97f04.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Digital Circuits - Combinational Circuits Question 35 English\">\n\n\n ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "indeterminate "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "A \u2295 B "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\overline {A \\oplus B} $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\overline C \\,(\\overline {A \\oplus B)} \\, + C(A \\oplus B)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-ttl-circuit-in-figure-211-s0-to-s0-are-select-lines-a-gate-ece-2001-marks-2-ciwqynfz0xvin3mt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                }
+            ],
+            "title": "Digital Circuits"
+        },
+        {
+            "_id": "Electromagnetics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cGOCXy9vrBykhq4t",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transmission-lines",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A transmission line is distortionless if ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$R\\,L = {1 \\over {G\\,C}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$R\\,L = G\\,C$$  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$L\\,G = R\\,C$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$R\\,G = L\\,C$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-transmission-line-is-distortionless-if-gate-ece-2001-marks-1-cgocxy9vrbykhq4t.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wJjABwujZcoZbPka",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "uniform-plane-waves",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If a plane electromagnetic wave satisfies the equation $${{{\\partial ^2}\\,{E_x}} \\over {\\partial \\,{z^2}}} = \\,{c^2}{{{\\partial ^2}\\,{E_x}} \\over {\\partial \\,{t^2}}},$$ the wave propagates in the ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "x-direction "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "z-direction "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "y-direction "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "x z plane at an angle of $${{{45}^ \\circ }}$$ between the x and z directions "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-a-plane-electromagnetic-wave-satisfies-the-equation-parti-gate-ece-2001-marks-1-wjjabwujzcozbpka.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WUnKFPJadUDoIRz8",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "uniform-plane-waves",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A uniform plane electromagnetic wave incident normally on a plane surface of a dielectric material is reflected with a VSWR of 3. What is the percentage of incident power that is reflected?  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "10% "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "25% "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "50% "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "75% "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-uniform-plane-electromagnetic-wave-incident-normally-on-a-gate-ece-2001-marks-2-wunkfpjadudoirz8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9kjklMciBl4y4V2T",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "waveguides",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The phase velocity of waves propagating in a hollow metal waveguide is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "greater than the velocity of light in free space "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "less than the velocity of light in free space "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "equal to the velocity of light in free space "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "equal to the group velocity"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-phase-velocity-of-waves-propagating-in-a-hollow-metal-wa-gate-ece-2001-marks-1-9kjklmcibl4y4v2t.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qTR7TWKUUJbDbPCR",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "waveguides",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The dominant mode in a rectangular waveguide is $$T{E_{10}}$$, because this mode has ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "no attenuation"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "no cut-off "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "no magnetic field component "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "the highest cut-off wavelength"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-dominant-mode-in-a-rectangular-waveguide-is-te10-because-gate-ece-2001-marks-1-qtr7twkuujbdbpcr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AY5hc7Kdmnk7Merd",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "uniform-plane-waves",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A medium has breakdown strength of $$16$$ KV/m r.m.s. Its relative permeability is $$1.0$$ and relative permittivity is $$4.0$$. A plane electromagnetic wave is transmitted through the medium. Calculate the maximum possible power flow density and the associated magnetic filed.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$1.36\\,\\,\\,\\,MW/{m^2}$$ and $$85\\,\\,\\,A/m$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-medium-has-breakdown-strength-of-16-kvm-rms-its-relative-p-gate-ece-2001-marks-5-ay5hc7kdmnk7merd.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PmpzNzmbYj4qalxm",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "antennas",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a uniform linear array, four isotropic radiating elements are spaced $$\\lambda /4$$ apart. The progressive phase shift between the elements required for forming the main beam at 60\u00b0 off the end-fire is\n ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$ - \\pi \\,\\,rad$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$ - \\pi /2\\,\\,rad$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$ - \\pi /4\\,\\,rad$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ - \\pi /8\\,\\,rad$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-uniform-linear-array-four-isotropic-radiating-elements-gate-ece-2001-marks-2-pmpznzmbyj4qalxm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sYxoz0oik6aZiQoh",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "antennas",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A medium wave radio transmitter operating at a wavelength of 492 m has a tower antenna of height 124m. What is the radiation resistance of the antenna?  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "25 $$\\Omega $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "36.5 $$\\Omega $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "50 $$\\Omega $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "73 $$\\Omega $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-medium-wave-radio-transmitter-operating-at-a-wavelength-of-gate-ece-2001-marks-2-syxoz0oik6aziqoh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XbCX6EwNCel7ILDp",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "waveguides",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A rectangular hollow metal waveguide has dimensions a = 2.29 cm and b = 1.02 cm. Microwave power at 10 GHz is transmitted through the waveguide in the $$T{E_{10}}$$ mode.\n<br> (a) Calculate the cut-off wavelength and the guide wavelength for this mode.\n<br> (b) What are the other (TE or TM) modes that can propagate through the waveguide?\n<br> (c) If a = b = 2.29 cm, what are the modes which can propagate through the waveguide?",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "<br> (a) cut-off wavelength = 4.58 cm\n<br> Guide wavelength = 4 cm \n<br> (b) only $$T{E_{10}}$$ mode can propagate.\n<br> (c) $$T{E_{10}}$$, $$T{E_{11}}$$, $$T{E_{01}}$$, $$T{M_{11}}$$ can propagate.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-rectangular-hollow-metal-waveguide-has-dimensions-a-229-cm-gate-ece-2001-marks-5-xbcx6ewncel7ildp.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a12aba811a72",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "maxwell-equations",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A material has conductivity of 10<sup>-2</sup> mho/m and a relative permittivity of 4. The\nfrequency at which the conduction current in the medium is equal to the\ndisplacement current is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "45 MHz"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "90 MHz"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "450 MHz"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "900 MHz"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-material-has-conductivity-of-10-2-mhom-and-a-relative-perm-gate-ece-2001-marks-2-5a12aba811a72.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                }
+            ],
+            "title": "Electromagnetics"
+        },
+        {
+            "_id": "Electronic Devices and Vlsi",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8ad9d999de6",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bjt-and-fet",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "MOSFET can be used as a",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Current controlled capacitor"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Voltage controlled capacitor"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Current controlled inductor"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Voltage controlled inductor"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "mosfet-can-be-used-as-a-gate-ece-2001-marks-1-5a8ad9d999de6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                }
+            ],
+            "title": "Electronic Devices and Vlsi"
+        },
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FFisaKgZe1udpIWU",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Solve the differential equation $${{{d^2}y} \\over {d{x^2}}} + y = x\\,\\,$$  with the following conditions $$(i)$$ at $$x=0, y=1$$ $$(ii)$$ at $$x=0, $$ $${y^1} = 1$$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$y = x + \\cos x$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "solve-the-differential-equation-d2y-over-dx2-y-x-with-the-fo-gate-ece-2001-marks-2-ffisakgze1udpiwu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Microprocessors",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a104bb3b6e6b",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "microprocessors",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pin-details-of-8085-and-interfacing-with-8085",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An 8085 microprocessor based system uses a 4K \u00d7 8-bit RAM whose starting\naddress is AA00H. The address of the last byte in this RAM is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "AFFFH"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "B9FFH"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "BFFFH"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "A9FFH"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-8085-microprocessor-based-system-uses-a-4k-8-bit-ram-whos-gate-ece-2001-marks-2-5a104bb3b6e6b.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                }
+            ],
+            "title": "Microprocessors"
+        },
+        {
+            "_id": "Network Theory",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7WHk5jwVVWmO4cIV",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transient-response",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The circuit shown in Fig. is operating in steady-state with switch $${S_1}$$ closed. The switch $${S_1}$$ is opened at $$t\\, = \\,0$$.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/QtEzWwUmrZRvLjhw4/UNBxeLwplQRZnA4qmI2ZTnYrw94zX/wnbi1ZgVPLx0S4YPLR6NvP/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Network Theory - Transient Response Question 7 English\"> \n<p>(a) Find $${i_L}\\left( {{0^ + }} \\right)$$.\n<br>(b) Find $${e_1}\\left( {{0^ + }} \\right)$$.\n<br>(c) Using nodal equations and Laplace transform approach, find an expression\nfor the voltage across the capacitor for all $$t\\, = \\,0$$.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a) $$6\\,A$$\n<br>(b) $$8\\,V$$\n<br>(c) $$8u\\left( t \\right) - 4{e^{ - 4t}}\\sin \\left( {4t} \\right)ut$$<p></p>",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-circuit-shown-in-fig-is-operating-in-steady-state-with-s-gate-ece-2001-marks-5-7whk5jwvvwmo4civ.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Rp6zVr1y2tBElQ7k",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-response",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "When the angular frequency $$\\omega $$ in Fig. is varied from $$0$$ to $$\\infty $$ the locus of the current phasor $${{\\rm I}_2}$$ is given by\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/gnv6SXMjjLpcKAtLr/z5DVu0HH7ehqTjtr6jpymLg6rH2IX/zel64ts5CCBzwzpR2Iqhj6/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Network Theory - Sinusoidal Steady State Response Question 31 English 1\"> \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/Zi0gl2k0tWGZ02FXa/PofOo7kWLDmqyD4SEk84OML0pluse/XdCRd0EupXCRGoJfnX0l2c/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Network Theory - Sinusoidal Steady State Response Question 31 English 2\"> \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/RZ8eMfKkZekkrgHIp/tRa9aJAtjlFuliT4mTXDkJUPbJjcE/MdGndEfs29WpP61h5MV80b/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Network Theory - Sinusoidal Steady State Response Question 31 English 3\">\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/zQeuU7TTip6FD6qQ3/TNEyZTeoQpuecLePgiMjN39r4zZ5g/nfYFmUHRM2j77EDGAl3CLj/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Network Theory - Sinusoidal Steady State Response Question 31 English 4\"> \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/ZrGil5uhDdGuql1x1/3qyJInVlja2x29NyRQ8ARlv8eVFe0/Lsc2byQfPuAP84cvCdRzTq/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Network Theory - Sinusoidal Steady State Response Question 31 English 5\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Fig. (i)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Fig. (ii)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Fig. (iii)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Fig. (iv)"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "when-the-angular-frequency-omega-in-fig-is-varied-from-0-to-gate-ece-2001-marks-2-rp6zvr1y2tbelq7k.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0CwrzGUsbCW0UiEO",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "two-port-networks",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If each branch of a Delta circuit has impedance $$\\sqrt 3 \\,Z$$, then each branch of the equivalent Wye circuit has impedance ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${Z \\over {\\sqrt 3 }}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "3Z"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3\\sqrt 3 \\,Z$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${Z \\over 3}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": "<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l98ub5qh/caeb93bf-faaa-44c5-ba6b-10419fb40c77/5dc4b480-4bf0-11ed-acc2-1b84618d6d1c/file-1l98ub5qi.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l98ub5qh/caeb93bf-faaa-44c5-ba6b-10419fb40c77/5dc4b480-4bf0-11ed-acc2-1b84618d6d1c/file-1l98ub5qi.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2001 Network Theory - Two Port Networks Question 37 English Explanation\">\n<br><br>$Z_A=\\frac{Z_{A B} \\times Z_{A C}}{Z_{A B}+Z_{B C}+Z_{C A}}$\n<br><br>$Z_A=\\frac{\\sqrt{3} Z \\times \\sqrt{3} Z}{\\sqrt{3} Z+\\sqrt{3} Z+\\sqrt{3} Z}=\\frac{3 Z^2}{3 \\sqrt{3} Z}=\\frac{Z}{\\sqrt{3}}$\n<br><br>$Z_B=\\frac{Z_{a b} \\times Z_{b c}}{Z_{a b}+Z_{b c}+Z_{c a}}=\\frac{Z}{\\sqrt{3}}$\n<br><br>$Z_C=\\frac{Z_{b c} \\times Z_{c a}}{Z_{a b}+Z_{b c}+Z_{c a}}=\\frac{Z}{\\sqrt{3}}$"
+                        }
+                    },
+                    "permalink": "if-each-branch-of-a-delta-circuit-has-impedance-sqrt-3-z-the-gate-ece-2001-marks-1-0cwrzgusbcw0uieo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yAM4bd4DjJ3kbZmw",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "two-port-networks",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Z parameters $${Z_{11}}$$ and $${Z_{21}}$$ for the 2-port network in Fig. are\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/HFerpi2XKdMXecvSP/hkUzsWmblTooBrNoHKQg4SpWgvEsh/0oeqpUDcrMUYo9O50LVcMI/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Network Theory - Two Port Networks Question 27 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${Z_{11}} =  - {6 \\over {11}}\\,\\Omega ;\\,\\,{Z_{21}}\\, = \\,{{16} \\over {11}}\\,\\Omega $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${Z_{11}} =   {6 \\over {11}}\\,\\Omega ;\\,\\,{Z_{21}}\\, = \\,{{4} \\over {11}}\\,\\Omega $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${Z_{11}} =   {6 \\over {11}}\\,\\Omega ;\\,\\,{Z_{21}}\\, = \\,-{{16} \\over {11}}\\,\\Omega $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${Z_{11}} =   {4 \\over {11}}\\,\\Omega ;\\,\\,{Z_{21}}\\, = \\,{{4} \\over {11}}\\,\\Omega $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-z-parameters-z11-and-z21-for-the-2-port-network-in-fig-a-gate-ece-2001-marks-2-yam4bd4djj3kbzmw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nQ4BMyy8pdQYkbm2",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "two-port-networks",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The admittance parameters of a 2-port network shown in Fig. are given by $${Y_{11}} = \\,2\\,\\,mho$$, $${Y_{12}}$$ = - 0.5 mho, $${Y_{21}}$$ = 4.8 mho, $${Y_{22}}$$ = 1 mho. The output port is terminated with a load admittance $${Y_L}$$ = 0.2 mho. Find $${E_2}$$ for each of the following conditions:\n<p> (a) $${E_1} = \\,10\\,\\angle \\,{0^{ \\circ \\,}}\\,V$$\n<br> (b) $${I_1} = \\,10\\,\\angle \\,{0^{ \\circ \\,}}\\,A$$\n<br> (c) A source $$10\\,\\angle \\,{0^{ \\circ \\,}}\\,V$$ in series with a 0.25 $$\\Omega $$ resistor is connected to the input port. </p>\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/5FrtB8Wlswf6m8XEN/zwuinJYNmn3koKryXtXk9hAT37myQ/r4Jh2MYCbXRm3PhxajWZrW/image.svg\" loading=\"lazy\" alt=\"GATE ECE 2001 Network Theory - Two Port Networks Question 10 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "<br> (a) $${E_2}$$ = -40 V\n<br> (b) $${E_2}$$ = - 10 V\n<br> (c) $${E_2}$$ = - 20 V",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-admittance-parameters-of-a-2-port-network-shown-in-fig-a-gate-ece-2001-marks-5-nq4bmyy8pdqykbm2.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a05e02d642e6",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-theorems",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>The voltage e<sub>0</sub> in figure is </p>\n<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l98uwrl1/d5ceda48-cd3c-4c1d-a5f2-3185dbdad798/b6a35640-4bf2-11ed-96cf-1be8ffe47fe6/file-1l98uwrl2.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l98uwrl1/d5ceda48-cd3c-4c1d-a5f2-3185dbdad798/b6a35640-4bf2-11ed-96cf-1be8ffe47fe6/file-1l98uwrl2.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2001 Network Theory - Network Theorems Question 28 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "48 V"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "24 V"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "36 V"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "28 V"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "The equivalent circuit of the Given circuit is :\n<br><br><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l98v7uc8/112fe806-c7d7-423b-a564-9880fa003e72/eaab1490-4bf3-11ed-96cf-1be8ffe47fe6/file-1l98v7uc9.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l98v7uc8/112fe806-c7d7-423b-a564-9880fa003e72/eaab1490-4bf3-11ed-96cf-1be8ffe47fe6/file-1l98v7uc9.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2001 Network Theory - Network Theorems Question 28 English Explanation\">\n<br><br>Applying $\\mathrm{KCL}$ at node $\\mathrm{A}$, such that $V_{\\mathrm{A}}=e_0$, we have\n<br><br>$$\n\\begin{gathered}\n\\frac{V_{\\mathrm{A}}-80}{10+2}+\\frac{V_{\\mathrm{A}}}{12}+\\frac{V_{\\mathrm{A}}-16}{6}=0 \\\\\\\\\n\\Rightarrow 4 V_{\\mathrm{A}}=112 \\Rightarrow V_{\\mathrm{A}}=28 \\mathrm{~V}\n\\end{gathered}\n$$"
+                        }
+                    },
+                    "permalink": "the-voltage-e0-in-figure-is-gate-ece-2001-marks-2-5a05e02d642e6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a05e2082d69c",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-theorems",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>In figure, the value of the load resistor R which maximizes the power\ndelivered to it is </p>\n<img alt=\"GATE ECE 2001 Network Theory - Network Theorems Question 27 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/9672afef3c7f2382ac96a2daf545bb0da37914435b201bc2aba815b9c0b9d9a6.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "14.14 \u03a9"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "10 \u03a9"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "200 \u03a9"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "28.28 \u03a9"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-figure-the-value-of-the-load-resistor-r-which-maximizes-t-gate-ece-2001-marks-2-5a05e2082d69c.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a09f4cc9910c",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-response",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the circuit shown in the figure, determine the phasors E<sub>2</sub>, E<sub>0</sub>, I and I<sub>1</sub>. \n<img alt=\"GATE ECE 2001 Network Theory - Sinusoidal Steady State Response Question 47 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/c8b8382d137ede2a2446e6c9e9f7ee301266409ee6060ed894f5d368dd1a9492.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "E<sub>2</sub> = 8.77 e<sup>j17.9<sup>o</sup></sup> V\n<br>E<sub>0</sub> = 1.96 e<sup>-j81.3<sup>o</sup></sup> V\n<br>I = 6.202 e<sup>-j9.9<sup>o</sup></sup> A\n<br>I<sub>1</sub> = 6.2 e<sup>-j27.1<sup>o</sup></sup> A",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-circuit-shown-in-the-figure-determine-the-phasors-e2-gate-ece-2001-marks-5-5a09f4cc9910c.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0aac36161cc",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "two-port-networks",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The admittance parameter Y<sub>12</sub> in the 2-port network in Figure is\n<img alt=\"GATE ECE 2001 Network Theory - Two Port Networks Question 51 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/72f400e0f50bc95da878172b391baf456cfd3fefaf555d8b477177c7be1ddbea.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "-0.2 mho"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.1 mho"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "-0.05 mho"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0.05 mho"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-admittance-parameter-y12-in-the-2-port-network-in-figure-gate-ece-2001-marks-1-5a0aac36161cc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "59fe2ef101ae9",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>The voltage e<sub>0</sub> in Fig. is </p>\n<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l98tch0w/bd888eb0-8733-4916-aa94-e6cd4b561c24/992b7300-4bec-11ed-b985-f7ebcf563283/file-1l98tch0x.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l98tch0w/bd888eb0-8733-4916-aa94-e6cd4b561c24/992b7300-4bec-11ed-b985-f7ebcf563283/file-1l98tch0x.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2001 Network Theory - Network Elements Question 39 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2 V"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\frac43\\;\\mathrm V$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "4 V"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "8 V"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "Apply KCL to the given circuit\n\n<br/><br/>$\\frac{e_{\\mathrm{o}}-12}{4}+\\frac{e_{\\mathrm{o}}}{4}+\\frac{e_{\\mathrm{o}}}{2+2}=0$\n<br/><br/>$$ \\Rightarrow $$ $e_{\\mathrm{o}}=4 \\mathrm{~V}$"
+                        }
+                    },
+                    "permalink": "the-voltage-e0-in-fig-is-gate-ece-2001-marks-1-59fe2ef101ae9.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                }
+            ],
+            "title": "Network Theory"
+        },
+        {
+            "_id": "Signals and Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "d9kNYakuULPO2VyF",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fourier-transform",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If a signal f(t) has energy E, the energy of the signal f(2t) is equal to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "E"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "E/2"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2E"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "4E"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-a-signal-ft-has-energy-e-the-energy-of-the-signal-f2t-is-gate-ece-2001-marks-1-d9knyakuulpo2vyf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "i0jdE1sLEaPjThn8",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "discrete-time-signal-z-transform",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The region of convergence of the z- transform of a unit step function is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left| {z\\,} \\right| &gt; 1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left| {z\\,} \\right| &lt; 1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "(Real part of z )&gt; 0"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "(Real part of z )&lt; 0"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-region-of-convergence-of-the-z-transform-of-a-unit-step-gate-ece-2001-marks-1-i0jde1sleapjthn8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oOWiVd9NAVGGch56",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-linear-invariant-system",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The transfer function of a system is given by $$H\\left( s \\right) = {1 \\over {{s^2}\\left( {s - 2} \\right)}}$$. The impulse response of the system is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {{t^2} * {e^{ - 2t}}} \\right)U\\left( t \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {t * {e^{2t}}} \\right)U\\left( t \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {{t^2}{e^{ - 2t}}} \\right)U\\left( t \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {t{e^{ - 2t}}} \\right)U\\left( t \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-transfer-function-of-a-system-is-given-by-hleft-s-right-gate-ece-2001-marks-1-oowivd9navggch56.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "IUQepXmugAzk7nPU",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-linear-invariant-system",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The impulse response function of four linear system S1, S2, S3, S4 are given respectively by \n<p> $${h_1}$$(t), = 1; </p>\n<p> $${h_2}$$(t), = U(t); </p> \n<p> $${h_3}(t)\\, = \\,{{U(t)} \\over {t + 1}}$$; </p>\n<p> $${h_4}(t)\\, = {e^{ - 3t}}U(t)$$ , </p>\n<p> where U (t) is the unit step function. Which of these system is time invariant, causal, and stable? </p>\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "SI"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "S2"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "S3"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "S4"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-impulse-response-function-of-four-linear-system-s1-s2-s3-gate-ece-2001-marks-2-iuqepxmugazk7npu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bhIhshfqFWTKGTiu",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fourier-transform",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Fourier transform $$G(\\omega )$$ of the signal g(t) in Fig.(1) is given as\n<br> $$G(\\omega ) = {1 \\over {{\\omega ^2}}}({e^{j\\omega }} - j\\omega {e^{j\\omega }} - 1)$$.\n<p> Using this information, and the time-shifting and time-scaling properties, determine and Fourier transform of signals in Fig (2), (3) and (4). </p>\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/ad5ab29bdaf6d15198a4b2408c7d09faa24e584617e509585718286b5ef4df55.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Signals and Systems - Fourier Transform Question 4 English 1\">\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/980d394d5664e5e2d2242ccde50c96209cc50142b29a14c2308beae9d2ea9d2b.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Signals and Systems - Fourier Transform Question 4 English 2\">\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/3d6384208738e7d1fb07f434b764adba5758c8b8c3f36ccdad9a1fe41a197848.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Signals and Systems - Fourier Transform Question 4 English 3\">\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/8dfac54acb7388e0d105490e7032f894dd8d8a6d6b0c7088b63db3e02c0c24a5.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Signals and Systems - Fourier Transform Question 4 English 4\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "<br> $${G_1}\\,(\\omega )\\, = \\,{1 \\over {{\\omega ^2}}}\\,\\left( {{e^{ - j\\omega }} + j\\omega {e^{ - j\\omega }} - 1} \\right)$$ \n<br> $${G_2}\\,\\left( \\omega  \\right)\\, = \\,{1 \\over {{\\omega ^2}}}\\,\\left( {1 + j\\omega  - {e^{j\\omega }}} \\right)$$ \n<br>$${G_3}\\,\\left( \\omega  \\right)\\, = \\,{e^{j0.5\\omega }}\\,{G_1}\\,\\left( \\omega  \\right)\\, + {e^{ - j0.5\\omega }}G\\left( \\omega  \\right)$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-fourier-transform-gomega-of-the-signal-gt-in-fig1-is-giv-gate-ece-2001-marks-5-bhihshfqfwtkgtiu.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HzBoS15nnfbgS8R2",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sampling",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A band limited signal is sampled at the Nyquist rate. The signal can be recovered by passing the samples through ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "an RC filter "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "an envelope detector "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "a PLL "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "an ideal low-pass filter with the appropriate bandwidth "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-band-limited-signal-is-sampled-at-the-nyquist-rate-the-sig-gate-ece-2001-marks-1-hzbos15nnfbgs8r2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HNcpEfW5nCMsc9Jv",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transmission-of-signal-through-continuous-time-lti-systems",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A base band signal g(t) band limited to 100 Hz modulates a carrier of frequency $${{f_0}}$$ Hz. The modulated signal g(t) $$\\cos 2\\,\\pi \\,{f_0}t$$ is transmitted over a channel whose input x and output y are related by $$y = 2x + {x^2}$$. The  spectrum of g(t) is shown in Fig. Sketch the spectrum of the transmitted signal and the spectrum of the received signal.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/e7bdec67c29818dc165515eb753610b38bec42d5f2cb75a1c5694e9d8a9884e7.jpg\" loading=\"lazy\" alt=\"GATE ECE 2001 Signals and Systems - Transmission of Signal Through Continuous Time LTI Systems Question 5 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-base-band-signal-gt-band-limited-to-100-hz-modulates-a-car-gate-ece-2001-marks-5-hncpefw5ncmsc9jv.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dA0V3G0Q8vmWb5JR",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sampling",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Nyquist sampling interval, for the signal Sinc(700t) + Sinc(500t) is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over {350}}\\,\\sec $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\pi  \\over {350}}\\,\\sec $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${1 \\over {700}}\\,\\sec $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\,{\\pi  \\over {350}}\\,\\sec $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-nyquist-sampling-interval-for-the-signal-sinc700t-sinc50-gate-ece-2001-marks-2-da0v3g0q8vmwb5jr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QxHtOXYmShsS4NoE",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "miscellaneous",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$\\delta (t)$$ denote the delta function. The value of the the integral $$\\int\\limits_{ - \\infty }^\\infty  {\\delta (t)} \\,\\,\\cos \\left( {{{3\\,\\,t} \\over 2}} \\right)dt$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "- 1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\pi /2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-delta-t-denote-the-delta-function-the-value-of-the-the-i-gate-ece-2001-marks-1-qxhtoxymshss4noe.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a106235586ff",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "representation-of-continuous-time-signal-fourier-series",
+                    "year": 2001,
+                    "paperTitle": "GATE ECE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The PSD and the power of a signal g(t) are, respectively, S<sub>g</sub>($$\\omega$$) and P<sub>g</sub>. The PSD\nand the power of the signal ag(t) are, respectively",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$a^2S_g (\\omega)\\; and\\; a^2P_g$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$a^2S_g (\\omega)\\; and\\; aP_g$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$aS_g (\\omega)\\; and\\; a^2P_g$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$aS_g (\\omega)\\; and\\; aP_g$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-psd-and-the-power-of-a-signal-gt-are-respectively-sgomeg-gate-ece-2001-marks-2-5a106235586ff.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2001"
+                }
+            ],
+            "title": "Signals and Systems"
+        }
+    ]
+}

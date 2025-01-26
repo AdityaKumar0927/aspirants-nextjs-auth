@@ -1,0 +1,3013 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Algorithms",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "W0e3IlZrsLwTMrcP",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complexity-analysis-and-asymptotic-notations",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let f(n) =  n<sup>2</sup> log n and g(n) = n(log n)<sup>10</sup> be two positive functions of n. Which of the following statements is correct?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "f(n) = O(g(n)) and g(n) \u2260 O(f(n))"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "g(n) = O(f(n)) and f(n) \u2260 O(g(n))"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "f(n) \u2260 O(g(n)) and g(n) \u2260 O(f(n))"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "f(n) = O(g(n)) and g(n) = O(f(n))"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-fn-n2-log-n-and-gn-nlog-n10-be-two-positive-functions-of-gate-cse-2001-marks-1-w0e3ilzrslwtmrcp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "c6WBhaZwRtp00keI",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "searching-and-sorting",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider any array representation of an n element binary heap where the\nelements are stored from index 1 to index n of the array. For the element stored\nat index i of the array $$\\left( {i \\le n} \\right)$$, the index of the parent is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "i - 1"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\lfloor \\frac{i}{2} \\rfloor$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\lceil \\frac{i}{2} \\rceil$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{i + 1} \\over 2}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-any-array-representation-of-an-n-element-binary-hea-gate-cse-2001-marks-1-c6wbhazwrtp00kei.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PDw7QzZCMORl6K9N",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "divide-and-conquer-method",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Randomized quicksort is an extension of quicksort where the pivot is chosen randomly. What is the worst case complexity of sorting n numbers using randomized quicksort?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "O(n)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "O(n Log n)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "O(n<sup>2</sup>)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "O(n!)"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "randomized-quicksort-is-an-extension-of-quicksort-where-the-gate-cse-2001-marks-1-pdw7qzzcmorl6k9n.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                }
+            ],
+            "title": "Algorithms"
+        },
+        {
+            "_id": "Compiler Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dz6IpID2jG8YtJBH",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parsing",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The process of assigning load addresses to the various parts of the program and adjusting the code and date in the program to reflect the assigned addresses is called",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Assembly"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Parsing"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Relocation"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Symbol resolution"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-process-of-assigning-load-addresses-to-the-various-parts-gate-cse-2001-marks-1-dz6ipid2jg8ytjbh.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qGh2SYnQbY0guYDd",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parsing",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following statements is false?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "An unambiguous grammar has same leftmost and rightmost derivation"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "An LL(1) parser is a top-down parser "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "LALR is more powerful than SLR "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "An ambiguous grammar can never be LR(k) for any k"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-statements-is-false-gate-cse-2001-marks-1-qgh2synqby0guydd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                }
+            ],
+            "title": "Compiler Design"
+        },
+        {
+            "_id": "Computer Organization",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4aNl7kPIfI0XLkuZ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-interfacing",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "More than one word are put in one cache block to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Exploit the temporal locality of reference in a program\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Exploit the spatial locality of reference in a program "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Reduce the miss penalty "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "more-than-one-word-are-put-in-one-cache-block-to-gate-cse-2001-marks-1-4anl7kpifi0xlkuz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "64qw606J87pnFuhL",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-interfacing",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$CPU$$ has $$32$$-bit memory address and a $$256$$ $$KB$$ cache memory. The cache is organized as a $$4$$-way set associative cache with cache block size of $$16$$ bytes.\n<p>(a)$$\\,\\,\\,\\,$$ What is the number of sets in the cache?\n<br>(b)$$\\,\\,\\,\\,$$ What is the size (in bits) of the tag field per cache block?\n<br>(c)$$\\,\\,\\,\\,$$ What is the number and size of comparators required for tag matching?\n<br>(d)$$\\,\\,\\,\\,$$ How many address bits are required to find the byte offset within a cache block?\n<br>(e)$$\\,\\,\\,\\,$$ What is the total amount of extra memory (in bytes) required for the tag bits?</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a)$$\\,\\,\\,\\,$$ $$4$$ $$K$$ Sets\n<br>(b)$$\\,\\,\\,\\,$$ Size of the tag field $$=16$$ \n<br>(c)$$\\,\\,\\,\\,$$ $$4$$ comparators required and each size is $$16$$ bits\n<br>(d)$$\\,\\,\\,\\,$$ $$4$$ bits\n<br>(e)$$\\,\\,\\,\\,$$ $$256$$ $$K$$ bits.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cpu-has-32-bit-memory-address-and-a-256-kb-cache-memory-th-gate-cse-2001-marks-5-64qw606j87pnfuhl.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1Y0UQNYe2NEWPBdp",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "machine-instructions-and-addressing-modes",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which is the most appropriate match for the items in the first column with the items in the second column?\n<br>$$X.$$ Indirect Addressing \n<br>$$Y.$$ Indexed Addressing\n<br>$$Z.$$ Base Register Addressing\n<br>$${\\rm I}.\\,\\,$$Array implementation\n<br>$${\\rm II}.\\,\\,$$Writing relocatable code\n<br>$${\\rm III}.\\,\\,$$Passing array as parameter",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {X,\\,{\\rm I}{\\rm I}{\\rm I}} \\right),\\,\\,\\left( {Y,\\,{\\rm I}} \\right),\\,\\,\\left( {Z,\\,\\,{\\rm I}{\\rm I}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {X,\\,{\\rm I}{\\rm I}} \\right),\\,\\,\\left( {Y,\\,{\\rm I}{\\rm I}{\\rm I}} \\right),\\,\\,\\left( {Z,\\,\\,{\\rm I}} \\right)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {X,\\,{\\rm I}{\\rm I}{\\rm I}} \\right),\\,\\,\\left( {Y,\\,{\\rm I}{\\rm I}} \\right),\\,\\,\\left( {Z,\\,\\,{\\rm I}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {X,\\,{\\rm I}} \\right),\\,\\,\\left( {Y,\\,{\\rm I}{\\rm I}{\\rm I}} \\right),\\,\\,\\left( {Z,\\,\\,{\\rm I}{\\rm I}} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-is-the-most-appropriate-match-for-the-items-in-the-fir-gate-cse-2001-marks-2-1y0uqnye2newpbdp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ut4x3kbrRv4dAGIh",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "alu-data-path-and-control-unit",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Arrange the following configuration for CPU in decreasing order of operating speeds: Hardwired control, vertical micro- programming, horizontal micro-programming ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Hardwired control, vertical micro-programming, horizontal micro-programming "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Hardwired control, horizontal micro- programming, vertical micro-programming "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Horizontal micro-programming, vertical micro-programming, hardwired control"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Vertical micro-programming, horizontal micro-programming, hardwired control"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "arrange-the-following-configuration-for-cpu-in-decreasing-or-gate-cse-2001-marks-2-ut4x3kbrrv4dagih.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PF2nkIdYZJIswHnI",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "alu-data-path-and-control-unit",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following datapath of a simple non-pipelined $$CPU.$$ The registers $$A,B,$$ $${A_1},{A_2},$$ $$MDR,$$ the bus and the $$ALU$$ are $$8$$-bit wide. $$SP$$ and $$MAR$$ are $$16$$-bit registers. The $$MUX$$ is of size $$8 \\times \\left( {2:1} \\right)$$ and the $$DEMUX$$ is of size $$8 \\times \\left( {1:2} \\right)$$. Each memory operation takes $$2$$ $$CPU$$ clock cycles and uses $$MAR$$ (Memory Address Register) and $$MDR$$ (Memory Data register). $$SP$$ can be decremented locally.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/KqZ782HBdn2DcN9TW/8nUnpocIo68M5JIE769DJ6r6Bkie1/3orRfRCEi2zUb2q5JXZnw4/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2001 Computer Organization - Alu Data Path and Control Unit Question 9 English\">\n<p>The $$CPU$$ instruction $$''push$$ $$r'',$$ where $$r=A$$ or $$B,$$ has the specification\n<br>$$\\eqalign{\n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,M\\left[ {SP} \\right] \\leftarrow r  \\cr \n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,SP \\leftarrow SP - 1 \\cr} $$\n<br>How many $$CPU$$ clock cycles are needed to execute the $$''push$$ $$r''$$ instruction?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$5$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-datapath-of-a-simple-non-pipelined-cp-gate-cse-2001-marks-2-pf2nkidyzjiswhni.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cSKl4EFy2RmrDF0x",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "io-interface",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A processor needs software interrupt to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Test the interrupt system of the processor "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Implement co-routines "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Obtain system services which need execution of privileged instructions"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Return from subroutine "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-processor-needs-software-interrupt-to-gate-cse-2001-marks-1-cskl4efy2rmrdf0x.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                }
+            ],
+            "title": "Computer Organization"
+        },
+        {
+            "_id": "Data Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CsD4xHDFfpxJ3JYd",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graphs",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider an undirected unweighted graph G. Let a breadth-first traversal of G be\ndone starting from a node r. Let d(r, u) and d(r, v) be the lengths of the shortest\npaths from r to u and v respectively in G. If u is visited before v during the\nbreadth-first traversal, which of the following statements is correct?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "d(r, u) &lt; d(r, v)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "d(r, u) &gt; d(r, v)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "d(r, u)$$ \\le $$d(r, v)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-an-undirected-unweighted-graph-g-let-a-breadth-firs-gate-cse-2001-marks-2-csd4xhdffpxj3jyd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HcyjIXMPmgElN1Du",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graphs",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "How many undirected graphs (not necessarily connected) can be constructed out\nof a given set V = { v<sub>1</sub>,v<sub>2</sub>,........,v<sub>n</sub> } of n vertices?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\frac{n(n-1)} {2}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2<sup>n</sup>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "n!"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2^\\frac{n(n-1)} {2}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "how-many-undirected-graphs-not-necessarily-connected-can-be-gate-cse-2001-marks-2-hcyjixmpmgeln1du.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                }
+            ],
+            "title": "Data Structures"
+        },
+        {
+            "_id": "Database Management System",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6FRiOqKKs5OBUAEt",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "relational-algebra",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following relational calculus expressions is not safe?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left\\{t \\mid \\exists u \\in R_1\\left(t[A] = u[A]\\right) \\land \\neg \\exists s \\in R_2 \\left(t[A] = s[A]\\right)\\right\\}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left\\{ t \\mid \\forall u \\in R_1\\left(u[A]=\"x\"\\Rightarrow \\exists s \\in R_2\\left(t[A] = s[A] \\land s[A] = u[A]\\right)\\right) \\right\\}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left\\{t \\mid \\neg (t \\in R_1)\\right\\}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left\\{t \\mid \\exists u \\in R_1\\left(t[A]=u[A]\\right) \\land \\exists s \\in R_2 \\left(t[A] = s[A]\\right)\\right\\}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-relational-calculus-expressions-is-no-gate-cse-2001-marks-2-6frioqkks5obuaet.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nBOoIccEB4R0ssMj",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "functional-dependencies-and-normalization",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a schema $$R(A,B,C,D)$$ and functional dependencies $$A \\to B\\,\\,$$ and $$C \\to D\\,\\,$$. Then the decomposition of $$R$$ into $${R_1}\\left( {AB} \\right)$$ and $${R_2}\\left( {CD} \\right)$$ is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Dependency preserving and lossless join"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Lossless join but not dependency preserving"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Dependency preserving but not lossless join "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Not dependency preserving and not lossless join "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-schema-rabcd-and-functional-dependencies-a-to-b-a-gate-cse-2001-marks-1-nbooicceb4r0ssmj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EaZ4POmfHozBrLdO",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "functional-dependencies-and-normalization",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$R(A,B,C,D)$$ is a relation. Which of the following does not have a lossless-join, dependency preserving $$BCNF$$ decomposition? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$A \\to B,\\,B \\to CD$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$A \\to B,\\,B \\to C.\\,C \\to D$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$AB \\to C,\\,C \\to AD$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$A \\to BCD$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "rabcd-is-a-relation-which-of-the-following-does-not-have-a-l-gate-cse-2001-marks-2-eaz4pomfhozbrldo.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                }
+            ],
+            "title": "Database Management System"
+        },
+        {
+            "_id": "Digital Logic",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "b5QFnLLScvWKYYNF",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the circuit given below with initial state $${Q_0} = 1,\\,\\,{Q_1} = {Q_2} = 0.$$ The state of the circuit is given by the value of $$4{Q_2} + 2{Q_1} + {Q_{0.}}$$\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/GGTsZuVkXboLmbe1P/6T58jWjjNycXTDacvru5VrjyhviQL/02ZT0nFYU8SOEFECJAutj2/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2001 Digital Logic - Sequential Circuits Question 23 English\"> \n<p>Which one of the following is correct state sequence of the circuit?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1,3,4,6,7,5,2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1, 2, 5, 3, 7, 6, 4$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1, 2, 7, 3, 5, 6, 4$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1, 6, 5, 7, 2, 3, 4$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-circuit-given-below-with-initial-state-q0-1q1-q-gate-cse-2001-marks-2-b5qfnllscvwkyynf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8cav6tAbKVhlLAuV",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following circuit with initial state $${Q_0} = {Q_1} = 0.$$ The $$D$$ Flip-Flops are positive edge triggered and have set up times $$20$$ nanosecond and hold times $$0.$$ \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/xcJr63MYnx5R4nUy3/NW7Ug3jM5FaizRszJUwmPXCpyLKlb/f3mkGZcwyOvmoCZbNqNUN2/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2001 Digital Logic - Sequential Circuits Question 16 English 1\"> \n<p>Consider the following timing diagram of $$X$$ and $$C;$$ the clock period of $$C&gt;40$$ nanosecond which one is the correct plot of $$Y?$$ </p>\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/atqpFVsbI2bH3TlTd/CchHBENZJkaDKsQlHp850rHRQyhk3/lGjDc3MeJlkgZUi8osG5N5/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2001 Digital Logic - Sequential Circuits Question 16 English 2\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/sZeT5tLlMfww1s1NQ/5YxocgnQ5pgMemqTHHO1g2cmfocVi/36c03nyPMPlEgAdLOWMG1S/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2001 Digital Logic - Sequential Circuits Question 16 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/PmRcxjmZy12QIhfTg/DDnZYm02a6k2Fpftt3h65FkF8G9f2/57Ckv4GDxDQab34Z820M6q/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2001 Digital Logic - Sequential Circuits Question 16 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/DejAGC4QoGPpDehWT/cHrkgHkpDrZKmLhk4qw15G5Q3eGvi/oeTe7siMI6YEYqulXm36qS/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2001 Digital Logic - Sequential Circuits Question 16 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/wsis0ovDxhCWTDCrN/aMIlavdADR0svUQoPf5kbhFX3EBff/qxfIeWLKUDUMInHm3x1s1C/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2001 Digital Logic - Sequential Circuits Question 16 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-circuit-with-initial-state-q0-q1-0-th-gate-cse-2001-marks-2-8cav6tabkvhllauv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZcJ8pwhenbGL2mdO",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinational-circuits",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the circuit shown below. The output of a $$2:1$$ Mux is given by the function $$(ac+bc)$$\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/5SN7VUpdoVD34qUYy/cwI8ugiGbnGqIaxuDsVOsoPkTaSPR/oSgToyFm95pBhFEQcHH0xi/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2001 Digital Logic - Combinational Circuits Question 16 English\"> \n<p>Which of the following is true?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$f = x_1^1 + {x_2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$f = x_1^{\\,1} + {x_2} + {x_1}x_2^{\\,1}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$f = {x_1}{x_2} + {x_1}^1{x_2}^1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$f = {x_1} + x_2^1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-circuit-shown-below-the-output-of-a-21-mux-is-g-gate-cse-2001-marks-2-zcj8pwhenbgl2mdo.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JKhWsiXeUW0Bdk53",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "number-systems",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The $$2's$$ complement representation of $${\\left( { - 539} \\right)_{10}}$$ in hexadecimal is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$ABE$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$DBC$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$DE5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$9E7$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-2s-complement-representation-of-left-539-right10-in-hexa-gate-cse-2001-marks-2-jkhwsixeuw0bdk53.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bZRPi1acLCX5FwoE",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "k-maps",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given the following Karnaugh map, which one of the following represents the minimal Sum-Of-Products of the map? \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/W9vv6oaoWwaFHuHmW/k3YiUNklIOjc8yfLUdo2urAYiO4M5/Haj6qc25374qKQ7V9KZFKn/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2001 Digital Logic - K Maps Question 12 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$xy + y'z$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$wx'y' + xy + xz$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$w'x + y'z + xy$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$xz+y$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-the-following-karnaugh-map-which-one-of-the-following-gate-cse-2001-marks-1-bzrpi1aclcx5fwoe.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                }
+            ],
+            "title": "Digital Logic"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xK8EYy3q9m84DslC",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Seven (distinct) car accidents occurred in a week. What is the probability that they all occurred on the same day ?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1/{7^7}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1/{7^6}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1/{2^7}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$7/{2^7}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "seven-distinct-car-accidents-occurred-in-a-week-what-is-the-gate-cse-2001-marks-2-xk8eyy3q9m84dslc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YeNpvV83hG7zOwoZ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following statements: \n<p> S1: There exist infinite sets A, B, C such that \n<br> $$A\\, \\cap \\left( {B\\, \\cup \\,C} \\right)$$ is finite.\n<br> S2: There exist two irrational numbers x and y such that (x + y) is rational.\n<br> Which of the following is true about S1 and S2? </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Only S1 is correct"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Only S2 is correct"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Both S1 and S2 are correct"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of S1 and S2 is correct "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-statements-s1-there-exist-infinite-se-gate-cse-2001-marks-2-yenpvv83hg7zowoz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2Ji4ZzuNLbZ95U5n",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$f:\\,A\\, \\to B$$ be a function, and let E and F be subsets of A. Consider the following statements about images.\n<p> $$S1:\\,f\\,\\left( {E\\, \\cup \\,F} \\right)\\, = \\,f\\left( E \\right)\\, \\cup \\,f\\,\\left( F \\right)$$ \n<br> $$S2:\\,f\\,\\left( {E\\, \\cap \\,F} \\right)\\, = \\,f\\left( E \\right)\\, \\cap \\,f\\,\\left( F \\right)$$\n<br> Which of the following is true about S1 and S2? </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Only S1 is correct"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Only S2 is correct"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Both S2 and S2 are correct"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of S1 and S2 is correct"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-fa-to-b-be-a-function-and-let-e-and-f-be-subsets-of-a-co-gate-cse-2001-marks-2-2ji4zzunlbz95u5n.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "eVuvVaiyjMHGyDrH",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following relations:\n<br>$${R_1}\\,\\,\\left( {a,\\,\\,b} \\right)\\,\\,\\,iff\\,\\,\\left( {a + b} \\right)$$ is even over the set of integers\n<br>$${R_2}\\,\\,\\left( {a,\\,\\,b} \\right)\\,\\,\\,iff\\,\\,\\left( {a + b} \\right)$$ is odd over the set of integers\n<br>$${R_3}\\,\\,\\left( {a,\\,\\,b} \\right)\\,\\,\\,iff\\,\\,a.b &gt; 0$$  over the set of non-zero rational numbers\n<br>$${R_4}\\,\\,\\left( {a,\\,\\,b} \\right)\\,\\,\\,iff\\,\\,\\left| {a - b} \\right| \\le 2$$  over the set of natural numbers\n<p>Which of the following statements is correct?</p>\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${R_1}$$ and $${R_2}$$ are equivalence relations, $${R_3}$$  and $${R_4}$$ are not\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${R_1}$$ and $${R_3}$$ are equivalence relations, $${R_2}$$ and $${R_4}$$ are not"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${R_1}$$ and $${R_4}$$ are equivalence relations, $${R_2}$$  $${R_3}$$ are not "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${R_1}$$, $${R_2}$$, $${R_3}$$ and $${R_4}$$ are all equivalence relations"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-relationsr1left-ab-rightiffleft-a-b-r-gate-cse-2001-marks-1-evuvvaiyjmhgydrh.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RuD2saodRkOOCyCQ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following statements:\n<br> S1: The sum of two singular n x n matrices may be non-singular\n<br> S2: The sum of two n x n non-singular matrices may be singular \n<p> Which of the following statements is correct? </p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "S1 and S2 are both true "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "S1 is true, S2 is false "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "S1 is false, S2 is true "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "S1 and S2 are both false "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-statements-s1-the-sum-of-two-singular-gate-cse-2001-marks-1-rud2saodrkoocycq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XxA9Iuwinb8lP5Jx",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinatorics",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "How many 4 digit even numbers have all 4 digits distinct? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2240"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2296"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2620"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "4536"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "how-many-4-digit-even-numbers-have-all-4-digits-distinct-gate-cse-2001-marks-2-xxa9iuwinb8lp5jx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fWjsDo28htKo7hN9",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "how many undirected graphs (not necessarily connected) can be constructed out of a given $$\\,\\,\\,\\,V = \\left\\{ {{v_1},\\,\\,{v_2},\\,....,\\,\\,{v_n}} \\right\\}$$ of $$n$$ vertices? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$n\\left( {n - 1} \\right)/2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${2^n}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$n!$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${2^{n\\left( {n - 1} \\right)/2}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "how-many-undirected-graphs-not-necessarily-connected-can-be-gate-cse-2001-marks-2-fwjsdo28htko7hn9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Wq4bvmwOGBzGdJis",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of the integral is $${\\rm I} = \\int\\limits_0^{{\\raise0.5ex\\hbox{$\\scriptstyle \\pi $}\n\\kern-0.1em/\\kern-0.15em\n\\lower0.25ex\\hbox{$\\scriptstyle 4$}}} {{{\\cos }^2}x\\,dx} $$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\pi  \\over 8} + {1 \\over 4}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\pi  \\over 8} - {1 \\over 4}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{ - \\pi } \\over 8} - {1 \\over 4}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{ - \\pi } \\over 8} + {1 \\over 4}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-the-integral-is-rm-i-intlimits0raise05exhboxscr-gate-cse-2001-marks-1-wq4bvmwogbzgdjis.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "coM6pwmd89NdKlYW",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider two well-formed formulas in propositional logic \n<br>$$F1:P \\Rightarrow \\neg P$$\n<br>$$F2:\\left( {P \\Rightarrow \\neg P} \\right) \\vee \\left( {\\neg P \\Rightarrow } \\right)$$\n<p>Which of the following statements is correct?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "F1 is satisfiable, F2 is valid "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "F1 is unsatisfiable, F2 is satisfiable "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "F1 is unsatisfiable, F2 is valid "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "F1 and F2 are both satisfiable"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-two-well-formed-formulas-in-propositional-logic-f1p-gate-cse-2001-marks-1-com6pwmd89ndklyw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hXKzCzewcbnnL5Ro",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following statements is false?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Virtual memory implements the translation of a program\u2019s address space into physical memory address space"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Virtual memory allows each program to exceed the size of the primary memory"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Virtual memory increases the degree of multiprogramming."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Virtual memory reduces the context switching overhead."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-statements-is-false-gate-cse-2001-marks-1-hxkzczewcbnnl5ro.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LVVIHI5IlkXW0Uzm",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a virtual memory system with $$FIFO$$ page replacement policy. For an arbitrary page access pattern, increasing the number of page frames in main memory will",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Always decrease the number of page faults."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Always increase the number of page faults."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Sometimes increase the number of page faults."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Never affect the number of page faults."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-virtual-memory-system-with-fifo-page-replacement-gate-cse-2001-marks-1-lvvihi5ilkxw0uzm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QLXk6o3rDR5I8HYS",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The process of assigning load addresses to the various parts of the program and adjusting the code and date in the program to reflect the assigned addresses is called",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Assembly "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Parsing "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Relocation "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Symbol resolution "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-process-of-assigning-load-addresses-to-the-various-parts-gate-cse-2001-marks-1-qlxk6o3rdr5i8hys.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9nZ5o2iWGnoSCBRf",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a machine with 64 MB physical memory and a 32-bit virtual address space. If the page size is 4KB, what is the approximate size of the page table? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "16 M "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "8 MB "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2 MB "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "24 MB"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-machine-with-64-mb-physical-memory-and-a-32-bit-v-gate-cse-2001-marks-2-9nz5o2iwgnoscbrf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aPcOVzSDF3qX7mJm",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following requires a device driver?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Register "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Cache"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Main memory "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Disk"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-requires-a-device-driver-gate-cse-2001-marks-1-apcovzsdf3qx7mjm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bQaW8n8zXVZYHe0F",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a disk with following specifications: $$20$$ surface, $$1000$$ tracks/surface, $$16$$ sectors/track, data density $$1$$ $$KB/sector,$$ rotation speed $$3000$$ $$rpm.$$ The operating system initiates the transfer between the disk and the memory sector-wise. Once the head has been placed on the right track, the disk reads a sector in a single scan. It reads bits from the sector while the head is passing over the sector. The read bits are formed into bytes in a serial $$=$$in-parallel-out buffer and each byte is then transferred to memory. The disk writing is exactly a complementary process. For parts $$(c)$$ and $$(d)$$ below, assume memory read-write time $$= 0.1$$ micro-second/ byte, interrupt driven transfer has an interrupt overhead $$= 0.4$$ microseconds, the $$DMA$$ initialization and termination overhead is negligible compared to the total sector transfer time. $$DMA$$ requests are always granted.\n<p>(a) What is the total capacity of the disk?\n<br>(b) What is the data transfer rate?\n<br>(c) What is the percentage of time the $$CPU$$ is required for this disk $${\\rm I}/O$$ for byte-wise interrupts driven transfer?\n<br>(d) What is the maximum percentage of time the $$CPU$$ is held up for this disk $${\\rm I}/O$$ for cycle-stealing $$DMA$$ transfer ?</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a) $$500$$ $$MB$$\n<br>(b) $$800$$ $$KB/s$$\n<br>(c) $$25\\% $$\n<br>(d) $$5.4\\% $$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-disk-with-following-specifications-20-surface-100-gate-cse-2001-marks-5-bqaw8n8zxvzyhe0f.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "a24nps6qmbR2uNub",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a disk with the $$100$$ tracks numbered from $$0$$ to $$99$$ rotating at $$3000$$ $$rpm.$$ The number of sectors per track is $$100.$$ the time to move the head between two successive tracks is $$0.2$$ milliseconds.\n<p>(a) Consider a set of disk requests to read data from tracks $$32, 7, 45, 5$$ and $$10.$$ Assuming that the elevator algorithm is used to schedule disk requests, and the head is initially at track $$25$$ moving up (towards larger track numbers),\nwhat is the total seek time for servicing the requests?\n<br>(b) Consider an initial set of $$100$$ arbitrary disk requests and assume that no new disk requests arrive while servicing these requests. If the head is initially at track $$0$$ and the elevator algorithm is used to schedule disk requests, what is the worst case time to complete all the requests?</p>\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a) $$34$$ ms \n<br>(b) $$3.02$$ seconds",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-disk-with-the-100-tracks-numbered-from-0-to-99-ro-gate-cse-2001-marks-5-a24nps6qmbr2unub.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nTk8JawFHJogRfme",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A processor needs software interrupt to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Test the interrupt system of the processor "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Implement co-routines "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Obtain system services which need execution of privileged instructions "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Return from subroutine  "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "Privileged instruction means an instruction which is under the control of Operating System. Software interrupt let processor access those privilege instructions by changing user mode to kernal mode. That is how a processor access privileged instructions."
+                        }
+                    },
+                    "permalink": "a-processor-needs-software-interrupt-to-gate-cse-2001-marks-1-ntk8jawfhjogrfme.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZXwhbYRmK7szZAlh",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A CPU has two modes-privileged and non-privileged. In order to change the mode from privileged to non-privileged",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "A hardware interrupt is needed"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "A software interrupt is needed "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "A privileged instruction (which does not generate an interrupt) is needed."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "A non-privileged instruction (which does not generate an interrupt) is needed."
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cpu-has-two-modes-privileged-and-non-privileged-in-order-t-gate-cse-2001-marks-1-zxwhbyrmk7szzalh.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4HzTL6NoI7pZHpwo",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a set of $$n$$ tasks with known runtimes $${r_1},{r_2},.....\\,{r_n}\\,\\,$$ to be run on a uniprocessor machine. Which of the following processor scheduling algorithms will result in the maximum throughput?.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Round -Robin "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Shortest -Job -First "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Highest-Response-Ratio-Next  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "First -Come-First-Served "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "Throughput means no of processes completed per unit time. As in Shortest-job-first algorithm shorter jobs are executing earlier then no of jobs completed pre unit time will be maximum. So in Shortest-job-first algorithm throughput will be maximum."
+                        }
+                    },
+                    "permalink": "consider-a-set-of-n-tasks-with-known-runtimes-r1r2rn-to-be-r-gate-cse-2001-marks-1-4hztl6noi7pzhpwo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qzQ2iMnr11iOTGLx",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following does not interrupt a running process?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "A device "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Timer "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Scheduler process "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Power failure  "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-does-not-interrupt-a-running-process-gate-cse-2001-marks-2-qzq2imnr11iotglx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "naOzUVWTkD4pYlgo",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronization-and-concurrency",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose a processor does not have any stack pointer register. Which of the following statements is true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "It cannot have subroutine call instruction"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "It can have subroutine call instruction, but no nested subroutine calls"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Nested subroutine calls are possible, but interrupts are not"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "All sequences of subroutine call and also interrupts are possible"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-a-processor-does-not-have-any-stack-pointer-register-gate-cse-2001-marks-1-naozuvwtkd4pylgo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6u8gJrUR5QU6nvLd",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronization-and-concurrency",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Where does the swap space reside?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "RAM"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Disk"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "ROM"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "On-chip cache"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "where-does-the-swap-space-reside-gate-cse-2001-marks-1-6u8gjrur5qu6nvld.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZeuCjgQb6U2XTs3Q",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronization-and-concurrency",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider Peterson\u2019s algorithm for mutual exclusion between two concurrent processes i and j. The program executed by process is shown below.\n<pre><code> Repeat \n     flag[i]=true; \n     turn=j; \n     while (P) do no-op; \n     Enter critical section, perform actions, then \n     exit critical section \n     Flag[i]=false; \n     Perform other non-critical section actions. \n Until false;</code></pre>\nFor the program to guarantee mutual exclusion, the predicate P in the while loop should be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "flag[j]=true and turn=i"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "flag[j]=true and turn=j"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "flag[i]=true and turn=j"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "flag[i]=true and turn=i"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-petersons-algorithm-for-mutual-exclusion-between-tw-gate-cse-2001-marks-2-zeucjgqb6u2xts3q.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                }
+            ],
+            "title": "Operating Systems"
+        },
+        {
+            "_id": "Programming Languages",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "N5QLflB9vv2QWN4l",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pointer-and-structure-in-c",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following three C functions:\n<pre><code>[P1] int*g(void)\n     {\n       int x=10;\n       return(&amp;x);\n     }\n</code></pre>\n<pre><code>[P2] int*g(void)\n      {\n        int *px;\n       *px = 10;\n        return px;\n      }</code></pre>\n<pre><code>[P3] int*g(void)\n     {\n       int *px\n       px =(int*)malloc (size of (int));\n       *px = 10;\n       return px;\n     }</code></pre>\nWhich of the above three functions are likely to cause problems with pointers?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Only P3"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Only P1 and P3"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Only P1 and P2"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "P1, P2 and P3"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-three-c-functionsp1-intgvoid-int-x10-gate-cse-2001-marks-2-n5qlflb9vv2qwn4l.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DuVAZoxfjOsWDHDX",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pointer-and-structure-in-c",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following C program:\n<pre><code>void abc(char *s)\n{\n   if(s[0]=='\\0') return;\n   abc(s+1);\n   abc(s+1);\n   printf(\"%c\",s[0]);\n}\nmain()\n{ \n   abc(\"123\");\n}\n</code></pre>\n(a) What will be the output of the program?\n<br>(b) If abc(s) is called with a null-terminated string s of length n characters (not\ncounting the null ('\\0') character), how many characters will be printed by\nabc(s)? ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a) 332 332 1\n<br>(b) (2<sup>n</sup> - 1)",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-c-programvoid-abcchar-s-ifs00-return-gate-cse-2001-marks-5-duvazoxfjoswdhdx.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "F9xTjjX9NrWXwEkD",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is printed by the print statements in the program P1 assuming call by\nreference parameter passing?\n<pre><code class=\"c\">Program P1()\n{\n     x=10;\n     y=3;\n     func1(y,x,x);\n     print x;\n     print y;\n}\nfunc1(x,y,z)\n{\n     y=y+4;\n     z=x+y+z;\n}</code></pre>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "10,3"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "31,3"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "27,7"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-printed-by-the-print-statements-in-the-program-p1-as-gate-cse-2001-marks-2-f9xtjjx9nrwxwekd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Qc7KJnqQFAIyykhM",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following program\n<pre><code class=\"pascal\">Program P2\n      var n:int;\n      procedure W(var x:int)\n      begin\n          x=x+1;\n          print x;\n      end\n\n      procedure D\n      begin\n          var n:int;\n          n=3;\n          W(n);\n      end\nbegin     \\\\begin P2\n      n = 10;\n      D;\nend</code></pre>\nIf the language has dynamic scooping and parameters are passed by reference,\nwhat will be printed by the program?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "10"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "11"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "3"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-programprogram-p2-var-nint-procedure-gate-cse-2001-marks-2-qc7kjnqqfaiyykhm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                }
+            ],
+            "title": "Programming Languages"
+        },
+        {
+            "_id": "Theory of Computation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "C7oNdZhNqUAg3wxs",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "undecidability",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following problem $$X.$$ Given a Turing machine $$M$$ over the input alphabet $$\\sum , $$ any state $$q$$ of $$M$$ And a word $$w\\,\\,\\varepsilon \\,\\,\\sum {^ * ,} $$ does the computation of $$M$$ on $$w$$ visit the state $$q''$$\n<p>Which of the following statements about $$X$$ is correct?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$X$$ is decidable\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$X$$ is undecidable but partially decidable "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$X$$ is undecidable and not even partially decidable"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$X$$ is not a decision problem"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-problem-x-given-a-turing-machine-m-ov-gate-cse-2001-marks-2-c7ondzhnquag3wxs.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HFKMMFURfRDB4NDq",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following two statements;\n<br>$${S_1}\\,\\,:\\,\\,\\left\\{ {{0^{2n}}\\left| {n \\ge 1} \\right.} \\right\\}$$ is a regular language\n<br>$${S_2}\\,\\,:\\,\\,\\left\\{ {{0^m}{1^n}{0^{m + n}}\\left| {m \\ge 1} \\right.\\,\\,and\\,\\,n \\ge \\left. 1 \\right\\}} \\right.$$ is a regular language\n<p>Which of the following statements is correct?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Only $${S_1}$$ is correct "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Only $${S_2}$$ is correct "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Both $${S_1}$$ and $${S_2}$$ are correct"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of $${S_1}$$ and $${S_2}$$ is correct "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-two-statementss1left-02nleft-n-ge-1-r-gate-cse-2001-marks-1-hfkmmfurfrdb4ndq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zTIehb8ododqT2iv",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given an arbitrary non-deterministic finite automaton $$(NFA)$$ with $$N$$ states, the maximum number of states in an equivalent minimized $$DFA$$ is at least",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${N^2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${2^N}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2N$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$N!$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-an-arbitrary-non-deterministic-finite-automaton-nfa-wi-gate-cse-2001-marks-1-ztiehb8ododqt2iv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1edAVxWv5vhmrNoy",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a $$DFA$$ over $$\\sum { = \\left\\{ {a,\\,\\,b} \\right\\}} $$ accepting all strings which have number of $$a'$$s divisible by $$6$$ and number of $$b'$$s divisible by $$8$$. What is the minimum number of states that the $$DFA$$ will have?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$8$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$14$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$15$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$48$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-dfa-over-sum-left-ab-right-accepting-all-strings-gate-cse-2001-marks-2-1edavxwv5vhmrnoy.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zHfFIJhOuLcr7xDw",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following languages:\n<br>$${L_1} = \\left\\{ {w\\,w\\left| {w \\in {{\\left\\{ {a,\\,b} \\right\\}}^ * }} \\right.} \\right\\}$$\n<br>$${L_2} = \\left\\{ {w\\,{w^R}\\left| {w \\in {{\\left\\{ {a,\\,b} \\right\\}}^ * },} \\right.{w^R}\\,\\,} \\right.$$ is the reverse of $$\\left. w \\right\\}$$\n<br>$${L_3} = \\left\\{ {{0^{2i}}\\left| {i\\,\\,} \\right.} \\right.$$ is an integer$$\\left. \\, \\right\\}$$\n<br>$${L_4} = \\left\\{ {{0^{{i^2}}}\\left| {i\\,\\,} \\right.} \\right.$$ is an integer$$\\left. \\, \\right\\}$$\n<p>Which of the languages are regular?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Only $${L_1}$$ and $${L_2}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Only $${L_2},$$ $${L_3}$$ and $${L_4}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Only $${L_3}$$ and $${L_4}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Only $${L_3}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-languagesl1-left-wwleft-w-in-left-ab-gate-cse-2001-marks-2-zhffijhoulcr7xdw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "F5dV7LxaZb1VF4Lb",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 2001,
+                    "paperTitle": "GATE CSE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following statement is true? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "If a language is context free it can always be accepted by deterministic pushdown automation "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The union of two context free language is context free "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The intersection of two context free languages is context free "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The complement of a context free language is context free "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-statement-is-true-gate-cse-2001-marks-1-f5dv7lxazb1vf4lb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2001"
+                }
+            ],
+            "title": "Theory of Computation"
+        }
+    ]
+}

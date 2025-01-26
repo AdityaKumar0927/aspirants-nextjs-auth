@@ -1,0 +1,1503 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Casting",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cSOIWkdbqUIxB6ra",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "casting",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "casting-process",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A mold having dimensions $$100 \\times 90 \\times 20$$ (all in $$mm$$) is filled with molten metal througgh a gate with height $$'h'$$ and $$C.S$$ area $$A,$$ the mould filling time is $${t_1}$$. The height is now quadrupled and the cross sectional area is halved. The corresponding filling time is $${t_2}$$.  The ratio $${t_2}/{t_1}$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over {\\sqrt 2 }}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\sqrt 2 }$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-mold-having-dimensions-100-times-90-times-20-all-in-mm-is-gate-pi-2012-marks-2-csoiwkdbquixb6ra.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                }
+            ],
+            "title": "Casting"
+        },
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Hu2ww5X3GHZTsGJ7",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The inverse Laplace transform of the function $$F\\left( s \\right) = {1 \\over {s\\left( {s + 1} \\right)}}$$ is given by  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$f\\left( t \\right) = \\sin \\,t$$  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$f\\left( t \\right) = {e^{ - t}}\\sin \\,t$$  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$f\\left( t \\right) = {e^{ - t}}$$  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$f\\left( t \\right) = 1 - {e^{ - t}}$$  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-inverse-laplace-transform-of-the-function-fleft-s-right-gate-pi-2012-marks-1-hu2ww5x3ghztsgj7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tuk82WWbWFodmgM7",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the matrix $$A = \\left[ {\\matrix{\n   5 &amp; 3  \\cr \n   1 &amp; 3  \\cr \n\n } } \\right],$$ ONE of the normalized eigen vectors is given as ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {\\matrix{\n   {{1 \\over 2}}  \\cr \n   {{{\\sqrt 3 } \\over 2}}  \\cr \n\n } } \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {\\matrix{\n   {{1 \\over {\\sqrt 2 }}}  \\cr \n   {{{ - 1} \\over {\\sqrt 2 }}}  \\cr \n\n } } \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {\\matrix{\n   {{3 \\over {\\sqrt {10} }}}  \\cr \n   {{{ - 1} \\over {\\sqrt {10} }}}  \\cr \n\n } } \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {\\matrix{\n   {{1 \\over 5}}  \\cr \n   {{2 \\over {\\sqrt 5 }}}  \\cr \n\n } } \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-matrix-a-left-matrix-5-3-cr-1-3-cr-right-one-of-the-gate-pi-2012-marks-1-tuk82wwbwfodmgm7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yzw0YMaoEAqHYNFw",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the differential equation $$\\,\\,{x^2}{{{d^2}y} \\over {d{x^2}}} + x{{dy} \\over {dx}} - 4y = 0\\,\\,\\,$$ with the boundary conditions of $$\\,\\,y\\left( 0 \\right) = 0\\,\\,\\,$$ and $$\\,\\,y\\left( 1 \\right) = 1.\\,\\,\\,$$ The complete solution of the differential equation is  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${x^2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\sin \\left( {{{\\pi x} \\over 2}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${e^x}\\sin \\left( {{{\\pi x} \\over 2}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${e^{ - x}}\\sin \\left( {{{\\pi x} \\over 2}} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-differential-equation-x2d2y-over-dx2-xdy-over-d-gate-pi-2012-marks-2-yzw0ymaoeaqhynfw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Mqb58Bo05SM8cxpn",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An  automobile plant contracted to buy shock absorbers from two suppliers $$X$$ and $$Y$$.  $$X$$ supplies $$60$$% and $$Y$$ supplies $$40$$% of the shock absorbers. All shock absorbers are subjected to a quality test. The ones that pass the quality test are considered reliable.  Of $$X'$$ s shock absorbers, $$96$$% are reliable. Of $$Y'$$ s shock absorbers, $$72$$% are reliable. The probability that a randomly choosen shock absorber, which is found to reliable, is made by $$Y$$ is  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.288$$  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.334$$  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.667$$  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.720$$  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-automobile-plant-contracted-to-buy-shock-absorbers-from-t-gate-pi-2012-marks-2-mqb58bo05sm8cxpn.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Wmpj4YExVJNz1BiC",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A box contains $$4$$ red balls and $$6$$ black balls. Three balls are selected randomly from the box one after another, without replacement. The probability that the selected set contains one red ball and two black balls is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1/20$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1/12$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3/10$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\raise0.5ex\\hbox{$\\scriptstyle 1$}\n\\kern-0.1em/\\kern-0.15em\n\\lower0.25ex\\hbox{$\\scriptstyle 2$}}$$  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-box-contains-4-red-balls-and-6-black-balls-three-balls-are-gate-pi-2012-marks-2-wmpj4yexvjnz1bic.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AUoM7dKvbqZg60LK",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the spherical  surface $${x^2} + {y^2} + {z^2} = 1,$$ the unit outward normal vector at the point  $$\\left( {{1 \\over {\\sqrt 2 }},{1 \\over {\\sqrt 2 }},0} \\right)$$ is given by  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{1 \\over {\\sqrt 2 }}\\widehat i + {1 \\over {\\sqrt 2 }}\\widehat j}$$  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{1 \\over {\\sqrt 2 }}\\widehat i - {1 \\over {\\sqrt 2 }}\\widehat j}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\widehat k}$$  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{1 \\over {\\sqrt 3 }}\\widehat i + {1 \\over {\\sqrt 3 }}\\widehat j + {1 \\over {\\sqrt 3 }}\\widehat k}$$  "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-spherical-surface-x2-y2-z2-1-the-unit-outward-normal-gate-pi-2012-marks-1-auom7dkvbqzg60lk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XozqZLIrJNsDsAdl",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A political party orders an arch for the entrance to the ground in which the annual convention is being held. The profile of the arch follows the equation $$y = 2x\\,\\,\\, - 0.1{x^2}$$ where $$y$$ is the height of the arch in meters. The maximum possible height of the arch is  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$8$$ meters"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$10$$ meters  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$12$$ meters "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$14$$ meters "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-political-party-orders-an-arch-for-the-entrance-to-the-gro-gate-pi-2012-marks-2-xozqzlirjnsdsadl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nU2NwifpTTeQBeSo",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "At $$x=0,$$ the function $$f\\left( x \\right) = {x^3} + 1$$ has  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a maximum value  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a minimum value  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "a singularity "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a point of inflection  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "at-x0-the-function-fleft-x-right-x3-1-has-gate-pi-2012-marks-1-nu2nwifptteqbeso.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "amnDYN5BI7aNEYjf",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$\\,\\mathop {Lim}\\limits_{x \\to 0} \\left( {{{1 - \\cos x} \\over {{x^2}}}} \\right)$$ is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1/4$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1/2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "mathop-limlimitsx-to-0-left-1-cos-x-over-x2-right-is-gate-pi-2012-marks-1-amndyn5bi7aneyjf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ij19MZ4L0pBdxsDx",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the function $$f\\left( x \\right) = \\left| x \\right|$$ in the interval $$\\,\\, - 1 \\le x \\le 1.\\,\\,\\,$$ At the point $$x=0, f(x)$$  is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "continuous and differentiable . "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "non-continuous and differentiable. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "continuous and non-differentiable.  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "neither continuous nor differentiable. "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-function-fleft-x-right-left-x-right-in-the-inte-gate-pi-2012-marks-1-ij19mz4l0pbdxsdx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nGmgBOorGBKdqfmp",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The area enclosed between the straight line $$y=x$$ and the parabola $$y = {x^2}$$ in the $$x-y$$ plane is  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1/6$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1/4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1/3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1/2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-area-enclosed-between-the-straight-line-yx-and-the-parab-gate-pi-2012-marks-1-ngmgboorgbkdqfmp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NPIDCMZ19amgPqoq",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$x+2y+z=4, 2x+y+2z=5, x-y+z=1$$ \n<br>The system of algebraic equations given above has ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a unique solution of $$x=1,y=1$$ and $$z=1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "only the two solutions of $$x=1, y=1, z=1$$ and $$x=2, y=1, z=0$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "infinite number of solutions. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "no feasible solution. "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "x2yz4-2xy2z5-x-yz1-the-system-of-algebraic-equations-given-a-gate-pi-2012-marks-2-npidcmz19amgpqoq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Heat Transfer",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CiOMFktjgYwl8XAZ",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "radiation",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider two infinitely long thin concentric tubes of circular cross section as shown in the figure. If $${D_1}$$ and $${D_2}$$ are the diameters of the inner and outer tubes respectively, then the view factor $${F_{22}}$$ is given by\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/igoBFx4fyGV5aZs6E/8mw0K62iJysLallEaEEplzpLGjzY4/aZ0O2XJXxPxJl4kPdYZeaI/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2012 Heat Transfer - Radiation Question 1 English\">  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {{{{D_2}} \\over {{D_1}}}} \\right) - 1$$  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Zero  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {{{{D_1}} \\over {{D_2}}}} \\right)$$  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1 - \\left( {{{{D_1}} \\over {{D_2}}}} \\right)$$  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-two-infinitely-long-thin-concentric-tubes-of-circul-gate-pi-2012-marks-2-ciomfktjgywl8xaz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GXwHkBXdD3Pxkr98",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "radiation",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For an opaque surface, the absorptivity $$\\left( \\alpha  \\right),$$ transmissivity $$\\left( \\tau  \\right)$$ and reflectivity $$\\left( \\rho  \\right)$$ are related by the equation: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\alpha  + \\rho  = \\tau $$  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\rho  + \\alpha  + \\tau  = 0$$  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\alpha  + \\rho  = 1$$  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\alpha  + \\rho  = 0$$  "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-an-opaque-surface-the-absorptivity-left-alpha-right-tran-gate-pi-2012-marks-1-gxwhkbxdd3pxkr98.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "G94oE1ii0byD3xOp",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fin-design-and-transient-heat-conduction",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following configurations has the highest fin effectiveness?  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Thin, closely spaced fins "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Thin, widely spaced fins "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Thick, widely spaced fins "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Thick, closely spaced fins  "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-configurations-has-the-highest-fi-gate-pi-2012-marks-1-g94oe1ii0byd3xop.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                }
+            ],
+            "title": "Heat Transfer"
+        },
+        {
+            "_id": "Joining of Materials",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FFn5Bpm9CVmqBMmR",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "joining-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a $$DC$$ $$arc$$ welding operating, the length characteristic was obtained as $${V_{arc}} = 20 + 5l$$ where the $$arc$$ length $$l$$ was varied between $$5mm$$ and $$7mm.$$ Here $${V_{arc}}$$ denotes the arc voltage in volts. The $$arc$$ current was varied from $$400A$$ to $$500A.$$ Assuming linear power source characteristic, the open circuit voltage and the short circuit current for the welding operation are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$45V, 450A$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$75V, 750A$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$95V, 950A$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$150V, 1500A$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-dc-arc-welding-operating-the-length-characteristic-was-gate-pi-2012-marks-2-ffn5bpm9cvmqbmmr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                }
+            ],
+            "title": "Joining of Materials"
+        },
+        {
+            "_id": "Machine Tools and Machining",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "r9Lx8bO4ADcd88H8",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "advance-machine-tools",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$CNC$$ vertical milling machine has to cut a straight slot of $$10$$ $$mm$$ width and $$2$$ $$mm$$ depth by a cutter of $$10$$ $$mm$$ diameter between points $$(0, 0)$$ and $$(100, 100)$$ on the $$XY$$ plane (dimensions in $$mm$$). The feed rate used for milling is $$50$$ $$mm/min.$$ Milling time for the slot (in seconds) is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$120$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$170$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$180$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$240$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cnc-vertical-milling-machine-has-to-cut-a-straight-slo-2012-marks-1-r9lx8bo4adcd88h8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "76tANPlwjMFNrVGC",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "machining",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a single pass drilling operation, a through hole of $$15$$ $$mm$$ diameter is to be drilled in a steel plate of $$50mm$$ thickness. Drill spindle speed is $$500epm,$$ feed is $$0.2mm/rev$$ and drill point angle is $${118^ \\circ }.$$ Assuming $$2mm$$ clearance at approach and exit, the total drill time (in seconds) is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$35.1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$32.4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$31.2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$30.1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-single-pass-drilling-operation-a-through-hole-of-15-2012-marks-2-76tanplwjmfnrvgc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zhS4ByaaIhjLbMH0",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "machining",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a shaping process, the number of double strokes per minute is $$30$$ and the quick return ratio is $$0.6,$$ If the length of the stroke is $$250mm,$$ the average cutting velocity in $$m/min$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3.0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$4.5$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$7.5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$12.0$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-shaping-process-the-number-of-double-strokes-per-minut-2012-marks-2-zhs4byaaihjlbmh0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                }
+            ],
+            "title": "Machine Tools and Machining"
+        },
+        {
+            "_id": "Metal Forming",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GWIiKaE3iuqa08iP",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "metal-forming",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sheet-metal-forming-processes",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Calculate the punch size in $$mm,$$ for a circular blanking operation for which details are given below.\n<p>Size of the blank $$25$$ $$mm$$\n<br>Thickness of the sheet $$2$$ $$mm$$\n<br>Radial clearance between punch and die $$0.06$$ $$mm,$$ Die allowance $$0.05$$ $$mm$$</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$24.83$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$24.89$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$25.01$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$25.17$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "calculate-the-punch-size-in-mm-for-a-circular-blanking-2012-marks-2-gwiikae3iuqa08ip.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UYpRXRNBRu2cszOu",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "metal-forming",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sheet-metal-forming-processes",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the following metal forming processes with their associated stresses in the Work-piece\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/PkWsk5IhG5LFPmYaS/j8ccMqn04h61GJH0Q4ag7dyg1qtFz/C89NdVTrJWi4Gn6vpojZql/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2012 Metal Forming - Sheet Metal Forming Processes Question 26 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1 - S,\\,\\,2 - P,\\,\\,3 - Q,\\,\\,4 - R$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1 - P,\\,\\,2 - Q,\\,\\,3 - S,\\,\\,4 - R$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1 - S,\\,\\,2 - P,\\,\\,3 - R,\\,\\,4 - Q$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1 - P,\\,\\,2 - R,\\,\\,3 - Q,\\,\\,4 - S$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-following-metal-forming-processes-with-their-assoc-2012-marks-1-uyprxrnbru2cszou.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "W2WXVwa2LBZxTMJQ",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "metal-forming",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming-process",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a single pass rolling process using $$410mm$$ diameter steel rollers, a strip of width $$140mm$$ and thickness $$8mm$$ undergoes $$10\\% $$ reduction of thickness. The angle of bite in radians is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.006$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.031$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.062$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.600$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-single-pass-rolling-process-using-410mm-diameter-steel-gate-pi-2012-marks-2-w2wxvwa2lbzxtmjq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qCfx8tJCWN2LOM8r",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "metal-forming",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming-process",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A solid cylinder of diameter $$100$$ $$mm$$ and height $$50$$ $$mm$$ is forged between two frictionless flat dies to a height of $$25$$ $$mm.$$ The percentage change in diameter is  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2.07$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$20.7$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$41.4$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-solid-cylinder-of-diameter-100-mm-and-height-50-mm-is-forg-gate-pi-2012-marks-1-qcfx8tjcwn2lom8r.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                }
+            ],
+            "title": "Metal Forming"
+        },
+        {
+            "_id": "Metrology",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "s25hwHMki5SszRqy",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "metrology",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metrology-and-inspection",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A Sine bar has a length of $$250mm.$$ Each roller has a diameter of $$20mm.$$ During taper angle measurement of a component, the height from the surface plate to the center of a roller is $$100mm.$$ The calculated taper angle (in degrees) is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$21.1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$22.8$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$23.6$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$68.9$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-sine-bar-has-a-length-of-250mm-each-roller-has-a-diam-2012-marks-2-s25hwhmki5sszrqy.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZC8XtC9Yh0AoJtcZ",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "metrology",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metrology-and-inspection",
+                    "year": 2012,
+                    "paperTitle": "GATE PI 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In an interchangeable assembly, shafts of size $${25.000^{\\matrix{\n   { + 0.040}  \\cr \n   { - 0.010}  \\cr \n\n } }}\\,\\,mm$$ mate with holes of size $${25.000^{\\matrix{\n   { + 0.030}  \\cr \n   { + 0.020}  \\cr \n\n } }}\\,\\,mm.$$ \n<p>The maximum interference (in microns) in the assembly is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$40$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$30$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$20$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$10$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-an-interchangeable-assembly-shafts-of-size-25000m-2012-marks-1-zc8xtc9yh0aojtcz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2012"
+                }
+            ],
+            "title": "Metrology"
+        }
+    ]
+}

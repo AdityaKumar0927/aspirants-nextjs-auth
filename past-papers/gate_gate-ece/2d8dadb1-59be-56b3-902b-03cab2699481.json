@@ -1,0 +1,1619 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Analog Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cGEtCIEn5JhzvaQZ",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Refer to Fig.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/ztlu3adHnLeYPcpjJ/NTV6OXXvFQMvZutmMGPxY5ahoA59O/xeZw04JhKL1JPhBaDCF81R/image.svg\" loading=\"lazy\" alt=\"GATE ECE 1989 Analog Circuits - Operational Amplifier Question 22 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "For $${V_i} &gt; 0,\\,\\,{V_0}\\, =  - {{{R_2}} \\over {{R_1}}}{V_i}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "For $${V_i} &gt; 0,\\,\\,{V_0}\\, = 0.$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "For $${V_i} &lt; 0,\\,\\,{V_0}\\, =  - {{{R_2}} \\over {{R_1}}}{V_i}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "For $${V_i} &lt; 0,\\,\\,{V_0}\\, = 0.$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "refer-to-fig-gate-ece-1989-marks-2-cgetcien5jhzvaqz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "a2V3vrV0b2c6ohIz",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "feedback-amplifier",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The feedback amplifier shown in Fig.has:\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/z7oa7Maxm7yZjABY4/9zZh2xnSEiZOm26nCULJRlnZP3pjU/SnbkhGLcaMUGwkeSz9nbYl/image.svg\" loading=\"lazy\" alt=\"GATE ECE 1989 Analog Circuits - Feedback Amplifier Question 3 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "current - series feedback with large input impedance and large output impedance."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "voltage - series feedback with large input impedance and low output impedance."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "voltage - shunt feedback with low input impedance and low output impedance."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "current - shunt feedback  with low input impedance and output impedance."
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-feedback-amplifier-shown-in-fighas-gate-ece-1989-marks-2-a2v3vrv0b2c6ohiz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bZnviJsyPoLSabjr",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bipolar-junction-transistor",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Of the four biasing circuits shown in Fig. For a BJT, indicate the one which can have maximum bias stability:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/sxv2b5LYHra8fmSEc/TBlWXrCYC4kF1BRsxwWzm3GoeNSDo/EU1G9fXMzg2svZS9mEmwa7/image.svg\" loading=\"lazy\" alt=\"GATE ECE 1989 Analog Circuits - Bipolar Junction Transistor Question 2 English Option 1\">"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/ifewOvbKzy5y13AIO/A7bePeRvkSXQHkTNv0ZQHhzbUx3DF/8RFgnsqyCyqR2TR8cr7IrQ/image.svg\" loading=\"lazy\" alt=\"GATE ECE 1989 Analog Circuits - Bipolar Junction Transistor Question 2 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/M0sinAwQyH9GVrTfF/aCgDQQy4y7MtQetZ33sUs6pl430vN/QtGjkr662ouKUanx5IhkVO/image.svg\" loading=\"lazy\" alt=\"GATE ECE 1989 Analog Circuits - Bipolar Junction Transistor Question 2 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/O1RA1kywV7jo7adjq/fiRsYd3dndWELXHSt2nTI3mUQ47vw/5BIaftiPxexsVq6MJ9cbuW/image.svg\" loading=\"lazy\" alt=\"GATE ECE 1989 Analog Circuits - Bipolar Junction Transistor Question 2 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "of-the-four-biasing-circuits-shown-in-fig-for-a-bjt-indicate-gate-ece-1989-marks-2-bznvijsypolsabjr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                }
+            ],
+            "title": "Analog Circuits"
+        },
+        {
+            "_id": "Communications",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PKVXyOccLzYRjsrE",
+                    "exam": "gate-ece",
+                    "marks": 10,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "digital-communication-systems",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A signal of bandwidth 3.5 kHz has peak-to-peak and rms amplitudes of 4 V and 0.2 V, respectively. This signal is passed through a linear PCM coder and then transmitted over a channel capable of supporting a transmission rate of 60 kbps. Calculate the maximum signal-to-quantization-noise ratio that can be obtained using this system.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "33.4 dB.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-signal-of-bandwidth-35-khz-has-peak-to-peak-and-rms-amplit-gate-ece-1989-marks-10-pkvxyocclzyrjsre.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6wWqzbLSrwhGNKiP",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "random-signals-and-noise",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A part of a communication system consists of an amplifier of effective noise temperature, $$Te = \\,\\,21\\,\\,{}^ \\circ K\\,$$, and a gain of 13 dB, followed by a cable with a loss of 3 dB. Assuming the ambient temperature to be $$300{}^ \\circ \\,K$$, we have for this part of the communication system,",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "effective noise temperature $$ = 30{}^ \\circ \\,K$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "effective noise temperature $$ = 36{}^ \\circ \\,K$$  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "noise figure = 0.49 dB "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "noise figure = 1.61 dB "
+                                }
+                            ],
+                            "correct_options": [
+                                "B",
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-part-of-a-communication-system-consists-of-an-amplifier-of-gate-ece-1989-marks-2-6wwqzblsrwhgnkip.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KNeOlfkbfw7Xwu70",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "random-signals-and-noise",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Zero mean Gaussian noise of variance N is applied to a half wave rectifier. The mean squared value of the rectifier output will be:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "N/2"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$N/\\sqrt 2 $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "N "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "zero-mean-gaussian-noise-of-variance-n-is-applied-to-a-half-gate-ece-1989-marks-2-kneolfkbfw7xwu70.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "z4oudmA25uHBiebM",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fundamentals-of-information-theory",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A source produces 4 symbols with probabilities $${1 \\over 2},\\,{1 \\over 4},\\,{1 \\over 8}\\,\\,and\\,\\,{1 \\over 8}.$$ For this source, a practical coding scheme has an average codeword lenght of 2 bits/symbols. The efficiency of the code is :",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "7/8"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1/2"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1/4"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-source-produces-4-symbols-with-probabilities-1-over-21-ove-gate-ece-1989-marks-2-z4oudma25uhbiebm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6lRpaiOI11Jmrepf",
+                    "exam": "gate-ece",
+                    "marks": 10,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "digital-communication-systems",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the input signal, x(t), shown in Fig.\n<p> (a) Sketch the impulse response, h(t), of the matched filter.\n<br> (b) Sketch the output, y(t), of the matched filter. Fully label your diagram.\n<br> (c) If the input to the matched filter consists of the signal, x(t), plus additive white noise of two sided spectral density of $${10^{ - 6}}$$ watts/Hz, find the maximum output SNR of the matched filter. </p>\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/W5NcfQu0AKoYD6QWl/Y5vlk67KtG2nQvyinuQZOTMk9Bm8R/Lke3rLEGDkJbguBey05n9I/image.svg\" loading=\"lazy\" alt=\"GATE ECE 1989 Communications - Digital Communication Systems Question 7 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(c) $$4\\, \\times {10^6}$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-input-signal-xt-shown-in-fig-a-sketch-the-impulse-re-gate-ece-1989-marks-10-6lrpaioi11jmrepf.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "m2RXY1Y6MUfqeglh",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "digital-communication-systems",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In binary data transmission DPSK is preferred to PSK because ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a coherent carrier is not required to be generated at the receiver. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "for a given energy per bit, the probability of error is less. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the 180<sup>0</sup> phase shifts of the carrier are unimportant. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "more protection is provided against impulse noise. "
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-binary-data-transmission-dpsk-is-preferred-to-psk-because-gate-ece-1989-marks-2-m2rxy1y6mufqeglh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                }
+            ],
+            "title": "Communications"
+        },
+        {
+            "_id": "Control Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CmXtyxv0NZcYQ7i3",
+                    "exam": "gate-ece",
+                    "marks": 10,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "frequency-response-analysis",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Nyquist plot consider a feed back system where the OLTF is:\n$$G(s) = {1 \\over {s\\left( {2s + 1} \\right)\\left( {s + 1} \\right)}}.$$ \nDetermine the asymptote which the nyquist plot approaches as $$\\omega  \\to 0.$$    Find also the range of 'k' in terms of the cross over frequency $${\\omega _{PC}}$$ for stability.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "nyquist-plot-consider-a-feed-back-system-where-the-oltf-isgs-gate-ece-1989-marks-10-cmxtyxv0nzcyq7i3.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UAHtcerJiqpgMoAg",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "frequency-response-analysis",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "From the Nicholas chart, one can determine the following quantities pertaining to a closed loop system:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Magnitude and phase "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "band width "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "only magnitude "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "only phase"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "from-the-nicholas-chart-one-can-determine-the-following-quan-gate-ece-1989-marks-2-uahtcerjiqpgmoag.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8556ad6530a",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stability",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In order to stabilize the system shown in fig. T<sub>i</sub> should satisfy:\n<img alt=\"GATE ECE 1989 Control Systems - Stability Question 17 English\" src=\"https://imagex.cdn.examgoal.net/VS0CdxRmgOyGhrDht/Vhq4vktu3EwkBlgR6fVSCoqjcPHoQ/vdaL0OJsYbJ8UATRwEtPdV/image.svg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\mathrm T}_\\mathrm i=-\\mathrm T$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\mathrm T}_\\mathrm i=\\mathrm T.$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\mathrm T}_\\mathrm i&lt;\\mathrm T.$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\mathrm T}_\\mathrm i&gt;\\mathrm T.$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-order-to-stabilize-the-system-shown-in-fig-ti-should-sati-gate-ece-1989-marks-2-5a8556ad6530a.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                }
+            ],
+            "title": "Control Systems"
+        },
+        {
+            "_id": "Digital Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "31DhagUNAv7T1ci5",
+                    "exam": "gate-ece",
+                    "marks": 10,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinational-circuits",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A chemical reactor has three sensors indicating the following conditions:-\n<br> (1) Pressure (P) is low or high'\n<br> (2) Temperature (T) is low or high' and \n<br> (3) Liquid level (L) is low or high. \n<p> its has two controls - Heater (H) which is either on or off and inlet value (V) which is open or close. The controls are operated as per Table.\n</p><p> (a) Using the convertion High =1, Low = 0, On=1, Off=0, Open=1 and Closed=0, draw the Karnaugh maps for H and V.\n </p><p> (b) Obtain the minimal product of sums expressions for H and V.\n</p><p> (c) Realize the logic for H and V using two 4-input multiplexers with T and L as control inputs. Used T as MSB.\n\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/624380605f74a406c088aab8d3502610c1ae35867c7ac0a82e7d6dbb6d41361f.jpg\" loading=\"lazy\" alt=\"GATE ECE 1989 Digital Circuits - Combinational Circuits Question 7 English\"> </p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "<p> (b)$$H = \\overline T (P + L)$$ </p>\n<p>  $$V = \\overline L (\\overline T  + \\overline P )$$\n</p>",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-chemical-reactor-has-three-sensors-indicating-the-followin-gate-ece-1989-marks-10-31dhagunav7t1ci5.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zWko4J97nGIq93rU",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logic-families",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A logic family has threshold voltage $${V_T}$$= 2V, minimum guaranteed output high voltage $${V_{OH}}$$= 4V, minimum accepted input high voltage $${V_{IH}}$$ = 3V, maximum guaranteed output low voltage $${V_{OL}}$$ = 1V, and maximum accepted input low voltage N $${V_{IL}}$$ =1.5V. Its noise margin is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2V"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1V"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1.5V"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0.5V"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-logic-family-has-threshold-voltage-vt-2v-minimum-guarantee-gate-ece-1989-marks-1-zwko4j97ngiq93ru.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pEy2Kzzb3LKtGSmx",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logic-families",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Among the digital IC-families-ECL, TTL and CMOS: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "ECL has the least propagation delay"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "TTL has the largest fan-out"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "CMOS has the biggest noise margin"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "TTL has the lowest power consumption "
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "among-the-digital-ic-families-ecl-ttl-and-cmos-gate-ece-1989-marks-1-pey2kzzb3lktgsmx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3UQh7skXXRlefdcD",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logic-gates",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Indicate which of the following logic gates can be used to realize all possible combinational Logic functions:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "OR gates only."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "NAND gates only."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "EX-OR gates only. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "NOR gates only."
+                                }
+                            ],
+                            "correct_options": [
+                                "B",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "indicate-which-of-the-following-logic-gates-can-be-used-to-r-gate-ece-1989-marks-1-3uqh7skxxrlefdcd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                }
+            ],
+            "title": "Digital Circuits"
+        },
+        {
+            "_id": "Electromagnetics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uHIX34OY37d3pMeQ",
+                    "exam": "gate-ece",
+                    "marks": 10,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "waveguides",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Design a rectangilar hollow metal waveguide to operate in the X-band such that at an operating free-space wavelength of 3.2 cm\n<br> (a) The guide-wavelength for the $$T{E_{{{10}^ - }}}$$ mode is 40% more than the operating free-space wavelength.\n<br> (b) The cut-off wavelength for the $$T{M_{{{11}^ - }}}$$ mode is 40% of the cut-off wavelength for the $$T{E_{{{10}^ - }}}$$ mode.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "solve it ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "design-a-rectangilar-hollow-metal-waveguide-to-operate-in-th-gate-ece-1989-marks-10-uhix34oy37d3pmeq.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2Ns1RlyVoavVWesx",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "antennas",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the case of ground wave propagation, at far-off distances from the transmitting tower antenna, the Poynting vector is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "in the truly horizontal direction"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "essentially horizontal but for a small downward component"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "essentially horizontal but for a small upward component "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "directed upward at an angle determined by the \"effective height\" of the transmitting tower antenna."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-case-of-ground-wave-propagation-at-far-off-distances-gate-ece-1989-marks-2-2ns1rlyvoavvwesx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "URXJa0anb0WWYIcO",
+                    "exam": "gate-ece",
+                    "marks": 10,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "antennas",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two vertically oriented half wave dipoles are spaced 1.5 wavelengths apart to from an array. Calculate the half power beam widths of the major lobes of the array, in the horizontal plane for the following two cases when the dipoles are fed with \n<p>(a) equal and in - phase currents (Broadside array) \n<br>(b) equal currents but with a phase difference of 540<sup>0</sup> between the two currents (End fire array) </p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a)19.2<sup>0</sup> \n<br>(b) 67.2<sup>0</sup>",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-vertically-oriented-half-wave-dipoles-are-spaced-15-wave-gate-ece-1989-marks-10-urxja0anb0wwyico.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Kk2OhXqstio8ZgT1",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "maxwell-equations",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The electric field strength at a far-off point P due to a point charge + q, located at the origin O is 100 millivolts/metre. The point charge is now enclosed by a perfectly conducting hollow metal sphere with its centre at the origin O. The electric field strength at the point, P,",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "remains unchanged in its magnitude and direction "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "remains unchanged in its magnitude but reverse in  direction "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "would be that due to a dipole formed by the charge + q at O and - q induced "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "would be zero "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-electric-field-strength-at-a-far-off-point-p-due-to-a-po-gate-ece-1989-marks-2-kk2ohxqstio8zgt1.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fXSyE6WFhBQpTzSP",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transmission-lines",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 50 ohm lossless transmission line has a pure reactance of (j100) ohms as its load. The VSWR in the line is :",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1/2"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "4 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\infty $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-50-ohm-lossless-transmission-line-has-a-pure-reactance-of-gate-ece-1989-marks-2-fxsye6wfhbqptzsp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "e2gqOVOnQHby5hHm",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "uniform-plane-waves",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The skin - depth of copper at a frequency of $$3 GHz$$ is $$1$$ micron ($${{{10}^{ - 6}}}$$ metre). At $$12  GHz$$,  for a non - magnetic conductor whose conductivity is $$1/9$$ times that of copper, the skin $$-$$ depth would be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\sqrt {9 \\times 4} $$  microns "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\sqrt {9/4} \\,\\,$$   microns "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\sqrt {4/9} \\,\\,$$  microns "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${1 \\over {\\sqrt {9 \\times 4} }}\\,$$   microns "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-skin-depth-of-copper-at-a-frequency-of-3-ghz-is-1-micron-gate-ece-1989-marks-2-e2gqovonqhby5hhm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                }
+            ],
+            "title": "Electromagnetics"
+        },
+        {
+            "_id": "Microprocessors",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NgrB39IyBmpmOekD",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "microprocessors",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "instruction-set-and-programming-with-8085",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a microprocessor system, the stack is used for",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "storing the program return address whenever a sub-routine jump instruction is executed."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "transmitting and receiving input-output data."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "storing all important CPU register contents whenever an interrupt is to be serviced."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "storing program instructions for interrupt service routines."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-microprocessor-system-the-stack-is-used-for-gate-ece-1989-marks-1-ngrb39iybmpmoekd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                }
+            ],
+            "title": "Microprocessors"
+        },
+        {
+            "_id": "Network Theory",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SpHpefXV7r9XsdQ5",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-response",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The half - power bandwidth of the resonant circuit of figure can be increased by \n<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l9lrmpxc/8908a26b-3dc1-4895-8811-f86aab333c39/14523c00-530c-11ed-bbcb-95a2b15fc76c/file-1l9lrmpxd.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l9lrmpxc/8908a26b-3dc1-4895-8811-f86aab333c39/14523c00-530c-11ed-bbcb-95a2b15fc76c/file-1l9lrmpxd.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 1989 Network Theory - Sinusoidal Steady State Response Question 8 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "increasing R<sub>1</sub>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "decreasing R<sub>1</sub>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "increasing R<sub>2</sub>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "decreasing R<sub>2</sub>"
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "Selectivity $\\propto Q$\n<br/><br/>$$\n\\begin{aligned}\nQ &=\\frac{f}{B \\cdot W} \\text { or } B \\cdot W \\quad \\propto \\frac{1}{Q}\n\\end{aligned}\n$$\n<br/><br/>$B . W \\propto \\frac{1}{\\text { selectivity }}$\n<br/><br/>If $R_1 \\rightarrow 0$ and $R_1 \\rightarrow \\infty$\n<br/><br/>then circuit will have only $L$ and $C$ element and has selectivity.\n<br/><br/>Half power bandwidth can be reduced by decreasing selectivity and vice versa.\n\n<br/><br/>So, by increasing series resistance $R_1$ and decreasing parallel resistance $R_2$ the half power bandwidth can be increased."
+                        }
+                    },
+                    "permalink": "the-half-power-bandwidth-of-the-resonant-circuit-of-figure-c-gate-ece-1989-marks-2-sphpefxv7r9xsdq5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "z8eVkqbiFi6d28yk",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "two-port-networks",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the transfer function of a physical two-port network ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "all the zeroes must lie only in the left half of the s-plane "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the poles may lie anywhere in the s-plane "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the poles lying on the imaginary axis must be simple "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a pole may lie at origin"
+                                }
+                            ],
+                            "correct_options": [
+                                "D",
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-transfer-function-of-a-physical-two-port-network-gate-ece-1989-marks-2-z8evkqbifi6d28yk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nJFTijPWkterurw5",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "two-port-networks",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The condition AD - BC = 1 for a two-port network implies that the network is a ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "reciprocal network"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "lumped element network"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "lossless network"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "unilateral element network"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-condition-ad-bc-1-for-a-two-port-network-implies-that-th-gate-ece-1989-marks-2-njftijpwkterurw5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LyMy0o2GFnG3e3WG",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "two-port-networks",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The condition AD - BC = 1 for a two-port network implies that the network is a ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "reciprocal network"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "lumped element network"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "lossless network"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "unilateral element network"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-condition-ad-bc-1-for-a-two-port-network-implies-that-th-gate-ece-1989-marks-2-lymy0o2gfng3e3wg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a05ad4659d90",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-theorems",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>In the circuit of figure, the power dissipated in the register R is 1W when only source '1' is present and '2' replaced by a short.The power dissipated in the same registor R is 4W when only source '2' is present and '1' is replaced by a short.When both the source '1' and '2' are present, the power dissipated in R will be:</p>\n<img alt=\"GATE ECE 1989 Network Theory - Network Theorems Question 33 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/03910e8a6d4ca6c4cb950fe536a64ec35bfc9bd5e83be96e1e0c3d6e154c4696.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1 W"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "3 W"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "4 W"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "5 W"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-in-the-circuit-of-figure-the-power-dissipated-in-the-regist-gate-ece-1989-marks-2-5a05ad4659d90.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a085b61dad3a",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transient-response",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>A 10 \u03a9 resistor, a 1 H inductor and 1 $$\\mathrm{\u03bcF}$$ capacitor are connected in parallel.The combination is driven by a unit step current.Under the steady state condition, the source current flows through</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "the resistor"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the inductor"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the capacitor only"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "all the three elements"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-10-resistor-a-1-h-inductor-and-1-mathrmf-capacitor-are-con-gate-ece-1989-marks-2-5a085b61dad3a.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a05b3e8a0319",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-theorems",
+                    "year": 1989,
+                    "paperTitle": "GATE ECE 1989",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>A load, Z<sub>L</sub> = R<sub>L</sub> + jX<sub>L</sub> is to be matched, using an ideal transformer, to a generator of internal impedance, Z<sub>S</sub> = R<sub>S</sub> + jX<sub>S</sub>. The turns ratio of the transformer required is</p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\sqrt{\\left|Z_\\mathrm S\\;/\\;Z_\\mathrm L\\right|}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\sqrt{\\left|R_\\mathrm L\\;/\\;R_\\mathrm S\\right|}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\sqrt{\\left|R_\\mathrm L\\;/\\;Z_\\mathrm S\\right|}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\sqrt{\\left|{\\mathrm Z}_\\mathrm L\\;/\\;R_\\mathrm S\\right|}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-load-zl-rl-jxl-is-to-be-matched-using-an-ideal-transformer-gate-ece-1989-marks-2-5a05b3e8a0319.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1989",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1989"
+                }
+            ],
+            "title": "Network Theory"
+        }
+    ]
+}

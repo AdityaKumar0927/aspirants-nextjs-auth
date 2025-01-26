@@ -1,0 +1,1509 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Casting",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pTU0AJUahe4QMUHk",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "casting",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "casting-process",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A solid cylinder of diameter $$D$$ and height equal to $$D,$$ and a solid cube of side $$L$$ are being sand cast by using the same material. Assuming there is no super-heat in both the cases, the ratio of solidification times of the cylinder to the solidification time of the cube is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\left( {L/D} \\right)^2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\left( {2L/D} \\right)^2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\left( {2D/L} \\right)^2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\left( {D/L} \\right)^2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-solid-cylinder-of-diameter-d-and-height-equal-to-d-and-a-s-gate-pi-2009-marks-2-ptu0ajuahe4qmuhk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AR7T91ScURNaYVKy",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "casting",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "casting-process",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Hot chamber die casting is <b>NOT</b> suited for ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Lead and its alloys "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "zinc and its alloys "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Tin and its alloys "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Aluminium and its alloys "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "hot-chamber-die-casting-is-not-suited-for-gate-pi-2009-marks-1-ar7t91scurnayvky.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                }
+            ],
+            "title": "Casting"
+        },
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OJZOcjrAcOKyL0hy",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of the determinant $$\\left| {\\matrix{\n   1 &amp; 3 &amp; 2  \\cr \n   4 &amp; 1 &amp; 1  \\cr \n   2 &amp; 1 &amp; 3  \\cr \n\n } } \\right|$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-28$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-24$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$32$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$36$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-the-determinant-left-matrix-1-3-2-cr-4-1-1-cr-2-gate-pi-2009-marks-1-ojzocjracokyl0hy.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ztgxdW2MnJdUpby3",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "During the numerical solution of a first order differential equation using the Euler (also known as Euler Cauchy) method with step size $$h,$$ the local truncation error is of the order of ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${h^2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${h^3}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${h^4}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${h^5}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "during-the-numerical-solution-of-a-first-order-differential-gate-pi-2009-marks-1-ztgxdw2mnjdupby3.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1ktFiemyhliYIeeB",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The solution of the differential equation $${{{d^2}y} \\over {d{x^2}}} = 0$$ with boundary conditions \n<br>(i) $${{dy} \\over {dx}} = 1$$ at $$x=0$$\n<br>(ii) $${{dy} \\over {dx}} = 1$$ at $$x=1$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$y=1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$y=x$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$y=x+c$$ where $$c$$   is an arbitrary constant. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\,y = {C_1}x + {C_2}$$ where $${C_1},\\,{C_2}$$  are arbitrary constants"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-solution-of-the-differential-equation-d2y-over-dx2-0-wit-gate-pi-2009-marks-2-1ktfiemyhliyieeb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "T9Pth5bPCHu402TM",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The homogeneous part of the differential equation $$\\,{{{d^2}y} \\over {d{x^2}}} + p{{dy} \\over {dx}} + qy = r\\,\\,$$ ( $$p, q, r$$ are constants) has real distinct roots if ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${p^2} - 4q &gt; 0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${p^2} - 4q &lt; 0$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${p^2} - 4q = 0$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${p^2} - 4q = r$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-homogeneous-part-of-the-differential-equation-d2y-over-d-gate-pi-2009-marks-1-t9pth5bpchu402tm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fwInAVnOmRtDt2VR",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The line integral of the vector function $$\\overrightarrow F  = 2x\\widehat i + {x^2}\\widehat j\\,\\,$$ along the $$x$$ - axis from $$x=1$$ to $$x=2$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2.33$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$5.33$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-line-integral-of-the-vector-function-overrightarrow-f-2x-gate-pi-2009-marks-1-fwinavnomrtdt2vr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RikF1rbWJj3h5H71",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The total derivative of the function $$'xy'$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$x$$ $$dy+y$$ $$dx$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$x$$ $$dx+y$$ $$dy$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$dx+dy$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$dx$$ $$dy$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-total-derivative-of-the-function-xy-is-gate-pi-2009-marks-1-rikf1rbwjj3h5h71.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6D24d2VZKjc9kf3L",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of $${x_3}$$ obtained by solving the following system of linear equations is \n$$${x_1} + 2{x_2} - 2{x_3} = 4$$$\n$$$2{x_1} + {x_2} + {x_3} =  - 2$$$\n$$$ - {x_1} + {x_2} - {x_3} = 2$$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-12$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$12$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-x3-obtained-by-solving-the-following-system-of-gate-pi-2009-marks-2-6d24d2vzkjc9kf3l.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Fluid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HGxEQXuXFNL7jpXU",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "laminar-flow",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The pressure drop for laminar flow of a liquid in a smooth pipe at normal temperature and pressure is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "directly proportional to density "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "inversely proportional to density "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "independent of density "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "proportional to (density)$$\\,{}^{0.75}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-pressure-drop-for-laminar-flow-of-a-liquid-in-a-smooth-p-gate-pi-2009-marks-2-hgxeqxuxfnl7jpxu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nqJO0sbYnGxqN6Uq",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-kinematics",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider steady flow of water in a situation where two pipe lines (pipe $$1$$ and pipe $$2$$) combine into a single pipe line $$(pipe-3)$$ as shown in the figure. The cross-sectional areas of all three pipelines are constant. The following data is given : \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/78kbLX4oJfqV0AI0y/pa8gQpN0MFQT3004HmLYRIRMQKvEk/p80Sn8ZLWfxXja2j9t58FO/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2009 Fluid Mechanics - Fluid Kinematics Question 1 English\"> \n<p>Assuming the water properties and the velocities to be uniform across the cross section of the inlets and the outlet, the exit velocity (in $$m/s$$) in pipe $$3$$ is </p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.5$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2.5$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-steady-flow-of-water-in-a-situation-where-two-pipe-gate-pi-2009-marks-2-nqjo0sbyngxqn6uq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                }
+            ],
+            "title": "Fluid Mechanics"
+        },
+        {
+            "_id": "Heat Transfer",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "eRO0MNJE2h7KxOfq",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "conduction",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Heat is being transferred convectively from a cylindrical nuclear reactor fuel rod of $$50mm$$ diameter to water at $${70^ \\circ }C$$, under steady state condition, the rate of heat generation within the fuel element is $$50 \\times {10^6}\\,\\,W/{m^3}$$ and the convective heat transfer coefficient is $$1$$ $$kW/{m^2}K.$$ The outer surface temperature of the fuel element would be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${700^ \\circ }C$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${625^ \\circ }C$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${550^ \\circ }C$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${400^ \\circ }C$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "heat-is-being-transferred-convectively-from-a-cylindrical-nu-gate-pi-2009-marks-2-ero0mnje2h7kxofq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                }
+            ],
+            "title": "Heat Transfer"
+        },
+        {
+            "_id": "Joining of Materials",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zRjAf2WcLDawNuKn",
+                    "exam": "gate-pi",
+                    "marks": 5,
+                    "negMarks": 1.5,
+                    "subjectGroup": null,
+                    "subject": "joining-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Resistance spot welding of two steel sheets is carried out in lap joint configuration by using a welding current of $$3$$ $$KA$$ and a weld time of $$0.2s.$$ A molten weld nugget of volume $$20m{m^3}$$ is obtained. The effective contact resistance is $$200\\mu \\Omega .$$ The material properties of steel are given as (i) latent heat of melting $$1400$$ $$kJ/kg,$$ (ii) density $$8000$$  $$kg/{m^3},$$ (iii) melting temp $${1520^ \\circ }C$$, (iv) specific heat $$0.5$$ $$kJ/kgC.$$ The ambient temp is $$20C.$$  \n<p>Heat (Joules) dissipated to the base metal will be (neglecting all other heat losses)</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$10$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$16$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$22$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "resistance-spot-welding-of-two-steel-sheets-is-carried-out-i-gate-pi-2009-marks-5-zrjaf2wcldawnukn.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oA4mv4CD04dYROxr",
+                    "exam": "gate-pi",
+                    "marks": 5,
+                    "negMarks": 1.5,
+                    "subjectGroup": null,
+                    "subject": "joining-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Resistance spot welding of two steel sheets is carried out in lap joint configuration by using a welding current of $$3$$ $$KA$$ and a weld time of $$0.2s.$$ A molten weld nugget of volume $$20m{m^3}$$ is obtained. The effective contact resistance is $$200\\mu \\Omega .$$ The material properties of steel are given as (i) latent heat of melting $$1400$$ $$kJ/kg,$$ (ii) density $$8000$$  $$kg/{m^3},$$ (iii) melting temp $${1520^ \\circ }C$$, (iv) specific heat $$0.5$$ $$kJ/kgC.$$ The ambient temp is $$20C.$$ \n<p>Heat (in Joules) used for producing weld nugget will be (assuming $$100\\% $$ heat transfer efficiency</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$324$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$334$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$344$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$354$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "resistance-spot-welding-of-two-steel-sheets-is-carried-out-i-gate-pi-2009-marks-5-oa4mv4cd04dyroxr.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vvNjfAkMJpuNyTSE",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "joining-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Autogeneous gas tungsten arc welding of a steel plate is carried out with welding current of $$500A,$$ voltage of $$20V,$$ and weld speed of $$20mm/min.$$ Consider the heat transfer efficiency from the arc to the weld pool as $$90\\% $$. The heat input per unit length (in $$kJ/mm$$) is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$27$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$35$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$45$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$55$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "autogeneous-gas-tungsten-arc-welding-of-a-steel-plate-is-car-gate-pi-2009-marks-2-vvnjfakmjpunytse.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                }
+            ],
+            "title": "Joining of Materials"
+        },
+        {
+            "_id": "Machine Tools and Machining",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "30Bmw7JS9RQlqtB4",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "advance-machine-tools",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A titanium sheet of $$5.0mm$$ thickness is cut by wire cut $$EDM$$ process using a wire of $$1.0mm$$ diameter. A uniform spark gap of $$0.5mm$$ on both sides of the wire is maintained during  cutting operation. If the feed rate of the wire into the sheet is $$20mm/min,$$ the material removal rate (in $$m{m^3}/\\min $$) will be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$150$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$200$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$300$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$400$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-titanium-sheet-of-50mm-thickness-is-cut-by-wire-cut-2009-marks-2-30bmw7js9rqlqtb4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ER7y3reE82Jvbije",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "advance-machine-tools",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The total angular movement (in degrees) of a lead screw with a pitch of $$5.0mm$$ to drive the work table by a distance of $$200mm$$ in a $$NC$$ machine is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$14400$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$28800$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$57600$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$72000$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-total-angular-movement-in-degrees-of-a-lead-screw-with-2009-marks-2-er7y3ree82jvbije.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "q0wcrAWhsowd0JuR",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An orthogonal operation is carried out at $$20m/min$$ cutting speed, using a cutting tool of rake angle $$15deg$$. The chip thickness is $$0.4mm$$ and uncut chip thickness is $$0.2mm.$$\n<p>The chip velocity (in $$m/min$$) is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$8$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$10$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$12$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$14$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-orthogonal-operation-is-carried-out-at-20mmin-cutting-spe-gate-pi-2009-marks-2-q0wcrawhsowd0jur.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "H9HxWmBAfASI1W3H",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An orthogonal operation is carried out at $$20m/min$$ cutting speed, using a cutting tool of rake angle $$15deg$$. The chip thickness is $$0.4mm$$ and uncut chip thickness is $$0.2mm.$$\n<p>The shear angle (in degrees) is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$26.8$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$27.8$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$28.8$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$29.8$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-orthogonal-operation-is-carried-out-at-20mmin-cutting-spe-gate-pi-2009-marks-2-h9hxwmbafasi1w3h.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3Bzj4IClhjZ1bHeD",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In an orthogonal machining operation , the tool life obtained is $$10min$$ at a cutting speed of $$10m/min,$$ while at $$75m/min$$ cutting speed, the tool life is $$30min$$. The value of index (n) in the Taylor's tool life equation is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.262$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.323$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.423$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.521$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-an-orthogonal-machining-operation-the-tool-life-obtained-gate-pi-2009-marks-2-3bzj4iclhjz1bhed.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Po0tArxsJ6pcdwqF",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Diamond cutting tools are not recommended for machining of ferrous metals due to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "High tool hardness "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "High thermal conductivity of the work material "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Poor tool roughness "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Chemical affinity of tool material with iron "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "diamond-cutting-tools-are-not-recommended-for-machining-of-f-gate-pi-2009-marks-1-po0tarxsj6pcdwqf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                }
+            ],
+            "title": "Machine Tools and Machining"
+        },
+        {
+            "_id": "Metal Forming",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HtZUx5XZhBD4HJIK",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "metal-forming",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming-process",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Using direct extrusion process, a round billet of $$100$$ $$mm$$ length and $$50mm$$ diameter is extruded. Considering an ideal deformation process (no friction and no redundant work), extrusion ratio $$4$$ and average flow stress of material $$300$$ $$MPa,$$ the pressure $$(MPa)$$ on the $$ram$$ will be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$416$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$624$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$700$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$832$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "using-direct-extrusion-process-a-round-billet-of-100-mm-leng-gate-pi-2009-marks-2-htzux5xzhbd4hjik.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Fgs3eEiJ9gxdUvKg",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "metal-forming",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sheet-metal-forming-processes",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A disc of $$200$$ $$mm$$ diameter is blanked from a strip of an aluminium alloy of thickness $$3.2$$ $$mm.$$ The material shear strength to fracture is $$150$$ $$MPa.$$ The blanking force (in $$kN$$) is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$291$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$301$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$311$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$421$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-disc-of-200-mm-diameter-is-blanked-from-a-strip-of-2009-marks-2-fgs3eeij9gxduvkg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BRWGGRDInfjzE7A2",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "metal-forming",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming-process",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Anisotropy in rolled components is caused by ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Change in dimensions "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "scale formation "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "closure of defects "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Grain orientation "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "anisotropy-in-rolled-components-is-caused-by-gate-pi-2009-marks-1-brwggrdinfjze7a2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                }
+            ],
+            "title": "Metal Forming"
+        },
+        {
+            "_id": "Metrology",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rTgTyLhx7qxaaqbv",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "metrology",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metrology-and-inspection",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the following \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/UELBsnEcYpJ1ZT6sY/BUwhZvEfMjdR5xgHkbOyTwQIKOXer/4xAwTgh7BttTm5R9nIFG3s/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2009 Metrology - Metrology and Inspection Question 3 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P - 4,\\,\\,Q - 3,\\,\\,R - 1,\\,\\,S - 2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P - 1,\\,\\,Q - 2,\\,\\,R - 3,\\,\\,S - 4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P - 1,\\,\\,Q - 4,\\,\\,R - 3,\\,\\,S - 2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P - 4,\\,\\,Q - 3,\\,\\,R - 2,\\,\\,S - 1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-following-2009-marks-2-rtgtylhx7qxaaqbv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6tJ1lSVE8jmW78rW",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "metrology",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metrology-and-inspection",
+                    "year": 2009,
+                    "paperTitle": "GATE PI 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An autocollimator is used to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Measure small angular displacements on flat surfaces "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Compare known and unknown dimensions "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Measure the flatness error "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Measure roundness error between centers "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-autocollimator-is-used-to-2009-marks-2-6tj1lsve8jmw78rw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2009"
+                }
+            ],
+            "title": "Metrology"
+        }
+    ]
+}

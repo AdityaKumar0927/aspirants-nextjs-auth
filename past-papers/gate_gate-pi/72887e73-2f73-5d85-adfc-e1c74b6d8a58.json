@@ -1,0 +1,2063 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Casting",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "m5fknQt1rxL0wY1F",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "casting",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "casting-process",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In hollow cylindrical parts made by centrifugal casting, the density of the part is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Maximum at the outer region  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Maximum at the inner region "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Maximum at the mid point between outer and inner surfaces "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Uniform throughout "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-hollow-cylindrical-parts-made-by-centrifugal-casting-the-gate-pi-2008-marks-1-m5fknqt1rxl0wy1f.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rw1lxByE8AppoRli",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "casting",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "casting-process",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In sand casting of hallow part of lead, a cylindrical core of diameter $$120mm$$ and height $$180mm$$ is placed inside the mould cavity. The densities of core material and lead are $$1600kg/{m^3}$$ and $$11300kg/{m^3}$$ respectively. The net force (in $$N$$) that tends to lift the core during pouring of molten metal will be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$19.7$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$64.5$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$193.7$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$257.6$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-sand-casting-of-hallow-part-of-lead-a-cylindrical-core-of-gate-pi-2008-marks-2-rw1lxbye8apporli.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                }
+            ],
+            "title": "Casting"
+        },
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Co7EDmxHiHZaNmRv",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The inverse of matrix $$\\left[ {\\matrix{\n   0 &amp; 1 &amp; 0  \\cr \n   1 &amp; 0 &amp; 0  \\cr \n   0 &amp; 0 &amp; 1  \\cr \n\n } } \\right]$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left[ {\\matrix{\n   0 &amp; 1 &amp; 0  \\cr \n   1 &amp; 0 &amp; 0  \\cr \n   0 &amp; 0 &amp; 1  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left[ {\\matrix{\n   0 &amp; { - 1} &amp; 0  \\cr \n   { - 1} &amp; 0 &amp; 0  \\cr \n   0 &amp; 0 &amp; { - 1}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left[ {\\matrix{\n   0 &amp; 1 &amp; 0  \\cr \n   0 &amp; 0 &amp; 1  \\cr \n   1 &amp; 0 &amp; 0  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left[ {\\matrix{\n   0 &amp; { - 1} &amp; 0  \\cr \n   0 &amp; 0 &amp; { - 1}  \\cr \n   { - 1} &amp; 0 &amp; 0  \\cr \n\n } } \\right]$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-inverse-of-matrix-left-matrix-0-1-0-cr-1-0-0-cr-0-0-1-cr-gate-pi-2008-marks-2-co7edmxhihzanmrv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "q5WUT7RQm2IQFH1X",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of the integral $$\\,\\,\\int\\limits_{ - \\pi /2}^{\\pi /2} {\\left( {x\\,\\cos \\,x} \\right)dx\\,\\,} $$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\pi $$$$-2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\pi $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\pi $$$$+2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-the-integral-intlimits-pi-2pi-2-left-xcos-x-rig-gate-pi-2008-marks-1-q5wut7rqm2iqfh1x.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZpwZynVRENiKeZaa",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of the expansion $$\\mathop {Lim}\\limits_{x \\to 0} \\left[ {{{\\sin \\left( x \\right)} \\over {{e^x}X}}} \\right]\\,\\,$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${1 \\over {1 + e}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-the-expansion-mathop-limlimitsx-to-0-left-sin-l-gate-pi-2008-marks-1-zpwzynvrenikezaa.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "foeDSpUhwzCqPkjg",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$\\overrightarrow r $$  is the position vector of any point on a closed surface  $$S$$ that encloses the volume $$V$$ then $$\\,\\,\\int {\\int\\limits_s {\\left( {\\overrightarrow r \\,.\\,d\\overrightarrow s } \\right)\\,\\,} } $$ is equal to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over 2}V$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$V$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2V$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3V$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-overrightarrow-r-is-the-position-vector-of-any-point-on-a-gate-pi-2008-marks-1-foedspuhwzcqpkjg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ihfRLjD9V1csnL6z",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a game, two players $$X$$ and $$Y$$ toss a coin alternately. Whoever gets a 'head' first, wins the game and the game is terminated. Assuming that players $$X$$ starts the game the probability of player $$X$$ winning the game is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1/3$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1/4$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2/3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3/4$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-game-two-players-x-and-y-toss-a-coin-alternately-whoeve-gate-pi-2008-marks-2-ihfrljd9v1csnl6z.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HENpMyx3Fg7DyQoX",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a random variable $$\\,x\\left( { - \\infty  &lt; x &lt; \\infty } \\right)\\,\\,$$ following normal distribution, the mean is $$\\,\\mu  = 100\\,\\,.$$  If the probability is $$\\,\\,P = \\alpha \\,\\,$$ for $$\\,\\,x \\ge 110.\\,\\,\\,$$ Then the probability of $$x$$ lying $$b/w$$ $$90$$ and $$110$$ i.e., $$\\,P\\left( {90 \\le x \\le 110} \\right)\\,\\,$$ and equal to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\,1 - 2\\alpha $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\,1 - \\alpha $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1 - \\alpha /2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2\\,\\alpha $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-random-variable-xleft-infty-x-infty-right-following-no-gate-pi-2008-marks-1-henpmyx3fg7dyqox.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9Vfr067AMzPPbKjk",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The solutions of the differential equation $${{{d^2}y} \\over {d{x^2}}} + 2{{dy} \\over {dx}} + 2y = 0\\,\\,$$  are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${e^{ - \\left( {1 + i} \\right)x}},{e^{ - \\left( {1 - i} \\right)x}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${e^{\\left( {1 + i} \\right)x}},\\,\\,{e^{\\left( {1 - i} \\right)x}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${e^{ - \\left( {1 + i} \\right)x}},\\,\\,{e^{\\left( {1 + i} \\right)x}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${e^{\\left( {1 + i} \\right)x}},\\,\\,{e^{ - \\left( {1 + i} \\right)x}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-solutions-of-the-differential-equation-d2y-over-dx2-2dy-gate-pi-2008-marks-1-9vfr067amzppbkjk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AuKJvqOjRKJdnSDP",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of the expression $${{ - 5 + 10i} \\over {3 + 4i}}$$ is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1 - 2i$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1 + 2i$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2 - i$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2 + i$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-the-expression-5-10i-over-3-4i-is-gate-pi-2008-marks-1-aukjvqojrkjdnsdp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Vfds4zBrklFIRmas",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The eigen vector pair of the matrix $$\\left[ {\\matrix{\n   3 &amp; 4  \\cr \n   4 &amp; { - 3}  \\cr \n\n } } \\right]$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left[ {\\matrix{\n   2  \\cr \n   1  \\cr \n\n } } \\right]\\left[ {\\matrix{\n   1  \\cr \n   { - 2}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left[ {\\matrix{\n   2  \\cr \n   1  \\cr \n\n } } \\right]\\left[ {\\matrix{\n   1  \\cr \n   2  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left[ {\\matrix{\n   { - 2}  \\cr \n   1  \\cr \n\n } } \\right]\\left[ {\\matrix{\n   1  \\cr \n   { - 2}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left[ {\\matrix{\n   { - 2}  \\cr \n   1  \\cr \n\n } } \\right]\\left[ {\\matrix{\n   1  \\cr \n   2  \\cr \n\n } } \\right]$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-eigen-vector-pair-of-the-matrix-left-matrix-3-4-cr-4-3-c-gate-pi-2008-marks-2-vfds4zbrklfirmas.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wAotQrT9XUOeN8Ii",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Laplace transform of $$8$$ $${t^3}$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${8 \\over {{s^4}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{16} \\over {{s^4}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{24} \\over {{s^4}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{48} \\over {{s^4}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "laplace-transform-of-8-t3-is-gate-pi-2008-marks-1-waotqrt9xuoen8ii.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "k1nLH9FqwseUjwLN",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Laplace transform of $$sin$$ $$ht$$ is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over {{s^2} - 1}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over {1 - {s^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${s \\over {{s^2} - 1}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${s \\over {1 - {s^2}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "laplace-transform-of-sin-ht-is-gate-pi-2008-marks-1-k1nlh9fqwseujwln.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Fluid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "360lwUvuWBUuWNYP",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "laminar-flow",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two pipes of uniform section but different diameters carry water at the same volumetric flow rate. Water properties are the same in the two pipes. The Reynolds number, based on the pipe diameter, ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "is the same in the both pipes "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "is large in the narrow pipe "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "is smaller in the narrower pipe depends on the pipe material "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "depends on the pipe material "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-pipes-of-uniform-section-but-different-diameters-carry-w-gate-pi-2008-marks-2-360lwuvuwbuuwnyp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WLTldmzv4cyG62Ue",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "turbulent-flow",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Oil is being pumped through a straight pipe, the pipe length, diameter and volumetric flow rate are all doubled in a new arrangement. The pipe friction factor, however, remains constant. The ratio of pipe frictional losses in the new arrangement to that in the original configuration would be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over 4}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over 2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "oil-is-being-pumped-through-a-straight-pipe-the-pipe-length-gate-pi-2008-marks-2-wltldmzv4cyg62ue.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                }
+            ],
+            "title": "Fluid Mechanics"
+        },
+        {
+            "_id": "Joining of Materials",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aI1gFLOigFunHCOD",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "joining-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two pipes of inner diameter $$100mm$$ and outer diameter $$110mm$$ each are joined by flash butt welding using $$30V$$ power supply. At the interface, $$1mm$$ of material melts from each pipe which has a resistance of $$42$$ Ohms.If the unit melt energy is $$64.4$$ $$MJ/{m^3}$$, then time required for welding (in $$S$$) is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$5$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$10$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$20$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-pipes-of-inner-diameter-100mm-and-outer-diameter-110mm-e-gate-pi-2008-marks-2-ai1gfloigfunhcod.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vilUVIi8IuFqEyaI",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "joining-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Aluminium strips of $$2mm$$ thickness are joined together by resistance spot welding process by applying an electric current $$6000$$$$A$$ for $$0.15sec$$. The heat required for melting aluminium is $$2.9J/m{m^3}.$$ The diameter and thickness of the weld nugget are found to be $$5$$ $$mm$$ and $$2.5mm$$ respectively. Assuming the electrical resistance to be $$75$$ micro-ohms, the percentage of total energy utilized in forming the weld nugget is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$28$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$35$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$65$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$72$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "aluminium-strips-of-2mm-thickness-are-joined-together-by-res-gate-pi-2008-marks-2-viluvii8iufqeyai.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Oc73lfn6iKhTLpyo",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "joining-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following powders should be fed for effective oxy-fuel cutting of stainless steel ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Steel "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Aluminium"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Copper "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Ceramic"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-powders-should-be-fed-for-effective-o-gate-pi-2008-marks-2-oc73lfn6ikhtlpyo.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XdgAHR4y2pQ5Upv9",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "joining-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which pair among the following solid state welding processes uses heat from an external source\n<br>$$P$$- Diffusion welding\n<br>$$Q$$- Friction welding\n<br>$$R$$- Ultrasonic welding\n<br>$$S$$- Forge welding",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P$$ &amp; $$R$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$R$$ &amp; $$S$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$Q$$ &amp; $$S$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P$$ &amp; $$S$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-pair-among-the-following-solid-state-welding-processes-gate-pi-2008-marks-2-xdgahr4y2pq5upv9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                }
+            ],
+            "title": "Joining of Materials"
+        },
+        {
+            "_id": "Machine Tools and Machining",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "W4C1DVbpKb18QWpr",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "During machining, the wear land $$(h)$$ has been plotted against machining time $$(T)$$ as given in the following figure.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/vBlXTXw1D00f8LhPN/XN8CuQceM0g33ctCCIipRcoJPP1Vf/BtJn0nxbEDsu2e2Zuf4JWa/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2008 Machine Tools and Machining - Metal Cutting Question 3 English\">\n<p>For a critical wear land of $$1.8mm,$$ the cutting tool life (in $$min$$) is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$52.00$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$51.67$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$51.50$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$50.00$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "during-machining-the-wear-land-h-has-been-plotted-aga-2008-marks-2-w4c1dvbpkb18qwpr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WqQdga2YdBroQlRX",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Diamond cutting tools are not recommended for machining of ferrous metals to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "High tool hardness "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "High thermal conductivity of work material "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Poor tool toughness "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Chemical affinity of tool material with iron "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "diamond-cutting-tools-are-not-recommended-for-machining-of-f-gate-pi-2008-marks-1-wqqdga2ydbroqlrx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "p1MYEmj9EUiOw8BL",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In an orthogonal cutting experiment, an $$HSS$$ tool having the following tool signature in the orthogonal reference system $$(ORS)$$ has been used:  $$0-10-7-7-10-75-1$$\n<br>Given : Width of cut $$=3.6mm;$$\n<br>Shear strength of work piece material $$460N/m{m^2};$$\n<br>Depth of cut $$=0.25mm;$$\n<br>Coefficient of friction at chip tool interface $$=0.7.$$\n<p>Shear plane angle (in degrees) for minimum cutting force is </p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$20.5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$24.5$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$28.6$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$32.5$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-an-orthogonal-cutting-experiment-an-hss-tool-having-the-f-gate-pi-2008-marks-2-p1myemj9euiow8bl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "itzoyCEK9twTAjgx",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In an orthogonal cutting experiment, an $$HSS$$ tool having the following tool signature in the orthogonal reference system $$(ORS)$$ has been used:  $$0-10-7-7-10-75-1$$\n<br>Given : Width of cut $$=3.6mm;$$\n<br>Shear strength of work piece material $$460N/m{m^2};$$\n<br>Depth of cut $$=0.25mm;$$\n<br>Coefficient of friction at chip tool interface $$=0.7.$$\n<p>Minimum Power requirement (in $$KW$$) at a cutting speed of $$150m/min$$ is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2.6$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3.25$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3.35$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3.45$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-an-orthogonal-cutting-experiment-an-hss-tool-having-the-f-gate-pi-2008-marks-2-itzoycek9twtajgx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "m7sZiC5iNOqTX71M",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Brittle materials are machined with tools having zero or negative rake angles because it ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Results in lower cutting force "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Improves surface finish "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Provides adequate strength to cutting forces "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Results in more accurate dimensions "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "brittle-materials-are-machined-with-tools-having-zero-or-neg-gate-pi-2008-marks-2-m7szic5inoqtx71m.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bm5P2SFcqvtNOTY4",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "machining",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The quick return mechanism used in shaper has rocker arm drive of length $$200mm.$$ If the crank radius is $$50mm$$ and the offset between crank center and rocker arm pivot is $$20mm,$$ length of the stroke (in meters) is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2.0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-quick-return-mechanism-used-in-shaper-has-rocker-arm-dri-2008-marks-2-bm5p2sfcqvtnoty4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6CKZ3dGZQj7zmijz",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "advance-machine-tools",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A stepper motor has $$150$$ steps. The output shaft of the motor is directly coupled to a lead screw of pitch $$4mm,$$ which drives a table. If the frequency of pulse supply to the motor is $$200Hz$$, the speed of the table (in $$mm/min)$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$400$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$320$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$300$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$280$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-stepper-motor-has-150-steps-the-output-shaft-of-the-m-2008-marks-2-6ckz3dgzqj7zmijz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oTPitrIsqpFPT5PB",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "advance-machine-tools",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose point $$P1$$ in $$APT$$ (Automatically programmed Tool) programming is coded by statement \n<br>$$P1 = POINT/XSMALL,\\,\\,\\,INTOF,\\,\\,\\,LN1,\\,\\,CR1$$\n<p>The coded geometric situation without causing error is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/cKQSlHmOjys79AwHH/WksMsBysDMNELeC6QYyvoUAHXyuuA/1lviQ2R10OJzLNau3gJ3y1/image.png\" loading=\"lazy\" alt=\"GATE PI 2008 Machine Tools and Machining - Advance Machine Tools Question 12 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/0kbHUOiKpOI4rzj1B/BXorCZtQn4fEMImHGt1k1ukBisZbU/pfuxgbG7HoFTBsR4evVub3/image.png\" loading=\"lazy\" alt=\"GATE PI 2008 Machine Tools and Machining - Advance Machine Tools Question 12 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/9SxeYdHlBb2flJbFJ/v7ljZrLywG5gaEDy62xwmGK1bOg16/AXeWRztoYhgoftKplIthcg/image.png\" loading=\"lazy\" alt=\"GATE PI 2008 Machine Tools and Machining - Advance Machine Tools Question 12 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/WeTWOrHgoscetmxUS/kRB1ZTplKLXx2QSKDNYFMNpzSSnC5/iFnMpsZW5JWD2yVDtdUHHD/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2008 Machine Tools and Machining - Advance Machine Tools Question 12 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-point-p1-in-apt-automatically-programmed-to-2008-marks-2-otpitrisqpfpt5pb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZFVV7jUh6x4dVc9e",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "advance-machine-tools",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a $$CNC$$ feed drive, a stepper motor with step angle of $$1.8deg$$ drives a lead screw with pitch of $$2mm.$$ The basic length unit $$(BLU)$$ for this drive is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$10$$ microns "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$20$$ microns "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$40$$ microns "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$100$$ microns "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-cnc-feed-drive-a-stepper-motor-with-step-angle-of-2008-marks-2-zfvv7juh6x4dvc9e.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                }
+            ],
+            "title": "Machine Tools and Machining"
+        },
+        {
+            "_id": "Metal Forming",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GELJvzhF6J0PISLJ",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "metal-forming",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming-process",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$10mm$$ diameter annealed steel wire is drawn through a die at a speed of $$0.5/sec$$ to reduce the diameter by $$20\\% $$. The yield stress of the material is $$800MPa.$$ \n<p>Neglecting friction and strain hardening, the stress required for drawing (in $$MPa$$) is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$178.6$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$357.0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1287.5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$25.75.0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-10mm-diameter-annealed-steel-wire-is-drawn-through-a-die-a-gate-pi-2008-marks-2-geljvzhf6j0pislj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WsSUWPoXuk0DmBJc",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "metal-forming",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sheet-metal-forming-processes",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the following \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/96jpBRQR3egoUYSy7/7CJKA68WFZvOWI8i11cnurRwodQKV/Lv5zHzVziDegwVQlIwLS9v/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2008 Metal Forming - Sheet Metal Forming Processes Question 4 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P - 2,\\,\\,Q - 3,\\,\\,R - 4,\\,\\,S - 1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P - 3,\\,\\,Q - 4,\\,\\,R - 1,\\,\\,S - 2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P - 2,\\,\\,Q - 3,\\,\\,R - 1,\\,\\,S - 4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P - 2,\\,\\,Q - 4,\\,\\,R - 3,\\,\\,S - 1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-following-2008-marks-2-wssuwpoxuk0dmbjc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NhXBeQUUPzBV5N15",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "metal-forming",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sheet-metal-forming-processes",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A blank of $$50$$ $$mm$$ diameter is to be sheared from a sheet of $$2.5$$ $$mm$$ thickness. The required radial clearance between the die and the punch is $$6\\% $$ of sheet thickness. The punch and die diameter $$(mm)$$ for this blanking operation respectively are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$50.00$$ &amp; $$50.30$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$50.00$$ &amp; $$50.15$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$49.70$$ &amp; $$50.00$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$49.85$$ &amp; $$50.00$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-blank-of-50-mm-diameter-is-to-be-sheared-from-a-sh-2008-marks-2-nhxbequupzbv5n15.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "e9tmRCAKSV8aOUAc",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "metal-forming",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming-process",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a rolling process, thickness of a strip is reduced from $$4mm$$ to $$3mm$$ using $$300mm$$ diameter rolls rotating at $$100rpm.$$ The velocity of the strip (in $$m/sec$$) at the neutral point is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.57$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3.14$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$47.10$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$94.20$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-rolling-process-thickness-of-a-strip-is-reduced-from-4m-gate-pi-2008-marks-2-e9tmrcaksv8aouac.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XYmg5BxhF6YKGcJc",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "metal-forming",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming-process",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$10mm$$ diameter annealed steel wire is drawn through a die at a speed of $$0.5/sec$$ to reduce the diameter by $$20\\% $$. The yield stress of the material is $$800MPa.$$ \n<p>The power required for the drawing process (in $$kW$$ ) is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$8.97$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$14.0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$17.95$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$28.0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-10mm-diameter-annealed-steel-wire-is-drawn-through-a-die-a-gate-pi-2008-marks-2-xymg5bxhf6ykgcjc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RoPaIXChN9cWXWoN",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "metal-forming",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming-process",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "By application of tensile force, the cross sectional area of bar $$' P '$$ is first reduced by $$30\\% $$ and then by an additional $$20\\% $$. Another bar $$'Q'$$ of the same material is reduced in cross sectional area by $$50\\% $$ in a single step by applying tensile force. After deformation, the true strain in bar $$'P'$$ and bar $$'Q'$$ will, respectively, be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.5$$ and $$0.5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.58$$ and $$0.69$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.69$$ and $$0.69$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.78$$ and $$1.00$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "by-application-of-tensile-force-the-cross-sectional-area-of-gate-pi-2008-marks-2-ropaixchn9cwxwon.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                }
+            ],
+            "title": "Metal Forming"
+        },
+        {
+            "_id": "Metrology",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ijcUuptnevhXj2NA",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "metrology",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metrology-and-inspection",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following data are given for calculating limits of dimensions and tolerances for a hole: Tolerance unit $$'i'$$ (microns) $$=0.45$$ $${\\left( D \\right)^{1/3}} + 0.001D.$$ The unit of $$D$$ is $$mm.$$ Diameter step is $$18-30.$$ If the fundamental deviation for hole $$H$$ is zero and $${\\rm I}T8 = 26i$$ the maximum and minimum limits of dimension for a $$25{H_8}$$ hole (in $$mm$$) are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$24.984$$ &amp; $$24.967$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$25.017$$ &amp; $$24.984$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$25.033$$ &amp; $$25.00$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$25.00$$ &amp; $$24.967$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-data-are-given-for-calculating-limits-of-dimen-2008-marks-2-ijcuuptnevhxj2na.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yjwMn20Moycs5dEw",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "metrology",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metrology-and-inspection",
+                    "year": 2008,
+                    "paperTitle": "GATE PI 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An experimental setup is planned to determine the taper of work piece as shown in the figure. If the two precision rollers have radii $$8mm$$ and $$5mm$$ and the total thickness of slip gauges inserted between the rollers is $$15.54mm,$$  the  taper angle $$'\\theta '$$ is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/wRHUUEEarrqLQY9zX/FCfOPA9JRHLE0T2JLt7ifk4X54NE8/XloBsURVm1HlvBy3HVfCJ6/image.png\" loading=\"lazy\" alt=\"GATE PI 2008 Metrology - Metrology and Inspection Question 1 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$6$$ degrees "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$10$$ degrees "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$11$$ degrees "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$12$$ degrees "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-experimental-setup-is-planned-to-determine-the-taper-of-w-2008-marks-2-yjwmn20moycs5dew.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2008"
+                }
+            ],
+            "title": "Metrology"
+        }
+    ]
+}

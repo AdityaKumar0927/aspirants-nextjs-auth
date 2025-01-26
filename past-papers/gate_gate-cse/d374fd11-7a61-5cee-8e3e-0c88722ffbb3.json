@@ -1,0 +1,2416 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Algorithms",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yPRaQadkIaWNsJPS",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complexity-analysis-and-asymptotic-notations",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following functions<br>\n$$f(n) = 3{n^{\\sqrt n }}$$<br>\n$$g(n) = {2^{\\sqrt n {{\\log }_2}n}}$$<br>\n$$h(n) = n!$$<br>\nWhich of the following is true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "h(n) is O (f(n))"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "h(n) is O (g(n))"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "g(n) is not O (f(n))"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "f(n) is O (g(n))"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-functionsfn-3nsqrt-n-gn-2sqrt-n-log-2-gate-cse-2000-marks-2-ypraqadkiawnsjps.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GtTS52DblSffvOhW",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "divide-and-conquer-method",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let s be a sorted array of n integers. Let t(n) denote the time taken for the most efficient algorithm to determined if there are two elements with sum less than 1000 in s. which of the following statements is true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "t (n) is O(1)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "n &lt; t (n) &lt; $$n\\log _2^n$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$n\\log _2^n$$ &lt; t (n) &lt; $$\\left( {\\matrix{\n   n  \\cr \n   2  \\cr \n\n } } \\right)$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "t(n) =  $$\\left( {\\matrix{\n   n  \\cr \n   2  \\cr \n\n } } \\right)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-s-be-a-sorted-array-of-n-integers-let-tn-denote-the-time-gate-cse-2000-marks-1-gtts52dblsffvohw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zYLJWYyHWc8SUSJZ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "greedy-method",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let G be an undirected connected graph with distinct edge weight. Let emax be the edge with maximum weight and emin the edge with minimum weight. Which of the following statements is false?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Every minimum spanning tree of G must contain emin"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "If emax is in a minimum spanning tree, then its removal must disconnect G"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "No minimum spanning tree contains emax"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "G has a unique minimum spanning tree"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-g-be-an-undirected-connected-graph-with-distinct-edge-we-gate-cse-2000-marks-2-zyljwyyhwc8susjz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                }
+            ],
+            "title": "Algorithms"
+        },
+        {
+            "_id": "Compiler Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WJ6LIsrr2XbJUdtk",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "lexical-analysis",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of tokens in the following C statement is:\n<pre><code class=\"c\">printf(\"i = %d, &amp;i = %x\",i, &amp;i);</code></pre>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "3"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "26"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "10"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "21"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-tokens-in-the-following-c-statement-isprintfi-gate-cse-2000-marks-1-wj6lisrr2xbjudtk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                }
+            ],
+            "title": "Compiler Design"
+        },
+        {
+            "_id": "Computer Organization",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KBND2d29g7JvMYS0",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pipelining",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Comparing the time $$T1$$ taken for a single instruction on a pipelined $$CPU$$ with time $$T2$$ taken on a non-pipelined but identical $$CPU,$$ we can say that ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$T1 \\le T2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$T1 \\ge T2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$T1 &lt; T2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$T1$$ is $$T2$$ plus the time taken for one instruction fetch cycle"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "comparing-the-time-t1-taken-for-a-single-instruction-on-a-pi-gate-cse-2000-marks-1-kbnd2d29g7jvmys0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tbCmDi3wRc4A7sFT",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pipelining",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An instruction pipeline has five stages where each stage takes $$2$$ nanoseconds and all instructions use all five stages. Branch instructions are not overlapped, i.e., the instruction after the branch is not fetched till the branch instruction is completed. Under ideal conditions.\n<p>(a) Calculate the average instruction execution time assuming that $$20$$% of all instruction executed are branch instructions. Ignore the fact that some branch instructions may be conditional.</p>\n<p>(b) If a branch instruction is a conditional branch instruction, the branch need not be taken. If the branch is not taken, the following instructions can be overlapped. When $$80$$% of all branch instructions are conditional branch instructions, and $$50$$% of the conditional branch instructions are such that the branch is taken, calculate the average instruction execution time.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a) Avg instruction execution time $$=3.6$$ $$ns$$\n<p>(b) Avg instruction execution time $$=2.96$$ $$ns$$</p>",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-instruction-pipeline-has-five-stages-where-each-stage-tak-gate-cse-2000-marks-5-tbcmdi3wrc4a7sft.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NH8IGlMI82LzeNXo",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "machine-instructions-and-addressing-modes",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The most appropriate matching for the following pairs\n<br>$$X:$$ Indirect addressing \n<br>$$Y:$$ Immediate addressing \n<br>$$Z:$$ Auto decrement addressing is<p></p>\n<p>$$1:$$ Loops\n<br>$$2:$$ Pointers\n<br>$$3.$$ Constants </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$X - 3,\\,Y - 2,\\,Z - 1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$X - 1,\\,Y - 3,\\,Z - 2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$X - 2,\\,Y - 3,\\,Z - 1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$X - 3,\\,Y - 1,\\,Z - 2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-most-appropriate-matching-for-the-following-pairsx-indir-gate-cse-2000-marks-1-nh8iglmi82lzenxo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Qyvqi6f3UnmlKXIY",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "io-interface",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A graphics card has on board memory of $$1$$ $$MB.$$ Which of the following modes can the card not support?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1600\\,\\, \\times \\,\\,400$$ resolution with $$256$$ colours on a $$17$$ inch monitor "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1600\\,\\, \\times \\,\\,400$$ resolution with $$16$$ million colours on a $$14$$ inch monitor "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$800\\,\\, \\times \\,\\,400$$ resolution with $$16$$ million colours on a $$17$$ inch monitor "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$800\\,\\, \\times \\,\\,400$$ resolution with $$256$$ colours on a $$14$$ inch monitor "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-graphics-card-has-on-board-memory-of-1-mb-which-of-the-fol-gate-cse-2000-marks-2-qyvqi6f3unmlkxiy.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                }
+            ],
+            "title": "Computer Organization"
+        },
+        {
+            "_id": "Data Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pzgEPii2Xpz2X3zZ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following nested representation of binary trees: (X Y Z) indicates Y and Z are the left and right sub stress, respectively, of node X. Note that Y and Z may be NULL, or further nested. Which of the following represents a valid binary tree?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "(1 2 (4 5 6 7))"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "(1 (2 3 4) 5 6) 7) "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "(1 (2 3 4)(5 6 7))"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "(1 (2 3 NULL) (4 5))"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-nested-representation-of-binary-trees-gate-cse-2000-marks-1-pzgepii2xpz2x3zz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Glq2drQ7YnXmTcmw",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let LASTPOST, LASTIN and LASTPRE denote the last vertex visited in a postorder, inorder and preorder traversal. Respectively, of a complete binary tree. Which of the following is always tree?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "LASTIN = LASTPOST "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "LASTIN = LASTPRE "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "LASTPRE = LASTPOST "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-lastpost-lastin-and-lastpre-denote-the-last-vertex-visit-gate-cse-2000-marks-2-glq2drq7ynxmtcmw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "29H1vlIxSaUlbDjq",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "arrays",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose you are given an array s[1..n] and a procedure reverse (s, i, j) which reverse the order of elements in s between positions i and j (both inclusive). What does the following sequence do, where $$1 \\le k &lt; n:$$ reverse (s, 1, k);<br>\nreverse (s, k+1, k);<br>\nreverse (s, 1, n);<br>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Rotates s left by k positions"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Leaves s unchanged"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Reverse all elements of s"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-you-are-given-an-array-s1n-and-a-procedure-reverse-s-gate-cse-2000-marks-1-29h1vlixsaulbdjq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GdjGzE49HJpo51T9",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graphs",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let G be an undirected graph. Consider a depth-first traversal of G, and let T be\nthe resulting depth-first search tree. Let u be a vertex in G and let v be the first\nnew (unvisited) vertex visited after visiting u in the traversal. Which of the\nfollowing statements is always true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "{u, v} must be an edge in G, and u is a descendant of v in T"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "{u, v} must be an edge in G, and v is a descendant of u in T"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "If {u, v} is not an edge in G then u is a leaf in T"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "If {u, v} is not an edge in G then u and v must have the same parent in T"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-g-be-an-undirected-graph-consider-a-depth-first-traversa-gate-cse-2000-marks-2-gdjgze49hjpo51t9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DPSJsLJbbp6jYiCc",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "arrays",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An n $$\\times$$ n array v is defined as follows V [i, j] = i - j for all i, j, $$1 \\le i \\le n,\\,1 \\le j \\le n$$ The sum of the elements of the array v is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "n - 1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${n^2} - 3n + 2$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${n^2}(n + 1)/2$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-n-times-n-array-v-is-defined-as-follows-v-i-j-i-j-for-all-gate-cse-2000-marks-1-dpsjsljbbp6jyicc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                }
+            ],
+            "title": "Data Structures"
+        },
+        {
+            "_id": "Database Management System",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8JCpLYSYdjMVuBDh",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "structured-query-language",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In SQL, relations can contain null values, and comparisons with null values are treated as unknown. Suppose all comparisons with a null value are treated as false. Which of the following pairs is not equivalent?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "x = 5    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;not (not (x = 5)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "x = 5  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  x &gt; 4 and x &lt; 6, \n<br>where x is an integer"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "x \u2260 5 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    not (x = 5)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-sql-relations-can-contain-null-values-and-comparisons-wit-gate-cse-2000-marks-2-8jcplysydjmvubdh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wiVAGpDkV6bWQxVX",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "structured-query-language",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given relations r( w, x ) and s( y, z ), the result of\n<pre><code class=\"sql\">\nselect distinct w,x\nfrom r, s;</code></pre>\nis guaranteed to be same as r, provided",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "r has no duplicates and s is non-empty"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "r and s have no duplicates"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "s has no duplicates and r is non-empty"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "r and s have the same number of tuples"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-relations-r-w-x-and-s-y-z-the-result-ofselect-distinct-gate-cse-2000-marks-2-wivagpdkv6bwqxvx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gHSdY3GleAGYcpnf",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "relational-algebra",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Given the relations </p>\n<p><b>employee (name, salary, deptno)</b>, and <br><b>department (deptno, deptname, address)</b> </p>\nWhich of the following queries cannot be expressed using the basic relational algebra operations $$\\left(\\sigma, \\pi,\\times ,\\Join, \\cup, \\cap,-\\right)$$? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Department address of every employee"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Employees whose name is the same as their department name"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The sum of all employee\u2019s salaries"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "All employees of a given department"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-the-relations-employee-name-salary-deptno-and-departme-gate-cse-2000-marks-1-ghsdy3gleagycpnf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UT6I83GbF6Tx2mLw",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-structures-and-indexing",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "B<sup>+</sup>-trees are preferred to binary trees in databases because",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Disk capacities are greater than memory capacities"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Disk access is much slower than memory access"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Disk data transfer rates are much less than memory data transfer rates"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Disks are more reliable than memory"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "b-trees-are-preferred-to-binary-trees-in-databases-because-gate-cse-2000-marks-1-ut6i83gbf6tx2mlw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LuBwqKuT7D2YNitC",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "functional-dependencies-and-normalization",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given the following relation instance\n<br>$$\\eqalign{\n  &amp; X\\,\\,\\,\\,\\,Y\\,\\,\\,\\,\\,Z  \\cr \n  &amp; \\,\\,1\\,\\,\\,\\,\\,\\,4\\,\\,\\,\\,\\,\\,2  \\cr \n  &amp; \\,\\,1\\,\\,\\,\\,\\,\\,5\\,\\,\\,\\,\\,\\,3  \\cr \n  &amp; \\,\\,1\\,\\,\\,\\,\\,\\,6\\,\\,\\,\\,\\,\\,3  \\cr \n  &amp; \\,\\,3\\,\\,\\,\\,\\,\\,2\\,\\,\\,\\,\\,\\,2 \\cr} $$\n<p>Which of the following functional dependencies are satisfied by the instance?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$XY \\to Z$$ and $$Z \\to Y$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$YZ \\to X$$ and $$Y \\to Z$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$YZ \\to X$$ and $$X \\to Z$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$XZ \\to Y$$ and $$Y \\to X$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-the-following-relation-instanceeqalign-xyz-cr-142-cr-1-gate-cse-2000-marks-2-lubwqkut7d2ynitc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                }
+            ],
+            "title": "Database Management System"
+        },
+        {
+            "_id": "Digital Logic",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GsWHOydJbfQXbywZ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following arrangement of master-slave flip-flop\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/DbQ63my7s0PlswUG4/xbDYUdbCnVmVbPbwQD38M0yatvCTl/kRQ1VLYUz5GeM2q5noRZZ9/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2000 Digital Logic - Sequential Circuits Question 24 English\">\n<p>Has the initial state of $$P, Q$$ as $$0, 1$$ (respectively). After three clock cycles the output states $$P, Q$$ is (respectively).</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1,0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1,1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0,0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0,1$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-arrangement-of-master-slave-flip-flophas-the-i-gate-cse-2000-marks-2-gswhoydjbfqxbywz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BSK8Fai50OcbLdtq",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "number-systems",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number $$43$$ in $$2's$$ complement representation is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$01010101$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$11010101$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$00101011$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$10101011$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-43-in-2s-complement-representation-is-gate-cse-2000-marks-1-bsk8fai50ocbldtq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7li3TGGS0go84X01",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The simultaneous equations on the Boolean variables $$x, y, z$$ and $$w,$$ \n$$$x+y+z=1$$$\n$$$xy=0$$$\n$$$xz+w=1$$$\n$$$xy + \\overline z \\overline w  = 0$$$\n<br>have the following for $$x, y, z$$ and $$w,$$ respectively.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0100$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1101$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1011$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1000$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-simultaneous-equations-on-the-boolean-variables-x-y-z-an-gate-cse-2000-marks-2-7li3tggs0go84x01.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ePVbsaQsLvEft80A",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "k-maps",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which function does NOT implement the Karnaugh map given below?\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/d7Ywu9ajo9KeC2mur/SgYBv4dGJjSWxTtEtk0t6RXRgdY9L/xSwhg5oomKote3ZdVvupOa/image.svg\" loading=\"lazy\" alt=\"GATE CSE 2000 Digital Logic - K Maps Question 7 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$(w+x)y$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$x\\,y + y\\,w$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {w + x} \\right)\\,\\,\\left( {\\overline w  + y} \\right)\\left( {\\overline x  + y} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-function-does-not-implement-the-karnaugh-map-given-bel-gate-cse-2000-marks-2-epvbsaqslveft80a.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                }
+            ],
+            "title": "Digital Logic"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8tk52JCxkYvVokFy",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A relation R is defined on the set of integers as zRy if f (x + y) is even. Which of the following statements is true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "R is not an  equivalence relation"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "R is an equivalence relation having 1 equivalence class"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "R is an equivalence relation having 2 equivalence classes"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "R is an  equivalence relation having 3 equivalence classes"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-relation-r-is-defined-on-the-set-of-integers-as-zry-if-f-x-gate-cse-2000-marks-2-8tk52jcxkyvvokfy.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4VrylFV0CSEMmiI5",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let P(S) denote the power set of a set S. Which of the following is always true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P\\,(P(S))\\, = P\\,(S)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P\\,(S)\\, \\cap \\,P\\,(P\\,(S)) = \\{ \\emptyset \\} $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P\\,(S)\\,\\, \\cap \\,\\,S = P\\,(S)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$S\\,\\, \\notin \\,P(S)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-ps-denote-the-power-set-of-a-set-s-which-of-the-followin-gate-cse-2000-marks-2-4vrylfv0csemmii5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YC3qvK2KtHn363zy",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$${{E_1}}$$ and $${{E_2}}$$ are events in a probability space satisfying the following constraints:\n<br> $$ \\bullet $$ $$\\Pr \\,\\,({E_1}) = \\Pr \\,({E_2})$$ \n<br> $$ \\bullet $$ $$\\Pr \\,\\,({E_1}\\, \\cup {E_2}) = 1$$\n<br> $$ \\bullet $$ $${E_1}$$ &amp; $${E_2}$$ are independent \n<p> The value of Pr ($${E_1}$$), the probability of the event $${E_1}$$, is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1/4 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1/2"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "e1-and-e2-are-events-in-a-probability-space-satisfying-the-f-gate-cse-2000-marks-2-yc3qvk2kthn363zy.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xE7yeLKRdPJknCBo",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinatorics",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The minimum number of cards to be dealt from an arbitrarily shuffled deck of 52 cards to guarantee that three cards are from same suit is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "3 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "8 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "9 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "12"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-minimum-number-of-cards-to-be-dealt-from-an-arbitrarily-gate-cse-2000-marks-1-xe7yelkrdpjkncbo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zvLC4uUGVMrPxioe",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinatorics",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The solution to the recurrence equation \n<br>$$T\\left( {{2^k}} \\right)$$ $$ = 3T\\left( {{2^{k - 1}}} \\right) + 1$$, \n<br>$$T\\left( 1 \\right) = 1$$  is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{2^k}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {{3^{k + 1}} - 1} \\right)/2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${3^{\\log {K \\over 2}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${2^{\\log {K \\over 3}}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-solution-to-the-recurrence-equation-tleft-2k-right-3tlef-gate-cse-2000-marks-1-zvlc4uugvmrpxioe.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "e8cEFohcZN5PF9dS",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The determinant of the matrix\n$$$\\left[ {\\matrix{\n   2 &amp; 0 &amp; 0 &amp; 0  \\cr \n   8 &amp; 1 &amp; 7 &amp; 2  \\cr \n   2 &amp; 0 &amp; 2 &amp; 0  \\cr \n   9 &amp; 0 &amp; 6 &amp; 1  \\cr \n\n } } \\right]\\,\\,is$$$\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "4 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "15 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "20"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-determinant-of-the-matrixleft-matrix-2-0-0-0-cr-8-1-7-2-gate-cse-2000-marks-1-e8cefohczn5pf9ds.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5XRuLCn9rHlQ0441",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An $$n\\,\\, \\times \\,\\,n$$ array v is defined as follows v[i, j] = i - j for all i, j, $$1\\,\\, \\le \\,\\,i\\,\\, \\le \\,\\,n,\\,1\\,\\, \\le \\,\\,j\\,\\, \\le \\,\\,n$$  The sum of elements of the array v is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "n - 1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${n^2}\\, - \\,3n\\, + \\,2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${n^2}\\,(n\\, + \\,1)/2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-n-times-n-array-v-is-defined-as-follows-vi-j-i-j-for-all-gate-cse-2000-marks-1-5xrulcn9rhlq0441.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Z0uYwJJeujzJ6Il1",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A multiset is an unordered collection of elements where elements may repeat ay number of times. The size of a multiset is the number of elements in it counting repetitions. \n<p>(a) what is the number of multisets of size   4  that can be constructed from n distinct elements so that at least one element occurs exactly twice?\n<br>(b) How many multisets can be constructed from n distinct elements?</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(b) Unlimited",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-multiset-is-an-unordered-collection-of-elements-where-elem-gate-cse-2000-marks-5-z0uywjjeujzj6il1.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1pvrVzmJz5w4gjse",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$S = \\left\\{ {0,1,2,3,4,5,6,7} \\right\\}$$ and $$ \\otimes $$ denote multiplication modulo $$8$$, that is, $$x \\otimes y = \\left( {xy} \\right)$$ mod $$8$$\n<p>(a) Prove that $$\\left( {0,\\,1,\\, \\otimes } \\right)$$ is not a group.\n<br>(b) Write $$3$$ distinct groups $$\\left( {G,\\,\\, \\otimes } \\right)$$ where $$G \\subset s$$ and $$G$$ has $$2$$ $$\\,\\,\\,\\,\\,\\,$$elements.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-s-left-01234567-right-and-otimes-denote-multiplication-m-gate-cse-2000-marks-5-1pvrvzmjz5w4gjse.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "t8MtAhkdIyZcwr6H",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$a, b, c, d$$ be propositions. Assume that the equivalences $$a \\leftrightarrow \\left( {b \\vee \\neg b} \\right)$$ and $$b \\leftrightarrow c$$ hold. Then the truth value of the formulae $$\\left( {a\\, \\wedge \\,b} \\right) \\to \\left( {\\left( {a \\wedge c} \\right) \\vee d} \\right)$$ is always",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "True "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "False "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Same as truth value of $$b$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Same as truth value of $$d$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-a-b-c-d-be-propositions-assume-that-the-equivalences-a-l-gate-cse-2000-marks-2-t8mtahkdiyzcwr6h.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GADTlKRn0gTcWcdQ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose the time to service a page fault is on the average $$10$$ milliseconds, while a memory access takes $$1$$ microsecond. Then a $$99.99$$% hit ratio results in average memory access time of.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.9999$$ milliseconds"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$ millisecond"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$9.999$$ microseconds"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1.9999$$ microseconds"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-the-time-to-service-a-page-fault-is-on-the-average-1-gate-cse-2000-marks-2-gadtlkrn0gtcwcdq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "s0Dy59QPv9QGHFRP",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deadlocks",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following is NOT a valid deadlock prevention scheme?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Release all resources before requesting a new resource"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Number the resources uniquely and never request a lower numbered resource than the last one requested. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Never request a resource after releasing any resource"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Request and all required resources be allocated before execution."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-is-not-a-valid-deadlock-prevention-sc-gate-cse-2000-marks-2-s0dy59qpv9qghfrp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "IdULUufQgd6JSAaB",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronization-and-concurrency",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let m[0] ..m[4] be mutexes (binary semaphores) and P[0] ...P[4] be processes. Suppose each process P[i] executes the following:<br><br> wait (m[i]); wait (m(m[(i+1) mod 4]))0;<br>.......<br>release (m[i]); release (m[(i+1) mod 4]);<br><br>This could cause ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Thrashing"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Deadlock"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Starvation, but not the deadlock"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-m0-m4-be-mutexes-binary-semaphores-and-p0-p4-be-processe-gate-cse-2000-marks-1-iduluufqgd6jsaab.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                }
+            ],
+            "title": "Operating Systems"
+        },
+        {
+            "_id": "Programming Languages",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dz0tL8Flppan7M7n",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pointer-and-structure-in-c",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following C declarations\n<pre><code class=\"c\">struct node{\n  int i:\n  float j;\n};\nstruct node *s[10];</code></pre>\ndefine s to be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "An array, each element of which is a pointer to a structure of type node"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "A structure of 2 fields, each field being a pointer to an array of 10 elements"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "A structure of 3 fields: an integer, a float, and an array of 10 elements"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "An array, each element of which is a structure of type node"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-c-declarationsstruct-node-int-i-float-jstruct-gate-cse-2000-marks-1-dz0tl8flppan7m7n.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XBeq6XI8VA62bENf",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pointer-and-structure-in-c",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The most appropriate matching for the following pairs\n<br><br>X: m=malloc(5); m= NULL; \n<br>Y: free(n); n-&gt;value = 5; \n<br>Z: char *p; *p='a'; \n<br><br>1: using dangling \n<br>2: using uninitialized pointers\n<br>3. lost memory\n<br>is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "X \u2013 1 Y \u2013 3 Z \u2013 2"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "X \u2013 2 Y \u2013 1 Z \u2013 3"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "X \u2013 3 Y \u2013 2 Z \u2013 1 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "X \u2013 3 Y \u2013 1 Z \u2013 2"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-most-appropriate-matching-for-the-following-pairsx-mmall-gate-cse-2000-marks-1-xbeq6xi8va62benf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7OspgyGQJyoHBQSf",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pointer-and-structure-in-c",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following C declaration\n<pre><code class=\"c\">struct {\n      short s[5];\n      union {\n      float y;\n      long z;\n      } u;\n}t;</code></pre>\nAssume that objects of the type short, float and long occupy 2 bytes, 4 bytes and\n8 bytes, respectively. The memory requirement for variable t, ignoring alignment\nconsiderations, is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "22 bytes"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "14 bytes"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "18 bytes"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "10 bytes"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-c-declarationstruct-short-s5-union-fl-gate-cse-2000-marks-1-7ospgygqjyohbqsf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3hsEPVFEBgYVS8o3",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "function-and-recursion",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of j at the end of the execution of the following C program\n<pre><code class=\"c\">int incr (int i)\n{\n     static int count = 0;\n     count = count + i;\n     return (count);\n}\nmain () {\n   int i,j;\n   for (i = 0; i &lt;= 4; i++)\n   j = incr(i);\n}</code></pre>\nis",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "10"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "4"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "6"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "7"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-j-at-the-end-of-the-execution-of-the-following-gate-cse-2000-marks-2-3hsepvfebgyvs8o3.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                }
+            ],
+            "title": "Programming Languages"
+        },
+        {
+            "_id": "Theory of Computation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ew934iSMRcncL9Dl",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$L$$ denote the language generated by the grammar $$S \\to 0S\\left. 0 \\right|00.$$ Which one of the following is true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$L = {0^ + }$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$L$$ is regular but not $${0^ + }$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$L$$ is context free but not regular "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$L$$ is not context free "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>To determine which option is correct for the language $ L $ generated by the grammar $ S \\to 0S0 \\ \\vert \\ 00 $, let's analyze the grammar step by step.</p>\n<h3>Understanding the Grammar</h3>\n<p>The given grammar is:</p>\n\n<p><strong>Production Rules</strong>:</p>\n\n\n<p><p>$ S \\to 0S0 $</p></p>\n<p><p>$ S \\to 00 $</p></p>\n\n\n<p><strong>Terminal Symbol</strong>:</p>\n\n\n<p>$ 0 $</p>\n\n<h3>Generating Strings from the Grammar</h3>\n<p>Let's generate some strings to understand the pattern:</p>\n\n<p><strong>Base Case</strong>:</p>\n\n\n<p><p>$ S \\to 00 $</p></p>\n<p><p>Generated string: <strong>\"00\"</strong></p></p>\n\n\n<p><strong>Recursive Case</strong>:</p>\n\n\n<p><p>$ S \\to 0S0 $</p></p>\n<p><p>We can apply the production recursively.</p></p>\n\n<h4>First Iteration</h4>\n\n<p><p>$ S \\to 0S0 $</p></p>\n<p><p>Substitute $ S $ with $ 00 $:</p>\n\n<p><p>$ S \\to 0(00)0 $</p></p>\n<p><p>Generated string: <strong>\"0000\"</strong></p></p></p>\n\n<h4>Second Iteration</h4>\n\n<p><p>$ S \\to 0S0 $</p></p>\n<p><p>Substitute $ S $ with $ 0S0 $:</p>\n\n<p><p>$ S \\to 0(0S0)0 $</p></p>\n<p><p>Now, substitute $ S $ with $ 00 $:</p></p>\n<p><p>$ S \\to 0(0(00)0)0 $</p></p>\n<p><p>Generated string: <strong>\"000000\"</strong></p></p></p>\n\n<h4>General Pattern</h4>\n\n<p><p>The strings generated are of the form:</p></p>\n<p><p><strong>\"00\"</strong></p></p>\n<p><p><strong>\"0000\"</strong></p></p>\n<p><p><strong>\"000000\"</strong></p></p>\n<p><p>And so on.</p></p>\n\n<h3>Observations</h3>\n\n<p><strong>String Length</strong>:</p>\n\n\n<p><p>All strings have lengths that are multiples of <strong>2</strong>.</p></p>\n<p><p>Specifically, the lengths are $ 2n $, where $ n \\geq 1 $.</p></p>\n\n\n<p><strong>Pattern</strong>:</p>\n\n\n<p><p>The strings consist exclusively of the terminal symbol $ 0 $.</p></p>\n<p><p>There are no strings of odd length generated by this grammar.</p></p>\n\n\n<p><strong>Language $ L $</strong>:</p>\n\n\n<p><p>$ L = \\{ 0^{2n} \\mid n \\geq 1 \\} $</p></p>\n<p><p>This is the set of all strings of $ 0 $s where the length is an even positive integer.</p></p>\n\n<h3>Determining the Nature of $ L $</h3>\n<h4>Is $ L $ Equal to $ \\{0^+\\} $?</h4>\n\n<p><p>$ \\{0^+\\} $ includes all strings of one or more $ 0 $s, including odd lengths.</p></p>\n<p><p>Since $ L $ only contains strings of even length, <strong>$ L \\ne \\{0^+\\} $</strong>.</p></p>\n\n<h4>Is $ L $ Regular?</h4>\n\n<p><p>A regular expression for $ L $ is $ (00)+ $.</p></p>\n<p><p>This expression generates strings of even length consisting of $ 0 $s.</p></p>\n<p><p>Since there exists a regular expression for $ L $, <strong>$ L $ is a regular language</strong>.</p></p>\n\n<h4>Is $ L $ Context-Free but Not Regular?</h4>\n\n<p><p>While $ L $ is context-free (all regular languages are also context-free), it is <strong>also regular</strong>.</p></p>\n<p><p>Therefore, stating that $ L $ is context-free but not regular is incorrect.</p></p>\n\n<h4>Is $ L $ Not Context-Free?</h4>\n\n<p>This is false because $ L $ is both regular and context-free.</p>\n\n<h3>Conclusion</h3>\n\n<p><p><strong>Option A</strong>: Incorrect because $ L \\ne \\{0^+\\} $.</p></p>\n<p><p><strong>Option B</strong>: Correct because $ L $ is regular but not equal to $ \\{0^+\\} $.</p></p>\n<p><p><strong>Option C</strong>: Incorrect because $ L $ is regular, not just context-free.</p></p>\n<p><p><strong>Option D</strong>: Incorrect because $ L $ is context-free (and regular).</p></p>\n\n<p><strong>Answer:</strong> Option B</p>\n<p>$ L $ is regular but not $ \\{0^+\\} $.</p>"
+                        }
+                    },
+                    "permalink": "let-l-denote-the-language-generated-by-the-grammar-s-to-0sle-gate-cse-2000-marks-1-ew934ismrcncl9dl.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Uc6pLTJlAnqUBIuF",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$S$$ and $$T$$ be languages over $$\\sum { = \\left\\{ {a,b} \\right\\}} $$ represented by the regular expressions $${\\left( {a + {b^ * }} \\right)^ * }$$ and $$\\,{\\left( {a + b} \\right)^ * },$$  respectively. Which of the following is true? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$S \\subset T$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$T \\subset S$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$S=T$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$S \\cap T = \\phi $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-s-and-t-be-languages-over-sum-left-ab-right-represented-gate-cse-2000-marks-1-uc6pltjlanqubiuf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BSyUbmjyknJEPzY4",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What can be said about a regular language $$L$$ over $$\\left\\{ a \\right\\}$$  whose minimal finite state automation has two states? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Must be $$\\left\\{ {{a^n}\\left| n \\right.\\,\\,} \\right.$$ is odd $$\\left. \\, \\right\\}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Must be $$\\left\\{ {{a^n}\\left| n \\right.\\,\\,} \\right.$$ is even $$\\left. \\, \\right\\}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Must be $$\\left\\{ {{a^n}\\left| {n \\ge } \\right.\\,\\,} \\right.0\\left. \\, \\right\\}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Either $$L$$ must be $$\\left\\{ {{a^n}\\left| n \\right.\\,\\,} \\right.$$ is odd$$\\left. \\, \\right\\}\\,\\,$$ or $$L$$ must be $$\\left\\{ {{a^n}\\left| n \\right.} \\right.$$ is even$$\\left. \\, \\right\\}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-can-be-said-about-a-regular-language-l-over-left-a-righ-gate-cse-2000-marks-2-bsyubmjyknjepzy4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kyrRqdshVNut4yfI",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "undecidability",
+                    "year": 2000,
+                    "paperTitle": "GATE CSE 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following decision problems :\n<br><br/>$${P_1}$$ Does a given finite state machine accept a given string\n<br><br/>$${P_2}$$ Does a given context free grammar generate an infinite number of stings.\n<p>Which of the following statements is true?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both $${P_1}$$ and $${P_2}$$ are decidable "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Neither $${P_1}$$ and $${P_2}$$  are decidable"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Only $${P_1}$$ is decidable"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Only $${P_2}$$ is decidable"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": "<h3><strong>Problem P\u2081:</strong></h3>\n<p><strong>\"Does a given finite state machine accept a given string?\"</strong></p>\n<h4><strong>Analysis of P\u2081:</strong></h4>\n\n<p><p><strong>Finite State Machines (FSMs):</strong></p></p>\n<p><p>Can be deterministic (DFA) or nondeterministic (NFA).</p></p>\n<p><p>Both DFAs and NFAs have a finite number of states and transitions.</p></p>\n\n<p><p><strong>Decidability:</strong></p></p>\n<p><p><strong>Decidable Problem:</strong> A problem for which an algorithm can provide a yes/no answer for every input instance in finite time.</p></p>\n\n<p><p><strong>Algorithm for P\u2081:</strong></p></p>\n<p><p><strong>For DFAs:</strong></p>\n\n<p><p>Simulate the DFA on the input string by transitioning through states according to the input symbols.</p></p>\n<p><p>If the DFA reaches an accepting state after processing the entire string, it <strong>accepts</strong> the string.</p></p>\n<p><p>The simulation takes time proportional to the length of the input string.</p></p></p>\n<p><p><strong>For NFAs:</strong></p>\n\n<p><p>Since NFAs can have multiple possible transitions for a given input symbol, we can:</p></p>\n<p><p>Use a depth-first or breadth-first search to explore all possible paths.</p></p>\n<p><p>Alternatively, convert the NFA to an equivalent DFA (subset construction), though this may increase the number of states exponentially.</p></p>\n<p><p>As both the NFA and the string are finite, the simulation will terminate.</p></p></p>\n\n<p><p><strong>Conclusion for P\u2081:</strong></p></p>\n<p><p><strong>Decidable.</strong></p></p>\n<p><p>There exists an algorithm that can determine whether the FSM accepts the given string in finite time.</p></p>\n\n<hr />\n<h3><strong>Problem P\u2082:</strong></h3>\n<p><strong>\"Does a given context-free grammar generate an infinite number of strings?\"</strong></p>\n<h4><strong>Analysis of P\u2082:</strong></h4>\n\n<p><p><strong>Context-Free Grammars (CFGs):</strong></p></p>\n<p><p>Consist of a finite set of production rules that generate strings over some alphabet.</p></p>\n<p><p>May produce finite or infinite languages.</p></p>\n\n<p><p><strong>Decidability:</strong></p></p>\n<p><p><strong>Decidable Problem:</strong> Existence of an algorithm to determine whether the language generated by a CFG is infinite.</p></p>\n<p><p><strong>Algorithm for P\u2082:</strong></p>\n<p><strong>Step 1: Identify Generating Non-Terminals</strong></p></p>\n<p><p><strong>Useful Symbols:</strong></p>\n\n<p><p>Non-terminals that can derive terminal strings.</p></p>\n<p><p>Compute the set of symbols that derive terminal strings using a fix-point algorithm.</p></p>\n<p><strong>Step 2: Build the Dependency Graph</strong></p></p>\n<p><p><strong>Dependency Graph:</strong></p>\n\n<p><p>Nodes represent non-terminals.</p></p>\n<p><p>An edge from $ A $ to $ B $ exists if $ A $ can derive a string containing $ B $.</p></p>\n<p><strong>Step 3: Detect Cycles Involving Useful Symbols</strong></p></p>\n<p><p><strong>Cycles:</strong></p>\n\n<p><p>A cycle involving useful symbols indicates the possibility of generating strings of unbounded length.</p></p>\n<p><p>Use graph traversal algorithms (e.g., DFS) to detect cycles.</p></p>\n<p><strong>Step 4: Determine Unbounded Derivations</strong></p></p>\n<p><p>If the start symbol can reach itself through a cycle involving useful symbols, the language is <strong>infinite</strong>.</p></p>\n<p><p>Otherwise, if all derivations are acyclic or cycles do not lead to increased string length, the language is <strong>finite</strong>.</p></p>\n<p><p><strong>Conclusion for P\u2082:</strong></p></p>\n<p><p><strong>Decidable.</strong></p></p>\n<p><p>The algorithm terminates after finite steps and determines whether the CFG generates infinitely many strings.</p></p>\n\n<hr />\n<h3><strong>Final Conclusion:</strong></h3>\n\n<p><p><strong>P\u2081 is decidable:</strong> We can simulate the FSM on the input string.</p></p>\n<p><p><strong>P\u2082 is decidable:</strong> We can analyze the CFG to determine if it generates an infinite language.</p></p>\n<p><p><strong>Therefore, both P\u2081 and P\u2082 are decidable.</strong></p></p>\n\n<hr />\n<p><strong>Answer: Option A</strong></p>"
+                        }
+                    },
+                    "permalink": "consider-the-following-decision-problemsp1-does-a-given-fini-gate-cse-2000-marks-2-kyrrqdshvnut4yfi.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2000"
+                }
+            ],
+            "title": "Theory of Computation"
+        }
+    ]
+}

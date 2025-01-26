@@ -1,0 +1,2361 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Puq90Z9yxeOCNvb1",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Potential function $$\\phi $$ is given as $$\\phi \\, = \\,{x^2}\\, - \\,{y^2}$$. What will be the stream function $$\\psi $$ with the condition $$\\psi \\, = \\,0$$ at x = 0, y = 0?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2xy$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${x^2}\\, + \\,\\,{y^2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${x^2}\\, - \\,\\,{y^2}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2{x^2}{y^2}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "potential-function-phi-is-given-as-phi-x2-y2-what-will-be-th-gate-ce-2007-marks-1-puq90z9yxeocnvb1.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "enZBDmauOhHTZEgH",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given that one root of the equation $$\\,{x^3} - 10{x^2} + 31x - 30 = 0\\,\\,$$ is $$5$$ then other roots are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2$$ and $$3$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2$$ and $$4$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3$$ and $$4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$-2$$ and $$-3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-that-one-root-of-the-equation-x3-10x2-31x-30-0-is-5-th-gate-ce-2007-marks-1-enzbdmauohhtzegh.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ce3bQUNztZjywDJr",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following equation needs to be numerically solved using the Newton $$-$$ Raphson method $${x^3} + 4x - 9 = 0.\\,\\,$$ The iterative equation for this purpose is ($$k$$ indicates the iteration level) ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${X_{k + 1}} = {{2X_k^3 + 9} \\over {3X_k^2 + 4}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${X_{k + 1}} = {{3X_k^3 + 9} \\over {2X_k^2 + 9}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${X_{k + 1}} = {X_k} - 3_k^2 + 4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${X_{k + 1}} = {{4X_k^2 + 3} \\over {9X_k^2 + 2}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-equation-needs-to-be-numerically-solved-using-gate-ce-2007-marks-1-ce3bqunztzjywdjr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "priM66km2sS1Tk8N",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A body originally at $${60^ \\circ }$$ cools down to $$40$$ in $$15$$ minutes when kept in air at a temperature of $${25^ \\circ }$$c. What will be the temperature of the body at the and of $$30$$ minutes? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${35.2^ \\circ }C$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${31.5^ \\circ }C$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${28.7^ \\circ }C$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${15^ \\circ }C$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-body-originally-at-60-circ-cools-down-to-40-in-15-minutes-gate-ce-2007-marks-1-prim66km2ss1tk8n.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OJQlzsgQpsm2zIXQ",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The inverse of $$2 \\times 2$$ matrix $$\\left[ {\\matrix{\n   1 &amp; 2  \\cr \n   5 &amp; 7  \\cr \n\n } } \\right]$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over 3}\\left[ {\\matrix{\n   { - 7} &amp; 2  \\cr \n   5 &amp; { - 1}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over 3}\\left[ {\\matrix{\n   {  7} &amp; 2  \\cr \n   5 &amp; {  1}  \\cr \n\n } } \\right]$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${1 \\over 3}\\left[ {\\matrix{\n   {  7} &amp;- 2  \\cr \n   - 5 &amp; {  1}  \\cr \n\n } } \\right]$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${1 \\over 3}\\left[ {\\matrix{\n   { - 7} &amp; - 2  \\cr \n   - 5 &amp; { - 1}  \\cr \n\n } } \\right]$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-inverse-of-2-times-2-matrix-left-matrix-1-2-cr-5-7-cr-ri-gate-ce-2007-marks-2-ojqlzsgqpsm2zixq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LiG59ZKeNbIzFcXK",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The minimum and maximum eigen values of matrix $$\\left[ {\\matrix{\n   1 &amp; 1 &amp; 3  \\cr \n   1 &amp; 5 &amp; 1  \\cr \n   3 &amp; 1 &amp; 1  \\cr \n\n } } \\right]$$ are $$-2$$ and $$6$$ respectively. What is the other eigen value? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$-1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-minimum-and-maximum-eigen-values-of-matrix-left-matrix-1-gate-ce-2007-marks-2-lig59zkenbizfcxk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "llYNoRzhBqgSm4ZU",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For what values of $$\\alpha $$ and $$\\beta $$ the following simultaneous equations have an infinite number of solutions \n$$$x+y+z=5,$$$\n$$$x+3y+3z=9,$$$\n$$$x + 2y + \\alpha z = \\beta $$$\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2,7$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3,8$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$8,3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$7,2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-what-values-of-alpha-and-beta-the-following-simultaneous-gate-ce-2007-marks-2-llynorzhbqgsm4zu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "w9N8tGLT8vX1Vnq0",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The velocity vector is given as $${\\mkern 1mu} \\vec V = 5xy\\widehat i + 2{y^2}\\widehat j + 3y{z^2}\\widehat k.{\\mkern 1mu} {\\mkern 1mu} $$ The divergence of this velocity vector at $$(1,1,1)$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$9$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$10$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$14$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$15$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-velocity-vector-is-given-as-mkern-1mu-vec-v-5xywidehat-i-gate-ce-2007-marks-2-w9n8tglt8vx1vnq0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RiAwrTtAv2Re8xeV",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the standard deviation of the speed of vehicles in a highway is $$8.8$$ kmph and the mean speed of the vehicles is $$33$$ kmph,  the coefficient of variation in speed is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.1517$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.1867$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.2666$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.3646$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-standard-deviation-of-the-speed-of-vehicles-in-a-high-gate-ce-2007-marks-1-riawrttav2re8xev.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "r1IaOGShDGAeFWWA",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The solution for the differential equation $$\\,{{d\\,y} \\over {d\\,x}} = {x^2}\\,y$$ with the condition that $$y=1$$ at $$x=0$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$y = {e^{{1 \\over {2x}}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\ln \\left( y \\right) = {{{x^3}} \\over 3} + 4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\ln \\left( y \\right) = {{{x^2}} \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$y = {e^{{{{x^3}} \\over 3}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-solution-for-the-differential-equation-dy-over-dx-x2y-wi-gate-ce-2007-marks-2-r1iaogshdgaefwwa.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SDHM5Y88dcKKS9Mc",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The degree of the differential equation $$\\,{{{d^2}x} \\over {d{t^2}}} + 2{x^3} = 0\\,\\,$$  is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-degree-of-the-differential-equation-d2x-over-dt2-2x3-0-i-gate-ce-2007-marks-1-sdhm5y88dckks9mc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Environmental Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2e382d0b4ac",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "environmental-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "quality-control-of-water",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The presence of hardness in excess of permissible limit causes",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Cardio Vascular problems"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Skin discolouration"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Calcium deficiency"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Increased laundry expenses"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-presence-of-hardness-in-excess-of-permissible-limit-caus-gate-ce-2007-marks-1-5a2e382d0b4ac.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2e38790c303",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "environmental-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "quality-control-of-water",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The alkalinity and the hardness of a water sample are 250 mg/L and 350 mg/L as\n$$CaCo_3$$, respectively. The water has",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "350 mg/L carbonate hardness and zero non-carbonate hardness."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "250 mg/L carbonate hardness and zero non-carbonate hardness."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "250 mg/L carbonate hardness and 350 mg/L non-carbonate hardness."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "250 mg/L carbonate hardness and 100 mg/L non-carbonate hardness."
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-alkalinity-and-the-hardness-of-a-water-sample-are-250-mg-gate-ce-2007-marks-1-5a2e38790c303.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                }
+            ],
+            "title": "Environmental Engineering"
+        },
+        {
+            "_id": "Geomatics Engineering Or Surveying",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a44440812508",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "geomatics-engineering-or-surveying",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-concepts",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The plan of a map was photo copied to a reduced size such that a line originally\n100mm, measures 90mm. The original scale of the plan was 1:1000. The revised\nscale is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1:900"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1:11111"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1:1121"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1:1221"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-plan-of-a-map-was-photo-copied-to-a-reduced-size-such-th-gate-ce-2007-marks-2-5a44440812508.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a4444c89f439",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "geomatics-engineering-or-surveying",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-concepts",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The plan of a survey plotted to a scale of 10m to 1cm is reduced in such a way\nthat a line originally 10cm long now measures 9cm. the area of the reduced plan is\nmeasured as 81cm2. the actual (m2) of the survey is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "10000"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "6561"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1000"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "656"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-plan-of-a-survey-plotted-to-a-scale-of-10m-to-1cm-is-red-gate-ce-2007-marks-2-5a4444c89f439.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a44497b74900",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "geomatics-engineering-or-surveying",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "angular-measurements-and-compass-survey",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The magnetic bearing of a line AB is S 45\u00b0 E and the declination is 5\u00b0 west. The true bearing of the line AB is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "S45\u00b0 E"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "S40\u00b0 E"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "S50\u00b0 E"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "S50\u00b0 W"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-magnetic-bearing-of-a-line-ab-is-s-45-e-and-the-declinat-gate-ce-2007-marks-2-5a44497b74900.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                }
+            ],
+            "title": "Geomatics Engineering Or Surveying"
+        },
+        {
+            "_id": "Geotechnical Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2a1519cd3be",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "geotechnical-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "definitions-and-properties-of-soils",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The water content of a saturated soil and the specific gravity of soil solids were\nfound to be 30% and 2.70, respectively. Assuming the unit weight of water to be\n10 $$kN /m^3$$, the saturated unit weight ($$kN /m^3$$), and the void ratio of the soil are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "19.4, 0.81"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "18.5, 0.30"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "19.4. 0.45"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "18.5, 0.45"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-water-content-of-a-saturated-soil-and-the-specific-gravi-gate-ce-2007-marks-2-5a2a1519cd3be.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                }
+            ],
+            "title": "Geotechnical Engineering"
+        },
+        {
+            "_id": "Irrigation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2d70d4455b9",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "irrigation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "water-requirement-of-crops",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The consumptive use of water for a crop during a particular stage of growth is\n2.0mm / day. The maximum depth of available water is the root zone is 60mm.\nIrrigation is required when the amount of available water is 50% of the maximum\navailable water in the root zone. Frequency of irrigation should be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "10 days"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "15 days"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "20 days"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "25 days"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-consumptive-use-of-water-for-a-crop-during-a-particular-gate-ce-2007-marks-1-5a2d70d4455b9.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2d759e0d7a2",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "irrigation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "water-requirement-of-crops",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The culturable command area for a distributary channel is 20,000 hectares. Wheat\ngrown in the entire area and the intensity of irrigation is 50%. The kor period for\nwheat is 30 days and the kor water depth is 120mm. The outlet discharge for the\ndistributary should be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2.85 $$m^3/s$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "3.21 $$m^3/s$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "4.63 $$m^3/s$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "5.23 $$m^3/s$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-culturable-command-area-for-a-distributary-channel-is-20-gate-ce-2007-marks-2-5a2d759e0d7a2.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                }
+            ],
+            "title": "Irrigation"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EZFHcVgVRmbLAma0",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "singly-reinforced-sections",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A singly reinforced rectangular concrete beam has a width of $$150$$ $$mm$$ and an effective depth of $$330$$ $$mm.$$ The characteristic compressive strength of concrete is $$20$$ $$MPa$$ and the characteristic tensile strength of steel is $$\\,\\,\\,\\,\\,\\,\\,415\\,\\,MPa.$$\n<p>Adopt the stress block for concrete as given in $$IS$$ $$456$$-$$2000$$ and take limiting value of depth of neutral axis as $$0.48$$ times the effective depth of the beam.  </p>\n<p>The limiting value of the moment of resistance of the beam in $$kN$$-$$m$$ is </p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.14$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.45$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$45.08$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$156.82$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-singly-reinforced-rectangular-concrete-beam-has-a-width-of-2007-marks-2-ezfhcvgvrmblama0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3SNBC5GuOJdpJVwH",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "singly-reinforced-sections",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A singly reinforced rectangular concrete beam has a width of $$150$$ $$mm$$ and an effective depth of $$330$$ $$mm.$$ The characteristic compressive strength of concrete is $$20$$ $$MPa$$ and the characteristic tensile strength of steel is $$\\,\\,\\,\\,\\,\\,\\,415\\,\\,MPa.$$\n<p>Adopt the stress block for concrete as given in $$IS$$ $$456$$-$$2000$$ and take limiting value of depth of neutral axis as $$0.48$$ times the effective depth of the beam.  </p>\n<p>The limiting area of tension steel in $$m{m^2}$$ is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$473.9$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$412.3$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$373.9$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$312.3$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-singly-reinforced-rectangular-concrete-beam-has-a-width-of-2007-marks-2-3snbc5guojdpjvwh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qH18aay9kFZieAHE",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "prestressed-concrete",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A concrete beam of rectangular cross-section of size $$120$$ $$mm$$ (width) and $$200$$ $$mm$$ (depth) is prestressed by a straight tendon to an effective force of $$150$$ $$kN$$ at an eccentricity of $$20$$ $$mm$$ (below the centroidal axis in the depth direction). The stresses at the top and bottom fibres of the section are  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2.5\\,\\,N/m{m^2}\\,\\,\\left( {compression} \\right),\\,\\,10\\,N/m{m^2}\\,\\left( {compression} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$10\\,\\,N/m{m^2}\\,\\,\\left( {tension} \\right),\\,\\,2.5\\,N/m{m^2}\\,\\left( {compression} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3.75\\,\\,N/m{m^2}\\,\\,\\left( {tension} \\right),\\,\\,2.75\\,N/m{m^2}\\,\\left( {compression} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2.75\\,\\,N/m{m^2}\\,\\,\\left( {compression} \\right),\\,\\,3.75\\,N/m{m^2}\\,\\left( {compression} \\right)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-concrete-beam-of-rectangular-cross-section-of-size-120-2007-marks-2-qh18aay9kfzieahe.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1acf8ce28f2",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following statements:\n<p>1. The compressive strength of concrete decreases with increase in water-cement\nratio of the concrete mix.</p>\n<p>2. Water is added to the concrete mix for hydration of cement and\nworkability.</p>\n<p>3. Creep and shrinkage of concrete are independent of the water-cement ratio\nin the concrete mix.</p>\nThe true statements are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1 and 2"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1, 2 and 3"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2 and 3"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "only 2"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-statements1-the-compressive-strength-gate-ce-2007-marks-1-5a1acf8ce28f2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1c5b8d70c8b",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following statements:\n<p>I. Modulus of elasticity concrete increases with increase in compressive\nstrength of concrete.</p>\n<p>II. Brittleness of concrete increases with decrease in compressive strength of\nconcrete.</p>\n<p>III. Shear strength of concrete increases with increase in compressive strength\nof concrete.</p>\nThe TRUE statements are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "II and III"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "I, II and III"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "I and II"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "I and III"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-statementsi-modulus-of-elasticity-con-gate-ce-2007-marks-2-5a1c5b8d70c8b.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Steel Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hFWYr1fWiyJWFro9",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "eccentric-connections",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A bracket connection is made with four bolts of $$10$$ $$mm$$ diameter and supports a load of $$10$$ $$kN$$ a an eccentricity of $$100$$ $$mm.$$ The maximum force to be resisted by any bolt will be  \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/iHOesOlrIe89Eddq7/40jL3Tf9iTNaBRB9SCGXhnUlXfn49/3R3ivL4FZmWpgHjVPxdADX/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2007 Steel Structures - Eccentric Connections Question 6 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$5$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$6.5$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$6.8$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$7.16$$ $$kN$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-bracket-connection-is-made-with-four-bolts-of-10-mm-2007-marks-2-hfwyr1fwiyjwfro9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "d5vSN9uchlldRzpb",
+                    "exam": "gate-ce",
+                    "marks": 5,
+                    "negMarks": 1.5,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "tension-members",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A steel flat of rectangular section of size $$70 \\times 6\\,\\,mm$$ is connected to a gusset plate by three bolts each having a shear capacity of $$15$$ $$kN$$ in holes having diameter $$11.5$$ $$mm.$$ If the allowable tensile stress in the flat is $$150$$ $$MPa,$$ the maximum tension that can be applied to the flat is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/Nz7u4fcbLJAJ9C4uP/PFYv4eZ0PoA5Xq2ilfpusrHz0B1fK/s6oZp6phTktadh56qYDWZH/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2007 Steel Structures - Tension Members Question 3 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$42.30$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$52.65$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$59.50$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$63.00$$ $$kN$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-steel-flat-of-rectangular-section-of-size-70-times-6-2007-marks-5-d5vsn9uchlldrzpb.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                }
+            ],
+            "title": "Steel Structures"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "W0RQAv8JuyT9JOT5",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-stress",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An axially loaded bar is subjected to a normal stress of $$173$$ $$MPa.$$ The maximum shear stress in the bar is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$75$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$86.5$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$100$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$122.3$$ $$MPa$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-axially-loaded-bar-is-subjected-to-a-normal-stress-of-1-2006-marks-1-w0rqav8juyt9jot5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TCTnZWl3ZCsZ0qyi",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-stress-in-beams",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The shear stress at the neutral axis in a beam of triangular section with a base of $$40$$ $$mm$$ and height $$20$$ $$mm,$$ subjected to a shear force of $$3$$ $$kN$$ is  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$6$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$10$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$20$$ $$MPa$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-shear-stress-at-the-neutral-axis-in-a-beam-of-triangular-2007-marks-2-tctnzwl3zcsz0qyi.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Md3IiBWRgoYcmj4S",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "torsion",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The maximum and minimum shear stresses in a hollow circular shaft of outer diameter $$20$$ $$mm$$ and thickness $$2$$ $$mm,$$ subjected to a torque of $$92.7$$ $$N.m$$ will be  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$59$$ $$MPa$$ and $$47.2$$ $$MPa$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$100$$ $$MPa$$ and $$80$$ $$MPa$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$118$$ $$MPa$$ and $$160$$ $$MPa$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$200$$ $$MPa$$ and $$160$$ $$MPa$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-maximum-and-minimum-shear-stresses-in-a-hollow-circular-2007-marks-2-md3iibwrgoycmj4s.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Gew5efFb1T7qXQqi",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A two span continuous beam having equal spans each of length $$L$$ is subjected to a uniformly distributed load $$\\omega $$ per unit length. The beam has constant flexural rigidity. \n<p>The bending moment at the middle support is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{w{L^2}} \\over 4}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{w{L^2}} \\over 8}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{w{L^2}} \\over 12}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{w{L^2}} \\over 16}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-two-span-continuous-beam-having-equal-spans-each-of-length-2007-marks-2-gew5effb1t7qxqqi.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RCqtsdAjbBTo3uQ8",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A two span continuous beam having equal spans each of length $$L$$ is subjected to a uniformly distributed load $$\\omega $$ per unit length. The beam has constant flexural rigidity. \n<p>The reaction at the middle support is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$w$$ $$L$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{5wL} \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{5wL} \\over 4}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{5wL} \\over 8}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-two-span-continuous-beam-having-equal-spans-each-of-length-2007-marks-2-rcqtsdajbbto3uq8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MQ7P6Rj8YFGprwE0",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "columns-and-struts",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A steel column, pinned at both ends, has a buckling load of $$200$$ $$kN.$$ If the column is restrained against lateral movement at its mid-height, its buckling load will be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$200$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$283$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$400$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$800$$ $$kN$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-steel-column-pinned-at-both-ends-has-a-buckling-load-of-2007-marks-2-mq7p6rj8yfgprwe0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a17383b895bf",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "simple-stresses",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A metal bar of length 100mm is inserted between two rigid supports and its\ntemperature is increased by $$10^o$$C. If the coefficient of thermal expansion is 12 x$$10^{-6}$$ per $$^o$$C and the Young\u2019s modulus is 2 x $$10^{5}$$ MPa, the stress in the bar is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "zero"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "12MPa"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "24MPa"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2400MPa"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-metal-bar-of-length-100mm-is-inserted-between-two-rigid-su-gate-ce-2007-marks-2-5a17383b895bf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1733dcdb2a6",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "simple-stresses",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For an isotropic material, the relationship between the young\u2019s modulus (E),\nshear modulus (G) and Poisson\u2019s ratio (\u03bc) is given by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$G\\;=\\;\\frac E{\\left[(1+\\mu)\\right]}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$G\\;=\\;\\frac E{\\left[2(1+\\mu)\\right]}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$G\\;=\\;\\frac E{\\left[(1+2\\mu)\\right]}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$G\\;=\\;\\frac E{\\left[2(1+2\\mu)\\right]}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-an-isotropic-material-the-relationship-between-the-young-gate-ce-2007-marks-1-5a1733dcdb2a6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uz0tlu3UQxPA0Fkt",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "energy-principle",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The right triangular truss is made of members having equal cross sectional area of $$1550$$ $$m{m^2}$$ and Young's Modulus of $$2 \\times {10^5}\\,\\,MPa.$$ \n<p>The horizontal deflection of the joint $$Q$$ is </p>\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/HYpHbpa6bjyWoRRni/qgXybpYODnRwWwJZMUdertWIQTmGa/jnAlx3flYUqf0rs2JwERsJ/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2007 Structural Analysis - Energy Principle Question 10 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2.47$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$10.25$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$14.31$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$15.68$$ $$mm$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-right-triangular-truss-is-made-of-members-having-equal-c-2007-marks-2-uz0tlu3uqxpa0fkt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9XSKD2AD49DTlpmf",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "influence-line-diagram",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The influence line diagram $$(ILD)$$ shown is for the member\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/s4Clw1TJlbOJbkgyx/2Xs8Qdpo0G9VrCDD90ohLSgTSk44M/3wOUQfGu9m4b77QBsfzHP6/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2007 Structural Analysis - Influence Line Diagram Question 6 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$PS$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$RS$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$PQ$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$QS$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-influence-line-diagram-ild-shown-is-for-the-member-2007-marks-2-9xskd2ad49dtlpmf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "z3om6LcS0Esi86u0",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A two span continuous beam having equal spans each of length $$L$$ is subjected to a uniformly distributed load $$w$$ per unit length. The beam has constant flexural rigidity. \n<p>The reaction at the middle support is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${wL}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{5wL} \\over 2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{5wL} \\over 4}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{5wL} \\over 8}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-two-span-continuous-beam-having-equal-spans-each-of-length-2007-marks-2-z3om6lcs0esi86u0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "b2MGDykqvnn0Z9G7",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A two span continuous beam having equal spans each of length $$L$$ is subjected to a uniformly distributed load $$w$$ per unit length. The beam has constant flexural rigidity. \n<p>The bending moment at the middle support is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{w{L^2}} \\over 4}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{w{L^2}} \\over 8}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{w{L^2}} \\over 12}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{w{L^2}} \\over 16}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-two-span-continuous-beam-having-equal-spans-each-of-length-2007-marks-2-b2mgdykqvnn0z9g7.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vJRokHbKHcYsLANz",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The plastic collapse load $${{W_P}}$$ for the propped cantilever supporting two point loads as shown in the figure in terms of plastic moment capacity,  $${{M_P}}$$ is given by\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/lTvhKe09rlynSioeA/gpHAuYtkB916eRHWqCQMwRUnUYCUs/TsejRAAGLRjQd1IjQpBx2z/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2007 Structural Analysis - Plastic Analysis Question 25 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{3{M_P}} \\over L}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{4{M_P}} \\over L}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{5{M_P}} \\over L}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{6{M_P}} \\over L}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-plastic-collapse-load-wp-for-the-propped-cantil-2007-marks-2-vjrokhbkhcyslanz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "I8zWI8KujMoPNSXm",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "matrix-method",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The stiffness coefficient $${k_{ij}}$$ indicates",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "force at $$i$$ due to a unit deformation at $$j$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "deformation at $$j$$ due to a unit force at $$i$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "deformation at $$i$$ due to a unit force at $$j$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "force at $$j$$ due to a unit deformation at $$i$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-stiffness-coefficient-kij-indicates-2007-marks-1-i8zwi8kujmopnsxm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                }
+            ],
+            "title": "Structural Analysis"
+        },
+        {
+            "_id": "Transportation Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a3793a92e3c0",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "transportation-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "highway-geometric-design",
+                    "year": 2007,
+                    "paperTitle": "GATE CE 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "While designing a hill road with a ruling gradient of 6%, if a sharp horizontal\ncurve of 50m radius is encountered, the compensated gradient at the curve as per\nthe Indian Roads Congress specifications should be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "4.4%"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "4.75%"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "5.0%"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "5.25%"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "while-designing-a-hill-road-with-a-ruling-gradient-of-6-if-a-gate-ce-2007-marks-2-5a3793a92e3c0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2007"
+                }
+            ],
+            "title": "Transportation Engineering"
+        }
+    ]
+}

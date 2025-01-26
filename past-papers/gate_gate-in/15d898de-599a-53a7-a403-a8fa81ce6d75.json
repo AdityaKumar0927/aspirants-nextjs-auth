@@ -1,0 +1,310 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EcALXu2XD1f5ckm7",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2017,
+                    "paperTitle": "GATE IN 2017",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The  figure shows a shape $$ABC$$ and its minor image $${A_1}$$$${B_1}$$$${C_1}$$ across the horizontal axis ($$x$$-axis). The coordinate transformation matrix that maps $$ABC$$ to $${A_1}$$$${B_1}$$$${C_1}$$ is\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/V5NTNsewhtjkSDkS5/SBnPGGu8P0aXifxjysKyoMfODo71v/IN33rrSFcIQ9sN4a63Ib7H/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE IN 2017 Engineering Mathematics - Linear Algebra Question 2 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left[ {\\matrix{\n   0 &amp; 1  \\cr \n   1 &amp; 0  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left[ {\\matrix{\n   0 &amp; 1  \\cr \n   { - 1} &amp; 0  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left[ {\\matrix{\n   { - 1} &amp; 0  \\cr \n   0 &amp; 1  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left[ {\\matrix{\n   1 &amp; 0  \\cr \n   0 &amp; {- 1}  \\cr \n\n } } \\right]$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-figure-shows-a-shape-abc-and-its-minor-image-a1b1c1-acro-gate-in-2017-marks-1-ecalxu2xd1f5ckm7.htm",
+                    "updated_time": 1567749870,
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2017",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2017"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TFrcuABP1OXOoYoS",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2017,
+                    "paperTitle": "GATE IN 2017",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The eigen values of the matrix $$A = \\left[ {\\matrix{\n   1 &amp; { - 1} &amp; 5  \\cr \n   0 &amp; 5 &amp; 6  \\cr \n   0 &amp; { - 6} &amp; 5  \\cr \n\n } } \\right]$$ are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-1,5,6$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1, - 5 \\pm j6$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1,5 \\pm j6$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1,5,5$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-eigen-values-of-the-matrix-a-left-matrix-1-1-5-cr-0-5-6-gate-in-2017-marks-1-tfrcuabp1oxooyos.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2017",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2017"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OrY2viIndmvKexA0",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2017,
+                    "paperTitle": "GATE IN 2017",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$V$$ is a non-zero vector of dimension $$3 \\times 1,$$ then the matrix $$\\,A = V{V^T}$$ has a rank $$=$$ ________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1 ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-v-is-a-non-zero-vector-of-dimension-3-times-1-then-the-ma-gate-in-2017-marks-1-ory2viindmvkexa0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2017",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2017"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ihWIfTfixmpwva2n",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2017,
+                    "paperTitle": "GATE IN 2017",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The angle between two vectors $${X_1} = {\\left[ {\\matrix{\n   2 &amp; 6 &amp; {14}  \\cr \n\n } } \\right]^T}$$ and $${X_2} = {\\left[ {\\matrix{\n   { - 12} &amp; 8 &amp; {16}  \\cr \n\n } } \\right]^T}$$ in radian is ________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.72",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-angle-between-two-vectors-x1-left-matrix-2-6-14-cr-right-gate-in-2017-marks-2-ihwiftfixmpwva2n.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2017",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2017"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EETezmNiqlchkJJh",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2017,
+                    "paperTitle": "GATE IN 2017",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The probability that a communication  system will have high fidelity is $$0.81.$$ The probability that the system will have both high fidelity and high selectivity is $$0.18$$. The probability that a given system with high fidelity will have high selectivity is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.181$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.191$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.222$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.826$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-probability-that-a-communication-system-will-have-high-f-gate-in-2017-marks-2-eetezmniqlchkjjh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2017",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2017"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rBH9m0w8LHQlGTXh",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2017,
+                    "paperTitle": "GATE IN 2017",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$z=x+iy$$ where $$i = \\sqrt { - 1} .$$ Then $$\\overline {\\cos \\,z}  = $$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$cosz$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\cos \\,\\overline z $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$sinz$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\sin \\,\\overline z $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-zxiy-where-i-sqrt-1-then-overline-cos-z-gate-in-2017-set-1-marks-1-rbh9m0w8lhqlgtxh.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2017",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2017"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        }
+    ]
+}

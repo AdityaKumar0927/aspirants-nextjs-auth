@@ -1,0 +1,2320 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Analog Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tVEqMuFDj2PndxN3",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An Op-Amp has an offset voltage of 1mV and is ideal in all other respects. If this OP-Amp is used in the circuit shown in fig. The O/P voltage will be (Select the nearest value).\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/aeac4d65a3810448b663be71bd50698ba7f39922e459bbd654875ec393a75d8d.jpg\" loading=\"lazy\" alt=\"GATE ECE 1992 Analog Circuits - Operational Amplifier Question 56 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1 mV "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1 V "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$ \\pm $$ 2 mV"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0 V"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-op-amp-has-an-offset-voltage-of-1mv-and-is-ideal-in-all-o-gate-ece-1992-marks-2-tveqmufdj2pndxn3.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yWeoWJTQckc4DRWw",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the circuit shown in Fig. The circuit uses an ideal operational amplifier. Assuming that the impedances at noodes A and B do not load the preceeding bridge circuit, calculate the output voltage V<sub>o</sub>.\n<p>when $${R_a}\\, = \\,{R_b}\\, = \\,{R_c}\\,{R_d}\\,$$ ohms.\n<br>when $${R_a}\\, = \\,{R_b}\\, = {R_c}\\, = 100$$ ohms and $${R_{d\\,}}\\, = \\,120$$ ohms.</p>\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/4b91e74ef0e793804a3c3dbb6647e254613e4fb8a6c16162d050aff10c0ec138.jpg\" loading=\"lazy\" alt=\"GATE ECE 1992 Analog Circuits - Operational Amplifier Question 13 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a)V<sub>0</sub> = 0V\n<br>(b)V<sub>0</sub> = 0.545V",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-circuit-shown-in-fig-the-circuit-uses-an-ideal-gate-ece-1992-marks-5-yweowjtqckc4drww.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1wBQxDnI9uKKZb1v",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The circuit of fig. uses an ideal OP_Amp for small positive values of V<sub>in</sub>, the circuit works as \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/7e094d022688806354a8b7a0ed8c0aa6fb9ae458ff701fb09e1b9d767ca11bd2.jpg\" loading=\"lazy\" alt=\"GATE ECE 1992 Analog Circuits - Operational Amplifier Question 57 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a half wave rectifier\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a differentiator "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "a logarithmic amplifier "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "an exponential amplifier  "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-circuit-of-fig-uses-an-ideal-opamp-for-small-positive-va-gate-ece-1992-marks-2-1wbqxdni9ukkzb1v.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6XlCpYYRAcLhzguF",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bipolar-junction-transistor",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the transistors in fig.  has  high value of \u03b2 and a v<sub>BE</sub> of 0.65,  the\ncurrent I flowing through the 2 kilo ohms resistance will be ______. \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/f005a29ae26bce0f3aba0f5579efb6de4202d9dc3303e126f15dce6e70282810.jpg\" loading=\"lazy\" alt=\"GATE ECE 1992 Analog Circuits - Bipolar Junction Transistor Question 44 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1 ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-transistors-in-fig-has-high-value-of-and-a-vbe-of-065-gate-ece-1992-marks-2-6xlcpyyraclhzguf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "IsZ7cMcNuDOgjtvW",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fet-and-mosfet",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An  n-channel JFET has a pinch-off voltage of V<sub>p</sub> = -5V. V<sub>DS</sub>(max) = 20V and g<sub>m</sub>  = 2mA/V. The minimum 'ON' resistance is achieved in the JFET for ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${V_{GS}} =  -7V$$ and  $${V_{DS}} = 0V$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${V_{GS}} =  7V$$ and  $${V_{DS}} = 0V$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${V_{GS}} =  0V$$ and  $${V_{DS}} = 20V$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${V_{GS}} =  -7V$$ and  $${V_{DS}} = 20V$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-n-channel-jfet-has-a-pinch-off-voltage-of-vp-5v-vdsmax-20-gate-ece-1992-marks-2-isz7cmcnudogjtvw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7R9YCPE4LKmvgAUE",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fet-and-mosfet",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The JFET in the circuit shown in fig. has an I<sub>DSS</sub> = 10mA and V<sub>p</sub> = -5V. The value of the resistance R<sub>s</sub> for a drain current I<sub>DS</sub> = 6.4mA is (select the Nearest value).\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/4b4b49f67dd1ceeafe29449d05a8d74335c0dd2c76861308c26a0554ef55f5af.jpg\" loading=\"lazy\" alt=\"GATE ECE 1992 Analog Circuits - FET and MOSFET Question 21 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "150 ohms"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "470 ohms "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "560 ohms "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1 Kilo ohm"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-jfet-in-the-circuit-shown-in-fig-has-an-idss-10ma-and-vp-gate-ece-1992-marks-2-7r9ycpe4lkmvgaue.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "upRX2mjTB5IPFHnt",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Assume that the operational amplifier in figure is deal the current I through the <b>IK</b> ohm resistor is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/1152470da1e6f0f41b19d4810be8b31c6ca2e12720cd1418853bd3067467b90a.jpg\" loading=\"lazy\" alt=\"GATE ECE 1992 Analog Circuits - Operational Amplifier Question 58 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "- 4 mA",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "assume-that-the-operational-amplifier-in-figure-is-deal-the-gate-ece-1992-marks-2-uprx2mjtb5ipfhnt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                }
+            ],
+            "title": "Analog Circuits"
+        },
+        {
+            "_id": "Communications",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jA6m2z2q1DpKYSA8",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "digital-communication-systems",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The bit stream 01001 is differentially encoded using 'Delay and Ex OR' scheme for DPSK transmission. Assuming the reference bit as a '1' and assigning phases of '0' and '$$\\,\\pi $$' for 1's and 0's respectively, in the encoded sequence, the transmitted phase sequence becomes ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\,\\pi $$ 0$$\\,\\pi $$ $$\\,\\pi $$ 0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0 $$\\,\\pi $$ $$\\,\\pi $$ 0 0"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0 $$\\,\\pi $$ $$\\,\\pi $$ $$\\,\\pi $$ 0"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\,\\pi $$ $$\\,\\pi $$ 0$$\\,\\pi $$ $$\\,\\pi $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-bit-stream-01001-is-differentially-encoded-using-delay-a-gate-ece-1992-marks-2-ja6m2z2q1dpkysa8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QXAAJPY5InrpyQ03",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "digital-communication-systems",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Coherent demodulation of FSK signal can be effected using ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "correlation receiver "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "band pass filters and envelope detectors "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "matched filter "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "discriminator detection "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "coherent-demodulation-of-fsk-signal-can-be-effected-using-gate-ece-1992-marks-2-qxaajpy5inrpyq03.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "P0DVfBhCR1G6e4Ua",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "digital-communication-systems",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Source encoding in a data communication system is done in order to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "enhance the information transmission. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "band pass filters and envelope rate detectors.  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "conserve the transmitted power. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "discriminator detection. "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "source-encoding-in-a-data-communication-system-is-done-in-or-gate-ece-1992-marks-2-p0dvfbhcr1g6e4ua.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DgdpnGPOTuu9mbBE",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "random-signals-and-noise",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a random variable 'X' following the probability density function, p (x), shown in figure, the mean and the variance are, respectively.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/RHPqVO8rZfCtjKsZv/TDHZzoIxoE2tdVnJ43BFt56PIj9MJ/3qHLhPz84aM000DDOYqKfB/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 1992 Communications - Random Signals and Noise Question 16 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1/2 and 2/3"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1 and 4/3"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1 and 2/3"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2 and 4/3"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-random-variable-x-following-the-probability-density-fu-gate-ece-1992-marks-2-dgdpngpotuu9mbbe.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a10a1d72aa15",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analog-communication-systems",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The maximum power efficiency of an AM modulator is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "25%"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "50%"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "75%"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "100%"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-maximum-power-efficiency-of-an-am-modulator-is-gate-ece-1992-marks-2-5a10a1d72aa15.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                }
+            ],
+            "title": "Communications"
+        },
+        {
+            "_id": "Control Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8494b869bb0",
+                    "exam": "gate-ece",
+                    "marks": 8,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "time-response-analysis",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Block diagram model of a position control system is shown in figure.\n<img alt=\"GATE ECE 1992 Control Systems - Time Response Analysis Question 8 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/6bb842db2c578078e3192787178ce252860ad524199ed9262ba03c3dae0d94e1.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">\n<br>(a) In absence of derivative feedback (K<sub>t</sub>=0) , determine damping ratio of the\nsystem for amplifier gain K<sub>A</sub>=5. Also find the steady state error to unit\nramp input.\n<br><br>(b) Find suitable values of the parameters K<sub>A</sub> and K<sub>t</sub> so that damping ratio of the\nsystem is increased to 0.7 without affecting the steady state error as\nobtained in part (a).",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "<br>(a) $$\\frac{C\\left(s\\right)}{R\\left(s\\right)}=\\frac{10}{s^2+2s+10}$$\n<br>Steady state error for unit Ramp=0.2\n<br>(b) K<sub>A</sub> =25 and K<sub>t</sub> = 4\n",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "block-diagram-model-of-a-position-control-system-is-shown-in-gate-ece-1992-marks-8-5a8494b869bb0.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0ece9d7ed30",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "root-locus-diagram",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given a unity feedback system with open loop transfer function,\n$$$G\\left(s\\right)=\\frac K{s\\left(s+1\\right)\\left(s+2\\right)}$$$\nThe root locus plot of the system is of the form.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img src=\"https://gateclass.cdn.examgoal.net/examside/questions/7c529bde65247220b937c8ce6f9f48024c6dc96b26101c2e4e5dd218eb96945b.jpg\" style=\"text-align:center;height:auto;max-width:100%;\" loading=\"lazy\" alt=\"GATE ECE 1992 Control Systems - Root Locus Diagram Question 16 English Option 1\">"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img src=\"https://gateclass.cdn.examgoal.net/examside/questions/f8c57604ed055d524c2493617afafe1a47cab6539d8f9f84a2c393b66fdeec00.jpg\" style=\"text-align:center;height:auto;max-width:100%;\" loading=\"lazy\" alt=\"GATE ECE 1992 Control Systems - Root Locus Diagram Question 16 English Option 2\">"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img src=\"https://gateclass.cdn.examgoal.net/examside/questions/7f09045772c5c3acc87b5568e9bb7bfc5e0d1bd9640f5c74f5ba9ae8ab4e29f3.jpg\" style=\"text-align:center;height:auto;max-width:100%;\" loading=\"lazy\" alt=\"GATE ECE 1992 Control Systems - Root Locus Diagram Question 16 English Option 3\">"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img src=\"https://gateclass.cdn.examgoal.net/examside/questions/f56170b54f09a4935c7c2509abdf12ad1d0259744dd136836a287ec5a05710c0.jpg\" style=\"text-align:center;height:auto;max-width:100%;\" loading=\"lazy\" alt=\"GATE ECE 1992 Control Systems - Root Locus Diagram Question 16 English Option 4\">"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-a-unity-feedback-system-with-open-loop-transfer-functi-gate-ece-1992-marks-2-5a0ece9d7ed30.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mY5sryarQy5gg0ZX",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "frequency-response-analysis",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Bode plot of a stable system is shown in fig. The transfer function of the system is\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/e0c35541a4c711a5f8b0b2952f0ba090148cc10614675f756df00e5315d3a4b6.jpg\" loading=\"lazy\" alt=\"GATE ECE 1992 Control Systems - Frequency Response Analysis Question 42 English\"> \n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "T.F=$${{10} \\over {\\left( {1 + s} \\right)}}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "bode-plot-of-a-stable-system-is-shown-in-fig-the-transfer-fu-gate-ece-1992-marks-2-my5sryarqy5gg0zx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qD8WEY6DRgpOSZIL",
+                    "exam": "gate-ece",
+                    "marks": 8,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "frequency-response-analysis",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A unity feedback system has open-loop transfer function\n$$G(s) = {1 \\over {s\\left( {2s + 1} \\right)\\left( {s + 1} \\right)}}$$ \n<p>Sketch Nyquist plot for the system and there from obtain the gain margin and the\nphase margin.</p> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Gain Margin = $$1.49^\\circ $$ \nPhase Margin =$$11.57^\\circ $$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-unity-feedback-system-has-open-loop-transfer-functiongs-1-gate-ece-1992-marks-8-qd8wey6drgposzil.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lOAQirB0FNZvBFYO",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "compensators",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A process with open-loop model \n$$G(s) = {{K{e^{ - s{\\tau _d}}}} \\over {\\tau s + 1}},$$ is controlled by a PID controller. For this process",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "the integral mode improves transient performance"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the integral mode improves steady state performance "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the derivative mode improves transient performance "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "the derivative mode improves steady state performance  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-process-with-open-loop-model-gs-ke-stau-d-over-tau-s-1-is-gate-ece-1992-marks-2-loaqirb0fnzvbfyo.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PZLcjmTGyLIb55Mt",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "state-space-analysis",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A linear time-invariant system is described by the state variable model\n$$$\\left[ {\\matrix{\n   {{{\\mathop x\\limits^ \\bullet  }_1}}  \\cr \n   {{{\\mathop x\\limits^ \\bullet  }_2}}  \\cr \n\n } } \\right] = \\left[ {\\matrix{\n   { - 1} &amp; 0  \\cr \n   0 &amp; { - 2}  \\cr \n\n } } \\right]\\left[ {\\matrix{\n   {{x_1}}  \\cr \n   {{x_2}}  \\cr \n\n } } \\right] + \\left[ {\\matrix{\n   0  \\cr \n   1  \\cr \n\n } } \\right]u.$$$\n$$$Y = \\left[ {\\matrix{\n   1 &amp; 2  \\cr \n\n } } \\right]\\left[ {\\matrix{\n   {{x_1}}  \\cr \n   {{x_2}}  \\cr \n\n } } \\right]$$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The system is completely controllable "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The system is not completely controllable "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The system is completely observable "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The system is not completely observable  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B",
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-linear-time-invariant-system-is-described-by-the-state-var-gate-ece-1992-marks-2-pzlcjmtgylib55mt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                }
+            ],
+            "title": "Control Systems"
+        },
+        {
+            "_id": "Digital Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bV40PtUdhKWZEyt1",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinational-circuits",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The logic realized by the circuit shown in figure is\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/08eab9ef38581be0157fe26a2f9db8db7326dcdaccdbe9dce1f27ebe3216e8d2.jpg\" loading=\"lazy\" alt=\"GATE ECE 1992 Digital Circuits - Combinational Circuits Question 13 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "F = A $$ \\odot $$ C "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "F = A $$ \\oplus $$ C"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "F = B $$ \\odot $$ C "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "F = B $$ \\oplus $$ C "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-logic-realized-by-the-circuit-shown-in-figure-is-gate-ece-1992-marks-1-bv40ptudhkwzeyt1.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hYGu0Y8Swp8uIvXU",
+                    "exam": "gate-ece",
+                    "marks": 8,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logic-gates",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A combinational circuit has three inputs A, B and C and an output F.  F is true only for the following input combinations?\n<p>A is false and B is true\n<br>A is false and C is true\n<br>A, B and C are all false \n<br>A, B and C are all true.</p>\n<p>(a)Write the truth table for F. use the convention, true = 1 and false = 0. \n<br>(b)Write the simplified expression for F as a Sum of Products.\n<br>(c) Write the simplified expression for F as a product of Sums.\n<br>(d) Draw a logic circuit implementation of F using the minimum number of 2\ninput NAND gates only. </p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(b) F = $$\\overline A \\, + \\,BC$$ \n<br>(c) F = $$\\left( {\\overline A  + B} \\right)\\left( {A + C} \\right)$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-combinational-circuit-has-three-inputs-a-b-and-c-and-an-ou-gate-ece-1992-marks-8-hygu0y8swp8uivxu.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PW65pwwU1Yr7q4kk",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The initial contents of the 4-bit serial-in-parallel-out, right-shift, Shift Register shown in figure is 0110. After three clock pulses are applied, the contents of the Shift Register will be \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/8e2c337407ba5c77bf6fb14c6b1da3dbd7b24e57f7f5e7205034039d84e9722d.jpg\" loading=\"lazy\" alt=\"GATE ECE 1992 Digital Circuits - Sequential Circuits Question 69 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0000 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0101 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1010 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1111"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-initial-contents-of-the-4-bit-serial-in-parallel-out-rig-gate-ece-1992-marks-1-pw65pwwu1yr7q4kk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1DKGf30RgfYAHga9",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "semiconductor-memories",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Choose the correct satatement(s) from the following:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "PROM contains a programmable AND array and a fixed OR array."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "PLA contains a fixed AND array and a programmable OR array\n"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "PROM contains a fixed AND array and a programmable OR array "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "PLA contains a programmable AND array and a programmable OR array "
+                                }
+                            ],
+                            "correct_options": [
+                                "C",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "choose-the-correct-satatements-from-the-following-gate-ece-1992-marks-1-1dkgf30rgfyahga9.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "R4eGT8dNGzCoI2mi",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logic-families",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The figure shows the circuit of a gate in the Resistor Transistor Logic (RTL) family. The circuit represents a\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/281821c12955f799960f2285637b4fe7314be0b2dd365a7074effc1e5f4b0ebe.jpg\" loading=\"lazy\" alt=\"GATE ECE 1992 Digital Circuits - Logic Families Question 23 English\">\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "NAND"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "AND"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "NOR"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "OR"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-figure-shows-the-circuit-of-a-gate-in-the-resistor-trans-gate-ece-1992-marks-1-r4egt8dngzcoi2mi.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vvo9ZQ8i9y9AWtMB",
+                    "exam": "gate-ece",
+                    "marks": 8,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A new clocked \"X-Y\" flip-flop is defined with two inputs, X and Y in addition to the clock input. The flip-flop functions as follows:\n<p>If XY=00, the flip-flop changes stage with each clock pulse.</p>\n<p>If XY=01, the flip-flop state Q becomes 1 with the next clock pulse.</p>\n<p>If XY=10, the flip-flop state Q becomes 0 with the next clock pulse.</p>\n<p>If XY=11, no change of state occurs with the clock pulse.</p>\n<p>(a) Write the Truth table for the X-Y flip flop</p>\n<p>(b) Write the Excitation table for the X-Y flip flop</p>\n<p>(c) It is desired to convert a J-K flip flop into the X-Y flip flop by adding some external gates, if necessary. Draw a circuit to show how you will implement the X-Y flip-flop using a J-K flip-flop.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-new-clocked-x-y-flip-flop-is-defined-with-two-inputs-x-and-gate-ece-1992-marks-8-vvo9zq8i9y9awtmb.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                }
+            ],
+            "title": "Digital Circuits"
+        },
+        {
+            "_id": "Electromagnetics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3HyG7f4z1kXYB8Az",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transmission-lines",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A transmission line whose characteristic impedance is a pure resistance ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "must be a lossless line "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "must be a distortionless line "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "may not be a lossless line "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "may to be a distortionless line "
+                                }
+                            ],
+                            "correct_options": [
+                                "B",
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-transmission-line-whose-characteristic-impedance-is-a-pure-gate-ece-1992-marks-2-3hyg7f4z1kxyb8az.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "a6uHI6ural224UJ4",
+                    "exam": "gate-ece",
+                    "marks": 8,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "uniform-plane-waves",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A uniform plane wave traveling in free space along the +$$z$$ direction and having its electric field along the$$ x$$-direction, is normally incident on a thick brass sheet, infinite in extent (along the $$x$$-and $$y$$-directions). The electric field intensity of the wave is given by\n$$${E_x} = 1225\\,\\cos \\,\\left( {5.89 \\times {{10}^{10}}t - \\beta z} \\right)\\,\\,\\,\\,V/m$$$.\n<p>Calculate the power per square metre that causes heating of the brass sheet, taking $${ \\in _r} = 1,\\,\\,\\,{\\mu _r} = 1$$ and\n$$\\sigma  = 1.649 \\times {10^7}\\,\\,\\,\\,\\,$$ mhos/metre for brass.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$0.25\\,\\,W$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-a-uniform-plane-wave-traveling-in-free-space-along-the-z-di-gate-ece-1992-marks-8-a6uhi6ural224uj4.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "r76PXrk6erdDOGtI",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "antennas",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two dissimilar antennas having their maximum directivities equal",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "must have their beamwidths also equal\n "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "cannot have their beamwidths equal because they are dissimilar antennas "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "may not necessarily have their maximum power gains equal "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "must have their effective aperture areas (capture areas) also equal.  "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-dissimilar-antennas-having-their-maximum-directivities-e-gate-ece-1992-marks-2-r76pxrk6erddogti.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zuIJRw6otl5NNuSH",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "antennas",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The beam width-between-first-null of a uniform linear array of N equally-spaced (element spacing = d) equally-excited antennas is determined by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "N alone and not by d\n\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "d alone and not by N"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the ratio (N/d) "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "the product (Nd)"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-beam-width-between-first-null-of-a-uniform-linear-array-gate-ece-1992-marks-2-zuijrw6otl5nnush.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HeLeAfm2CsHYhie7",
+                    "exam": "gate-ece",
+                    "marks": 8,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "antennas",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Elements of a linear array of three equally spaced (element spacing $$0.5\\lambda $$ ) vertical mast radiators are excited as given in Fig. For the horizontal plane radiation pattern of the array determine the direction of the major lobe (main lobe or principal lobe) and calculate its half-power-beam-width in degrees. \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/iYuL7f46T0W34s1Lt/XKvluhDHquyLZ1v1k3CLQn1dyvX2Y/49N9MaDdP8VOnfGurTMrHh/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 1992 Electromagnetics - Antennas Question 11 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Direction of major lobe $$ =  \\pm {60^ \\circ }$$  \n<br>Half-power-beam-width $$ = {52^ \\circ }$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "elements-of-a-linear-array-of-three-equally-spaced-element-s-gate-ece-1992-marks-8-heleafm2cshyhie7.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                }
+            ],
+            "title": "Electromagnetics"
+        },
+        {
+            "_id": "Electronic Devices and Vlsi",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1005428822a",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "semiconductor-physics",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A semiconductor is irradiated with light such that carriers are uniformly\ngenerated throughout its volume. The semiconductor is n-type with $$N_D=10^{19}/cm^3$$. If the excess electron concentration in the steady state id $$\\triangle n=10^{15}/cm^3$$ and if $$\\tau_p=10\\;\\mu\\;sec$$ [minority carrier life time] the generation rate due to\nirradiation",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$is\\;10^{20}\\;e-h\\;pairs/cm^3/sec$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$is\\;10^{24}\\;e-h\\;pairs/cm^3/sec$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$is\\;10^{10}\\;e-h\\;pairs/cm^3/sec$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "cannot be determined as the given data is insufficient"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-semiconductor-is-irradiated-with-light-such-that-carriers-gate-ece-1992-marks-2-5a1005428822a.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a182d92aadda",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pn-junction",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The 6 V Zener diode shown in figure has zero Zener resistance and a knee current\nof 5 mA. The minimum value of R, so that the voltage across it does not fall below\n6 V is:\n<img alt=\"GATE ECE 1992 Electronic Devices and VLSI - PN Junction Question 17 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/9d701806a604510f564f13d7b38bf4961cb9ad6f1d6bb2b3dd6fab9ac464a659.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1.2 k\u03a9"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "50 \u03a9"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "80 \u03a9"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0 \u03a9"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-6-v-zener-diode-shown-in-figure-has-zero-zener-resistanc-gate-ece-1992-marks-2-5a182d92aadda.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa55a2250da9",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bjt-and-fet",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An n-channel JFET has a pinch-off voltage V<sub>P</sub> = -5 V, V<sub>DS</sub>(max) = 20 V and g<sub>m</sub> = 2 mA/V. The minimum \u2018ON\u2019 resistance is achieved in the JEFT for",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "V<sub>GS</sub> = - 7 V and V<sub>DS</sub> = 0 V"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "V<sub>GS</sub> = 0 V and V<sub>DS</sub> = 0 V"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "V<sub>GS</sub> = 0 V and V<sub>DS</sub> = 20 V"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "V<sub>GS</sub> = - 7 V and V<sub>DS</sub> = 20 V"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-n-channel-jfet-has-a-pinch-off-voltage-vp-5-v-vdsmax-20-v-gate-ece-1992-marks-2-5aa55a2250da9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa557d5cd7d3",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bjt-and-fet",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a transistor having finite B, the forward bias across the base emitter junction\nis kept constant and the reverse bias across the collector base junction is\nincreased. Neglecting the leakage across the collector base junction and the\ndepletion region generating current, the base current will __________.\n(increase/decrease/remain constant).",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Decrease",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-transistor-having-finite-b-the-forward-bias-across-the-gate-ece-1992-marks-2-5aa557d5cd7d3.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                }
+            ],
+            "title": "Electronic Devices and Vlsi"
+        },
+        {
+            "_id": "Microprocessors",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oVvTIh7PTQsJWgec",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "microprocessors",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "instruction-set-and-programming-with-8085",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following program is run on 8085 microprocessor: \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/4e7f8c231f9648cacb2964993ab8e7a8fb081d3fa15878a1900e3f1af5f57a6b.jpg\" loading=\"lazy\" alt=\"GATE ECE 1992 Microprocessors - Instruction Set and Programming with 8085 Question 28 English\">\nAt the completion of execution of the program, the program Counter of the 8085 contains ________ and the Stack Pointer contains ________. \n\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "<br> PC= 200 AH\n<br> SP = OFF EH",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-the-following-program-is-run-on-8085-microprocessor-at-the-gate-ece-1992-marks-1-ovvtih7ptqsjwgec.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a10489b7f4ed",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "microprocessors",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pin-details-of-8085-and-interfacing-with-8085",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In an 8085 microprocessor system with memory mapped I/O,",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "I/O devices have 16 bit addresses"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "I/O devices are accessed using IN and OUT instructions"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "there can be a maximum of 256 input devices and 256 output devices"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "arithmetic and logic operations can be directly performed with the I/O data."
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-an-8085-microprocessor-system-with-memory-mapped-io-gate-ece-1992-marks-1-5a10489b7f4ed.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                }
+            ],
+            "title": "Microprocessors"
+        },
+        {
+            "_id": "Network Theory",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "l32WeG53AH1NiOts",
+                    "exam": "gate-ece",
+                    "marks": 8,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "two-port-networks",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The two-port Darlington impedance booster of figure uses identical transistors $$({h_{ie}} = 1\\,k,\\,\\,{h_{fe}} = \\,100,\\,\\,{h_{re}} = \\,\\,{h_{oe}} = \\,0$$. Calculate the z-parameters of the network. (Use relavant approximations)\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/a9na1SkSuZVzsgvav/78of3udJeAnBYylhvuekmlksfjTVR/snDoXWha9MVTyandJsWxnk/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 1992 Network Theory - Two Port Networks Question 8 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "<br> $${Z_{11}} = \\,10.1\\,\\,M\\,\\Omega $$\n<br> $${Z_{12}} = \\,1\\,\\,K\\,\\Omega $$\n<br> $${Z_{21}} = \\,10\\,\\,M\\,\\Omega $$\n<br> $${Z_{22}} = \\,1\\,\\,K\\,\\Omega $$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-two-port-darlington-impedance-booster-of-figure-uses-ide-gate-ece-1992-marks-8-l32weg53ah1niots.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a085f5ddbe4a",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transient-response",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>For the compensated attenuator of figure, the impulse response under the\ncondition $$R_1C_1\\;=\\;R_2C_2$$ is: </p>\n<img alt=\"GATE ECE 1992 Network Theory - Transient Response Question 37 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/8636d0816324901e6a1454ae681b7f161b6b95c9c6bd6c4942e61dfbed21871d.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\frac{{\\mathrm R}_2}{{\\mathrm R}_1\\;+\\;{\\mathrm R}_2}\\left[1\\;-\\;\\mathrm e^\\frac1{{\\mathrm R}_1{\\mathrm C}_1}\\right]\\mathrm u\\left(\\mathrm t\\right)$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\frac{{\\mathrm R}_2}{{\\mathrm R}_1\\;+\\;{\\mathrm R}_2}\\mathrm\\delta\\left(\\mathrm t\\right)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\frac{{\\mathrm R}_2}{{\\mathrm R}_1\\;+\\;{\\mathrm R}_2}\\mathrm u\\left(\\mathrm t\\right)$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\frac{{\\mathrm R}_2}{{\\mathrm R}_1\\;+\\;{\\mathrm R}_2}\\mathrm e^\\frac1{{\\mathrm R}_1{\\mathrm C}_1}\\mathrm u\\left(\\mathrm t\\right)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-compensated-attenuator-of-figure-the-impulse-respons-gate-ece-1992-marks-2-5a085f5ddbe4a.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a08db2291abf",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-response",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the series R-L-C circuit of figure(a), the partial phasor diagram at a certain\nfrequency is shown in figure (b).The operating frequency of the circuit is:\n<img alt=\"GATE ECE 1992 Network Theory - Sinusoidal Steady State Response Question 58 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/3007ca6c9fb8f559d0349d6e8ea58e1075fbda628e1e6db005444658dd246f25.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "equal to the resonance frequency"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "less than the resonance frequency"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "greater than the resonance frequency"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "not zero"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-series-r-l-c-circuit-of-figurea-the-partial-phasor-d-gate-ece-1992-marks-2-5a08db2291abf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0ab3588ab3c",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "two-port-networks",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a 2-port network to be reciprocal",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$z_{11}\\;=\\;z_{22}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$y_{21}\\;=\\;y_{12}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$h_{21}\\;=\\;-h_{12}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "AB - BC = 0"
+                                }
+                            ],
+                            "correct_options": [
+                                "B",
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-2-port-network-to-be-reciprocal-gate-ece-1992-marks-2-5a0ab3588ab3c.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0b0d94db114",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-graphs",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Relative to a given fixed tree of a network",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Link currents form an independent set"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Branch voltage from an independent set"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Link currents from an independent set"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Branch voltage from an independent set"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "relative-to-a-given-fixed-tree-of-a-network-gate-ece-1992-marks-2-5a0b0d94db114.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a021cedd54a7",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Of the four networks,  N<sub>1</sub>,N<sub>2</sub>, N<sub>3</sub> and N<sub>4</sub> of figure, the networks having identical\ndriving point functions are </p>\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/BJmzCUEVlSwDOuiOC/ccjABveEAK2Ecy7kQEsYKJlCl48xj/u5i0kQ8IISvyCGIT6yxwep/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 1992 Network Theory - Network Elements Question 25 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "N<sub>1</sub> and N<sub>2</sub>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "N<sub>2</sub> and N<sub>4</sub>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "N<sub>1</sub> and N<sub>3</sub>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "N<sub>1</sub> and N<sub>4</sub>"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "(N<sub>1</sub>)<br/><br/>$${Y_1}(s) = {1 \\over {1/s}} + {1 \\over {2s + 1}} + {1 \\over {{1 \\over s} + 2}}$$<br/><br/>$${Y_1}(s) = {{2{s^2} + 2s + 1} \\over {2s + 1}}$$<br/><br/>(N<sub>2</sub>) <br/><br/>$${Y_2}(s) = {1 \\over {2s + 1}} + {1 \\over {2 + {1 \\over s}}} = {{s + 1} \\over {2s + 1}}$$<br/><br/>(N<sub>3</sub>)<br/><br/>$${Y_3}(s) = s + {1 \\over {1 + {1 \\over {1 + {1 \\over s}}}}} = s + {{1 + s} \\over {s + 1 + s}}$$<br/><br/>$${Y_3}(s) = {{2{s^2} + 2s + 1} \\over {2s + 1}}$$<br/><br/>(N<sub>4</sub>)<br/><br/>$${Y_4}(s) = s + {1 \\over {2s + 1}} = {{2{s^2} + s + 1} \\over {2s + 1}}$$<br/><br/>Hence, driving point function of N<sub>1</sub> and N<sub>3</sub> are identical."
+                        }
+                    },
+                    "permalink": "of-the-four-networks-n1n2-n3-and-n4-of-figure-the-networks-h-gate-ece-1992-marks-2-5a021cedd54a7.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                }
+            ],
+            "title": "Network Theory"
+        },
+        {
+            "_id": "Signals and Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NKfEPkaoSaAXk6oq",
+                    "exam": "gate-ece",
+                    "marks": 4,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sampling",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A low pass signal x(t) has a spectrum given by $$X(f) = \\left\\{ {\\matrix{\n   {1 - \\left| f \\right|/2000,} &amp; {for\\,\\,\\left| f \\right|\\, \\le \\,2000\\,Hz}  \\cr \n   {0,} &amp; {elsewhere}  \\cr \n\n } } \\right.$$\n<br> Assuming that x(t) is ideally sampled at a sampling frequency of 3 kHz, sketch \n<br> (i) x(f), and \n<br> (ii) the spectrum of the sampled signal for $${\\,\\left| f \\right|\\, \\le \\,\\,3\\,kHz}$$.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-low-pass-signal-xt-has-a-spectrum-given-by-xf-left-matrix-gate-ece-1992-marks-4-nkfepkaosaaxk6oq.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "djL70gOdoNCpmQda",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fourier-transform",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If G(f) represents the Fourier transform of a signal g (t) which is real and odd symmetric in time, then",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "G(t) is complex"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "G(t) is imaginary"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "G(t) is real "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "G(t) is real and non- negative"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-gf-represents-the-fourier-transform-of-a-signal-g-t-which-gate-ece-1992-marks-2-djl70godoncpmqda.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8nfatPDe6IctR5qG",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "discrete-time-linear-time-invariant-systems",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A linear discrete - time system has the characteristic equation, $${z^3} - 0.81\\,\\,z = 0.$$ The system ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "is stable. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "is marginally stable. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "is unstable. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "stability cannot be assessed from the given information. "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-linear-discrete-time-system-has-the-characteristic-equatio-gate-ece-1992-marks-2-8nfatpde6ictr5qg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a105b42652d9",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "representation-of-continuous-time-signal-fourier-series",
+                    "year": 1992,
+                    "paperTitle": "GATE ECE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following signals is/are periodic?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "S (t) = cos2t + cos3t + cos5t"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "S (t) = exp ( j8$$\\pi$$t )"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "S (t) = exp (\u22127t ) sin10$$\\pi$$t"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "S (t) = cos2t cos 4t"
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "B",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-signals-isare-periodic-gate-ece-1992-marks-2-5a105b42652d9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1992"
+                }
+            ],
+            "title": "Signals and Systems"
+        }
+    ]
+}

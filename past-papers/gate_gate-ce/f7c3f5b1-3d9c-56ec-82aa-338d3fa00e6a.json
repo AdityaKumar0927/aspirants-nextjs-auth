@@ -1,0 +1,1453 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SlZfq1j2RYN1sZuA",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The area under the curve shown between $$x=1$$ and $$x=5$$ is to be evaluated using the trapezoidal rule. The following points on the curve are given \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/MZa5hlTHDwNV5yjJN/Fj1xR939Mw0VGQc3kMpAWC4tpGjUM/Re51CHLjmDyEEvEf5taiiC/image.svg\" loading=\"lazy\" alt=\"GATE CE 2009 Engineering Mathematics - Numerical Methods Question 24 English 1\"> \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/4CQTvEspmKPnaTIgW/4uFcdgL6TXXU4OkbSSHhO4mmZOEvu/pQQaFLjL50DBWJeOZdvEHp/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2009 Engineering Mathematics - Numerical Methods Question 24 English 2\"> \n<p>The evaluated area (In m<sup>2</sup>) will be</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$7$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$8.67$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$9$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$18$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-area-under-the-curve-shown-between-x1-and-x5-is-to-be-ev-gate-ce-2009-marks-2-slzfq1j2ryn1szua.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "COdbpOEWBaGgoWuq",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Laplace transform of $$f\\left( x \\right) = \\cos \\,h\\left( {ax} \\right)$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${a \\over {{s^2} - {a^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${s \\over {{s^2} - {a^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${a \\over {{s^2} + {a^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${s \\over {{s^2} + {a^2}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "laplace-transform-of-fleft-x-right-cos-hleft-ax-right-is-gate-ce-2009-marks-1-codbpoewbaggowuq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "J4TRyHTD9qMNAS1R",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The analytical function has singularities at, where $$f(z) = {{z - 1} \\over {{z^2} + 1}}$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1 and -1"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1 and i"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1 and -i"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "i and -i"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-analytical-function-has-singularities-at-where-fz-z-1-ov-gate-ce-2009-marks-1-j4tryhtd9qmnas1r.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QQalV3K6It4QZptW",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of the integral $$\\int\\limits_C {{{\\cos \\left( {2\\pi z} \\right)} \\over {\\left( {2z - 1} \\right)\\left( {z - 3} \\right)}}} dz$$ where C is a closed curve given by |z| = 1 is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$ - \\pi i$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{\\pi i} \\over 5}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{2\\pi i} \\over 5}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ \\pi i$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-the-integral-intlimitsc-cos-left-2pi-z-right-ov-gate-ce-2009-marks-2-qqalv3k6it4qzptw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Nn255hRwzjRl2fHX",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Solution of the differential equation $$3y{{dy} \\over {dx}} + 2x = 0$$ represents a family of ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "ellipses"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "circle "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "parabolas"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "hyperbolas "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "solution-of-the-differential-equation-3ydy-over-dx-2x-0-repr-gate-ce-2009-marks-1-nn255hrwzjrl2fhx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LSERc3vC4kjpvY6e",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The standard normal probability function can be approximated as \n$$$F\\left( {{X_N}} \\right) = {1 \\over {1 + \\exp \\left( { - 1.7255{X_N}{{\\left| {{X_N}} \\right|}^{0.12}}} \\right)}}\\,\\,\\,$$$\n<br>$$\\,{X_N} = $$ standard normal deviate. If mean and standard deviation of annual precipitation are $$102$$ cm and $$27$$ cm respectively,  the probability that the annual precipitation will be $$b/w$$ $$90$$ cm and $$102$$ cm is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$66.7$$% "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$50.0$$% "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$33.3$$% "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$16.7$$%"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-standard-normal-probability-function-can-be-approximated-gate-ce-2009-marks-2-lserc3vc4kjpvy6e.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "z00vtu8qkCGBulLz",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a scalar function $$\\,f\\left( {x,y,z} \\right) = {x^2} + 3{y^2} + 2{z^2},\\,\\,$$ the directional derivative at the point $$P(1,2,-1)$$ in the direction of a vector  $$\\widehat i - \\widehat j + 2\\widehat k\\,\\,$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-18$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-3\\sqrt 6 $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3\\sqrt 6 $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$18$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-scalar-function-fleft-xyz-right-x2-3y2-2z2-the-directi-gate-ce-2009-marks-2-z00vtu8qkcgbullz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DVimFTsEkqB7uBJL",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a scalar function $$f(x,y,z)=$$ $${x^2} + 3{y^2} + 2{z^2},\\,\\,$$ the gradient at the point $$P(1,2,-1)$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2\\widehat i + 6\\widehat j + 4\\widehat k$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2\\widehat i + 12\\widehat j - 4\\widehat k$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2\\widehat i + 12\\widehat j + 4\\widehat k$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\sqrt {56} $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-scalar-function-fxyz-x2-3y2-2z2-the-gradient-at-the-po-gate-ce-2009-marks-1-dvimftsekqb7ubjl.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4nh0MU760qxWNcpm",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the solution of the following set of linear equations by Gauss-elimination using partial pivoting \n$$$5x+y+2z=34,$$$\n$$$4y-3z=12$$$\nand\n$$$10x-2y+z=-4.$$$\n<br>The pivots for elimination of $$x$$ and $$y$$ are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$10$$ and $$4$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$10$$ and $$2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$5$$ and $$4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$5$$ and $$-4$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-solution-of-the-following-set-of-linear-equations-by-gate-ce-2009-marks-1-4nh0mu760qxwncpm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Qyt5QugzmndBVGDN",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A square matrix $$B$$ is symmetric if ____",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${B^T} =  - B$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${B^T} =   B$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${B^{ - 1}} = B$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${B^{ - 1}} = {B^T}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-square-matrix-b-is-symmetric-if-gate-ce-2009-marks-1-qyt5qugzmndbvgdn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Geomatics Engineering Or Surveying",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a4448d386ba9",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "geomatics-engineering-or-surveying",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "angular-measurements-and-compass-survey",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In quadrantal bearing system, bearing of a line varies from",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0\u00ba to 360\u00ba"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0\u00ba to 180\u00ba"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0\u00ba to 90\u00ba"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0\u00ba N to 90\u00bas"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-quadrantal-bearing-system-bearing-of-a-line-varies-from-gate-ce-2009-marks-1-5a4448d386ba9.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                }
+            ],
+            "title": "Geomatics Engineering Or Surveying"
+        },
+        {
+            "_id": "Irrigation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2d764a4ef34",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "irrigation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "water-requirement-of-crops",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An agricultural land of 437ha is to be irrigated for a particular crop. The base\nperiod of the crop is 90 days and the total depth of water required by the crop is\n105cm. If a rainfall of 15cm occurs during the base period, the duty of irrigation\nwater is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "437ha/cumec"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "486ha/cumec"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "741ha/cumec"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "864ha/cumec"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-agricultural-land-of-437ha-is-to-be-irrigated-for-a-parti-gate-ce-2009-marks-2-5a2d764a4ef34.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                }
+            ],
+            "title": "Irrigation"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "IN5S1VP4ZgKH2OzZ",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "prestressed-concrete",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A rectangular concrete beam of width $$120$$ $$mm$$ and depth $$200$$ $$mm$$ is prestressed by pretensioning to a force of $$150$$ $$kN$$ at an eccentricity of $$20$$ $$mm.$$ The cross sectional area of the prestressing steel is $$187.5\\,\\,m{m^2}.$$ Take modulus of elasticity of steel and concrete as $$2.1 \\times {10^5}\\,\\,MPa$$ and $$3.0 \\times {10^4}\\,\\,MPa$$ respectively. The percentage loss of stress in the prestressing steel due to elastic deformation of concrete is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$8.75$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$6.125$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$4.81$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2.19$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-rectangular-concrete-beam-of-width-120-mm-and-dept-2009-marks-2-in5s1vp4zgkh2ozz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1ad13291687",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For limit state of collapse, the partial safety factors recommended by\nIS 456:2000 for estimating the design strength of concrete and reinforcing steel\nare respectively",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1.15 and 1.5"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1.0 and 1.0"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1.5 and 1.15"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1.5 and 1.0"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-limit-state-of-collapse-the-partial-safety-factors-recom-gate-ce-2009-marks-1-5a1ad13291687.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Steel Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "J7O8vpaW0m8E93ki",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "compression-members",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The square root of the ratio of moment of inertia of the cross-section to its cross-sectional area is called",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "second moment of area"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "slenderness ratio"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "section modulus"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "radius of gyration"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-square-root-of-the-ratio-of-moment-of-inertia-of-the-cro-2009-marks-1-j7o8vpaw0m8e93ki.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hypLFfsJmmAuo5KI",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "compression-members",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following statements for a compression member \n<p>$${\\rm I}.\\,\\,\\,\\,$$ The elastic critical stress in compression increases with decrease in slenderness ratio</p>\n<p>$${\\rm II}.\\,\\,\\,\\,$$ The effective length depends on the boundary conditions at its ends</p>\n<p>$${\\rm III}.\\,\\,\\,\\,$$ The elastic critical stress in compression is independent of the slenderness ratio</p>\n<p>$${\\rm IV}.\\,\\,\\,\\,$$ The ratio of the effective length to its radius of gyration is called as slenderness ratio</p>\n<p>The TRUE statements are</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Only $${\\rm I}$$ and $${\\rm II}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "only $${\\rm II}$$ and $${\\rm III}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "only $${\\rm I}$$ and $${\\rm I}$$$${\\rm I}$$$${\\rm I}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\rm I}$$, $${\\rm I}$$$${\\rm I}$$ and $${\\rm IV}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-statements-for-a-compression-member-2006-marks-1-hyplffsjmmauo5ki.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2198dd043c0",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "riveted-joints-and-bolted-joints",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 12 mm thick plate is connected to two 8 mm plates, on either side through a\n16 mm diameter power driven field rivet as shown in the figure below. Assuming\npermissible shear stress as 90MPa and permissible bearing stress as 270 MPa in\nthe rivet, the rivet value of the joint is\n<img alt=\"GATE CE 2009 Steel Structures - Riveted Joints and Bolted Joints Question 3 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/ea39303e9bb6f34a94021a9b97e170f28d905883fa6dce8e94339c547f71c733.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "56.70 kN"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "43.29 kN"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "36.19 kN"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "21.65 kN"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-12-mm-thick-plate-is-connected-to-two-8-mm-plates-on-eithe-gate-ce-2009-marks-2-5a2198dd043c0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                }
+            ],
+            "title": "Steel Structures"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZYXTBZsAspCVkkDH",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "strain-energy-method",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A vertical rod $$PQ$$ of length $$L$$ is fixed at its top end $$P$$ and has a flange fixed to the bottom end $$Q.A$$ weight $$W$$ is dropped vertically from a height $$h\\left( { &lt; L} \\right)$$ on to the flange. The axial stress in the rod can be reduced by ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "increasing the length of the rod "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Decreasing the length of the rod "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Decreasing the area of cross-section of the rod"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Increasing the modulus of elasticity of the material "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-vertical-rod-pq-of-length-l-is-fixed-at-its-top-en-2009-marks-2-zyxtbzsaspcvkkdh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uCgiBqeHPeRmnc9z",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "torsion",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A hollow circular shaft has an outer diameter of $$100$$ $$mm$$ and a wall thickness of $$25$$ $$mm.$$ The allowable shear stress in the shaft is $$125$$ $$MPa.$$ The maximum torque the shaft can transmit is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$46$$ $$kN$$-$$m$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$24$$ $$kN$$-$$m$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$23$$ $$kN$$-$$m$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$11.5$$ $$kN$$-$$m$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-hollow-circular-shaft-has-an-outer-diameter-of-100-m-2009-marks-2-ucgibqehpermnc9z.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RYWdITKctJF7X9NP",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-stress-in-beams",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The point within the cross sectional plane of a beam through which the resultant of the external loading on the beam has to pass through to ensure pure bending without twisting of the cross-section of the beam is called\n ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Moment center"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Centroid "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Shear center "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Elastic center "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-point-within-the-cross-sectional-plane-of-a-beam-through-2009-marks-2-rywditkctjf7x9np.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2IIEpYGQtb5B3YYE",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-force-and-bending-moment",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match <b>List- $${\\rm I}$$</b> (Shear Force Diagrams) beams with <b>List- $${\\rm II}$$</b> (Diagram of beams with supports and loading) and select the correct answer by using the codes given below the lists: \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/bieTWDs7TjzB6i3fq/0jOcFRcdoFUtMN9M3rfgFbozvZs7B/uP6HvmU7ZDFFjJepiaHes6/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2009 Strength of Materials Or Solid Mechanics - Shear Force and Bending Moment Question 18 English 1\"> \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/J6uRYKXHIl9abtUlS/ccBfLHdqp5Y5q6LzNAmenhn6gsn6t/dtWczikHItKgwLbDuuTlYE/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2009 Strength of Materials Or Solid Mechanics - Shear Force and Bending Moment Question 18 English 2\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$A - 3,\\,\\,B - 1,\\,\\,C - 2,\\,\\,D - 4$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$A - 3,\\,\\,B - 4,\\,\\,C - 2,\\,\\,D - 1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$A - 2,\\,\\,B - 1,\\,\\,C - 4,\\,\\,D - 3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$A - 2,\\,\\,B - 4,\\,\\,C - 3,\\,\\,D - 1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-list-rm-i-shear-force-diagrams-beams-with-li-2009-marks-2-2iiepygqtb5b3yye.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nnd3ZPDSLapSDQW6",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-stress",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following statements:\n<br>$$1.$$ On a principal plane, only normal stress acts\n<br>$$2.$$ On a principal plane, both normal and shear stresses act\n<br>$$3.$$ On a principal plane, only shear stress acts\n<br>$$4.$$ Isotropic state of stress is independent of frame of reference.\n<p>Which of the above statements is/are correct ? </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$ and $$4$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2$$ only"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2$$ and $$4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2$$ and $$3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-statements-1-on-a-principal-pla-2006-marks-1-nnd3zpdslapsdqw6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wxCzx7aAHizhhz9M",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the theory of plastic bending of beams, the ratio of plastic moment to yield moment is called",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Shape factor "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Plastic section modulus "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Modulus of resilience "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Rigidity modulus "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-theory-of-plastic-bending-of-beams-the-ratio-of-plas-2009-marks-1-wxczx7aahizhhz9m.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1896115e3c1",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stability-and-static-indeterminacy",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The degree of static indeterminacy of a rigidly jointed frame in a horizontal plane\nand subjected to vertical loads only, as shown in figure below is\n<img alt=\"GATE CE 2009 Structural Analysis - Stability and Static Indeterminacy Question 11 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/0fe26beac83161d64609a614020b7167e2cbdf3fb87c791a0f976c79e4860d84.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "6"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "4"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "3"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-degree-of-static-indeterminacy-of-a-rigidly-jointed-fram-gate-ce-2009-marks-2-5a1896115e3c1.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                }
+            ],
+            "title": "Structural Analysis"
+        },
+        {
+            "_id": "Transportation Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a41adbdd4a75",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "transportation-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "highway-geometric-design",
+                    "year": 2009,
+                    "paperTitle": "GATE CE 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of lateral friction or side friction used in the design of horizontal curve\nas per India Roads Congress guidelines is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0.40"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.35"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0.24"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0.15"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-lateral-friction-or-side-friction-used-in-the-d-gate-ce-2009-marks-1-5a41adbdd4a75.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2009"
+                }
+            ],
+            "title": "Transportation Engineering"
+        }
+    ]
+}

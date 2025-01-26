@@ -1,0 +1,1566 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Analog Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wYajI0Jqr16KXGAL",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "feedback-amplifiers-and-oscillator-circuits",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A Wein bridge oscillator is shown in figure. Which of the following statements are true if $$'f'$$ is the frequency of oscillation?\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/VVUgnfk5yW4Dz54Ww/kOmZJqQQavknuOAlcEYHtH5ORHE0f/o3a4sidXITxKbMuJW9K3jj/image.png\" loading=\"lazy\" alt=\"GATE EE 1993 Analog Electronics - Feedback Amplifiers and Oscillator Circuits Question 2 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "For $$R = 1\\,k\\Omega ,\\,C = {1 \\over {2\\pi }}\\mu F,\\,\\,f = 1\\,kHz$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$R = 3\\,k\\Omega ,\\,C = {1 \\over {18\\pi }}\\mu F,\\,\\,f = 3\\,kHz$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The gain of the op-amp stage should be less than two for proper operation"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The gain of the op-amp stage should be three for proper operation"
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "B",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-wein-bridge-oscillator-is-shown-in-figure-which-of-the-fo-1993-marks-1-wyaji0jqr16kxgal.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                }
+            ],
+            "title": "Analog Electronics"
+        },
+        {
+            "_id": "Control Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DGd0oUsuLkW1pilg",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "state-variable-analysis",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The transfer function for the state variable representation $$\\mathop X\\limits^ \\bullet   = AX + BU,\\,\\,Y = CX + DU,$$ is given by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$D + C{\\left( {s{\\rm I} - A} \\right)^{ - 1}}\\,\\,B$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$B{\\left( {s{\\rm I} - A} \\right)^{ - 1}}\\,C + D$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$D{\\left( {s{\\rm I} - A} \\right)^{ - 1}}\\,B + C$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$C{\\left( {sl - A} \\right)^{ - 1}}\\,D + B$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-transfer-function-for-the-state-variable-representation-gate-ee-1993-marks-1-dgd0ousulkw1pilg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RGwqbgBUduZalyzb",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "state-variable-analysis",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a second order system whose state space representation is of the form $$\\mathop X\\limits^ \\bullet   = AX + BU.$$ If $$\\,{x_1}\\,\\,\\left( t \\right)\\, = {x_2}\\,\\left( t \\right),$$ then system is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "controllable "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "uncontrollable "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "observable "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "unstable "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-second-order-system-whose-state-space-representat-gate-ee-1993-marks-1-rgwqbgbuduzalyzb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ntTarEgpUJmVxcvq",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "block-diagram-and-signal-flow-graph",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Signal flow graph is used to obtain the ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "stability of a system "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "transfer function of a system "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "controllability of a system"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "observability of a system"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "signal-flow-graph-is-used-to-obtain-the-gate-ee-1993-marks-1-nttaregpujmvxcvq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                }
+            ],
+            "title": "Control Systems"
+        },
+        {
+            "_id": "Digital Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VGfs0yr69QEavPo8",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "microprocessor",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Three devices $$A,$$ $$B$$ and $$C$$ have to be connected to a $$8085$$ microprocessor. Device $$A$$ has highest priority and device $$C$$ has the lowest priority. In this context which of the following is correct assignment of interrupt inputs?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$A$$ uses $$TRAP,$$ $$B$$ uses $$RST$$ $$5.5$$ and $$C$$ uses $$RST$$ $$6.5$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "A uses $$RST$$ $$7.5,$$ $$B$$ uses $$RST$$ $$6.5$$ and $$C$$ uses $$RST$$ $$5.5$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$A$$ uses $$RST$$ $$5.5,$$ $$B$$ uses $$RST$$ $$6.5$$ and $$C$$ uses $$RST$$ $$7.5$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$A$$ uses $$RST$$ $$5.5,$$ $$B$$ uses $$RST$$ $$6.5$$ and $$C$$ uses $$TRAP$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "three-devices-a-b-and-c-have-to-be-connected-to-1993-marks-1-vgfs0yr69qeavpo8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FkRAIbYoeN0ez7jc",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analog-to-digital-and-digital-to-analog-converter",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$10$$ bit $$A/D$$ converter is used to digitize an analog signal in the $$0$$ to $$5$$ $$V$$ range. The maximum peak to peak ripple voltage that can be allowed in the $$D.C.$$ supply voltage is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "nearly $$100$$$$mV$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "nearly $$50mV$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "nearly $$25mV$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "nearly $$5.0mV$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-10-bit-ad-converter-is-used-to-digitize-an-analog-1993-marks-1-fkraibyoen0ez7jc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                }
+            ],
+            "title": "Digital Electronics"
+        },
+        {
+            "_id": "Electric Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rv5wi1pCyDuquJQB",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-analysis",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following circuit (Fig.) resonates at \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/dPWXRdonH5x6P3np7/kHPjXMDMjybX5hRywESfmATjKcDhk/hvMd9L0dAiYplSsFBVG2nl/image.png\" loading=\"lazy\" alt=\"GATE EE 1993 Electric Circuits - Sinusoidal Steady State Analysis Question 38 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "all frequencies "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.5$$ $$rad/sec$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$5$$ $$rad/sec$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1$$ $$rad/sec$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-circuit-fig-resonates-at-1993-marks-1-rv5wi1pcyduqujqb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "U7mkfOxUHUEFRsZZ",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-analysis",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the following circuit (Fig.) $$i(t)$$ under steady state is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Qe8OeJOhbJH85bSax/brL6OuFsx8jFQNDulsqllFW62Up1D/HutkFWm7bw9EfRuhFJ0NtU/image.png\" loading=\"lazy\" alt=\"GATE EE 1993 Electric Circuits - Sinusoidal Steady State Analysis Question 39 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$5$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$7.07sint$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$7.07\\sin \\left( {t - {{45}^ \\circ }} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-following-circuit-fig-it-under-steady-state-1993-marks-1-u7mkfoxuhuefrszz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                }
+            ],
+            "title": "Electric Circuits"
+        },
+        {
+            "_id": "Electrical and Electronics Measurement",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oCio1mKTI7PExLqa",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "cathode-ray-oscilloscope",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$CRO$$ screen has ten divisions on the horizontal scale. If a voltage signal $$5$$ $$sin$$$$\\left( {314t + {{45}^ \\circ }} \\right)$$ is examined with a line base setting of $$5$$ $$msec/div,$$ the number o0f cycles of signal displayed on the screen will be  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.5$$ cycles"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2.5$$ cycles "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$5$$ cycles "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$10$$ cycles "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cro-screen-has-ten-divisions-on-the-horizontal-scale-if-a-gate-ee-1993-marks-1-ocio1mkti7pexlqa.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OY5RhRFcgbXPgQ7f",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "measurement-of-energy-and-power",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "V<sub>RN</sub>, V<sub>YN</sub> and V<sub>BN</sub> are the instantaneous line to neutral voltages and i<sub>R</sub>,  i<sub>Y</sub> and i<sub>B</sub> are instantaneous line currents in a balanced three-phase circuit, the computation, V<sub>RN</sub> (i<sub>y</sub> $$-$$ i<sub>B</sub>)   $$-$$ (V<sub>YN</sub> $$-$$ V<sub>BN</sub>) i<sub>R</sub> will yield a quantity proportional to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The active power "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The power factor "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The reactive power "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The complex power "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "vrn-vyn-and-vbn-are-the-instantaneous-line-to-neutral-voltag-gate-ee-1993-marks-1-oy5rhrfcgbxpgq7f.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Yoltj9P39FU3iXdo",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "error-analysis-and-measurement",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A  metal strain gauge has gauge factor of two, it's nominal resistance is $$120$$ Ohms. It is undergoes a strain of $${10^{ - 5}},$$ the value of change of resistance in response to the strain is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$240\\,$$ Ohms"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2 \\times {10^{ - 5}}\\,\\,$$ Ohms"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2.5 \\times {10^{ - 3}}\\,\\,$$ Ohms"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1.2 \\times {10^{ - 3}}\\,\\,$$ Ohms"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-metal-strain-gauge-has-gauge-factor-of-two-its-nominal-res-gate-ee-1993-marks-1-yoltj9p39fu3ixdo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                }
+            ],
+            "title": "Electrical and Electronics Measurement"
+        },
+        {
+            "_id": "Electrical Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bNU3VQSsVL6ZZyvj",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$220/440$$ $$V,$$ $$50$$ $$Hz$$ single phase transformer operates on $$220$$ $$V,$$ $$40$$ $$Hz$$ supply with secondary winding. Then ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "the eddy current loss and hysteresis loss of the transformer decrease "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the eddy current loss and hysteresis loss of the transformer increase "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the hysteresis loss of the transformer increases while eddy current loss remains  the same "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "the hysteresis loss remains the same whereas eddy current loss decreases "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-220440-v-50-hz-single-phase-transformer-1993-marks-2-bnu3vqssvl6zzyvj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Q5QqjJuslcsrHjuZ",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A cumulative compounded long shunt motor is driving a load at rated torque and rated speed. If the series field is shunted  by a resistance equal to the resistance  of the series field, keeping the torque constant. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/TYl2t66X2eJkmZFjp/Hw66vKxg0cX8lhUaKBHCk2ln8ybzH/hlRWWOmPzIenbfyV8TCI3F/image.png\" loading=\"lazy\" alt=\"GATE EE 1993 Electrical Machines - D.C Machines Question 9 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "the armature current increases "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the motor speed increases  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the armature current decreases  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "the motor speed decreases "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cumulative-compounded-long-shunt-motor-is-driving-a-load-a-1993-marks-1-q5qqjjuslcsrhjuz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XHXg1JJdrhJDpnoK",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A synchronous motor operates at $$0.8$$ $$p.f.$$ lagging. If the field current of the motor is continuously increased \n<p>$$(1)$$ the power factor decreases upto a certain value of field current and thereafter it increases \n<br>$$(2)$$ the armature current increases upto a certain value of field current and thereafter it decreases \n<br>$$(3)$$ the power factor increases upto a certain value of field current and thereafter it decreases \n<br>$$(4)$$ the armature current decreases upto a certain value of field current and thereafter it increases. From these the correct one is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1,2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2,3$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3,4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1,3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-synchronous-motor-operates-at-08-pf-lagging-if-1993-marks-2-xhxg1jjdrhjdpnok.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "r6jseiBUFiosUQ4u",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two $$550$$ $$kVA$$ alternators operate in parallel to supply the following loads \n<br>$$(i)$$ $$250$$ $$kW$$ at $$0.95$$ power factor lag\n<br>$$(ii)$$ $$100$$ $$kW$$ at $$0.8$$ power factor lead one machine is supplying $$200kW$$ at $$0.9$$ power factor lag. The power factor of the other machine must be<p></p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.89$$ lead "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.95$$ lead"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.95$$ lag"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.89$$ lag"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-550-kva-alternators-operate-in-parallel-to-suppl-1993-marks-2-r6jseibufiosuq4u.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ib4qcL2rcMFamKw9",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A three phase alternator has negligible stator resistance. A short circuit test is conducted on this alternator. At a particular speed a field current of $${{\\rm I}_f}$$ is required to drive the rated armature current. If the speed of the alternator is reduced to half, the field current required to maintain rated armature current ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "would be equal to $${{\\rm I}_f}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "would be equal to $$2$$ $${{\\rm I}_f}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "would be equal to $${{\\rm I}_f}/2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "cannot be predicted due to insufficient data "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-three-phase-alternator-has-negligible-stator-resistance-a-1993-marks-2-ib4qcl2rcmfamkw9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "42bUbPMgkNEnQCOi",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "induction-machines",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A three phase slip ring induction motor is fed from the rotor side with stator winding short circuited. The frequency of the currents flowing in the short circuited stator is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "slip frequency"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "supply frequency "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "frequency corresponding to rotor speed "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "zero"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-three-phase-slip-ring-induction-motor-is-fed-from-the-roto-1993-marks-1-42bubpmgknenqcoi.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                }
+            ],
+            "title": "Electrical Machines"
+        },
+        {
+            "_id": "Electromagnetic Fields",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8eaa0d1079d",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electromagnetic-fields",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "magnetostatics",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The line integral of the vector potential A around the boundary of a surface S represents",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "flux through the surface S"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "flux density in the surface S"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "magnetic density"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "current density"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-line-integral-of-the-vector-potential-a-around-the-bound-gate-ee-1993-marks-1-5a8eaa0d1079d.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                }
+            ],
+            "title": "Electromagnetic Fields"
+        },
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QiQ4FQ62gX9VrtlJ",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given the differential equation $${y^1} = x - y$$ with initial condition $$y(0)=0.$$ The value of $$y(0.1)$$ calculated numerically upto the third place of decimal by the $${2^{nd}}$$ order Runge-Kutta method with step size $$h=0.1$$ is  ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${1 \\over {200}}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-the-differential-equation-y1-x-y-with-initial-conditio-gate-ee-1993-marks-1-qiq4fq62gx9vrtlj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Power Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7RgtDVaFwIJfgTxw",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "choppers-and-commutation-techniques",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A chopper operating at a fixed frequency is feeding an $$R$$-$$L$$ load. As the duty ratio of the chopper is increased from $$25\\% $$ to $$75\\% $$, the ripple in the load current",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Remains constant"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Decreases, reaches a minimum at $$50\\% $$ duty ratio and then increases"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Increases, reaches a maximum at $$50\\% $$ duty ratio and then decreases "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Keeps on increasing as the duty ratio is increased"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-chopper-operating-at-a-fixed-frequency-is-feeding-an-r-l-l-gate-ee-1993-marks-1-7rgtdvafwijfgtxw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "z3bFh8eYfcBWxcp8",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "inverters",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "When a line commutated converter operates in the inverter mode",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "It draws both real and reactive power from the A.C supply"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "It delivers both real and reactive power to the $$A.C$$ supply"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "It delivers real power to the A.C supply "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "It draws reactive power from the $$A.C$$ supply"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "when-a-line-commutated-converter-operates-in-the-inverter-mo-gate-ee-1993-marks-1-z3bfh8eyfcbwxcp8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BoHdwiSnM2c0EUT3",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "power-semiconductor-devices",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The thermal resistance between the body of a power semiconductor device and the ambient is expressed as ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Voltage across the device divided by current through the device "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Average power dissipated in the device divided by the square of the $$RMS$$ current in the device "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Average power dissipted in the device divided by the temperature difference from body to ambient"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Temperature difference from  body to ambient divided by average power dissipated in the divice"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-thermal-resistance-between-the-body-of-a-power-semicondu-gate-ee-1993-marks-1-bohdwisnm2c0eut3.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                }
+            ],
+            "title": "Power Electronics"
+        },
+        {
+            "_id": "Power System Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UIBFZSWG2Ud52VTf",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "load-flow-studies",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In load flow analysis, the load connected at a bus is represented as ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Constant current drawn from the Bus"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Constant impedance connected at the bus"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Voltage and frequency dependent source at the bus"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Constant real and reactive power drawn from the bus."
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-load-flow-analysis-the-load-connected-at-a-bus-is-represe-gate-ee-1993-marks-1-uibfzswg2ud52vtf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tuRxZ5zFhbOWM2nE",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "switch-gear-and-protection",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The distribution system shown in figure is to be protected by over current system of protection. For proper fault discrimination directional over current relays will be required at locations \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/ns7ryDdMWu2e4A3LN/39fHZDxmLvwjHC9eaJBcc5XQfE4KG/frU8EhdENYSnD0QsRNX4QG/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 1993 Power System Analysis - Switch Gear and Protection Question 14 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$ &amp; $$4$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2$$ &amp; $$3$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1,4$$ &amp; $$5$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2, 3$$ &amp; $$5$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-distribution-system-shown-in-figure-is-to-be-protected-b-gate-ee-1993-marks-2-turxz5zfhbowm2ne.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YukA6RTKNWMjSOV7",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "power-system-stability",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The transient stability of the power system can be effectively improved by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Excitation control "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Phase shifting transformer "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Single pole switching of circuit breakers "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Increasing the turbine valve opening "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-transient-stability-of-the-power-system-can-be-effective-gate-ee-1993-marks-1-yuka6rtknwmjsov7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oFEaNTLrOISfpZKX",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A three phase overhead transmission line has its conductors horizontally spaced with spacing between adjacent conductors equal to 'd'. If now the conductors of the line are rearranged to form an equilateral triangle of sides equal to 'd' then ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Average capacitance and inductance will increase "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Average capacitance will increase and inductance will increase "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Average capacitance will increase and inductance will decrease "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Surge impedance loading of the line increases"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-three-phase-overhead-transmission-line-has-its-conductors-gate-ee-1993-marks-1-ofeantlroisfpzkx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                }
+            ],
+            "title": "Power System Analysis"
+        },
+        {
+            "_id": "Signals and Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nOxn2KhJtBKZ7UvK",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-time-invariant-systems",
+                    "year": 1993,
+                    "paperTitle": "GATE EE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$s(t)$$ is step response and $$h(t)$$ is impulse response of a system. Its response $$y(t)$$ for any input $$u(t)$$ is given by ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${d \\over {d\\,t}}\\int\\limits_0^t s \\left( {t - \\tau } \\right)\\,u\\left( \\tau  \\right)\\,d\\,\\tau $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\int\\limits_0^t s \\left( {t - \\tau } \\right)\\,u\\left( \\tau  \\right)\\,d\\,\\tau $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\int\\limits_0^t {\\int\\limits_0^\\tau  s \\left( {t - {\\tau _1}} \\right)\\,u\\left( {{\\tau _1}} \\right)\\,d{\\tau _1}} \\,d\\tau $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${d \\over {d\\,t}}\\int\\limits_0^t h \\left( {t - \\tau } \\right)\\,u\\left( \\tau  \\right)\\,d\\,\\tau $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "st-is-step-response-and-ht-is-impulse-response-o-1993-marks-1-noxn2khjtbkz7uvk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1993"
+                }
+            ],
+            "title": "Signals and Systems"
+        }
+    ]
+}

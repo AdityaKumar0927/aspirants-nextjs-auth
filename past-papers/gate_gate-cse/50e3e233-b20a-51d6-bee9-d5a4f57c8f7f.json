@@ -1,0 +1,886 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Algorithms",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "G2erSuW1SyawYT8I",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "divide-and-conquer-method",
+                    "year": 1987,
+                    "paperTitle": "GATE CSE 1987",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Find a solution to the following recurrence equation<br>\nT(n) = T(n - 1)+ n<br>\nT(1) = 1",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "find-a-solution-to-the-following-recurrence-equationtn-tn-1-gate-cse-1987-marks-2-g2ersuw1syawyt8i.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1987",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1987"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MrvUNIE4SGK6STmd",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "divide-and-conquer-method",
+                    "year": 1987,
+                    "paperTitle": "GATE CSE 1987",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let P be a quicksort program to sort numbers in ascending order. Let t<sub>1</sub> and t<sub>2</sub> be the time taken by the program for the inputs [1 2 3 4] and [5 4 3 2 1], respectively. Which of the following holds?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "t<sub>1</sub> = t<sub>2</sub>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "t<sub>1</sub> &gt; t<sub>2</sub>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "t<sub>1</sub> &lt; t<sub>2</sub>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "t<sub>1</sub>= t<sub>2</sub> + 5 log 5"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-p-be-a-quicksort-program-to-sort-numbers-in-ascending-or-gate-cse-1987-marks-2-mrvunie4sgk6stmd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1987",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1987"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Qa91mIeYqCFw6jSf",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complexity-analysis-and-asymptotic-notations",
+                    "year": 1987,
+                    "paperTitle": "GATE CSE 1987",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the generating function G (z) for the sequence of Fibonacci numbers?",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve by yourself",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-the-generating-function-g-z-for-the-sequence-of-fibo-gate-cse-1987-marks-2-qa91mieyqcfw6jsf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1987",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1987"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KMt8Xl2vLm9ve9Eh",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complexity-analysis-and-asymptotic-notations",
+                    "year": 1987,
+                    "paperTitle": "GATE CSE 1987",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Solve the recurrence equations<br>\nT (n) = T (n - 1) + n<br>\nT (1) = 1<br>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve by yourself",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "solve-the-recurrence-equationst-n-t-n-1-nt-1-1-gate-cse-1987-marks-2-kmt8xl2vlm9ve9eh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1987",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1987"
+                }
+            ],
+            "title": "Algorithms"
+        },
+        {
+            "_id": "Data Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Vgk5Tn1OXqU5916c",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 1987,
+                    "paperTitle": "GATE CSE 1987",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "It is possible to construct a binary tree uniquely whose pre-order and post-order traversals are given.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "it-is-possible-to-construct-a-binary-tree-uniquely-whose-pre-gate-cse-1987-marks-1-vgk5tn1oxqu5916c.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1987",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1987"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0MWbF3VWNW5BS73C",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 1987,
+                    "paperTitle": "GATE CSE 1987",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the no of leaves in a tree is not a power of 2,then the tree is not a binary tree.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-no-of-leaves-in-a-tree-is-not-a-power-of-2then-the-tr-gate-cse-1987-marks-1-0mwbf3vwnw5bs73c.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1987",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1987"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WAcVDSS37NERxhbX",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linked-list",
+                    "year": 1987,
+                    "paperTitle": "GATE CSE 1987",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a circular linked list organization,insertion of a record involves modification of : ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "One Pointer"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "One Pointer"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Multiple pointers "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "No pointer"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-circular-linked-list-organizationinsertion-of-a-record-gate-cse-1987-marks-2-wacvdss37nerxhbx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1987",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1987"
+                }
+            ],
+            "title": "Data Structures"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aKxZBxhgKDkPwf1F",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1987,
+                    "paperTitle": "GATE CSE 1987",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "State whether the following statement are TRUE or FALSE: \n<br>(a) The union of two equivalence relations is also an equivalence relation.\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "state-whether-the-following-statement-are-true-or-false-a-th-gate-cse-1987-marks-1-akxzbxhgkdkpwf1f.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1987",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1987"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xRWAGsYPYhwPxFGT",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1987,
+                    "paperTitle": "GATE CSE 1987",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If a, b and c are constants, which of the following is a linear inequality?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "ax + bcy = 0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$a{x^2}\\, + \\,c{y^2} = 21$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$abx\\, + \\,{a^2}y\\, \\ge \\,15$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$xy\\, + \\,ax\\,\\, \\ge \\,20$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-a-b-and-c-are-constants-which-of-the-following-is-a-linea-gate-cse-1987-marks-2-xrwagsypyhwpxfgt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1987",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1987"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "U5anOOhdcNj7JUSa",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1987,
+                    "paperTitle": "GATE CSE 1987",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A square matrix is singular whenever:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The rows are linearly independent"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The columns are linearly independent "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The row are linearly dependent "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-square-matrix-is-singular-whenever-gate-cse-1987-marks-2-u5anoohdcnj7jusa.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1987",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1987"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QJxiJ10caBrwRARu",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinatorics",
+                    "year": 1987,
+                    "paperTitle": "GATE CSE 1987",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "(a) Solve the recurrence equations \n<br>$$\\,\\,\\,\\,\\,\\,\\,\\,\\,T\\left( n \\right) = T\\left( {n - 1} \\right) + n$$\n<br>$$\\,\\,\\,\\,\\,\\,\\,\\,\\,T\\left( 1 \\right) = 1T$$\n<br>(b) What is the generating function?\n<br> $$\\,\\,\\,\\,\\,\\,\\,\\,\\,G\\left( z \\right)$$ for the sequence of Fibonacci numbers?",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "a) $$\\,\\,\\,\\,T\\left( n \\right) = {{n\\left( {n + 1} \\right)} \\over 2}$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-solve-the-recurrence-equations-tleft-n-right-tleft-n-1-rig-gate-cse-1987-marks-2-qjxij10cabrwraru.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1987",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1987"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lyYKlkUJUkIhfAC0",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1987,
+                    "paperTitle": "GATE CSE 1987",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "(a) How many binary relations are there on a set A with n elements?\n<p>(b) How many one - to - one functions are there from a set A with n elements onto itself</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a)$$\\,\\,\\,\\,{2^{{n^2}}}$$ \n<br>(b)$$\\,\\,\\,n!$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-how-many-binary-relations-are-there-on-a-set-a-with-n-elem-gate-cse-1987-marks-1-lyyklkujukihfac0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1987",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1987"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kWC5F3cCl84tYY7G",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronization-and-concurrency",
+                    "year": 1987,
+                    "paperTitle": "GATE CSE 1987",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A critical region is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "One which is enclosed by a pair of P and V operations on semaphores"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "A program segment that has not been proved bug-free "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "A program segment that often causes unexpected system crashes"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "A program segment where shared resources are accessed "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-critical-region-is-gate-cse-1987-marks-2-kwc5f3ccl84tyy7g.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1987",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1987"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8YOL1ydMbGK8JFtj",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 1987,
+                    "paperTitle": "GATE CSE 1987",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "On receiving an interrupt from an $${\\rm I}/O$$ device the $$CPU$$:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "halts for predetermined time."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "hands over control of address bus and data bus to the interrupting device."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Branches off to the interrupt service routine immediately."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Branches off to the interrupt service routine after completion of the current instruction."
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "on-receiving-an-interrupt-from-an-rm-io-device-the-cpu-gate-cse-1987-marks-2-8yol1ydmbgk8jftj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1987",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1987"
+                }
+            ],
+            "title": "Operating Systems"
+        },
+        {
+            "_id": "Theory of Computation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1YzHQQyFcvELZYPS",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 1987,
+                    "paperTitle": "GATE CSE 1987",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "FORTRAN is: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Regular language."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Context free language."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Context sensitive language. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None-of the above. "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "fortran-is-gate-cse-1987-marks-2-1yzhqqyfcvelzyps.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1987",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1987"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XpsrmRBIhyAcec4u",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 1987,
+                    "paperTitle": "GATE CSE 1987",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A context-free grammar is ambiguous if: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The grammar contains useless non-terminals. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "It produces more than one parse tree for some sentence. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Some production has two non-terminals side by side on the right-hand side. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above. "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-context-free-grammar-is-ambiguous-if-gate-cse-1987-marks-2-xpsrmrbihyacec4u.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1987",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1987"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0FU5mdHij6FAKa6Q",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 1987,
+                    "paperTitle": "GATE CSE 1987",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Give minimal $$DFA$$ that performs as a Mod-$$3$$ $$1's$$ counter, i.e., outputs a $$1$$ each time the number of $$1's$$ in the input sequence is a sequence is a multiple of $$3.$$ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "give-minimal-dfa-that-performs-as-a-mod-3-1s-counter-ie-outp-gate-cse-1987-marks-5-0fu5mdhij6faka6q.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1987",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1987"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DzFTDDJmcC0eCcgN",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 1987,
+                    "paperTitle": "GATE CSE 1987",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Give the regular expression over $${\\left\\{ {0,\\,\\,1} \\right\\}}$$ to denote the set of proper non-null substrings of the string $$0110$$. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "give-the-regular-expression-over-left-01-right-to-denote-the-gate-cse-1987-marks-5-dzftddjmcc0eccgn.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1987",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1987"
+                }
+            ],
+            "title": "Theory of Computation"
+        }
+    ]
+}

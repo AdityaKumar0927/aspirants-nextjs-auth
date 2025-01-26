@@ -1,0 +1,1433 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PUxzn57c6n2EHL3k",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Using Laplace transforms, solve $${a \\over {{s^2} - {a^2}}}\\,\\,\\left( {{d^2}y/d{t^2}} \\right) + 4y = 12t\\,\\,$$ \n<br>given that $$y=0$$ and $$dy/dt=9$$ at $$t=0$$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$y\\left( t \\right) = 3t + 3\\sin 2t$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "using-laplace-transforms-solve-a-over-s2-a2left-d2ydt2-right-gate-ce-2002-marks-2-puxzn57c6n2ehl3k.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "a45tX71yPvyHiHER",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Laplace transform of the following function is \n$$$f\\left( t \\right) = \\left\\{ {\\matrix{\n   {\\sin t} &amp; {for\\,\\,0 \\le t \\le \\pi }  \\cr \n   0 &amp; {for\\,\\,t &gt; \\pi }  \\cr \n\n } } \\right.$$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1/\\left( {1 + {s^2}} \\right)\\,$$ for all $$\\,s &gt; 0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1/\\left( {1 + {s^2}} \\right)\\,$$ for all  $$\\,s &lt; \\pi $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {1 + {e^{ - \\pi s}}} \\right)/\\left( {1 + {s^2}} \\right)$$ for all $$s&gt;0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${e^{ - \\pi s}}/\\left( {1 + {s^2}} \\right)$$ for all $$s &gt; 0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-laplace-transform-of-the-following-function-is-fleft-t-r-gate-ce-2002-marks-2-a45tx71ypvyhiher.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SsTv7M5EQeXAoQee",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The directional derivative of the following function at $$(1, 2)$$  in the direction of $$(4i+3j)$$ is : $$f\\left( {x,y} \\right) = {x^2} + {y^2}$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$4/5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$4$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2/5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-directional-derivative-of-the-following-function-at-1-2-gate-ce-2002-marks-2-sstv7m5eqexaoqee.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "S4gjdjosymtU78Tp",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of the following definite integral in $$\\int\\limits_{{\\raise0.5ex\\hbox{$\\scriptstyle { - \\pi }$}\n\\kern-0.1em/\\kern-0.15em\n\\lower0.25ex\\hbox{$\\scriptstyle 2$}}}^{{\\raise0.5ex\\hbox{$\\scriptstyle \\pi $}\n\\kern-0.1em/\\kern-0.15em\n\\lower0.25ex\\hbox{$\\scriptstyle 2$}}} {{{Sin2x} \\over {1 + \\cos x}}dx = \\_\\_\\_\\_\\_\\_\\_\\_.} $$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-2log$$ $$2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-the-following-definite-integral-in-intlimitsrai-gate-ce-2002-marks-1-s4gjdjosymtu78tp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "70CTlPvm1AbCok9B",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The  value of the following improper integral is $$\\,\\int\\limits_0^1 {x\\,\\log \\,x\\,dx}  = \\_\\_\\_\\_\\_.$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over 4}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{ - 1} \\over 4}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-the-following-improper-integral-is-intlimits01-gate-ce-2002-marks-2-70ctlpvm1abcok9b.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6V5RayHGI5DOGdeh",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Limit of the following sequence as $$n \\to \\infty $$ $$\\,\\,\\,$$ is  $$\\,\\,\\,$$ $${x_n} = {n^{{1 \\over n}}}$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\infty $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ - \\infty $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "limit-of-the-following-sequence-as-n-to-infty-is-xn-n1-over-gate-ce-2002-marks-2-6v5rayhgi5dogdeh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MynNMdBijfwgnNrV",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following function has local minima at which value of $$x,$$ $$f\\left( x \\right) = x\\sqrt {5 - {x^2}} $$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{ - \\sqrt 5 } \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\sqrt 5 }$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\sqrt {{5 \\over 2}} $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$-\\sqrt {{5 \\over 2}} $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-function-has-local-minima-at-which-value-of-x-gate-ce-2002-marks-1-mynnmdbijfwgnnrv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2AeE5wNFlZeqRWxq",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Eigen values of the following matrix are $$\\left[ {\\matrix{\n   { - 1} &amp; 4  \\cr \n   4 &amp; { - 1}  \\cr \n\n } } \\right]$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3, -5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-3, 5$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$-3, -5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3,5$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "eigen-values-of-the-following-matrix-are-left-matrix-1-4-cr-gate-ce-2002-marks-1-2aee5wnflzeqrwxq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Environmental Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2e362e705a2",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "environmental-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "quality-control-of-water",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In natural water, hardness is mainly caused by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$Ca^{++}$$ and $$Mn^{++}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$Ca^{++}$$ and $$Fe^{++}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$Na^{+}$$ and $$K^{+}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$Ca^{++}$$ and $$Mg^{++}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-natural-water-hardness-is-mainly-caused-by-gate-ce-2002-marks-1-5a2e362e705a2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                }
+            ],
+            "title": "Environmental Engineering"
+        },
+        {
+            "_id": "Hydrology",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2c438640964",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "hydrology",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "evaporation-and-transpiration",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "During a 6-hour storm the rainfall intensity was 0.8 cm/hr on a catchment of area 8.6 km<sup>2</sup>. The measured runoff volume during this period was 2,56,000 m<sup>3</sup>. The total rainfall was lost due to infiltration, evaporation and transpiration in cm/hr is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0.80"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.304"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0.496"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Sufficient information not available"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "during-a-6-hour-storm-the-rainfall-intensity-was-08-cmhr-on-gate-ce-2002-marks-2-5a2c438640964.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                }
+            ],
+            "title": "Hydrology"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7FGv1bVwhja4qQ11",
+                    "exam": "gate-ce",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "prestressed-concrete",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$10m$$ long prestressing bed is used to cast $$4$$ (pretensioned) prestressed concrete beams of $$2.3$$ $$m$$ each. A schematic representation of the bed is given in the following figure. The continuous prestressing reinforced is pulled at the end $$'Y'$$ of the bed through a distance of $$20$$ $$mm$$ to introduce the required prestress, before the concrete is cast. After the concrete has hardened, the prestressing reinforcement is cut at points $$A,B,C,D$$ and $$E.$$ Assume that the prestress is introduced without eccentricity, what is the loss in prestress on account of elastic deformation of concrete. Assume $${E_s} = 200000\\,\\,N/m{m^2},$$ reinforcement is $$500\\,\\,m{m^2},$$ size of beams $$ = 200\\,\\,mm\\,\\left( b \\right) \\times 400\\,\\,mm\\,\\left( h \\right).$$ \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/goMZjI1KnTNS21MYq/giLyBea5oQ6XMwPHFT2UM997h3Y2V/nTBOp7I804T5MKWGHBX6n3/image.png\" loading=\"lazy\" alt=\"GATE CE 2002 Reinforced Cement Concrete - Prestressed Concrete Question 3 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$25$$ $$MPa$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-10m-long-prestressing-bed-is-used-to-cast-4-prete-2002-marks-5-7fgv1bvwhja4qq11.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OxVgkm41V3Qo8MpX",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "singly-reinforced-sections",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "As per provision of $$IS$$ $$456$$-$$2000$$, in the limit state method for design of beams, the limiting value of the depth of neutral axis in a reinforced concrete beam of effective depth $$'d'$$ is given as ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.53$$ $$d$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.48$$ $$d$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.46$$ $$d$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "any of the above depending on the different grades of steel. "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "as-per-provision-of-is-456-2000-in-the-limit-st-2002-marks-2-oxvgkm41v3qo8mpx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pGQTxo9FWV0CkyLj",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "singly-reinforced-sections",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Read the following two statements\n<p>$${\\rm I}.\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ Maximum strain in concrete at the outermost compression fibre is taken to be $$0.0035$$ in bending\n<br>$${\\rm II}.\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ The maximum compressive strain in concrete in axial compression is taken as $$0.002$$ Keeping the provisions of $$IS$$ $$456$$-$$2000$$ on limit state design in mind, which of the following is true?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Statement $${\\rm I}$$ is true but $${\\rm II}$$ is false"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Statement $${\\rm I}$$ is false but $${\\rm II}$$ is true"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Both statements $${\\rm I}$$ and $${\\rm II}$$ are true"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Both statements $${\\rm I}$$ and $${\\rm II}$$ are false"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "read-the-following-two-statements-rm-i-2002-marks-2-pgqtxo9fwv0ckylj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1ac540b5e08",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Modulus of elasticity of M25 grade concrete in MPa is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "25000"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "36000"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "45600"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "54000"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "modulus-of-elasticity-of-m25-grade-concrete-in-mpa-is-gate-ce-2002-marks-1-5a1ac540b5e08.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Steel Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "64tKoXhIX3nsXN2X",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "beams",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An $$ISMB$$ $$500$$ is used as a beam in a multi-storey construction. From the view point of structural design, it can be considered to be 'laterally restrained' when,",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The tension flange is 'laterally restrained' "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The compression flange is 'laterally restrained'"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The web is adequately stiffened"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The conditions in $$(a)$$ and $$(c)$$ are met"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-ismb-500-is-used-as-a-beam-in-a-multi-storey-cons-2002-marks-1-64tkoxhix3nsxn2x.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "x0VZmuHeawxmRaZ5",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "beams",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "When designing steel structures, one must ensure that local buckling in webs does not take place. This check may not be very critical when using rolled steel sections because",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Quality control at the time of manufacture of rolled sections is very good "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Web depth available are small "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Web stiffeners are in-built in rolled sections"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Depth to thickness ratio (of the web) are appropriately adjusted"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "when-designing-steel-structures-one-must-ensure-that-local-2002-marks-1-x0vzmuheawxmraz5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "64Thnw5MYRZm1vML",
+                    "exam": "gate-ce",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "compression-members",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given reason for the following is not more than $$20$$ words\n<p>(a) A maximum permissible distance between lacing and battens in steel columns is \n<br>$$\\,\\,\\,\\,\\,\\,\\,$$ usually specified. \n<br>(b) It is sometimes preferable to have unequal flange angle with the longer legs \n<br>$$\\,\\,\\,\\,\\,\\,\\,$$ horizontal in plate girder.\n<br>(c) If two channel sections need to be used as a steel column, they may be connected \n<br>$$\\,\\,\\,\\,\\,\\,\\,$$ 'face-to-face' rather than 'back-to-back'\n<br>(d) It is sometimes preferred to have a small gap between the web and the flange \n<br>$$\\,\\,\\,\\,\\,\\,\\,$$ plate in a plate girder.\n<br>(e) A maximum permissible 'outstand may be specific for flange in built-up sections.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-reason-for-the-following-is-not-more-than-20-words-2002-marks-5-64thnw5myrzm1vml.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0MWhqUhcH5igh0If",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welded-connections",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$ISA$$ $$100 \\times 100 \\times 10mm$$ (cross sectional area $$ = 1903\\,\\,m{m^2}$$) is welded along $$A$$ and $$B$$ (Refer to figure in the below question) such that the lengths of the weld along $$A$$ and $$B$$ are $${l_1}$$ and $${l_2}$$ respectively. Which of the following is a possibly acceptable combination of $${l_1}$$ and $${l_2}$$  \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/f7Q0PqcerBTqNCde8/6dkXtHIMYDx7FyclYm3IgD8TAs1rl/5Z219BFtAJqxVskapT0Hkg/image.png\" loading=\"lazy\" alt=\"GATE CE 2002 Steel Structures - Welded Connections Question 5 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${l_1}$$ $$=60$$ $$mm$$ and $${l_2}$$ $$=150$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${l_1}$$ $$=150$$ $$mm$$ and $${l_2}$$ $$=60$$ $$mm$$  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${l_1}$$ $$=150$$ $$mm$$ and $${l_2}$$ $$=150$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Any of the above, depending on the size of the weld"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "isa-100-times-100-times-10mm-cross-sectional-area-2002-marks-2-0mwhquhch5igh0if.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ouCUSnw7xdGsWZtq",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "tension-members",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$ISA$$ $$100 \\times 100 \\times 10\\,\\,mm$$ (Cross sectional area $$ = 1903\\,\\,m{m^2})$$ serves as tensile member. This angle is welded to a gusset plate along $$A$$ and $$B$$ appropriately as shown. Assuming the yield strength of the steel to be $$260$$ $$N/m{m^2}$$ the tensile strength of the member can be taken to be approximately\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/6damyC0gMG7wwfFIq/z7cEi25DeeBxO1BpxtbhgJ0ATdWax/1N51ltkyC1A3mVsgWXCIIc/image.png\" loading=\"lazy\" alt=\"GATE CE 2002 Steel Structures - Tension Members Question 2 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$500$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$300$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$260$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$375$$ $$kN$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "isa-100-times-100-times-10mm-cross-sectional-2002-marks-2-oucusnw7xdgswztq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                }
+            ],
+            "title": "Steel Structures"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9Wz1wR7PDSNCy9Ch",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-force-and-bending-moment",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the loading given in the figure below, two statements ( $${\\rm I}$$ and $${\\rm II}$$ ) are made.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/WmYBxZAbYwasnaOlQ/vW26cp18syoTVcQ2WfmMmmhCWAUlK/NOO8daM3HlQHlXUxSuImcf/image.png\" loading=\"lazy\" alt=\"GATE CE 2002 Strength of Materials Or Solid Mechanics - Shear Force and Bending Moment Question 10 English\"> \n<p>$${\\rm I}.$$ $$\\,\\,\\,\\,\\,\\,\\,\\,\\,$$Member $$AB$$ carries shear force and bending moment\n<br>$${\\rm II}.$$ $$\\,\\,\\,\\,\\,\\,\\,$$Member $$BC$$ carries axial load and shear force</p>\n<p>Which of the following is true ?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Statement $${\\rm I}$$ is true but $${\\rm I}$$$${\\rm I}$$ is false "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Statement $${\\rm I}$$ is false but $${\\rm II}$$ is true"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Both Statements $${\\rm I}$$ and Statement $${\\rm II}$$ are true "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Both Statements $${\\rm I}$$ and Statement $${\\rm II}$$ are false "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-loading-given-in-the-figure-below-two-statements-2002-marks-2-9wz1wr7pdsncy9ch.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aLumWlelC5drvPry",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the propped cantilever beam carrying a uniformly distributed load of $$w$$-$$kN/m,$$ shown in the following figure, the reaction at the support $$'B'$$ is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/0mvv0XWKjEc7lI2nt/UTHIdMPIxoYFZ0t1OLhSqPJtSRrIz/POYeA3dOzJmke1417vjZuL/image.png\" loading=\"lazy\" alt=\"GATE CE 2002 Strength of Materials Or Solid Mechanics - Deflection of Beams Question 14 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${5 \\over 8}wL$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${3 \\over 8}wL$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${1 \\over 2}wL$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${3 \\over 4}wL$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-propped-cantilever-beam-carrying-a-uniformly-distribu-2002-marks-2-alumwlelc5drvpry.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1730e311cb8",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "simple-stresses",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The shear modulus (G), modulus of elasticity  (E) and the Poisson's ratio ($$\\mu$$) of a material are related as",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$G\\;=\\;\\frac E{\\left[2(1+\\mu)\\right]}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$E\\;=\\;\\frac G{\\left[2(1+\\mu)\\right]}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$G\\;=\\;\\frac E{\\left[2(1-\\mu)\\right]}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$G\\;=\\;\\frac E{\\left[2(\\mu - 1)\\right]}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-shear-modulus-g-modulus-of-elasticity-e-and-the-poissons-gate-ce-2002-marks-1-5a1730e311cb8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iWuWB5B0HTaM7y8G",
+                    "exam": "gate-ce",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Calculate the shape factor for the $$T$$-section shown in the following figure made up of two plates $$100\\,\\,mm \\times 10\\,\\,mm.$$ What will be the load factor if the permissible stress in bending is only $$2/3$$ of the yield stress $$\\left( {{\\sigma _y}} \\right)$$\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/3ah3dwh7YGcL8H9Ie/yBeMiXl1r2PmL623X4P5C7l3dkyjm/AJG9LdTK1afzSsY6yTQVe9/image.png\" loading=\"lazy\" alt=\"GATE CE 2002 Structural Analysis - Plastic Analysis Question 2 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Shape factor $$=1.81$$\n<br>Load factor $$=2.715$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "calculate-the-shape-factor-for-the-t-section-shown-in-th-2002-marks-5-iwuwb5b0htam7y8g.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "84H7pdA3qNsvPXCr",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A steel beam (with a constant $$EI,$$ and span $$L$$) is fixed at both ends and carries a uniformly distributed load ($$w$$ $$kN/m$$), which is gradually increased till the beam reaches the stage of plastic collapse (refer to the following figure). Assuming $$'B'$$ to be at mid-span, which of the following is true.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/bRNbYNTNGFB80zxOT/m2Jo9TFqyuV1s2zJLeSPRJNaf0GW0/RJOVjthsQZRWVZrzCeg3zV/image.png\" loading=\"lazy\" alt=\"GATE CE 2002 Structural Analysis - Plastic Analysis Question 8 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Hinges are formed at $$A,B$$ and $$C$$ together "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Hinges are formed at $$B$$ and then at $$A$$ and $$C$$ together"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Hinges are formed at $$A$$ and $$C$$ together and then at $$B$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Hinges are formed at $$A$$ and $$C$$ only"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-steel-beam-with-a-constant-ei-and-span-l-is-fix-2002-marks-2-84h7pda3qnsvpxcr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xgsRVV2Te08wgMLI",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A propped cantilever beam of span $$'L'$$ is loaded with $$u.d.l$$ of intensity $$w$$/unit length, all through the span. Bending Moment at the fixed end is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$ - W{L^2}/8$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$  W{L^2}/2$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$  W{L^2}/12$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$  W{L^2}/824$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-propped-cantilever-beam-of-span-l-is-loaded-with-u-2002-marks-2-xgsrvv2te08wgmli.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                }
+            ],
+            "title": "Structural Analysis"
+        },
+        {
+            "_id": "Transportation Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a3d4aff7b39d",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "transportation-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "highway-geometric-design",
+                    "year": 2002,
+                    "paperTitle": "GATE CE 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "SSD and Friction coefficients are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Directly proportional to each other"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Unrelated"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Inversely proportional to each other"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Either directly or inversely proportional they depends upon nature"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "ssd-and-friction-coefficients-are-gate-ce-2002-marks-1-5a3d4aff7b39d.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2002"
+                }
+            ],
+            "title": "Transportation Engineering"
+        }
+    ]
+}

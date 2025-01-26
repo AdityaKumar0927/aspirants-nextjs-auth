@@ -1,0 +1,3145 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qCMKzl8tF3g8Yzh8",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The inverse Laplace transform of $${1 \\over {\\left( {{s^2} + s} \\right)}}$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1 + {e^t}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1 - {e^t}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1 - {e^{ - t}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1 + {e^{ - t}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-inverse-laplace-transform-of-1-over-left-s2-s-right-is-gate-me-2009-marks-1-qcmkzl8tf3g8yzh8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rexydUFh43Mp3elc",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An analytic function of a complex variable $$z = x + i\\,y$$ is expressed as \n<br>$$f\\left( z \\right) = u\\left( {x,y} \\right) + i\\,\\,v\\,\\,\\left( {x,y} \\right)$$ where $$i = \\sqrt { - 1} .$$ \n<br>If $$u=xy$$ then the expression for $$v$$ should be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{{{\\left( {x + y} \\right)}^2}} \\over 2} + k$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{x - {y^2}} \\over 2} + k$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{{y^2} - {x^2}} \\over 2} + k$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{{{\\left( {x - y} \\right)}^2}} \\over 2} + k$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-analytic-function-of-a-complex-variable-z-x-iy-2009-marks-1-rexydufh43mp3elc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "33JTeQpoazxrhALq",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The divergence of the vector field $$\\,3xz\\widehat i + 2xy\\widehat j - y{z^2}\\widehat k$$ at a point $$(1,1,1)$$ is equal to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$7$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-divergence-of-the-vector-field-3xzwidehat-i-2xywidehat-j-gate-me-2009-marks-2-33jteqpoazxrhalq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5rUh6AyHXmD3BTY7",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a matrix $$\\left[ M \\right] = \\left[ {\\matrix{\n   {{3 \\over 5}} &amp; {{4 \\over 5}}  \\cr \n   x &amp; {{3 \\over 5}}  \\cr \n\n } } \\right].$$ The transpose of the matrix is equal to the inverse of the matrix, $${\\left[ M \\right]^T} = {\\left[ M \\right]^{ - 1}}.$$ The value of $$x$$ is given by ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${ - {4 \\over 5}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${ - {3 \\over 5}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{3 \\over 5}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{4 \\over 5}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-matrix-left-m-right-left-matrix-3-over-5-4-over-5-cr-x-gate-me-2009-marks-1-5ruh6ayhxmd3bty7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XerRc0bqh875tukB",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The distance between the origin and the point nearest to it on the surface $$\\,\\,{z^2} = 1 + xy\\,\\,$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{\\sqrt 3 } \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\sqrt 3 }$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-distance-between-the-origin-and-the-point-nearest-to-it-gate-me-2009-marks-1-xerrc0bqh875tukb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SokUwSXYtVP6TOc9",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The area enclosed between the curves $${y^2} = 4x\\,\\,$$ and $${{x^2} = 4y}$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{16} \\over 3}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$8$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{32} \\over 3}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$16$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-area-enclosed-between-the-curves-y2-4x-and-x2-4y-is-gate-me-2009-marks-1-sokuwsxytvp6toc9.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pDXXAb2d2HR0JmPF",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If three coins are tossed simultaneously, the probability of getting at least one head is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1/8$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3/8$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1/2$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$7/8$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-three-coins-are-tossed-simultaneously-the-probability-of-gate-me-2009-marks-1-pdxxab2d2hr0jmpf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7Zm8pTIEqIFl6eC0",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The standard deviation of a uniformly distributed random variable $$b/w$$ $$0$$ and $$1$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over {\\sqrt {12} }}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over {\\sqrt {3} }}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${5 \\over {\\sqrt {12} }}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${7 \\over {\\sqrt {12} }}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-standard-deviation-of-a-uniformly-distributed-random-var-gate-me-2009-marks-1-7zm8ptieqifl6ec0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jjr6N7dg6UFVMXMT",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The solution of $$x{{dy} \\over {dx}} + y = {x^4}$$  with condition $$y\\left( 1 \\right) = {6 \\over 5}$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$y = {{{x^4}} \\over 5} + {1 \\over x}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$y = {{4{x^4}} \\over 5} + {4 \\over {5x}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$y = {{{x^4}} \\over 5} + 1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$y = {{{x^5}} \\over 5} + 1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-solution-of-xdy-over-dx-y-x4-with-condition-yleft-1-righ-gate-me-2009-marks-1-jjr6n7dg6ufvmxmt.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Engineering Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VtGsgXh2W9BGBpNu",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "engineering-mechanics-static-and-dynamics",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A uniform rigid rod of mass $$M$$ and length $$L$$ is hinged at one end as shown in theadjacent figure. A force P is applied at a distance of $$2L/3$$ from the hinge so thatthe rod swings to the right. The reaction at the hinge is\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/G2haosQDBLlLcvWvh/cPv2tZpsoLN90ascQ2vUlFIOdC4kf/y7Pz1oQQLH6sNNBaH7ytYP/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2009 Engineering Mechanics - Engineering Mechanics Static and Dynamics Question 49 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-P$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P/3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2p/3$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-uniform-rigid-rod-of-mass-m-and-length-l-is-hinged-at-one-gate-me-2009-marks-2-vtgsgxh2w9bgbpnu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NMLpvYRcXdQxmYw1",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "engineering-mechanics-static-and-dynamics",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A block weighing 981 $$N$$ is resting on a horizontal surface. The coefficient of friction between the block and the horizontal surface is $$\\mu  = 0.2.$$ A vertical cable attached to the block provides partial support as shown. A man can pull horizontally with a force of 100 $$N$$. What will be the tension, $$T$$ (inN) in the cable if the man is just able to move the block to the right?\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/7B3BLZO0DRjNVYsir/8KLazVdPL4XtV22iepMKC3WKs3Mu1/GqL8pY2DNSvaRteKpV6IDn/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2009 Engineering Mechanics - Engineering Mechanics Static and Dynamics Question 83 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "176.2"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "196.0 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "481.0 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "981.0 "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-block-weighing-981-n-is-resting-on-a-horizontal-surface-th-gate-me-2009-marks-1-nmlpvyrcxdqxmyw1.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                }
+            ],
+            "title": "Engineering Mechanics"
+        },
+        {
+            "_id": "Fluid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XfOWnyRENzlQbPs8",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "turbulent-flow",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Water at $${25^0}C$$ is flowing through a $$1.0km$$ long $$G.I.$$ pipe of $$200mm$$ diameter at the rate of $$0.07$$ $${m^3}/s.$$ If value of Darcy friction factor for this pipe is $$0.02$$ and density of water is $$1000\\,\\,kg/{m^3}$$,  the pumping power (in $$kW$$) required to maintain the flow is\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.8$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$17.4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$20.5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$41.0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "water-at-250c-is-flowing-through-a-10km-long-gi-pipe-of-200m-gate-me-2009-marks-2-xfownyrenzlqbps8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jwHKMgHv7vAetVll",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-kinematics",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "You are asked to evaluate assorted fluid flows for their suitability in a given laboratory application. The following three flow choices. Expressed in terms of the two - dimensional velocity fields in the $$x-$$ $$y$$ plane, are made available. \n<br>$$P:$$ $$u = 2y,\\,\\,\\,v =  - 3x$$ \n<br>$$Q:$$ $$u=3xy,$$ $$\\,\\,\\,\\,$$$$v=0$$ \n<br>$$R:$$ $$u=-2x,$$ $$\\,\\,\\,\\,$$$$v=2y$$ \n<p>Which flows should be recommended when the application requires the flow to be incompressible and irrotational?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P$$ and $$R$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$R$$ only "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$Q$$ and $$R$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$R$$ only "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "you-are-asked-to-evaluate-assorted-fluid-flows-for-their-sui-gate-me-2009-marks-2-jwhkmghv7vaetvll.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QXeMhsU56Nm4Fgt9",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-dynamics",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider steady, incompressible and irrotational flow through a reducer in a horizontal pipe where the diameter is reduced from $$20cm$$ to $$10cm.$$ The pressure in the $$20cm$$ pipe just upstream of the reducer is $$150kPa.$$ The fluid has a vapour pressure of $$50kPa$$ and a specific weight of $$5\\,\\,kN/{m^3}.$$ Neglecting frictional effects, the maximum discharge (in $${m^3}/s$$) that can pass through the reducer without causing cavitation is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.05$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.16$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.27$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.38$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-steady-incompressible-and-irrotational-flow-through-gate-me-2009-marks-2-qxemhsu56nm4fgt9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rlR5mDTGKSdWRhjL",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "laminar-flow",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The velocity profile of a fully developed laminar flow in a straight circular pipe, as shown in the figure, is given by the expression. \n$$$u\\left( r \\right) = {{ - {R^2}} \\over {4\\mu }}\\left( {{{dp} \\over {dx}}} \\right)\\left( {1 - {{{r^2}} \\over {{R^2}}}} \\right)$$$\n<br>Where $${{dp} \\over {dx}}$$ is a constant.<p></p>\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/4eyh7OP4sLdnAWPIn/eNwitPMuo67Q26DBzjUTmgBCYPwrC/tgYYum9PNVHS04giqqBujP/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2009 Fluid Mechanics - Laminar Flow Question 20 English\"> \n<p>The average velocity of fluid in the pipe is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{ - {R^2}} \\over {8\\mu }}\\left( {{{dp} \\over {dx}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{ - {R^2}} \\over {4\\mu }}\\left( {{{dp} \\over {dx}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{ - {R^2}} \\over {2\\mu }}\\left( {{{dp} \\over {dx}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{ - {R^2}} \\over \\mu }\\left( {{{dp} \\over {dx}}} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-velocity-profile-of-a-fully-developed-laminar-flow-in-a-gate-me-2009-marks-1-rlr5mdtgksdwrhjl.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                }
+            ],
+            "title": "Fluid Mechanics"
+        },
+        {
+            "_id": "Heat Transfer",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ktgMnrZKOdDW4Iz0",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "conduction",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider steady-state heat conduction across the thickness in a plane composite wall as shown in fig exposed to convection conditions on both sides. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/O6CoqzclQVlsgxuzR/CYY6u03Boy8ViMkULgxhgx9q4WaQO/fEm4shM3iglaxFiExqH3KT/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2009 Heat Transfer - Conduction Question 21 English 1\"> \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/0djHKG2bEzMqU4vZC/wamB2frv1eAq4C65cfztkDn3gQhEm/OqhaBgOGdCkQMdB5N93uVf/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2009 Heat Transfer - Conduction Question 21 English 2\"> \n<p>Assuming negligible contact resistance between the wall surfaces, the interface temp $$T(C)$$ of the two walls will be</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-0.50$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2.75$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3.75$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4.5$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-consider-steady-state-heat-conduction-across-the-thickness-gate-me-2009-marks-2-ktgmnrzkoddw4iz0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UwojA1KXCHVZ8JBD",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "convection",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A coolant fluid at $${30^ \\circ }C$$ flows over a heated flat plate maintained at a constant temperature of $${100^ \\circ }C$$. The boundary layer temp distribution at a given location on the plate may be approximated as $$T=30+70exp(-y),$$ where $$y$$ (in $$m$$) is the distance normal to the plate and $$T$$ is in $$^ \\circ C.$$  If thermal conductivity of the fluid is $$1.0W/mk,$$ the local convective heat transfer  (in $$W/{m^2}K$$) at that location will be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$10$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-coolant-fluid-at-30-circ-c-flows-over-a-heated-flat-plate-gate-me-2009-marks-1-uwoja1kxchvz8jbd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VJWAjqUf8MYUlDGM",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "radiation",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Radiative heat transfer is intended between the inner surfaces of two very largen isothermal parallel metal plates. While the upper plate (designated as plate $$1$$) is a black surface and is the warmer one being maintained at $${727^ \\circ }C,$$ the lower plate (plate $$2$$) is a diffuse and gray surface with an emissivity of $$0.7$$ and is kept at $${27^ \\circ }C.$$ Assume that the surfaces are sufficiently large to form a two-surface enclosure and steady state conditions to exist. Stefan Boltzmann constant is given as \n<br>$$5.67 \\times {10^{ - 8}}\\,W/{m^2}{K^4}$$\n<p>If plate is also a diffuse gray surface with an emisivity value of $$0.8,$$ the net radiant heat exchange (in $$kW/{m^2}$$) between plate $$1$$ and plate $$2$$ </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$17.0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$19.5$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$23.0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$31.7$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "radiative-heat-transfer-is-intended-between-the-inner-surfac-gate-me-2009-marks-2-vjwajquf8myuldgm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QWl8Bi10BcalDzqS",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "radiation",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Radiative heat transfer is intended between the inner surfaces of two very largen isothermal parallel metal plates. While the upper plate (designated as plate $$1$$) is a black surface and is the warmer one being maintained at $${727^ \\circ }C,$$ the lower plate (plate $$2$$) is a diffuse and gray surface with an emissivity of $$0.7$$ and is kept at $${27^ \\circ }C.$$ Assume that the surfaces are sufficiently large to form a two-surface enclosure and steady state conditions to exist. Stefan Boltzmann constant is given as \n<br>$$5.67 \\times {10^{ - 8}}\\,W/{m^2}{K^4}$$\n<p>The irradiation (in $$kW/{m^2}$$) for the upper plate is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2.5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3.6$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$17.0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$19.5$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "radiative-heat-transfer-is-intended-between-the-inner-surfac-gate-me-2009-marks-2-qwl8bi10bcaldzqs.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4I3HozAc5QXqvBq8",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "heat-exchangers",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a parallel flow heat exchanger operating under steady state, the heat capacity rates (product of specific heat at constant pressure and mass flow rate) of the hot and cold fluid are equal. The hot fluid, flowing at $$1kg/sec$$ with $$sp.$$ heat $$= 4kJ/kgK,$$ enters the heat exchanger at $${102^ \\circ }C$$ while the cold fluid has an inlet temperature of $${15^ \\circ }C$$. The overall heat transfer coefficient for the heat exchanger is estimated to be $$1\\,\\,kW/{m^2}K$$ and the corresponding heat transfer surface area is $$5{m^2}$$. Neglect heat transfer between the heat exchanger and the ambient. \n<p>The heat exchanger is characterized by the following relation $$2\\varepsilon  = 1 - Exp\\left( { - 2NTU} \\right).$$ The exit temp (in  $$^ \\circ C$$) for the cold fluid is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$45$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$55$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$65$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$75$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-parallel-flow-heat-exchanger-operating-under-steady-sta-gate-me-2009-marks-2-4i3hozac5qxqvbq8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                }
+            ],
+            "title": "Heat Transfer"
+        },
+        {
+            "_id": "Industrial Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2u62LRt8LznewXTt",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "inventory-control",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A company uses $$2555$$ units of an item annually. Delivery lead time is $$8$$ days. The recorder point (in number of units) to achieve optimum inventory is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$7$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$8$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$56$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$60$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-company-uses-2555-units-of-an-item-annually-delivery-2009-marks-2-2u62lrt8lznewxtt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nDTDW6B6cMp73q7Q",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pert-and-cpm",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The expected time $$\\left( {{t_e}} \\right)$$ of a $$PERT$$ activity in terms of optimistic time $$\\left( {{t_0}} \\right)$$, pessimistic $$\\left( {{t_p}} \\right)$$ and most likely time $$\\left( {{t_L}} \\right)$$ is given by ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${t_e} = {{{t_0} + 4{t_L} + {t_P}} \\over 6}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${t_e} = {{{t_0} + 4{t_P} + {t_L}} \\over 6}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${t_e} = {{{t_0} + 4{t_L} + {t_P}} \\over 3}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${t_e} = {{{t_0} + 4{t_P} + {t_L}} \\over 3}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-expected-time-left-te-right-of-a-pert-a-2009-marks-1-ndtdw6b6cmp73q7q.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sA495vxKO1LiEM6G",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pert-and-cpm",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following network\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/h22GRZ7es5sk2NdpA/CVEpWT9tkTj8gvLJa7tLrpx6tQFrD/GxQWhCDneoSncTyjv56PcP/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2009 Industrial Engineering - Pert and Cpm Question 20 English 1\">\n<p>The optimistic time, most likely time and pessimistic time of all the activities are\ngiven in the table below :</p>\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/gQu8IcoTVauzh48nZ/fMkWMqofXpi4VrQo8VMD0aa3Aui0v/trnYPHC7G0kfjRZmhtszqH/image.png\" loading=\"lazy\" alt=\"GATE ME 2009 Industrial Engineering - Pert and Cpm Question 20 English 2\">\n<p>The critical path duration of the network (in days) is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$11$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$14$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$17$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$18$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-network-the-optimistic-time-most-li-2009-marks-2-sa495vxko1liem6g.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "A66ErZvRVhj7CnIW",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pert-and-cpm",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following network\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/h22GRZ7es5sk2NdpA/CVEpWT9tkTj8gvLJa7tLrpx6tQFrD/GxQWhCDneoSncTyjv56PcP/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2009 Industrial Engineering - Pert and Cpm Question 19 English 1\">\n<p>The optimistic time, most likely time and pessimistic time of all the activities are\ngiven in the table below :</p>\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/gQu8IcoTVauzh48nZ/fMkWMqofXpi4VrQo8VMD0aa3Aui0v/trnYPHC7G0kfjRZmhtszqH/image.png\" loading=\"lazy\" alt=\"GATE ME 2009 Industrial Engineering - Pert and Cpm Question 19 English 2\">\n<p>The standard deviation of the critical path is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.33$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.55$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.77$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1.66$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-network-the-optimistic-time-most-li-2009-marks-2-a66erzvrvhj7cniw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "P3phBJVAHoLTKIN0",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "forecasting",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following forecasting methods takes a fraction of forecast error into account for the next period forecast?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "simple average method "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "moving average method "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "weighted moving average method "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "exponential smoothing method  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-forecasting-methods-takes-a-fraction-2009-marks-1-p3phbjvaholtkin0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LrMGqRPJOJENFyrr",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-programming",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following Linear Programming problem $$(LLP)$$ \n<p>Maximize: $$Z = 3{x_1} + 2{x_2}$$\n<br>$$\\,\\,$$ Subject $$\\,\\,$$ to\n<br>$$\\eqalign{\n  &amp; \\,\\,\\,\\,\\,\\,\\,{x_1} \\le 4  \\cr \n  &amp; \\,\\,\\,\\,\\,\\,\\,{x_2} \\le 6  \\cr \n  &amp; 3{x_1} + 2{x_2} \\le 18  \\cr \n  &amp; {x_1} \\ge 0,\\,\\,{x_2} \\ge 0 \\cr} $$</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The $$LPP$$ has a unique optimal solution."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The $$LPP$$ is infeasible"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The $$LPP$$ is unbounded "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The $$LPP$$ has multiple optimal solutions. "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-linear-programming-problem-llp-2009-marks-2-lrmgqrpjojenfyrr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vDiwGWJ1kPuWLDDq",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "scheduling",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Six jobs arrived in a sequence as given below: \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/uI7um0S5Hj9foddp3/AIQifIbTENWgJbRpAJYKb1YO9Put5/zS5NTIbCZqNeeHJwyKQUXx/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2009 Industrial Engineering - Scheduling Question 9 English\"> \n<p>Average flow time (in days) for the above jobs using Shortest Processing Time rule is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$20.83$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$23.16$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$125.00$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$139.00$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "six-jobs-arrived-in-a-sequence-as-given-below-average-fl-2009-marks-2-vdiwgwj1kpuwlddq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                }
+            ],
+            "title": "Industrial Engineering"
+        },
+        {
+            "_id": "Machine Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gg61EzthZton8wp1",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fatigue-strength",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A forged steel link with uniform diameter of $$30mm$$ at the centre is subjected to an axial force that varies from $$40kN$$ in compression to $$160kN$$ in tension. The tensile $$\\left( {{S_U}} \\right),$$ yield $$\\left( {{S_y}} \\right)$$ and corrected endurance $$\\left( {{S_e}} \\right)$$ strengths of the steel material are $$600MPa, 420MPa$$ and $$240MPa$$ respectively. The factor of safety against fatigue endurance as per Soderberg\u2019s criterion is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.26$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.37$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.45$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2.00$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-forged-steel-link-with-uniform-diameter-of-30mm-at-the-cen-gate-me-2009-marks-2-gg61ezthzton8wp1.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OoNLACZaEgbXtMq0",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "design-of-spur-gears",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $${20^ \\circ }$$ full depth involute spur pinion of $$4mm$$ module and $$21$$ teeth is to transmit $$15kW$$ at $$960rpm.$$ Its face width is $$25mm.$$\n<p>Given that the tooth geometry factor is $$0.32$$ and the combined effect of dynamic load and allied factors intensifying the stress is $$1.5;$$ the minimum allowable stress (in $$MPa$$) for the gear material is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$242.0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$166.5$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$121.0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$74.0$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-20-circ-full-depth-involute-spur-pinion-of-4mm-module-and-gate-me-2009-marks-2-oonlaczaegbxtmq0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Vk5iDaaTxmu9xtxs",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "design-of-spur-gears",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $${20^ \\circ }$$ full depth involute spur pinion of $$4mm$$ module and $$21$$ teeth is to transmit $$15kW$$ at $$960rpm.$$ Its face width is $$25mm.$$ \n<p>The tangential force transmitted (in N) is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3552$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2611$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1776$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1305$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-20-circ-full-depth-involute-spur-pinion-of-4mm-module-and-gate-me-2009-marks-2-vk5idaatxmu9xtxs.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                }
+            ],
+            "title": "Machine Design"
+        },
+        {
+            "_id": "Production Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ooZ7MM3HYcXlzWS5",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Friction at the tool - chip interface can be reduced by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Decreasing the rake angle"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Increasing the depth of cut "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Decreasing the cutting speed "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Increasing the cutting speed "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "friction-at-the-tool-chip-interface-can-be-reduced-by-gate-me-2009-marks-1-ooz7mm3hycxlzws5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zb4L1Aqd7ksOJohR",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "casting",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two streams of liquid metal, which are not hot enough to fuse properly, result into a casting defect known as",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Cold shut "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Swell "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Blow hole "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Scar "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-streams-of-liquid-metal-which-are-not-hot-enough-to-fuse-gate-me-2009-marks-1-zb4l1aqd7ksojohr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DOTaPS2Nnnzn53rg",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "casting",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the following \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/FjpLkByzt0lnYqz3Z/FDt9ZjNdnsFhPbHvMS5YzRsTHUAeT/R70kZHH9LctxjWBOh6dyW6/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2009 Production Engineering - Casting Question 30 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P - 1,\\,\\,Q - 3,\\,\\,R - 2,\\,\\,S - 4$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P - 1,\\,\\,Q - 4,\\,\\,R - 2,\\,\\,S - 3$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P - 3,\\,\\,Q - 4,\\,\\,R - 2,\\,\\,S - 1$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P - 4,\\,\\,Q - 1,\\,\\,R - 2,\\,\\,S - 3$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-following-gate-me-2009-marks-2-dotaps2nnnzn53rg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "H88ijcUGAVFctA0Y",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The minimum shear strain in orthogonal turning with a cutting tool of zero rake angle is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.00$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.5$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2.0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-minimum-shear-strain-in-orthogonal-turning-with-a-cuttin-gate-me-2009-marks-1-h88ijcugavfcta0y.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Oeqv7JdRBwSm1rhh",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a machining experiment, tool life was found to vary with the cutting speed in the following manner\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/D9tQs11gBO148Zp4V/hzXmSmzlxwsmyU3DbJJ7tdKR2ZkA7/OxeGZWj6rx51Q0pd23ZOLK/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2009 Production Engineering - Metal Cutting Question 56 English\"> \n<p>The exponent $$(n)$$ and constant $$(K)$$ of the Taylor's tool life equation are </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$n=0.5,$$ and $$K=540$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$n=1.0,$$ and $$K=4860$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$n=-1.0,$$ and $$K=0.74$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$n=-0.5,$$ and $$K=1.155$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-machining-experiment-tool-life-was-found-to-vary-with-t-gate-me-2009-marks-2-oeqv7jdrbwsm1rhh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AjUghl4ku4Ez2r7J",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a machining experiment, tool life was found to vary with the cutting speed in the following manner\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/D9tQs11gBO148Zp4V/hzXmSmzlxwsmyU3DbJJ7tdKR2ZkA7/OxeGZWj6rx51Q0pd23ZOLK/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2009 Production Engineering - Metal Cutting Question 55 English\"> \n<p>What is percentage increase in tool life when the cutting speed is halved.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$50\\% $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$200\\% $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$300\\% $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$400\\% $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-machining-experiment-tool-life-was-found-to-vary-with-t-gate-me-2009-marks-2-ajughl4ku4ez2r7j.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "A0olE5ecdJmB2w00",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metrology-and-inspection",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What are the upper and lower limits of the shaft represented by $$60{f_8}$$?\n<p>Use the following data:\n<br>Diameter $$60$$ lies in the diameter step of $$50-80$$ $$mm$$\n<br>Fundamental tolerance unit, $$i,$$ in $$\\mu m = 0.45\\,\\,{D^{1/3}} + 0.001D,$$ \n<br>where $$D$$ is the representative size in $$mm;$$ Tolerance value for $${\\rm I}T8 = 25i,$$ Fundamental deviation for $$'\u2018f\u2019'$$ shaft $$ =  - 5.5{D^{0.41}}$$</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Lower limit $$= 59.924mm,$$ Upper Limit $$= 59.970mm$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Lower limit $$= 59.954mm,$$ Upper Limit $$= 60.000mm$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Lower limit $$= 59.970mm,$$ Upper Limit $$= 60.016mm$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Lower limit $$= 60.000mm,$$ Upper Limit $$= 60.046mm$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-are-the-upper-and-lower-limits-of-the-shaft-represented-2009-marks-2-a0ole5ecdjmb2w00.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GMkq0aTMVKPJQ8d1",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "advance-machine-tools",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the following \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/uVCrbOg5tIJVfdesj/skLyDwRDZbYqRjzW7vGxKgXtgatAg/DHAQxi1sm5kEpn1Rrkl7HV/image.png\" loading=\"lazy\" alt=\"GATE ME 2009 Production Engineering - Advance Machine Tools Question 11 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P - 2,\\,\\,Q - 3,\\,\\,R - 4,\\,\\,S - 1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P - 3,\\,\\,Q - 4,\\,\\,R - 1,\\,\\,S - 2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P - 3,\\,\\,Q - 4,\\,\\,R - 2,\\,\\,S - 1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P - 4,\\,\\,Q - 3,\\,\\,R - 2,\\,\\,S - 1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-following-2009-marks-2-gmkq0atmvkpjq8d1.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                }
+            ],
+            "title": "Production Engineering"
+        },
+        {
+            "_id": "Strength of Materials",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YPyH6PbUmV90pKt0",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-stresses",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the principal stresses in a plane stress problem are $${\\sigma _1}$$ $$= 100$$ MPa,  $${\\sigma _2}$$ $$= 40$$ MPa, the magnitude of the maximum shear stress (in MPa) wil be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$60$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$50$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$30$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$20$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-principal-stresses-in-a-plane-stress-problem-are-sigm-gate-me-2009-marks-1-ypyh6pbumv90pkt0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5o3uh8NGztUrFeYN",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "torsion",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A solid circular shaft of diameter $$d$$ is subjected to a combined bending moment, $$M$$ and torque, $$T.$$ The material property to be used for designing the shaft using the relation $${{16T} \\over {\\pi {d^3}}}\\sqrt {{M^2} + {T^2}} $$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Ultimate tensile strength $$\\left( {{S_u}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Tensile yield strength $$\\left( {{S_y}} \\right)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Torsional yield strength $$\\left( {{S_{sy}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Endurance strength $$\\left( {{S_e}} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-solid-circular-shaft-of-diameter-d-is-subjected-to-a-combi-gate-me-2009-marks-1-5o3uh8ngzturfeyn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5WTTfYyTHR4fQpwf",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "torsion",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A solid shaft of diameter, $$d$$ and length, $$L$$ is fixed at both the ends. A torque, $${T_0}$$ is applied at a distance, $$L/4$$ from the left end as shown in the figure below.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/Gx1BmkWHDpMGhVfua/5fQTlLzve38l1YHwfb31x2tqzIFxt/n5bwpopt7vwHjqGt8yDbuf/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2009 Strength of Materials - Torsion Question 10 English\"> \n<p>The maximum shear stress in the shaft is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{16{T_0}} \\over {\\pi {d^3}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{12{T_0}} \\over {\\pi {d^3}}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{8{T_0}} \\over {\\pi {d^3}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{4{T_0}} \\over {\\pi {d^3}}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-solid-shaft-of-diameter-d-and-length-l-is-fixed-at-both-th-gate-me-2009-marks-2-5wttfyythr4fqpwf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ACEbcnCj6ltVQhSr",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A triangular-shaped cantilever beam of uniform- thickness is shown in the figure. The young's modulus of the material of the beam is $$E$$. $$A$$ concentrated load $$P$$ is applied at the free end of the beam.\n <img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/Hg4kvA5qbhEkmhSz2/hl5PJFVbTWYy5Ajcnd9VTSswHLVfF/J9LpJFux02LsZ5iPzpbA71/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2009 Strength of Materials - Deflection of Beams Question 15 English\"> \n<p>The area moment of inertia of inertia about the neutral axis of a cross-section at a distance $$x$$ measured from the free end is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{bx{t^3}} \\over {6L}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{bx{t^3}} \\over {12L}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{bx{t^3}} \\over {24L}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{x{t^3}} \\over {12}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-triangular-shaped-cantilever-beam-of-uniform-thickness-is-gate-me-2009-marks-2-acebcncj6ltvqhsr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kPRmwHgdy2wRpwfb",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A frame of two arms of equal length $$L$$ is shown in the adjacent figure. The flexural rigidity of each arm of the frame is $$EI$$. The vertical deflection at the point of application of load $$P$$ is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/KS1DyGgcUU1Au5POE/O9g0JVYYopXj7mhH7SUgwGdbcaCmw/8sae3bp8xSwCDyNjpdEgMR/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2009 Strength of Materials - Deflection of Beams Question 16 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{P{L^3}} \\over {3EI}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${2{P{L^3}} \\over {3EI}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{P{L^3}} \\over {EI}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${4{P{L^3}} \\over {3EI}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-frame-of-two-arms-of-equal-length-l-is-shown-in-the-adjace-gate-me-2009-marks-2-kprmwhgdy2wrpwfb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "D3Nu6ZsiRJ9z7kYg",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A triangular-shaped cantilever beam of uniform- thickness is shown in the figure. The young's modulus of the material of the beam is $$E$$. $$A$$ concentrated load $$P$$ is applied at the free end of the beam.\n <img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/Hg4kvA5qbhEkmhSz2/hl5PJFVbTWYy5Ajcnd9VTSswHLVfF/J9LpJFux02LsZ5iPzpbA71/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2009 Strength of Materials - Deflection of Beams Question 14 English\"> \n<p>The maximum deflection of the beam is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{24P{L^3}} \\over {Eb{t^3}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{12P{L^3}} \\over {Eb{t^3}}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{8P{L^3}} \\over {Eb{t^3}}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{6P{L^3}} \\over {Eb{t^3}}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-triangular-shaped-cantilever-beam-of-uniform-thickness-is-gate-me-2009-marks-2-d3nu6zsirj9z7kyg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                }
+            ],
+            "title": "Strength of Materials"
+        },
+        {
+            "_id": "Theory of Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mx7U5iQQYmGBUlsK",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analysis-of-plane-mechanisms",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A simple quick return mechanism is shown in the figure. The forward to return ratio of the quick return mechanism is 2 : 1. If the radius of the crank O<sub>1</sub> P is 125mm, then the distance 'd' (in mm) between the crank centre to lever pivot centre point should be\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/KdoLQjmGRFD2qgoDU/F7QFdF4dabpKzf7x5JVbwHaiyL80y/gyy3fHLBejL5SiREO8haFg/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2009 Theory of Machines - Analysis of Plane Mechanisms Question 55 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "144.3"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "216.5 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "240.0 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "250.0"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-simple-quick-return-mechanism-is-shown-in-the-figure-the-f-gate-me-2009-marks-1-mx7u5iqqymgbulsk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Y66P9lqog7ZjGZtO",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analysis-of-plane-mechanisms",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the approaches given below to perform stated kinematics/dynamics analysis of machine\n<p><b>Analysis</b>\n<br>$$P.$$ Continuous relative rotation \n<br>$$Q.$$ Velocity and acceleration \n<br>$$R.$$ Mobility\n<br>$$S.$$ Dynamic - static analysis</p>\n<p><b>Approach</b>\n<br>$$1.$$ D' Alembert's principal\n<br>$$2.$$ Grubler's criterion\n<br>$$3.$$ Grashoff's law\n<br>$$4.$$ Kennedy's theorem</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P = 1,Q = 2,R = 3,S = 4$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P = 3,Q = 4,R = 2,S = 1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P = 2,Q = 3,R = 4,S = 1$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P = 4,Q = 2,R = 1,S = 3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-approaches-given-below-to-perform-stated-kinematic-gate-me-2009-marks-2-y66p9lqog7zjgzto.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qGq80MzRIOLEfarg",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "gears-and-gear-trains",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An epicyclic gear train is shown schematically in the adjacent figure The sun gear 2 on the input shaft is a 20 teeth external gear. The planet gear 3 is a 40 teeth external gear. The ring gear 5 is a 100 teeth internal gear. The ring gear 5 is fixed and the gear 2 is rotating at 60 rpm CCW (CCW $$=$$ counter-clockwise and CW $$=$$ clockwise)\n<p>The arm 4 attached to the output shaft will rotate at</p>\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/NDaQWEcuZWlsvvRJX/umgXhVN9abG18d9B82pRoyn9Z7R0J/E0ZybbP0bi9Y7whjTzwa92/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2009 Theory of Machines - Gears and Gear Trains Question 15 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "10 rpm, CCW "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "10 rpm, CW "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "12 rpm, CW"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "12 rpm, CCW"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-epicyclic-gear-train-is-shown-schematically-in-the-adjace-gate-me-2009-marks-2-qgq80mzriolefarg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hFwySvOew275ahyd",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vibrations",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The rotor shaft of a large electric motor supported between short bearings at both the ends shows a deflection of $$1.8$$ mm in the middle of the rotor. Assuming the rotor to be perfectly balanced and supported at knife edges at both the ends, the likely critical speed (in rpm) of the shaft is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$350$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$705$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2810$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4430$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-rotor-shaft-of-a-large-electric-motor-supported-between-gate-me-2009-marks-1-hfwysvoew275ahyd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cpry0AGHQ5no9BEy",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vibrations",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An automotive engine weighing $$240$$ kg is supported on four springs with linear characteristics. Each of the front two springs have a stiffness of $$16$$ MN/m while the stiffness of each rear spring is $$32$$ MN/m. The engine speed (in rpm), at which resonance is likely to occur, is\n ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$6040$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3020$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1424$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$955$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-automotive-engine-weighing-240-kg-is-supported-on-four-sp-gate-me-2009-marks-2-cpry0aghq5no9bey.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vJIO2ZnwrMcBdMUh",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vibrations",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A vehicle suspension system consists of a spring and a damper. The stiffness of the spring is $$3.6$$  kN/m and the damping constant of the damper is $$400$$ Ns/m. If the mass is $$50$$ kg, then the damping factor ($$\\xi $$) and damped natural frequency ($${f_n}$$) respectively are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.47$$ and $$1.19$$ $$Hz$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.471$$ and $$7.48$$ $$Hz$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.666$$ and $$1.35$$ $$Hz$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.666$$ and $$8.50$$ $$Hz$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-vehicle-suspension-system-consists-of-a-spring-and-a-dampe-gate-me-2009-marks-2-vjio2znwrmcbdmuh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                }
+            ],
+            "title": "Theory of Machines"
+        },
+        {
+            "_id": "Thermodynamics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nvOwZjPWfNormiUw",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculation-of-work-and-heat",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A compressor undergoes a reversible, steady flow process. The gas at inlet and outlet of the compressor is designated as state $$1$$ and state $$2$$ respectively. Potential and kinetic energy changes are to be ignored. The following notations are used:\n<br>$$v=$$ specific volume and $$P=$$ pressure of the gas.\n<br>The specific work required to be supplied to the compressor for this gas compression process is\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\int_1^2 {Pdv} $$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\int_1^2 {vdP} $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$v{}_1\\left( {{P_2} - {P_1}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ - {P_2}\\left( {{v_1} - {v_2}} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-compressor-undergoes-a-reversible-steady-flow-process-the-gate-me-2009-marks-1-nvowzjpwfnormiuw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RMrMQUG6QLWLasNu",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculation-of-work-and-heat",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A frictionless piston-cylinder device contains a gas initially at $$0.8MPa$$ and $$0.015$$ $${m^3}.$$ It expands quasi-statically at constant temperature to a final volume of $$0.030$$ $${m^3}.$$ The work output (in $$kJ$$) during this process will be\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$8.32$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$12.00$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$554.67$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$8320.00$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-frictionless-piston-cylinder-device-contains-a-gas-initial-gate-me-2009-marks-2-rmrmqug6qlwlasnu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BsAINjx7R056EqO6",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "entropy-and-irreversibility",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If a closed system is undergoing an irreversible process, the entropy of the system",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Must increase "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Always remains constant "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Must decrease\n "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Can increase, decrease or remain constant "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-a-closed-system-is-undergoing-an-irreversible-process-the-gate-me-2009-marks-1-bsainjx7r056eqo6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YOlxnL8arguwglRq",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "rankine-cycle",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The inlet and the outlet conditions of steam for an adiabatic steam turbine are as indicated in the figure. The notations are as usually followed. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/4rBVFE4fKpHdhQYcs/RQCKfxrXmJSkMScz4Fc2dEcX0Aak7/65lu4RHpw3B2QP5Cdw8d89/image.svg\" loading=\"lazy\" alt=\"GATE ME 2009 Thermodynamics - Rankine Cycle Question 26 English\"> \n<p>If mass flow rate of steam through the turbine is $$20kg/s,$$ the power  output of the turbine (in $$MW$$) is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$12.157$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$12.941$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$168.001$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$168.785$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-inlet-and-the-outlet-conditions-of-steam-for-an-adiabati-gate-me-2009-marks-2-yolxnl8arguwglrq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Zw2eUIkSJdsfIAfV",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "rankine-cycle",
+                    "year": 2009,
+                    "paperTitle": "GATE ME 2009",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The inlet and the outlet conditions of steam for an adiabatic steam turbine are as indicated in the figure. The notations are as usually followed. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/4rBVFE4fKpHdhQYcs/RQCKfxrXmJSkMScz4Fc2dEcX0Aak7/65lu4RHpw3B2QP5Cdw8d89/image.svg\" loading=\"lazy\" alt=\"GATE ME 2009 Thermodynamics - Rankine Cycle Question 25 English\"> \n<p>Assume the above turbine to be part of a simple Rankine cycle. The density of water at the inlet to the pump is $$1000$$ $$kg/{m^3}.$$ Ignoring kinetic and potential energy effects, the specific work (in $$kJ/kg$$) supplied to the pump is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.293$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.351$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2.930$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3.510$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-inlet-and-the-outlet-conditions-of-steam-for-an-adiabati-gate-me-2009-marks-2-zw2euiksjdsfiafv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2009",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2009"
+                }
+            ],
+            "title": "Thermodynamics"
+        }
+    ]
+}

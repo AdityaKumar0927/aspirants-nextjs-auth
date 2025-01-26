@@ -1,0 +1,1452 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6uHtfNX33fwZxovV",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Laplace transform of the function \n<br>$$\\eqalign{\n  &amp; f\\left( t \\right) = k,\\,0 &lt; t &lt; c  \\cr \n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\, = 0,\\,c &lt; t &lt; \\infty ,\\,\\, \\cr} $$  \n<br>is \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {k/s} \\right){e^{ - sc}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {k/s} \\right){e^{sc}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$k\\,{e^{ - sc}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {k/s} \\right)\\left( {1 - {e^{ - sc}}} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-laplace-transform-of-the-function-eqalign-fleft-t-right-gate-ce-1999-marks-1-6uhtfnx33fwzxovv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "v5WJUuKmFCeKt1iq",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$c$$ is a constant, then the solution of $${{dy} \\over {dx}} = 1 + {y^2}$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$y=sin(x+c)$$  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$y=cos(x+c)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$y=tan(x+c)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$y = {e^x} + c$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-c-is-a-constant-then-the-solution-of-dy-over-dx-1-y2-is-gate-ce-1999-marks-1-v5wjuukmfcekt1iq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "A99UpNNIQz67abqC",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the function $$\\phi  = a{x^2}y - {y^3}$$  to represent the velocity potential of an ideal fluid, $${\\nabla ^2}\\,\\,\\phi $$ should be equal to zero. In that case, the value of $$'a'$$  has to be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$-3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-function-phi-ax2y-y3-to-represent-the-velocity-poten-gate-ce-1999-marks-1-a99upnniqz67abqc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0mFPmBSqsqTL9UoZ",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The function $$f\\left( x \\right) = {e^x}$$ is _________.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Even "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "odd "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Neither even nor odd "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-function-fleft-x-right-ex-is-gate-ce-1999-marks-1-0mfpmbsqsqtl9uoz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Juw0MgD84Lg99m6y",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Number of inflection points for the curve $$\\,\\,\\,y = x + 2{x^4}\\,\\,\\,\\,$$  is_______.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$n$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\left( {n + 1} \\right)^2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "number-of-inflection-points-for-the-curve-y-x-2x4-is-gate-ce-1999-marks-1-juw0mgd84lg99m6y.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2zQ0EHlXElpuIh95",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Limit of the function, $$\\mathop {Lim}\\limits_{n \\to \\infty } {n \\over {\\sqrt {{n^2} + n} }}$$ is _______.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\infty $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "limit-of-the-function-mathop-limlimitsn-to-infty-n-over-sqrt-gate-ce-1999-marks-1-2zq0ehlxelpuih95.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aBp4rbZXEsoxRT6v",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The equation $$\\left[ {\\matrix{\n   2 &amp; 1 &amp; 1  \\cr \n   1 &amp; 1 &amp; { - 1}  \\cr \n   y &amp; {{x^2}} &amp; x  \\cr \n\n } } \\right] = 0$$ represents a parabola passing through the points.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$(0, 1), (0, 2), (0, -1)$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$(0, 0), (-1, 1), (1, 2)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$(1, 1), (0, 0), (2, 2)$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$(1, 2), (2, 1), (0, 0)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-equation-left-matrix-2-1-1-cr-1-1-1-cr-y-x2-x-cr-right-0-gate-ce-1999-marks-1-abp4rbzxesoxrt6v.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KP5IVjMNk9vvjDt0",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of terms in the expansion of general determinant of order $$n$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${n^2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$n!$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$n$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\left( {n + 1} \\right)^2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-terms-in-the-expansion-of-general-determinant-gate-ce-1999-marks-1-kp5ivjmnk9vvjdt0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fgYrFZbVmbZ5iKpx",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$A$$ is any $$nxn$$ matrix and $$k$$ is a scalar then $$\\left| {kA} \\right| = \\alpha \\left| A \\right|$$ where $$\\alpha $$ is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$kn$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${n^k}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${k^n}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${k \\over n}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-a-is-any-nxn-matrix-and-k-is-a-scalar-then-left-ka-right-gate-ce-1999-marks-1-fgyrfzbvmbz5ikpx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Environmental Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2e3582e4fd5",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "environmental-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "quality-control-of-water",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Temporary hardness in water is caused by the presence of",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Bicarbonates of Ca and Mg"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Sulphates of Ca and Mg"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Chlorides of Ca and Mg"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Nitrates of Ca and Mg"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "temporary-hardness-in-water-is-caused-by-the-presence-of-gate-ce-1999-marks-1-5a2e3582e4fd5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                }
+            ],
+            "title": "Environmental Engineering"
+        },
+        {
+            "_id": "Geotechnical Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2720706e9c1",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "geotechnical-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "definitions-and-properties-of-soils",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Principle involved in the relationship between submerged unit weight and saturated weight of a soil is based on",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Equilibrium of floating bodies"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Archimede's principle"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Stoke's law"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Darcy's law"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "principle-involved-in-the-relationship-between-submerged-uni-gate-ce-1999-marks-1-5a2720706e9c1.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                }
+            ],
+            "title": "Geotechnical Engineering"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rHmAcsxpakBX8jgj",
+                    "exam": "gate-ce",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "prestressed-concrete",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A beam with a rectangular cross section of size $$250$$ $$mm$$ wide and $$350$$ $$mm$$ deep is prestressed by a force of $$400$$ $$kN$$ using $$8$$ numbers $$7$$ $$mm$$ $$\\phi $$ steel cables located at an eccentricity of $$75$$ $$mm.$$ Determine the loss of prestress due to creep of concrete. Grade of concrete is $$M40;$$ Coefficient of creep is $$2;$$ stress at transfer is $$80\\% $$, Modulus of elasticity of steel $$\\left( {{E_s}} \\right)$$ is $$2.0 \\times {10^5}\\,\\,MPa.$$ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$63$$ $$MPa$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-beam-with-a-rectangular-cross-section-of-size-250-mm-1999-marks-5-rhmacsxpakbx8jgj.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "G4tb99Hxi0QV5xph",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-collapse-compression",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In reinforced concrete, pedestal is defined as compression member, whose effective length does not exceed its dimension by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$12$$ times"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3$$ times"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$16$$ times"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$8$$ times"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-reinforced-concrete-pedestal-is-defined-as-compression-m-1999-marks-1-g4tb99hxi0qv5xph.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cKejHpHOdgchfws0",
+                    "exam": "gate-ce",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-collapse-shear",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The width and effective depth of a reinforced concrete beam is $$250$$ $$mm$$ and $$440$$ $$mm$$ respectively. The beam is provided with $$4$$ number of $$20$$ $$mm$$ bars in the tension zone. The beam is subjected to a shear force of $$150$$ $$kN$$ (Factored).  Check the requirement of shear reinforcement and provide if required. Grade of concrete is $$M20$$ and that of steel is $$Fe415.$$ The shear strength of concrete for different percentage of tensile steel are as below $$8$$ $$mm$$ diameter vertical stirrups are available. \n<br> $$\\left[ {{V_{us}} = 0.87\\,\\,{f_y}{A_{sv}}\\,\\,d/{S_v}} \\right.$$ and $${\\left( {{A_{sv}}/{S_v}} \\right) \\ge 0.4b/{f_y}}$$ with the terms having usual meaning $$\\left. \\, \\right]$$\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/XaRAksQm6o9mnj0qW/kUgSgXAidQx3oAnKeuPOmk8NUPLjp/Yc6Xy5TLqSO7FssHaH0fEV/image.png\" loading=\"lazy\" alt=\"GATE CE 1999 Reinforced Cement Concrete - Limit State of Collapse Shear Question 3 English\"> \n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "minimum spacing is $$200$$ $$mm$$ center to center.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-width-and-effective-depth-of-a-reinforced-concrete-beam-1999-marks-5-ckejhphodgchfws0.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hy8lAHFj8aqxJMaW",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "doubly-reinforced-sections",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Maximum strain at the level of compression steel for a rectangular section having effective cover to compression steel  as $$d'$$ and neutral axis depth from compression face $${X_u}$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.0035\\left( {1 - {{d'} \\over {{X_u}}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.002\\left( {1 - {{d'} \\over {{X_u}}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.0035\\left( {1 - {{{X_u}} \\over {d'}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.002\\left( {1 - {{{X_u}} \\over {d'}}} \\right)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "maximum-strain-at-the-level-of-compression-steel-for-a-recta-1999-marks-1-hy8lahfj8aqxjmaw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fVcvC1UWfCLdC19l",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "singly-reinforced-sections",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The minimum area of tension reinforcement in a beam shall be greater than",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{0.85\\,bd} \\over {{f_y}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{0.87\\,{f_y}} \\over {bd}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.04$$ $$bd$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{0.4\\,bd} \\over y}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-minimum-area-of-tension-reinforcement-in-a-beam-shall-be-1999-marks-1-fvcvc1uwfcldc19l.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Steel Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NuBSjACecH4OR6YK",
+                    "exam": "gate-ce",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "beams",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two wheels, placed at a distance of $$2.5$$ $$m$$ apart, with a load of $$200\\,\\,kN$$ on each of them are moving on a simply supported girder ($${\\rm I}$$-section) of span $$6.0$$ $$m.$$ The top and bottom flanges of the $${\\rm I}$$-section are of $$200 \\times 20\\,\\,mm$$ and the size of web plate is $$800 \\times 6\\,\\,mm$$. If the allowable and average stresses are $$110\\,MPa,$$ $$165$$ $$MPa$$ and $$100$$ $$MPa$$ respectively, check the adequacy of the section against bending and shear stress (self-weight of the girder, may be neglected)",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-wheels-placed-at-a-distance-of-25-m-apart-wit-1999-marks-5-nubsjacech4or6yk.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jMmNNpMHjIngMbFx",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "beams",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A steel beam supporting loads from the floors slab as well as from wall is termed as",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Stringer beam "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Lintel beam "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Spandrel beam "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Header beam "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-steel-beam-supporting-loads-from-the-floors-slab-as-well-a-1999-marks-1-jmmnnpmhjingmbfx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VFVfHUzY1TogxII7",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "beams",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The problem of lateral buckling can arise only in those steel beams which have",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "moment of inertia about the bending axis larger than the other"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "moment of inertia  about the bending axis smaller than the other"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "fully supported compression flange "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "none of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-problem-of-lateral-buckling-can-arise-only-in-those-stee-1999-marks-1-vfvfhuzy1togxii7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JM3EnhkfHBh0mFOZ",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "tension-members",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two steel plates each of width $$150$$ $$mm$$ and thickness $$10$$ $$mm$$ are connected with three $$20$$ $$mm$$ diameter rivets is placed in zig-zag pattern. The pitch of the rivet is $$75$$ $$mm$$ and gauge is $$60$$ $$mm.$$ If the allowable tensile stress is $$150$$ $$MPa,$$ the maximum tensile force that the joint can withstand is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$195.66$$ $$kN$$  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$195.00$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$192.75$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$225.00$$ $$kN$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-steel-plates-each-of-width-150-mm-and-thickness-1999-marks-2-jm3enhkfhbh0mfoz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a218500d616b",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "materials-and-specifications",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In section, shear centre is a point through which, if the resultant load passes, the section will not be subjected to any",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Bending"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Tension"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Compression"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Torsion"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-section-shear-centre-is-a-point-through-which-if-the-resu-gate-ce-1999-marks-1-5a218500d616b.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                }
+            ],
+            "title": "Steel Structures"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UVlXPpEObDOmw2wO",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-stress-in-beams",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a section, shear center is a point through which, if the resultant load passes, the section will not be subjected to any ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Bending "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Tension "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Compression "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Torsion "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-section-shear-center-is-a-point-through-which-if-the-1999-marks-1-uvlxppeobdomw2wo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8k8LLpODqkhEtJqk",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The shape factor of the section shown in fig. is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/ruMKf5T8q7Oi1LqIF/9h0HmL5YaQfKZ19ILxSg4F6339tm5/7HyLvcQw3muHc8yEIPY0Py/image.png\" loading=\"lazy\" alt=\"GATE CE 1999 Structural Analysis - Plastic Analysis Question 11 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.12$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1.7$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-shape-factor-of-the-section-shown-in-fig-is-1999-marks-2-8k8llpodqkhetjqk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "eNKHcSt50HyZUbUE",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a fixed beam with span $$L,$$ having plastic moment capacity of $${{M_p}}$$, the ultimate central concentrated load will be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{4{M_P}} \\over L}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{{M_P}} \\over {8L}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{6{M_P}} \\over L}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{8{M_P}} \\over L}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-fixed-beam-with-span-l-having-plastic-moment-capa-1999-marks-1-enkhcst50hyzubue.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                }
+            ],
+            "title": "Structural Analysis"
+        },
+        {
+            "_id": "Transportation Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a3d49fab0385",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "transportation-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "highway-geometric-design",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The reaction time for calculating stopping sight distance may be assumed as",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "5 sec"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2.5 sec"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0.5 sec"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "10 sec"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-reaction-time-for-calculating-stopping-sight-distance-ma-gate-ce-1999-marks-1-5a3d49fab0385.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a32987fef2aa",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "transportation-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "highway-devolopment-and-planning",
+                    "year": 1999,
+                    "paperTitle": "GATE CE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The total length (in km) of the existing National Highways in India is in the range of",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "15,000 to 25,000"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "25,000 to 35,000"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "35,000 to 45,000"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "&gt;65,000"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-total-length-in-km-of-the-existing-national-highways-in-gate-ce-1999-marks-1-5a32987fef2aa.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1999"
+                }
+            ],
+            "title": "Transportation Engineering"
+        }
+    ]
+}

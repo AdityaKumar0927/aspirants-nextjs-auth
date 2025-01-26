@@ -1,0 +1,1248 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Algorithms",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Jgnyu8zMGjlPtjZ4",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "greedy-method",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The weighted external path length of the binary tree in figure is ___________.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/rVG7YaOy0S36nmuaH/WFUtgbwNIEeW5v7iJKN0XOTCKIuaL/k15PkGz20mTzy6YyB2jsvc/image.svg\" loading=\"lazy\" alt=\"GATE CSE 1991 Algorithms - Greedy Method Question 16 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "144",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-weighted-external-path-length-of-the-binary-tree-in-figu-gate-cse-1991-marks-2-jgnyu8zmgjlptjz4.htm",
+                    "timeAllotted": 216000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Greedy Method \u2022 Algorithms",
+                            "excerpt": "The weighted external path length of the binary tree in figure is ___________.\n"
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "B25uuIu5irUtDHVP",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dynamic-programming",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Obtain the optimal binary search tree with equal probabilities for the\nidentifier set (a<sub>1</sub>, a<sub>2</sub>, a<sub>3</sub>) = ( if, stop, while)",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "obtain-the-optimal-binary-search-tree-with-equal-probabiliti-gate-cse-1991-marks-2-b25uuiu5irutdhvp.htm",
+                    "timeAllotted": 216000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Dynamic Programming \u2022 Algorithms",
+                            "excerpt": "Obtain the optimal binary search tree with equal probabilities for the\nidentifier set (a1, a2, a3) = ( if, stop, while)"
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uv4m111yHzFlA0My",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "greedy-method",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Kruskal\u2019s algorithm for finding a minimum spanning tree of a weighted graph G with n vertices and m edges has the time complexity of: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$O(n^{2})$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "O(mn)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$O(m^2)$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$O(m \\log n)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B",
+                                "C",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "kruskals-algorithm-for-finding-a-minimum-spanning-tree-of-a-gate-cse-1991-marks-2-uv4m111yhzfla0my.htm",
+                    "timeAllotted": 216000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Greedy Method \u2022 Algorithms",
+                            "excerpt": "Kruskal\u2019s algorithm for finding a minimum spanning tree of a weighted graph G with n vertices and m edges has the time complexity of: "
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xW9FkT7CDusoKYBh",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "searching-and-sorting",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Minimum number of comparisons required to sort 5 elements",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "7",
+                            "explanation": "Formula is = $$\\left\\lceil {{{\\log }_2}\\left( {n!} \\right)} \\right\\rceil $$\n<br>Here n = no of elements\n<br>So for 5 elements minimum no of comparisons required = $$\\left\\lceil {{{\\log }_2}\\left( {5!} \\right)} \\right\\rceil $$ = $$\\left\\lceil {{{\\log }_2}\\left( {120} \\right)} \\right\\rceil $$ = 7"
+                        }
+                    },
+                    "permalink": "minimum-number-of-comparisons-required-to-sort-5-elements-gate-cse-1991-marks-2-xw9fkt7cdusokybh.htm",
+                    "timeAllotted": 216000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Searching and Sorting \u2022 Algorithms",
+                            "excerpt": "Minimum number of comparisons required to sort 5 elements"
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                }
+            ],
+            "title": "Algorithms"
+        },
+        {
+            "_id": "Data Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sHTBp18mPN4bOZqk",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the binary tree in figure is traversed in inorder, then the order in which the nodes will be visited is ______\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/TRdoicUd571lfLtE1/GySYo13acehdsQsdKhFCos0lEJJeF/b92cHAjZtCyzI0HSbwbUwZ/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1991 Data Structures - Trees Question 62 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "4,16,7,3,2,5,8",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-binary-tree-in-figure-is-traversed-in-inorder-then-th-gate-cse-1991-marks-2-shtbp18mpn4bozqk.htm",
+                    "timeAllotted": 216000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Trees \u2022 Data Structures",
+                            "excerpt": "If the binary tree in figure is traversed in inorder, then the order in which the nodes will be visited is ______\n"
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2m7lQ61Ded9cCuIP",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stacks-and-queues",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following sequence of operations is performed on stack: \nPUSH (10),PUSH (20),POP,PUSH (10),PUSH (20),POP,POP,POP,PUSH (20),POP \nThe sequence of the value popped out is: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "20,10,20,10,20 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "20,20,10,10,20 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "10,20,20,10,20"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "20,20,10,20,10"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-sequence-of-operations-is-performed-on-stack-p-gate-cse-1991-marks-2-2m7lq61ded9ccuip.htm",
+                    "timeAllotted": 216000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Stacks and Queues \u2022 Data Structures",
+                            "excerpt": "The following sequence of operations is performed on stack: \nPUSH (10),PUSH (20),POP,PUSH (10),PUSH (20),POP,POP,POP,PUSH (20),POP \nThe sequence of the value popped out is: "
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                }
+            ],
+            "title": "Data Structures"
+        },
+        {
+            "_id": "Digital Logic",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "v3US8I0nLZZLCRRo",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Find the maximum clock frequency at which the counter in Fig., can be operated. Assume that the propagation delay through each flip-flop and $$AND$$ gate is $$10$$ $$ns.$$ Also assume that the setup time for the $$JK$$ inputs of the flip-flops is negligible. \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/0hDYwEwbd8ZmRI0or/RGmSBX3SwSEDI9Z6pEbZxTtc0xH5h/0VWOCt6qyUmbqAIl2wDW1O/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1991 Digital Logic - Sequential Circuits Question 25 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "25",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "find-the-maximum-clock-frequency-at-which-the-counter-in-fig-gate-cse-1991-marks-2-v3us8i0nlzzlcrro.htm",
+                    "timeAllotted": 216000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Sequential Circuits \u2022 Digital Logic",
+                            "excerpt": "Find the maximum clock frequency at which the counter in Fig., can be operated. Assume that the propagation delay through each flip-flop and $$AND$$ gate is $$10$$ $$ns.$$ Also assume that the setup time for the $$JK$$ inputs of the flip-fl..."
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8lbfoY5iyMxBDAH2",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Find the minimum sum of products form of the logic function \n<br>$$f\\left( {A,B,C,D} \\right) = \\sum d \\left( {3,11,12,14} \\right)$$ \n<br>Where $$m$$ and $$d$$ denote the minterms and don't cares respectively.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "find-the-minimum-sum-of-products-form-of-the-logic-function-gate-cse-1991-marks-5-8lbfoy5iymxbdah2.htm",
+                    "timeAllotted": 166154,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Boolean Algebra \u2022 Digital Logic",
+                            "excerpt": "Find the minimum sum of products form of the logic function \n$$f\\left( {A,B,C,D} \\right) = \\sum d \\left( {3,11,12,14} \\right)$$ \nWhere $$m$$ and $$d$$ denote the minterms and don't cares respectively."
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                }
+            ],
+            "title": "Digital Logic"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "o4A0SQlzR4vkUXLZ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The maximum number of possible edges in an undirected graph with a vertices and $$k$$ components is _________ .",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${{\\left( {a - k} \\right)\\left( {a - k + 1} \\right)} \\over 2}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-maximum-number-of-possible-edges-in-an-undirected-graph-gate-cse-1991-marks-2-o4a0sqlzr4vkuxlz.htm",
+                    "timeAllotted": 216000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Graph Theory \u2022 Discrete Mathematics",
+                            "excerpt": "The maximum number of possible edges in an undirected graph with a vertices and $$k$$ components is _________ ."
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kPypOIZQvzq7SxHh",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "State whether the following statement TRUE or FALSE.\n<p>The amount of virtual memory available is limited by the availability of secondary storage.</p>\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "state-whether-the-following-statement-true-or-falsethe-amoun-gate-cse-1991-marks-2-kpypoizqvzq7sxhh.htm",
+                    "timeAllotted": 216000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Memory Management \u2022 Operating Systems",
+                            "excerpt": "State whether the following statement TRUE or FALSE.\nThe amount of virtual memory available is limited by the availability of secondary storage.\n"
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pT3zpmqJIYwQGcVB",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "State whether the following statement TRUE or FALSE.\n<p>The $$LRU$$ page-replacement policy may cause thrashing for some type of programs.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "state-whether-the-following-statement-true-or-falsethe-lru-p-gate-cse-1991-marks-2-pt3zpmqjiywqgcvb.htm",
+                    "timeAllotted": 216000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Memory Management \u2022 Operating Systems",
+                            "excerpt": "State whether the following statement TRUE or FALSE.\nThe $$LRU$$ page-replacement policy may cause thrashing for some type of programs."
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7ZbppnjWclPDk09S",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "State whether the following statement TRUE or FALSE.\n<p>The use of monitors ensures that no dead -locks will be caused.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "state-whether-the-following-statement-true-or-falsethe-use-o-gate-cse-1991-marks-2-7zbppnjwclpdk09s.htm",
+                    "timeAllotted": 216000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Memory Management \u2022 Operating Systems",
+                            "excerpt": "State whether the following statement TRUE or FALSE.\nThe use of monitors ensures that no dead -locks will be caused."
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FMRVORuWZlUbMzhJ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "State whether the following statement TRUE or FALSE.\n<p>The best-fit techniques for memory allocation ensures the memory will never be fragmented.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "state-whether-the-following-statement-true-or-falsethe-best-gate-cse-1991-marks-2-fmrvoruwzlubmzhj.htm",
+                    "timeAllotted": 216000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Memory Management \u2022 Operating Systems",
+                            "excerpt": "State whether the following statement TRUE or FALSE.\nThe best-fit techniques for memory allocation ensures the memory will never be fragmented."
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zGFKWzz2N5qODOEH",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The total size of address space in a virtual memory systems is limited by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The length of MAR"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The available secondary storage "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The available main memory "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "ALL of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-total-size-of-address-space-in-a-virtual-memory-systems-gate-cse-1991-marks-2-zgfkwzz2n5qodoeh.htm",
+                    "timeAllotted": 216000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Memory Management \u2022 Operating Systems",
+                            "excerpt": "The total size of address space in a virtual memory systems is limited by"
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6GFzAjHgXljmRc80",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A ''link editor'' is a program that:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Matches the parameters of the macro definition with locations of the parameters of the macro call. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Matches external names of one program with their location in other programs."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Matches the parameters of subroutine definition with the location of parameters of subroutine call. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Acts as a link between compiler and user program. "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-link-editor-is-a-program-that-gate-cse-1991-marks-2-6gfzajhgxljmrc80.htm",
+                    "timeAllotted": 216000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Memory Management \u2022 Operating Systems",
+                            "excerpt": "A ''link editor'' is a program that:"
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lsBwgM8mmuBGAL2q",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "State whether the following statement TRUE or FALSE.\n<p>Any implementation of a critical section requires the use of an indivisible machine instruction such as test-and-set.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "state-whether-the-following-statement-true-or-falseany-imple-gate-cse-1991-marks-2-lsbwgm8mmubgal2q.htm",
+                    "timeAllotted": 216000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Memory Management \u2022 Operating Systems",
+                            "excerpt": "State whether the following statement TRUE or FALSE.\nAny implementation of a critical section requires the use of an indivisible machine instruction such as test-and-set."
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6iYYSZS26XolR1pV",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the pairs in the following question by writing the corresponding letters only.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/Z3LlFyBUWPopSD5Z7/BAD8dOM0b0Vlo42a7TkVUccVC38BQ/fXDoXsNTOqmGhsrrMxEpq8/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1991 Operating Systems - Memory Management Question 65 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$A - R,\\,\\,B - P,\\,\\,C - S,\\,\\,D - Q$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-pairs-in-the-following-question-by-writing-the-cor-gate-cse-1991-marks-2-6iyyszs26xolr1pv.htm",
+                    "timeAllotted": 216000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Memory Management \u2022 Operating Systems",
+                            "excerpt": "Match the pairs in the following question by writing the corresponding letters only.\n "
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                }
+            ],
+            "title": "Operating Systems"
+        },
+        {
+            "_id": "Programming Languages",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AxoKeDW5AhGcBjvK",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<b>Indicate the following statement true or false:</b>\n<br><br>Although C does not support call by name parameter passing, the effect can\nbe correctly simulated in C. ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>The statement:</p>\n<p>\"Although C does not support call by name parameter passing, the effect can be correctly simulated in C.\"</p>\n<p>is <strong>TRUE</strong>.</p>\n<p>In C, you can simulate call by name parameter passing using macros. A macro is a fragment of code which has been given a name. Whenever the name is used, it is replaced by the contents of the macro. </p>\n<p>For example, consider the following macro definition in C:</p>\n<pre><code class=\"c language-c\">#define swap(a, b) { int temp = a; a = b; b = temp; }\n</code></pre>\n<p>Using this macro, whenever <code>swap(x, y)</code> is called, it substitutes the macro code with the actual parameters, effectively simulating the call by name behavior. Here's how you can use it:</p>\n<pre><code class=\"c language-c\">#include &lt;stdio.h&gt;\n\n#define swap(a, b) { int temp = a; a = b; b = temp; }\n\nint main() {\n\n    int x = 3;\n\n    int y = 4;\n\n    printf(\"Before swap: x = %d, y = %d\\n\", x, y);\n\n    swap(x, y);\n\n    printf(\"After swap: x = %d, y = %d\\n\", x, y);\n\n    return 0;\n\n}\n</code></pre>\n<p>This will output:</p>\n<pre><code>Before swap: x = 3, y = 4\n\nAfter swap: x = 4, y = 3\n</code></pre>\n<p>Here, the <code>swap</code> macro effectively simulates the call by name parameter passing by directly substituting <code>a</code> and <code>b</code> with <code>x</code> and <code>y</code> in the macro body. This demonstrates how the effect of call by name can be correctly simulated in C using macros.</p>"
+                        }
+                    },
+                    "permalink": "indicate-the-following-statement-true-or-falsealthough-c-doe-gate-cse-1991-marks-1-axokedw5ahgcbjvk.htm",
+                    "timeAllotted": 108000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Basic of Programming Language \u2022 Programming Languages",
+                            "excerpt": "Indicate the following statement true or false:\nAlthough C does not support call by name parameter passing, the effect can\nbe correctly simulated in C. "
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RfHqSxG3lK8o3FS3",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<b>Indicate the following statement true or false :</b>\n<br><br>A programming language not supporting either recursion or pointer type\ndoes not need the support of dynamic memory allocation.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>The statement is <strong>FALSE</strong>.</p>\n<p>Even if a programming language does not support recursion or pointers, it may still require dynamic memory allocation for other purposes. For instance, dynamic memory allocation is essential for:</p>\n\n<p><p><strong>Data Structures</strong>: Structures like dynamic arrays, linked lists, hash tables, etc., often require dynamic memory to adjust their size or manage their elements efficiently at runtime.</p></p>\n<p><p><strong>Resource Management</strong>: Handling resources such as file handles, network connections, or GUI components might necessitate dynamic allocation to manage varying numbers of active elements.</p></p>\n<p><p><strong>Object Creation</strong>: In languages with object-oriented paradigms, dynamically creating objects (instances of classes) at runtime can require dynamic memory allocation.</p></p>\n\n<p>Thus, the absence of recursion or pointers does not preclude the need for dynamic memory allocation. </p>\n<p>The answer is:</p>\n<p><strong>Option B</strong></p>"
+                        }
+                    },
+                    "permalink": "indicate-the-following-statement-true-or-falsea-programming-gate-cse-1991-marks-1-rfhqsxg3lk8o3fs3.htm",
+                    "timeAllotted": 108000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Basic of Programming Language \u2022 Programming Languages",
+                            "excerpt": "Indicate the following statement true or false :\nA programming language not supporting either recursion or pointer type\ndoes not need the support of dynamic memory allocation."
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                }
+            ],
+            "title": "Programming Languages"
+        },
+        {
+            "_id": "Theory of Computation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8131U7rPhU8zPROH",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "undecidability",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following is the strongest correct statement about a finite language over some finite alphabet $$\\sum ? $$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "It could be un-decidable"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "It is Turing-machine recognizable "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "It is a regular language "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "It is a context-sensitive language "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-is-the-strongest-correct-statemen-gate-cse-1991-marks-2-8131u7rphu8zproh.htm",
+                    "timeAllotted": 216000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Undecidability \u2022 Theory of Computation",
+                            "excerpt": "Which one of the following is the strongest correct statement about a finite language over some finite alphabet $$\\sum ? $$"
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FHTDF1WVnfUtb7nI",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 1991,
+                    "paperTitle": "GATE CSE 1991",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$r = 1\\,{\\left( {1 + 0} \\right)^ * },s = {11^ * }\\,0$$ and $$\\,t = {1^ * }\\,0$$ be three regular expressions. Which one of the following is true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$L\\left( s \\right) \\subseteq L\\left( r \\right)\\,\\,$$ and $$L\\left( s \\right) \\subseteq L\\left( t \\right)\\,\\,$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$L\\left( r \\right) \\subseteq L\\left( s \\right)\\,\\,$$ and $$L\\left( s \\right) \\subseteq L\\left( t \\right)\\,\\,$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$L\\left( s \\right) \\subseteq L\\left( t \\right)\\,\\,$$ and $$L\\left( s \\right) \\subseteq L\\left( r \\right)\\,\\,$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$L\\left( t \\right) \\subseteq L\\left( s \\right)\\,\\,$$ and $$L\\left( s \\right) \\subseteq L\\left( r \\right)\\,\\,$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-r-1left-1-0-right-s-11-0-and-t-1-0-be-three-regular-expr-gate-cse-1991-marks-2-fhtdf1wvnfutb7ni.htm",
+                    "timeAllotted": 216000,
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "paperId": "gate-cse-1991",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "GATE CSE 1991",
+                            "subTitle": "Finite Automata and Regular Language \u2022 Theory of Computation",
+                            "excerpt": "Let $$r = 1\\,{\\left( {1 + 0} \\right)^ * },s = {11^ * }\\,0$$ and $$\\,t = {1^ * }\\,0$$ be three regular expressions. Which one of the following is true?"
+                        }
+                    },
+                    "yearKey": "gate-cse-1991"
+                }
+            ],
+            "title": "Theory of Computation"
+        }
+    ]
+}

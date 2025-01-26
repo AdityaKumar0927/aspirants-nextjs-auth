@@ -1,0 +1,707 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Industrial Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AwqLqvp5OkUBrAai",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pert-and-cpm",
+                    "year": 2014,
+                    "paperTitle": "GATE ME 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A minimal spanning tree in network flow models involves",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "all the nodes with cycle/loop allowed "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "all the nodes with cycle/loop not allowed "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "shortest path between start and end nodes "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "all the nodes with directed arcs  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-minimal-spanning-tree-in-network-flow-models-involves-2014-marks-1-awqlqvp5okubraai.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2014"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "39ygqMmSLLVeIqXp",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "assignment",
+                    "year": 2014,
+                    "paperTitle": "GATE ME 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The total number of decision variables in the objective function of an assignment problem of size $$n\\,\\, \\times \\,\\,n$$  ($$n$$ jobs and $$n$$ machines) is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${n^2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2n$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2n-1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$n$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-total-number-of-decision-variables-in-the-objective-func-2014-marks-1-39ygqmmsllveiqxp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2014"
+                }
+            ],
+            "title": "Industrial Engineering"
+        },
+        {
+            "_id": "Theory of Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Q7B1NUcqY3ifqVGK",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analysis-of-plane-mechanisms",
+                    "year": 2014,
+                    "paperTitle": "GATE ME 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A circular object of radius r rolls without $$V$$ slipping on a horizontal level floor with the center having velocity $$V.$$ The velocity at the point of contact between the object and the floor is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$V$$ in the direction of motion "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$V$$ opposite to the direction of motion "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$V$$ vertically upward from the floor"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-circular-object-of-radius-r-rolls-without-v-slipping-on-a-gate-me-2014-marks-1-q7b1nucqy3ifqvgk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2014"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VxJ2242nzIOERbD7",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analysis-of-plane-mechanisms",
+                    "year": 2014,
+                    "paperTitle": "GATE ME 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A rigid link PQ is 2 m long and oriented at 20<sup>o</sup> to the horizontal as shown in the figure. The magnitude and direction of velocity V<sub>Q</sub>, and the direction of velocity V<sub>P</sub> are given. The magnitude of V<sub>P</sub>(in m/s) at this instant is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/qcRe18x8g9VubDEF0/M9YD3hCAfcL8TO8nrR8nGB7dyC59n/5KDNbWeoxz4sARDjnURWFS/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2014 Theory of Machines - Analysis of Plane Mechanisms Question 45 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2.14 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1.89 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1.21 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0.96 "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-rigid-link-pq-is-2-m-long-and-oriented-at-20o-to-the-horiz-gate-me-2014-marks-1-vxj2242nzioerbd7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2014"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0AvFGuvfnJOlwJ16",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analysis-of-plane-mechanisms",
+                    "year": 2014,
+                    "paperTitle": "GATE ME 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 4-bar mechanism with all revolute pairs has link lengths $${l_f} = 20\\,\\,mm,\\,\\,{l_{in}} = 40\\,\\,mm,\\,\\,{l_{co}} = 50mm$$ and $${l_{out}} = 60\\,mm.$$ The suffixes $$'f', 'in', 'co'$$ and $$'out'$$ denote the fixed link, the input link, the coupler and output link respectively. Which one of the following statements is true about the input and output links?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both links can execute full circular motion"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Both links cannot execute full circular motion"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Only the output link cannot execute full circular motion "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Only the input link cannot execute full circular motion"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-4-bar-mechanism-with-all-revolute-pairs-has-link-lengths-l-gate-me-2014-marks-1-0avfguvfnjolwj16.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2014"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PF2FlPhJ0hxP0JRa",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analysis-of-plane-mechanisms",
+                    "year": 2014,
+                    "paperTitle": "GATE ME 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the given statements:\n<br>($$I.$$) $$\\,\\,\\,$$ Mating spur gear teeth is an example of higher pair \n<br>($$II.$$) $$\\,\\,\\,$$ A revolute joint is an example of lower pair. \n<p>Indicate the correct answer.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both $$I$$ and $$II$$ are false "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$I$$ is true and $$II$$ is false"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$I$$ is false and $$II$$ true"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Both $$I$$ and $$II$$ are true"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-given-statementsi-mating-spur-gear-teeth-is-an-examp-gate-me-2014-marks-1-pf2flphj0hxp0jra.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2014"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Y0sv0O4JvZP37QsV",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analysis-of-plane-mechanisms",
+                    "year": 2014,
+                    "paperTitle": "GATE ME 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A slider-crank mechanism with crank radius $$60$$mm and connecting rod length $$240$$mm is shown in figure. The crank is rotating with a uniform angular speed of $$10$$ rad/s, counter clockwise. For the given configuration, the speed (in m/s) of the slider is ____________.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/DLYO9g6EE3YmCf8pI/l0CcjewMwh1X5g6paakLW5OgzCqSy/V9IU5L8zQOPbtcpF2o0fOw/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2014 Theory of Machines - Analysis of Plane Mechanisms Question 14 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.618",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-slider-crank-mechanism-with-crank-radius-60mm-and-connecti-gate-me-2014-marks-2-y0sv0o4jvzp37qsv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2014"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zP6FTVB5kDIE8BP5",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analysis-of-plane-mechanisms",
+                    "year": 2014,
+                    "paperTitle": "GATE ME 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An offset slider - crank mechanism is shown in the figure at an instant. Conventionally, the Quick Return Ratio (QRR) is considered to be greater than one. The value of QRR is _______ \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/CqljUlQIrWxYCBUXp/fEC2wnD0iq2FQ0SEyBqukqgJxJqIR/zIbqbSqotXh5iORqyylwbk/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2014 Theory of Machines - Analysis of Plane Mechanisms Question 13 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.25",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-offset-slider-crank-mechanism-is-shown-in-the-figure-at-a-gate-me-2014-marks-2-zp6ftvb5kdie8bp5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2014"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "IjMrW3rWlUeFbFRb",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "gears-and-gear-trains",
+                    "year": 2014,
+                    "paperTitle": "GATE ME 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following is used to convert a rotational motion into a translational motion?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Bevel gears"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Double helical gears"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Worm gears"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Rack and pinion gears"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-is-used-to-convert-a-rotational-m-gate-me-2014-marks-1-ijmrw3rwluefbfrb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2014"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mO7fUpgCXJYgRUfq",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "gears-and-gear-trains",
+                    "year": 2014,
+                    "paperTitle": "GATE ME 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Gear 2 rotates at 1200 rpm in counter clockwise direction and engages with Gear 3. Gear 3 and Gear 4 are mounted on the same shaft. Gear 5 engages with Gear 4. The numbers of teeth on Gears 2, 3, 4 and 5 are 20, 40, 15 and 30, respectively. The angular speed of Gear 5 is\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/JdlwImm581Lq5cNND/3m9JBCSp35JouiGqtZ7HvCHshWcTq/E7dhb9S0ku1pzDq6EIm7Qf/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2014 Theory of Machines - Gears and Gear Trains Question 12 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "300 rpm counter clockwise "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "300 rpm clockwise"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "4800 rpm counter clockwise "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "4800 rpm clockwise "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "gear-2-rotates-at-1200-rpm-in-counter-clockwise-direction-an-gate-me-2014-marks-2-mo7fupgcxjygrufq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2014"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yjgKrF5Y7g7RA8XA",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "gears-and-gear-trains",
+                    "year": 2014,
+                    "paperTitle": "GATE ME 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "It is desired to avoid interference in a pair of spur gears having a 20<sup>o</sup> pressure angle. With increase in pinion to gear speed ratio, the minimum number of teeth on the pinion",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "increases  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "decreases "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "first increases and then decreases "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "remains unchanged "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "it-is-desired-to-avoid-interference-in-a-pair-of-spur-gears-gate-me-2014-marks-2-yjgkrf5y7g7ra8xa.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2014"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wYSy0eoLwVQxnmem",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vibrations",
+                    "year": 2014,
+                    "paperTitle": "GATE ME 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Critical damping is the ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "largest amount of damping for which no oscillation occurs in free vibration "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "smallest amount of damping for which no oscillation occurs in free vibration"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "largest amount of damping for which the motion is simple harmonic in free vibration"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "smallest amount of damping for which the motion is simple harmonic in free vibration "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "critical-damping-is-the-gate-me-2014-marks-1-wysy0eolwvqxnmem.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2014"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nKvCJ7GKBzyVeWiv",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vibrations",
+                    "year": 2014,
+                    "paperTitle": "GATE ME 2014",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In vibration isolation, which one of the following statements is NOT correct regarding Transmissibility ($$T$$)?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$T$$ is nearly unity at small excitation frequencies "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$T$$ can be always reduced by using higher damping at any excitation frequency"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$T$$ is unity at the frequency ratio of $$\\sqrt 2 $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$T$$ is infinity at resonance for undamped systems"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-vibration-isolation-which-one-of-the-following-statements-gate-me-2014-marks-1-nkvcj7gkbzyvewiv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2014",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2014"
+                }
+            ],
+            "title": "Theory of Machines"
+        }
+    ]
+}

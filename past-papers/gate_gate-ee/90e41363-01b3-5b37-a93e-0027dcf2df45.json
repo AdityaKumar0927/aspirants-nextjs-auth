@@ -1,0 +1,3219 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Analog Electronics",
+            "questions": [
+                {
+                    "question_id": "lxolts0p",
+                    "chapter": "bjt-and-mosfet-biasing",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 1.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pa-bjt-biasing-circuit-is-shown-in-the-figure-where-vb-gate-ee-electric-circuits-xj4enyg43wsf3ebo",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A BJT biasing circuit is shown in the figure, where $V_{BE} = 0.7\\,V$ and $\\beta = 100$. The Quiescent Point values of $V_{CE}$ and $I_c$ are respectively</p><p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxoltajn/7f680b57-5317-4acc-9f4f-ec8f660afa36/df5f0f30-2fc0-11ef-9032-99cc6a311420/file-jaoe38c1lxoltajo.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxoltajn/7f680b57-5317-4acc-9f4f-ec8f660afa36/df5f0f30-2fc0-11ef-9032-99cc6a311420/file-jaoe38c1lxoltajo.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Analog Electronics - Bjt and Mosfet Biasing Question 1 English\"></p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>4.6 V and 2.46 mA</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>3.5 V and 2.46 mA</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>2.61 V and 3.13 mA</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>4.6 V and 3.13 mA</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "analog-electronics",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxomc94b",
+                    "chapter": "diode-circuits-and-applications",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pin-the-given-circuit-the-diodes-are-ideal-the-current-i-gate-ee-electric-circuits-olkwgyoi0nbjz1nz",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>In the given circuit, the diodes are ideal. The current I through the diode D1 in milliamperes is _____ (rounded off to two decimal places).</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxombkyt/5b019681-30f3-43fc-8cd6-55d869357375/dbfc7150-2fc2-11ef-9032-99cc6a311420/file-jaoe38c1lxombkyu.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxombkyt/5b019681-30f3-43fc-8cd6-55d869357375/dbfc7150-2fc2-11ef-9032-99cc6a311420/file-jaoe38c1lxombkyu.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Analog Electronics - Diode Circuits and Applications Question 1 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.64TO1.70",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "analog-electronics",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxome4j1",
+                    "chapter": "operational-amplifier",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pa-difference-amplifier-is-shown-in-the-figure-assume-the-gate-ee-electric-circuits-h0jvaqiqpoac2yqx",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A difference amplifier is shown in the figure. Assume the op-amp to be ideal. The CMRR (in dB) of the difference amplifier is ________ (rounded off to 2 decimal places).</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxomcrhk/460577f5-0236-4666-8d2c-9a15843cc905/fcd51a80-2fc2-11ef-9032-99cc6a311420/file-jaoe38c1lxomcrhl.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxomcrhk/460577f5-0236-4666-8d2c-9a15843cc905/fcd51a80-2fc2-11ef-9032-99cc6a311420/file-jaoe38c1lxomcrhl.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Analog Electronics - Operational Amplifier Question 1 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "39.50TO41.50",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "analog-electronics",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                }
+            ],
+            "title": "Analog Electronics"
+        },
+        {
+            "_id": "Control Systems",
+            "questions": [
+                {
+                    "question_id": "lxol1iwv",
+                    "chapter": "block-diagram-and-signal-flow-graph",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pfor-the-block-diagram-shown-in-the-figure-the-transfer-f-gate-ee-electric-circuits-dgbepduof4dto34i",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>For the block-diagram shown in the figure, the transfer function $\\frac{C(s)}{R(s)}$ is</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxol0mo7/b4eef4c3-284f-4819-b1d6-a9a30a767df8/c2460d70-2fbd-11ef-9032-99cc6a311420/file-jaoe38c1lxol0mo8.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxol0mo7/b4eef4c3-284f-4819-b1d6-a9a30a767df8/c2460d70-2fbd-11ef-9032-99cc6a311420/file-jaoe38c1lxol0mo8.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Control Systems - Block Diagram and Signal Flow Graph Question 1 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>$\\frac{G(s)}{1 + 2G(s)}$</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>-$\\frac{G(s)}{1 + 2G(s)}$</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>$\\frac{G(s)}{1 - 2G(s)}$</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>-$\\frac{G(s)}{1 - 2G(s)}$</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "control-systems",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxol3vyc",
+                    "chapter": "time-response-analysis",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pconsider-the-standard-second-order-system-of-the-form-f-gate-ee-electric-circuits-qld1phechppihxs9",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Consider the standard second-order system of the form $\\frac{\\omega_n^2}{s^2 + 2\\zeta\\omega_n s + \\omega_n^2}$ with the poles $p$ and $p^\\ast$ having negative real parts. The pole locations are also shown in the figure. Now consider two such second-order systems as defined below:</p><p>System 1: $\\omega_n = 3$ rad/sec and $\\theta = 60^{\\circ}$<br> System 2: $\\omega_n = 1$ rad/sec and $\\theta = 70^{\\circ}$</p> <p>Which one of the following statements is correct?</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxol2u8a/98197e12-3cd4-42fb-82b0-c2926b757420/ffbaeea0-2fbd-11ef-9032-99cc6a311420/file-jaoe38c1lxol2u8b.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxol2u8a/98197e12-3cd4-42fb-82b0-c2926b757420/ffbaeea0-2fbd-11ef-9032-99cc6a311420/file-jaoe38c1lxol2u8b.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Control Systems - Time Response Analysis Question 2 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>Settling time of System 1 is more than that of System 2.</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>Settling time of System 2 is more than that of System 1.</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>Settling times of both the systems are the same.</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>Settling time cannot be computed from the given information.</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "control-systems",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxol4x3h",
+                    "chapter": "time-response-analysis",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pconsider-the-cascaded-system-as-shown-in-the-figure-negl-gate-ee-electric-circuits-ilgezekt82qnjtbs",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Consider the cascaded system as shown in the figure. Neglecting the faster component of the transient response, which one of the following options is a first-order pole-only approximation such that the steady-state values of the unit step responses of the original and the approximated systems are same?</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxol4jq9/b79f608d-6841-42d6-998f-0c59df4aae8e/2f3ca510-2fbe-11ef-9032-99cc6a311420/file-jaoe38c1lxol4jqa.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxol4jq9/b79f608d-6841-42d6-998f-0c59df4aae8e/2f3ca510-2fbe-11ef-9032-99cc6a311420/file-jaoe38c1lxol4jqa.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Control Systems - Time Response Analysis Question 1 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>$\\frac{1}{s + 1}$</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>$\\frac{2}{s + 1}$</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>$\\frac{1}{s + 20}$</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>$\\frac{2}{s + 20}$</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "control-systems",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxom9j8x",
+                    "chapter": "root-locus-techniques",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pconsider-the-closed-loop-system-shown-in-the-figure-with-gate-ee-electric-circuits-7wt4r84aot94ns7w",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Consider the closed-loop system shown in the figure with \n\n$$G(s) = \\frac{K(s^2 - 2s + 2)}{(s^2 + 2s + 5)}.$$ \n\nThe root locus for the closed-loop system is to be drawn for $0 \\leq K &lt; \\infty$. The angle of departure (between $0^{o}$ and $360^{o})$ of the root locus branch drawn from the pole $(\u22121 + j2)$, in degrees, is _________________ (rounded off to the nearest integer).</p> <img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxom7p9k/b061632d-f6de-4ab2-bbac-2e5c1994bc3b/70121990-2fc2-11ef-9032-99cc6a311420/file-jaoe38c1lxom7p9l.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxom7p9k/b061632d-f6de-4ab2-bbac-2e5c1994bc3b/70121990-2fc2-11ef-9032-99cc6a311420/file-jaoe38c1lxom7p9l.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Control Systems - Root Locus Techniques Question 1 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "4TO8",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "control-systems",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxom9jae",
+                    "chapter": "polar-nyquist-and-bode-plot",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pconsider-the-stable-closed-loop-system-shown-in-the-figur-gate-ee-electric-circuits-agx7lap0uytdv1mp",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Consider the stable closed-loop system shown in the figure. The asymptotic Bode magnitude plot of $G(s)$ has a constant slope of $-20$ dB/decade at least till $100$ rad/sec with the gain crossover frequency being $10$ rad/sec. The asymptotic Bode phase plot remains constant at $-90^{o}$ at least till $\\omega = 10$ rad/sec. The steady-state error of the closed-loop system for a unit ramp input is ________________ (rounded off to 2 decimal places).</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxom8umi/b0403507-3caa-49b6-a190-28b2eb202f69/9004f6a0-2fc2-11ef-9032-99cc6a311420/file-jaoe38c1lxom8umj.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxom8umi/b0403507-3caa-49b6-a190-28b2eb202f69/9004f6a0-2fc2-11ef-9032-99cc6a311420/file-jaoe38c1lxom8umj.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Control Systems - Polar Nyquist and Bode Plot Question 2 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.09TO0.11",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "control-systems",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxomay16",
+                    "chapter": "polar-nyquist-and-bode-plot",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pconsider-the-stable-closed-loop-system-shown-in-the-figur-gate-ee-electric-circuits-r34gty3oorkxlkga",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Consider the stable closed-loop system shown in the figure. The magnitude and phase values of the frequency response of $G(s)$ are given in the table. The value of the gain $K_I$ ($&gt;0$) for a $50^\\circ$ phase margin is _____ (rounded off to 2 decimal places).</p><style>table { width: 100%; border-collapse: collapse; margin: 20px 0; } th { background-color: blue; color: white; border: 1px solid lightgrey; padding: 10px; } td { border: 1px solid lightgrey; padding: 10px; text-align: left; }</style><table><thead><tr><th>$\\omega$ in rad/sec</th><th>Magnitude in dB</th><th>Phase in degrees</th></tr></thead><tbody><tr><td>0.5</td><td>\u22127</td><td>\u221240</td></tr><tr><td>1.0</td><td>\u221210</td><td>\u221280</td></tr><tr><td>2.0</td><td>\u221218</td><td>\u2212130</td></tr><tr><td>10.0</td><td>\u221240</td><td>\u2212200</td></tr></tbody></table><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxoma9tb/33d08fb0-5a6a-4eeb-b0cd-e1abcc4bfeda/b78fcbf0-2fc2-11ef-9032-99cc6a311420/file-jaoe38c1lxoma9tc.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxoma9tb/33d08fb0-5a6a-4eeb-b0cd-e1abcc4bfeda/b78fcbf0-2fc2-11ef-9032-99cc6a311420/file-jaoe38c1lxoma9tc.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Control Systems - Polar Nyquist and Bode Plot Question 1 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.11TO1.13",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "control-systems",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                }
+            ],
+            "title": "Control Systems"
+        },
+        {
+            "_id": "Digital Electronics",
+            "questions": [
+                {
+                    "question_id": "lxol9uka",
+                    "chapter": "boolean-algebra",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "psimplified-form-of-the-boolean-functionp-p-fp-q-gate-ee-electric-circuits-cd94apfxsxlzm5wf",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Simplified form of the Boolean function</p>\n\n<p>$$ F(P, Q, R, S)=\\bar{P} \\bar{Q}+\\bar{P} Q S+P \\bar{Q} \\bar{R} \\bar{S}+P \\bar{Q} R \\bar{S} $$<p>is</p></p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$\\bar{P} S+\\bar{Q} \\bar{S} $"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>$\\bar{P} \\bar{Q}+\\bar{Q} \\bar{S} $</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>$\\bar{P} Q+R \\bar{S}$</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>$P \\bar{S}+Q \\bar{R}$</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "digital-electronics",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxolb1vk",
+                    "chapter": "sequential-circuits",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pin-the-circuit-the-present-value-of-z-is-1-neglecti-gate-ee-electric-circuits-6zqprnw4r74bbxox",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>In the circuit, the present value of $Z$ is $1$. Neglecting the delay in the combinatorial circuit, the values of $S$ and $Z$, respectively, after the application of the clock will be</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxolakxe/e84adca6-3b2e-4c07-91e7-69ee711676be/d7047520-2fbe-11ef-9032-99cc6a311420/file-jaoe38c1lxolakxf.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxolakxe/e84adca6-3b2e-4c07-91e7-69ee711676be/d7047520-2fbe-11ef-9032-99cc6a311420/file-jaoe38c1lxolakxf.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Digital Electronics - Sequential Circuits Question 1 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>$S = 0, Z = 0$</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>$S = 0, Z = 1$</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>$S = 1, Z = 0$</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>$S = 1, Z = 1$</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "digital-electronics",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxolcgpn",
+                    "chapter": "combinational-circuits",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pto-obtain-the-boolean-function-fx-y--xoverliney--gate-ee-electric-circuits-fwxmqlce2liaoyjv",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>To obtain the Boolean function $F(X, Y) = X\\overline{Y} + \\overline{X}$, the inputs $PQRS$ in the figure should be</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxolbvrr/6a7fd0e8-3e42-4f69-ad95-45b114022285/fb33ea70-2fbe-11ef-9032-99cc6a311420/file-jaoe38c1lxolbvrs.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxolbvrr/6a7fd0e8-3e42-4f69-ad95-45b114022285/fb33ea70-2fbe-11ef-9032-99cc6a311420/file-jaoe38c1lxolbvrs.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Digital Electronics - Combinational Circuits Question 1 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>1010</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>1110</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>0110</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>0001</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "digital-electronics",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                }
+            ],
+            "title": "Digital Electronics"
+        },
+        {
+            "_id": "Electric Circuits",
+            "questions": [
+                {
+                    "question_id": "lxokor0x",
+                    "chapter": "network-elements",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pthe-number-of-junctions-in-the-circuit-isppimg-src-gate-ee-electric-circuits-8qkkzmhoiowfu8ns",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>The number of junctions in the circuit is</p><p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxoko27r/fd44893e-a23d-457a-876a-a221dbe50acb/64c2f470-2fbc-11ef-9032-99cc6a311420/file-jaoe38c1lxoko27s.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxoko27r/fd44893e-a23d-457a-876a-a221dbe50acb/64c2f470-2fbc-11ef-9032-99cc6a311420/file-jaoe38c1lxoko27s.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Electric Circuits - Network Elements Question 1 English\"></p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>6</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>7</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>8</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>9</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "electric-circuits",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxokpzn3",
+                    "chapter": "network-theorems",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pall-the-elements-in-the-circuit-are-ideal-the-power-deli-gate-ee-electric-circuits-vutrxcudvjnec10m",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>All the elements in the circuit are ideal. The power delivered by the 10 V source in watts is</p><p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxokpenf/213ee3ec-33f7-4139-b949-0698e2dbbe63/8a2d33b0-2fbc-11ef-9032-99cc6a311420/file-jaoe38c1lxokpeng.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxokpenf/213ee3ec-33f7-4139-b949-0698e2dbbe63/8a2d33b0-2fbc-11ef-9032-99cc6a311420/file-jaoe38c1lxokpeng.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Electric Circuits - Network Theorems Question 1 English\"></p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>0</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>50</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>100</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>dependent on the value of $\\alpha$</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "electric-circuits",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxokr8tu",
+                    "chapter": "transient-response",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pthe-circuit-shown-in-the-figure-with-the-switch-s-open-i-gate-ee-electric-circuits-momhgmqr3am9eam1",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>The circuit shown in the figure with the switch S open, is in steady state. After the switch S is closed, the time constant of the circuit in seconds is</p><p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxokqh6r/56d7d874-7493-4b54-ae41-2ac3a291a07b/a7f31ea0-2fbc-11ef-9032-99cc6a311420/file-jaoe38c1lxokqh6y.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxokqh6r/56d7d874-7493-4b54-ae41-2ac3a291a07b/a7f31ea0-2fbc-11ef-9032-99cc6a311420/file-jaoe38c1lxokqh6y.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Electric Circuits - Transient Response Question 1 English\"></p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>1.25</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>0</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>1</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>1.5</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "electric-circuits",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxolwrkh",
+                    "chapter": "three-phase-circuits",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pfor-a-two-phase-network-the-phase-voltages-vp-and-v-gate-ee-electric-circuits-qo53a6gmpjmjp4rj",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>For a two-phase network, the phase voltages $V_p$ and $V_q$ are to be expressed in terms of sequence voltages $V_\\alpha$ and $V_\\beta$ as $\\begin{bmatrix} V_p \\\\ V_q \\end{bmatrix} = S \\begin{bmatrix} V_\\alpha \\\\ V_\\beta \\end{bmatrix}$. The possible option(s) for matrix $S$ is/are</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>$\\begin{bmatrix} 1 & 1 \\\\ 1 & -1 \\end{bmatrix}$</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>$\\begin{bmatrix} 1 & 1 \\\\ 1 & 1 \\end{bmatrix}$</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>$\\begin{bmatrix} 1 & 1 \\\\ 1 & 0 \\end{bmatrix}$</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>$\\begin{bmatrix} -1 & 1 \\\\ 1 & 1 \\end{bmatrix}$</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "electric-circuits",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "mcqm",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxom08ho",
+                    "chapter": "two-port-networks",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "ptwo-passive-two-port-networks-p-and-q-are-connected-as-sh-gate-ee-electric-circuits-jki0o500da3bdbuz",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Two passive two-port networks P and Q are connected as shown in the figure. The impedance matrix of network P is $Z_P = \\begin{bmatrix} 40 \\Omega &amp; 60 \\Omega \\\\ 80 \\Omega &amp; 100 \\Omega \\end{bmatrix}$. The admittance matrix of network Q is $Y_Q = \\begin{bmatrix} 5 \\, \\text{S} &amp; -2.5 \\, \\text{S} \\\\ -2.5 \\, \\text{S} &amp; 1 \\, \\text{S} \\end{bmatrix}$. Let the ABCD matrix of the two-port network R in the figure be $\\begin{bmatrix} \\alpha &amp; \\beta \\\\ \\gamma &amp; \\delta \\end{bmatrix}$. The value of $\\beta$ in $\\Omega$ is ______________ (rounded off to 2 decimal places).</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxolylfi/6c580045-062e-493c-b7ae-ba84c5b1dfec/72d351e0-2fc1-11ef-9032-99cc6a311420/file-jaoe38c1lxolylfj.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxolylfi/6c580045-062e-493c-b7ae-ba84c5b1dfec/72d351e0-2fc1-11ef-9032-99cc6a311420/file-jaoe38c1lxolylfj.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Electric Circuits - Two Port Networks Question 1 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "-19.90TO-19.70",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "electric-circuits",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxom08k7",
+                    "chapter": "sinusoidal-steady-state-analysis",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pfor-the-circuit-shown-in-the-figure-the-source-frequency-gate-ee-electric-circuits-yugzu10fi5ayfkfi",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>For the circuit shown in the figure, the source frequency is 5000 rad/sec. The mutual inductance between the magnetically coupled inductors is 5 mH with their self inductances being 125 mH and 1 mH. The Thevenin\u2019s impedance, $Z_{th}$, between the terminals P and Q in $\\Omega$ is ______________ (rounded off to 2 decimal places).</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxolzoho/4d1e9cdb-98f4-40db-a782-455e06423a9b/90ff9fc0-2fc1-11ef-9032-99cc6a311420/file-jaoe38c1lxolzohp.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxolzoho/4d1e9cdb-98f4-40db-a782-455e06423a9b/90ff9fc0-2fc1-11ef-9032-99cc6a311420/file-jaoe38c1lxolzohp.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Electric Circuits - Sinusoidal Steady State Analysis Question 1 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "5.32TO5.34",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "electric-circuits",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxom3pw5",
+                    "chapter": "three-phase-circuits",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pin-the-circuit-shown-z1--50angle-90circ-omega-gate-ee-electric-circuits-vblbnojngxji3lkk",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>In the circuit shown, $Z_1 = 50\\angle -90^{\\circ} \\Omega$ and $Z_2 = 200\\angle -30^{\\circ} \\Omega$. It is supplied by a three phase 400 V source with the phase sequence being R-Y-B. Assume the watt meters $W_1$ and $W_2$ to be ideal. The magnitude of the difference between the readings of $W_1$ and $W_2$ in watts is _________________ (rounded off to 2 decimal places).</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxom1gnp/43d83e70-8f91-4dde-8e5a-e01e2f9e3468/c290fc50-2fc1-11ef-9032-99cc6a311420/file-jaoe38c1lxom1gnq.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxom1gnp/43d83e70-8f91-4dde-8e5a-e01e2f9e3468/c290fc50-2fc1-11ef-9032-99cc6a311420/file-jaoe38c1lxom1gnq.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Electric Circuits - Three Phase Circuits Question 1 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "692TO693",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "electric-circuits",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                }
+            ],
+            "title": "Electric Circuits"
+        },
+        {
+            "_id": "Electrical and Electronics Measurement",
+            "questions": [
+                {
+                    "question_id": "lxol670s",
+                    "chapter": "potentiometer-and-instrument-transformers",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pthe-table-lists-two-instrument-transformers-and-their-fea-gate-ee-electric-circuits-iq1lrkacmahdvpmc",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>The table lists two instrument transformers and their features:</p><style>table { width: 100%; border-collapse: collapse; margin: 20px 0; } th { background-color: blue; color: white; border: 1px solid lightgrey; padding: 10px; } td { border: 1px solid lightgrey; padding: 10px; text-align: left; }</style><table><thead><tr><th>Instrument Transformers</th><th>Features</th></tr></thead><tbody><tr><td>X) Current Transformer (CT)</td><td>P) Primary is connected in parallel to the grid</td></tr><tr><td>Y) Potential Transformer (PT)</td><td>Q) Open circuited secondary is not desirable</td></tr><tr><td></td><td>R) Primary current is the line current</td></tr><tr><td></td><td>S) Secondary burden affects the primary current</td></tr></tbody></table><p>The correct matching of the two columns is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>X matches with P and Q; Y matches with R and S.</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>X matches with P and R; Y matches with Q and S.</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>X matches with Q and R; Y matches with P and S.</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>X matches with Q and S; Y matches with P and R.</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "electrical-and-electronics-measurement",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                }
+            ],
+            "title": "Electrical and Electronics Measurement"
+        },
+        {
+            "_id": "Electrical Machines",
+            "questions": [
+                {
+                    "question_id": "lxokun8x",
+                    "chapter": "induction-machines",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pa-three-phase-50-hz-6-pole-induction-motor-runs-at-960-gate-ee-electric-circuits-cbrbo8zaosinijwf",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A three phase, 50 Hz, 6 pole induction motor runs at 960 rpm. The stator copper loss, core loss, and the rotational loss of the motor can be neglected. The percentage efficiency of the motor is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>92</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>94</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>96</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>98</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>To determine the percentage efficiency of the induction motor, we need to calculate the motor's slip and then use it to find the rotor copper loss. Since stator copper loss, core loss, and rotational loss are neglected, the efficiency calculation becomes simpler.</p>\n\n<p>First, we find the synchronous speed of the motor. The synchronous speed for a three-phase induction motor is given by:</p>\n\n<p>$$ N_s = \\frac{120 \\times f}{P} $$</p>\n\n<p>where:</p>\n\n<ul>\n\n<li>$$N_s$$ is the synchronous speed in revolutions per minute (rpm)</li>\n\n<li>$$f$$ is the frequency in hertz (Hz)</li>\n\n<li>$$P$$ is the number of poles</li>\n\n</ul>\n\n<p>Given:</p>\n\n<ul>\n\n<li>$$f = 50 \\, \\text{Hz}$$</li>\n\n<li>$$P = 6$$</li>\n\n</ul>\n\n<p>Substituting the values, we get:</p>\n\n<p>$$ N_s = \\frac{120 \\times 50}{6} = 1000 \\, \\text{rpm} $$</p>\n\n<p>Next, we calculate the slip of the motor, which is defined as:</p>\n\n<p>$$ s = \\frac{N_s - N_r}{N_s} $$</p>\n\n<p>where:</p>\n\n<ul>\n\n<li>$$s$$ is the slip</li>\n\n<li>$$N_r$$ is the rotor speed</li>\n\n</ul>\n\n<p>Given:</p>\n\n<ul>\n\n<li>$$N_r = 960 \\, \\text{rpm}$$</li>\n\n</ul>\n\n<p>Therefore, the slip $$s$$ is:</p>\n\n<p>$$ s = \\frac{1000 - 960}{1000} = 0.04 $$</p>\n\n<p>Now, to find the efficiency, we can use the following relationship:</p>\n\n<p>$$ \\eta = \\left(1 - s\\right) \\times 100\\% $$</p>\n\n<p>Substituting the value of $$s$$, we get:</p>\n\n<p>$$ \\eta = \\left(1 - 0.04\\right) \\times 100\\% = 96\\% $$</p>\n\n<p>Therefore, the percentage efficiency of the motor is 96.</p>\n\n<p>So, the correct option is:</p>\n\n<p>Option C: 96</p>"
+                        }
+                    },
+                    "subject": "electrical-machines",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxoky74u",
+                    "chapter": "transformers",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pwhich-one-of-the-following-options-represents-possible-vo-gate-ee-electric-circuits-e1fhcgyjaeq1tbkm",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Which one of the following options represents possible voltage polarities in a single phase two winding transformer? Here, $V_p$ is the applied primary voltage, $E_p$ is the induced primary voltage, $V_s$ is the open circuit secondary voltage, and $E_s$ is the induced secondary voltage.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxokwiwy/1e486bcf-2b07-4e1b-8bbc-2f30d085c4c1/50228a20-2fbd-11ef-9032-99cc6a311420/file-jaoe38c1lxokwiwz.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxokwiwy/1e486bcf-2b07-4e1b-8bbc-2f30d085c4c1/50228a20-2fbd-11ef-9032-99cc6a311420/file-jaoe38c1lxokwiwz.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Electrical Machines - Transformers Question 1 English Option 1\">"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxokwez8/12fe5975-420e-47ca-8ed2-3c02877dcfa4/4d180940-2fbd-11ef-9032-99cc6a311420/file-jaoe38c1lxokwez9.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxokwez8/12fe5975-420e-47ca-8ed2-3c02877dcfa4/4d180940-2fbd-11ef-9032-99cc6a311420/file-jaoe38c1lxokwez9.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Electrical Machines - Transformers Question 1 English Option 2\">"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxokwb0a/863b0d14-a8ea-4fa1-87ea-58f5f2e97c53/4a06d1a0-2fbd-11ef-9032-99cc6a311420/file-jaoe38c1lxokwb0b.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxokwb0a/863b0d14-a8ea-4fa1-87ea-58f5f2e97c53/4a06d1a0-2fbd-11ef-9032-99cc6a311420/file-jaoe38c1lxokwb0b.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Electrical Machines - Transformers Question 1 English Option 3\">"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxokw72x/882d3e51-9ea9-4d8c-ba3a-0de8a9b43e1b/46fe4c90-2fbd-11ef-9032-99cc6a311420/file-jaoe38c1lxokw72y.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxokw72x/882d3e51-9ea9-4d8c-ba3a-0de8a9b43e1b/46fe4c90-2fbd-11ef-9032-99cc6a311420/file-jaoe38c1lxokw72y.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Electrical Machines - Transformers Question 1 English Option 4\">"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "electrical-machines",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxolqnnk",
+                    "chapter": "synchronous-machines",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 1.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pa-3-phase-11-kv-10-mva-synchronous-generator-is-connect-gate-ee-electric-circuits-l3zda3pfw8h1wg4j",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A 3-phase, 11 kV, 10 MVA synchronous generator is connected to an inductive load of power factor $(\\sqrt{3}/2)$ via a lossless line with a per-phase inductive reactance of 5 $\\Omega$. The per-phase synchronous reactance of the generator is 30 $\\Omega$ with negligible armature resistance. If the generator is producing the rated current at the rated voltage, then the power factor at the terminal of the generator is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>0.63 lagging.</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>0.87 lagging.</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>0.63 leading.</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>0.87 leading.</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "electrical-machines",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxolxiwc",
+                    "chapter": "synchronous-machines",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pwhich-of-the-following-options-isare-correct-for-the-aut-gate-ee-electric-circuits-wwwr6njvegnpyfk5",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Which of the following options is/are correct for the Automatic Generation Control (AGC) and Automatic Voltage Regulator (AVR) installed with synchronous generators?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>AGC response has a local effect on frequency while AVR response has a global effect on voltage.</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>AGC response has a global effect on frequency while AVR response has a local effect on voltage.</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>AGC regulates the field current of the synchronous generator while AVR regulates the generator\u2019s mechanical power input.</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>AGC regulates the generator\u2019s mechanical power input while AVR regulates the field current of the synchronous generator.</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "B",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>The correct options are:</p>\n\n<p><b>Option B:</b></p>\n\n<p>AGC response has a global effect on frequency while AVR response has a local effect on voltage.</p>\n\n<p><b>Option D:</b></p>\n\n<p>AGC regulates the generator\u2019s mechanical power input while AVR regulates the field current of the synchronous generator.</p>\n\n<p><b>Explanation:</b></p>\n\n<p>The Automatic Generation Control (AGC) and Automatic Voltage Regulator (AVR) are two essential control mechanisms used in power systems to ensure the stable operation of synchronous generators.</p>\n\n<p><b>AGC (Automatic Generation Control):</b></p>\n\n<p>The AGC is responsible for maintaining the overall system frequency by adjusting the generator\u2019s mechanical power input. Since the frequency of a power system is uniform across the entire interconnected grid, the AGC has a global effect on frequency stability.</p>\n\n<p>AGC works by monitoring the system frequency and the power exchanges at the tie-lines and then making suitable adjustments to the generator outputs to keep the frequency within permissible limits and to maintain the scheduled power interchange among different areas of the power system.</p>\n\n<p>Hence, <b>Option B</b> is correct because AGC has a global effect on frequency.</p>\n\n<p>Moreover, <b>Option D</b> is correct because AGC regulates the generator\u2019s mechanical power input, often done by adjusting the torque on the turbine.</p>\n\n<p><b>AVR (Automatic Voltage Regulator):</b></p>\n\n<p>The AVR is responsible for controlling the voltage output of the synchronous generator by regulating the field current. It achieves this by adjusting the excitation of the generator to maintain a constant terminal voltage.</p>\n\n<p>The impact of the AVR is mainly local, affecting the voltage at the generator terminals and in its immediate vicinity within the power system. This is crucial for maintaining the voltage levels within desired limits to ensure efficient operation of electrical equipment and for voltage stability in the power distribution network.</p>\n\n<p>Therefore, <b>Option B</b> is correct since AVR has a local effect on voltage, and <b>Option D</b> is also correct because the AVR regulates the field current of the synchronous generator.</p>\n\n<p>In conclusion, the correct options are <b>Option B</b> and <b>Option D</b>.</p>"
+                        }
+                    },
+                    "subject": "electrical-machines",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "mcqm",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxom5ph0",
+                    "chapter": "induction-machines",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pa-3-phase-star-connected-slip-ring-induction-motor-has-th-gate-ee-electric-circuits-iuw5mkjdqfqmusg7",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A 3-phase star connected slip ring induction motor has the following parameters referred to the stator:</p><p>$R_s = 3\\, \\Omega,\\; X_s = 2\\, \\Omega,\\; X_r' = 2\\, \\Omega,\\; R_r' = 2.5\\, \\Omega$</p><p>The per phase stator to rotor effective turns ratio is 3:1. The rotor winding is also star connected. The magnetizing reactance and core loss of the motor can be neglected. To have maximum torque at starting, the value of the extra resistance in ohms (referred to the rotor side) to be connected in series with each phase of the rotor winding is _______ (rounded off to 2 decimal places).</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.26TO0.29",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "electrical-machines",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxom5pij",
+                    "chapter": "dc-machines",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pa-5-kw-220-v-dc-shunt-motor-has-05-omega-armature-re-gate-ee-electric-circuits-juxxnhzpafivapyx",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A 5 kW, 220 V DC shunt motor has 0.5 $\\Omega$ armature resistance including brushes. The motor draws a no-load current of 3 A. The field current is constant at 1 A. Assuming that the core and rotational losses are constant and independent of the load, the current (in amperes) drawn by the motor while delivering the rated load, for the best possible efficiency, is _______ (rounded off to 2 decimal places).</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "27.19TO27.39",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "electrical-machines",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                }
+            ],
+            "title": "Electrical Machines"
+        },
+        {
+            "_id": "Electromagnetic Fields",
+            "questions": [
+                {
+                    "question_id": "lxom3pxy",
+                    "chapter": "electrostatics",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pin-the-x-y-z-coordinate-system-three-point-charges-gate-ee-electric-circuits-btexznbexwfxf76y",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>In the $(x, y, z)$ coordinate system, three point-charges $Q$, $Q$, and $\\alpha Q$ are located in free space at $(-1, 0, 0)$, $(1, 0, 0)$, and $(0, -1, 0)$, respectively. The value of $\\alpha$ for the electric field to be zero at $(0, 0.5, 0)$ is _________________ (rounded off to 1 decimal place).</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "-1.7TO-1.5",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "electromagnetic-fields",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxom3pzk",
+                    "chapter": "magnetostatics",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pthe-given-equation-represents-a-magnetic-field-strength--gate-ee-electric-circuits-v8d6kjnsz1y8stpq",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>The given equation represents a magnetic field strength $\\bar{H}(r, \\theta, \\phi)$ in the spherical coordinate system, in free space. Here, $\\hat{r}$ and $\\hat{\\theta}$ represent the unit vectors along $r$ and $\\theta$, respectively. The value of $P$ in the equation should be _________________ (rounded off to the nearest integer).</p> <p> $$\\bar{H}(r, \\theta, \\phi) = \\frac{1}{r^3} ( \\hat{r} P \\cos \\theta + \\hat{\\theta} P \\sin \\theta)$$ </p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "electromagnetic-fields",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                }
+            ],
+            "title": "Electromagnetic Fields"
+        },
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "question_id": "lxoknh7g",
+                    "chapter": "linear-algebra",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pwhich-one-of-the-following-matrices-has-an-inversep-gate-ee-electric-circuits-pbls132yhr6fe7m2",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Which one of the following matrices has an inverse?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>$$\\begin{bmatrix} 1 & 4 & 8 \\\\ 0 & 4 & 2 \\\\ 0.5 & 2 & 4 \\end{bmatrix}$$</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>$$\\begin{bmatrix} 1 & 2 & 3 \\\\ 2 & 4 & 6 \\\\ 3 & 2 & 9 \\end{bmatrix}$$</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>$$\\begin{bmatrix} 1 & 4 & 8 \\\\ 0 & 4 & 2 \\\\ 1 & 2 & 4 \\end{bmatrix}$$</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>$$\\begin{bmatrix} 1 & 4 & 8 \\\\ 0 & 4 & 2 \\\\ 3 & 12 & 24 \\end{bmatrix}$$</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "engineering-mathematics",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxolent9",
+                    "chapter": "probability-and-statistics",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "plet-x-be-a-discrete-random-variable-that-is-uniformly-d-gate-ee-electric-circuits-qhxhis5slo3crci4",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Let $X$ be a discrete random variable that is uniformly distributed over the set {$-10, -9, \\cdots, 0, \\cdots, 9, 10$}. Which of the following random variables is/are uniformly distributed?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>$X^2$</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>$X^3$</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>$(X - 5)^2$</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>$(X + 10)^2$</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "B",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "engineering-mathematics",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcqm",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxolenuu",
+                    "chapter": "complex-variable",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pwhich-of-the-following-complex-functions-isare-analytic-gate-ee-electric-circuits-1b1btdvflihyvf4r",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Which of the following complex functions is/are analytic on the complex plane?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>$f(z) = j\\text{Re}(z)$</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>$f(z) = \\text{Im}(z)$</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>$f(z) = e^{|z|}$</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>$f(z) = z^2 - z$</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "engineering-mathematics",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcqm",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxolgrpa",
+                    "chapter": "complex-variable",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pconsider-the-complex-function-fz--cos-z--ez2-gate-ee-electric-circuits-ajvpesyvdzt1pjfi",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Consider the complex function $f(z) = \\cos z + e^{z^2}$. The coefficient of $z^5$ in the Taylor series expansion of $f(z)$ about the origin is ______ (rounded off to 1 decimal place).</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "engineering-mathematics",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxolgrqr",
+                    "chapter": "linear-algebra",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pthe-sum-of-the-eigenvalues-of-the-matrix-a--beginbmat-gate-ee-electric-circuits-ilezjnqexbvuznbo",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>The sum of the eigenvalues of the matrix $A = \\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}^2$ is ______ (rounded off to the nearest integer).</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "29",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "engineering-mathematics",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxolm95d",
+                    "chapter": "vector-calculus",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 1.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pconsider-a-vector-vecu--2hatx--haty--2hatz-gate-ee-electric-circuits-utaszg26w8hq7gcr",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Consider a vector $\\vec{u} = 2\\hat{x} + \\hat{y} + 2\\hat{z}$, where $\\hat{x}$, $\\hat{y}$, $\\hat{z}$ represent unit vectors along the coordinate axes $x$, $y$, $z$ respectively. The directional derivative of the function $f(x, y, z) = 2\\ln(xy) + \\ln(yz) + 3\\ln(xz)$ at the point $(x, y, z) = (1, 1, 1)$ in the direction of $\\vec{u}$ is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>0</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>$\\frac{7}{5\\sqrt{2}}$</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>7</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>21</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "engineering-mathematics",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxoluq7h",
+                    "chapter": "calculus",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "plet-ft-be-a-real-valued-function-whose-second-derivat-gate-ee-electric-circuits-jbez9vpbgwvjzh1w",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Let $f(t)$ be a real-valued function whose second derivative is positive for $-\n\\infty < t < \\infty$. Which of the following statements is/are always true?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>$f(t)$ has at least one local minimum.</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>$f(t)$ cannot have two distinct local minima.</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>$f(t)$ has at least one local maximum.</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>The minimum value of $f(t)$ cannot be negative.</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "engineering-mathematics",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "mcqm",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxoluq9a",
+                    "chapter": "calculus",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pconsider-the-function-ft--textmax0t2-for--gate-ee-electric-circuits-oarht6srhlfyqfq0",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Consider the function $f(t) = (\\text{max}(0,t))^2$ for $-\n\\infty < t < \\infty$, where $\\text{max}(a,b)$ denotes the maximum of $a$ and $b$. Which of the following statements is/are true?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>$f(t)$ is not differentiable.</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>$f(t)$ is differentiable and its derivative is continuous.</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>$f(t)$ is differentiable but its derivative is not continuous.</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>$f(t)$ and its derivative are differentiable.</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "engineering-mathematics",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "mcqm",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxolwrj1",
+                    "chapter": "differential-equations",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pwhich-of-the-following-differential-equations-isare-nonl-gate-ee-electric-circuits-ejxq2iqulzhllirr",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Which of the following differential equations is/are nonlinear?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>$t \\, x(t) + \\frac{dx(t)}{dt} = t^2 e^t$, $x(0) = 0$</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>$\\frac{1}{2} e^t + x(t) \\frac{dx(t)}{dt} = 0$, $x(0) = 0$</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>$x(t) \\cos t - \\frac{dx(t)}{dt} \\sin t = 1$, $x(0) = 0$</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>$x(t) + e^{\\left(\\frac{dx(t)}{dt}\\right)} = 1$, $x(0) = 0$</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "B",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>To determine which differential equations are nonlinear, we need to analyze whether the equations involve nonlinear functions of the dependent variable $ x(t) $ or its derivatives. A differential equation is nonlinear if it includes nonlinear terms, such as products or compositions of $ x(t) $ and its derivatives.</p>\n\n<p>Let's break down each option:</p>\n\n<p><strong>Option A:</strong></p>\n\n<p>$$ t \\, x(t) + \\frac{dx(t)}{dt} = t^2 e^t $$</p>\n\n<p>In this equation, $ t \\, x(t) $ is a product of $ t $ (which is an independent variable) and $ x(t) $ (which is the dependent variable), but the term itself is linear in $ x(t) $. Also, $ \\frac{dx(t)}{dt} $ appears linearly. Therefore, this is a linear differential equation.</p>\n\n<p><strong>Option B:</strong></p>\n\n<p>$$ \\frac{1}{2} e^t + x(t) \\frac{dx(t)}{dt} = 0 $$</p>\n\n<p>Here, $ x(t) \\frac{dx(t)}{dt} $ is a product of $ x(t) $ and its derivative $ \\frac{dx(t)}{dt} $, which makes this term nonlinear. Hence, this is a nonlinear differential equation.</p>\n\n<p><strong>Option C:</strong></p>\n\n<p>$$ x(t) \\cos t - \\frac{dx(t)}{dt} \\sin t = 1 $$</p>\n\n<p>In this equation, $ x(t) \\cos t $ is a product of a function of $ t $ and $ x(t) $, but it is linear in $ x(t) $. The term $ \\frac{dx(t)}{dt} $, multiplied by $ \\sin t $, remains linear in $ \\frac{dx(t)}{dt} $. Thus, this is a linear differential equation.</p>\n\n<p><strong>Option D:</strong></p>\n\n<p>$$ x(t) + e^{\\left(\\frac{dx(t)}{dt}\\right)} = 1 $$</p>\n\n<p>In this equation, $ e^{\\left(\\frac{dx(t)}{dt}\\right)} $ is an exponential function of the derivative $ \\frac{dx(t)}{dt} $, which introduces nonlinearity. Hence, this is a nonlinear differential equation.</p>\n\n<p>Based on the analysis, the nonlinear differential equations are:</p>\n\n<p>Option B: $$ \\frac{1}{2} e^t + x(t) \\frac{dx(t)}{dt} = 0 $$</p>\n\n<p>Option D: $$ x(t) + e^{\\left(\\frac{dx(t)}{dt}\\right)} = 1 $$</p>\n\n<p>Thus, the correct options are B and D.</p>"
+                        }
+                    },
+                    "subject": "engineering-mathematics",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "mcqm",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "General Aptitude",
+            "questions": [
+                {
+                    "question_id": "lxok0bl9",
+                    "chapter": "verbal-ability",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pif--denotes-increasing-order-of-intensity-then-the-me-gate-ee-general-aptitude-jnqorvksfckltqis",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>If \u2018\u2192\u2019 denotes increasing order of intensity, then the meaning of the words [talk \u2192 shout \u2192 scream] is analogous to [please \u2192 _______ \u2192 pander].<br />Which one of the given options is appropriate to fill the blank?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>flatter</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>flutter</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>fritter</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>frizzle</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>The correct answer is <strong>Option A: flatter</strong>. </p>\n\n<p>Here's why: </p>\n\n<p>The analogy is based on increasing intensity of action. </p>\n\n<ul>\n\n<li> <strong>talk \u2192 shout \u2192 scream</strong>: This sequence shows an escalation from a quiet conversation to a loud, forceful expression. </li>\n\n<li> <strong>please \u2192 flatter \u2192 pander</strong>: This sequence also illustrates increasing intensity in terms of persuasion or trying to get someone to do something. </li>\n\n</ul>\n\n<p>Let's analyze the options: </p>\n\n<ul>\n\n<li> <strong>flatter</strong>: To praise someone excessively, often insincerely, to win favor. This fits the increasing intensity of persuasion, moving beyond a simple \"please\" to a more calculated attempt to influence. </li>\n\n<li> <strong>flutter</strong>: To move quickly and lightly. This doesn't relate to the concept of persuasion or increasing intensity. </li>\n\n<li> <strong>fritter</strong>: To waste time or money. This doesn't fit the context of trying to influence someone. </li>\n\n<li> <strong>frizzle</strong>: To curl or crisp, usually referring to hair. This is completely unrelated to the analogy. </li>\n\n</ul>\n\n<p>Therefore, <strong>flatter</strong> is the only word that maintains the increasing intensity of the analogy, making it the most appropriate choice to fill the blank.</p>\n\n<p></p>"
+                        }
+                    },
+                    "subject": "general-aptitude",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxokagr8",
+                    "chapter": "logical-reasoning",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pp-and-q-have-been-allotted-a-hostel-room-with-two-beds-a-gate-ee-general-aptitude-ave5jojfdglbmbh2",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>P and Q have been allotted a hostel room with two beds, a study table, and an almirah. P is an avid bird-watcher and wants to sit at the table and watch birds outside the window. Q does not mind that as long as his bed is close to the ceiling fan.</p><p> Which one of the following arrangements suits them the most?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxok2ast/b729b35d-c258-4124-9f2a-51de2a48781e/07978dd0-2fba-11ef-9032-99cc6a311420/file-jaoe38c1lxok2asu.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxok2ast/b729b35d-c258-4124-9f2a-51de2a48781e/07978dd0-2fba-11ef-9032-99cc6a311420/file-jaoe38c1lxok2asu.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 General Aptitude - Logical Reasoning Question 2 English Option 1\">"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxok263k/eee02bf4-0e9e-4336-886d-2a9b9e240622/03f5d600-2fba-11ef-9032-99cc6a311420/file-jaoe38c1lxok263l.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxok263k/eee02bf4-0e9e-4336-886d-2a9b9e240622/03f5d600-2fba-11ef-9032-99cc6a311420/file-jaoe38c1lxok263l.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 General Aptitude - Logical Reasoning Question 2 English Option 2\">"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxok9n0k/5c55bfa8-7ce5-496a-8c79-7cebf7bab7c3/d3b12840-2fba-11ef-9032-99cc6a311420/file-jaoe38c1lxok9n0l.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxok9n0k/5c55bfa8-7ce5-496a-8c79-7cebf7bab7c3/d3b12840-2fba-11ef-9032-99cc6a311420/file-jaoe38c1lxok9n0l.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 General Aptitude - Logical Reasoning Question 2 English Option 3\">"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxok9hoi/e26e87b3-ff83-40f7-9d02-c8011b592b1c/cf925130-2fba-11ef-9032-99cc6a311420/file-jaoe38c1lxok9hoj.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxok9hoi/e26e87b3-ff83-40f7-9d02-c8011b592b1c/cf925130-2fba-11ef-9032-99cc6a311420/file-jaoe38c1lxok9hoj.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 General Aptitude - Logical Reasoning Question 2 English Option 4\">"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "general-aptitude",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxokc0xj",
+                    "chapter": "numerical-ability",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pthe-decimal-number-system-uses-the-characters-0-1-2--gate-ee-general-aptitude-v8skxalkywz2rxwd",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>The decimal number system uses the characters 0, 1, 2, ... , 8, 9, and the octal number system uses the characters 0, 1, 2, ... , 6, 7.</p> <p>For example, the decimal number 12 ( = 1 &times; 10<sup>1</sup> + 2 &times; 10<sup>0</sup>) is expressed as 14 ( = 1 &times; 8<sup>1</sup> + 4 &times; 8<sup>0</sup>) in the octal number system.</p> <p>The decimal number 108 in the octal number system is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>168</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>108</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>150</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>154</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>To convert the decimal number 108 to the octal number system, we follow a systematic division by 8, capturing the remainders which represent the octal digits.</p>\n\n<p>Here's the step-by-step process:</p>\n\n<p>1. Divide the decimal number by 8 and record the quotient and the remainder.</p>\n\n<p>$$ 108 \\div 8 = 13 \\, \\text{quotient}, \\, 4 \\, \\text{remainder} $$</p>\n\n<p>2. Next, take the quotient and divide it again by 8, recording the new quotient and the new remainder.</p>\n\n<p>$$ 13 \\div 8 = 1 \\, \\text{quotient}, \\, 5 \\, \\text{remainder} $$</p>\n\n<p>3. Repeat the process until the quotient is zero.</p>\n\n<p>$$ 1 \\div 8 = 0 \\, \\text{quotient}, \\, 1 \\, \\text{remainder} $$</p>\n\n<p>4. The octal number is formed by reading the remainders from the last obtained (from bottom to top).</p>\n\n<p>So the remainders in order are $1, 5, 4$. This forms the octal number:</p>\n\n<p>$$\\text{Octal Number} = 154$$</p>\n\n<p>Thus, the decimal number 108 in the octal number system is <strong>154</strong>.</p>\n\n<p>Therefore, the correct answer is:</p>\n\n<p>Option D <strong>154</strong></p>"
+                        }
+                    },
+                    "subject": "general-aptitude",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxokc0zj",
+                    "chapter": "numerical-ability",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pa-shopkeeper-buys-shirts-from-a-producer-and-sells-them-a-gate-ee-general-aptitude-wxjz4hsa3zwpe2ay",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A shopkeeper buys shirts from a producer and sells them at 20% profit. A customer has to pay \u20b93,186.00 including 18% taxes, per shirt. At what price did the shopkeeper buy each shirt from the producer?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>\u20b92,500.00</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>\u20b91,975.40</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>\u20b92,250.00</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>\u20b92,548.80</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>Let's break down the problem step by step to find the price the shopkeeper paid for each shirt.</p>\n\n<p>1. <strong>Calculate the price of the shirt before tax:</strong></p>\n\n<p>The customer paid \u20b93,186.00, which includes an 18% tax.  Let 'x' represent the price of the shirt before tax.  We can set up an equation:</p>\n\n<p>x + 0.18x = \u20b93,186.00</p>\n\n<p>Combining like terms:</p>\n\n<p>1.18x = \u20b93,186.00</p>\n\n<p>Solving for x:</p>\n\n<p>x = \u20b93,186.00 / 1.18</p>\n\n<p>x = \u20b92,700.00</p>\n\n<p>Therefore, the price of the shirt before tax is \u20b92,700.00</p>\n\n<p>2. <strong>Calculate the shopkeeper's selling price:</strong></p>\n\n<p>The customer paid \u20b92,700.00 for the shirt, which includes the shopkeeper's 20% profit.  Let 'y' represent the shopkeeper's selling price.</p>\n\n<p>We can set up another equation:</p>\n\n<p>y + 0.20y = \u20b92,700.00</p>\n\n<p>Combining like terms:</p>\n\n<p>1.20y = \u20b92,700.00</p>\n\n<p>Solving for y:</p>\n\n<p>y = \u20b92,700.00 / 1.20</p>\n\n<p>y = \u20b92,250.00</p>\n\n<p>Therefore, the shopkeeper's selling price (before tax) was \u20b92,250.00</p>\n\n<p><strong>Answer:</strong></p>\n\n<p>The shopkeeper bought each shirt from the producer for <strong>\u20b92,250.00</strong>. So the correct option is <strong>C</strong>.</p>\n\n<p></p>"
+                        }
+                    },
+                    "subject": "general-aptitude",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxokd9fb",
+                    "chapter": "numerical-ability",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pif-for-non-zero-real-variables-x-y-and-real-parame-gate-ee-general-aptitude-h77btlbw61ehmgrz",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>If, for non-zero real variables $x$, $y$, and real parameter $a > 1$,</p><p>$x : y = (a + 1) : (a - 1)$,</p><p>then, the ratio $(x^2 - y^2) : (x^2 + y^2)$ is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>$2a : (a^2 + 1)$</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>$a : (a^2 + 1)$</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>$2a : (a^2 - 1)$</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>$a : (a^2 - 1)$</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>We are given the ratio between two variables $x$ and $y$ as follows:</p>\n\n<p>$$x : y = (a + 1) : (a - 1)$$</p>\n\n<p>We can express this as:</p>\n\n<p>$$\\frac{x}{y} = \\frac{a + 1}{a - 1}$$</p>\n\n<p>From this, we can write:</p>\n\n<p>$$x = \\frac{a + 1}{a - 1} \\cdot y$$</p>\n\n<p>We need to find the ratio $$\\frac{x^2 - y^2}{x^2 + y^2}$$.</p>\n\n<p>First, let's express $ x^2 $ and $ y^2 $ in terms of $ y $. Using $ x = \\frac{a + 1}{a - 1} \\cdot y $, we get:</p>\n\n<p>$$ x^2 = \\left( \\frac{a + 1}{a - 1} \\right)^2 y^2 $$</p>\n\n<p>We already have $ y^2 $. Now, let's substitute these into the desired ratio:</p>\n\n<p>$$ \\frac{x^2 - y^2}{x^2 + y^2} $$</p>\n\n<p>Substitute $ x^2 $ and $ y^2 $:</p>\n\n<p>$$ \\frac{\\left( \\frac{a + 1}{a - 1} \\right)^2 y^2 - y^2}{\\left( \\frac{a + 1}{a - 1} \\right)^2 y^2 + y^2} $$</p>\n\n<p>Factor out $ y^2 $ from the numerator and the denominator:</p>\n\n<p>$$ \\frac{y^2 \\left( \\left( \\frac{a + 1}{a - 1} \\right)^2 - 1 \\right)}{y^2 \\left( \\left( \\frac{a + 1}{a - 1} \\right)^2 + 1 \\right)} $$</p>\n\n<p>The $ y^2 $ terms cancel out:</p>\n\n<p>$$ \\frac{\\left( \\frac{a + 1}{a - 1} \\right)^2 - 1}{\\left( \\frac{a + 1}{a - 1} \\right)^2 + 1} $$</p>\n\n<p>Now, let\u2019s simplify further. Consider $ \\left( \\frac{a + 1}{a - 1} \\right)^2 $:</p>\n\n<p>$$ \\left( \\frac{a + 1}{a - 1} \\right)^2 = \\frac{(a + 1)^2}{(a - 1)^2} = \\frac{a^2 + 2a + 1}{a^2 - 2a + 1} $$</p>\n\n<p>So, the ratio becomes:</p>\n\n<p>$$ \\frac{\\frac{a^2 + 2a + 1}{a^2 - 2a + 1} - 1}{\\frac{a^2 + 2a + 1}{a^2 - 2a + 1} + 1} $$</p>\n\n<p>Rewriting the numerator and the denominator by getting a common denominator:</p>\n\n<p>$$ \\frac{\\frac{((a^2 + 2a + 1) - (a^2 - 2a + 1))}{a^2 - 2a + 1}}{\\frac{((a^2 + 2a + 1) + (a^2 - 2a + 1))}{a^2 - 2a + 1}} $$</p>\n\n<p>This simplifies to:</p>\n\n<p>$$ \\frac{\\frac{4a}{a^2 - 2a + 1}}{\\frac{2a^2 + 2}{a^2 - 2a + 1}} $$</p>\n\n<p>Further simplifying:</p>\n\n<p>$$ \\frac{4a}{2a^2 + 2} $$</p>\n\n<p>Finally, we get:</p>\n\n<p>$$ \\frac{4a}{2(a^2 + 1)} = \\frac{2a}{a^2 + 1} $$</p>\n\n<p>Thus, the ratio $\\left(x^2 - y^2\\right) : \\left(x^2 + y^2\\right)$ is:</p>\n\n<p><b>Option A: $2a : (a^2 + 1)$</b></p>"
+                        }
+                    },
+                    "subject": "general-aptitude",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxokf0rw",
+                    "chapter": "verbal-ability",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 1.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pin-the-given-text-the-blanks-are-numbered-iiv-sele-gate-ee-general-aptitude-40f9ieqz4cmltbt8",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>In the given text, the blanks are numbered (i)\u2013(iv). Select the best match for all the blanks.</p><p>Following a row ____(i) ______ the shopkeeper ____(ii) ______ the price of a frying pan, the cook stood ____(iii) ______ a row to withdraw cash _____(iv) ______ the ATM booth.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>(i) with (ii) over (iii) at (iv) with</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>(i) at (ii) over (iii) over (iv) in</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>(i) with (ii) over (iii) in (iv) at</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>(i) over (ii) with (iii) over (iv) at</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>The correct answer is <strong>Option C</strong>: </p>\n\n<p>(i) with (ii) over (iii) in (iv) at</p>\n\n<p>Here's a breakdown of why each option is the best fit:</p>\n\n<p>(i) <strong>\"with\"</strong> is the most suitable preposition here. It signifies the cook's involvement in the row. </p>\n\n<p>(ii) <strong>\"over\"</strong> is the best choice. It implies the shopkeeper was arguing or discussing the price with the cook. </p>\n\n<p>(iii) <strong>\"in\"</strong> is the appropriate preposition as it indicates the cook's location in the row. </p>\n\n<p>(iv) <strong>\"at\"</strong> is the correct preposition for describing the location of the ATM booth. </p>\n\n<p>Therefore, the complete sentence reads: \"Following a row <strong>with</strong> the shopkeeper <strong>over</strong> the price of a frying pan, the cook stood <strong>in</strong> a row to withdraw cash <strong>at</strong> the ATM booth.\" </p>\n\n<p></p>"
+                        }
+                    },
+                    "subject": "general-aptitude",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxokhvy1",
+                    "chapter": "numerical-ability",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 1.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pin-the-following-figurep-ullicd--5-cm-be--10-c-gate-ee-general-aptitude-iqchbdzowyvp8c4v",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>In the following figure,</p>\n<ul><li>CD = 5 cm, BE = 10 cm, AE = 12 cm,</li><li>\u2220DAB = \u2220DCB, and \u2220DAE = \u2220DBC = 90\u00b0</li></ul>\n<p>Points AFCD create a rhombus.</p>\n<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxokgcp7/1c1e1647-c1e5-4163-88d2-3fe603e90b4e/8e6331b0-2fbb-11ef-9032-99cc6a311420/file-jaoe38c1lxokgcp8.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxokgcp7/1c1e1647-c1e5-4163-88d2-3fe603e90b4e/8e6331b0-2fbb-11ef-9032-99cc6a311420/file-jaoe38c1lxokgcp8.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 General Aptitude - Numerical Ability Question 3 English\">\n<p>The length of BF (in cm) is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>3</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>2</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>4</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>6</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "general-aptitude",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxokk5d7",
+                    "chapter": "numerical-ability",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 1.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pthe-chart-below-shows-the-data-of-the-number-of-cars-boug-gate-ee-general-aptitude-h3rozrmp9htljxao",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>The chart below shows the data of the number of cars bought by Millennials and Gen X people in a country from the year 2010 to 2020 as well as the yearly fuel consumption of the country (in Million liters).</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxokiywh/f0921554-e6d4-4157-9b3b-d9a86eff2ff4/d7280a10-2fbb-11ef-9032-99cc6a311420/file-jaoe38c1lxokiywi.webp?format=webp\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxokiywh/f0921554-e6d4-4157-9b3b-d9a86eff2ff4/d7280a10-2fbb-11ef-9032-99cc6a311420/file-jaoe38c1lxokiywi.webp\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 General Aptitude - Numerical Ability Question 2 English\"><p>Considering the data presented in the chart, which one of the following options is true?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>The percentage increase in fuel consumption from 2010 to 2015 is more than the percentage increase in fuel consumption from 2015 to 2020.</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>The increase in the number of Millennial car buyers from 2015 to 2020 is less than the decrease in the number of Gen X car buyers from 2010 to 2015.</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>The increase in the number of Millennial car buyers from 2010 to 2015 is more than the decrease in the number of Gen X car buyers from 2010 to 2015.</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>The decrease in the number of Gen X car buyers from 2015 to 2020 is more than the increase in the number of Millennial car buyers from 2010 to 2015.</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "general-aptitude",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxoklysi",
+                    "chapter": "logical-reasoning",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 1.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pthe-assembly-shown-below-has-three-teethed-circular-objec-gate-ee-general-aptitude-qbubopiacomi73to",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>The assembly shown below has three teethed circular objects (Pinions) and two teethed flat objects (Racks), which are perfectly mating with each other. Pinions can only rotate clockwise or anti-clockwise staying at its own center. Racks can translate towards the left (\u2190) or the right (\u2192) direction.</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxokkyy6/9ada0b64-6349-4582-a45b-0657f1fd8c09/0ecfa0e0-2fbc-11ef-9032-99cc6a311420/file-jaoe38c1lxokkyy7.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxokkyy6/9ada0b64-6349-4582-a45b-0657f1fd8c09/0ecfa0e0-2fbc-11ef-9032-99cc6a311420/file-jaoe38c1lxokkyy7.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 General Aptitude - Logical Reasoning Question 1 English\"><p>If the object A (Rack) is translating towards the right (\u2192) direction, the correct statement among the following is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>Object B translates towards the right direction.</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>Object B translates towards the left direction.</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>Object R rotates in the anticlockwise direction.</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>Object Q rotates in the clockwise direction.</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "general-aptitude",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxokmh6a",
+                    "chapter": "numerical-ability",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 1.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pa-surveyor-has-to-measure-the-horizontal-distance-from-he-gate-ee-general-aptitude-xctvtf3ti2kbng8b",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A surveyor has to measure the horizontal distance from her position to a distant reference point C. Using her position as the center, a 200 m horizontal line segment is drawn with the two endpoints A and B. Points A, B, and C are not collinear. Each of the angles \u2220CAB and \u2220CBA are measured as 87.8\u00b0. The distance (in m) of the reference point C from her position is nearest to</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>2603</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>2606</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>2306</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>2063</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "general-aptitude",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                }
+            ],
+            "title": "General Aptitude"
+        },
+        {
+            "_id": "Power Electronics",
+            "questions": [
+                {
+                    "question_id": "lxoldf2b",
+                    "chapter": "power-semiconductor-devices",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pif-the-following-switching-devices-have-similar-power-rat-gate-ee-electric-circuits-10ft5qumvxjt7jok",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>If the following switching devices have similar power ratings, which one of them is the fastest?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>SCR</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>GTO</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>IGBT</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>Power MOSFET</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>When comparing the switching speeds of SCR (Silicon Controlled Rectifier), GTO (Gate Turn-Off Thyristor), IGBT (Insulated Gate Bipolar Transistor), and Power MOSFET (Metal-Oxide-Semiconductor Field-Effect Transistor), the key factor to consider is the intrinsic properties of these devices.</p>\n\n<p>1. <strong>SCR</strong>: Silicon Controlled Rectifiers are relatively slow in terms of switching speed. They are mainly used in applications where switching speed is not a critical factor, such as in power control and rectification.</p>\n\n<p>2. <strong>GTO</strong>: Gate Turn-Off Thyristors have better switching capabilities compared to SCRs, but they are still not the fastest due to the need for high gate current to turn off the device.</p>\n\n<p>3. <strong>IGBT</strong>: Insulated Gate Bipolar Transistors combine the characteristics of both MOSFETs and BJTs (Bipolar Junction Transistors). They offer faster switching speeds than SCRs and GTOs; however, they are not the fastest in this list.</p>\n\n<p>4. <strong>Power MOSFET</strong>: Power MOSFETs are known for their high-speed switching capabilities. They have a very high input impedance and low switching losses, making them the fastest amongst the options provided.</p>\n\n<p>Therefore, the fastest switching device among the given options is the <strong>Power MOSFET</strong> (Option D).</p>"
+                        }
+                    },
+                    "subject": "power-electronics",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxoldf46",
+                    "chapter": "ac-voltage-controllers",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pa-single-phase-triac-based-ac-voltage-controller-feeds-a-gate-ee-electric-circuits-rytcsrh6jdwzkzyz",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A single-phase triac based AC voltage controller feeds a series RL load. The input AC supply is 230 V, 50 Hz. The values of R and L are 10 \u03a9 and 18.37 mH, respectively. The minimum triggering angle of the triac to obtain controllable output voltage is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>15\u00b0</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>30\u00b0</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>45\u00b0</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>60\u00b0</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>To determine the minimum triggering angle of the triac to obtain a controllable output voltage for a single-phase AC voltage controller feeding a series RL load, we can follow these steps:</p>\n\n<p>Given:</p>\n\n<p>Input AC supply voltage, $ V_{rms} = 230 \\text{ V} $ </p>\n\n<p>Frequency, $ f = 50 \\text{ Hz} $ </p>\n\n<p>Resistance, $ R = 10 \\Omega $ </p>\n\n<p>Inductance, $ L = 18.37 \\text{ mH} = 18.37 \\times 10^{-3} \\text{ H} $ </p>\n\n<p>1. Calculate the inductive reactance ( $ X_L $ ):</p>\n\n<p>$$ X_L = 2 \\pi f L $$</p>\n\n<p>$$ X_L = 2 \\pi \\times 50 \\times 18.37 \\times 10^{-3} $$</p>\n\n<p>$$ X_L \\approx 5.77 \\Omega $$</p>\n\n<p>2. Calculate the impedance ( $ Z $ ) of the series RL circuit:</p>\n\n<p>$$ Z = \\sqrt{R^2 + X_L^2} $$</p>\n\n<p>$$ Z = \\sqrt{10^2 + 5.77^2} $$</p>\n\n<p>$$ Z \\approx 11.5 \\Omega $$</p>\n\n<p>3. Calculate the power factor ( $ \\cos \\phi $ ) of the RL circuit:</p>\n\n<p>$$ \\cos \\phi = \\frac{R}{Z} $$</p>\n\n<p>$$ \\cos \\phi = \\frac{10}{11.5} $$</p>\n\n<p>$$ \\cos \\phi \\approx 0.87 $$</p>\n\n<p>4. The phase angle ( $ \\phi $ ) can be calculated as:</p>\n\n<p>$$ \\phi = \\cos^{-1}(0.87) $$</p>\n\n<p>$$ \\phi \\approx 30\u00b0 $$</p>\n\n<p>For a single-phase AC voltage controller with a triac, the minimum triggering angle ( $ \\alpha $ ) to obtain a controllable output voltage should be equal to the phase angle $ \\phi $. Therefore, the minimum triggering angle of the triac is:</p>\n\n<p>$$ \\alpha \\approx 30\u00b0 $$</p>\n\n<p><b>So, the correct answer is Option B: 30\u00b0.</b></p>"
+                        }
+                    },
+                    "subject": "power-electronics",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxoljze7",
+                    "chapter": "choppers-and-commutation-techniques",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pa-forced-commutated-thyristorized-step-down-chopper-is-sh-gate-ee-electric-circuits-hdhmiodylbqh0mgm",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A forced commutated thyristorized step-down chopper is shown in the figure. Neglect the ON-state drop across the power devices. Assume that the capacitor is initially charged to 50 V with the polarity shown in the figure. The load current ($I_L$) can be assumed to be constant at 10 A. Initially, Th<sub>M</sub> is ON and Th<sub>A</sub> is OFF. The turn-off time available to Th<sub>M</sub> in microseconds, when Th<sub>A</sub> is triggered, is________ (rounded off to the nearest integer).</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxoljaqu/77a9223c-d7b1-4392-bf85-ead63948544a/c96f2c60-2fbf-11ef-9032-99cc6a311420/file-jaoe38c1lxoljaqv.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxoljaqu/77a9223c-d7b1-4392-bf85-ead63948544a/c96f2c60-2fbf-11ef-9032-99cc6a311420/file-jaoe38c1lxoljaqv.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Power Electronics - Choppers and Commutation Techniques Question 2 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "50",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "power-electronics",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxome4qb",
+                    "chapter": "single-and-three-phase-rectifier",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pa-single-phase-half-controlled-bridge-converter-supplies-gate-ee-electric-circuits-jhgdwz4e1zl3wekj",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A single-phase half-controlled bridge converter supplies an inductive load with ripple free load current. The triggering angle of the converter is 60\u00b0. The ratio of the rms value of the fundamental component of the input current to the rms value of the total input current of the bridge is _________ (rounded off to 3 decimal places).</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.940TO0.970",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "power-electronics",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxome4s3",
+                    "chapter": "inverters",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pa-single-phase-full-bridge-voltage-source-inverter-vsi-gate-ee-electric-circuits-th70fnzuzmfmxzrk",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A single-phase full bridge voltage source inverter (VSI) feeds a purely inductive load. The inverter output voltage is a square wave in 180\u00b0 conduction mode. The fundamental frequency of the output voltage is 50 Hz. If the DC input voltage of the inverter is 100 V and the value of the load inductance is 20 mH, the peak-to-peak load current in amperes is ________ (rounded off to the nearest integer).</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "50",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "power-electronics",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxomfczi",
+                    "chapter": "choppers-and-commutation-techniques",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pin-the-dc-dc-converter-shown-in-the-figure-the-current-t-gate-ee-electric-circuits-zi1rzhsq9edkwxkt",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>In the DC-DC converter shown in the figure, the current through the inductor is continuous. The switching frequency is 500 Hz. The voltage ($V_o$) across the load is assumed to be constant and ripple free. The peak inductor current in amperes is __________ (rounded off to the nearest integer).</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxomemrr/9f1b470b-a361-4b93-b8c3-fc88e84da84f/30ce9d70-2fc3-11ef-9032-99cc6a311420/file-jaoe38c1lxomemrs.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxomemrr/9f1b470b-a361-4b93-b8c3-fc88e84da84f/30ce9d70-2fc3-11ef-9032-99cc6a311420/file-jaoe38c1lxomemrs.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Power Electronics - Choppers and Commutation Techniques Question 1 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "13",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "power-electronics",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxomhmz1",
+                    "chapter": "single-and-three-phase-rectifier",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "11300to11600-gate-ee-electric-circuits-18rvvjnvgc9wvvsy",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A single-phase full-controlled thyristor converter bridge is used for regenerative braking of a separately excited DC motor with the following specifications:</p> <style>table { width: 100%; border-collapse: collapse; margin: 20px 0; } th { background-color: blue; color: white; border: 1px solid lightgrey; padding: 10px; } td { border: 1px solid lightgrey; padding: 10px; text-align: left; }</style><table><tbody><tr><td>Rated armature voltage</td><td>210 V</td></tr><tr><td>Rated armature current</td><td>10 A</td></tr><tr><td>Rated speed</td><td>1200 rpm</td></tr><tr><td>Armature resistance</td><td>1 &#937;</td></tr><tr><td>Input to the converter bridge</td><td>240 V at 50 Hz</td></tr></tbody></table><p>The armature of the DC motor is fed from the full-controlled bridge and the field current is kept constant.</p><p>Assume that the motor is running at 600 rpm and the armature terminals of the motor are suitably reversed for regenerative braking. If the armature current of the motor is to be maintained at the rated value, the triggering angle of the converter bridge in degrees should be __________ (rounded off to 2 decimal places).</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "113.00TO116.00",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "power-electronics",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                }
+            ],
+            "title": "Power Electronics"
+        },
+        {
+            "_id": "Power System Analysis",
+            "questions": [
+                {
+                    "question_id": "lxol01py",
+                    "chapter": "load-flow-studies",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pthe-figure-shows-the-single-line-diagram-of-a-4-bus-power-gate-ee-electric-circuits-y1yz5fg2jsz7adrb",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>The figure shows the single line diagram of a 4-bus power network. Branches $b_1$, $b_2$, $b_3$, and $b_4$ have impedances $4z$, $z$, $2z$, and $4z$ per-unit (pu), respectively, where $z = r + jx$, with $r &gt; 0$ and $x &gt; 0$. The current drawn from each load bus (marked as arrows) is equal to $I$ pu, where $I \\neq 0$. If the network is to operate with minimum loss, the branch that should be opened is</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxokz93j/3c3e7029-4b40-439e-b438-62696ea44e18/9bfa95f0-2fbd-11ef-9032-99cc6a311420/file-jaoe38c1lxokz93k.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxokz93j/3c3e7029-4b40-439e-b438-62696ea44e18/9bfa95f0-2fbd-11ef-9032-99cc6a311420/file-jaoe38c1lxokz93k.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Power System Analysis - Load Flow Studies Question 2 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>$b_1$</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>$b_2$</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>$b_3$</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>$b_4$</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "power-system-analysis",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxolin1f",
+                    "chapter": "power-generation-cost",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pthe-incremental-cost-curves-of-two-generators-gen-a-and-gate-ee-electric-circuits-whayd7qj7kfjoaiz",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>The incremental cost curves of two generators (Gen A and Gen B) in a plant supplying a common load are shown in the figure. If the incremental cost of supplying the common load is Rs. 7400 per MWh, then the common load in MW is ________ (rounded off to the nearest integer).</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxolia0x/fee1965c-46ca-4a59-9e2c-7ed815a94da4/ad11ab10-2fbf-11ef-9032-99cc6a311420/file-jaoe38c1lxolia0y.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxolia0x/fee1965c-46ca-4a59-9e2c-7ed815a94da4/ad11ab10-2fbf-11ef-9032-99cc6a311420/file-jaoe38c1lxolia0y.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Power System Analysis - Power Generation Cost Question 1 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "35",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "power-system-analysis",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxols40x",
+                    "chapter": "load-flow-studies",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 1.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pfor-the-three-bus-lossless-power-network-shown-in-the-fig-gate-ee-electric-circuits-undj9z6isggabkej",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>For the three-bus lossless power network shown in the figure, the voltage magnitudes at all the buses are equal to 1 per unit (pu), and the differences of the voltage phase angles are very small. The line reactances are marked in the figure, where $\\alpha$, $\\beta$, $\\gamma$, and $x$ are strictly positive. The bus injections $P_1$ and $P_2$ are in pu. If $P_1 = mP_2$, where $m &gt; 0$, and the real power flow from bus 1 to bus 2 is 0 pu, then which one of the following options is correct?</p><p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxolr8jy/e0bb79e2-3505-442c-b1b1-e02f99f6bd03/a636f2e0-2fc0-11ef-9032-99cc6a311420/file-jaoe38c1lxolr8jz.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxolr8jy/e0bb79e2-3505-442c-b1b1-e02f99f6bd03/a636f2e0-2fc0-11ef-9032-99cc6a311420/file-jaoe38c1lxolr8jz.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Power System Analysis - Load Flow Studies Question 1 English\"></p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>$\\gamma = m\\beta$</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>$\\beta = m\\gamma$</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>$\\alpha = m\\gamma$</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>$\\alpha = m\\beta$</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "power-system-analysis",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxom5pk8",
+                    "chapter": "power-system-stability",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pthe-single-line-diagram-of-a-lossless-system-is-shown-in-gate-ee-electric-circuits-s0rpkg507phsiw5i",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>The single line diagram of a lossless system is shown in the figure. The system is operating in steady-state at a stable equilibrium point with the power output of the generator being $P_{max} \\sin \\delta$, where $\\delta$ is the load angle and the mechanical power input is $0.5 P_{max}$. A fault occurs on line 2 such that the power output of the generator is less than $0.5 P_{max}$ during the fault. After the fault is cleared by opening line 2, the power output of the generator is $\\left\\{\\frac{P_{max}}{\\sqrt{2}} \\right\\} \\sin \\delta$. If the critical fault clearing angle is $\\frac{\\pi}{2}$ radians, the accelerating area on the power angle curve is ______ times $P_{max}$ (rounded off to 2 decimal places).</p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1lxom4zjr/27e9df42-6820-4ee5-8dd4-80a615fbdad7/24961070-2fc2-11ef-9032-99cc6a311420/file-jaoe38c1lxom4zjs.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1lxom4zjr/27e9df42-6820-4ee5-8dd4-80a615fbdad7/24961070-2fc2-11ef-9032-99cc6a311420/file-jaoe38c1lxom4zjs.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"GATE EE 2024 Power System Analysis - Power System Stability Question 1 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.10TO0.12",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "power-system-analysis",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                }
+            ],
+            "title": "Power System Analysis"
+        },
+        {
+            "_id": "Signals and Systems",
+            "questions": [
+                {
+                    "question_id": "lxoktu06",
+                    "chapter": "linear-time-invariant-systems",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "psuppose-signal-yt-is-obtained-by-the-time-reversal-of-gate-ee-electric-circuits-tvxovxpqzo0zp3j8",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Suppose signal $y(t)$ is obtained by the time-reversal of signal $x(t)$, i.e., $y(t) = x(-t)$, $-\\infty < t < \\infty$. Which one of the following options is always true for the convolution of $x(t)$ and $y(t)$?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>It is an even signal.</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>It is an odd signal.</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>It is a causal signal.</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>It is an anti-causal signal.</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "signals-and-systems",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxoktu2p",
+                    "chapter": "continuous-time-signal-laplace-transform",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pif-ut-is-the-unit-step-function-then-the-region-of-c-gate-ee-electric-circuits-rxa4acoeufr2kg5v",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>If $u(t)$ is the unit step function, then the region of convergence (ROC) of the Laplace transform of the signal $x(t) = e^{t^2}[u(t-1)-u(t-10)]$ is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>$-\\infty < \\text{Re}(s) < \\infty$</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>$\\text{Re}(s) \\ge 10$</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>$\\text{Re}(s) \\le 1$</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>$1 \\le \\text{Re}(s) \\le 10$</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "signals-and-systems",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxolgrs6",
+                    "chapter": "continuous-time-signal-fourier-transform",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "plet-xomega-be-the-fourier-transform-of-the-signalp-gate-ee-electric-circuits-opvgzz3yyffmx2cz",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Let $X(\\omega)$ be the Fourier transform of the signal</p><p>$x(t) = e^{-t^4} \\cos t, \\quad -\\infty < t < \\infty$.</p><p>The value of the derivative of $X(\\omega)$ at $\\, \\omega = 0$ is ______ (rounded off to 1 decimal place).</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0",
+                            "explanation": null
+                        }
+                    },
+                    "subject": "signals-and-systems",
+                    "timeAllotted": 108000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxolmw3t",
+                    "chapter": "linear-time-invariant-systems",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 1.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pthe-input-xt-and-the-output-yt-of-a-system-are-re-gate-ee-electric-circuits-aqxmh2fsyfdedrft",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>The input $x(t)$ and the output $y(t)$ of a system are related as</p>\n<p>\n$$\n y(t) = e^{-t} \n \\int\\limits_{-\\infty}^{t} e^{\\tau} x(\\tau) d\\tau, \\quad - \\infty < t < \\infty.\n$$\n</p>\n<p>The system is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>nonlinear.</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>linear and time-invariant.</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>linear but not time-invariant.</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>noncausal.</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "signals-and-systems",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxolp44e",
+                    "chapter": "linear-time-invariant-systems",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 1.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pconsider-the-discrete-time-systems-t1-and-t2-define-gate-ee-electric-circuits-orhglxrdawiwvlc8",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Consider the discrete-time systems $T_1$ and $T_2$ defined as follows:</p><p>{ $T_1 x[ n ] = x[ 0 ] + x[ 1 ] + \\cdots + x[ n ] $}</p> <p>{ $T_2 x[ n ] = x[ 0 ] + \\frac{1}{2} x[ 1 ] + \\cdots + \\frac{1}{2^n} x[ n ] $}</p><p>Which one of the following statements is true?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>$T_1$ and $T_2$ are BIBO stable.</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>$T_1$ and $T_2$ are not BIBO stable.</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>$T_1$ is BIBO stable but $T_2$ is not BIBO stable.</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>$T_1$ is not BIBO stable but $T_2$ is BIBO stable.</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "signals-and-systems",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxolqnm2",
+                    "chapter": "discrete-time-signal-z-transformation",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 1.33,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pif-the-z-transform-of-a-finite-duration-discrete-time-sig-gate-ee-electric-circuits-jsselyk4xgtre4pc",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>If the Z-transform of a finite-duration discrete-time signal $x[n]$ is $X(z)$, then the Z-transform of the signal $y[n] = x[2n]$ is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<p>$Y(z) = X(z^2)$</p>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<p>$Y(z) = \\frac{1}{2} \\left[ X(z^{-1/2}) + X(-z^{-1/2}) \\right]$</p>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<p>$Y(z) = \\frac{1}{2} \\left[ X(z^{1/2}) + X(-z^{1/2}) \\right]$</p>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<p>$Y(z) = \\frac{1}{2} \\left[ X(z^2) + X(-z^2) \\right]$</p>"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "subject": "signals-and-systems",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                },
+                {
+                    "question_id": "lxom3q17",
+                    "chapter": "continuous-and-discrete-time-signals",
+                    "chapterGroup": null,
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "gate-ee",
+                    "examGroup": "gate",
+                    "isBonus": false,
+                    "isOutOfSyllabus": false,
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "gate-ee-2024",
+                    "paperTitle": "GATE EE 2024",
+                    "permalink": "pif-the-energy-of-a-continuous-time-signal-xt-is-e-a-gate-ee-electric-circuits-vcui6ytog8pwsqhq",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>If the energy of a continuous-time signal $x(t)$ is $E$ and the energy of the signal $2x(2t - 1)$ is $cE$, then $c$ is _____ (rounded off to 1 decimal place).</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2",
+                            "explanation": "<p>To find the value of $ c $, we need to understand how the scaling of time and amplitude affects the energy of a continuous-time signal. The energy $ E $ of a continuous-time signal $ x(t) $ is given by:</p>\n\n<p>\n\n<p>$$ E = \\int_{-\\infty}^{\\infty} |x(t)|^2 \\, dt $$</p>\n\n</p>\n\n<p>Now, consider the signal $ y(t) = 2x(2t - 1) $. Let's determine the energy of this new signal. The energy of $ y(t) $ is:</p>\n\n<p>\n\n<p>$$ E_y = \\int_{-\\infty}^{\\infty} |y(t)|^2 \\, dt = \\int_{-\\infty}^{\\infty} |2x(2t - 1)|^2 \\, dt $$</p>\n\n</p>\n\n<p>Since we have a scaling factor of 2 in the amplitude, the squared amplitude will scale by a factor of $ 2^2 = 4 $. Therefore, we get:</p>\n\n<p>\n\n<p>$$ E_y = \\int_{-\\infty}^{\\infty} 4|x(2t - 1)|^2 \\, dt $$</p>\n\n</p>\n\n<p>We also need to account for the time scaling. When the time argument $ t $ is scaled by a factor of 2, the integration variable must also change accordingly. Let $ u = 2t - 1 $. This implies that $ du = 2 \\, dt $ and therefore $ dt = \\frac{du}{2} $. Changing the variable of integration, we find:</p>\n\n<p>\n\n<p>$$ E_y = \\int_{-\\infty}^{\\infty} 4|x(u)|^2 \\, \\frac{du}{2} $$</p>\n\n</p>\n\n<p>Simplifying this expression, we get:</p>\n\n<p>\n\n<p>$$ E_y = 2 \\int_{-\\infty}^{\\infty} |x(u)|^2 \\, du = 2E $$</p>\n\n</p>\n\n<p>Therefore, the energy of the signal $ 2x(2t - 1) $ is $ 2E $, which means the value of $ c $ is:</p>\n\n<p>\n\n<p>$$ c = 2 $$</p>\n\n</p>\n\n<p>Rounded to one decimal place, $ c = 2.0 $.</p>"
+                        }
+                    },
+                    "subject": "signals-and-systems",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "type": "integer",
+                    "year": 2024,
+                    "yearKey": "gate-ee-2024"
+                }
+            ],
+            "title": "Signals and Systems"
+        }
+    ]
+}

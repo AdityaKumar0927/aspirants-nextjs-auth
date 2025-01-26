@@ -1,0 +1,1789 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qwMSjw2nELHyUU9J",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Newton-Raphson iteration $${x_{n + 1}} = {1 \\over 2}\\left( {{x_n} + {R \\over {{x_n}}}} \\right)$$ can be used to compute ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "square of $$R$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "reciprocal of $$R$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "square root of $$R$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "logarithm of $$R$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-newton-raphson-iteration-xn-1-1-over-2left-xn-r-over-xn-gate-ce-2008-marks-1-qwmsjw2nelhyuu9j.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "O9JrGKJla23vbKtE",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the interval of integration is divided into two equal intervals of width $$1.0,$$ the value of the definite integral $$\\,\\,\\int\\limits_1^3 {\\log _e^x\\,\\,dx\\,\\,\\,\\,} $$ using simpson's one $$-$$ third rule will be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.80$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.00$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.29$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-interval-of-integration-is-divided-into-two-equal-int-gate-ce-2008-marks-2-o9jrgkjla23vbkte.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "S836j2LaT2mBulpQ",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Three values of $$x$$ and $$y$$ are to be fitted in a straight line in the form $$y=a+bx$$ by the method of least squares. Given $$\\,\\,\\,\\sum x  = 6,\\,\\,\\sum y  = 21,\\,\\,\\sum {{x^2} = 14,\\,\\,\\sum {xy}  = 46,\\,\\,\\,\\,} $$ the values of $$a$$ and $$b$$ are respectively ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2, 3$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1, 2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2, 1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3,2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "three-values-of-x-and-y-are-to-be-fitted-in-a-straight-line-gate-ce-2008-marks-1-s836j2lat2mbulpq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "K4Th0d0suCXPnLGW",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following system of equations \n$$$x+y+z=3,$$$\n$$$x+2y+3z=4,$$$\n$$$x+4y+kz=6$$$\n<br>will not have a unique solution for $$k$$ equal to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$5$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$6$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$7$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-system-of-equations-xyz3x2y3z4x4ykz6will-not-h-gate-ce-2008-marks-1-k4th0d0sucxpnlgw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "y7czhNpjlx46Djw4",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The eigenvalues of the matrix $$\\left[ P \\right] = \\left[ {\\matrix{\n   4 &amp; 5  \\cr \n   2 &amp; { - 5}  \\cr \n\n } } \\right]$$ are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-7$$ and $$8$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-6$$ and $$5$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3$$ and $$4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1$$ and $$2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-eigenvalues-of-the-matrix-left-p-right-left-matrix-4-5-c-gate-ce-2008-marks-1-y7czhnpjlx46djw4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "N3tA1vbfGiHztZQC",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The product of matrices $${\\left( {PQ} \\right)^{ - 1}}P$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${P^{ - 1}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${Q^{ - 1}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${P^{ - 1}}$$  $${Q^{ - 1}}$$ $$P$$  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P$$ $$Q$$ $${P^{ - 1}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-product-of-matrices-left-pq-right-1p-is-gate-ce-2008-marks-1-n3ta1vbfgihztzqc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Environmental Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2e3b630d3e3",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "environmental-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "quality-control-of-water",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A wastewater sample contains $$10^{-5.6}$$ mol/l of OH<sup>-</sup> ions at $$25^o$$ C. The pH of this\nsample is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "8.6"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "8.4"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "5.6"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "5.4"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-wastewater-sample-contains-10-56-moll-of-oh-ions-at-25o-c-gate-ce-2008-marks-2-5a2e3b630d3e3.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                }
+            ],
+            "title": "Environmental Engineering"
+        },
+        {
+            "_id": "Geomatics Engineering Or Surveying",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a4442bca2cb9",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "geomatics-engineering-or-surveying",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-concepts",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The type of surveying in which the curvature of the earth is taken into account is\ncalled",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Geodetic surveying"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Plane surveying"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Preliminary surveying"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Topographical surveying"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-type-of-surveying-in-which-the-curvature-of-the-earth-is-gate-ce-2008-marks-1-5a4442bca2cb9.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                }
+            ],
+            "title": "Geomatics Engineering Or Surveying"
+        },
+        {
+            "_id": "Irrigation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2d7fdc31e5a",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "irrigation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "gravity-dams-and-spillways",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The base width of an elementary profile of gravity dam of height H is b. The\nspecific gravity of the material of the dam is G and uplift pressure coefficient is\nK. the correct relationship for no tension at the heel is given by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\frac bH\\;=\\;\\frac1{\\sqrt{G\\;-\\;K}}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\frac bH\\;=\\;\\frac1{G \\sqrt{1\\;-\\;K}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\frac bH\\;=\\;\\frac1{G\\;-\\;K}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\frac bH\\;=\\;\\frac1{K \\sqrt{G\\;-\\;K}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-base-width-of-an-elementary-profile-of-gravity-dam-of-he-gate-ce-2008-marks-1-5a2d7fdc31e5a.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2d717239ed6",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "irrigation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "water-requirement-of-crops",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An outlet irrigates an area of 20 ha. The discharge (lit/sec) required at this outlet to\nmeet the evapotranspiration requirement of 20mm occurring uniformly in 20 days\nneglecting other field losses is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2.52"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2.31"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2.01"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1.52"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-outlet-irrigates-an-area-of-20-ha-the-discharge-litsec-re-gate-ce-2008-marks-1-5a2d717239ed6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                }
+            ],
+            "title": "Irrigation"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "r6hQRH604wzMQhUZ",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "prestressed-concrete",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A pre-tensioned concrete member of section $$200\\,\\,mm \\times 250\\,\\,mm$$ contains tendons of area $$500\\,\\,m{m^2}$$  at the centre of gravity of the section. The prestress in tendons is $$1000\\,\\,N/m{m^2}.$$. Assuming modular ratio as $$10,$$ the stress $$\\left( {N/m{m^2}} \\right)$$ in concrete is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$11$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$9$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$7$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$5$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-pre-tensioned-concrete-member-of-section-200mm-time-2008-marks-2-r6hqrh604wzmqhuz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oBp8FGpFuSUnnKLG",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bond",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the design of a reinforced concrete bean the requirement for bond is not getting satisfied. The economical option to satisfy the requirement for bond is by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Bundling of bars "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Providing smaller diameter bars more in number "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Providing larger diameter bars less in number "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Providing same diameter bars more in number  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-design-of-a-reinforced-concrete-bean-the-requirement-2008-marks-1-obp8fgpfusunnklg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nOLmHPpGBpy40JKK",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-collapse-compression",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A reinforced concrete column contains longitudinal steel equal to $$1$$ percent of net cross-sectional area of the column. Assume modular ration as $$10.$$ the loads carried (using the elastic theory) by the longitudinal steel and the net area of concrete, are $${P_s}$$ and $${P_c}$$ respectively. The ration $${P_s}$$/$${P_c}$$ expressed as percent is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$10$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-reinforced-concrete-column-contains-longitudinal-steel-equ-2008-marks-2-nolmhppgbpy40jkk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "omdbfc8EkGLwz1cp",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-collapse-shear",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A reinforced concrete beam of rectangular cross section of breadth $$230$$ $$mm$$ and effective depth $$400$$ $$mm$$ is subjected to maximum factored shear force of $$120$$ $$kN.$$ The grades of concrete, main steel and stirrup steel are $$M20,$$ $$Fe415$$ and $$Fe250$$ respectively. For the area of main steel provided, the design shear strength \u03c4c is per $$IS: 456$$-$$2000$$ is $$0.48$$ $$N/m{m^2}.$$ The beam is designed for collapse limit state.\n<p>In addition, the beam is subjected to a torque whose factored value is $$10.90$$ $$kN$$-$$m.$$ The stirrups have to be provided to carry a shear $$(kN)$$ equal to </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$50.42$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$130.56$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$151.67$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$200.23$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-reinforced-concrete-beam-of-rectangular-cross-section-of-b-2008-marks-2-omdbfc8ekglwz1cp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MhirWNpGdlIIuQ0n",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-collapse-shear",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A reinforced concrete beam of rectangular cross section of breadth $$230$$ $$mm$$ and effective depth $$400$$ $$mm$$ is subjected to maximum factored shear force of $$120$$ $$kN.$$ The grades of concrete, main steel and stirrup steel are $$M20,$$ $$Fe415$$ and $$Fe250$$ respectively. For the area of main steel provided, the design shear strength \u03c4c is per $$IS: 456$$-$$2000$$ is $$0.48$$ $$N/m{m^2}.$$ The beam is designed for collapse limit state.\n<p>The spacing $$(mm)$$ of $$2$$-legged $$8$$ $$mm$$ stirrups to be provided is </p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$40$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$115$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$250$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$400$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-reinforced-concrete-beam-of-rectangular-cross-section-of-b-2008-marks-2-mhirwnpgdliiuq0n.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1c5bc35a14b",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Un-factored maximum bending moments at a section of a reinforced concrete\nbeam resulting from a frame analysis are 50, 80, 120 and 180 kN-m under dead,\nlive, wind and earthquake loads respectively. The design moment (kNm) as per\nIS: 456- 2000 for the limit state of collapse (flexure) is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "195"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "250"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "345"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "372"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "un-factored-maximum-bending-moments-at-a-section-of-a-reinfo-gate-ce-2008-marks-2-5a1c5bc35a14b.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1ad03a2da90",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A reinforced concrete structure has to be constructed along a sea coast. The\nminimum grade of concrete to be used as per IS: 456-2000 is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "M 15"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "M 20"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "M 25"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "M 30"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-reinforced-concrete-structure-has-to-be-constructed-along-gate-ce-2008-marks-1-5a1ad03a2da90.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Steel Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ssxt6Wi2R6QZy7pb",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "eccentric-connections",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Rivets and bolts subjected to both shear stress $$\\left( {{\\tau _{vf}},\\,cal} \\right)$$ and axial tensile stress $$\\left( {{\\sigma _{tf,cal}}} \\right)$$ shall be so proportioned that the stresses do not exceed the respective allowable stresses $${\\tau _{vf,}}$$ and $${{\\sigma _{tf,}}}$$ and the value of $$\\left( {{{{\\tau _{vf.cal}}} \\over {{\\tau _{vf}}}} + {{{\\sigma _{tf,cal}}} \\over {{\\sigma _{tf}}}}} \\right)$$ does not exceed",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1.8$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "rivets-and-bolts-subjected-to-both-shear-stress-left-2008-marks-1-ssxt6wi2r6qzy7pb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                }
+            ],
+            "title": "Steel Structures"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rssAQ5tPrdp4aukR",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Beam $$GHI$$ is supported by these pontoons as shown in the figure below. The horizontal cross sectional area of each pontoon is $$8\\,\\,{m^2},$$ the flexural rigidity of the beam is $$10000$$ $$kN$$-$${m^2}$$ and the unit weight of water is $$10$$ $$kN$$/$${m^3}$$.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/STJNxS3jOJ1iv0EXT/pq6hP72sbrqx0PYJ3qcJDUPzcbmXv/If4THB6zUo2MgB0sFaAzaJ/image.png\" loading=\"lazy\" alt=\"GATE CE 2008 Strength of Materials Or Solid Mechanics - Deflection of Beams Question 10 English\"> \n<p>When the middle pontoon is removed, the deflection at $$H$$ will be</p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.2$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.4$$ $$m$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.6$$ $$m$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.8$$ $$m$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "beam-ghi-is-supported-by-these-pontoons-as-shown-in-the-2008-marks-2-rssaq5tprdp4aukr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "H07GXvCVQ6fkD1Cz",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "columns-and-struts",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Cross-section of a column consisting of two steel strips, each of thickness $$t$$ and width $$b$$ is shown in the figure below. The  critical loads of the column with perfect bond and without bond between the strips are $$P$$ and  $${P_0}$$ respectively. The ratio $$P/{P_0}$$ is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/wvCRG0OEQVM7ninHp/7eIPrscdhGk1nPj1dJGrRljATRu3b/9a3gj526IRPdkkSZDouX2W/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2008 Strength of Materials Or Solid Mechanics - Columns and Struts Question 6 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$6$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$8$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "cross-section-of-a-column-consisting-of-two-steel-strips-ea-2008-marks-2-h07gxvcvq6fkd1cz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "caLdbxYL2xzEEM0D",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "columns-and-struts",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A rigid bar $$GH$$ of length $$L$$ is supported by a hinge and a spring of stiffness $$K$$ as shown in the figure below. The buckling load, $${P_{cr}}'$$ for the bar will be \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/qZ72MluTMAqGAMRVd/xZbSRWDDsvSgGfKeaCv2Nvw3DKGT8/6CgVxxCAlyHOCwTJ7AwfaV/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2008 Strength of Materials Or Solid Mechanics - Columns and Struts Question 7 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.5$$ $$KL$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.8$$ $$KL$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.0$$ $$KL$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1.2$$ $$KL$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-a-rigid-bar-gh-of-length-l-is-supported-by-a-hinge-2008-marks-2-caldbxyl2xzeem0d.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hKdy5FACm5wLROJs",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "strain-energy-method",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A mild steel specimen is under uniaxial tensile stress. Young's modulus and yield stress for mild steel are $$2 \\times {10^5}\\,\\,MPa$$ and $$250$$ $$MPa$$ respectively. The maximum amount of strain energy per unit volume that can be stored in this specimen without permanent set is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$156\\,\\,N$$-$$mm/m{m^3}$$  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$15.6\\,\\,N$$-$$mm/m{m^3}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.56\\,\\,N$$-$$mm/m{m^3}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.156\\,\\,N$$-$$mm/m{m^3}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-mild-steel-specimen-is-under-uniaxial-tensile-stress-youn-2008-marks-2-hkdy5facm5wlrojs.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WNdYPojLycNkm272",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "thin-cylinder",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A thin walled cylindrical pressure vessel having a radius of $$0.5$$ $$m$$ and wall thickness of $$25$$ $$mm$$ is subjected to an internal pressure of $$700$$ $$kPa$$. The hoop stress developed is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$14$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.4$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.14$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.014$$ $$MPa$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-thin-walled-cylindrical-pressure-vessel-having-a-radius-of-2008-marks-1-wndypojlycnkm272.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XI3OkrEp4rmjhoKC",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Beam $$GHI$$ is supported by these pontoons as shown in the figure below. The horizontal cross sectional area of each pontoon is $$8\\,\\,{m^2},$$ the flexural rigidity of the beam is $$10000$$ $$kN$$-$${m^2}$$ and the unit weight of water is $$10$$ $$kN$$/$${m^3}$$.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/STJNxS3jOJ1iv0EXT/pq6hP72sbrqx0PYJ3qcJDUPzcbmXv/If4THB6zUo2MgB0sFaAzaJ/image.png\" loading=\"lazy\" alt=\"GATE CE 2008 Strength of Materials Or Solid Mechanics - Deflection of Beams Question 9 English\"> \n<p>When the middle pontoon is brought back to its position as shown in the figure above, the reaction at $$H$$ will be</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$8.6$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$15.7$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$19.2$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$24.2$$ $$kN$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "beam-ghi-is-supported-by-these-pontoons-as-shown-in-the-2008-marks-2-xi3okrep4rmjhokc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UXfixs7Cu1H5IgJ0",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The stepped cantilever is subjected to moments, $$M$$ as shown in the figure below. The vertical deflection at the free end (neglecting the self weight) is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/2kAdlZedYuT8A7QNl/zPOxoyffmZzq7Eu1wUc7scMCqWRBn/nG0GOclKJnq0CkIIciPTH5/image.png\" loading=\"lazy\" alt=\"GATE CE 2008 Strength of Materials Or Solid Mechanics - Deflection of Beams Question 11 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{M{L^2}} \\over {8EI}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{M{L^2}} \\over {4EI}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{M{L^2}} \\over {2EI}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "zero "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-stepped-cantilever-is-subjected-to-moments-m-as-sho-2008-marks-2-uxfixs7cu1h5igj0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZfqT3yTi9rKUCodd",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "torsion",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The maximum shear stress in a solid shaft of circular cross-section having diameter subjected to a torque $$T$$ is $$\\tau $$ . If the torque is increased by four times and the diameter of the shaft is increased by two times, the maximum shear stress in\nthe shaft will be \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2\\pi $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\tau $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\tau /2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\tau /4$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-maximum-shear-stress-in-a-solid-shaft-of-circular-cross-2008-marks-2-zfqt3yti9rkucodd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ep3r64YxEC5fSiDS",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A continuous beam is loaded as shown in the figure below. Assuming a plastic moment capacity equal to $${{M_P}}$$, the minimum load at which the beam would collapse is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/26GXDascv4unnbtiJ/Kdgkjs57zjo67XDHyjhoQ7gyL2hn9/ROoMCladMgUNKidNU7F4D6/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2008 Structural Analysis - Plastic Analysis Question 24 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{4{M_P}} \\over L}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{6{M_P}} \\over L}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{8{M_P}} \\over L}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{10{M_P}} \\over L}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-continuous-beam-is-loaded-as-shown-in-the-figure-below-as-2008-marks-2-ep3r64yxec5fsids.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Clbo3uRLBR6u73Aj",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The shape of the cross-section, which has the largest shape factor, is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Rectangular "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\rm I}$$-section"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Diamond "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Solid circular "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-shape-of-the-cross-section-which-has-the-largest-shape-2008-marks-1-clbo3urlbr6u73aj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4WacRaJA0GMC1lcO",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "energy-principle",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The members $$EJ$$ and $$IJ$$ of a steel truss shown in the figure below are subjected to a temperature rise of $${30^ \\circ }C.$$ The coefficient of thermal expansion of steel is $$0.000012$$ per $${^ \\circ }C.$$ per unit length. The displacement ($$mm$$) of joint $$E$$ relative to joint $$H$$ along the direction $$HE$$ of truss, is  \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/mJbTFB91fDupqDzoV/4K3rV340UjHpzzAzflDQPWhARrdtP/KDPI9viSjsf645jxkvVLPi/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2008 Structural Analysis - Energy Principle Question 9 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.225$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.589$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.764$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1.026$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-members-ej-and-ij-of-a-steel-truss-shown-in-the-2008-marks-2-4wacraja0gmc1lco.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LliykV3I8z3L5WGB",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "influence-line-diagram",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The span$$(s)$$ to be loaded uniformly for maximum positive (upward) reaction at support $$P,$$ as shown in the figure below, is $$(are)$$\n <img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/JU0f0xPt3QvI9S2B8/G2tOOq9wpP1m8JybFNW9vNY3G5bMn/FwBVyTETzwIbXdY964j4yC/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2008 Structural Analysis - Influence Line Diagram Question 5 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$PQ$$ only "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$PQ$$ and $$QR$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$QR$$ and $$RS$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$PQ$$ and $$RS$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-spans-to-be-loaded-uniformly-for-maximum-positive-2008-marks-2-lliykv3i8z3l5wgb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a18951f7d17f",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stability-and-static-indeterminacy",
+                    "year": 2008,
+                    "paperTitle": "GATE CE 2008",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The degree of static indeterminacy of the rigid frame having two internal hinges\nas shown in the figure below, is\n<img alt=\"GATE CE 2008 Structural Analysis - Stability and Static Indeterminacy Question 12 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/0fd0d9a246d556075307fc8c7d13a61deebeb6ea97b25efbedd18390ea073a4f.jpg\" style=\"text-align:center;max-width:100%;height:auto;display:block;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "8"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "7"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "6"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "5"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-degree-of-static-indeterminacy-of-the-rigid-frame-having-gate-ce-2008-marks-2-5a18951f7d17f.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2008",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2008"
+                }
+            ],
+            "title": "Structural Analysis"
+        }
+    ]
+}

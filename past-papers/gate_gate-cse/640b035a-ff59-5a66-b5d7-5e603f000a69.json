@@ -1,0 +1,2760 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Algorithms",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kkUoiQLb0PnsieOP",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "divide-and-conquer-method",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The minimum number of arithmetic operations required to evaluate the polynomial P(X) = X<sup>5</sup> + 4X<sup>3</sup> + 6X + 5 for a given value of X using only one temporary variable is _____.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "7",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-minimum-number-of-arithmetic-operations-required-to-eval-gate-cse-2014-set-3-marks-1-kkuoiqlb0pnsieop.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TjQNJRDW2hJEiTLn",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "divide-and-conquer-method",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "You have an array of n elements. Suppose you implement quicksort by always choosing the central element of the array as the pivot. Then the tightest upper bound for the worst case performance is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "O(n<sup>2</sup>)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "O(n log n)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\Theta (n \\log n)$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "O(n<sup>3</sup>)"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "you-have-an-array-of-n-elements-suppose-you-implement-quicks-gate-cse-2014-set-3-marks-1-tjqnjrdw2hjeitln.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "O9LYHRTBvjw3Sa0O",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "p-and-np-concepts",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the decision problem 2CNFSAT defined as follows:\n<p>{ $$\\Phi $$ | $$\\Phi $$ is a satisfiable propositional formula in CNF with at most two literal per clause}</p>\nFor example, $$\\Phi  = \\left( {{x_1} \\vee {x_2}} \\right) \\wedge \\left( {{x_1} \\vee {{\\overline x }_3}} \\right) \\wedge \\left( {{x_2} \\vee {x_4}} \\right)$$ is a Boolean formula and it is in 2CNFSAT.\n<p>The decision problem 2CNFSAT is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "NP-Complete."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Solvable in polynomial time by reduction to directed graph reachability."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Solvable in constant time since any input instance is satisfiable."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "NP-Hard, but not NP-complete."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-decision-problem-2cnfsat-defined-as-follows-phi-gate-cse-2014-set-3-marks-2-o9lyhrtbvjw3sa0o.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                }
+            ],
+            "title": "Algorithms"
+        },
+        {
+            "_id": "Compiler Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3wt8kQAsIdN59aE6",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "syntax-directed-translation",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "One of the purposes of using intermediate code in compilers is to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "make parsing and semantic analysis simpler."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "improve error recovery and error reporting."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "increase the chances of reusing the machine-independent code optimizer in other compilers."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "improve the register allocation."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "one-of-the-purposes-of-using-intermediate-code-in-compilers-gate-cse-2014-set-3-marks-1-3wt8kqasidn59ae6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Ch2D5JYY8sri732d",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "syntax-directed-translation",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Consider the basic block given below.</p>\n<pre><code class=\"c\">a = b + c \nc = a + d \nd = b + c \ne = d - b \na = e + b</code></pre>\n<p>The minimum number of nodes and edges present in the DAG representation of the above basic block respectively are</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "6 and 6"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "8 and 10"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "9 and 12"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "4 and 4"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-basic-block-given-belowa-b-c-c-a-d-d-b-c-e-d-b-gate-cse-2014-set-3-marks-2-ch2d5jyy8sri732d.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                }
+            ],
+            "title": "Compiler Design"
+        },
+        {
+            "_id": "Computer Networks",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GnJ7Wv5aGUYZQEm0",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-layer",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An IP router with a Maximum Transmission Unit (MTU) of 1500 bytes has received an IP packet of size 4404 bytes with an IP header of length 20 bytes. The values of the relevant fields in the header of the third IP fragment generated by the router for this packet are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "MF bit: 0, Datagram Length: 1444; Offset: 370"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "MF bit: 1, Datagram Length: 1424; Offset: 185"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "MF bit: 1, Datagram Length: 1500; Offset: 370"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "MF bit: 0, Datagram Length: 1424; Offset: 2960"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-ip-router-with-a-maximum-transmission-unit-mtu-of-1500-by-gate-cse-2014-set-3-marks-2-gnj7wv5aguyzqem0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2JRzL2kBi7hzI0Do",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "concepts-of-layering",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the following pairs of OSI protocol layer/sub-layer and its functionality, the INCORRECT pair is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Network layer and Routing. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Transport layer and End-to-end process communication."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Data Link Layer and Bit synchronization."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Medium Access Control sub-layer and Channel sharing."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "Data link layer has error control,flow control,access control and framing as functionalities.\nBit synchronization is a part of physical layer."
+                        }
+                    },
+                    "permalink": "in-the-following-pairs-of-osi-protocol-layersub-layer-and-it-gate-cse-2014-set-3-marks-1-2jrzl2kbi7hzi0do.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "z9e6dDRS8IhLDLty",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "data-link-layer-and-switching",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A bit-stuffing based framing protocol uses an 8-bit delimiter pattern of 01111110. If the output bit-string after stuffing is 01111100101, then the input bit-string is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0111110100"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0111110101"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0111111101"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0111111111"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-bit-stuffing-based-framing-protocol-uses-an-8-bit-delimite-gate-cse-2014-set-3-marks-1-z9e6ddrs8ihldlty.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2Kl8XMQuLr0gueqI",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-layer",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Host A (on TCP/IPv4 network A) sends an IP datagram D to host B (also on TCP/IPv4 network B). Assume that no error occurred during the transmission of D. When D reaches B, which of the following IP header field(s) may be different from that of the original datagram D? \n<br><br>(i) TTL \n<br>(ii) Checksum \n<br>(iii) Fragment Offset",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "(i) only "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "(i) and (ii) only"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "(ii) and (iii) only"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "(i), (ii) and (iii)"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "host-a-on-tcpipv4-network-a-sends-an-ip-datagram-d-to-host-b-gate-cse-2014-set-3-marks-1-2kl8xmqulr0gueqi.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qqmQ47Tr3H5LNwjW",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-layer",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An IP router implementing Classless Inter-domain Routing (CIDR) receives a packet with address 131.23.151.76. The router\u2019s routing table has the following entries:\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/k3PKA9JEi9w2TDyuF/913EfIPuNeSpqBSlIK7hGTzWBpUoU/AjGadL7QogJR0NbgwdN0aH/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2014 Set 3 Computer Networks - Network Layer Question 22 English\">\n<p>The identifier of the output interface on which this packet will be forwarded is ______.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-ip-router-implementing-classless-inter-domain-routing-cid-gate-cse-2014-set-3-marks-2-qqmq47tr3h5lnwjw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oJOdzniuWdArm9X6",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-layer",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Every host in an IPv4 network has a 1-second resolution real-time clock with battery backup. Each host needs to generate up to 1000 unique identifiers per second. Assume that each host has a globally unique IPv4 address. Design a 50-bit globally unique ID for this purpose. After what period (in seconds) will the identifiers generated by a host wrap around?",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "256",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "every-host-in-an-ipv4-network-has-a-1-second-resolution-real-gate-cse-2014-set-3-marks-2-ojodzniuwdarm9x6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                }
+            ],
+            "title": "Computer Networks"
+        },
+        {
+            "_id": "Computer Organization",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zEh8vwvwIt0GcDc9",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-interfacing",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The memory access time is $$1$$ nanosecond for a read operation with a hit in cache, $$5$$ nanoseconds for a read operation with a miss in cache, $$2$$ nanoseconds for a write operation with a hit in cache and $$10$$ nanoseconds for a write operation with a miss in cache. Execution of a sequence of instructions involves $$100$$ instruction fetch operations, $$60$$ memory operand read operations and $$40$$ memory operand write operations. The cache hit-ratio is $$0.9.$$ The average memory access time (in nanoseconds) in executing the sequence of instructions is___________________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.68",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-memory-access-time-is-1-nanosecond-for-a-read-operation-gate-cse-2014-set-3-marks-2-zeh8vwvwit0gcdc9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Zt3w2yu2eDHEGoKi",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pipelining",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following processors ($$ns$$ stands for nanoseconds). Assume that the pipeline registers have zero latency.\n<br>$$P1:$$ Four-stage pipeline with stage latencies $$1$$ $$ns,$$ $$2$$ $$ns,$$ $$2$$ $$ns,$$ $$1$$ $$ns.$$\n<br>$$P2:$$ Four-stage pipeline with stage latencies $$1$$ $$ns,$$ 1$$.5$$ $$ns,$$ $$1.5$$ $$ns,$$ $$1.5$$ $$ns.$$\n<br>$$P3:$$ Five-stage pipeline with stage latencies $$0.5$$ $$ns,$$ $$1$$ $$ns,$$ $$1$$ $$ns,$$ $$0.6$$ $$ns,$$ $$1$$ $$ns.$$\n<br>$$P4:$$ Five-stage pipeline with stage latencies $$0.5$$ $$ns,$$ $$0.5$$ $$ns,$$ $$1$$ $$ns,$$ $$1$$ $$ns,$$ $$1.1$$ $$ns.$$\n<p>Which processor has the highest peak clock frequency?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P2$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P4$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-processors-ns-stands-for-nanoseconds-gate-cse-2014-set-3-marks-2-zt3w2yu2edhegoki.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EMKzgkvTtJG5iL2C",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pipelining",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An instruction pipeline has five stages, namely, instruction fetch $$(IF),$$ instruction decode and register fetch $$(ID/RF)$$ instruction execution $$(EX),$$ memory access $$(MEM),$$ and register writeback $$(WB)$$ with stage latencies $$1$$ ns, $$2.2$$ $$ns,$$ $$2$$ $$ns,$$ $$1$$ $$ns,$$ and $$0.75$$ $$ns,$$ respectively ($$ns$$ stands for nanoseconds). To gain in terms of frequency, the designers have decided to split the $$ID/RF$$ stage into three stages $$(ID, RF1, RF2)$$ each of latency $$2.2/3$$ $$ns,$$ Also, the $$EX$$ stage is split into two stages $$(EX1, EX2)$$ each of latency $$1$$ ns. The new design has a total of eight pipeline stages. A program has $$20$$% branch instructions which execute in the $$EX$$ stage and produce the next instruction pointer at the end of the $$EX$$ stage in the old design and at the end of the $$EX2$$ stage in the new design. The IF stage stalls after fetching a branch instruction until the next instruction pointer is computed. All instructions other than the branch instruction have an average $$CPI$$ of one in both the designs. The execution times of this program on the old and the new design are $$P$$ and $$Q$$ nanoseconds, respectively. The value of $$P/Q$$ is  _____________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.54",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-instruction-pipeline-has-five-stages-namely-instruction-f-gate-cse-2014-set-3-marks-2-emkzgkvttjg5il2c.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                }
+            ],
+            "title": "Computer Organization"
+        },
+        {
+            "_id": "Data Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qDyH6gP9sctY50RD",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the C function given below. Assume that the array listA contains n (&gt; 0) elements, sored in ascending order.\n<pre><code>int ProcessArray(int *listA, int x, int n) \n{ \n      int i, j, k; \n      i = 0; \n      j = n-1; \n      do \n      { \n         k = (i+j)/2; \n         if (x &lt;= listA[k]) \n           j = k-1; \n         if (listA[k] &lt;= x) \n           i = k+1; \n      } \n      while (i &lt;= j); \n      if (listA[k] == x) \n           return(k); \n      else \n           return -1; \n}</code></pre>\nWhich one of the following statements about the function ProcessArray is CORRECT?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "It will run into an infinite loop when x is not in listA"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "It is an implementation of binary search. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "It will always find the maximum element in listA. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "It will return \u22121 even when X is present in listA."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-c-function-given-below-assume-that-the-array-li-gate-cse-2014-set-3-marks-2-qdyh6gp9scty50rd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Y82Hga5QgbRNgWIa",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graphs",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose depth first search is executed on the graph below starting at some unknown vertex. Assume that a recursive call to visit a vertex is made only after first checking that the vertex has not been visited earlier. Then the maximum possible recursion depth (including the initial call) is _________.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/c5yrlo5gKE380tMi3/1GpsgJX5JFVOTDwpqgstKyajEZBel/lSeHlB0VwRP8QVlVWeX78M/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2014 Set 3 Data Structures - Graphs Question 24 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "19",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-depth-first-search-is-executed-on-the-graph-below-st-gate-cse-2014-set-3-marks-1-y82hga5qgbrngwia.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BRe0sVTVg5htJ2M9",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "hashing",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a hash table with 100 slots. Collisions are resolved using chaining. Assuming simple uniform hashing, what is the probability that the first 3 slots are unfilled after the first 3 insertions?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "97 \u00d7 97 \u00d7 97)/100<sup>3 </sup>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "(99 \u00d7 98 \u00d7 97)/100<sup>3 </sup>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "(97 \u00d7 96 \u00d7 95)/100<sup>3</sup>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "(97 \u00d7 96 \u00d7 95)/(3! \u00d7 100<sup>3</sup>)"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-hash-table-with-100-slots-collisions-are-resolved-gate-cse-2014-set-3-marks-2-bre0svtvg5htj2m9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "66Gljh7baPGCv3IL",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the pseudocode given below. The function Dosomething () takes as argument a pointer to the root of an arbitrary tree represented by the leftMostChild-rightSibling representation. Each node of the tree is of type treeNode.\n<pre><code>typedef struct treeNode* treeptr; \nStruct treeNode \n{ \n    Treeptr leftMostchild, rightSibiling; \n}; \nInt Dosomething (treeptr tree) \n{ \n    int value =0; \n    if (tree ! = NULL) { \n      If (tree -&gt; leftMostchild = = NULL) \n          value=1; \n    else \n        value = Dosomething (tree-&gt;leftMostchild); \n        value = value + Dosometing (tree-&gt;rightsibiling); \n    } \n    return (value); \n}</code></pre>\nWhen the pointer to the root of a tree is passed as the argument to DoSomething, the value returned by the function corresponds to the ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "number of internal nodes in the tree."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "height of the tree"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "number of nodes without a right sibling in the tree. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "number of leaf nodes in the tree."
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-pseudocode-given-below-the-function-dosomething-gate-cse-2014-set-3-marks-2-66gljh7bapgcv3il.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hbsvNcD5qrxhqzhy",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose we have a balanced binary search tree T holding n numbers. We are given two\nnumbers L and H and wish to sum up all the numbers in T that lie between L and H. Suppose\nthere are m such numbers in T. If the tightest upper bound on the time to compute the sum is\nO( n<sup>a</sup> log<sup>b</sup> n + m<sup>c</sup> log<sup>d</sup> n ), the value of a + 10b + 100c + 1000d is _______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "110",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-we-have-a-balanced-binary-search-tree-t-holding-n-nu-gate-cse-2014-set-3-marks-2-hbsvncd5qrxhqzhy.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "beRo8eswhMWvoPc4",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following rooted tree with the vertex labelled P as the root\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/NCQ5YvfA68jz8zQrr/COn7EU4Jx9qaHsBLHsHtFYg1pF5KW/IcNKVNgKH7Gk13ddQnVTN8/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2014 Set 3 Data Structures - Trees Question 63 English\">\nThe order in which the nodes are visited during an in-order traversal of the tree is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "SQPTRWUV"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "SQPTRUWRV"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "SQPTWUVR"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "SQPTRUWV"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-rooted-tree-with-the-vertex-labelled-gate-cse-2014-set-3-marks-1-bero8eswhmwvopc4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                }
+            ],
+            "title": "Data Structures"
+        },
+        {
+            "_id": "Database Management System",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KI0l6KF3xegyAls7",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "structured-query-language",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Consider the following relational schema:</p>\n<p><b>employee (<u>empId,</u> empName, empDept )</b></p> <p><b>customer (<u>custId,</u> custName, salesRepId, rating)</b></p> \n<b>SalesRepId</b> is a foreign key referring to <b>empId</b> of the employee relation. Assume that each employee makes a sale to at least one customer. What does the following query return?\n<pre><code class=\"sql\">SELECT empName \nFROM employee E \nWHERE NOT EXISTS (SELECT custId \n       FROM customer C \n       WHERE C.salesRepId = E.empId \n       AND C.rating &lt;&gt; 'GOOD');</code></pre>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Names of all the employees with at least one of their customers having a 'GOOD' rating."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Names of all the employees with at most one of their customers having a 'GOOD' rating."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Names of all the employees with none of their customers having a 'GOOD' rating."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Names of all the employees with all their customers having a 'GOOD' rating."
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-relational-schemaemployee-empid-empna-gate-cse-2014-set-3-marks-2-ki0l6kf3xegyals7.htm",
+                    "timeAllotted": 216000,
+                    "updated_time": 1595077608,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HiWtvDOXnRtjgNpY",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "relational-algebra",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the optimized version of the relation algebra expression $$\\pi_{A1}(\\pi_{A2}(\\sigma_{F1}(\\sigma_{F2}(r))))$$, where $$A1, A2$$ are sets of attributes in r with $$A1 \\subset A2$$ and $$F1,F2$$ are Boolean expressions based on the attributes in r?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\pi_{A1}(\\sigma_{(F1 \\wedge F2)}(r))$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\pi_{A1}(\\sigma_{(F1 \\vee F2)}(r))$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\pi_{A2}(\\sigma_{(F1 \\wedge F2)}(r))$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\pi_{A2}(\\sigma_{(F1 \\vee F2)}(r))$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-the-optimized-version-of-the-relation-algebra-expres-gate-cse-2014-set-3-marks-1-hiwtvdoxnrtjgnpy.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VA9GfWdICLql6cuC",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "relational-algebra",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the relational schema given below, where <b>eId</b> of the relation <b>dependent</b> is a foreign key referring to <b>empId</b> of the relation <b>employee</b>. Assume that every employee has at least one associated dependent in the dependent relation:\n<p><b>employee (<u>empId,</u> empName, empAge)</b></p>\n<p><b>dependent (<u>depId, eId,</u> depName, depAge)</b></p>\nConsider the following relational algebra query:\n$$\\Pi_{empId}\\:(employee) - \\Pi_{empId}\\:(employee \\bowtie_{(empId=eID) \\wedge (empAge \\leq depAge)} dependent)$$\n<p>The above query evaluates to the set of empIds of employees whose age is greater than that of</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "some dependent."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "all dependents."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "some of his/her dependents."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "all of his/her dependents."
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-relational-schema-given-below-where-eid-of-the-gate-cse-2014-set-3-marks-2-va9gfwdiclql6cuc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gYblDuJyDCMfHBv4",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transactions-and-concurrency",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the transactions T1, T2, and T3 and the schedules S1 and S2 given below.\n<p>T1 : r1 (X) ; r1 (Z) ; w1 (X) ; w1 (Z) </p>\n<p>T2 : r2 (X) ; r2 (Z) ; w2 (Z)</p> \n<p>T3 : r3 (X) ; r3 (X) ; w3 (Y)</p>\n<p>S1: r1(X); r3(Y); r3(X); r2(Y); r2(Z); w3(Y); w2(Z); r1(Z); w1(X); w1(Z)</p> \n<p>S2: r1(X); r3(Y); r2(Y); r3(X); r1(Z); r2(Z); w3(Y); w1(X); w2(Z); w1(Z)</p>\nWhich one of the following statements about the schedules is TRUE? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Only <b>S1</b> is conflict-serializable."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Only <b>S2</b> is conflict-serializable."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Both <b>S1</b> and <b>S2</b> are conflict-serializable."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Neither <b>S1</b> nor <b>S2</b> is conflict-serializable."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-transactions-t1-t2-and-t3-and-the-schedules-s1-gate-cse-2014-set-3-marks-2-gybldujydcmfhbv4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zCYLKrnPONa1jgzv",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "functional-dependencies-and-normalization",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A prime attribute of a relation scheme $$R$$ is an attribute that appears",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "In all candidate keys of $$R$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "In some candidate key of $$R.$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "In a foreign key of $$R.$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Only in the primary key of $$R.$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-prime-attribute-of-a-relation-scheme-r-is-an-attribute-tha-gate-cse-2014-set-3-marks-1-zcylkrnpona1jgzv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                }
+            ],
+            "title": "Database Management System"
+        },
+        {
+            "_id": "Digital Logic",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VejI8YF5Xwu9cwtQ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following combinational function block involving four Boolean variables $$x, y, a,$$ \n<br>$$b$$ where $$x, a, b$$ are inputs and $$y$$ is the output. \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/W0HWfOgiYwoHvWgsA/0P8KRPpw5FQjjPpS9T9sLVaufcDzg/BSFTVGwZSnLobOV4n5tk1a/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2014 Set 3 Digital Logic - Boolean Algebra Question 41 English\"> \n<br>Which one of the following digital logic blocks is the most suitable for implementing this function?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Full adder "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Priority encoder "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Multiplexer "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Flip-flop"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-combinational-function-block-involvin-gate-cse-2014-set-3-marks-1-veji8yf5xwu9cwtq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BaHrqKOpoFj3C02N",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$ \\oplus $$ denote the exclusive $$OR\\left( {XOR} \\right)$$ operation. Let $$'1'$$ and $$'0'$$ denote the binary constants. Consider the following Boolean expression for $$F$$ over two variables $$P$$ and $$Q$$: \n<br>$$F\\left( {P,Q} \\right) = \\left( {1 \\oplus P} \\right) \\oplus \\left( {P \\oplus Q} \\right) \\oplus \\left( {P \\oplus Q} \\right) \\oplus \\left( {Q \\oplus 0} \\right)$$ \n<p>The equivalent expression for $$F$$ is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P+Q$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\overline {P + Q} $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${P \\oplus Q}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\overline {P \\oplus Q} $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-oplus-denote-the-exclusive-orleft-xor-right-operation-le-gate-cse-2014-set-3-marks-2-bahrqkopofj3c02n.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Bjlmmy7WCPORpe04",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "k-maps",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following interm expression of $$F:$$ \n<br>$$F\\left( {P,\\,Q,\\,R,\\,S} \\right) = \\sum {0,2,5,7,8,10,13,15} $$ \n<br>The minterms $$2, 7, 8$$ and $$13$$ are 'do not care' terms. The minimal sum-of-products form for $$F$$ is _______",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$Q\\overline S  + \\overline Q S$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\overline Q \\overline S  + QS$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\overline Q \\overline R \\overline S  + \\overline Q R\\overline S  + Q\\overline R S + QRS$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\overline P \\overline Q \\overline S  + \\overline P QS + PQS + P\\overline Q \\overline S $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-interm-expression-of-f-fleft-pqrs-rig-gate-cse-2014-set-3-marks-1-bjlmmy7wcporpe04.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5NMXTB1n2SlRMhQq",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/7OKfXcSfeZLmUu87W/nwnJx8c9bnTJRxFN6vtehs1IKcu0Q/ITgGEDl5Kv1P8resn2q0tB/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2014 Set 3 Digital Logic - Sequential Circuits Question 17 English\">\n<p>The above synchronous sequential circuit built using $$JK$$ flip-flops is initialized with $${Q_2}{Q_1}{Q_0} = 000.\\,\\,$$ The state sequence for this circuit for the next $$3$$ clock cycles is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$001,010,011$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$111,110,101$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$100,110,111$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$100,011,001$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-above-synchronous-sequential-circuit-built-using-jk-flip-gate-cse-2014-set-3-marks-2-5nmxtb1n2slrmhqq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                }
+            ],
+            "title": "Digital Logic"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dscUVNCocQ2GAoqM",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let S be a sample space and two mutually exclusive events A and B be such that $$A\\, \\cup \\,B = \\,S$$. If P(.) denotes the probability of the event, the maximum value of P(A) P(B) is ________________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.25",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-s-be-a-sample-space-and-two-mutually-exclusive-events-a-gate-cse-2014-set-3-marks-2-dscuvncocq2gaoqm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1esMJTpTWX7E7LAq",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The <b>CORRECT</b> formula for the sentence, \"not all rainy days are cold\" is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\forall d\\left( {Rainy\\left( d \\right) \\wedge  \\sim Cold\\left( d \\right)} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\forall d\\left( { \\sim Rainy\\left( d \\right) \\to Cold\\left( d \\right)} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\exists d\\left( { \\sim Rainy\\left( d \\right) \\to Cold\\left( d \\right)} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\exists d\\left( {Rainy\\left( d \\right) \\wedge  \\sim Cold\\left( d \\right)} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-correct-formula-for-the-sentence-not-all-rainy-days-are-gate-cse-2014-set-3-marks-2-1esmjtptwx7e7laq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Pv4LqLAjM94eNpzW",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$X$$ and $$Y$$ be finite sets and $$f:X \\to Y$$ be a function. Which one of the following statements is TRUE?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "For any subsets $$A$$ and $$B$$ of $$X$$, $$\\left| {f\\left( {A \\cup B} \\right)} \\right| = \\left| {f\\left( A \\right)} \\right| + \\left| {f\\left( B \\right)} \\right|$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "For any subsets $$A$$ and $$B$$ of $$X$$,  $${f\\left( {A \\cap B} \\right)}$$ $$=$$ $$f\\left( A \\right) \\cap f\\left( B \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "For any subsets $$\\left| {f\\left( {A \\cap B} \\right)} \\right| = \\min \\left\\{ {\\left| {f\\left( A \\right)} \\right|,\\left| {f\\left( B \\right)} \\right|} \\right\\}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "for any subsets $$S$$ and $$T$$ of $$Y$$, $${f^{ - 1}}\\left( {S \\cap T} \\right) = {f^{ - 1}}\\left( S \\right) \\cap {f^{ - 1}}\\left( T \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-x-and-y-be-finite-sets-and-fx-to-y-be-a-function-which-o-gate-cse-2014-set-3-marks-1-pv4lqlajm94enpzw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pok6ktwgr8rfUYS4",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following statements is TRUE about every $$n\\,\\, \\times \\,n$$ matrix with only real eigen values?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "If the trace of the matrix is positive and the determinant of the negative, at least one of its eigen values is negative."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "If the trace of the matrix is positive, all its eigen values are positive."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "If the determinanant of the matrix is positive, all its eigen values are positive."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "If the product of the trace and determination of the matrix is positive, all its eigen values are positive."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-statements-is-true-about-every-n-gate-cse-2014-set-3-marks-1-pok6ktwgr8rfuys4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ukb1gCAatlGA25sg",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $${V_1}$$ and $${V_2}$$ are 4-dimensional subspaces of a 6-dimensional vector space V, then the smallest possible dimension of $${V_1}\\, \\cap \\,\\,{V_2}$$ is _________________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2 ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-v1-and-v2-are-4-dimensional-subspaces-of-a-6-dimensional-gate-cse-2014-set-3-marks-1-ukb1gcaatlga25sg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VuwjFFbNq241GKtJ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$\\int_0^{2\\pi } {\\left| {x\\sin x} \\right|dx = k\\pi ,} $$ then the values of $$k$$ is equal to _________ .",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "4",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-int02pi-left-xsin-x-rightdx-kpi-then-the-values-of-k-is-e-gate-cse-2014-set-3-marks-1-vuwjffbnq241gktj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hps6kMlKUQ62jaMe",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of the integral given below is \n$$$\\int_0^\\pi  {{x^2}\\,\\cos \\,x\\,dx} $$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$ - 2\\pi $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\pi $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$-\\pi $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$  2\\pi $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-the-integral-given-below-is-int0pi-x2cos-xdx-gate-cse-2014-set-3-marks-2-hps6kmlkuq62jame.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mV7kNkSc5u0uiawa",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose you want to move from 0 to 100 on the number line. In each step, you either move right by a unit distance or you take a shortcut. A shortcut is simply a pre specified pair of integers i, j with i &lt; j. Given a shortcut i, j if you are at position i on the number line, you may directly move to j. suppose T(k) denotes the smallest number of steps needed to move from k to 100. Suppose further that there is at most 1 shortcut involving any number, and in particular from 9 there is a shortcut to 15. Let y and z be such that T(9) = 1+ min(T(y),T(z)). Then the value of the product  yz is _______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "150",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-you-want-to-move-from-0-to-100-on-the-number-line-in-gate-cse-2014-set-3-marks-2-mv7knksc5u0uiawa.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "A6Y05NDrcn06Rpgj",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the set of all functions $$f:\\left\\{ {0,\\,1,.....,2014} \\right\\} \\to \\left\\{ {0,\\,1,.....,2014} \\right\\}$$ such that $$f\\left( {f\\left( i \\right)} \\right) = i,\\,\\,\\,$$ for all $$0 \\le i \\le 2014.$$ Consider the following statements: \n<br>$$P$$.   For each such function it must be the case that for every $$i$$, $$f\\left( i \\right) = i$$\n<br>$$Q$$.   For each such function it must be the case that for some $$i$$, $$f\\left( i \\right) = 1$$ \n<br>$$R$$.   Each such function must be onto.\n<p>Which one of the following id CORRECT? </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P, Q$$ and $$R$$ are true  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Only $$Q$$ and $$R$$ are true "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Only $$P$$ and $$Q$$ are true  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Only $$R$$ is true  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-set-of-all-functions-fleft-012014-right-to-left-gate-cse-2014-set-3-marks-2-a6y05ndrcn06rpgj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mJsi8fSrfSCWTQJs",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "There are two elements $$x, y$$ in a group $$\\left( {G,\\, * } \\right)$$ such that every elements in the group can be written as a product of some number of $$x's$$ and $$y's$$ in some order. It is known that \n<br>$$x * x = y * y = x * y * x * y = y * x * y * x = e$$\n<br>where $$e$$ is the identity element. The maximum number of elements in such a group is ______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "4",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "there-are-two-elements-x-y-in-a-group-left-g-right-such-that-gate-cse-2014-set-3-marks-2-mjsi8fsrfscwtqjs.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2AvzCAY9ZYOO0T0L",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "let $$G$$ be a group with $$15$$ elements. Let $$L$$ be a subgroup of $$G$$. It is known that $$L \\ne G$$ and that the size of $$L$$ is at least $$4$$. The size of $$L$$ is ______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "5",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-g-be-a-group-with-15-elements-let-l-be-a-subgroup-of-g-i-gate-cse-2014-set-3-marks-1-2avzcay9zyoo0t0l.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oLqwzJZ1KLLNx2eL",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$\\delta $$ denote the minimum degree of a vertex in a graph. For all planar graphs on $$n$$ vertices with $$\\delta  \\ge 3$$, which one of the following is TRUE?\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "In any planar embedding, the number of faces is at least $${n \\over 2} + 2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "In any planar embedding, the number of faces is less than $${n \\over 2} + 2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "There is a planar embedding in which the number of facess is less than $${n \\over 2} + 2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "There is a planar embedding in which the number of faces is at most $${n \\over {\\delta  + 1}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-delta-denote-the-minimum-degree-of-a-vertex-in-a-graph-f-gate-cse-2014-set-3-marks-2-olqwzjz1kllnx2el.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fw3Bfsaei629FMxb",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$G$$ is a forest with $$n$$ vertices and $$k$$ connected components, how many edges does $$G$$ have?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left\\lfloor {n/k} \\right\\rfloor $$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left\\lceil {n/k} \\right\\rceil \\,$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$n - k$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$n - k + 1$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-g-is-a-forest-with-n-vertices-and-k-connected-components-gate-cse-2014-set-3-marks-2-fw3bfsaei629fmxb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LYt2llqKwTcCidz9",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following statements:\n<br>P: Good mobile phones are not cheap\n<br>Q: Cheap mobile phones are not good\n<br>L: P implies Q\n<br>M: Q implies P\n<br>N: P is equivalent to Q\n<p>Which of the following about L, M, and N is Correct?</p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Only L is TRUE."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Only M is TRUE."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Only N is TRUE."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "L, M and N are TRUE."
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-statementsp-good-mobile-phones-are-no-gate-cse-2014-set-3-marks-1-lyt2llqkwtccidz9.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Wz1srimTwumB1NLm",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A system uses $$3$$ page frames for storing process pages in main memory. It uses the Least Recently Used $$(LRU)$$ page replacement policy. Assume that all the page frames are initially empty. What is the total number of page faults that will occur while processing the page reference string given below?\n$$$4,7,6,1,7,6,1,2,7,2$$$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "6",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-system-uses-3-page-frames-for-storing-process-pages-in-mai-gate-cse-2014-set-3-marks-1-wz1srimtwumb1nlm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "j1sFwgwBKlEZkdyT",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a paging hardware with a TLB. Assume that the entire page table and all the pages are in the physical memory. It takes 10 milliseconds to search the TLB and 80 milliseconds to access the physical memory. If the TLB hit ratio is 0.6, the effective memory access time (in milliseconds) is______________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "123",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-paging-hardware-with-a-tlb-assume-that-the-entire-gate-cse-2014-set-3-marks-2-j1sfwgwbklezkdyt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZJi0B92f8HsffMfW",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A system contains three programs and each requires three tape units for its operation. The Minimum number of tape units which the system must have such that deadlocks never arise is _________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "7",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-system-contains-three-programs-and-each-requires-three-tap-gate-cse-2014-set-3-marks-2-zji0b92f8hsffmfw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RmCFDSl8nsk9JBbo",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An operating system uses $$shortest$$ $$remaining$$ $$time$$ $$first$$ scheduling algorithm for pre-emptive scheduling of processes. Consider the following set of processes with their arrival times and $$CPU$$ burst times (in milliseconds): \n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-s6z2{text-align:center}\n.tg .tg-baqh{text-align:center;vertical-align:top}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">Process</span></th>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">Arrival Time</span></th>\n    <th class=\"tg-baqh\"><span style=\"font-weight:bold\">Burst Time</span></th>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">P1</td>\n    <td class=\"tg-s6z2\">0</td>\n    <td class=\"tg-baqh\">12</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">P2</td>\n    <td class=\"tg-s6z2\">2</td>\n    <td class=\"tg-baqh\">4<br></td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">P3</td>\n    <td class=\"tg-s6z2\">3</td>\n    <td class=\"tg-baqh\">6</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">P4</td>\n    <td class=\"tg-baqh\">8</td>\n    <td class=\"tg-baqh\">5</td>\n  </tr>\n</tbody></table> \n<p>The average waiting time (in milliseconds) of the processes is ________.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "5.5",
+                            "explanation": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/vvjsNwJM5oka35966/CzTmwrwOib9vBh2eDAo1xc3X6h1kN/YwCGhMK9eni0OvtabyopyT/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2014 Set 3 Operating Systems - Process Concepts and Cpu Scheduling Question 19 English Explanation\">\n\n<p>*Completion Time is found from Gantt Chart. To find completion time go from right to left in the Gantt Chart and see last time a process executed. That will be completion time of that process.</p> \n\n<p>*Turnaroud Time = Completion Time - Arrival Time </p>\n\n<p>*Waiting Time = Turnarund Time - Burst Time</p>"
+                        }
+                    },
+                    "permalink": "an-operating-system-uses-shortest-remaining-time-first-sched-gate-cse-2014-set-3-marks-2-rmcfdsl8nsk9jbbo.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                }
+            ],
+            "title": "Operating Systems"
+        },
+        {
+            "_id": "Programming Languages",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MzuUoVj1fgknVxKg",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let A be a square matrix size $$n \\times n$$. Consider the following pseudocode. What is the\nexpected output?\n<pre><code class=\"c\">C = 100; \nfor i = 0 to n do \nfor j = 1 to n do \n { \n      Temp = A[ i ][ j ] + C ; \n      A[ i ][ j ] = A[ j ][ i ] ; \n      A[ j ][ i ] = Temp - C ; \n } \n\n for i = 0 to n do \n for j = 1 to n do \n output(A[ i ][ j ]);</code></pre>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The matrix A itself\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Transpose of the matrix A"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Adding 100 to the upper diagonal elements and subtracting 100 from lower diagonal\nelements of A"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of these"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-a-be-a-square-matrix-size-n-times-n-consider-the-followi-gate-cse-2014-set-3-marks-1-mzuuovj1fgknvxkg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NAA6YTZZCvCLOuja",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following statements are CORRECT?\n<br><br>1) Static allocation of all data areas by a compiler makes it impossible to implement\nrecursion.\n<br><br>2) Automatic garbage collection is essential to implement recursion.\n<br><br>3) Dynamic allocation of activation records is essential to implement recursion.\n<br><br>4) Both heap and stack are essential to implement recursion. ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1 and 2 only"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2 and 3 only"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "3 and 4 only"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1 and 3 only"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-statements-are-correct1-static-alloca-gate-cse-2014-set-3-marks-1-naa6ytzzcvclouja.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                }
+            ],
+            "title": "Programming Languages"
+        },
+        {
+            "_id": "Software Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "x4zwjA2O0Laa8NuK",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "software-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "software-engineering",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the context of modular software design, which one of the following combinations is desirable?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "High cohesion and high coupling "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "High cohesion and low coupling "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Low cohesion and high coupling "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Low cohesion and low coupling  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-context-of-modular-software-design-which-one-of-the-2014-set-3-marks-1-x4zwja2o0laa8nuk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                }
+            ],
+            "title": "Software Engineering"
+        },
+        {
+            "_id": "Theory of Computation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0Vrg6ijIUELEDs6p",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The length of the shortest string NOT in the language (over $$\\sum { = \\left\\{ {a,\\,\\,b} \\right\\}} $$) of the following regular expression is ____________.\n$$$a{}^ * b{}^ * \\left( {ba} \\right){}^ * a{}^ * $$$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3 to 3",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-length-of-the-shortest-string-not-in-the-language-over-s-gate-cse-2014-set-3-marks-1-0vrg6ijiueleds6p.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LNYSUrqC7xPW6P8d",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following languages over the alphabet $$\\sum { = \\left\\{ {0,\\,1,\\,c} \\right\\}:} $$ \n<br>$$\\eqalign{\n  &amp; {L_1} = \\left\\{ {{0^n}\\,{1^n}\\,\\left| {n \\ge } \\right.0} \\right\\}  \\cr \n  &amp; {L_2} = \\left\\{ {wc{w^r}\\,\\left| {w \\in \\left\\{ {0,\\,1} \\right\\}{}^ * } \\right.} \\right\\}  \\cr \n  &amp; {L_3} = \\left\\{ {w{w^r}\\,\\left| {w \\in \\left\\{ {0,\\,1} \\right\\}{}^ * } \\right.} \\right\\} \\cr} $$ \n<p>Here, $${w^r}$$ is the reverse of the string $$w.$$ Which of these languages are deterministic Context- free languages?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "None of the languages "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$(B)$$ Only $${L_1}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Only $${L_1}$$ and $${L_2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "All the three languages."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-languages-over-the-alphabet-sum-left-gate-cse-2014-set-3-marks-2-lnysurqc7xpw6p8d.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xsN0c6lkysDz0aRQ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "undecidability",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$\\sum \\, $$ be a finite non - empty alphabet and let $${2^{\\sum {{}^ * } }}$$ be the power set of $$\\sum {{}^ * .\\,} $$ Which one of the following is <b>TRUE</b>?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both $${2^{\\sum {{}^ * } }}$$ and $$\\sum {^ * } $$ are countable"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${2^{\\sum {{}^ * } }}$$ is countable and $$\\sum {^ * } $$ is uncountable"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${2^{\\sum {{}^ * } }}$$ is uncountable and $$\\sum {^ * } $$ is countable"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Both $${2^{\\sum {{}^ * } }}$$ and $$\\sum {^ * } $$ are uncountable"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "<br>\u03a3 = { alphabets } <br>\u03a3<sup>*</sup> = Set of all strings over the alphabets <br>2<sup>\u03a3</sup><sup>*</sup> = Set of all subsets of \u03a3<sup>*</sup>, which is all languages possible in \u03a3<sup>*</sup>. <br><br>We can prove that \u03a3<sup>*</sup> is countable by giving each string of \u03a3<sup>*</sup> a index. <br><br><b>Key Concept :</b> As we know that if S is countably infinite, 2<sup>S</sup> is uncountable. <br><br>So we can say that \u03a3<sup>*</sup> is countable set but 2<sup>\u03a3</sup><sup>*</sup> is uncountable set."
+                        }
+                    },
+                    "permalink": "let-sum-be-a-finite-non-empty-alphabet-and-let-2sum-be-the-p-gate-cse-2014-set-3-marks-1-xsn0c6lkysdz0arq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Fn7yIO9Pl0ujoHaP",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "undecidability",
+                    "year": 2014,
+                    "paperTitle": "GATE CSE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following problems is un-decidable?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Deciding if a given context-free grammar is ambiguous. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Deciding if a given string is generated by a given context-free grammar. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Deciding if the language generated by a given context-free grammar is empty. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Deciding if the language generated by a given context-free grammar is finite. "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-problems-is-un-decidable-gate-cse-2014-set-3-marks-2-fn7yio9pl0ujohap.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2014-set-3"
+                }
+            ],
+            "title": "Theory of Computation"
+        }
+    ]
+}

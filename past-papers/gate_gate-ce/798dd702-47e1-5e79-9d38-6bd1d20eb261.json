@@ -1,0 +1,1246 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ms3Rcy09nIzDjdO5",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Solve $${{{d^4}y} \\over {d{x^4}}} - y = 15\\,\\cos \\,\\,2x$$ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$\\,y = {c_1}{e^x} + {c_2}{e^{ - x}} + {e^x}\\left[ {{c_3}\\cos x + {c_4}\\sin x} \\right] + \\cos 2x$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "solve-d4y-over-dx4-y-15cos-2x-gate-ce-1998-marks-2-ms3rcy09nizdjdo5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GJyxaiJuFbwOBya0",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$${\\left( {s + 1} \\right)^{ - 2}}$$ is laplace transform of ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${t^2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${t^3}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${e^-2t}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$t{e^{ - t}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "left-s-1-right-2-is-laplace-transform-of-gate-ce-1998-marks-1-gjyxaijufbwobya0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6LLaXpMyRQL2y1hX",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Laplace Transform of a unit step function $${u_a}\\left( t \\right),$$ defined as \n<br>$$\\matrix{\n   {{u_a}\\left( t \\right) = 0} &amp; {for\\,\\,\\,t &lt; a\\,}  \\cr \n   { = 1} &amp; {for\\,\\,\\,t &gt; a,}  \\cr \n\n } $$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${e^{ - as}}/s$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$s{e^{ - as}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$s - u\\left( 0 \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$s{e^{ - as}} - 1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-laplace-transform-of-a-unit-step-function-ualeft-t-right-gate-ce-1998-marks-1-6llaxpmyrql2y1hx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Q137sFuhOmD3BPRJ",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The continuous function $$f(x, y)$$ is said to have saddle point at $$(a, b)$$ if ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${f_x}\\left( {a,\\,b} \\right) = {f_y}\\left( {a,\\,b} \\right) = 0$$\n<br>$$f_{xy}^2 - {f_{xx}}{f_{yy}} &lt; 0$$  at  $$(a, b)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${f_x}\\left( {a,\\,b} \\right) = 0,{f_y}\\left( {a,\\,b} \\right) = 0$$\n<br>$$f_{xy}^2 - {f_{xx}}{f_{yy}} &gt; 0$$  at $$(a, b)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${f_x}\\left( {a,\\,b} \\right) = 0,{f_y}\\left( {a,\\,b} \\right) = 0,$$\n<br>$${f_{xx}}$$ and $${f_{yy}} &lt; 0$$   at $$(a, b)$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${f_x}\\left( {a,\\,b} \\right) = 0,{f_y}\\left( {a,\\,b} \\right) = 0$$\n<br>$$f_{xy}^2 - {f_{xx}}{f_{yy}} = 0\\,\\,$$ at   $$(a, b)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-continuous-function-fx-y-is-said-to-have-saddle-point-at-gate-ce-1998-marks-1-q137sfuhomd3bprj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zkY4kkMXZXi7qcjn",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Taylor's series expansion of sin $$x$$ is ______.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1 - {{{x^2}} \\over {2!}} + {{{x^4}} \\over {4!}} - ......$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1 + {{{x^2}} \\over {4!}} + {{{x^4}} \\over {4!}} + ......$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$x + {{{x^3}} \\over {3!}} + {{{x^5}} \\over {5!}} + ......$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$x - {{{x^3}} \\over {3!}} + {{{x^5}} \\over {5!}} - ......$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-taylors-series-expansion-of-sin-x-is-gate-ce-1998-marks-1-zky4kkmxzxi7qcjn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "R9km4wq2LnUnPsve",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A discontinuous real function can be expressed as ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Taylor's series and Fourier's series "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Taylor's series and not by Fourier's series"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Neither Taylor's series nor Fourier's series "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "not by Taylor's series, but by Fourier's series "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-discontinuous-real-function-can-be-expressed-as-gate-ce-1998-marks-1-r9km4wq2lnunpsve.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vpw2AyfZ2SsF46oi",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Obtain the eigen values and eigen vectors of $$A = \\left[ {\\matrix{\n   8 &amp; -4  \\cr \n   2 &amp; { 2 }  \\cr \n\n } } \\right].$$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "eigen values $$=4,6$$\n<br>$${K_1}\\left[ {\\matrix{\n   1  \\cr \n   1  \\cr \n\n } } \\right]$$ is an eigen vector for $$\\lambda  = 4$$\n<br>$${K_2}\\left[ {\\matrix{\n   2  \\cr \n   1  \\cr \n\n } } \\right]$$ is an eigen vector for $$\\lambda  = 6$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "obtain-the-eigen-values-and-eigen-vectors-of-a-left-matrix-8-gate-ce-1998-marks-1-vpw2ayfz2ssf46oi.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "O2sOkDyggceuyN4R",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The real symmetric matrix $$C$$ corresponding to the quadratic form $$Q = 4{x_1}{x_2} - 5{x_2}{x_2}$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left[ {\\matrix{\n   1 &amp; 2  \\cr \n   2 &amp; { - 5}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left[ {\\matrix{\n   2 &amp; 0  \\cr \n   0 &amp; { - 5}  \\cr \n\n } } \\right]$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left[ {\\matrix{\n   1 &amp; 1  \\cr \n   1 &amp; { - 2}  \\cr \n\n } } \\right]$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left[ {\\matrix{\n   0 &amp; 2  \\cr \n   2 &amp; { - 5}  \\cr \n\n } } \\right]$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-real-symmetric-matrix-c-corresponding-to-the-quadratic-f-gate-ce-1998-marks-1-o2sokdyggceuyn4r.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NeTzGyj0vRSHhWCG",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$A$$ is a real square matrix then $$A{A^T}$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "un symmetric"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "always symmetric "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "skew - symmetric "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "some times symmetric "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-a-is-a-real-square-matrix-then-aat-is-gate-ce-1998-marks-1-netzgyj0vrshhwcg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2FMjj0Fxskwa65re",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In matrix algebra $$AS=AT$$ ($$A,S,T,$$ are matrices of appropriate order) implies $$S=T$$ only if ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$A$$ is symmetric "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$A$$  is singular "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$A$$  is non singular "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$A$$  is skew - symmetric"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-matrix-algebra-asat-ast-are-matrices-of-appropriate-order-gate-ce-1998-marks-1-2fmjj0fxskwa65re.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Environmental Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2e349436a42",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "environmental-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "quality-control-of-water",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The microbial quality of treated piped water supplies is monitored by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Microscopic examination"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Plate count of heterotrophic bacteria"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Coliform MPN test"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Identification of all pathogens"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-microbial-quality-of-treated-piped-water-supplies-is-mon-gate-ce-1998-marks-1-5a2e349436a42.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2e2f84835d4",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "environmental-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "water-demand",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Water distribution systems are sized to meet the",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Maximum hourly demand"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Average hourly demand"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Maximum daily demand and fire demand."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Average daily demand and fire demand."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "water-distribution-systems-are-sized-to-meet-the-gate-ce-1998-marks-1-5a2e2f84835d4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                }
+            ],
+            "title": "Environmental Engineering"
+        },
+        {
+            "_id": "Hydrology",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2c37dbea196",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "hydrology",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "precipitation-and-frequency-of-rainfall-data",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The return period for the annual maximum flood of a given magnitude is 8 years. The probability that this flood magnitude will be executed once during the next 5 years is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0.625"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.966"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0.487"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0.529"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-return-period-for-the-annual-maximum-flood-of-a-given-ma-gate-ce-1998-marks-1-5a2c37dbea196.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                }
+            ],
+            "title": "Hydrology"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JTfb3dooGnstDYBU",
+                    "exam": "gate-ce",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "prestressed-concrete",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The cross-section of a pretensioned pre-stressed concrete beam is shown in Figure. The reinforcement is placed concentrically. If the stress in steel at transfer is $$1000$$ $$MPa,$$ compute the stress in steel immediately after transfer. The modular ratio is $$6.$$ \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/1TSWdfkrvG8oSpNnr/IhKq8oA5CDn366w1MKOouN50tMkP7/Iw2jqZGAiWPASFOdba1Xlg/image.png\" loading=\"lazy\" alt=\"GATE CE 1998 Reinforced Cement Concrete - Prestressed Concrete Question 5 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$950\\,\\,N/m{m^2}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-cross-section-of-a-pretensioned-pre-stressed-concrete-be-1998-marks-5-jtfb3doognstdybu.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8rk8reyD9Q9mAfG2",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "flanged-beams",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An isolated $$T$$ beam is used as a walkway. The beam is simply supported with an effective span of $$6$$ $$m.$$ The effective width of flange, for the cross-section shown in figure, is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/4KzLilyIe39s7gdRa/GjxoH6pwbbopDfeVyTVorbhTcHLNP/EbItp7wOaYqGHPN1vIRvAS/image.png\" loading=\"lazy\" alt=\"GATE CE 1998 Reinforced Cement Concrete - Flanged Beams Question 1 English\">  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$900$$ $$mm$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1000$$ $$mm$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1259$$ $$mm$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1500$$ $$mm$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-isolated-t-beam-is-used-as-a-walkway-the-beam-is-sim-1998-marks-2-8rk8reyd9q9mafg2.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Steel Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5hnIMZXBVz8Fc4CX",
+                    "exam": "gate-ce",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plate-girder",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The cross-section of a simply supported plate girder is shown in figure. The loading on the girder is symmetrical. The bearing stiffeners at supports are the sole means of providing restraint against torsion. Design the bearing stiffeners at supports, with minimum moment of inertia about the center line of web plate only as the sole design criterion. The flat sections available are: $$250 \\times 25,\\,\\,250 \\times 32,\\,\\,\\,200 \\times 28$$ and $$200 \\times 32\\,\\,mm.$$ Draw a sketch \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/euRzEl7SY4oRvRwD9/pdgb4V3jzPYUHGTHdheb47c0oE6UU/X9UgeIonLPYt7v8jfo3SxL/image.png\" loading=\"lazy\" alt=\"GATE CE 1998 Steel Structures - Plate Girder Question 1 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it. ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-cross-section-of-a-simply-supported-plate-girder-is-show-1998-marks-5-5hnimzxbvz8fc4cx.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                }
+            ],
+            "title": "Steel Structures"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "T5SVVGNeQ37KkPBn",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A cantilever beam is shown in the figure. The moment to be applied at free end for zero vertical deflection at the point is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/AH9UNcK7l64qVwKo3/c1Sh1j71o53MK8gBqSKAG6vjrLzdo/dYhYzMkX82EpWECalTUr8q/image.png\" loading=\"lazy\" alt=\"GATE CE 1998 Strength of Materials Or Solid Mechanics - Deflection of Beams Question 4 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$9$$ $$kN$$-$$m$$ clockwise"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$9$$ $$kN$$-$$m$$ anti-clockwise "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$12$$ $$kN$$-$$m$$ clockwise "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$12$$ $$kN$$-$$m$$ anti-clockwise "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cantilever-beam-is-shown-in-the-figure-the-moment-to-be-a-1998-marks-2-t5svvgneq37kkpbn.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "L5Df90H7BrTC83HO",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "matrix-method",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The stiffness matrix of a beam element is given as $${{2EI} \\over L}\\left[ {\\matrix{\n   2 &amp; { + 1}  \\cr \n   { + 1} &amp; 2  \\cr \n\n } } \\right].$$  Then the flexibility matrix is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${L \\over {2EI}}\\left[ {\\matrix{\n   2 &amp; 1  \\cr \n   1 &amp; 2  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${L \\over {6EI}}\\left[ {\\matrix{\n   1 &amp; { - 2}  \\cr \n   { - 2} &amp; 1  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${L \\over {3EI}}\\left[ {\\matrix{\n   2 &amp; { - 1}  \\cr \n   { - 1} &amp; 2  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${L \\over {6EI}}\\left[ {\\matrix{\n   2 &amp; { - 1}  \\cr \n   { - 1} &amp; 2  \\cr \n\n } } \\right]$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-stiffness-matrix-of-a-beam-element-is-given-as-2ei-1998-marks-2-l5df90h7brtc83ho.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nDc5ppoiGDQXXjB9",
+                    "exam": "gate-ce",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The steel portal frame shown in figure is subjected to an imposed service load of $$15$$ $$kN$$. Compute the required plastic moment capacity of the members. All the members are of the same cross-section. Draw the collapse load.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/1nesUYpnFFB3XdmQO/jIn48eFRD7kUItH2Qw7b1o5jlU7P4/pXYry0tZw4M5aJuiizqJAO/image.png\" loading=\"lazy\" alt=\"GATE CE 1998 Structural Analysis - Plastic Analysis Question 3 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Plastic moment capacity $$ = 23.6\\,\\,kN - m$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-steel-portal-frame-shown-in-figure-is-subjected-to-an-im-1998-marks-5-ndc5ppoigdqxxjb9.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7G3KPCdmAiIG0lyu",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The plastic modulus of a section is $$4.8 \\times {10^{ - 4}}\\,\\,{m^3}.$$ The shape factor is $$1.2$$. The plastic moment capacity of the section is $$120$$ $$kN$$-$$m.$$ The yield stress of the material is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$100$$ $$MPa$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$240$$ $$MPa$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$250$$ $$MPa$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$300$$ $$MPa$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-plastic-modulus-of-a-section-is-48-times-10-4-1998-marks-2-7g3kpcdmaiig0lyu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "K4SKJuu6ZBo6YxvP",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "energy-principle",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The strain energy stored in member $$'AB'$$ of the pin jointed truss shown aside when $$'E'$$ and $$'A'$$ are same for all members is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/JXTtXHf2MYtuBPBeE/IRLaB2q2eih7oB88aoYZQbOYpSsQG/ky1umwr8rFLH3ngCXDrHUK/image.png\" loading=\"lazy\" alt=\"GATE CE 1998 Structural Analysis - Energy Principle Question 13 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{2{P^2}L} \\over {AE}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{{P^2}L} \\over {AE}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{{P^2}L} \\over {2AE}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Zero "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-strain-energy-stored-in-member-ab-of-the-pin-joint-1998-marks-2-k4skjuu6zbo6yxvp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tbouQlzqa90LYB25",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "arches-and-cable",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A three hinged arch shown in Figure is quarter of a circle. If the vertical and horizontal components of reaction at $$A$$ are equal, the value of $$\\theta $$ is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/OCQTalXQcOcR2ysLp/odGMeMJ8eihJPrMnGSrofs5K67dWl/5vIz4AAUFzlSCjSeDhFbFV/image.png\" loading=\"lazy\" alt=\"GATE CE 1998 Structural Analysis - Arches and Cable Question 5 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${60^ \\circ }$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${45^ \\circ }$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${30^ \\circ }$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None in ($${0^ \\circ },$$ $${90^ \\circ }$$)"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-three-hinged-arch-shown-in-figure-is-quarter-of-a-circle-1998-marks-2-tbouqlzqa90lyb25.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                }
+            ],
+            "title": "Structural Analysis"
+        },
+        {
+            "_id": "Transportation Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a41acf6eb5f7",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "transportation-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "highway-geometric-design",
+                    "year": 1998,
+                    "paperTitle": "GATE CE 1998",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a highway with a design speed of 100kmph, the safe OSD is assume acceleration as 0.53 $$m/sec^2$$. the road is two lane with two way traffic. User other specifications as per IRC",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "300m"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "750m"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "320m"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "470m"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-highway-with-a-design-speed-of-100kmph-the-safe-osd-is-gate-ce-1998-marks-2-5a41acf6eb5f7.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1998",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1998"
+                }
+            ],
+            "title": "Transportation Engineering"
+        }
+    ]
+}

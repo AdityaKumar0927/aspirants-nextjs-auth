@@ -1,0 +1,2871 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PshzrsZXNKviA0Dj",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The function $$f(t)$$ satisfies the differential equation $${{{d^2}f} \\over {d{t^2}}} + f = 0$$ and the auxiliary conditions, $$f\\left( 0 \\right) = 0,\\,{{df} \\over {dt}}\\left( 0 \\right) = 4.$$  The laplace transform of $$f(t)$$ is given by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${2 \\over {s + 1}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${4 \\over {s + 1}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${4 \\over {{s^2} + 1}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${2 \\over {{s^4} + 1}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-function-ft-satisfies-the-differential-equation-d2f-over-gate-me-2013-marks-1-pshzrszxnkvia0dj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YF7fNjhjtyEAkqqq",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$X$$ be a normal random variable with mean $$1$$ and variance $$4.$$ The probability $$P\\left\\{ {X &lt; 0} \\right\\}$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "greater than zero and less than $$0.5$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "greater than $$0.5$$ and less than $$1.0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1.0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-x-be-a-normal-random-variable-with-mean-1-and-variance-4-gate-me-2013-marks-1-yf7fnjhjtyeakqqq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8LqhkuPsCsxydMHD",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The eigen values of a symmetric matrix are all ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "complex with non-zero positive imaginary part. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "complex with non-zero negative imaginary part. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "real "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "pure imaginary "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-eigen-values-of-a-symmetric-matrix-are-all-gate-me-2013-marks-1-8lqhkupscsxydmhd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oVJHAlkeXtpf29Ys",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Choose the CORRECT set of functions, which are linearly dependent. ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\sin x,\\,{\\sin ^2}x$$ and $${\\cos ^2}x$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\cos x,\\sin x$$ and $$\\tan x$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\cos \\,2x,{\\sin ^2}x$$ and $${\\cos ^2}x$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\cos \\,2x,\\sin x$$ and $$\\cos x$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "choose-the-correct-set-of-functions-which-are-linearly-depen-gate-me-2013-marks-2-ovjhalkextpf29ys.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1uCw10BBWj9A5RwP",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of the definite integral $$\\int_1^e {\\sqrt x \\ln \\left( x \\right)dx} $$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${4 \\over 9}\\sqrt {{e^3}}  + {2 \\over 9}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${2 \\over 9}\\sqrt {{e^3}}  - {4 \\over 9}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${2 \\over 9}\\sqrt {{e^3}}  + {4 \\over 9}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${4 \\over 9}\\sqrt {{e^3}}  - {2 \\over 9}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-the-definite-integral-int1e-sqrt-x-ln-left-x-ri-gate-me-2013-marks-1-1ucw10bbwj9a5rwp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TbUpsseDLbuFMNOG",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following surface integral is to be evaluated over a sphere for the given steady velocity vector field $$F = xi + yj + zk$$ defined with respect to a Cartesian coordinate system having $$i, j$$ and $$k$$ as unit base vectors. \n$$$\\int {\\int\\limits_S {{1 \\over 4}\\left( {F.n} \\right)dA} } $$$\n<p>Where $$S$$ is the sphere, $$\\,\\,{x^2} + {y^2} + {z^2} = 1\\,\\,$$ and $$n$$ is the outward unit normal vector to the sphere. The value of the surface integral is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\pi $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2$$$$\\pi $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3$$ $$\\pi $$$$/4$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4$$ $$\\pi $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-surface-integral-is-to-be-evaluated-over-a-sph-gate-me-2013-marks-2-tbupssedlbufmnog.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "u1nFNckYzA6SjFFy",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The probability that a student knows the correct answer to a multiple choice question is $${2 \\over 3}$$.  If the student does not know the answer, then the student guesses the answer.  The probability of the guessed answer being correct is $${1 \\over 4}$$.  Given that the student has answered the question correctly, the conditional probability that the student knows the correct answer is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${2 \\over 3}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${3 \\over 4}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${5 \\over 6}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${8 \\over 9}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-probability-that-a-student-knows-the-correct-answer-to-a-gate-me-2013-marks-2-u1nfnckyza6sjffy.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZcgQ5iQyuSnixy4F",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The solution to the differential equation $$\\,{{{d^2}u} \\over {d{x^2}}} - k{{du} \\over {dx}} = 0\\,\\,\\,$$  where $$'k'$$ is a constant, subjected to the boundary  conditions $$\\,\\,u\\left( 0 \\right) = 0\\,\\,$$ and $$\\,\\,\\,u\\left( L \\right) = U,\\,\\,$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$u = U{x \\over L}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$u = U\\left( {{{1 - {e^{kx}}} \\over {1 - {e^{kL}}}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$u = U\\left( {{{1 - {e^{ - kx}}} \\over {1 - {e^{ - kL}}}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$u = U\\left( {{{1 + {e^{kx}}} \\over {1 + {e^{kL}}}}} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-solution-to-the-differential-equation-d2u-over-dx2-kdu-o-gate-me-2013-marks-2-zcgq5iqyusnixy4f.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "F8HbhR5HYYEm64wO",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The partial differential equation $$\\,\\,{{\\partial u} \\over {\\partial t}} + u{{\\partial u} \\over {\\partial x}} = {{{\\partial ^2}u} \\over {\\partial {x^2}}}\\,\\,\\,$$  is a ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Linear equation of order $$2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Non-linear equation of order $$1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Linear equation of order $$1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "non-linear equation of order $$2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-partial-differential-equation-partial-u-over-partial-t-u-gate-me-2013-marks-1-f8hbhr5hyyem64wo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "E47jKmWWZSLaQhyK",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the CORRECT pairs.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/BFMikpX5CHCc2mpFV/iWRhHJTFDwJqcVZ0nmJCJK67rItdR/fDH5is41zQn3fwUT8y54u2/image.svg\" loading=\"lazy\" alt=\"GATE ME 2013 Engineering Mathematics - Numerical Methods Question 25 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P - 2,\\,Q - 1,\\,R - 3$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P - 3,\\,Q - 2,\\,R - 1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P - 1,\\,Q - 2,\\,R - 3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P - 3,\\,Q - 1,\\,R - 2$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-correct-pairs-gate-me-2013-marks-1-e47jkmwwzslaqhyk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Engineering Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "s5SvhGrBvohqRFQ6",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "engineering-mechanics-static-and-dynamics",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A pin jointed uniform rigid rod of weight W and length is supported horizontally by an external force F as shown in the figure below. The force F is suddenly removed. At the instant of force removal, the magnitude of vertical reaction developed at the support is \n <img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/zMdDBl3QDq1zIivMN/SYYGuIbPQXKKx7GpMbbEzSqVbPWvl/tiJExdfeyzYrMiru7romzC/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2013 Engineering Mechanics - Engineering Mechanics Static and Dynamics Question 45 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "W/4 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "W/2 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "W"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-pin-jointed-uniform-rigid-rod-of-weight-w-and-length-is-su-gate-me-2013-marks-2-s5svhgrbvohqrfq6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                }
+            ],
+            "title": "Engineering Mechanics"
+        },
+        {
+            "_id": "Fluid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "W5oN3aP5usBcD9J7",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "turbulent-flow",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For steady, fully developed flow inside a straight pipe of diameter $$D,$$ neglecting gravity effects, the pressure drop $$\\Delta p$$ over a length $$L$$ and the wall shear stress $${\\tau _w}$$ are related by ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\tau _w} = {{\\Delta pD} \\over {4L}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\tau _w} = {{\\Delta p{D^2}} \\over {4{L^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\tau _w} = {{\\Delta pD} \\over {2L}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\tau _w} = {{4\\Delta pL} \\over D}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-steady-fully-developed-flow-inside-a-straight-pipe-of-di-gate-me-2013-marks-1-w5on3ap5usbcd9j7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XPiiJnAR7Y0gkiEo",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-dynamics",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Water is coming out from a tap and falls vertically downwards. At the tap opening, the stream diameter is $$20$$ $$mm$$ with uniform velocity of $$2$$ $$m/s.$$ Acceleration due to gravity is $$9.81$$ $$m/{s^2}.$$ Assuming steady, inviscid flow, constant atmospheric pressure everywhere and neglecting curvature and surface tension effects, the diameter in mm of the stream $$0.5$$ $$m$$ below the tap is approximately",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$10$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$15$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$20$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$25$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "water-is-coming-out-from-a-tap-and-falls-vertically-downward-gate-me-2013-marks-2-xpiijnar7y0gkieo.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GUQfzEzVS4s4X6lK",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-statics",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A hinged gate of length $$5$$ $$m,$$ inclined at $${30^ \\circ }$$ with the horizontal and with water mass on its left, is shown in the figure below. Density of water is $$1000$$ $$kg/{m^3}$$. The minimum mass of the gate in kg per unit width (perpendicular to the plane of paper), required to keep it closed is\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/6yj6jyY6KJYHgQ9PH/QM3QX6PWfdk0J6NlvW4E3riAvZWXf/AHRCfy1VB29IlLA9E4wKHH/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2013 Fluid Mechanics - Fluid Statics Question 13 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$5000$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$6600$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$7546$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$9623$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-hinged-gate-of-length-5-m-inclined-at-30-circ-with-the-hor-gate-me-2013-marks-2-guqfzezvs4s4x6lk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                }
+            ],
+            "title": "Fluid Mechanics"
+        },
+        {
+            "_id": "Heat Transfer",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dktDUH31YmWFMBNJ",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "conduction",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider one-dimensional steady state heat conduction, without heat generation, in a plane wall; with boundary conditions as shown in the figure below. The conductivity of the wall is given by $$k = {k_0} + bT;$$ where $${k_0}$$ and $$b$$ are positive constants, and $$T$$ is temperature. \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/PsIpvZWqEDSX6hJTf/cz1TUZnZ9BRJSOQj56jWYcFYKLUE3/g6qkbSDtlIFZqGMwkf4eQ9/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2013 Heat Transfer - Conduction Question 41 English\"> \n<p>As $$x$$ increases, the state temperature gradient $$(dT/dx)$$ will </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "remain constant "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "be zero "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "increase "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "decrease "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-one-dimensional-steady-state-heat-conduction-withou-gate-me-2013-marks-1-dktduh31ymwfmbnj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EnnPflvJvnm2WVNE",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "conduction",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider one-dimensional steady state heat conduction along x-axis $$\\left( {0 \\le x \\le L} \\right),$$ through a planewall with the boundary surfaces $$(x=0$$ and $$x=L)$$ maintained at temperatures of $${0^ \\circ }C$$ and $${100^ \\circ }C$$. Heat is generated uniformly throughout the wall. Choose the <b>CORRECT</b> statement.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The direction of heat transfer will be from the surface at 100\u00b0C to the surface at $${0^ \\circ }C$$. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The maximum temperature inside the wall must be greater than $${100^ \\circ }C$$."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The temperature distribution is linear within the wall. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The temperature distribution is symmetric about the mid-plane of the wall. "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-one-dimensional-steady-state-heat-conduction-along-gate-me-2013-marks-1-ennpflvjvnm2wvne.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PSs1muFvNNFgBeCe",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fin-design-and-transient-heat-conduction",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A steel ball of diameter $$60$$ $$mm$$ is initially in thermal equilibrium at $${1030^ \\circ }C$$ in a furnace. It is suddenly removed from the furnace and cooled in ambient air at $${30^ \\circ }C$$ with convective heat transfer coefficient $$h = 20\\,W/{m^2}K.$$ The thermo-physical properties of steel are: density $$\\rho  = 7800\\,\\,kg/{m^3},$$ , conductivity $$k = 40 W/mK$$ and specific heat $$c = 600 J/kgK.$$ The time required in seconds to cool the steel ball in air from $${1030^ \\circ }C$$ to $${430^ \\circ }C$$ is \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$519$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$931$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1195$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2144$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-steel-ball-of-diameter-60-mm-is-initially-in-thermal-equil-gate-me-2013-marks-2-pss1mufvnnfgbece.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CEHrgkPYUZXrcnny",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "radiation",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two large diffuse gray parallel plates, separated by a small distance, have surface temperatures of $$400$$ $$K$$ and $$300$$ $$K.$$ If the emissivities of the surfaces are $$0.8$$ and the Stefan-Boltzmann constant is $$5.67 \\times {10^{ - 8}}$$   $$W/{m^2}{K^4},$$ the net radiation heat exchange rate in $$kW/{m^2}$$ between the two plates is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.66$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.79$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.99$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3.96$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-large-diffuse-gray-parallel-plates-separated-by-a-small-gate-me-2013-marks-2-cehrgkpyuzxrcnny.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "P7b4cnfVyUf0RY2r",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "heat-exchangers",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Water (specific heat, $${c_p} = 4.18\\,\\,kJ/kgK$$ ) enters a pipe at a rate of $$0.01$$ $$kg/s$$ and temperature of $${20^ \\circ }C.$$  The pipe, of diameter $$50$$ $$mm$$ and length $$3$$ $$m,$$ is subjected to a wall heat flux $${q_w}$$ in $$W/{m^2}:$$ \n<p>If $${q_w}$$ $$=2500x,$$ where $$x$$ is $$m$$ and in the direction of flow ($$x=0$$ at the inlet), the bulk mean temperature of the water leaving the pipe in $$^ \\circ C$$ is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$42$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$62$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$74$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$104$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "water-specific-heat-cp-418kjkgk-enters-a-pipe-at-a-rate-of-0-gate-me-2013-marks-2-p7b4cnfvyuf0ry2r.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cwimH4CoewzF8oa7",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "heat-exchangers",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Water (specific heat, $${c_p} = 4.18\\,\\,kJ/kgK$$ ) enters a pipe at a rate of $$0.01$$ $$kg/s$$ and temperature of $${20^ \\circ }C.$$  The pipe, of diameter $$50$$ $$mm$$ and length $$3$$ $$m,$$ is subjected to a wall heat flux $${q_w}$$ in $$W/{m^2}:$$ \n<p>If $${q_w}$$ $$=5000$$ and the convection heat transfer coefficient at the pipe outlet is $$1000$$ $$W/{m^2}K,$$ the temperature in $$^ \\circ C$$ at the inner surface of the pipe at the outlet is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$71$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$76$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$79$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$81$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "water-specific-heat-cp-418kjkgk-enters-a-pipe-at-a-rate-of-0-gate-me-2013-marks-2-cwimh4coewzf8oa7.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                }
+            ],
+            "title": "Heat Transfer"
+        },
+        {
+            "_id": "Industrial Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "n5tvXl4ENByWFmPq",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "forecasting",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In simple exponential smoothing forecasting, to give higher weightage to recent demand information, the smoothing constant must be close to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1.0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-simple-exponential-smoothing-forecasting-to-give-higher-2013-marks-1-n5tvxl4enbywfmpq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UHz2idEhYkL0nhod",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "queuing",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Customers arrive at a ticket counter at a rate of $$50$$ per hr and tickets are issued in the order of their arrival. The average time taken for issuing a ticket is $$1$$ $$min.$$ Assuming that customer arrivals form a Poisson process and service times are exponentially distributed, the average waiting time in queue in $$min$$ is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$6$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "customers-arrive-at-a-ticket-counter-at-a-rate-of-50-per-2013-marks-1-uhz2idehykl0nhod.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "a5Wfpmg7hp9ueX7v",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-programming",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A linear programming problem is shown below. \n<br>$$\\eqalign{\n  &amp; Maximize\\,\\,\\,\\,3x + 7y  \\cr \n  &amp; Subject\\,\\,to\\,\\,\\,3x + 7y \\le 10  \\cr \n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,4x + 6y \\le 8  \\cr \n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,x,\\,\\,y \\ge 0 \\cr} $$ \n<p>It has ..............</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "an unbounded objective  function"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "exactly one  optimal solution "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "exactly two optimal solutions"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "infinitely many optimal solutions"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-linear-programming-problem-is-shown-below-eqalign-2013-marks-2-a5wfpmg7hp9uex7v.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                }
+            ],
+            "title": "Industrial Engineering"
+        },
+        {
+            "_id": "Machine Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fawgVGpK2HfNPvuj",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fatigue-strength",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A bar is subjected to fluctuating tensile load from $$20$$ $$kN$$ to $$100$$ $$kN.$$ The material has yield strength of $$240$$ $$MPa$$ and endurance limit in reversed bending is $$160$$ $$MPa.$$ According to the Soderberg principle, the area of cross-section in $$m{m^2}$$ of the bar for a factor of safety of $$2$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$400$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$600$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$750$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1000$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-bar-is-subjected-to-fluctuating-tensile-load-from-20-kn-to-gate-me-2013-marks-2-fawgvgpk2hfnpvuj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1eiIrmIfLQjRaZxJ",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bolted-riveted-and-welded-joints",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single riveted lap joint of two similar plates as shown in the figure below has the following geometrical and material details.  \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/QGfMrdkLEk9mjLLEj/gkXxXSTrXJreIowoXjT6FkKimqYvi/gGAqVj8I7teElFOCVLiyX4/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2013 Machine Design - Bolted Riveted and Welded Joints Question 13 English\"> \n<p>width of the plate $$w = 200$$ $$mm,$$ thickness of the plate $$t = 5$$ $$mm,$$ number of rivets $$n = 3,$$ diameter of the rivet $${d_r} = 10\\,\\,\\,mm,$$ diameter of the rivet hole $${d_h} = 11\\,\\,\\,mm,$$ allowable tensile stress of the plate $${\\sigma _p} = 200\\,\\,MPa,$$ allowable shear stress of the rivet $${\\sigma _s} = 100\\,\\,MPa$$ and allowable bearing stress of the rivet $${\\sigma _c} = 150\\,\\,MPa.$$</p>\n<p>If the rivets are to be designed to avoid crushing failure, the maximum permissible load $$P$$ in $$k/N$$ is </p>\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$7.50$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$15.00$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$22.50$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$30.00$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-single-riveted-lap-joint-of-two-similar-plates-as-shown-in-gate-me-2013-marks-2-1eiirmiflqjrazxj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1eCsCN863lJ6u8F3",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bolted-riveted-and-welded-joints",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single riveted lap joint of two similar plates as shown in the figure below has the following geometrical and material details.  \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/QGfMrdkLEk9mjLLEj/gkXxXSTrXJreIowoXjT6FkKimqYvi/gGAqVj8I7teElFOCVLiyX4/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2013 Machine Design - Bolted Riveted and Welded Joints Question 12 English\"> \n<p>width of the plate $$w = 200$$ $$mm,$$ thickness of the plate $$t = 5$$ $$mm,$$ number of rivets $$n = 3,$$ diameter of the rivet $${d_r} = 10\\,\\,\\,mm,$$ diameter of the rivet hole $${d_h} = 11\\,\\,\\,mm,$$ allowable tensile stress of the plate $${\\sigma _p} = 200\\,\\,MPa,$$ allowable shear stress of the rivet $${\\sigma _s} = 100\\,\\,MPa$$ and allowable bearing stress of the rivet $${\\sigma _c} = 150\\,\\,MPa.$$</p> \n<p>If the plates are to be designed to avoid tearing failure, the maximum permissible load $$P$$ in $$kN$$ is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$83$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$125$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$167$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$50$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-single-riveted-lap-joint-of-two-similar-plates-as-shown-in-gate-me-2013-marks-2-1ecscn863lj6u8f3.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                }
+            ],
+            "title": "Machine Design"
+        },
+        {
+            "_id": "Production Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oE3KCvegRTP9wNdi",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "casting",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A cube shaped casting solidifies in $$5$$ min. The solidification time in min for a cube of the same material, which is $$8$$ times heavier than the original casting, will be  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$10$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$20$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$24$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$40$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cube-shaped-casting-solidifies-in-5-min-the-solidification-gate-me-2013-marks-1-oe3kcvegrtp9wndi.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZvA0Ic0TLtNgUZty",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a rolling process, the state of stress of the material undergoing deformation is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "pure compression "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "pure shear "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "compression and shear "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "tension and shear "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-rolling-process-the-state-of-stress-of-the-material-und-gate-me-2013-marks-1-zva0ic0tltnguzty.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QUOiyXWkrliontP6",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two cutting tools are being compared for a machining operation. The tool life equations are:\n<br>$$\\eqalign{\n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,Carbi{\\mathop{\\rm de}\\nolimits} \\,\\,tool:\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,V{T^{1.6}} = 3000  \\cr \n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,HSS\\,\\,tool:\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,V{T^{0.6}} = 200 \\cr} $$\n<p>Where $$V$$ is the cutting speed in $$m/min$$ and $$T$$ is the tool life in $$min.$$ The carbide tool will provide higher tool life if the cutting speed in $$m/min$$ exceeds</p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$15.0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$39.4$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$49.3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$60.0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-cutting-tools-are-being-compared-for-a-machining-operati-gate-me-2013-marks-2-quoiyxwkrliontp6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XZPdKinhsLAu31Tk",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In orthogonal turning of a bar of $$100$$ $$mm$$ diameter with a feed of $$0.25$$ $$min/rev,$$ depth of cut of $$4$$ $$mm$$ and cutting velocity of $$90$$ $$m/min,$$ it is observed that the main (tangential) cutting force is prependicular to the friction force acting at the chip-tool interface. The main (tangential) cutting force is $$1500$$ $$N.$$\n<p>The normal force acting at the chip-tool interface in $$N$$ is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1000$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1500$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2000$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2500$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-orthogonal-turning-of-a-bar-of-100-mm-diameter-with-a-fee-gate-me-2013-marks-2-xzpdkinhslau31tk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Xoj4GYc57neQzO3h",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In orthogonal turning of a bar of $$100$$ $$mm$$ diameter with a feed of $$0.25$$ $$min/rev,$$ depth of cut of $$4$$ $$mm$$ and cutting velocity of $$90$$ $$m/min,$$ it is observed that the main (tangential) cutting force is prependicular to the friction force acting at the chip-tool interface. The main (tangential) cutting force is $$1500$$ $$N.$$\n<p>The orthogonal rake angle of the cutting tool in degrees is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3.58$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$7.16$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-orthogonal-turning-of-a-bar-of-100-mm-diameter-with-a-fee-gate-me-2013-marks-2-xoj4gyc57neqzo3h.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qDXxyHLlCA54rYvp",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "machining",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A steel bar $$200$$ $$mm$$ in diameter is turned at a feed of $$0.25$$ $$mm/rev$$ with a depth of cut of $$4$$ $$mm.$$ The rotational speed of the work piece is $$160$$ $$rpm.$$ The material removal rate in $$m{m^3}/s$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$160$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$167.6$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1600$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1675.5$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-steel-bar-200-mm-in-diameter-is-turned-at-a-feed-o-2013-marks-1-qdxxyhllca54ryvp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vcQ7fQTR7uoNvkwU",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metrology-and-inspection",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A metric thread of pitch $$2$$ $$mm$$ and thread angle 60\u00b0 is inspected for its pitch diameter using 3-wire method. The diameter of the best size wire in mm is $${60^ \\circ }$$ is inspected for its pitch diameter using $$3$$- wire method. The diameter of the best size wire in $$mm$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.866$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.000$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.154$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2.000$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-metric-thread-of-pitch-2-mm-and-thread-angle-60-2013-marks-1-vcq7fqtr7uonvkwu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7xlbPYRWtKyudixD",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metrology-and-inspection",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Cylindrical pins of  $${25^{\\matrix{\n   { + 0.020}  \\cr \n   { + 0.010}  \\cr \n\n } }}\\,\\,mm$$ diameter are electroplated in a shop. Thickness of the plating is $$30 \\pm 0.2$$ micron. Neglecting gage tolerances, the size of the $$GO$$ gage in $$mm$$ to inspect the plated components is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$25.042$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$25.052$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$25.074$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$25.084$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "cylindrical-pins-of-25matrix-0020-cr-2013-marks-2-7xlbpyrwtkyudixd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Iv09ictRJAng82Kf",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "advance-machine-tools",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a $$CAD$$ package, mirror image of a $$2D$$ points $$P(5, 10)$$ is to be obtained about a line which passes through the origin and makes an angle of $${45^ \\circ }$$ counterclockwise with the $$X$$-axis. The coordinates of the transformed points will be  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$(7.5, 5)$$  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$(10, 5)$$  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$(7.5, -5)$$  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$(10, -5)$$  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-cad-package-mirror-image-of-a-2d-points-p5-2013-marks-2-iv09ictrjang82kf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                }
+            ],
+            "title": "Production Engineering"
+        },
+        {
+            "_id": "Strength of Materials",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Fm4JPo7XLDa8sfei",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "simple-stress-and-strain",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A rod of length $$L$$ having uniform cross-sectional area $$A$$ is subjected to a tensile force $$P$$ as shown in the figure below. If the Young\u2019s modulus of the material varies linearly from $${E_1}$$ to $${E_2}$$ along the length of the rod, the normal stress developed at the section $$-$$ $$SS$$ is  \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/AXevEuRKd1O21yOb1/5w23BXHCzlIXA1BiRj9WykKtx3Fel/6RkZzG5kffBZT1LOiRm529/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2013 Strength of Materials - Simple Stress and Strain Question 30 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${P \\over A}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{P\\left( {{E_1} - {E_2}} \\right)} \\over {A\\left( {{E_1} + {E_2}} \\right)}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{P{E_2}} \\over {A{E_1}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{P{E_1}} \\over {A{E_2}}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-rod-of-length-l-having-uniform-cross-sectional-area-a-is-s-gate-me-2013-marks-1-fm4jpo7xlda8sfei.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AF1PBMI2lnSHH3mT",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-force-and-bending-moment",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A simply supported beam of length $$L$$ is subjected to a varying distributed load $$\\sin \\left( {3\\pi x/L} \\right)N{m^{ - 1}},$$  where the distance $$x$$ is measured from the left support. The magnitude of the vertical reaction force in $$N$$ at the left support is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${L/3\\pi }$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${L/\\pi }$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${2L/\\pi }$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-simply-supported-beam-of-length-l-is-subjected-to-a-varyin-gate-me-2013-marks-2-af1pbmi2lnshh3mt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ANmwR2l7VH0dntxo",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "thin-cylinders",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A long thin walled cylindrical shell, closed at both the ends, is subjected to an internal pressure. The ratio of the hoop stress (circumferential stress) to longitudinal stress developed in the shell is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.5$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.0$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2.0$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4.0$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-a-long-thin-walled-cylindrical-shell-closed-at-both-the-end-gate-me-2013-marks-1-anmwr2l7vh0dntxo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Phebdjf8eQdZeI11",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "strain-energy-method",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a ductile material, toughness is a measure of",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "resistance to scratching"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "ability to absorb energy up to fracture "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "ability to absorb energy till elastic limit"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "resistance to indentation "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-ductile-material-toughness-is-a-measure-of-gate-me-2013-marks-1-phebdjf8eqdzei11.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SVtB3JgSgqAg8XJK",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "strain-energy-method",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two threaded bolts A and B of same material and length are subjected to identical tensile load. If the elastic strain energy stored in bolt A is 4 times that of bolt B and the mean diameter of bolt A is 12 mm, the mean diameter of bolt B in mm is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "16"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "24"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "36"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "48"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-threaded-bolts-a-and-b-of-same-material-and-length-are-s-gate-me-2013-marks-1-svtb3jgsgqag8xjk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                }
+            ],
+            "title": "Strength of Materials"
+        },
+        {
+            "_id": "Theory of Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "APCEU0ebAWvaXV8O",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analysis-of-plane-mechanisms",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A link OB is rotating with a constant angular velocity of 2 rad/s in counter clockwise direction and a block is sliding radially outward on it with an uniform velocity of 0.75 m/s with respect to the rod, as shown in the figure below. If OA = 1 m, the magnitude of the absolute acceleration of the block at location A in m/s<sup>2</sup> is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/mE872BNkLsRMKCODJ/CoFiGZsci0jnRQfbY9PB4TDQVB8sF/RxlcpF9qbwGdy6d7pcrNAg/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2013 Theory of Machines - Analysis of Plane Mechanisms Question 48 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "3 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "4 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "5 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "6 "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-link-ob-is-rotating-with-a-constant-angular-velocity-of-2-gate-me-2013-marks-1-apceu0ebawvaxv8o.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PW8OrNGqd2I5h34j",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analysis-of-plane-mechanisms",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A planar closed kinematic chain is formed with rigid links $$PQ = 2.0 m, QR = 3.0 m, RS = 2.5 m$$ and $$SP = 2.7 m$$ with all revolute joints. The link to be fixed to obtain a double rocker (rocker-rocker) mechanism is  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$PQ$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$QR$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$RS$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$SP$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-planar-closed-kinematic-chain-is-formed-with-rigid-links-p-gate-me-2013-marks-1-pw8orngqd2i5h34j.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "efVSFvFnefanoJ99",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "gears-and-gear-trains",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A compound gear train with gears P, Q, R and S has number of teeth 20, 40, 15 and 20, respectively. Gears Q and R are mounted on the same shaft as shown in the figure below. The diameter of the gear Q is twice that of the gear R. If the module of the gear R is 2 mm, the center distance in mm between gears P and S is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/nLive8WkpgBVYu6ro/VGjnpqJ7OrP4qjPLnR6zEg2l2tbMr/gu03lpdXw7KSDhC76UQpxz/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2013 Theory of Machines - Gears and Gear Trains Question 13 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "40 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "80 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "120 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "160"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-compound-gear-train-with-gears-p-q-r-and-s-has-number-of-t-gate-me-2013-marks-2-efvsfvfnefanoj99.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rYjIDTzuSVz3X6wt",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "flywheel",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A flywheel connected to a punching machine has to supply energy of $$400$$  Nm while running at a mean angular speed of $$20$$ rad/s. If the total fluctuation of speed is not to exceed $$ \\pm 20\\% $$, the mass moment of inertia of the flywheel in kg-m<sup>2</sup> is \n ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$25$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$50$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$100$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$125$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-flywheel-connected-to-a-punching-machine-has-to-supply-ene-gate-me-2013-marks-2-ryjidtzusvz3x6wt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cHYQVhN3ICEDmyxO",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vibrations",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If two nodes are observed at a frequency of $$1800$$ rpm during whirling of a simply supported long slender rotating shaft, the first critical speed of the shaft in rpm is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$200$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$450$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$600$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$900$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-two-nodes-are-observed-at-a-frequency-of-1800-rpm-during-gate-me-2013-marks-1-chyqvhn3icedmyxo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZDa9dO8if0DRPgEO",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vibrations",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single degree of freedom system having mass $$1$$ $$kg$$ and stiffness $$10$$ $$kN/m$$ initially at rest is subjected to an impulse force of magnitude $$5$$ $$kN$$ for $${10^{ - 4}}$$ seconds. The amplitude in $$mm$$ of the resulting free vibration is \n ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$5.0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$10.0$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-single-degree-of-freedom-system-having-mass-1-kg-and-stiff-gate-me-2013-marks-2-zda9do8if0drpgeo.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                }
+            ],
+            "title": "Theory of Machines"
+        },
+        {
+            "_id": "Thermodynamics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "maqtavOjxl3EtZIA",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "first-law-of-thermodynamics",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Specific enthalpy and velocity of steam at inlet and exit of a steam turbine, running under steady state, are as given below: \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/TsZ3qzejLUWiGzvgN/0eY0dqKgfEcUayp9sVc42ssxcg3dF/rxW0uFGMQJD1hObEj9OhAb/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2013 Thermodynamics - First Law of Thermodynamics Question 14 English\"> \n<p>The rate of heat loss from the turbine per $$kg$$ of steam flow rate is $$5$$ $$kW.$$ Neglecting changes in potential energy of steam, the power developed in $$kW$$ by the steam turbine per $$kg$$ of steam flow rate, is</p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$901.2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$911.2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$17072.5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$17082.5$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "specific-enthalpy-and-velocity-of-steam-at-inlet-and-exit-of-gate-me-2013-marks-2-maqtavojxl3etzia.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8wG34gshj5Krq6V6",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculation-of-work-and-heat",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A cylinder contains $$5\\,\\,{m^3}$$ of an ideal gas at a pressure of $$1$$ bar. This gas is compressed in a reversible isothermal process till its pressure increases to $$5$$ bar. The work in $$kJ$$ required for this process is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$804.7$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$953.2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$981.7$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1012.2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cylinder-contains-5m3-of-an-ideal-gas-at-a-pressure-of-1-b-gate-me-2013-marks-1-8wg34gshj5krq6v6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QjNdHKjeYtZwRtEQ",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "availability",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The pressure, temperature and velocity of air flowing in a pipe are $$5$$ $$bar,$$ $$500$$ $$K$$ and $$50$$ $$m/s,$$ respectively. The specific heats of air at constant pressure and at constant volume are $$1.005kJ/kgK$$  and $$0.718$$ $$kJ/kgK,$$ respectively. Neglect potential energy. If the pressure and temperature of the surroundings are $$1$$ bar and $$300$$ $$K,$$ respectively, the available energy in $$kJ/kg$$ of the air stream is \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$170$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$187$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$191$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$213$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-pressure-temperature-and-velocity-of-air-flowing-in-a-pi-gate-me-2013-marks-2-qjndhkjeytzwrteq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                }
+            ],
+            "title": "Thermodynamics"
+        },
+        {
+            "_id": "Turbo Machinery",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LZc4srErTYf6Exnr",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "turbo-machinery",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "turbo-machinery",
+                    "year": 2013,
+                    "paperTitle": "GATE ME 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In order to have maximum power from a Pelton turbine, the bucket speed must be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "equal to the jet speed. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "equal to half of the jet speed. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "equal to twice the jet speed. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "independent of the jet speed. "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-order-to-have-maximum-power-from-a-pelton-turbine-the-buc-gate-me-2013-marks-1-lzc4srertyf6exnr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2013"
+                }
+            ],
+            "title": "Turbo Machinery"
+        }
+    ]
+}

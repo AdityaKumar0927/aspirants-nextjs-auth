@@ -1,0 +1,2562 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Analog Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rgnsqe9oVdgv6lls",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "feedback-amplifiers-and-oscillator-circuits",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given figure shows a two stage small signal transistor feedback amplifier. Match the defective component (listed on the left hand side below) with its probable effect on the circuit (listed below)\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/2Y5s57pNlbHwGdhyI/P4S5qwPzMNcPGuu8Iy8W5tfYp8R5g/b9ALchFNeQ8PK6vjjslQ8U/image.png\" loading=\"lazy\" alt=\"GATE EE 1994 Analog Electronics - Feedback Amplifiers and Oscillator Circuits Question 1 English\"> \n<p><b>List - $${\\rm I}$$</b>\n<br>$$A.$$ Capacitor $${C_1}$$ is open\n<br>$$B.$$ Capacitor $${C_3}$$ is open\n<br>$$C.$$ Capacitor $${C_4}$$ is open\n<br>$$D.$$ $$R{C_2}$$ is shorted</p>\n<p><b>List - $${\\rm II}$$</b>\n<br>$$P.$$ All $$dc$$ voltages normal, $${V_0}$$ increases marginally\n<br>$$Q.$$ Collector of $$T{R_2}$$ at $${V_{cc}},\\,\\,{V_0} = 0$$\n<br>$$R.$$ All $$dc$$ voltages normal, gain of $${2^{nd}}$$ stage decreases, $${V_0}$$ decreases.\n<br>$$S.$$ All $$dc$$ voltage normal, $${V_0} = 0$$\n<br>$$T.$$ All $$dc$$ voltages normal, overall gain of the amplifier increases, $${V_0}$$ increase\n<br>$$U.$$ No change</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$A - S,\\,\\,B - R,\\,\\,C - T$$ and $$D - Q$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-figure-shows-a-two-stage-small-signal-transistor-feedb-1994-marks-1-rgnsqe9ovdgv6lls.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Ss7HRK3HuRqESZg4",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Figure below shows an op-amp amplifier. Find the output voltage in steady state condition where $$(i)$$ switch is open $$(ii)$$ $$S$$ is closed\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/FPSmziuSb18mzjgPh/Zl9PZzuZjv8VYxJyTQWjHPBp7Pk1R/FlbD6RV1CczLhZWLVs3Dwv/image.png\" loading=\"lazy\" alt=\"GATE EE 1994 Analog Electronics - Operational Amplifier Question 9 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$(i)$$ $$\\,\\,\\,\\,\\,{V_0} =  - 2\\,\\,Volts$$ \n<br>$$(ii)$$ $$\\,\\,\\,\\,\\,{V_0} =  - 2\\,\\,Volts$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "figure-below-shows-an-op-amp-amplifier-find-the-output-volt-1994-marks-5-ss7hrk3hurqeszg4.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xtE7HSKgwBemfwx6",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "feedback-amplifiers-and-oscillator-circuits",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A practical $$R$$-$$C$$ sinusoidal oscillator is built using a positive feedback amplifier with a closed loop gain slightly less than unity.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-practical-r-c-sinusoidal-oscillator-is-built-using-1994-marks-1-xte7hskgwbemfwx6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AJqd2iaf4qTRkaRL",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bjt-and-mosfet-biasing",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the transistor circuit shown in figure. Collector to ground voltage is $$+20V.$$ Which of the following is the probable cause of error?\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/a8l3fTujFAOXSC9p6/hExsXHuMHACjAWR5vyNwQWfuQ7qae/X0Cv6Snf5tqij4xVh6770V/image.svg\" loading=\"lazy\" alt=\"GATE EE 1994 Analog Electronics - Bjt and Mosfet Biasing Question 8 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Collector Emitter terminals shorted "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Emitter to ground connection open "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$10\\,\\,k\\Omega $$ resistor open "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Collector base terminals shorted "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-transistor-circuit-shown-in-figure-collector-to-groun-gate-ee-1994-marks-1-ajqd2iaf4qtrkarl.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GDqjqXXlUlfZ6ap5",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given figure, shows a non - inverting op - amp summer with $${V_1} = 2\\,V$$ and $${V_2} = \\, - 1V.$$ The output voltage $${V_0} = \\_\\_\\_\\_\\_$$ \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/BqEcoazNTTfqnsJun/JgCmqhphiPiI3t2jcnlwYleiFDfj6/SbrJN6PtitUYiCaBpzicCz/image.svg\" loading=\"lazy\" alt=\"GATE EE 1994 Analog Electronics - Operational Amplifier Question 52 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$1$$ $$V$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-figure-shows-a-non-inverting-op-amp-summer-with-v1-2v-gate-ee-1994-marks-1-gdqjqxxlulfz6ap5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                }
+            ],
+            "title": "Analog Electronics"
+        },
+        {
+            "_id": "Control Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "I2POkZzHjY2w7blx",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "controller-and-compensator",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A differentiator has transfer function whose ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "phase increases linearly with frequency "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "amplitude remains constant "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "amplitude increases linearly with frequency "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "amplitude  decreases linearly with frequency "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-differentiator-has-transfer-function-whose-gate-ee-1994-marks-1-i2pokzzhjy2w7blx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "u78jb6R7ZSXROCRN",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "controller-and-compensator",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The pole $$-$$ zero configuration of a phase lead compensator is given by\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/vzXfAuLiaGKqvy1Ic/nyripCw3niKE6oFZx2YMOgOCGoQGm/JyMMpbGO2bHsK3jx1oMUgk/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 1994 Control Systems - Controller and Compensator Question 2 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/JMhSZoMEeLWKNPEAZ/M1D2L3nLJArWS7OYmzwgW88roj0vr/ZFOeGN5Abhk1PVX0YiTJBy/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 1994 Control Systems - Controller and Compensator Question 2 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/wsLpI4ftP26fQGXI6/kr3RyVMSYjm9kP2lZn9qGlKr75q3s/XenSJVAms8oPqZ5MzQ6IBy/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 1994 Control Systems - Controller and Compensator Question 2 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/heYTTSxWA3ku3JTno/3FA3k291HRtE8RAQMFRtep14YzbIF/zNpx58DkLA3ZAPQ5XsXPEN/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 1994 Control Systems - Controller and Compensator Question 2 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-pole-zero-configuration-of-a-phase-lead-compensator-is-g-gate-ee-1994-marks-1-u78jb6r7zsxrocrn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OMl2WreKL54OjjjC",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "state-variable-analysis",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The matrix of any state space equations for the transfer function $$C(s)/R(s)$$ of the system, shown below in. Figure is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/H5Oe7fRoZmzNdfxaS/qtTCYXn8Cf3FHkoRLSfcUTkPEw4s1/ONRdEqlmoFiCk9dOjkMSTY/image.svg\" loading=\"lazy\" alt=\"GATE EE 1994 Control Systems - State Variable Analysis Question 2 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {\\matrix{\n   { - 1} &amp; 0  \\cr \n   0 &amp; 1  \\cr \n\n } } \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {\\matrix{\n   1 &amp; 0  \\cr \n   0 &amp; { - 1}  \\cr \n\n } } \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left[ { - 1} \\right]$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left[ {  3} \\right]$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-matrix-of-any-state-space-equations-for-the-transfer-fun-gate-ee-1994-marks-1-oml2wrekl54ojjjc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "G4KVJTosU8eGsWla",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "routh-hurwitz-stability",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The closed loop system , of Figure, is stable if the transfer function $$T\\left( s \\right) = {{C\\left( s \\right)} \\over {R\\left( s \\right)}}$$ is stable. \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/QMICTuUC84OfjaeCb/kOsBey3G9McFiYammawBQMFmxHFiu/vUM0AeZLUvrCm5o1POTUPZ/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 1994 Control Systems - Routh Hurwitz Stability Question 2 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-closed-loop-system-of-figure-is-stable-if-the-transfer-f-gate-ee-1994-marks-1-g4kvjtosu8egswla.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Mcs01QV4kVb7zO2E",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "routh-hurwitz-stability",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of positive real roots of the equation $${s^3} - 2s + 2 = 0$$ is __________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-positive-real-roots-of-the-equation-s3-2s-2-0-gate-ee-1994-marks-1-mcs01qv4kvb7zo2e.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                }
+            ],
+            "title": "Control Systems"
+        },
+        {
+            "_id": "Digital Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tZIzauUxRnBb772k",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analog-to-digital-and-digital-to-analog-converter",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of comparisons carried out in a $$4$$-bit flash type $$A/D$$ converter is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$16$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$15$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-comparisons-carried-out-in-a-4-bit-flash-t-1994-marks-1-tzizauuxrnbb772k.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "g3lONgRDoaF5l4Jg",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "microprocessor",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The contents of the accumulator in an $$8085$$ microprocessor is altered after the execution of the instruction.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$CMP$$ $$C$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$CPI$$ $$3A$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$ANI$$ $$5C$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ORA$$ $$A$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-contents-of-the-accumulator-in-an-8085-microprocesso-1994-marks-1-g3longrdoaf5l4jg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uSbV0vvLNLbUiTBj",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "microprocessor",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The stack pointer of a microprocessor is at $$A001H.$$ At the end of execution of following instructions, the value of stack pointer is _____________\n<br>$$\\eqalign{\n  &amp; PUSH\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,PSW  \\cr \n  &amp; XTHL  \\cr \n  &amp; PUSH\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,D  \\cr \n  &amp; JMP\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,FC70H \\cr} $$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$9FFDH$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-stack-pointer-of-a-microprocessor-is-at-a001h-at-th-1994-marks-2-usbv0vvlnlbuitbj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                }
+            ],
+            "title": "Digital Electronics"
+        },
+        {
+            "_id": "Electric Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AjzUDuE9P82uoEdd",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Figure shows $$a$$ $$b$$ $$c$$. resistive network and its graph is drawn aside. $$A$$ 'proper tree' chosen for analyzing the network will contain the edges :\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/OHQWnreoUOXO7AwEs/ENEu2zceR2v3zsqS5U0hfPw3vVfHL/Rtng1EcR7Z7sjj60UjKFNS/image.png\" loading=\"lazy\" alt=\"GATE EE 1994 Electric Circuits - Graph Theory Question 3 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$ab, bc, ad$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$ab, bc, ca$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$ab, bd, cd$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ac, bd, ad$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "figure-shows-a-b-c-resistive-network-and-its-gr-1994-marks-1-ajzudue9p82uoedd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gzCNWt8fXMbAgJqx",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-analysis",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "At resonance, the given parallel circuit constituted by an iron - cored coil and a capacitor behaves like\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/FcsN3i8YhyB6fEx8p/qXolT4FYBijVESi80OxWXwMckk3Xy/CrV4mac6ptTFpUhV1De27U/image.png\" loading=\"lazy\" alt=\"GATE EE 1994 Electric Circuits - Sinusoidal Steady State Analysis Question 37 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "an open - circuit"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a short - circuit "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "a pure resistor of value $$R$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a pure resistor of value much higher than $$R$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "at-resonance-the-given-parallel-circuit-constituted-by-an-i-1994-marks-1-gzcnwt8fxmbagjqx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iN1sOWx9pG6TXTkO",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-analysis",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the given circuit, the voltage $$\\overline {{V_L}} $$ has a phase angle of ____________ with respect to $$\\overline {{V_S}} .$$ \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/YqUX64bXpOEtmdHC7/fO2di8WjUakTuZDs5Hxmn3ieMQ6Pb/mqGG8TK9em8aqWpmP7TpVc/image.png\" loading=\"lazy\" alt=\"GATE EE 1994 Electric Circuits - Sinusoidal Steady State Analysis Question 13 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${60^ \\circ }$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-given-circuit-the-voltage-overline-vl-has-1994-marks-2-in1sowx9pg6txtko.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hIvK1zuhfqk3fS3U",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "three-phase-circuits",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A set of $$3$$ equal resistors, each of value $${R_X},$$ connected in star across $$RYB$$ of given Fig. consumes the same power as the unbalanced delta-connected load shown. The value of $${R_X}$$ is _____________ $$\\Omega .$$ \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/OnEkTHTmFMsOyBkwI/TdVFaavs1YfjyJKlQ3YUeObv2TK7u/DMsmvMCctTMZRgDWVOM82r/image.png\" loading=\"lazy\" alt=\"GATE EE 1994 Electric Circuits - Three Phase Circuits Question 9 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "100",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-set-of-3-equal-resistors-each-of-value-rx-con-1994-marks-2-hivk1zuhfqk3fs3u.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8c949e83d2d",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "two-port-networks",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If a two-port network is passive, then we have, with the usual notation, the following relationship",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$h_{12}=h_{21}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$h_{12}=-h_{21}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$h_{11}=h_{22}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$h_{11}h_{22}-h_{12}h_{21}=1$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-a-two-port-network-is-passive-then-we-have-with-the-usual-gate-ee-1994-marks-1-5a8c949e83d2d.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a89b2387abb7",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-theorems",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Superposition principle is not applicable to a network containing time-varying registors.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "superposition-principle-is-not-applicable-to-a-network-conta-gate-ee-1994-marks-1-5a89b2387abb7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                }
+            ],
+            "title": "Electric Circuits"
+        },
+        {
+            "_id": "Electrical and Electronics Measurement",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kO6aLGQ5npSbTLsq",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "error-analysis-and-measurement",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A precise measurement guarantees accuracy of the measured quantity. ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-precise-measurement-guarantees-accuracy-of-the-measured-qu-gate-ee-1994-marks-1-ko6algq5npsbtlsq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0jYIWMby2KNTD8Y4",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-indicating-instruments",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$0$$-$$10$$ $$mA$$ $$PMMC$$ ammeter reads $$4$$ $$mA$$ in a circuit. Its bottom control spring snaps suddenly. The meter will now read nearly ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$10$$ $$mA$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$8$$ $$mA$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2$$ $$mA$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "zero "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-0-10-ma-pmmc-ammeter-reads-4-ma-in-a-circuit-its-bottom-co-gate-ee-1994-marks-1-0jyiwmby2kntd8y4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dsccg939ePW9hAUF",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "potentiometer-and-instrument-transformers",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A d.c. potentiometer is designed to measure up to about $$2$$ $$V$$ with a slide wire of $$800$$ mm. A standard cell of emf $$1.18V$$ obtains balance at $$600$$ mm. A test cell is seen to obtain balance at $$680$$ mm. The emf of the test cell is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.00V$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.34V$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.50V$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1.70V$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-dc-potentiometer-is-designed-to-measure-up-to-about-2-v-wi-gate-ee-1994-marks-2-dsccg939epw9hauf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JQ7CMDK7IUHJB9ET",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "cathode-ray-oscilloscope",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A lissajous pattern, as shown in figure below, is observed on the screen of a $$CRO$$ when voltages of frequencies $${f_x}$$ and $${f_y}$$ are applied to the $$x$$ and $$y$$ plates respectively. $${f_x}:{f_y}$$ is then equal to \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/SKpNno7z7xdfI8LGR/LkOCAclNXZ43WChvSGWTUPDpJk3lX/YxPCBNqC9H9qvPkzoCUIK3/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 1994 Electrical and Electronics Measurement - Cathode Ray Oscilloscope Question 17 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3:2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1:2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2:3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2:1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-lissajous-pattern-as-shown-in-figure-below-is-observed-on-gate-ee-1994-marks-1-jq7cmdk7iuhjb9et.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                }
+            ],
+            "title": "Electrical and Electronics Measurement"
+        },
+        {
+            "_id": "Electrical Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gVhNQC1EgVPgboH1",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "induction-machines",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Skew is used in induction motors in order to reduce torque due to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "time harmonics "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "space harmonics "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "slot harmonics "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "reverse rotating fields"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "skew-is-used-in-induction-motors-in-order-to-reduce-torque-d-1994-marks-1-gvhnqc1egvpgboh1.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "IyVIjzoGXT2VG0KJ",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "When a transformers winding suffers a short-circuit, the adjoining turns of the same winding experience  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "an attractive force "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a repulsive force "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "no force "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "none of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "when-a-transformers-winding-suffers-a-short-circuit-the-adj-1994-marks-1-iyvijzogxt2vg0kj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UIk3a9QT4Af3m32u",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two transformers of identical voltage but of different capacities are operating in parallel. For satisfactory load sharing ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "impedances must be equal "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "per-unit impedances must be equal "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "per-unit impedances and $${X \\over R}$$ ratios must be equal "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "impedances and $${X \\over R}$$ ratios must be equal "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-transformers-of-identical-voltage-but-of-different-capac-1994-marks-1-uik3a9qt4af3m32u.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                }
+            ],
+            "title": "Electrical Machines"
+        },
+        {
+            "_id": "Electromagnetic Fields",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "k2p2dGlRMqylvvyr",
+                    "exam": "gate-ee",
+                    "marks": 4,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetic-fields",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "time-varying-fields",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the following List-$${\\rm I}$$ with List-$${\\rm II}$$ \n<p><b>List $$-$$ $${\\rm I}$$</b>\n<br>$$(a)$$ Line charge\n<br>$$(b)$$ Magnetic Flux Density\n<br>$$(c)$$ Displacement current\n<br>$$(d)$$ Power flow</p>\n<p><b>List $$-$$ $${\\rm II}$$</b>\n<br>$$(P)$$ Maxwell's\n<br>$$(Q)$$ Poynting vector\n<br>$$(R)$$ Transmission line conductors\n<br>$$(S)$$ Biot-Savart's law\n<br>$$(T)$$Gauss's law\n<br>$$(U)$$ Faraday's law</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$a - R,\\,\\,b - S,\\,\\,c - P,\\,\\,d - Q$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-following-list-rm-i-with-list-rm-ii-1994-marks-4-k2p2dglrmqylvvyr.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8d7ea7d7581",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetic-fields",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "electrostatics",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In electrostatic field $$\\nabla\\times\\overrightarrow E\\equiv0$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-electrostatic-field-nablatimesoverrightarrow-eequiv0-gate-ee-1994-marks-1-5a8d7ea7d7581.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8eaede4ae43",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetic-fields",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "magnetostatics",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Static magnetic fields induce currents in closed conducting loops.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "static-magnetic-fields-induce-currents-in-closed-conducting-gate-ee-1994-marks-1-5a8eaede4ae43.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                }
+            ],
+            "title": "Electromagnetic Fields"
+        },
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dD8MhgCeBCfUVj7Y",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$A$$ $$\\,\\,5 \\times 7$$ matrix has all its entries equal to $$1.$$ Then the rank of a matrix is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$7$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$5$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Zero "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-5-times-7-matrix-has-all-its-entries-equal-to-1-then-the-r-gate-ee-1994-marks-1-dd8mhgcebcfuvj7y.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YeY6vG87ROzDau6m",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The eigen values of the matrix $$\\left[ {\\matrix{\n   a &amp; 1  \\cr \n   a &amp; 1  \\cr \n\n } } \\right]$$ are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$(a+1),0$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$a,0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$(a-1),0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0,0$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-eigen-values-of-the-matrix-left-matrix-a-1-cr-a-1-cr-rig-gate-ee-1994-marks-1-yey6vg87rozdau6m.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "m1Pjf1g3m4jHYeY8",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of linearly independent solutions of the system of equations \n<br>$$\\left[ {\\matrix{\n   1 &amp; 0 &amp; 2  \\cr \n   1 &amp; { - 1} &amp; 0  \\cr \n   2 &amp; { - 2} &amp; 0  \\cr \n\n } } \\right]\\,\\,\\left[ {\\matrix{\n   {{x_1}}  \\cr \n   {{x_2}}  \\cr \n   {{x_3}}  \\cr \n\n } } \\right] = 0$$ is equal to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-linearly-independent-solutions-of-the-system-o-gate-ee-1994-marks-1-m1pjf1g3m4jhyey8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oAMucw6Hlr00nL6i",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The integration of $$\\int {{\\mathop{\\rm logx}\\nolimits} \\,dx} $$ has the value ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {x\\log x - 1} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\log x - x}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$x\\left( {\\log x - 1} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-integration-of-int-mathoprm-logxnolimits-dx-has-the-valu-gate-ee-1994-marks-1-oamucw6hlr00nl6i.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QrUupRTEhScRohAy",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The volume generated by revolving the area bounded by the parabola $${y^2} = 8x$$ and the line $$x=2$$ about $$y$$-axis is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{128\\pi } \\over 5}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${5 \\over {128\\pi }}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{127} \\over {5\\pi }}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-volume-generated-by-revolving-the-area-bounded-by-the-pa-gate-ee-1994-marks-1-qruuprtehscrohay.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ctWSE6oHY7hmXuZJ",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The directional derivative of $$f\\left( {x,y} \\right) = 2{x^2} + 3{y^2} + {z^2}\\,\\,$$ at point $$P\\left( {2,1,3} \\right)\\,\\,$$ in the direction of the vector $$\\,\\,a = \\overrightarrow i  - 2\\overrightarrow k \\,\\,$$  is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$4/\\sqrt 5 $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-$$ $$4/\\sqrt 5 $$  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\sqrt 5 /4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$-$$ $$\\sqrt 5 /4$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-directional-derivative-of-fleft-xy-right-2x2-3y2-z2-at-p-gate-ee-1994-marks-1-ctwse6ohy7hmxuzj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Power Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kKhsj8jWxoppZp1n",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "power-semiconductor-devices",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A switched mode power supply operating at $$20$$ $$kHz$$ to $$100$$ $$kHz$$ range uses as the main switching element ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Thysistor "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$MOSFET$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Triac "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$UJT$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-switched-mode-power-supply-operating-at-20-khz-to-100-khz-gate-ee-1994-marks-1-kkhsj8jwxoppzp1n.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wALGQVhCWkkinGzf",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "power-semiconductor-devices",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A triac can be triggered by a gate pulse of __________ polarity",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "either positive or negative",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-triac-can-be-triggered-by-a-gate-pulse-of-polarity-gate-ee-1994-marks-1-walgqvhcwkkingzf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KWdA00JsSfb1irbu",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "single-and-three-phase-rectifier",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The output voltage of a six - pulse double star rectifier is the same as that of a three - phase half wave rectifier",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-output-voltage-of-a-six-pulse-double-star-rectifier-is-t-gate-ee-1994-marks-1-kwda00jssfb1irbu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VHPknwiJyhbVGoCU",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "choppers-and-commutation-techniques",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the following\n<p><b>List $$-$$ $${\\rm I}$$</b>\n<br>$$A.$$ Commutation\n<br>$$B.$$ $$V$$ $$-$$ Curves\n<br>$$C.$$ Free wheeling diode\n<br>$$D.$$ Overlap</p>\n<p><b>List $$-$$ $${\\rm II}$$</b>\n<br>$$P.$$ Resistive load\n<br>$$Q.$$ Inductive load\n<br>$$R.$$ Capacitive load\n<br>$$S.$$ Inter pole\n<br>$$T.$$ Source Inductance\n<br>$$U.$$ Synchronous motor</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$A - S,\\,\\,B - U,\\,\\,C - Q,\\,\\,D - T$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-followinglist-rm-ia-commutationb-v-curvesc-free-wh-gate-ee-1994-marks-1-vhpknwijyhbvgocu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6z34wTIAXzC27W7k",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "single-and-three-phase-rectifier",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Referring to the figure the type of load is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/WrprdXTRFL3p3QtA0/SfbXUVjz7RaEMMP47RIRRNFBdbikz/OX8oCLxHkayTlprsC5Hk8Q/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 1994 Power Electronics - Single and Three Phase Rectifier Question 18 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Inductive load "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Resistive load "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "DC motor "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Capacitive load "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "referring-to-the-figure-the-type-of-load-is-gate-ee-1994-marks-1-6z34wtiaxzc27w7k.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ep4livJIwrvKDj01",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "inverters",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A line - commutated inverter changes $$dc$$ voltage to $$ac$$ voltage",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-line-commutated-inverter-changes-dc-voltage-to-ac-voltage-gate-ee-1994-marks-1-ep4livjiwrvkdj01.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "umvS82GQ973hzwHa",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "ac-voltage-controllers",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Thysistor circuits that directly convert poly phase $$ac$$ voltage  from one frequency to another frequency are called _______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Cyclo Converters",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "thysistor-circuits-that-directly-convert-poly-phase-ac-volta-gate-ee-1994-marks-1-umvs82gq973hzwha.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                }
+            ],
+            "title": "Power Electronics"
+        },
+        {
+            "_id": "Power System Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uzDVEtGJcp94webw",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The charging current of a $$400$$ kV transmission line is more than that of a $$220$$ kV line of the same length. ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-charging-current-of-a-400-kv-transmission-line-is-more-t-gate-ee-1994-marks-2-uzdvetgjcp94webw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7Jqj9XQYYU9CiMHT",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a $$400$$ kV network, $$360$$ kV is recorded at a $$400$$ kV bus. The reactive power absorbed by a shunt reactor rated for $$50$$ MVAR, $$400$$ kV connected at the bus is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$61.73$$ MVAR "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$55.56$$ MVAR "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$45$$ MVAR "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$40.5$$ MVAR "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-400-kv-network-360-kv-is-recorded-at-a-400-kv-bus-the-r-gate-ee-1994-marks-1-7jqj9xqyyu9cimht.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4ucFWfda77UYzA1A",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a three-phase, $$50$$ $$Hz$$, $$11$$ $$kV$$ distribution system. Each of the conductors is suspended by an insulator string having two identical porcelain insulators. The self capacitance of the insulator is $$5$$ times shunt capacitance. The voltage drop  across botton most disc is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3.46$$ $$kV$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$34.6$$ $$kV$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$346$$ $$kV$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-three-phase-50-hz-11-kv-distribution-system-each-gate-ee-1994-marks-2-4ucfwfda77uyza1a.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dYHZciStRYArMpZG",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The increase in resistance due to non-uniform distribution of current in a conducto $$r$$ is known as _______effect",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Skin effect",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-increase-in-resistance-due-to-non-uniform-distribution-o-gate-ee-1994-marks-5-dyhzcistryarmpzg.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8n2JQinQHyQkywUK",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "power-system-stability",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a system, there are two generators operating in parallel. One generator, of rating 250 MVA, has an inertia-constant of 6 MJ/MVA while the other generator of 150 MVA has an inertia-constant of 4 MJ/MVA. The inertia-constant for the combined system on 100 MVA common base is ________MJ/MVA.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "21 to 21",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-system-there-are-two-generators-operating-in-parallel-o-gate-ee-1994-marks-5-8n2jqinqhyqkywuk.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SW7MZch8aVV9G8Dd",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "symmetrical-components-and-symmetrical-and-unsymmetrical-faults",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a power-system, the $$3$$-phase fault MVA is always higher than the single-line-ground fault MVA at a bus (State True or False)",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-power-system-the-3-phase-fault-mva-is-always-higher-tha-gate-ee-1994-marks-5-sw7mzch8avv9g8dd.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lvJdc6R521bOejmL",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "high-voltage-dc-transmission",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "HVDC transmission is preferred to EHV __ AC because",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "HVDC terminal equipment are inexpensive"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "VAR compensation is not required in  HVDC systems"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "System stability can be improved."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Harmonics __ problem is avoided "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "hvdc-transmission-is-preferred-to-ehv-ac-because-gate-ee-1994-marks-1-lvjdc6r521boejml.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                }
+            ],
+            "title": "Power System Analysis"
+        },
+        {
+            "_id": "Signals and Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZSfJBvODwU0wz9ye",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-time-invariant-systems",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$f(t)$$ is the step-response of a linear time-invariant system, then its impulse response is given by ___________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$h\\left( t \\right) = {{df\\left( t \\right)} \\over {dt}}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-ft-is-the-step-response-of-a-linear-time-invariant-1994-marks-1-zsfjbvodwu0wz9ye.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8ff79e5e24f",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-and-discrete-time-signals",
+                    "year": 1994,
+                    "paperTitle": "GATE EE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of the integral $$\\int_{-5}^{+6}e^{-2t}\\delta\\left(t-1\\right)dt$$ is equal to ________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$e^{-2}$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-the-integral-int-56e-2tdeltaleftt-1rightdt-is-e-gate-ee-1994-marks-1-5a8ff79e5e24f.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1994"
+                }
+            ],
+            "title": "Signals and Systems"
+        }
+    ]
+}

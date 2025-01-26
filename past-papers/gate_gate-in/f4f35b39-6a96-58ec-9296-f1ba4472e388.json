@@ -1,0 +1,571 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "l4OUjz1dUFQ5ZSd6",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2007,
+                    "paperTitle": "GATE IN 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$A = \\left[ {{a_{ij}}} \\right],\\,\\,1 \\le i,j \\le n$$ with $$n \\ge 3$$ and \n<br>$${{a_{ij}} = i.j.}$$ Then the rank of $$A$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$n-1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$n$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-a-left-aij-right1-le-ij-le-n-with-n-ge-3-and-aij-ij-then-gate-in-2007-marks-1-l4oujz1dufq5zsd6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dJgaRgFp16iKD7Zj",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2007,
+                    "paperTitle": "GATE IN 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$A$$ be $$n \\times n$$ real matrix such that $${A^2} = {\\rm I}$$ and $$Y$$ be an $$n$$-diamensional vector. Then the linear system of equations $$Ax=y$$ has ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "no solution "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "unique solution "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "more than one but infinitely many dependent solutions. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Infinitely many dependent solutions "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-a-be-n-times-n-real-matrix-such-that-a2-rm-i-and-y-be-an-gate-in-2007-marks-2-djgargfp16ikd7zj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bmQorDoojUpvnTPH",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2007,
+                    "paperTitle": "GATE IN 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For real $$x,$$ the maximum value of $${{{e^{Sin\\,x}}} \\over {{e^{Cos\\,x}}}}\\,\\,$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$e$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${e^{\\sqrt 2 }}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ \\propto $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-real-x-the-maximum-value-of-esinx-over-ecosx-is-gate-in-2007-marks-1-bmqordoojupvntph.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7OxmdhKbWdOSLbF7",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2007,
+                    "paperTitle": "GATE IN 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the function $$\\,\\,f\\left( x \\right) = {\\left| x \\right|^3},\\,\\,\\,$$ where $$x$$ is real. Then the function $$f(x)$$ at $$x=0$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "continuous but not differentiable "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "once differentiable  but not twice."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "twice differentiable  but not thrice. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "thrice differentiable "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-function-fleft-x-right-left-x-right3-where-x-is-gate-in-2007-marks-1-7oxmdhkbwdoslbf7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "x0TcRl9Mp7jy9win",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2007,
+                    "paperTitle": "GATE IN 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of $$\\,\\int\\limits_0^\\infty  {\\int\\limits_0^\\infty  {{e^{ - {x^2}}}{e^{ - {y^2}}}} dx\\,dy\\,\\,\\,\\,} $$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{\\sqrt \\pi  } \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\sqrt \\pi  }$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\pi $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\pi  \\over 4}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-intlimits0infty-intlimits0infty-e-x2e-y2-dxdy-i-gate-in-2007-marks-1-x0tcrl9mp7jy9win.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sf79SRV14ieljhlq",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2007,
+                    "paperTitle": "GATE IN 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Assume that the duration in minutes of a telephone conversation follows the exponential distribution $$\\,f\\left( x \\right) = {1 \\over 5}{e^{ - x/5}},\\,x \\ge 0.\\,\\,\\,$$  The probability that the conversation will exceed five minutes is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over e}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1 - {1 \\over e}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${1 \\over {{e^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1 - {1 \\over {{e^2}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "assume-that-the-duration-in-minutes-of-a-telephone-conversat-gate-in-2007-marks-1-sf79srv14ieljhlq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XqRwOx4pQ71kqATH",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2007,
+                    "paperTitle": "GATE IN 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the function $${{\\sin z} \\over {{z^3}}}$$ of a complex variable z, the point z = 0 is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a pole of order 3"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a pole of order 2"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "a pole of order 1"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "not a singularity"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-function-sin-z-over-z3-of-a-complex-variable-z-the-p-gate-in-2007-marks-1-xqrwox4pq71kqath.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9t7GxCCud0qAm28T",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2007,
+                    "paperTitle": "GATE IN 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$j\\, = \\,\\sqrt { - 1} $$. Then one value of $${j^j}$$ is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\sqrt 3 $$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "-1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{\\sqrt 3 } \\over 2}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${e^{ - {\\pi  \\over 2}}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-j-sqrt-1-then-one-value-of-jj-is-gate-in-2007-marks-1-9t7gxccud0qam28t.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LsipaYJ2KLVDYknZ",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2007,
+                    "paperTitle": "GATE IN 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The polynomial $$\\,p\\left( x \\right) = {x^5} + x + 2\\,\\,$$ has ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "all real roots "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3$$ real and $$2$$ complex roots "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1$$ real and $$4$$ complex roots "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "all complex roots "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-polynomial-pleft-x-right-x5-x-2-has-gate-in-2007-marks-1-lsipayj2klvdyknz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2007"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ltoUJCPmGFm8iTnV",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2007,
+                    "paperTitle": "GATE IN 2007",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Identity the Newton $$-$$ Raphson iteration scheme for the finding the square root of $$2$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${x_{n + 1}} = {1 \\over 2}\\left( {{x_n} + {2 \\over {{x_n}}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${x_{n + 1}} = {1 \\over 2}\\left( {{x_n} - {2 \\over {{x_n}}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${x_{n + 1}} = {2 \\over {{x_n}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${x_{n + 1}} = \\sqrt {2 + {x_n}} $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "identity-the-newton-raphson-iteration-scheme-for-the-finding-gate-in-2007-marks-1-ltoujcpmgfm8itnv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2007",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2007"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        }
+    ]
+}

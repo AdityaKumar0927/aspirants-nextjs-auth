@@ -1,0 +1,1128 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Xm8ox3EnqQhmLHQN",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The inverse Laplace transform of $${{\\left( {s + 9} \\right)} \\over {\\left( {{s^2} + 6s + 13} \\right)}}$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\cos \\,2t + 9\\,\\sin \\,2t$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${e^{ - 3t}}\\,\\cos 2t - 3\\,{e^{ - 3t}}\\sin \\,2t$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${e^{ - 3t}}\\,\\sin 2t + 3\\,{e^{ - 3t}}\\cos \\,2t$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${e^{ - 3t}}\\,\\cos 2t + 3\\,{e^{ - 3t}}\\sin \\,2t$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-inverse-laplace-transform-of-left-s-9-right-over-left-s2-gate-ce-1995-marks-1-xm8ox3enqqhmlhqn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Vf9U89ZFsuZFw8gm",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$\\,\\,f\\left( x \\right) = x - \\cos \\,x.\\,\\,\\,$$  Using Newton-Raphson method at the $$\\,{\\left( {n + 1} \\right)^{th}}$$ iteration, the point $$\\,{x_{n + 1}}$$ is computed from $${x_n}$$ as ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${X_{n + 1}} = {X_n} - {{\\left[ {{X_n} - \\cos \\left( {{X_n}} \\right)} \\right]} \\over {\\left[ {1 + \\sin \\left( {{x_n}} \\right)} \\right]}}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-fleft-x-right-x-cos-x-using-newton-raphson-method-at-the-gate-ce-1995-marks-1-vf9u89zfsuzfw8gm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "E0edaO9mkpzyLHxU",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The solution of a differential equation $${y^{11}} + 3{y^1} + 2y = 0$$ is of the form ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${c_1}{e^x} + {c_2}{e^{2x}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${c_1}{e^{ - x}} + {c_2}{e^{3x}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${c_1}{e^{ - x}} + {c_2}{e^{ - 2x}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${c_1}{e^{ - 2x}} + {c_2}{2^{ - x}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-solution-of-a-differential-equation-y11-3y1-2y-0-is-of-t-gate-ce-1995-marks-2-e0edao9mkpzylhxu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wsxxgPOJ4omUgVqa",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The differential equation $${y^{11}} + {\\left( {{x^3}\\,\\sin x} \\right)^5}{y^1} + y = \\cos {x^3}\\,\\,\\,\\,$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "homogeneous "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "non-linear "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2$$<sup>nd</sup> order linear "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "non-homogeneous with constant coefficients"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-differential-equation-y11-left-x3sin-x-right5y1-y-cos-x3-gate-ce-1995-marks-1-wsxxgpoj4omugvqa.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PBt9HL3w1oCprUnx",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The derivative of $$f(x, y)$$ at point $$(1, 2)$$ in the direction of vector $$\\overrightarrow i  + \\overrightarrow j $$  is $$2\\sqrt 2 $$ and in the direction of the vector $$ - 2\\overrightarrow j $$ is $$-3.$$  Then the derivative of $$f(x,y)$$ in direction $$ - \\overrightarrow i  - 2\\overrightarrow j $$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2\\sqrt 2  + 3/2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$ - 7/\\sqrt 5 $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$ - 2\\sqrt 2  - 3/2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$  1/\\sqrt 5 $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-derivative-of-fx-y-at-point-1-2-in-the-direction-of-vect-gate-ce-1995-marks-1-pbt9hl3w1ocprunx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "eyEaAXTDbRSwXwjW",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The function $$f\\left( x \\right) = \\left| {x + 1} \\right|$$ on the interval $$\\left[ { - 2,0} \\right]$$ is __________.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "continuous and differentiable "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "continuous on the interval but not differentiable at all points "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Neither continuous nor differentiable "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Differentiable but not continuous "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-function-fleft-x-right-left-x-1-right-on-the-interval-le-gate-ce-1995-marks-1-eyeaaxtdbrswxwjw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xtWvWU1jZSbdZKuE",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The function $$f\\left( x \\right) = {x^3} - 6{x^2} + 9x + 25$$  has ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a maxima at $$x=1$$ and a minima at $$x=3$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a maxima at $$x=3$$ and a minima at $$x=1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "no maxima, but a minima at $$x=3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a maxima at $$x=1,$$ but  no minima "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-function-fleft-x-right-x3-6x2-9x-25-has-gate-ce-1995-marks-1-xtwvwu1jzsbdzkue.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Geotechnical Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a27183af33f7",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "geotechnical-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "definitions-and-properties-of-soils",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The void ratio of a soil sample can exceed unity.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-void-ratio-of-a-soil-sample-can-exceed-unity-gate-ce-1995-marks-1-5a27183af33f7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a26b19917ff5",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "geotechnical-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "origin-of-soils",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Aeolian Soils are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Residual Soils"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Wind deposits"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Gravity desposits"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Water deposits"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "aeolian-soils-are-gate-ce-1995-marks-1-5a26b19917ff5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                }
+            ],
+            "title": "Geotechnical Engineering"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Z9nvkTJY8FRumJSF",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-serviceability",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The span to depth ratio limit is specified in $$IS:$$ $$456-2000$$ for the reinforced concrete beams, in order to ensure that the ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "tensile crack width is below a limit"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "shear failure is avoided "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "stress in the tension reinforcement is less than the allowable value"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "deflection of the beam is below a limiting value"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-span-to-depth-ratio-limit-is-specified-in-is-456-1995-marks-1-z9nvktjy8frumjsf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HNud8iI8BBnM01W8",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-collapse-compression",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a reinforced concrete beam-column, the increase in the flexural strength along with the increase in the axial strength occurs ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "beyond the elastic limit of the material"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "when the yielding of tension reinforcement governs the strength"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "when the crushing of the concrete in the compression zone governs the strength "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "never "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-reinforced-concrete-beam-column-the-increase-in-the-fl-1995-marks-1-hnud8ii8bbnm01w8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wiGGV2LaWEFAvH8Q",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-collapse-compression",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The lateral ties in a reinforced concrete rectangular column under axial compression are used to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "avoid the buckling of the longitudinal steel under compression "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "provide adequate shear capacity "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "provide adequate confinement to concrete "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "reduce the axial deformation of the column"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-lateral-ties-in-a-reinforced-concrete-rectangular-column-1995-marks-1-wiggv2lawefavh8q.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ipjrrm9uofoukoft",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "flanged-beams",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The effective width of a reinforced concrete $$T$$-beam flange under compression, according to $$IS:456$$ - $$1978,$$ given $${l_0}$$ is the distance between the adjacent zero moment points, $$b$$ is the breadth of the rib and $$D$$ is the thickness of the flange, is  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{{l_0}} \\over 6} + b + 6D$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${l_0} + 6D$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{{l_0}} \\over 6} + 6D$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{{l_0}} \\over 6} + b$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-effective-width-of-a-reinforced-concrete-t-beam-flan-1995-marks-1-ipjrrm9uofoukoft.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1aaecf1d50c",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Workability of concrete is influenced most by its",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Water-cement ratio"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Aggregate-cement ratio"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Cement content"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Water content"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "workability-of-concrete-is-influenced-most-by-its-gate-ce-1995-marks-1-5a1aaecf1d50c.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KaPYXvzDBh6mZVhT",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A propped cantilever beam of span $$L,$$ is loaded with uniformly distributed load of intensity $$w/unit$$ length,  all through the span. Bending moment at the fixed end is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{w{L^2}} \\over 8}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{w{L^2}} \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{w{L^2}} \\over {12}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{w{L^2}} \\over {24}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-propped-cantilever-beam-of-span-l-is-loaded-with-unif-1995-marks-2-kapyxvzdbh6mzvht.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mHu8o0sHhNtLS5Fn",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "truss",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The forces in members $$'abc'$$ in the truss shown\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/iwKKghq5voPoancEy/BQOJDzUOJj87bAC6YTStzTBev63uy/6xO86NCtYmLQQuXVtTpBys/image.png\" loading=\"lazy\" alt=\"GATE CE 1995 Structural Analysis - Truss Question 8 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P,\\,P/2,\\,0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P/2,\\,P,\\,0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P,\\,P,\\,P$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P/2,\\,P/2,\\,0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-forces-in-members-abc-in-the-truss-shown-1995-marks-2-mhu8o0shhntls5fn.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NYQD6HeUVZUbsJpm",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "slope-deflection-method",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of simultaneous equations to be solved in the slope deflection method is equal to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "static indeterminacy "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "kinematic indeterminacy "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "number of joint displacements in the structure "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "none of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-simultaneous-equations-to-be-solved-in-the-slo-1995-marks-1-nyqd6heuvzubsjpm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XyPb20Y4nbaCZFJi",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The magnitude of the bending Moment at the fixed support of the beam is equal to \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/N1dGKodVVawn7l918/r12Oe6GefhEaq8ELrgzUEczviBwPA/sxKh9t4U3y116MDYwkzeH3/image.png\" loading=\"lazy\" alt=\"GATE CE 1995 Structural Analysis - Moment Distribution Method Question 14 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P.$$ $$a$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P.$$ $$a/2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P.$$ $$b$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P.$$ $$(a+b)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-magnitude-of-the-bending-moment-at-the-fixed-support-of-1995-marks-2-xypb20y4nbaczfji.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "n2gNtzutfBhuTed5",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the Shear Force at a section  of a beam under bending is equal to zero then the Bending Moment at the section is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Max."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Min."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Max. or Min."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-shear-force-at-a-section-of-a-beam-under-bending-is-1995-marks-1-n2gntzutfbhuted5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "h5gRrecPoKbYYgw7",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 1995,
+                    "paperTitle": "GATE CE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single bay single storey portal frame has a hinged left support and a fixed right support. It is loaded with $$u.d.l$$ on the beam. Which one of the following statements is true with regard to the deformation of the frame",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "It would sway to  the left side "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "It would sway to  the right side "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "It would not sway at all "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of these "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-single-bay-single-storey-portal-frame-has-a-hinged-left-su-1995-marks-1-h5grrecpokbyygw7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1995"
+                }
+            ],
+            "title": "Structural Analysis"
+        }
+    ]
+}

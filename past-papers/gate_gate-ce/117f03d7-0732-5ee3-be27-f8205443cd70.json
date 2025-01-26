@@ -1,0 +1,1166 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Npg6JBFb87HZSEsY",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The inverse Laplace transform of $$1/\\left( {{s^2} + 2s} \\right)$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {1 - {e^{ - 2t}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {1 + {e^{2t}}} \\right)/2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {1 - {e^{2t}}} \\right)/2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {1 - {e^{ - 2t}}} \\right)/2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-inverse-laplace-transform-of-1left-s2-2s-right-is-gate-ce-2001-marks-1-npg6jbfb87hzsesy.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WHaEZPI5k8Dvm8qJ",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of boundary conditions required to solve the differential equation  $$\\,\\,{{{\\partial ^2}\\phi } \\over {\\partial {x^2}}} + {{{\\partial ^2}\\phi } \\over {\\partial {y^2}}} = 0\\,\\,$$  is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-boundary-conditions-required-to-solve-the-diff-gate-ce-2001-marks-1-whaezpi5k8dvm8qj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0LAH5q2V6XSURv3k",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The solution for the following differential equation  with boundary conditions $$y(0)=2$$  and $$\\,\\,{y^1}\\left( 1 \\right) =  - 3$$  is where $${{{d^2}y} \\over {d{x^2}}} = 3x - 2$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$y = {{{x^3}} \\over 3} - {{{x^2}} \\over 2} = 3x - 2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$y = 3{x^3} - {{{x^2}} \\over 2} - 5x + 2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$y = {{{x^3}} \\over 2} - {x^2} - 5{x \\over 2} + 2$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$y = {x^3} - {{{x^2}} \\over 2} + 5x + {3 \\over 2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-solution-for-the-following-differential-equation-with-bo-gate-ce-2001-marks-2-0lah5q2v6xsurv3k.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zyWVyGINvHBU4PUo",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Limit of the following series as $$x$$ approaches $${\\pi  \\over 2}$$ is \n<br>$$f\\left( x \\right) = x - {{{x^3}} \\over {3!}} + {{{x^5}} \\over {5!}} - {{{x^7}} \\over {7!}} +  -  -  -  -  - $$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{2\\pi } \\over 3}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\pi  \\over 2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\pi  \\over 3}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "limit-of-the-following-series-as-x-approaches-pi-over-2-is-f-gate-ce-2001-marks-1-zywvyginvhbu4puo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6Zhb3RKhKBw94RM4",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The product $$\\left[ P \\right]\\,\\,{\\left[ Q \\right]^T}$$ of the following two matrices $$\\left[ P \\right]\\,$$ and $$\\left[ Q \\right]\\,$$\n<br>where $$\\left[ P \\right]\\,\\, = \\left[ {\\matrix{\n   2 &amp; 3  \\cr \n   4 &amp; 5  \\cr \n\n } } \\right],\\,\\,\\left[ Q \\right] = \\left[ {\\matrix{\n   4 &amp; 8  \\cr \n   9 &amp; 2  \\cr \n\n } } \\right]$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left[ {\\matrix{\n   {32} &amp; {24}  \\cr \n   {56} &amp; {46}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left[ {\\matrix{\n   {46} &amp; {56}  \\cr \n   {24} &amp; {32}  \\cr \n\n } } \\right]$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left[ {\\matrix{\n   {35} &amp; {22}  \\cr \n   {61} &amp; {42}  \\cr \n\n } } \\right]$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left[ {\\matrix{\n   {32} &amp; {56}  \\cr \n   {24} &amp; {46}  \\cr \n\n } } \\right]$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-product-left-p-rightleft-q-rightt-of-the-following-two-m-gate-ce-2001-marks-1-6zhb3rkhkbw94rm4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rHFwt1IX8CtwaEWS",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The eigen values of the matrix $$\\left[ {\\matrix{\n   5 &amp; 3  \\cr \n   2 &amp; 9  \\cr \n\n } } \\right]$$ are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$(5.13, 9.42)$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$(3.85, 2.93)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$(9.00, 5.00)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$(10.16, 3.84)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-eigen-values-of-the-matrix-left-matrix-5-3-cr-2-9-cr-rig-gate-ce-2001-marks-1-rhfwt1ix8ctwaews.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NSdC4n3WTe0ZkKRF",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The determinant of the following matrix $$\\left[ {\\matrix{\n   5 &amp; 3 &amp; 2  \\cr \n   1 &amp; 2 &amp; 6  \\cr \n   3 &amp; 5 &amp; {10}  \\cr \n\n } } \\right]$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-76$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-28$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$28$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$72$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-determinant-of-the-following-matrix-left-matrix-5-3-2-cr-gate-ce-2001-marks-1-nsdc4n3wte0zkkrf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Fluid Mechanics and Hydraulic Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2a25cf05d72",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics-and-hydraulic-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-statics",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 15 cm length of steel rod with relative density of 7.4 is submerged in a two layer fluid. The bottom layer is mercury and the top layer is water. The height of top surface of the rod above the liquid interface in 'cm' is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "8.24"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "7.82"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "7.64"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "7.38"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-15-cm-length-of-steel-rod-with-relative-density-of-74-is-s-gate-ce-2001-marks-2-5a2a25cf05d72.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                }
+            ],
+            "title": "Fluid Mechanics and Hydraulic Machines"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lvTqBajK87MRqABx",
+                    "exam": "gate-ce",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "slabs",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The effective spans for a simple one-way slab system, with an overhang are indicated in the figure below. The specified ultimate design loads on the slab are $$6.0\\,kN/{m^2}$$ and $$4.5\\,kN/{m^2}$$ for dead loads and live loads respectively. Considering the possibility of live loads not occurring simultaneously on both spans, determine the maximum spacing (in $$mm$$ units) of $$8$$  $$mm$$ diameter bars required as bottom reinforcement in the span $$AB,$$ assuming an effective depth of $$125$$ $$mm.$$ Assume $$M20$$ concrete and $$Fe$$ $$415$$ steel.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/c2azRYuhHompZcF7M/GN8rVsR5vJmdmDWoVHeaeHgJBYBLo/p0avjlnaEEltceNzGV6gmx/image.png\" loading=\"lazy\" alt=\"GATE CE 2001 Reinforced Cement Concrete - Slabs Question 4 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Maximum spacing $$=140$$ $$mm$$ $$C/C$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-effective-spans-for-a-simple-one-way-slab-system-with-a-2001-marks-5-lvtqbajk87mrqabx.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AV8jFSE34D6j1Qox",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bond",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following two statements related to reinforced concrete design, and identify whether they are TRUE/FALSE: \n<p>$${\\rm I}.$$ Curtailment of bars in the flexural tension zone in beams reduces the shear strength at the cut-off locations\n<br>$${\\rm II}.$$ When a rectangular column section is subject to biaxially eccentric compression, the neutral axis will be parallel to the resultant axis of bending. </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both statements $${\\rm I}$$ and $${\\rm II}$$ are TRUE."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Statement $${\\rm I}$$ is TRUE, and $${\\rm II}$$ is FALSE"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Statement $${\\rm I}$$ is FALSE, and statement $${\\rm II}$$ is TRUE"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Both Statements $${\\rm I}$$ and $${\\rm II}$$ are FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-two-statements-related-to-reinforced-2001-marks-2-av8jfse34d6j1qox.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jGp0nYuzAdwbzZea",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "singly-reinforced-sections",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Identify the FALSE statement from the following, pertaining to the design of concrete structures. ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The assumption of a linear strain profile in flexure is made use of in working stress design, but not in ultimate limit state design."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Torsional reinforcement is not required to be provided at the corners of simply supported rectangular slabs, if the corners are free to lift up."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "A rectangular slab, whose length exceeds twice its width, always behaves as a two way slab, regardless of the support conditions."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The 'load balancing' concept can be applied to select  the appropriate tendon profile in a prestressed concrete beam subjected to a given pattern of loads."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "identify-the-false-statement-from-the-following-pertaining-2001-marks-2-jgp0nyuzadwbzzea.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Steel Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "S98xCP0xCCVHDZnr",
+                    "exam": "gate-ce",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "beams",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The relevant cross-sectional details of a compound beam comprising a symmetric $${\\rm I}$$-section and a channel section (with welded connections), proposed for a steel gantry girder, are given below (all dimensions are in $$mm$$) \n<p>$$(a)$$ Determine the depth of the centroidal axis $$\\overline y $$ and the second moment of area, $${{\\rm I}_{xx}}$$ and $${{\\rm I}_{yy\\,\\,eff}}$$ of the compound section. For computing $${{\\rm I}_{yy\\,\\,eff}}$$ include the full contribution of the channel section, but only the top flange of the $${\\rm I}$$-section.</p>\n<p>$$(b)$$ Determine the maximum compressive stress that develops at a top corner location on account of a vertical bending moment of $$550.0$$ $$kN$$-$$m,$$ combined with a horizontal bending moment of $$15.0$$ $$kN$$-$$m.$$ </p>\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/ZM1Zl9UMvt65eN5CJ/xzD5OA1PSXoMb0lgegtKOATyNDW0s/ioLxqZsBw08WRn3UtbmRfa/image.png\" loading=\"lazy\" alt=\"GATE CE 2001 Steel Structures - Beams Question 1 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$(a)$$ $$236.4$$ $$mm$$\n<p>$$(b)$$ $$291.96$$ $$N/m{m^2}$$</p>",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-relevant-cross-sectional-details-of-a-compound-beam-comp-2001-marks-5-s98xcp0xccvhdznr.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4cI215OfGzMtwx4s",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "compression-members",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following two statements related to structural steel design, and identify whether they are True or FALSE.\n<p>$${\\rm I}.\\,\\,\\,\\,\\,\\,$$ The Euler buckling load of a slender steel column depends on the yield strength of steel.\n<br>$${\\rm II}.\\,\\,\\,\\,\\,\\,$$ In the design of laced column,  the maximum spacing of the lacing does not depend on the slenderness of column as a whole.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both statements $${\\rm I}$$ and $${\\rm II}$$ are TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Statement $${\\rm I}$$ is TRUE, and Statement $${\\rm II}$$ is FALSE"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Statement $${\\rm I}$$ is FALSE, and Statement $${\\rm I}$$$${\\rm I}$$ is TRUE"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Both Statements $${\\rm I}$$ and $${\\rm I}$$$${\\rm I}$$ are FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-two-statements-related-to-structural-2001-marks-2-4ci215ofgzmtwx4s.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hYc1VjqmSKTSjQyG",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "riveted-joints-and-bolted-joints",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Identify the most efficient butt joint (with double cover plates) for a plate in tension from the patterns (plan views) shown below, each comprising $$6$$ identical bolts with the same pitch and gauge.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/OEemguXwmroKZnXfH/U17tdvcbmx90ougSgAOBCVDclANUg/lzHiOAKNkl0IpyotqXlwnQ/image.png\" loading=\"lazy\" alt=\"GATE CE 2001 Steel Structures - Riveted Joints and Bolted Joints Question 1 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/GdQuw5uMGnLhbBGSl/OaZP5ELsGtI9Fn3W8F5KX9AVKxnsD/6sMfm3ZewXH6oZViAAmtsv/image.png\" loading=\"lazy\" alt=\"GATE CE 2001 Steel Structures - Riveted Joints and Bolted Joints Question 1 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/VA0HpFThY9InjLCb1/MMBj0xnFIyZk7lpo0uuPlxUvd1SZv/NlJWy7qjcqRBo2Bo74dhCM/image.png\" loading=\"lazy\" alt=\"GATE CE 2001 Steel Structures - Riveted Joints and Bolted Joints Question 1 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/tgcuLHOMWgBN2K5gs/T5fwmznpDgvJLOmFzpmI2ycDrO0TG/Ci4VKrOmbnDHYU3IM53nNh/image.png\" loading=\"lazy\" alt=\"GATE CE 2001 Steel Structures - Riveted Joints and Bolted Joints Question 1 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/qYrewAb1nHg6gImoh/vm5YKSvdu8FiC72OBStHX7UFpv0Na/DX6eJm6zRjYAgz9MC2DooD/image.png\" loading=\"lazy\" alt=\"GATE CE 2001 Steel Structures - Riveted Joints and Bolted Joints Question 1 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "identify-the-most-efficient-butt-joint-with-double-cover-pl-2001-marks-1-hyc1vjqmsktsjqyg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                }
+            ],
+            "title": "Steel Structures"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mVZeIMVHzb8fIfhb",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The bending moment (in $$kN$$-$$m$$ units) at the mid-span location $$X$$ in the beam  with overhangs shown below is equal \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/MEMh1PpKFmEwXQn8A/FHllKReZwXWkRg9pUsbldMF8RsfeE/GegLjtwUh6uxzTKEsuljJC/image.png\" loading=\"lazy\" alt=\"GATE CE 2001 Strength of Materials Or Solid Mechanics - Deflection of Beams Question 15 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-10$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$-15$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$-2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-bending-moment-in-kn-m-units-at-the-mid-span-l-2001-marks-2-mvzeimvhzb8fifhb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1dCjV3rW3SzMYqjx",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "indeterminacy",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The degree of static indeterminacy, $${N_s}$$ and the degree of kinematic indeterminacy, $${N_k}$$ for the plane frame shown below, assuming axial deformations to be negligible, are given by: \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/DRyVRZTaCcSiVFbKy/MjGS13dINeKawkM1jkYzrhGZjMZJ7/7kCVzw8rLq15ImlTO43TsW/image.png\" loading=\"lazy\" alt=\"GATE CE 2001 Structural Analysis - Indeterminacy Question 10 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${N_s} = 6$$ and $${N_k} = 11$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${N_s} = 6$$ and $${N_k} = 6$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${N_s} = 4$$ and $${N_k} = 6$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${N_s} = 4$$ and $${N_k} = 4$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-degree-of-static-indeterminacy-ns-and-the-degree-2001-marks-1-1dcjv3rw3szmyqjx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "as91YAiLrR2CkIlv",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "slope-deflection-method",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The two-span continuous beam shown below is subject to a clockwise rotational slip $${\\theta _A} = 0.004$$ radian at the fixed end $$A.$$ Applying the slope-deflection method of analysis, determine the slope $${\\theta _B}$$ at $$B.$$ Given that the flexural rigidity $$EI = 25000\\,kN$$ - $${m^2}$$ and span $$L=5$$ $$m,$$ determine the end moments (in $$kN$$-$$m$$ units ) in the two  spans, and draw the bending moment diagram.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/cxaDW5gobTNHmgfKU/NS9z6K2gIEjmqoOplOWGtwFfCYinN/dA1hZVrtT2Ib3WNO3t2okO/image.png\" loading=\"lazy\" alt=\"GATE CE 2001 Structural Analysis - Slope Deflection Method Question 2 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${\\theta _B} = 0.001\\,$$ radius (Anti-clock wise)\n<br>$${M_{BA}} = 20\\,kN - m$$ (Clock wise)\n<br>$${M_{BC}} = 20\\,kN - m$$ (Anti-clock wise)\n<br>$${M_{CB}} = 10\\,kN - m$$ (Anti-clock wise)",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-two-span-continuous-beam-shown-below-is-subject-to-a-clo-2001-marks-2-as91yailrr2ckilv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6zI4gK3JILwgQSzE",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The frame below shows three beam elements $$OA, OB$$ and $$OC$$, with identical length $$L$$ and flexural rigidity $$EI$$, subject to an external moment $$M$$ applied at the rigid joint $$O.$$ The correct set of bending moments $$\\left\\{ {{M_{OA}},\\,{M_{O{\\bf{B}}}},{M_{OC}}} \\right\\}$$ \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/hlwE5ydSk3LHTOIe8/m2pnMrS57GexDi2xvuNWbkXrz0R1H/4KmzzWESgyPHCJn5KZlvS4/image.png\" loading=\"lazy\" alt=\"GATE CE 2001 Structural Analysis - Moment Distribution Method Question 7 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left\\{ {3M/8,\\,\\,M/8,\\,\\,4M/8} \\right\\}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left\\{ {3M/11,\\,\\,4M/11,\\,\\,4M/11} \\right\\}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left\\{ {M/3,\\,\\,M/3,\\,\\,M/3} \\right\\}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left\\{ {3M/7,\\,\\,0,\\,\\,4M/7a} \\right\\}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-frame-below-shows-three-beam-elements-oa-ob-and-o-2001-marks-2-6zi4gk3jilwgqsze.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yXdfV70jg485fUlQ",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "energy-principle",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Identify the <b>FALSE</b> statement from the following, pertaining to the effects due to a temperature rise $$\\Delta T$$ of the bar $$BD$$ alone in the plane truss shown below : \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/jfdcklSkWwmOhbfxp/JzCM1mLqblEHTHWG2fJjR9Zg1d3um/EA65vgPZiB3hRrzQ7pphM6/image.png\" loading=\"lazy\" alt=\"GATE CE 2001 Structural Analysis - Energy Principle Question 14 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "No reactions develop at supports $$A$$ and $$D$$  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The bar $$BD$$ will be subject to a tensile force. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The bar $$AC$$ will be subject to a compressive force "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The bar $$BC$$ will be subject to a tensile force "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "identify-the-false-statement-from-the-following-pertaining-2001-marks-1-yxdfv70jg485fulq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zyZlBpPQyZw1GM6I",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "influence-line-diagram",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Identify, from the following, the correct value of the bending moment $${M_A}\\,\\,$$ (in $$kNm$$ units) at the fixed end $$A$$ in the statically determinate beam shown below (with internal hinges at $$B$$ and $$D),$$ when a uniformly distributed load of $$10$$ $$kN/m$$ is placed on the spans. (Hint: Sketching the influence line for $${M_A}\\,\\,$$ or applying the Principle of Virtual Displacements makes the solution easy). \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/dv86DS1Pe45ty3z1J/TlcRBJlhPp1XfdOYa6HZpTspZZ1aL/6JBesd2jG2NZg4XqRFPRzr/image.png\" loading=\"lazy\" alt=\"GATE CE 2001 Structural Analysis - Influence Line Diagram Question 8 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-80$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-40$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$+40$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "identify-from-the-following-the-correct-value-of-the-bendi-2001-marks-2-zyzlbppqyzw1gm6i.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                }
+            ],
+            "title": "Structural Analysis"
+        },
+        {
+            "_id": "Transportation Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a41acfab4d6a",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "transportation-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "highway-geometric-design",
+                    "year": 2001,
+                    "paperTitle": "GATE CE 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The design value of lateral friction coefficient on highway is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1.5"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.50"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0.35"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0.15"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-design-value-of-lateral-friction-coefficient-on-highway-gate-ce-2001-marks-1-5a41acfab4d6a.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2001"
+                }
+            ],
+            "title": "Transportation Engineering"
+        }
+    ]
+}

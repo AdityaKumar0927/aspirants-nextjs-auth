@@ -1,0 +1,868 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Algorithms",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "S5Zz0QRSQUbhpQmG",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complexity-analysis-and-asymptotic-notations",
+                    "year": 1993,
+                    "paperTitle": "GATE CSE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$\\sum\\limits_{1 \\le k \\le n} {O(n)} $$ where O(n) stands for order n is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "O(n)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "O(n<sup>2</sup>)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "O (m<sup>3</sup>)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "O(3n<sup>2</sup>)"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "sumlimits1-le-k-le-n-on-where-on-stands-for-order-n-is-gate-cse-1993-marks-2-s5zz0qrsqubhpqmg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1993"
+                }
+            ],
+            "title": "Algorithms"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZDMExAwA0QavGV6f",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 1993,
+                    "paperTitle": "GATE CSE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The proposition $$p \\wedge \\left( { \\sim p \\vee q} \\right)$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a tautology "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$ \\Leftrightarrow \\left( {p \\wedge q} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$ \\Leftrightarrow \\left( {p \\vee q} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a contradiction"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-proposition-p-wedge-left-sim-p-vee-q-right-is-gate-cse-1993-marks-1-zdmexawa0qavgv6f.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xqypoLYZAnI8iWTj",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1993,
+                    "paperTitle": "GATE CSE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of the double integral $$\\int\\limits_0^1 {\\int\\limits_x^{{1 \\over x}} {{x \\over {1 + {y^2}}}\\,\\,dx\\,\\,dy = \\_\\_\\_\\_\\_.} } $$ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$\\left( {1 - {\\pi  \\over 4}} \\right)$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-the-double-integral-intlimits01-intlimitsx1-ove-gate-cse-1993-marks-1-xqypolyzani8iwtj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Ui0PTkxXX8FGUqjs",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1993,
+                    "paperTitle": "GATE CSE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The eigen vector (s) of the matrix \n<br>$$\\left[ {\\matrix{\n   0 &amp; 0 &amp; \\alpha   \\cr \n   0 &amp; 0 &amp; 0  \\cr \n   0 &amp; 0 &amp; 0  \\cr \n\n } } \\right],\\alpha  \\ne 0$$ is (are) ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {0,0,\\alpha } \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {\\alpha ,0,0} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {0,0,1} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {0,\\alpha ,0} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-eigen-vector-s-of-the-matrix-left-matrix-0-0-alpha-cr-0-gate-cse-1993-marks-1-ui0ptkxxx8fguqjs.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cYeLvPa8dhpYnIhm",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1993,
+                    "paperTitle": "GATE CSE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$A = \\left[ {\\matrix{\n   1 &amp; 0 &amp; 0 &amp; 1  \\cr \n   0 &amp; { - 1} &amp; 0 &amp; { - 1}  \\cr \n   0 &amp; 0 &amp; i &amp; i  \\cr \n   0 &amp; 0 &amp; 0 &amp; { - i}  \\cr \n\n } } \\right]$$ the matrix $${A^4},$$\n<br>calculated by the use of Cayley - Hamilton theoram (or) otherwise is ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1 ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-a-left-matrix-1-0-0-1-cr-0-1-0-1-cr-0-0-i-i-cr-0-0-0-i-cr-gate-cse-1993-marks-1-cyelvpa8dhpynihm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "COk6AGoi6lvag9MJ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1993,
+                    "paperTitle": "GATE CSE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $${\\rm A}$$ be a finite set of size $$n$$. The number of elements in the power set of $${\\rm A} \\times {\\rm A}$$ is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${2^{{2^n}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${2^{{n^2}}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${2^n}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${n^2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-rm-a-be-a-finite-set-of-size-n-the-number-of-elements-in-gate-cse-1993-marks-1-cok6agoi6lvag9mj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "g2qszaWrBccUvPxM",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1993,
+                    "paperTitle": "GATE CSE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$S$$ be an infinite set and $${S_1},\\,\\,{S_2},....\\,\\,{S_n}$$ be sets such that $${S_1} \\cup {S_2} \\cup ....... \\cup {S_n} = S$$. Then ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "At least one of the sets $${S_i}$$ is a finite set. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Not more than one of the sets $${S_i}$$ can be finite"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "At least one of sets $${S_i}$$ is infinite "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Not more than one the sets $${S_i}$$ is an a infinite set."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-s-be-an-infinite-set-and-s1s2sn-be-sets-such-that-s1-cup-gate-cse-1993-marks-1-g2qszawrbccuvpxm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1ZmfXaoKfPWW8kBs",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 1993,
+                    "paperTitle": "GATE CSE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Show that proposition $$C$$ is a logical consequence of the formula \n$$A \\wedge \\left( {A \\to \\left( {B \\vee C} \\right) \\wedge \\left( {B \\to  \\sim A} \\right)} \\right)$$ using truth tables.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "show-that-proposition-c-is-a-logical-consequence-of-the-form-gate-cse-1993-marks-5-1zmfxaokfpww8kbs.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1993"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PJtLxMJnaOdO99kD",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 1993,
+                    "paperTitle": "GATE CSE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Assume that the following jobs are to be executed on a single processor system. \n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-s6z2{text-align:center}\n.tg .tg-baqh{text-align:center;vertical-align:top}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">Job Id</span></th>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">CPU Burst Time</span></th>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">p</td>\n    <td class=\"tg-s6z2\">4</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">q</td>\n    <td class=\"tg-s6z2\">1</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">r</td>\n    <td class=\"tg-s6z2\">8</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">s</td>\n    <td class=\"tg-s6z2\">1</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">t</td>\n    <td class=\"tg-baqh\">2</td>\n  </tr>\n</tbody></table> \n<p>The jobs are assumed to have arrived at time $${0^ + }$$ and in the order $$p,q,r,s,t.$$ Calculate the departure time (completion time) for job $$p$$ if scheduling is round robin with time slice$$1.$$ </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$4$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$10$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$11$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$12$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "assume-that-the-following-jobs-are-to-be-executed-on-a-singl-gate-cse-1993-marks-2-pjtlxmjnaodo99kd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LiqbQWcowTUXhNca",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deadlocks",
+                    "year": 1993,
+                    "paperTitle": "GATE CSE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a system having m resources of the same type. These resources are\nshared by 3 processes A, B and C, which have peak demands of 3, 4 and 6\nrespectively. For what value of m deadlock will not occur?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "7"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "9"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "10"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "13"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-system-having-m-resources-of-the-same-type-these-gate-cse-1993-marks-2-liqbqwcowtuxhnca.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WbQRiJB3O0TPLhek",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 1993,
+                    "paperTitle": "GATE CSE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A certain moving arm disk storage, with one head, has the following specifications. \n<br>Number of track/recording\n<br>Surface $$=200$$\n<br>Disk rotation speed $$=2400$$$$rpm$$\n<br>Track storage capacity $$=62,500$$ $$bits$$\n<br>The average latency of this device is \n<br>$$P$$ $$msec$$ and the data transfer rate is \n<br>$$Q$$ $$bits / sec.$$ Write the value of $$P$$&amp;$$Q$$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$\\eqalign{\n  &amp; P = 12.5\\,\\,ms  \\cr \n  &amp; Q = 2.5\\,\\, \\times \\,\\,{10^6}\\,\\,bits/s \\cr} $$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-certain-moving-arm-disk-storage-with-one-head-has-the-foll-gate-cse-1993-marks-2-wbqrijb3o0tplhek.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qhaX5SFId1oXlkxo",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 1993,
+                    "paperTitle": "GATE CSE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The root directory of a disk should be placed: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "At a fixed address in main memory "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "At a fixed location on the disk "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Any where on the disk"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "At a fixed location on the system disk "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-root-directory-of-a-disk-should-be-placed-gate-cse-1993-marks-2-qhax5sfid1oxlkxo.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "O2r4EaDeZpHsiCQD",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1993,
+                    "paperTitle": "GATE CSE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following page addresses, in the given sequence, were generated by a program: \n<br><b>1 2 3 4 1 3 5 2 1 5 4 3 2 3</b>\n<p>This program is run on a demand paged virtual memory system, with main memory size equal to $$4$$ pages. Indicate the page references for which page faults occurs for the following page replacement algorithms.\n<br>(a) $$LRU$$\n<br>(b) $$FIFO$$</p>\n<p>Assume that the main memory is empty initially.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a) $$9$$ page fault\n<br>(b) $$7$$ page fault.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-page-addresses-in-the-given-sequence-were-gene-gate-cse-1993-marks-5-o2r4eadezphsicqd.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CUcGjMNXHrO6SDnb",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1993,
+                    "paperTitle": "GATE CSE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A simple two-pass assembler does the following in the first pass:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "It allocates space for the literals. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "It computes the total length of the program\n "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "It builds the symbol table for the symbols and their values.\n "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "It generates code for all the load and store register instructions."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-simple-two-pass-assembler-does-the-following-in-the-first-gate-cse-1993-marks-2-cucgjmnxhro6sdnb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NpdF6raZtsIIsMIu",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1993,
+                    "paperTitle": "GATE CSE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A part of the system software, which under all circumstances must reside in the main memory is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "text editor "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "assembler "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "linker "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "loader "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-part-of-the-system-software-which-under-all-circumstances-gate-cse-1993-marks-2-npdf6raztsiismiu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FIYOsRb7TTkgXsSi",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 1993,
+                    "paperTitle": "GATE CSE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The details of an interrupt cycle are shown in Figure \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/iUnVxHPOGmGUGe81J/u5M1NvB6fC3eNXeh8KPs1PWOknJ8F/vu81chcZHUAX3aoqM2hUoC/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1993 Operating Systems - Process Concepts and Cpu Scheduling Question 41 English\">\n<br>Given that an interrupt input arrives every $$1$$ $$msec,$$ what is the percentage of the total time that the $$CPU$$ devotes for the main program execution. \n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$90$$% of the total time $$CPU$$ spent executing main program ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-details-of-an-interrupt-cycle-are-shown-in-figure-given-gate-cse-1993-marks-2-fiyosrb7ttkgxssi.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1993"
+                }
+            ],
+            "title": "Operating Systems"
+        },
+        {
+            "_id": "Programming Languages",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ucqZoNRZZda5jcva",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "function-and-recursion",
+                    "year": 1993,
+                    "paperTitle": "GATE CSE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What does the following code do?\n<pre><code class=\"c\">var a, b : integer;\nbegin\n    a:=a+b;\n    b:=a-b;\n    a:=a-b;\nend;</code></pre>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "exchanges a and b"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "doubles a and stores in b"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "doubles b and stores in a"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "leaves a and b unchanged"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-does-the-following-code-dovar-a-b-integerbegin-aab-ba-b-gate-cse-1993-marks-2-ucqzonrzzda5jcva.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1993"
+                }
+            ],
+            "title": "Programming Languages"
+        }
+    ]
+}

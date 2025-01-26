@@ -1,0 +1,67 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XP0jPJEuvwWcxDfV",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2002,
+                    "paperTitle": "GATE IN 2002",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The bilinear transformation $$w\\, = \\,{{z\\, - \\,1} \\over {z\\, + \\,1}}$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "maps the inside of the unit circle in the z-plane to left half of the w - plane "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "maps the outside of the unit circle in the z-plane to left half of the w - plane "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "maps the inside of the unit circle in the z-plane to right half of the w - plane "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "maps the outside of the unit circle in the z-plane to right half of the w - plane "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-bilinear-transformation-w-z-1-over-z-1-gate-in-2002-marks-1-xp0jpjeuvwwcxdfv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2002",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2002"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        }
+    ]
+}

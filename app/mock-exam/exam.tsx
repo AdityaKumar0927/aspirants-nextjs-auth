@@ -28,12 +28,15 @@ import {
   TooltipProvider,
 } from "@/components/ui/tooltip"
 import Image from "next/image"
-import { QuestionType } from "@/lib/exam-helpers"
-import MathRenderer from "./MathRenderer3"
 
+// IMPORTANT: import the single source of truth for your question interface:
+import { QuestionType } from "@/lib/exam-helpers" 
+
+// If you had a local interface with id:number, remove it. 
+// Instead define only the props for the Exam component:
 interface ExamProps {
   currentQuestion: number
-  filteredQuestions: QuestionType[]
+  filteredQuestions: QuestionType[]  // <--- use the shared interface
   answers: (string | null)[]
   questionStatuses: { [index: number]: string }
   questionStatusCounts: {
@@ -58,7 +61,12 @@ interface ExamProps {
   selectedLevel: string
 }
 
-const Exam: React.FC<ExamProps> = ({
+// A simple math/HTML renderer:
+function MathRenderer({ text }: { text: string }) {
+  return <span dangerouslySetInnerHTML={{ __html: text }} />
+}
+
+export default function Exam({
   currentQuestion,
   filteredQuestions,
   answers,
@@ -78,18 +86,27 @@ const Exam: React.FC<ExamProps> = ({
   selectedSubject,
   selectedYear,
   selectedLevel,
-}) => {
-  const formatTime = (seconds: number) => {
+}: ExamProps) {
+  function formatTime(seconds: number) {
     const minutes = Math.floor(seconds / 60)
     const secs = seconds % 60
-    return `${minutes.toString().padStart(2, "0")}:${secs
-      .toString()
-      .padStart(2, "0")}`
+    return `${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
   }
 
-  const renderQuestionDiagram = (diagramUrl: string | undefined) => {
-    if (!diagramUrl) return null
+  // The question to display
+  const currentQuestionData = filteredQuestions[currentQuestion]
+  if (!currentQuestionData) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full">
+        <p className="text-gray-500">No question available. Please restart the exam.</p>
+        <Button onClick={onExit}>Exit</Button>
+      </div>
+    )
+  }
 
+  // Optionally render any diagram
+  function renderQuestionDiagram(diagramUrl?: string) {
+    if (!diagramUrl) return null
     return (
       <div className="relative w-full h-64 mb-4">
         <Image
@@ -103,24 +120,13 @@ const Exam: React.FC<ExamProps> = ({
     )
   }
 
-  const currentQuestionData = filteredQuestions[currentQuestion]
-
-  if (!currentQuestionData) {
-    return (
-      <div className="flex flex-col items-center justify-center h-full">
-        <p className="text-gray-500">
-          No question available. Please restart the exam.
-        </p>
-        <Button onClick={onExit}>Exit</Button>
-      </div>
-    )
-  }
-
   return (
     <div className="min-h-screen w-full bg-background flex flex-col">
+      {/* Header */}
       <header className="sticky top-0 z-10 bg-background border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
+            {/* User info */}
             <div className="flex items-center space-x-4">
               <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
                 <User className="w-6 h-6 text-primary-foreground" />
@@ -132,6 +138,8 @@ const Exam: React.FC<ExamProps> = ({
                 </p>
               </div>
             </div>
+
+            {/* Timer + Exit */}
             <div className="flex items-center space-x-4">
               <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium flex items-center">
                 <Clock className="w-4 h-4 mr-2" />
@@ -145,8 +153,9 @@ const Exam: React.FC<ExamProps> = ({
         </div>
       </header>
 
+      {/* Main exam body */}
       <main className="flex-grow flex overflow-hidden">
-        {/* Question Content Section */}
+        {/* Question content */}
         <div className="flex-grow overflow-y-auto p-4 sm:p-6 lg:p-8 max-h-screen flex flex-col">
           <Card className="mb-6 max-w-4xl mx-auto">
             <CardHeader>
@@ -157,37 +166,36 @@ const Exam: React.FC<ExamProps> = ({
                 </span>
               </CardTitle>
             </CardHeader>
+
             <CardContent className="p-6 overflow-y-auto max-h-[60vh]">
               {renderQuestionDiagram(currentQuestionData.diagramUrl)}
+
               <div className="text-gray-700 mb-4 text-base sm:text-lg md:text-xl leading-7">
                 <MathRenderer text={currentQuestionData.text} />
               </div>
+
+              {/* If MCQ */}
               {currentQuestionData.type === "Multiple Choice" && (
                 <div className="space-y-4 mt-4">
-                  {Object.entries(currentQuestionData.options).map(
-                    ([optionId, optionText], index) => (
+                  {Object.entries(currentQuestionData.options).map(([key, optionText]) => {
+                    // e.g. key might be "A", "B", "C", ...
+                    const isSelected = answers[currentQuestion] === key
+                    return (
                       <Button
-                        key={`${currentQuestionData.id}_${optionId}`}
-                        variant={
-                          answers[currentQuestion] ===
-                          String.fromCharCode(65 + index)
-                            ? "secondary"
-                            : "outline"
-                        }
-                        className={`w-full justify-start text-left h-auto py-3 px-4`}
-                        onClick={() =>
-                          onAnswer(String.fromCharCode(65 + index))
-                        }
+                        key={key} 
+                        variant={isSelected ? "secondary" : "outline"}
+                        className="w-full justify-start text-left h-auto py-3 px-4"
+                        onClick={() => onAnswer(key)}
                       >
-                        <span className="font-semibold mr-2">
-                          {String.fromCharCode(65 + index)}.
-                        </span>
+                        <span className="font-semibold mr-2">{key}.</span>
                         <MathRenderer text={optionText} />
                       </Button>
                     )
-                  )}
+                  })}
                 </div>
               )}
+
+              {/* If Numerical */}
               {currentQuestionData.type === "Numerical" && (
                 <div className="mt-4">
                   <Input
@@ -200,8 +208,10 @@ const Exam: React.FC<ExamProps> = ({
                 </div>
               )}
             </CardContent>
+
             <CardFooter className="flex flex-col gap-4">
               <div className="flex flex-wrap gap-3 justify-between w-full">
+                {/* Navigation buttons */}
                 <div className="flex gap-3">
                   <Button
                     onClick={onPrevious}
@@ -212,6 +222,7 @@ const Exam: React.FC<ExamProps> = ({
                     <ChevronLeft className="w-4 h-4 mr-2" />
                     Previous
                   </Button>
+
                   <Button
                     onClick={onNext}
                     variant="outline"
@@ -222,6 +233,8 @@ const Exam: React.FC<ExamProps> = ({
                     <ChevronRight className="w-4 h-4 ml-2" />
                   </Button>
                 </div>
+
+                {/* Action buttons */}
                 <div className="flex gap-3">
                   <Button onClick={onClear} variant="outline">
                     Clear
@@ -236,6 +249,8 @@ const Exam: React.FC<ExamProps> = ({
               </div>
             </CardFooter>
           </Card>
+
+          {/* Submit exam */}
           <div className="flex justify-center mt-6">
             <Button
               onClick={() => {
@@ -250,15 +265,14 @@ const Exam: React.FC<ExamProps> = ({
             </Button>
           </div>
         </div>
+
         <Separator orientation="vertical" className="h-auto" />
 
-        {/* Question Navigator Section */}
+        {/* Question navigator */}
         <div className="w-80 bg-background overflow-y-auto p-4 space-y-6 max-h-screen">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg font-semibold">
-                Question Status
-              </CardTitle>
+              <CardTitle className="text-lg font-semibold">Question Status</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 gap-2">
@@ -267,36 +281,28 @@ const Exam: React.FC<ExamProps> = ({
                     <AlertCircle className="w-4 h-4 mr-2 text-muted-foreground" />
                     Not Visited
                   </span>
-                  <span className="font-medium">
-                    {questionStatusCounts.notVisited}
-                  </span>
+                  <span className="font-medium">{questionStatusCounts.notVisited}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="flex items-center text-sm">
                     <AlertCircle className="w-4 h-4 mr-2 text-yellow-500" />
                     Not Answered
                   </span>
-                  <span className="font-medium">
-                    {questionStatusCounts.notAnswered}
-                  </span>
+                  <span className="font-medium">{questionStatusCounts.notAnswered}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="flex items-center text-sm">
                     <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
                     Answered
                   </span>
-                  <span className="font-medium">
-                    {questionStatusCounts.answered}
-                  </span>
+                  <span className="font-medium">{questionStatusCounts.answered}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="flex items-center text-sm">
                     <Flag className="w-4 h-4 mr-2 text-blue-500" />
                     Marked for Review
                   </span>
-                  <span className="font-medium">
-                    {questionStatusCounts.markedForReview}
-                  </span>
+                  <span className="font-medium">{questionStatusCounts.markedForReview}</span>
                 </div>
               </div>
             </CardContent>
@@ -304,30 +310,23 @@ const Exam: React.FC<ExamProps> = ({
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg font-semibold">
-                Question Navigator
-              </CardTitle>
+              <CardTitle className="text-lg font-semibold">Question Navigator</CardTitle>
             </CardHeader>
             <CardContent className="overflow-y-auto max-h-[60vh]">
               <div className="grid grid-cols-5 gap-2">
                 {filteredQuestions.map((_, index) => {
                   const status = questionStatuses[index] || "notVisited"
-                  const isCurrentQuestion = currentQuestion === index
+                  const isCurrent = currentQuestion === index
 
                   let buttonClasses = "w-10 h-10 p-0 font-medium"
-
-                  if (isCurrentQuestion) {
-                    buttonClasses +=
-                      " border-blue-800 bg-blue-100 text-blue-600"
+                  if (isCurrent) {
+                    buttonClasses += " border-blue-800 bg-blue-100 text-blue-600"
                   } else if (status === "markedForReview") {
-                    buttonClasses +=
-                      " border-blue-600 bg-blue-100 text-blue-600"
+                    buttonClasses += " border-blue-600 bg-blue-100 text-blue-600"
                   } else if (status === "notAnswered") {
-                    buttonClasses +=
-                      " border-yellow-600 bg-yellow-100 text-yellow-600"
+                    buttonClasses += " border-yellow-600 bg-yellow-100 text-yellow-600"
                   } else if (status === "answered") {
-                    buttonClasses +=
-                      " border-green-600 bg-green-100 text-green-600"
+                    buttonClasses += " border-green-600 bg-green-100 text-green-600"
                   } else {
                     buttonClasses += " border-gray-300 bg-white text-gray-600"
                   }
@@ -360,6 +359,3 @@ const Exam: React.FC<ExamProps> = ({
     </div>
   )
 }
-
-export default Exam
-

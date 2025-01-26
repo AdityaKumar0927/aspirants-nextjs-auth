@@ -1,0 +1,2333 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Algorithms",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Dipa1ecAXUvtvRmF",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "divide-and-conquer-method",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For merging two sorted lists of sizes m and n into a sorted list of size m+n, we require comparisons of ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "O(m)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "O(n)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "O(m+n)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "O(log m + log n)"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-merging-two-sorted-lists-of-sizes-m-and-n-into-a-sorted-gate-cse-1995-marks-1-dipa1ecaxuvtvrmf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BNWItK36kWTF0oDU",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "divide-and-conquer-method",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following statements is true?<br>\nI. As the number of entries in a hash table increases, the number of collisions increases.<br>\nII. Recursive programs are efficient<br>\nIII. The worst case complexity for Quicksort is O(n<sup>2</sup>)<br>\nIV. Binary search using a linear linked list is efficient.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "I and II"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "II and III"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "I and IV"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "I and III"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-statements-is-truei-as-the-number-of-gate-cse-1995-marks-1-bnwitk36kwtf0odu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mrki8YHir3IwzqIy",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "divide-and-conquer-method",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Merge sort uses",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Divide and conquer strategy"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Backtracking approach"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Heuristic search"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Greedy approach"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "merge-sort-uses-gate-cse-1995-marks-1-mrki8yhir3iwzqiy.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                }
+            ],
+            "title": "Algorithms"
+        },
+        {
+            "_id": "Compiler Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OK6VskA427m0fs1L",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "lexical-analysis",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In some programming languages, an identifier is permitted to be a letter following by any number of letters or digits. If L and D denote the sets of letters and digits respectively, which of the following expressions defines an identifier?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\left( {L \\cup D} \\right)^ + }$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$L{\\left( {L \\cup D} \\right)^*}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\left( {L.D} \\right)^*}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$L{\\left( {L.D} \\right)^*}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-some-programming-languages-an-identifier-is-permitted-to-gate-cse-1995-marks-1-ok6vska427m0fs1l.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BAWIOvNvi5NcTYJm",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "lexical-analysis",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following strings can definitely be said to be tokens without looking at the next input character while compiling a Pascal program?\n<p><b>I.</b> begin \n<br><b>II.</b> program \n<br><b>III.</b> &lt;&gt; </p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "I"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "II"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "III"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "All of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-strings-can-definitely-be-said-to-be-gate-cse-1995-marks-1-bawiovnvi5nctyjm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZWqXMO1PYHJyUzVW",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parsing",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>A shift reduce parser carries out the actions specified within braces immediately after reducing with the corresponding rule of grammar.</p>\n$$\\eqalign{\n  &amp; S \\to xxW\\,\\left\\{ {pr{\\mathop{\\rm int}} \\,'1'} \\right\\}  \\cr \n  &amp; S \\to y\\,\\left\\{ {pr{\\mathop{\\rm int}} \\,'2'} \\right\\}  \\cr \n  &amp; W \\to Sz\\,\\left\\{ {pr{\\mathop{\\rm int}} \\,'3'} \\right\\} \\cr} $$\n<p>What is the translation of <b>xxxxyzz</b> using the syntax directed translation scheme\ndescribed by the above rules?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "23131"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "11233"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "11231"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "33211"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-shift-reduce-parser-carries-out-the-actions-specified-with-gate-cse-1995-marks-2-zwqxmo1pyhjyuzvw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Rvcrao0rbisHIMM5",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "syntax-directed-translation",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A linker is given object modules for a set of programs that were compiled separately. What information need to be included in an object module? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Object code"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Relocation bits"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Names and locations of all external symbols defined in the object module"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Absolute addresses of internal symbols"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-linker-is-given-object-modules-for-a-set-of-programs-that-gate-cse-1995-marks-1-rvcrao0rbishimm5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                }
+            ],
+            "title": "Compiler Design"
+        },
+        {
+            "_id": "Computer Organization",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MaHxIGPTDCgboDw2",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-interfacing",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$ROM$$ is used to store a truth table for a binary multiplier unit that will multiply two $$4$$ bit numbers. The size of the $$ROM$$ (number of words $$ \\times $$ number of bits) that is required to accommodate the truth table is $$M$$ words $$ \\times $$ $$N$$ bits. Write the values of $$M$$ and $$N$$.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$M=256$$ and $$N=8$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-rom-is-used-to-store-a-truth-table-for-a-binary-multiplier-gate-cse-1995-marks-1-mahxigptdcgbodw2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cWoS0Xu70rKgxIBJ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-interfacing",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The capacity of a memory unit is defined by the number of words multiplied by the number of bits/word. How many separate address and data lines are needed for a memory of $$4K$$  $$ \\times $$ $$16?$$  ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$12$$ address lines and $$16$$ data lines.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-capacity-of-a-memory-unit-is-defined-by-the-number-of-wo-gate-cse-1995-marks-1-cwos0xu70rkgxibj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vq7J9YfMaLdMtQsh",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-interfacing",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A computer system has a $$4K$$ word cache organized in block set associative manner with $$4$$ blocks per set, $$64$$ words per block. The number of bits in the $$SET$$ and $$WORD$$ fields of the main memory address format is \n ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$15,40$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$6,4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$7,2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4,6$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-computer-system-has-a-4k-word-cache-organized-in-block-set-gate-cse-1995-marks-1-vq7j9yfmaldmtqsh.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BN1JtCt1Q5MhW0jc",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "io-interface",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a vectored interrupt",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The branch address is assigned to a fixed location in memory "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The interrupting source supplies the branch information to the processor through an interrupt vector."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The branch address is obtained from a register in the processor."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of these "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-vectored-interrupt-gate-cse-1995-marks-1-bn1jtct1q5mhw0jc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                }
+            ],
+            "title": "Computer Organization"
+        },
+        {
+            "_id": "Data Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QHvwWbdMbTQbPWr5",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A binary tree T has n leaf nodes. The number of nodes of degree 2 in T is: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "log<sub>2</sub>n "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "n \u2212 1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "n "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2n"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-binary-tree-t-has-n-leaf-nodes-the-number-of-nodes-of-degr-gate-cse-1995-marks-1-qhvwwbdmbtqbpwr5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bnnGuWw5gsQMu1Z8",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stacks-and-queues",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The postfix expression for the infix expression \nA + B * (C + D) / F + D * E is: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "AB + CD + *F/D + E* "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "ABCD + *F/+DE*+ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "A *B + CD/F *DE++ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "A + *BCD/F* DE++"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-postfix-expression-for-the-infix-expression-a-b-c-d-f-d-gate-cse-1995-marks-2-bnnguww5gsqmu1z8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                }
+            ],
+            "title": "Data Structures"
+        },
+        {
+            "_id": "Database Management System",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dXlLTlE74SNeSfQJ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "functional-dependencies-and-normalization",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "(a) Consider the relation scheme $$R(A, B, C)$$ with the following functional dependencies:\n<br>$$\\eqalign{\n  &amp; A,B \\to C  \\cr \n  &amp; \\,\\,\\,\\,\\,\\,C \\to A \\cr} $$\n<br>Show that the scheme $$R$$ is the Third Normal Form $$(3NF)$$ but not in Boyce-Code Normal Form $$(BCNF).$$\n<p>(b) Determine the minimal keys of relation $$R.$$</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-consider-the-relation-scheme-ra-b-c-with-the-following-fun-gate-cse-1995-marks-2-dxlltle74snesfqj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                }
+            ],
+            "title": "Database Management System"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pVXsd4g3FRB1s1xf",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$\\mathop {Lim}\\limits_{x \\to \\infty } {{{x^3} - \\cos x} \\over {{x^2} + {{\\left( {\\sin x} \\right)}^2}}} = \\_\\_\\_\\_\\_\\_.$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\infty $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Does not exist "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "mathop-limlimitsx-to-infty-x3-cos-x-over-x2-left-sin-x-right-gate-cse-1995-marks-1-pvxsd4g3frb1s1xf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "r4P7htBpQTKaxSIy",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A bag contains 10 white balls and 15 black balls. Two balls drawn in succession. The probability that one of them is black the other is white is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2/3"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "4/5"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\raise0.5ex\\hbox{$\\scriptstyle 1$}\n\\kern-0.1em/\\kern-0.15em\n\\lower0.25ex\\hbox{$\\scriptstyle 2$}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1/3"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-bag-contains-10-white-balls-and-15-black-balls-two-balls-d-gate-cse-1995-marks-2-r4p7htbpqtkaxsiy.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HjnYQkQ0UnJOiHCq",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let A be the set of all nonsingular matrices over real numbers and let * be the matrix multiplication operator. Then ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "A is closed under * but $$ &lt; A,\\,* &gt; $$ is not a semigroup."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$ &lt; A,\\,* &gt; $$ is a semigroup but not a monoid."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$ &lt; A,\\,* &gt; $$ is a monoid but not a group."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ &lt; A,\\,* &gt; $$ is a group but not an abelian group"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-a-be-the-set-of-all-nonsingular-matrices-over-real-numbe-gate-cse-1995-marks-2-hjnyqkq0unjoihcq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mX1D9lgo6ndotP2U",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of elements in the power set $$P(S)$$ of the set $$S = \\left\\{ {\\left\\{ \\phi  \\right\\},1,\\left\\{ {2,3} \\right\\}} \\right\\}$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$8$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-elements-in-the-power-set-ps-of-the-set-s-left-gate-cse-1995-marks-1-mx1d9lgo6ndotp2u.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CqybeoxA77MWdJk5",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$R$$ be a symmetric and transitive relation on a set $$A$$. Then ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$R$$ is reflexive and hence an equivalence relation. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$R$$ is reflexive and hence partial order."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$R$$ is not reflexive and hence not an equivalence relation. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above."
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-r-be-a-symmetric-and-transitive-relation-on-a-set-a-then-gate-cse-1995-marks-1-cqybeoxa77mwdjk5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5DOJG5QwgaZ8MzBU",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The rank of the following (n + 1) x (n + 1) matrix, where a is a real number is \n$$$\\left[ {\\matrix{\n   1 &amp; a &amp; {{a^2}} &amp; . &amp; . &amp; . &amp; {{a^n}}  \\cr \n   1 &amp; a &amp; {{a^2}} &amp; . &amp; . &amp; . &amp; {{a^n}}  \\cr \n   . &amp; . &amp; . &amp; . &amp; . &amp; . &amp; .  \\cr \n   . &amp; . &amp; . &amp; . &amp; . &amp; . &amp; .  \\cr \n   . &amp; . &amp; . &amp; . &amp; . &amp; . &amp; .  \\cr \n   1 &amp; a &amp; {{a^2}} &amp; . &amp; . &amp; . &amp; {{a^n}}  \\cr \n\n } } \\right]$$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "n "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Depends on the value of a "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-rank-of-the-following-n-1-x-n-1-matrix-where-a-is-a-real-gate-cse-1995-marks-1-5dojg5qwgaz8mzbu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9QK9N0kfd2Z7yf9c",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The rank of the following (n + 1) x (n + 1) matrix, where a is a real number is \n$$$\\left[ {\\matrix{\n   1 &amp; a &amp; {{a^2}} &amp; . &amp; . &amp; . &amp; {{a^n}}  \\cr \n   1 &amp; a &amp; {{a^2}} &amp; . &amp; . &amp; . &amp; {{a^n}}  \\cr \n   . &amp; . &amp; . &amp; . &amp; . &amp; . &amp; .  \\cr \n   . &amp; . &amp; . &amp; . &amp; . &amp; . &amp; .  \\cr \n   . &amp; . &amp; . &amp; . &amp; . &amp; . &amp; .  \\cr \n   1 &amp; a &amp; {{a^2}} &amp; . &amp; . &amp; . &amp; {{a^n}}  \\cr \n\n } } \\right]$$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "n "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Depends on the value of a "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-rank-of-the-following-n-1-x-n-1-matrix-where-a-is-a-real-gate-cse-1995-marks-1-9qk9n0kfd2z7yf9c.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hHPRMNhYh5CGTC0u",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If at every point of a certain curve, the slope of the tangent equals $${{ - 2x} \\over y}$$ the curve is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "A straight line "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "A parabola "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "A circle "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "An ellipse"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-at-every-point-of-a-certain-curve-the-slope-of-the-tangen-gate-cse-1995-marks-1-hhprmnhyh5cgtc0u.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rmIZb3e3d4EKyz1a",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $${G_1}$$ and $${G_2}$$ be subgroups of a group $$G$$. \n<br>(a) Show that $${G_1}\\, \\cap \\,{G_2}$$ is also a subgroup of $$G$$.\n<br>(b) $${\\rm I}$$s $${G_1}\\, \\cup \\,{G_2}$$ always a subgroup of $$G$$?",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-g1-and-g2-be-subgroups-of-a-group-g-a-show-that-g1-cap-g-gate-cse-1995-marks-5-rmizb3e3d4ekyz1a.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VvusVDMd05nKcZXd",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Prove that in a finite graph, the number of vertices of odd degree is always even.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "prove-that-in-a-finite-graph-the-number-of-vertices-of-odd-d-gate-cse-1995-marks-2-vvusvdmd05nkczxd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "inrEqcfiUURLvbKl",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "How many minimum spanning tress does the following graph have? Draw them (Weights are assigned to the edges).\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/2TfjM0cLIW6MVMraZ/ir35SkY7n74QSEqppxOctZ6XOE8Ef/rxxJRrLWfqRPzPTn3lh6jq/image.svg\" loading=\"lazy\" alt=\"GATE CSE 1995 Discrete Mathematics - Graph Theory Question 32 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Two.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "how-many-minimum-spanning-tress-does-the-following-graph-hav-gate-cse-1995-marks-5-inreqcfiuurlvbkl.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xoQIhVhGTfbiiK7l",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the proposition $$\\neg p \\Rightarrow q$$ is true, then the truth value of the proposition $$\\neg p \\vee \\left( {p \\Rightarrow q} \\right)$$ where $$'\\neg '$$ is negation, $$' \\vee '$$ is inclusive or and $$' \\Rightarrow '$$ is implication, is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "true "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "multiple-valued "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "false "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "cannot be determined "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-proposition-neg-p-rightarrow-q-is-true-then-the-truth-gate-cse-1995-marks-2-xoqihvhgtfbiik7l.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "57s1f5uaCcCGdGMx",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The probability that a number selected at random between $$100$$ and $$999$$ (both inclusive ) will not contain the digit $$7$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{16} \\over {25}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\left( {{9 \\over {10}}} \\right)^3}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{27} \\over {75}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{18} \\over {25}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-probability-that-a-number-selected-at-random-between-100-gate-cse-1995-marks-1-57s1f5uacccgdgmx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PO9NSuqGvcFpqRP4",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The principle of locality justifies the use of ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Interrupts "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "DMA "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Polling "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Cache Memory"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-principle-of-locality-justifies-the-use-of-gate-cse-1995-marks-1-po9nsuqgvcfpqrp4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vevpy2g9dqj6xrck",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a paged segmented scheme of memory management, the segment table itself must have a page table because:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The segment table is often too large to fit in one page."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Each segment is spread over a number of pages "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Segment tables point to page table and not to the physical locations of the segment."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The processor\u2019s description base register points to a page table."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-paged-segmented-scheme-of-memory-management-the-segment-gate-cse-1995-marks-1-vevpy2g9dqj6xrck.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TC1CXuzvO23wMNz5",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A linker is given object modules for a set of programs that were compiled separately. What information need to be included in an object module?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Object code\n "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Relocation bits "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Names and locations of all external symbols defined in the object module "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Absolute addresses of internal symbols "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-linker-is-given-object-modules-for-a-set-of-programs-that-gate-cse-1995-marks-1-tc1cxuzvo23wmnz5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "R1MLRaf7sl0MeJ8m",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The address sequence generated by tracing a particular program executing in a pure demand paging system with $$100$$ records per page with $$1$$ free main memory frame is recorded as follows. What is the number of page faults?\n<p>$$0100, 0200, 0430, 0499, 0510, 0530, 0560, 0120, 0220, 0240, 0260, 0320, 0370 $$</p>\n ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$13$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$8$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$7$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$10$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-address-sequence-generated-by-tracing-a-particular-progr-gate-cse-1995-marks-2-r1mlraf7sl0mej8m.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VR0abz4kw2DsQHQ4",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a virtual memory system the address space specified by the address lines of the $$CPU$$ must be __________ than the physical memory size and _______ than the secondary storage size.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "smaller, smaller "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "smaller, larger"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "larger, smaller "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "larger, larger "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-virtual-memory-system-the-address-space-specified-by-th-gate-cse-1995-marks-2-vr0abz4kw2dsqhq4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4hiPuR4H5HO33xXz",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A computer installation has 1000K of main memory. The jobs arrive and finish in the following sequence.\n<br>Job 1 requiring 200k arrives\n<br>Job 2 requiring 350k arrives\n<br>Job 3 requiring 300k arrives\n<br>Job 1 finishes\n<br>Job 4 requiring 120k arrives\n<br>Job 5 requiring 150k arrives\n<br>Job 6 requiring 80k arrives\n<p>(a) Draw the memory allocation table using Best Fit and First fit algorithm.\n<br>(b) Which algorithm performs better for this sequence?</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-computer-installation-has-1000k-of-main-memory-the-jobs-ar-gate-cse-1995-marks-5-4hipur4h5ho33xxz.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "U4eMBPHCrk49Sfki",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The capacity of a memory unit is defined by the number of words multiplied by the number of bits/word. How many separate address and data lines are needed for a memory of $$4K\\,\\, \\times \\,\\,16?$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$10$$ address, $$16$$ data lines"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$11$$ address, $$8$$ data lines "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$12$$ address, $$16$$ data lines"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$12$$ address, $$12$$ data lines"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-capacity-of-a-memory-unit-is-defined-by-the-number-of-wo-gate-cse-1995-marks-2-u4embphcrk49sfki.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gmHTq22hxfI7ufpB",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the disk in (a) is rotating at $$3600$$ rpm, determine the effective data transfer rate which is defined as the number of bytes transferred per second between disk and memory.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$4.8$$ $$MB/S$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-disk-in-a-is-rotating-at-3600-rpm-determine-the-effec-gate-cse-1995-marks-2-gmhtq22hxfi7ufpb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xNTmbH9csJfFIRJy",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the overhead for formatting a disk is $$96$$ bytes for $$40000$$ bytes sector, Compute the unformatted capacity of the disk of the following parameters:\n<br>Number of surface: $$8$$\n<br>Outer diameter of the disk : $$12cm$$\n<br>Inner diameter of the disk: $$4cm$$\n<br>Inter track space: $$0.1mm$$ \n<br>Number of sectors per track: $$20$$ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Disk capacity $$=4$$ GB",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-overhead-for-formatting-a-disk-is-96-bytes-for-40000-gate-cse-1995-marks-5-xntmbh9csjffirjy.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1K86RlX5dBqwuTTF",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The head of a moving head disk with $$100$$ tracks numbered $$0$$ to $$99$$ is currently serving a request at tract $$55.$$ If the queue of requests kept in $$FIFO$$ order is $$10, 70, 75, 23, 65$$ Which of the two disk scheduling algorithms $$FCFS$$ (First Come First Served) and $$SSTF$$ (Shortest Seek Time First) will require less head movement? Find the head movement for each of the algorithms. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$SSTF$$ $$=85$$ movements\n<br>$$FIFO=199$$ movements.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-head-of-a-moving-head-disk-with-100-tracks-numbered-0-to-gate-cse-1995-marks-5-1k86rlx5dbqwuttf.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "S7HV2uciwDxmrpjA",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which scheduling policy is most suitable for a time-shared operating systems? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Shortest Job First "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Round Robin "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "First come First serve "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Elevator "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "Round Robin is a pre-emptive scheduler, which is designed especially for time sharing system. In Round Robin, each process is given a time slot to run. If the process does not finish in that time slot, then it will put in a queue and new process will enter into the running state."
+                        }
+                    },
+                    "permalink": "which-scheduling-policy-is-most-suitable-for-a-time-shared-o-gate-cse-1995-marks-1-s7hv2uciwdxmrpja.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EO9wbrBxoEOSbWGk",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The sequence $$.........$$ is an optimal non-preemptive scheduling sequence for the following jobs which leaves the $$CPU$$ idle for $$..........$$ Unit (s) of time\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/uo8JVOpJOO7WNYjSh/aiCM7itMswqGTVYXVtiI9ZGlZBvEC/MpHC2oIdxxt1QCou36xlPI/image.svg\" loading=\"lazy\" alt=\"GATE CSE 1995 Operating Systems - Process Concepts and Cpu Scheduling Question 27 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left\\{ {3,2,1} \\right\\},1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left\\{ {2,1,3} \\right\\},0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left\\{ {3,2,1} \\right\\},0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left\\{ {1,2,3} \\right\\},5$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-sequence-is-an-optimal-non-preemptive-scheduling-sequenc-gate-cse-1995-marks-2-eo9wbrbxoeosbwgk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                }
+            ],
+            "title": "Operating Systems"
+        },
+        {
+            "_id": "Programming Languages",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4QtJLcwq5DGwVXkY",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What are x and y in the following macro definition?\n<br><br>macro Add x,y\n<br>Load y\n<br>Mul x\n<br>Store y\n<br>end macro<br>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Variables"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Identifiers"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Actual parameters"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Formal parameters"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>In the given macro definition,</p>\n<pre><code class=\"markdown language-markdown\">macro Add x,y\n\nLoad y\n\nMul x\n\nStore y\n\nend macro\n</code></pre>\n<p>$x$ and $y$ are <strong>Option D: Formal parameters</strong>. </p>\n<p>Formal parameters are the names given to the arguments that a macro expects when it is defined; they act as placeholders for the actual values or variables passed to the macro during its invocation. In this macro, $x$ and $y$ are used as placeholders that can be substituted with specific arguments when the macro is called.</p>"
+                        }
+                    },
+                    "permalink": "what-are-x-and-y-in-the-following-macro-definitionmacro-add-gate-cse-1995-marks-1-4qtjlcwq5dgwvxky.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TyJ3sr48QSmqeZam",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "function-and-recursion",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the value of X printed by the following program?\n<pre><code class=\"pascal\">program COMPUTE (input, output);\nvar\n    X:integer;\nprocedure FIND (X:real);\n    begin\n    X:=sqrt(X);\n    end;\nbegin\n   X:=2\n   Find(X)\n   Writeln(X)\nend</code></pre>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\sqrt 2 $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Runtime error"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-the-value-of-x-printed-by-the-following-programprogr-gate-cse-1995-marks-2-tyj3sr48qsmqezam.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                }
+            ],
+            "title": "Programming Languages"
+        },
+        {
+            "_id": "Theory of Computation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KqbmWDKCM4hxlZMW",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A finite state machine with the following state table has a single input $$X$$ and a single out $$Z$$.\n <img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/X9pJo1DqrDk3RUmu8/uTKZEytxtf9WF587Oct9I0hP8gkCW/ZxAOvJsCuiI6yDiwx3WQED/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1995 Theory of Computation - Finite Automata and Regular Language Question 73 English\"> \n<p>If the initial state is unknown, then the shortest input sequence to reach the final state $$C$$ is here, since initial make unknown $$m$$ $$10$$ input we can each final state $$C$$ with shortest path.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$01$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$10$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$101$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$110$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-finite-state-machine-with-the-following-state-table-has-a-gate-cse-1995-marks-2-kqbmwdkcm4hxlzmw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sAwg4xY28ljdX1m6",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following definitions below generates the same language as $$L$$ \n<br>Where $$L = {\\left\\{ x \\right.^n}{y^n}\\left| {n \\ge \\left. 1 \\right\\}} \\right.$$\n<br>i) $$\\,\\,E \\to xEy\\left| {xy} \\right.$$ \n<br>ii) $$\\,\\,xy\\left| {\\left( {{x^ + }xy{y^ + }} \\right)} \\right.$$\n<br>iii) $${\\,\\,{x^ + }{y^ + }}$$\n<br>$$L = \\left\\{ {xn\\,{y^n}\\left| {n \\ge 1} \\right.} \\right\\} - $$ generates string where equal no. of $$x$$ and equal no. of $$y's.$$\n<br>$$E \\to XBy\\left| {xy\\,abo} \\right.$$ generators tips same.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "(i) only "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "(i) and (ii) "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "(ii) and (iii) "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "(ii) only"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-definitions-below-generates-the-same-gate-cse-1995-marks-2-sawg4xy28ljdx1m6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4zu9goKLsO1p6PQ9",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 1995,
+                    "paperTitle": "GATE CSE 1995",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the grammar with the following productions.\n<br>$$S \\to a\\,\\alpha \\,\\,b\\left| {\\,\\,b\\,\\alpha } \\right.\\,c\\,\\left| {aB} \\right.$$\n<br>$$S \\to \\alpha S\\,\\left| b \\right.$$\n<br>$$S \\to \\alpha \\,bb\\,\\left| {ab} \\right.$$\n<br>$$S\\alpha  \\to bdb\\,\\left| b \\right.$$ \n<br>the above grammar is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Context free grammar "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Regular grammar "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Context sensitive grammar "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$LR(k)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-grammar-with-the-following-productionss-to-aalp-gate-cse-1995-marks-1-4zu9goklso1p6pq9.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1995",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1995"
+                }
+            ],
+            "title": "Theory of Computation"
+        }
+    ]
+}

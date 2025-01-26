@@ -1,0 +1,2927 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Algorithms",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nDAWNRZLvEv0gJDJ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complexity-analysis-and-asymptotic-notations",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The worst case running time to search for an element in a balanced binary search tree with n2<sup>n</sup> elements is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\Theta (n\\,\\log \\,n)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\Theta (n{2^n})$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\Theta (n)$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\Theta (\\log \\,n)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-worst-case-running-time-to-search-for-an-element-in-a-ba-gate-cse-2012-marks-1-ndawnrzlvev0gjdj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NLNx2EWwdu0zpZ3F",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complexity-analysis-and-asymptotic-notations",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let W(n) and A(n) denote respectively, the worst case and average case running time of an algorithm executed on an input of size n. Which of the following is ALWAYS TRUE?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$A(n) = \\Omega (W(n))$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$A(n) = \\Theta (W(n))$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$A(n) = O (W(n))$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$A(n) = 0 (W(n))$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-wn-and-an-denote-respectively-the-worst-case-and-average-gate-cse-2012-marks-1-nlnx2ewwdu0zpz3f.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DWTo3GY8FD04CAZR",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "divide-and-conquer-method",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A list of n strings, each of length n, is sorted into lexicographic order using the merge-sort algorithm. The worst case running time of this computation is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "O(n log n)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "O(n<sup>2</sup> log n)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "O(n<sup>2</sup> + log n)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "O(n<sup>2</sup>)"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-list-of-n-strings-each-of-length-n-is-sorted-into-lexicogr-gate-cse-2012-marks-2-dwto3gy8fd04cazr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GC9zzF0ILu8W0uoU",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "greedy-method",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the directed graph shown in the figure below. There are multiple shortest paths between vertices S and T. Which one will be reported by Dijkstra\u2019s shortest path algorithm? Assume that, in any iteration, the shortest path to a vertex v is updated only when a strictly shorter path to v is discovered.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/NA5KbTNXUGp5O2yXO/nHAFUN5lmtbQARInDMOi9qDBu6O02/BDl5u7sfMJ9bzy0qu86rRg/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2012 Algorithms - Greedy Method Question 18 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "SDT"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "SBDT"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "SACDT"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "SACET"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-directed-graph-shown-in-the-figure-below-there-gate-cse-2012-marks-2-gc9zzf0ilu8w0uou.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                }
+            ],
+            "title": "Algorithms"
+        },
+        {
+            "_id": "Compiler Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WVkt7ZqmAB20RAXi",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parsing",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given the language L= { ab, aa, baa }, which of the following strings are in L* ? \n<p>1) abaabaaabaa \n<br>2) aaaabaaaa \n<br>3) baaaaabaaaab \n<br>4) baaaaabaa </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1,2 and 3 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2,3 and 4"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1,2 and 4"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1,3 and 4"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-the-language-l-ab-aa-baa-which-of-the-following-string-gate-cse-2012-marks-1-wvkt7zqmab20raxi.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                }
+            ],
+            "title": "Compiler Design"
+        },
+        {
+            "_id": "Computer Networks",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bN5Ck4GlUKlKw7vQ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-layer",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An Internet Service Provider (ISP) has the following chunk of CIDR-based IP addresses available with it: 245.248.128.0/20. <br>The ISP wants to give half of this chunk of addresses to Organization A, and a quarter to Organization B, while retaining the remaining with itself. Which of the following is a valid allocation of address to A and B? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "245.248.136.0/21 and 245.248.128.0/22"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "245.248.128.0/21 and 245.248.128.0/22"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "245.248.132.0/22 and 245.248.132.0/21"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "245.248.136.0/24 and 245.248.132.0/21"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-internet-service-provider-isp-has-the-following-chunk-of-gate-cse-2012-marks-2-bn5ck4gluklkw7vq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hAJ9dftJEiKSq2Kz",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "concepts-of-layering",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The protocol data unit (PDU) for the application layer in the Internet stack is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Segment "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Datagram"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Message"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Frame"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "The PDU for Datalink layer, Network layer, Transport layer and Application layer are frame, datagram, segment and message respectively."
+                        }
+                    },
+                    "permalink": "the-protocol-data-unit-pdu-for-the-application-layer-in-the-gate-cse-2012-marks-1-haj9dftjeiksq2kz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iGqGvW8KfruWrShm",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-layer",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the IPv4 addressing format, the number of networks allowed under Class C addresses is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2<sup>14</sup>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2<sup>7</sup>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2<sup>21</sup>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2<sup>24</sup>"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "For class C address, size of network id is 24 bits. But first 3 bits are fixed as 110 so we can use only (24 - 3) = 21 bits to create networks; hence total number of networks possible is 2<sup>21</sup>. "
+                        }
+                    },
+                    "permalink": "in-the-ipv4-addressing-format-the-number-of-networks-allowed-gate-cse-2012-marks-1-igqgvw8kfruwrshm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2LmQnvQcoIFyZGCD",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "routing-algorithm",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a source computer (S) transmitting a file of size 10<sup>6</sup> bits to a destination computer (D) over a network of two routers (R<sub>1</sub> and R<sub>2</sub>) and three links (L<sub>1</sub>, L<sub>2</sub>, and L<sub>3</sub>). L<sub>1</sub> connects S to R<sub>1</sub>; L<sub>2</sub> connects R<sub>1</sub> to R<sub>2</sub>; and L<sub>3</sub> connects R<sub>2</sub> to D. Let each link be of length 100 km. Assume signals travel over each line at a speed of 10<sup>8</sup> meters per second. Assume that the link bandwidth on each link is 1 Mbps. Let the file be broken down into 1000 packets each of size 1000 bits. Find the total sum of transmission and propagation delays in transmitting the file from S to D?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1005 ms"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1010 ms "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "3000 ms"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "3003 ms"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-source-computer-s-transmitting-a-file-of-size-106-gate-cse-2012-marks-2-2lmqnvqcoifyzgcd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DRFCb8KogYmd3Kx3",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "tcp-udp-sockets-and-congestion-control",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following transport layer protocols is used to support electronic mail?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "SMTP"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "IP"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "TCP"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "UDP"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>a) SMTP - It is a application layer protocol for sending email.</p> \n\n<p>b) IP - It is a network layer protocol.</p> \n\n<p>c) TCP - It is a connection oriented transport layer protocol.</p> \n\n<p>d) UDP - It is a connectionless transport layer protocol.</p> \n\n\n<p>SMTP is an application layer protocol used for sending e-mail, it is a connection oriented protocol, therefore it uses TCP at transport layer.</p> \n\n<p>Therefore, SMTP in application layer uses TCP in transport layer for mail services.</p>"
+                        }
+                    },
+                    "permalink": "which-of-the-following-transport-layer-protocols-is-used-to-gate-cse-2012-marks-1-drfcb8kogymd3kx3.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "eClHBbX5xvXtYvoq",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "tcp-udp-sockets-and-congestion-control",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider an instance of TCP\u2019s Additive Increase Multiplicative Decrease (AIMD) algorithm where the window size at the start of the slow start phase is 2 MSS and the threshold at the start of the first transmission is 8 MSS. Assume that a timeout occurs during the fifth transmission. Find the congestion window size at the end of the tenth transmission.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "8 MSS "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "14 MSS"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "7 MSS"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "12 MSS"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-an-instance-of-tcps-additive-increase-multiplicativ-gate-cse-2012-marks-2-eclhbbx5xvxtyvoq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                }
+            ],
+            "title": "Computer Networks"
+        },
+        {
+            "_id": "Computer Organization",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XZsaAZRWPAwZAKrM",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-interfacing",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The amount of $$ROM$$ needed to implement a $$4$$ bit multiplier is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$64$$ bits "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$128$$ bits "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1$$ $$K$$bits "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2$$ $$K$$bits "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-amount-of-rom-needed-to-implement-a-4-bit-multiplier-is-gate-cse-2012-marks-1-xzsaazrwpawzakrm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fVr6Nd4VqS3XUCHO",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-interfacing",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A computer has a $$256$$ $$K$$ Byte, $$4$$-way set associative, write back data cache with block size of $$32$$ Bytes. The processor sends $$32$$ bit addresses to the cache controller. Each cache tag director $$y$$ entry contains, in addition to address tag, $$2$$ valid bits. $$1$$ modified bit and $$1$$ replacement bit.\n<p>The number of bit in the tag field of an address is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$11$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$14$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$16$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$27$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-computer-has-a-256-k-byte-4-way-set-associative-write-back-gate-cse-2012-marks-2-fvr6nd4vqs3xucho.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uAHv3gylnTG9BM9E",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-interfacing",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A computer has a $$256$$ $$K$$ Byte, $$4$$-way set associative, write back data cache with block size of $$32$$ Bytes. The processor sends $$32$$ bit addresses to the cache controller. Each cache tag director $$y$$ entry contains, in addition to address tag, $$2$$ valid bits. $$1$$ modified bit and $$1$$ replacement bit.\n<p>The size of the cache tag directory is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$160$$ $$K$$ bits"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$136$$ $$K$$ bits"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$40$$ $$K$$ bits"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$32$$ $$K$$ bits"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-computer-has-a-256-k-byte-4-way-set-associative-write-back-gate-cse-2012-marks-2-uahv3gylntg9bm9e.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "967dUpMh40i7OAKd",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pipelining",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Register renaming is done in pipelined processors",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "as an alternative to register allocation at compile time "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "for efficient access to function parameters and local variables "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "to handle certain kinds of hazards"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "as part of address translation "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "register-renaming-is-done-in-pipelined-processors-gate-cse-2012-marks-1-967dupmh40i7oakd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jpPy0NPcSzTmuQQp",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "computer-arithmetic",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The decimal value $$0.5$$ in $$IEEE$$ single precision floating point representation has",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "fraction bits of $$00000\u2026000000$$ and exponent value of $$0$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "fraction bits of $$00000\u2026000000$$ and exponent value of $$\u22121$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "fraction bits of $$10000\u2026000000$$ and exponent value of $$0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "no exact representation "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-decimal-value-05-in-ieee-single-precision-floating-point-gate-cse-2012-marks-1-jppy0npcsztmuqqp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                }
+            ],
+            "title": "Computer Organization"
+        },
+        {
+            "_id": "Data Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4Ezdh0oixCu4Purs",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graphs",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let G be a weighted graph with edge weights greater than one and G' be the graph constructed by squaring the weights of edges in G. Let T and T' be the minimum spanning trees of G and G' respectively, with total weights t and t'. Which of the following statements is TRUE?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "T' = T with total weight t' = t<sup>2</sup> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "T' = T with total weight t' &lt; t<sup>2</sup> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "T' =! T but total weight t' = t<sup>2</sup> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of these"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-g-be-a-weighted-graph-with-edge-weights-greater-than-one-gate-cse-2012-marks-2-4ezdh0oixcu4purs.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iTpToiGek1Zf5PkY",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The height of a tree is defined as the number of edges on the longest path in the tree. The function shown in the pseudocode below is invoked as height (root) to compute the height of a binary tree rooted at the tree pointer root. \n<pre><code>int height (treeptr n) \n  { if (n== NULL) return -1; \n  if (n-&gt; left == NULL) \n  if (n-&gt; right ==NULL) return 0; \n  else return B1 ;             // Box 1 \n  else {h1 = height (n -&gt; left); \n      if (n -&gt; right == NULL) return (1 + h1); \n      else {h2 = height (n -&gt; right); \n          return B2 ;          // Box 2 \n          } \n      } \n}</code></pre>\nThe appropriate expression for the two boxes B1 and B2 are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "B1 : (1 + height(n-&gt;right)), B2 : (1 + max(h1,h2)) "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "B1 : (height(n-&gt;right)), B2 : (1 + max(h1,h2)) "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "B1 : height(n-&gt;right), B2 : max(h1,h2) "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "B1 : height(n-&gt;right), B2 : max(h1,h2) "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-height-of-a-tree-is-defined-as-the-number-of-edges-on-th-gate-cse-2012-marks-2-itptoigek1zf5pky.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "40uRipcsgLXfbT3L",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stacks-and-queues",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose a circular queue of capacity (n \u2013 1) elements is implemented with an array of n elements. Assume that the insertion and deletion operations are carried out using REAR and FRONT as array index variables, respectively. Initially, REAR = FRONT = 0. The conditions to detect queue full and queue empty are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "full: (REAR+1)<br>\nmod n == FRONT<br>\nempty: REAR == FRONT"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "full: (REAR+1)<br>\nmod n == FRONT<br>\nempty: (FRONT+1)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "full: REAR == FRONT<br>\nempty: (REAR + 1)<br>\nmod n == FRONT"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "full: (FRONT+1)<br>\nmod n == REAR<br>\nempty: REAR == FRONT"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-a-circular-queue-of-capacity-n-1-elements-is-impleme-gate-cse-2012-marks-2-40uripcsglxfbt3l.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                }
+            ],
+            "title": "Data Structures"
+        },
+        {
+            "_id": "Database Management System",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Rut9otG6O1yNEwwD",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "structured-query-language",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following statements are TRUE about an SQL query?\n<p><b>P:</b> An SQL query can contain a HAVING clause even if it does not have a GROUP BY clause\n<br><b>Q:</b> An SQL query can contain a HAVING clause only if it has a GROUP BY clause\n<br><b>R:</b> All attributes used in the GROUP BY clause must appear in the SELECT clause\n<br><b>S:</b> Not all attributes used in the GROUP BY clause need to appear in the SELECT clause</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "P and R"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "P and S"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Q and R"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Q and S"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-statements-are-true-about-an-sql-quer-gate-cse-2012-marks-1-rut9otg6o1ynewwd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FRBMIOrI8qiACjIu",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "relational-algebra",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose R<sub>1</sub> (<u>A,</u> B) and R<sub>2</sub> (<u>C,</u> D) are two relation schemas. Let r<sub>1</sub> and r<sub>2</sub> be the\ncorresponding relation instances. B is a foreign key that refers to C in R<sub>2</sub>. If data in r<sub>1</sub> and r<sub>2</sub> satisfy referential integrity constraints, which of the following is <b>ALWAYS TRUE</b>?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\prod_{B}(r_{1})- \\prod _{C}(r_{2})= \\varnothing$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\prod_{C}(r_{2})- \\prod _{B}(r_{1})= \\varnothing$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\prod_{B}(r_{1}) = \\prod _{C}(r_{2})$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\prod_{B}(r_{1}) - \\prod _{C}(r_{2}) \\neq \\varnothing$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-r1-a-b-and-r2-c-d-are-two-relation-schemas-let-r1-an-gate-cse-2012-marks-2-frbmiori8qiacjiu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UgJXo1tbS3iiOii0",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "relational-algebra",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following relations A, B and C:\n<br><b>A</b>\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-s6z2{text-align:center}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">ID</span></th>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">Name</span></th>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">Age</span></th>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">12</td>\n    <td class=\"tg-s6z2\">Arun</td>\n    <td class=\"tg-s6z2\">60</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">15</td>\n    <td class=\"tg-s6z2\">Shreya</td>\n    <td class=\"tg-s6z2\">24</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">99</td>\n    <td class=\"tg-s6z2\">Rohit</td>\n    <td class=\"tg-s6z2\">11</td>\n  </tr>\n</tbody></table>\n<br><b>B</b>\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-s6z2{text-align:center}\n.tg .tg-baqh{text-align:center;vertical-align:top}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">ID</span></th>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">Name</span></th>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">Age</span></th>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">15</td>\n    <td class=\"tg-s6z2\">Shreya</td>\n    <td class=\"tg-s6z2\">24</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">25</td>\n    <td class=\"tg-s6z2\">Hari</td>\n    <td class=\"tg-s6z2\">40</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">98</td>\n    <td class=\"tg-baqh\">Rohit</td>\n    <td class=\"tg-baqh\">20</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">99</td>\n    <td class=\"tg-s6z2\">Rohit</td>\n    <td class=\"tg-s6z2\">11</td>\n  </tr>\n</tbody></table>\n<br><b>C</b>\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-s6z2{text-align:center}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">ID</span></th>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">Phone</span></th>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">Area</span></th>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">10</td>\n    <td class=\"tg-s6z2\">2200</td>\n    <td class=\"tg-s6z2\">02</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">99</td>\n    <td class=\"tg-s6z2\">2100</td>\n    <td class=\"tg-s6z2\">01</td>\n  </tr>\n</tbody></table>\n<p>How many tuples does the result of the following SQL query contain?</p>\n<pre><code>SELECT A.Id \nFROM A \nWHERE A.Age &gt; ALL (SELECT B.Age \n                   FROM B \n                   WHERE B.Name = 'Arun')</code></pre>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "4"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "3"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-relations-a-b-and-catg-border-collaps-gate-cse-2012-marks-2-ugjxo1tbs3iioii0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lyp8DIFooGEiPcSP",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "relational-algebra",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following relations A, B and C:\n<br><b>A</b>\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-s6z2{text-align:center}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">ID</span></th>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">Name</span></th>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">Age</span></th>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">12</td>\n    <td class=\"tg-s6z2\">Arun</td>\n    <td class=\"tg-s6z2\">60</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">15</td>\n    <td class=\"tg-s6z2\">Shreya</td>\n    <td class=\"tg-s6z2\">24</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">99</td>\n    <td class=\"tg-s6z2\">Rohit</td>\n    <td class=\"tg-s6z2\">11</td>\n  </tr>\n</tbody></table>\n<br><b>B</b>\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-s6z2{text-align:center}\n.tg .tg-baqh{text-align:center;vertical-align:top}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">ID</span></th>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">Name</span></th>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">Age</span></th>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">15</td>\n    <td class=\"tg-s6z2\">Shreya</td>\n    <td class=\"tg-s6z2\">24</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">25</td>\n    <td class=\"tg-s6z2\">Hari</td>\n    <td class=\"tg-s6z2\">40</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">98</td>\n    <td class=\"tg-baqh\">Rohit</td>\n    <td class=\"tg-baqh\">20</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">99</td>\n    <td class=\"tg-s6z2\">Rohit</td>\n    <td class=\"tg-s6z2\">11</td>\n  </tr>\n</tbody></table>\n<br><b>C</b>\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-s6z2{text-align:center}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">ID</span></th>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">Phone</span></th>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">Area</span></th>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">10</td>\n    <td class=\"tg-s6z2\">2200</td>\n    <td class=\"tg-s6z2\">02</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">99</td>\n    <td class=\"tg-s6z2\">2100</td>\n    <td class=\"tg-s6z2\">01</td>\n  </tr>\n</tbody></table>\n<p>How many tuples does the result of the following relational algebra expression contain? Assume that the schema of A \u222a B is the same as that of A.\n$$(A\\cup B)\\bowtie _{A.Id &gt; 40 \\vee C.Id &lt; 15} C$$</p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "7"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "4"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "5"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "9"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-relations-a-b-and-catg-border-collaps-gate-cse-2012-marks-2-lyp8difoogeipcsp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xJlVh0WFEfS6Xxu1",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transactions-and-concurrency",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following transactions with data items P and Q initialized to zero:\n<pre><code>T<sub>1</sub> : read (P) ; \n     read (Q) ; \n     if P = 0 then Q : = Q + 1 ; \n     write (Q). </code></pre>\n<pre><code>T<sub>2</sub> : read (Q) ; \n     read (P) \n     if Q = 0 then P : = P + 1 ; \n     write (P).</code></pre>\nAny non-serial interleaving of T<sub>1</sub> and T<sub>2</sub> for concurrent execution leads to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a serializable schedule"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a schedule that is not conflict serializable"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "a conflict serializable schedule"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a schedule for which precedence graph cannot be drawn"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-transactions-with-data-items-p-and-q-gate-cse-2012-marks-2-xjlvh0wfefs6xxu1.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YNprsf6OB2N3McFw",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "er-diagrams",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given the basic $$ER$$ and relational models, which of the following is INCORRECT?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "An attribute of an entity can have more than one value "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "An attribute of an entity can be composite "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "In a row of a relational table, an attribute can have more than one value "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "In a row of a relational table, an attribute can have exactly one value or a NULL value "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-the-basic-er-and-relational-models-which-of-the-follow-gate-cse-2012-marks-1-ynprsf6ob2n3mcfw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xku7TeXQYTUqr5VV",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "functional-dependencies-and-normalization",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following is TRUE?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Every relation in $$3NF$$ is also in $$BCNF$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "A relation $$R$$ is in $$3NF$$ if every non-prime attribute of $$R$$ is fully functionally dependent on every key of $$R$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Every relation in $$BCNF$$ is also in $$3NF$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "No relation can be in both $$BCNF$$ and $$3NF$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-is-true-gate-cse-2012-marks-1-xku7texqytuqr5vv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                }
+            ],
+            "title": "Database Management System"
+        },
+        {
+            "_id": "Digital Logic",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NVSskaPsOkfMwlJ3",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "k-maps",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the minimal form of the Karnaugh map shown below? Assume that $$X$$ denotes a don\u2019t care term. \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/bUx7Zn7jCxPl2T4kk/Tw7mB0XaZBOTk2Us87Pt9jdnY9Uiq/nfWIqFOpH7hOkwOP3m5dGQ/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2012 Digital Logic - K Maps Question 4 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\overline {bd} $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\overline {bd}  + \\overline {bc} $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\overline {bd}  + a\\overline {bc} d$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\overline {bd}  + \\overline {bc}  + \\overline {cd} $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-the-minimal-form-of-the-karnaugh-map-shown-below-ass-gate-cse-2012-marks-2-nvsskapsokfmwlj3.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                }
+            ],
+            "title": "Digital Logic"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fQHvwxLentK3odPr",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the correct translation of the following statement into mathematical logic? \"Some real numbers are rational\" ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\exists x\\left( {real\\left( x \\right) \\vee rational\\left( x \\right)} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\forall x\\left( {real\\left( x \\right) \\to rational\\left( x \\right)} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\exists x\\left( {real\\left( x \\right) \\wedge rational\\left( x \\right)} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\exists x\\left( {rational\\left( x \\right) \\to real\\left( x \\right)} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-the-correct-translation-of-the-following-statement-i-gate-cse-2012-marks-1-fqhvwxlentk3odpr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KGeRDjRW4y6nVcpK",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The truth table\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/b18oO9ZSx4VJCexF2/cm80Ye2rJjYF0nmkT4rLgkaWzVM7U/ao1yhsbvHDeGHSNuvxpa10/image.svg\" loading=\"lazy\" alt=\"GATE CSE 2012 Discrete Mathematics - Mathematical Logic Question 38 English\"> \n<p>Represents the Boolean function</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$X$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$X+Y$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$X \\oplus Y$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$Y$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-truth-table-represents-the-boolean-function-gate-cse-2012-marks-1-kgerdjrw4y6nvcpk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uGPYATjSmLQMOyMr",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a random variable X that takes values + 1 and-1 with probability 0.5 each. \n<br> The values of the cumulative distribution function F(x) at x = - 1 and + 1 are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0 and 0.5"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0 and 1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0.5 and 1"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0.25 and 0.75"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-random-variable-x-that-takes-values-1-and-1-with-gate-cse-2012-marks-1-ugpyatjsmlqmoymr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WJnZZosXXmccGC4o",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose a fair six-sided die is rolled once. If the value on the die is 1, 2 or 3 the die is rolled a second time. What is the probability that the sum total of values that turn up is at least 6?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "10/21"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "5/12"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2/3"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1/6"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-a-fair-six-sided-die-is-rolled-once-if-the-value-on-gate-cse-2012-marks-2-wjnzzosxxmccgc4o.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2rjZt6bya6zBjTnj",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "How many onto (or subjective) functions are there form an n-element $$(n\\, \\ge \\,2)$$ set to a 2-element set ?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${2^n}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${2^n}\\, - 1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${2^n}\\, - 2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2\\,({2^n}\\, - 2)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "how-many-onto-or-subjective-functions-are-there-form-an-n-el-gate-cse-2012-marks-2-2rjzt6bya6zbjtnj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OMo2AOb4ygcmbzI0",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinatorics",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The recurrence relation capturing the optional execution time of the Towers of Hanoi problem with $$n$$ discs is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$T\\left( n \\right) = 2T\\left( {n - 2} \\right) + 2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$T\\left( n \\right) = 2T\\left( {n - 1} \\right) + n$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$T\\left( n \\right) = 2T\\left( {n/2} \\right) + 1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$T\\left( n \\right) = 2T\\left( {n - 1} \\right) + 1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-recurrence-relation-capturing-the-optional-execution-tim-gate-cse-2012-marks-1-omo2aob4ygcmbzi0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qLHsUi5hMKNgtP0l",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let G be a simple undirected planner graph on 10 vertices with 15 edges. If G is a connected graph, then the number of bounded faces in any embedding of G on the plane is equal to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "3 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "4 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "5 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "6 "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-g-be-a-simple-undirected-planner-graph-on-10-vertices-wi-gate-cse-2012-marks-1-qlhsui5hmkngtp0l.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WhzBtTDlzh4PsO5Y",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the function $$f\\left( x \\right) = \\sin \\left( x \\right)$$ in the interval $$x \\in \\left[ {\\pi /4,\\,\\,7\\pi /4} \\right].$$ The number and location(s) of the local minima of this function are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "One, at $$\\pi /2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "One, at $$3\\pi /2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Two,  at $$\\pi /2$$ and  $$3\\pi /2$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Two,  at $$\\pi /4$$ and  $$3\\pi /2$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-function-fleft-x-right-sin-left-x-right-in-the-gate-cse-2012-marks-1-whzbttdlzh4pso5y.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ORRZqvT00yjJX4Os",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following graphs is isomorphic to\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Zf21QyRG6T2PNRlqG/RQvfh36OffRhCJfe3CLgvYQ0TABDY/qt261BR9RFrAWgkkyGMIOP/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2012 Discrete Mathematics - Graph Theory Question 66 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/uwkzKPlbtLW0hilcH/myaFJRmh2OA5PnMK1TzsCaFPojDuz/HdBT0XqNOurYK1pqZ4Jrnb/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2012 Discrete Mathematics - Graph Theory Question 66 English Option 1\">"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/sayX95lMZWt56lsVV/iuQGfrj4yqnEEkk3CKr32w1RyxTIu/ykoJ7vH2CEJjFniOAI6yJ3/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2012 Discrete Mathematics - Graph Theory Question 66 English Option 2\">"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Grewv5zZZyZsvPJbh/8EW0hIXolW8hAffhhfm99fpzFBYFc/T4XABA3bRaq3Sg7UQ1Aj7n/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2012 Discrete Mathematics - Graph Theory Question 66 English Option 3\">"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/gDU1jlkaXWLM980NV/mq2DAYUOHk9cuOxMDCUl5rRdL2oRF/uIl7J4YJVr4l10Gl9R6R9s/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2012 Discrete Mathematics - Graph Theory Question 66 English Option 4\">"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-graphs-is-isomorphic-to-gate-cse-2012-marks-2-orrzqvt00yjjx4os.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0lNRN8QrtFkEWwdE",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$G$$ be a complete undirected graph on $$6$$ vertices. If vertices of $$G$$ $$\\,\\,\\,\\,$$ are labeled, then the number of distinct cycles of length $$4$$ in $$G$$ is equal to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$15$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$30$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$90$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$360$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-g-be-a-complete-undirected-graph-on-6-vertices-if-vertic-gate-cse-2012-marks-2-0lnrn8qrtfkewwde.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aqlH6sLksh5JMIJr",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$A$$ be the $$2 \\times 2$$ matrix with elements $${a_{11}} = {a_{12}} = {a_{21}} =  + 1$$ and $${a_{22}} =  - 1$$. Then the eigen values of the matrix $${A^{19}}$$ are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1024$$ and $$-1024$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1024\\sqrt 2 \\,i$$ and $$ - 1024\\sqrt 2 $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$4\\sqrt 2 $$ and $$-4\\sqrt 2 $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$512\\sqrt 2 $$ and $$-512\\sqrt 2 $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-a-be-the-2-times-2-matrix-with-elements-a11-a12-a21-1-an-gate-cse-2012-marks-1-aqlh6slksh5jmijr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MafJQxLqpugQqXeR",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following logical inferences. \n<br>$${{\\rm I}_1}:$$  If it rains then the cricket match will not be played. The cricket match was played.\n<br><b>Inference:</b> there was no rain.\n<p>$${{\\rm I}_2}:$$ If it rains then the cricket match will not be played. It did not rain\n<br><b>Inference:</b>the cricket match was played. which of the following is TRUE? </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both $${{\\rm I}_1}$$ and $${{\\rm I}_2}$$ are correct inferences"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{\\rm I}_1}$$ is correct but $${{\\rm I}_2}:$$ is not a correct inference"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{\\rm I}_1}$$ is not correct but $${{\\rm I}_2}$$ is a correct inference "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Both $${{\\rm I}_1}$$ and $${{\\rm I}_2}$$ are not correct inferences"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-logical-inferences-rm-i1-if-it-rains-gate-cse-2012-marks-1-mafjqxlqpugqqxer.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "31zpyfft8GA1Ee0p",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the virtual page reference string \n$$$1,2,3,2,4,1,3,2,4,1$$$\n<br>On a demand paged virtual memory system running on a computer system that has main memory size of $$3$$ page frames which are initially empty. Let $$LRU,$$ $$FIFO$$ and $$OPTIMAL$$ denote the number of page faults under the corresponding page replacement policy. Then  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$OPTIMAL &lt; LRU &lt; FIFO$$   "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$OPTIMAL &lt; FIFO &lt; LRU$$  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$OPTIMAL = LRU$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$OPTIMAL = FIFO$$  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-virtual-page-reference-string-1232413241on-a-de-gate-cse-2012-marks-2-31zpyfft8ga1ee0p.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "O5O0yCLk9u5rmRu4",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A file system with 300 G Byte disk uses a file descriptor with 8 direct block addresses, 1 indirect block address and 1 doubly indirect block address. The size of each disk block is 128 Bytes and the size of each disk block address is 8 Bytes. The maximum possible file size in this file system is\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "3 K Bytes "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "35 K Bytes "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "280 K Bytes "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "dependent on the size of the disk "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-file-system-with-300-g-byte-disk-uses-a-file-descriptor-wi-gate-cse-2012-marks-2-o5o0yclk9u5rmru4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QTTTjTTYdqD794SO",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A process executes the code \n<br>fork $$\\left( {\\,\\,\\,} \\right);$$\n<br>fork $$\\left( {\\,\\,\\,} \\right);$$\n<br>fork $$\\left( {\\,\\,\\,} \\right);$$\n<br>The total number of <b>child</b> processes created is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$7$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$8$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "For n fork( ) calls <br><br>We will get 2<sup>n</sup> processes created out of which one process will be original parent process. <br><br>Therefore,Total no of child processes =  2<sup>n</sup> - 1 <br><br> From the given data n = 3 <br><br>So, (8 -1) = 7 child processes created."
+                        }
+                    },
+                    "permalink": "a-process-executes-the-code-fork-left-rightfork-left-rightfo-gate-cse-2012-marks-1-qtttjttydqd794so.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NGFmz8qRDg8INQTF",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the $$3$$ processes, $$P1,$$ $$P2$$ and $$P3$$ shown in the table. \n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-s6z2{text-align:center}\n.tg .tg-baqh{text-align:center;vertical-align:top}\n.tg .tg-s268{text-align:left}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-s268\"><span style=\"font-weight:bold\">Process</span></th>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">Arrival Time</span></th>\n    <th class=\"tg-baqh\"><span style=\"font-weight:bold\">Time Units</span><br><span style=\"font-weight:bold\">Required</span></th>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">P1</td>\n    <td class=\"tg-s6z2\">0</td>\n    <td class=\"tg-baqh\">5</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">P2</td>\n    <td class=\"tg-s6z2\">1</td>\n    <td class=\"tg-baqh\">7</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">P3</td>\n    <td class=\"tg-s6z2\">3</td>\n    <td class=\"tg-baqh\">4</td>\n  </tr>\n</tbody></table>\n<p>The completion order of the $$3$$ processes under the policies $$FCFS$$ and $$RR2$$ (round robin scheduling with $$CPU$$ quantum of $$2$$ time units) are</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$FCFS:P1,P2,P3\\,\\,\\,\\,RR2:P1,P2,P3$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$FCFS:P1,P3,P2\\,\\,\\,\\,RR2:P1,P3,P2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$FCFS:P1,P2,P3\\,\\,\\,\\,RR2:P1,P3,P2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$FCFS:P1,P3,P2\\,\\,\\,\\,RR2:P1,P2,P3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-3-processes-p1-p2-and-p3-shown-in-the-table-the-gate-cse-2012-marks-2-ngfmz8qrdg8inqtf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "03ITz6N0AxfWMqrR",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronization-and-concurrency",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Fetch_And_Add (X, i) is an atomic Read-Modify-Write instruction that reads the value of memory location X, increments it by the value i, and returns the old value of X. It is used in the pseudocode shown below to implement a busy-wait lock. L is an unsigned integer shared variable initialized to 0. The value of 0 corresponds to lock being available, while any non-zero value corresponds to the lock being not available.\n<pre><code>AcquireLock(L){ \n  While (Fetch_And_Add(L,1)) \n  L = 1; \n} \nRelease Lock(L){ \n  L = 0; \n}</code></pre>\nThis implementation ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "fails as L can overflow "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "fails as L can take on a non-zero value when the lock is actually available "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "works correctly but may starve some processes "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "works correctly without starvation"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "fetchandadd-x-i-is-an-atomic-read-modify-write-instruction-t-gate-cse-2012-marks-2-03itz6n0axfwmqrr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                }
+            ],
+            "title": "Operating Systems"
+        },
+        {
+            "_id": "Programming Languages",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pZiEAMdY7nKPwKyZ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pointer-and-structure-in-c",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following C code segment.\n<pre><code>int a, b, c = 0;\nvoid prtFun(void);\nmain( )\n{ \n   static int a = 1; /* Line 1 */\n   prtFun();\n   a + = 1;\n   prtFun();\n   printf(\"\\n %d %d \", a, b);\n}\nvoid prtFun(void)\n{ \n   static int a=2;   /* Line 2 */\n   int b=1;\n   a+ = ++b;\n   printf(\"\\n %d %d \", a, b);\n}</code></pre>\nWhat output will be generated by the given code segment?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\eqalign{\n  &amp; 3\\,\\,1  \\cr \n  &amp; 4\\,\\,1  \\cr \n  &amp; 4\\,\\,2 \\cr} $$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\eqalign{\n  &amp; 4\\,\\,2  \\cr \n  &amp; 6\\,\\,1  \\cr \n  &amp; 6\\,\\,1 \\cr} $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\eqalign{\n  &amp; 4\\,\\,2  \\cr \n  &amp; 6\\,\\,2  \\cr \n  &amp; 2\\,\\,0 \\cr} $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\eqalign{\n  &amp; 3\\,\\,1  \\cr \n  &amp; 5\\,\\,2  \\cr \n  &amp; 5\\,\\,2 \\cr} $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-c-code-segmentint-a-b-c-0void-prtfunv-gate-cse-2012-marks-2-pzieamdy7nkpwkyz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vXwfokEHnaAsik2R",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pointer-and-structure-in-c",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following C code segment.\n<pre><code>int a, b, c = 0;\nvoid prtFun(void);\nmain( )\n{ \n   static int a = 1; /* Line 1 */\n   prtFun();\n   a + = 1;\n   prtFun();\n   printf(\"\\n %d %d \", a, b);\n}\nvoid prtFun(void)\n{ \n   static int a=2;   /* Line 2 */\n   int b=1;\n   a+ = ++b;\n   printf(\"\\n %d %d \", a, b);\n}</code></pre>\nWhat output will be generated by the given code segment if:\n<br>Line 1 is replaced by <b>auto int a = 1;</b>\n<br>Line 2 is replaced by <b>register int a = 2;</b>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\eqalign{\n  &amp; 3\\,\\,1  \\cr \n  &amp; 4\\,\\,1  \\cr \n  &amp; 4\\,\\,2 \\cr} $$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\eqalign{\n  &amp; 4\\,\\,2  \\cr \n  &amp; 6\\,\\,1  \\cr \n  &amp; 6\\,\\,1 \\cr} $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\eqalign{\n  &amp; 4\\,\\,2  \\cr \n  &amp; 6\\,\\,2  \\cr \n  &amp; 2\\,\\,0 \\cr} $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\eqalign{\n  &amp; 4\\,\\,2  \\cr \n  &amp; 4\\,\\,2  \\cr \n  &amp; 2\\,\\,0 \\cr} $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-c-code-segmentint-a-b-c-0void-prtfunv-gate-cse-2012-marks-2-vxwfokehnaasik2r.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OZCY8nwvkjm2ns6S",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "function-and-recursion",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What will be the output of the following C program segment?\n<pre><code class=\"c\">Char inchar = 'A';\nSwitch ( inchar ) {\ncase 'A' : printf (\"Choice A\\ n\") ;\ncase 'B' :\ncase 'C' : printf (\u201cChoice B\u201d) ;\ncase 'D' :\ncase 'E' :\ndefault : printf ( \" No Choice\" ) ; }</code></pre>\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "No Choice"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Choice A\n"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Choice A\n<br>Choice B No Choice "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Program gives no output as it is erroneous\n"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-will-be-the-output-of-the-following-c-program-segmentch-gate-cse-2012-marks-1-ozcy8nwvkjm2ns6s.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vBwkNrBR15TRce1M",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "function-and-recursion",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the program given below, in a block-structured pseudo-language with lexical\nscoping and nesting of procedures permitted.\n<pre><code class=\"pascal\">Program main;\n  Var . . .\n\n  Procedure A1;\n      Var . . .\n      Call A2;\n  End A1\n\n  Procedure A2;\n      Var . . .\n\n      Procedure A21;\n        Var . . .\n        Call A1;\n      End A21\n\n      Call A21;\n  End A2\n\n  Call A1;\nEnd main.</code></pre>\nConsider the calling chain: Main $$ \\to $$ A1 $$ \\to $$ A2 $$ \\to $$ A21 $$ \\to $$ A1\n<br>The correct set of activation records along with their access links is given by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/UL8ECZRjOrFfck4Bf/VEogLqHnYjqwJIaGn9DAd87y97GJe/PcvGlxBhQfXU184RkfC7yg/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2012 Programming Languages - Function and Recursion Question 20 English Option 1\">"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/JbTI5UGKRshb8Ntrz/AxSiyfnCh0gAYt6yNgNkUc7MDQWP7/IeDBItyJVB2Aq0Ysmd3xQN/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2012 Programming Languages - Function and Recursion Question 20 English Option 2\">"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/CgnkwBbTbZegfPZlk/8nTuSzMm8sh5BrswMVPlfq0XNVfMU/XscYXU4q3UTxKE5PjxztqF/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2012 Programming Languages - Function and Recursion Question 20 English Option 3\">"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/o7oPgbpYAeir6w3xS/ERnWMnLYsFHcEMXKAoTK6kMWkskyG/FoOoQ5Guj0B4itRYYsizAv/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2012 Programming Languages - Function and Recursion Question 20 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-program-given-below-in-a-block-structured-pseud-gate-cse-2012-marks-2-vbwknrbr15trce1m.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                }
+            ],
+            "title": "Programming Languages"
+        },
+        {
+            "_id": "Theory of Computation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wYoAGnZllqlKnuiE",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the set of strings on $$\\left\\{ {0,1} \\right\\}$$ in which, every substring of $$3$$ symbols has at most two zeros. For example, $$001110$$ and $$011001$$ are in the language, but $$100010$$ is not. All strings of length less than $$3$$ are also in the language. A partially completed $$DFA$$ that accepts this language is shown below. \n<p>The missing arcs in the $$DFA$$ are</p>\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/olFQCr7IZufQ1Np4b/Hu0yW4b9SYPwYGRPdHYWXzKLhZIWj/IEa6joCWF62KW7YdtXrmes/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2012 Theory of Computation - Finite Automata and Regular Language Question 51 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/aaRF4EhxZaWh4R7VJ/Z5VSxgzhjv21iSxKZgYqcw9dRmsbI/yYkDru3pxZ3W5doffxGKfl/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2012 Theory of Computation - Finite Automata and Regular Language Question 51 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/URlFsRbkdo65JTYim/ukueGtV5BhUXTeHVjXb0iHfkMljXj/QaqwsRF6Bd3jaGMwIDNtog/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2012 Theory of Computation - Finite Automata and Regular Language Question 51 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/urtd03cGraEqbsvL3/MmwAUXteLuYpklnUpSmk5HwDZ81Ob/gCKAbBlmwgLJLX3KgYxb8W/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2012 Theory of Computation - Finite Automata and Regular Language Question 51 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/bCEtQckC2CLdh0MM8/2WnBRNIg16fIB1KppFCm9x8R356Qy/zq6IifPLfpzvc6YGHngA1Q/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2012 Theory of Computation - Finite Automata and Regular Language Question 51 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-set-of-strings-on-left-01-right-in-which-every-gate-cse-2012-marks-2-wyoagnzllqlknuie.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LNDQObA34NVhmudL",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the complement of the language accepted by the $$NFA$$ shown below? \n<br>Assume $$\\sum { = \\left\\{ a \\right\\}\\,\\,} $$ and $$\\varepsilon $$ is the empty string.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/oH41u6734uzghrsqO/a68VppbNDoX5b4xPpCGabCt3KW0cQ/4x4LI3h1UHc49nqwZHJgt4/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2012 Theory of Computation - Finite Automata and Regular Language Question 87 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\phi $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left\\{ \\varepsilon  \\right\\}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$a{}^ * $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left\\{ {a,\\,\\,\\varepsilon } \\right\\}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-the-complement-of-the-language-accepted-by-the-nfa-s-gate-cse-2012-marks-1-lndqoba34nvhmudl.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PIzTarmnOgi033L5",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "undecidability",
+                    "year": 2012,
+                    "paperTitle": "GATE CSE 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following problems are decidable?\n<br>$$1.$$ Does a given program ever produce an output?\n<br>$$2.$$ If L is a context-free language, then, is $$\\overline L $$ also context-free?\n<br>$$3.$$ If L is a regular language, then, is $$\\overline L $$ also regular?\n<br>$$4.$$ If L is a recursive language, then, is $$\\overline L $$ also recursive?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1, 2,3,4$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1,2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2,3,4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3,4$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "CFL's are not closed under complementation. <p>Regular and recursive languages are closed under complementation.</p>"
+                        }
+                    },
+                    "permalink": "which-of-the-following-problems-are-decidable1-does-a-given-gate-cse-2012-marks-1-piztarmnogi033l5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2012"
+                }
+            ],
+            "title": "Theory of Computation"
+        }
+    ]
+}

@@ -1,0 +1,2633 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0GguFwAHTXAKlZdV",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Laplace Transform of $$f\\left( t \\right) = {e^{2t}}\\sin \\left( {5t} \\right)\\,u\\left( t \\right)$$  is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${5 \\over {{s^2} - 4s + 29}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${5 \\over {{s^2} + 5}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{s - 2} \\over {{s^2} - 4s + 29}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${5 \\over {s + 5}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-laplace-transform-of-fleft-t-right-e2tsin-left-5t-rightu-gate-me-2015-set-1-marks-1-0ggufwahtxaklzdv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "U9fEtnrP6Dir4mLh",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Ram and Ramesh appeared in an interview for two vacancies in the same department. The probability of Ram's selection is $$1/6$$ and that of Ramesh is $$1/8$$.  What is the probability that only one of them will be selected? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$47/48$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1/4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$13/48$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$35/48$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "ram-and-ramesh-appeared-in-an-interview-for-two-vacancies-in-gate-me-2015-set-1-marks-1-u9fetnrp6dir4mlh.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4RFg82TiJ0hUyzMi",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If any two columns of a determinant $$P = \\left| {\\matrix{\n   4 &amp; 7 &amp; 8  \\cr \n   3 &amp; 1 &amp; 5  \\cr \n   9 &amp; 6 &amp; 2  \\cr \n\n } } \\right|$$ are interchanged, which one of the following statements regarding the value of the determinant is CORRECT? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "absolute value remains unchanged but sign will change. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Both absolute valu and sign will change  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Absolute value will change but sign will not change."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Both absolute value and sign will remain unchanged. "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-any-two-columns-of-a-determinant-p-left-matrix-4-7-8-cr-3-gate-me-2015-set-1-marks-1-4rfg82tij0huyzmi.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SW1rJFA8EwpXEKxZ",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a spatial curve in three -dimensional space given in parametric form by $$\\,\\,x\\left( t \\right)\\,\\, = \\,\\,\\cos t,\\,\\,\\,y\\left( t \\right)\\,\\, = \\,\\,\\sin t,\\,\\,\\,z\\left( t \\right)\\,\\, = \\,\\,{2 \\over \\pi }t,\\,\\,\\,0 \\le t \\le {\\pi  \\over 2}.$$  The length of the curve is ________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.86",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-spatial-curve-in-three-dimensional-space-given-in-gate-me-2015-set-1-marks-2-sw1rjfa8ewpxekxz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "h1tGXvdqMxBaXGnw",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of $$\\mathop {Lim}\\limits_{x \\to 0} \\,{{1 - \\cos \\left( {{x^2}} \\right)} \\over {2{x^4}}}$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{1 \\over 2}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{1 \\over 4}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "undefined "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-mathop-limlimitsx-to-0-1-cos-left-x2-right-over-gate-me-2015-set-1-marks-1-h1tgxvdqmxbaxgnw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "siOiHus0a4LNoyWB",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider an ant crawling along the curve $$\\,{\\left( {x - 2} \\right)^2} + {y^2} = 4,$$ where $$x$$ and $$y$$ are in meters. The ant starts at the point $$(4, 0)$$ and moves counter $$-$$clockwise with a speed of $$1.57$$ meters per second. The time taken by the ant to reach the point $$(2, 2)$$ is _________ (in seconds).",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-an-ant-crawling-along-the-curve-left-x-2-right2-y2-gate-me-2015-set-1-marks-2-sioihus0a4lnoywb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3ocWKRw912tOTbFe",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The velocity field on an incompressible flow is given by \n<br>$$V = \\left( {{a_1}x + {a_2}y + {a_3}z} \\right)i + \\left( {{b_1}x + {b_2}y + {b_3}z} \\right)j\\,$$ $$ + \\left( {{c_1}x + {c_2}y + {c_3}z} \\right)k,\\,\\,$$ \n<br>where $${{a_1} = 2}$$ and $${{c_3} =  - 4.}$$ The value of  $${{b_2}}$$ is ________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-velocity-field-on-an-incompressible-flow-is-given-by-v-l-gate-me-2015-set-1-marks-2-3ocwkrw912totbfe.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oLpCqqwBdDeiijld",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The probability of obtaining at least two $$'SIX'$$ in throwing a fair dice $$4$$ times is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$425/432$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$19/144$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$13/144$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$125/432$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-probability-of-obtaining-at-least-two-six-in-throwing-a-gate-me-2015-set-1-marks-1-olpcqqwbddeiijld.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LQt8iZGHwpRM9sRm",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Among the four normal distributions with probability density functions as shown below, which one has the lowest variance? \n <img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/2LnW3e7QGXZilMiar/bo1TtbRuaV2mqpHLiNnHA3Rwc685v/HtRg9KP8rE4J3RL4sVXm40/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2015 Set 1 Engineering Mathematics - Probability and Statistics Question 11 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\rm I}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\rm I}$$$${\\rm I}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\rm I}$$$${\\rm I}$$$${\\rm I}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\rm I}$$$$V$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "among-the-four-normal-distributions-with-probability-density-gate-me-2015-set-1-marks-1-lqt8izghwprm9srm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "F32cj8abXMN4YevY",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Find the solution of $${{{d^2}y} \\over {d{x^2}}} = y$$  which passes through origin and the point $$\\left( {ln2,{3 \\over 4}} \\right)$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$y = {1 \\over 2}{e^x} - {e^{ - x}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over 2}\\left( {{e^x} + {e^{ - x}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$y = {1 \\over 2}\\left( {{e^x} - {e^{ - x}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${1 \\over 2}{e^x} + {e^{ - x}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "find-the-solution-of-d2y-over-dx2-y-which-passes-through-ori-gate-me-2015-set-1-marks-1-f32cj8abxmn4yevy.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8BjzZdJL5RNZfRsp",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Simpson's $${1 \\over 3}$$ rule is used to integrate the function $$f\\left( x \\right) = {3 \\over 5}{x^2} + {9 \\over 5}\\,\\,$$ between $$x=0$$ and $$x=1$$ using the least number of equal sub-intervals. The value of the integral is __________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "simpsons-1-over-3-rule-is-used-to-integrate-the-function-fle-gate-me-2015-set-1-marks-2-8bjzzdjl5rnzfrsp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6ZKs0OUMRYkIrv33",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given two complex numbers $${z_1} = 5 + \\left( {5\\sqrt 3 } \\right)i$$ and $${z_2} = {2 \\over {\\sqrt 3 }} + 2i,$$ the argument of $${{{z_1}} \\over {{z_2}}}$$ in degrees $$i$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$30$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$60$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$90$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-two-complex-numbers-z1-5-left-5sqrt-3-righti-and-z2-2-gate-me-2015-set-1-marks-1-6zks0oumrykirv33.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Engineering Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "07qi2iXEJ79snUr0",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "engineering-mechanics-static-and-dynamics",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the truss shown in figure, the magnitude of the force in member PR and the support reaction at R are respectively \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/YJugmBmuiNagn3BP9/qUNSHfA2eucrwBeP7r93fXhFkpWdb/UJViWvFuTpdmZf57454dkP/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2015 Set 1 Engineering Mechanics - Engineering Mechanics Static and Dynamics Question 33 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "122.47 kN and 50kN"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "70.71 kN and 100 kN"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "70.71 kN and 50 kN "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "81.65 kN and 100 kN "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-truss-shown-in-figure-the-magnitude-of-the-force-in-gate-me-2015-set-1-marks-2-07qi2ixej79snur0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wr8mG6bnCWRbrnBY",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "engineering-mechanics-static-and-dynamics",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A ball of mass 0.1 kg, initially at rest, is dropped from height of 1m. Ball hits the ground and bounces off the ground. Upon impact with the ground, the velocity reduces by 20%. The height (in m) to which the ball will rise is _______ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.64",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-ball-of-mass-01-kg-initially-at-rest-is-dropped-from-heigh-gate-me-2015-set-1-marks-2-wr8mg6bncwrbrnby.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3tXWZHRIVGeCECXI",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "engineering-mechanics-static-and-dynamics",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two identical trusses support a load of 100 N as shown in the figure. The length of each truss is 1.0m; cross-sectional area is 200 mm<sup>2</sup> ; Young\u2019s modulus E = 200GPa. The force in the truss AB (in N) is _____ .\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/NHj2ekK9twwMuwqg7/HfXq0z2y6a8pnZFYIEQBmU6mEZr24/ww0EEXj3XUv83x1ik0s3Jr/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2015 Set 1 Engineering Mechanics - Engineering Mechanics Static and Dynamics Question 76 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "100",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-identical-trusses-support-a-load-of-100-n-as-shown-in-th-gate-me-2015-set-1-marks-1-3txwzhrivgececxi.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                }
+            ],
+            "title": "Engineering Mechanics"
+        },
+        {
+            "_id": "Fluid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lifi8JWP46GdUPl4",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-dynamics",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Water $$\\left( {\\rho  = 1000kg/{m^3}} \\right)$$ flows through a venturimeter with inlet diameter $$80$$ $$mm$$ and throat\ndiameter $$40$$ $$mm.$$ The inlet and throat gauge pressures are measured to be $$400$$ $$kPa$$ and $$130$$ $$kPa$$\nrespectively. Assuming the venturimeter to be horizontal and neglecting friction, the inlet velocity (in $$m/s$$) is ___________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "6 ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "water-left-rho-1000kgm3-right-flows-through-a-venturimeter-w-gate-me-2015-set-1-marks-2-lifi8jwp46gdupl4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XUZjYN5UW1vcMq18",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "laminar-flow",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider fully developed flow in a circular pipe with negligible entrance length effects. Assuming the mass flow rate, density and friction factor to be constant, if the length of the pipe is doubled and the diameter is halved, the head loss due to friction will increase by a factor of ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$4$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$16$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$32$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$64$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-fully-developed-flow-in-a-circular-pipe-with-neglig-gate-me-2015-set-1-marks-1-xuzjyn5uw1vcmq18.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AU5radMszt2t4BWn",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boundary-layer",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Air ( $${\\rho  = 1.2\\,\\,kg/{m^3}}$$ and kinematic viscosity, $${v = 2 \\times {{10}^{ - 5}}{m^2}/s}$$ ) with a velocity of $$2m/s$$ flows over the top surface of a flat plate of length $$2.5m.$$ If the average value of friction coefficient is $${C_f} = {{1.328} \\over {\\sqrt {{{{\\mathop{\\rm Re}\\nolimits} }_x}} }},\\,\\,$$ the total drag force (in $$N$$) per unit width of the plate is ____________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.0158 to 0.0162",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "air-rho-12kgm3-and-kinematic-viscosity-v-2-times-10-5m2s-wit-gate-me-2015-set-1-marks-2-au5radmszt2t4bwn.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "taXvSYJV7k7UDKVf",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-kinematics",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The velocity field on an incompressible flow is given by \n<br>$$V = \\left( {{a_1}x + {a_2}y + {a_3}z} \\right)i + \\left( {{b_1}x + {b_2}y + {b_3}z} \\right)j$$\n$$$ + \\left( {{c_1}x + {c_2}y + {c_3}z} \\right)k,$$$\n<p>Where $${a_1} = 2$$ and $${c_3} =  - 4.$$ The value of $${b_2}$$ is _____________.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.9 to 2.1",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-velocity-field-on-an-incompressible-flow-is-given-by-v-l-gate-me-2015-set-1-marks-2-taxvsyjv7k7udkvf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3GDeWDWkLfvp2RCi",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-kinematics",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the following pairs: \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/Wm4R1kVwRCWElo4Am/p4dIZgnCtE5HlqfZ026fnlg0dLjsn/hd1E8AYnjoTQgqpmRUWfHF/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2015 Set 1 Fluid Mechanics - Fluid Kinematics Question 8 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P - {\\rm I}V,\\,\\,Q - {\\rm I},\\,\\,R - {\\rm I}{\\rm I},\\,\\,S - {\\rm I}{\\rm I}{\\rm I}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P - {\\rm I}V,\\,\\,Q - {\\rm I}{\\rm I}{\\rm I},\\,\\,R - {\\rm I},\\,\\,S - {\\rm I}{\\rm I}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P - {\\rm I}{\\rm I}{\\rm I},\\,\\,Q - {\\rm I},\\,\\,R - {\\rm I}V,\\,\\,S - {\\rm I}{\\rm I}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "v$$P - {\\rm I}{\\rm I}{\\rm I},\\,\\,Q - {\\rm I},\\,\\,R - {\\rm I}{\\rm I},\\,\\,S - {\\rm I}V$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-following-pairs-gate-me-2015-set-1-marks-2-3gdewdwklfvp2rci.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                }
+            ],
+            "title": "Fluid Mechanics"
+        },
+        {
+            "_id": "Heat Transfer",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LeH9NFA5qgFiLVZU",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "conduction",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$10$$ $$mm$$ diameter electrical conductor is covered by an insulation of $$2$$ $$mm$$ thickness. The conductivity of the insulation is $$0.08$$ $$W/m$$-$$K$$ and the convection coefficient at the insulation surface is $$10$$ $$W/{m^2}$$ -$$K.$$ Addition of further insulation of the same material will",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "increase heat loss continuously"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "decrease heat loss continuously "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "increase heat loss to a maximum and then decrease heat loss "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "decrease heat loss to a minimum and then increase heat loss"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-10-mm-diameter-electrical-conductor-is-covered-by-an-insul-gate-me-2015-set-1-marks-2-leh9nfa5qgfilvzu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hj4kbpQ0hx4o1h3a",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "convection",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Blasius equation related to boundary layer theory is a",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "third-order linear partial differential equation \n "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "third-order nonlinear partial differential equation "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "second-order nonlinear ordinary differential equation "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "third-order nonlinear ordinary differential equation  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-blasius-equation-related-to-boundary-layer-theory-is-a-gate-me-2015-set-1-marks-1-hj4kbpq0hx4o1h3a.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EXr8sr2wOJ4OF2C6",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "convection",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For flow of viscous fluid over a flat plate, if the fluid temperature is the same as the plate temperature, the thermal boundary layer is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "thinner than the velocity boundary layer "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "thicker than the velocity boundary layer "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "of the same thickness as the velocity boundary layer "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "not formed at all "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-flow-of-viscous-fluid-over-a-flat-plate-if-the-fluid-tem-gate-me-2015-set-1-marks-1-exr8sr2woj4of2c6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HoukxE7SXW0vtRL7",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "convection",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For flow through a pipe of radius $$R,$$ the velocity and temperature distribution are as follows:\n<br>$$U\\left( {r,x} \\right) = {C_1}$$ and $$T\\left( {r,x} \\right) = {C_2}\\left[ {1 - {{\\left( {{r \\over R}} \\right)}^3}} \\right],$$\n<br>where $${C_1}$$ and $${C_2}$$ are constants. The bulk mean temperature is given by <p></p>\n<br>$${T_m} = {2 \\over {{U_m}{R^2}}}\\int\\limits_0^R {u\\left( {r,x} \\right)T\\left( {r,x} \\right)rdr,} $$\n<br>with $${{U_m}}$$ being the mean velocity of flow. The value of $${T_m}$$ is <p></p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{0.5{C_2}} \\over {{U_m}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${0.5{C_2}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${0.6{C_2}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{0.6{C_2}} \\over {{U_m}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-flow-through-a-pipe-of-radius-r-the-velocity-and-tempera-gate-me-2015-set-1-marks-2-houkxe7sxw0vtrl7.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                }
+            ],
+            "title": "Heat Transfer"
+        },
+        {
+            "_id": "Industrial Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "s4SN2aUufjkhSJxw",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pert-and-cpm",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Following data refers to the activities of a project, where, node $$1$$ refers to the start and node $$5$$ refers to the end of the project. \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/DrWXdWcYoZbLebHgS/haIxjdyRaKeAHPKuz2oS7fqAb9c2J/adwhD2U83i1OTJ49IezNZu/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2015 Set 1 Industrial Engineering - Pert and Cpm Question 11 English\"> \n<p>The critical path $$(CP)$$ in the network is</p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1-2-3-5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1-4-3-5$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1-2-3-4-5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1-4-5$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "following-data-refers-to-the-activities-of-a-project-where-2015-set-1-marks-2-s4sn2auufjkhsjxw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VMabzqBETPHGjZre",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "forecasting",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a canteen, the actual demand for disposable cups was $$500$$ units in January and $$600$$ units in February. The forecast for the month of January was $$400$$ units. The forecast for the month of March considering smoothing coefficient as $$0.75$$ is_______________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "568 to 570",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-canteen-the-actual-demand-for-disposable-cups-was-5-2015-set-1-marks-2-vmabzqbetphgjzre.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                }
+            ],
+            "title": "Industrial Engineering"
+        },
+        {
+            "_id": "Machine Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CdpFYjrRICSPkHay",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "design-for-static-loading",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A machine element is subjected to the following bi-axial state of stress: $$\\,\\,{\\sigma _x} = 80MPa;\\,\\,{\\sigma _y} = 20MPa;\\,\\,{\\tau _{xy}} = 40MPa.$$ If the shear strength of the material is $$100 MPa,$$ the factor of safety as per Tresca\u2019s\nmaximum shear stress theory is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2.0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2.5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3.3$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-machine-element-is-subjected-to-the-following-bi-axial-sta-gate-me-2015-set-1-marks-2-cdpfyjrricspkhay.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "s9yHWwhIktfIhIjp",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fatigue-strength",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following is the most conservative fatigue failure criterion? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Soderberg "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Modified Goodman "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "ASME Elliptic "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Gerber"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-is-the-most-conservative-fatigue-gate-me-2015-set-1-marks-1-s9yhwwhiktfihijp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uPx0KPhjRRdibfq1",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bolted-riveted-and-welded-joints",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A horizontal plate has been joined to a vertical post using four rivets arranged as shown in the figure. The magnitude of the load on the worst loaded rivet (in N) is ___________.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/OqLM6RjsshDoK4JVd/R4DlHhXDeyR7Un6qykS8MyVyGJ5iS/Z87Zdn88vMr5IUKFmQ2K8z/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2015 Set 1 Machine Design - Bolted Riveted and Welded Joints Question 9 English\"> \n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1835 to 1845",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-horizontal-plate-has-been-joined-to-a-vertical-post-using-gate-me-2015-set-1-marks-2-upx0kphjrrdibfq1.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                }
+            ],
+            "title": "Machine Design"
+        },
+        {
+            "_id": "Production Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6sg7rYC61z5wiXwB",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "casting",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The solidification time of a casting is proportional to $${\\left( {{V \\over A}} \\right)^2},$$ Where $$V$$ is the volume of the casting and $$A$$ is the total casting surface area losing heat. Two cubes of same material and size are cast using sand casting process. The top face of one of the cubes is completely insulated. The ratio of the solidification time for the cube with top face insulated to that of the other cube is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{25} \\over {36}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{36} \\over {25}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${6 \\over 5}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-solidification-time-of-a-casting-is-proportional-to-left-gate-me-2015-set-1-marks-2-6sg7ryc61z5wixwb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZdDsm2mpzvZ5Q41W",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the following products with preferred manufacturing process:\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/6CNcK8PhEwMS7511H/TQURJkPdQ6dXaUzMZmiPN132ojX2e/XLvz9wWpKd4D4rjczzjUjf/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2015 Set 1 Production Engineering - Metal Forming Question 33 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P - 4,\\,\\,Q - 3,\\,\\,R - 1,\\,\\,S - 2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P - 4,\\,\\,Q - 3,\\,\\,R - 2,\\,\\,S - 1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P - 2,\\,\\,Q - 4,\\,\\,R - 3,\\,\\,S - 1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P - 3,\\,\\,Q - 4,\\,\\,R - 2,\\,\\,S - 1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-following-products-with-preferred-manufacturing-pr-gate-me-2015-set-1-marks-1-zddsm2mpzvz5q41w.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bhqtQtMr3dEByWK2",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a slab rolling operation, the maximum thickness reduction $$\\left( {\\Delta {h_{\\max }}} \\right)$$ is given by $$\\Delta {h_{\\max }} = {\\mu ^2}R,$$ where $$R$$ is the radius of the roll and $$\\mu $$ is the coefficient of friction between the roll and the sheet. If $$\\mu  = 0.1,$$ the maximum angle subtended by the deformation zone at the center of the roll (bit angle in degrees) is ____________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "5.6 to 5.8",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-slab-rolling-operation-the-maximum-thickness-reduction-gate-me-2015-set-1-marks-2-bhqtqtmr3debywk2.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QTZ3DzBuhrSeBWHk",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding-process",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a linear arc welding process, the heat input per unit length is inversely proportional to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "welding current "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "welding voltage "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "welding speed "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "duty cycle of the power source "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-linear-arc-welding-process-the-heat-input-per-unit-leng-gate-me-2015-set-1-marks-1-qtz3dzbuhrsebwhk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fAy2QdGp5drsT8mm",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding-process",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$DC$$ welding power source has a linear voltage-current $$(V$$-$$I)$$ characteristic with open circuit voltage of $$80V$$ and a short circuit current of $$300A.$$ For maximum arc power, the current (in Amperes) should be set as _______________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "149 to 151",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-dc-welding-power-source-has-a-linear-voltage-current-v-i-c-gate-me-2015-set-1-marks-2-fay2qdgp5drst8mm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZSpOFbAvmoq0KUnS",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Under certain cutting conditions, doubling the cutting speed reduces the tool life to $${\\left( {{1 \\over {16}}} \\right)^{th}}$$ of the original. Taylor\u2019s tool life index $$(n)$$ for this tool workpiece  combination will be ______________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.25",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "under-certain-cutting-conditions-doubling-the-cutting-speed-gate-me-2015-set-1-marks-1-zspofbavmoq0kuns.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kv40DMGRGHfQZ7w6",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An orthogonal turning operation is carried out under the following conditions; rake angle $$ = {5^ \\circ },$$ spindle rotational speed $$=400$$ $$rpm,$$ axial feed $$=0.4$$ $$m/min$$ and radial depth of $$cut = 5mm$$. The chip thickness, $${t_c},$$ is found to be $$3mm.$$ The shear angle (in degrees) in this turning process is ________________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "18.5 to 19.0",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-orthogonal-turning-operation-is-carried-out-under-the-fol-gate-me-2015-set-1-marks-2-kv40dmgrghfqz7w6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KE90bRZZq4Mhz4IT",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metrology-and-inspection",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Holes of diameter $${25.0^{\\matrix{\n   { + 0.040}  \\cr \n   { + 0.020}  \\cr \n\n } }}\\,\\,mm$$ are assembled interchangeably with the pins of diameter $${25.0^{\\matrix{\n   { + 0.005}  \\cr \n   { + 0.008}  \\cr \n\n } }}\\,\\,mm.$$ \n<p>The minimum clearance in the assembly will be </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.048$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.015$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.005$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.008$$ $$mm$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "holes-of-diameter-250matrix-0040-cr-2015-set-1-marks-1-ke90brzzq4mhz4it.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oM7WsSxvYO0i3pxO",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "advance-machine-tools",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The function of interpolator in a $$CNC$$ machine controller is to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "control spindle speed "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "coordinate feed rates of axes "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "control tool rapid approach speed "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "perform Miscellaneous $$(M)$$ functions (tool change, coolant control etc.) "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-function-of-interpolator-in-a-cnc-machine-controller-2015-set-1-marks-1-om7wssxvyo0i3pxo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7xpoSlpxHzd2o0a8",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metrology-and-inspection",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the assembly shown below, the part dimensions are: \n<br>$$\\eqalign{\n  &amp; {L_1} = {22.0^{ \\pm 0.01}}\\,\\,mm,  \\cr \n  &amp; {L_2} = {L_3} = {10.0^{ \\pm 0.005}}\\,\\,mm, \\cr} $$\n<br>Assuming the normal distributions of part dimensions, the dimension $${L_4}$$ in $$mm$$ for assembly condition would be, \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/cIBePro2bBgo3OKVK/0BXCxvFcqCK4lmSVmiWCTOEd5H7BJ/HTwxaBysv5qCHeViFJ49Hg/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2015 Set 1 Production Engineering - Metrology and Inspection Question 10 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${2.0^{ \\pm 0.008}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${2.0^{ \\pm 0.012}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${2.0^{ \\pm 0.016}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${2.0^{ \\pm 0.020}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-assembly-shown-below-the-part-dimensions-are-eq-2015-set-1-marks-2-7xposlpxhzd2o0a8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AInAC9uCSc4IYOiW",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "advance-machine-tools",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A triangular facet in a $$CAD$$ model has vertices: $${P_1}\\left( {0,0,0} \\right);\\,\\,{P_2}\\left( {1,1,0} \\right)$$ and $$\\,{P_3}\\left( {1,1,1} \\right).$$ The area of the facet is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.500$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.707$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.414$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1.732$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-triangular-facet-in-a-cad-model-has-vertices-p1-2015-set-1-marks-2-ainac9ucsc4iyoiw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                }
+            ],
+            "title": "Production Engineering"
+        },
+        {
+            "_id": "Strength of Materials",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fOMtrpkk8oefucWo",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "torsion",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a stepped shaft subjected to a twisting moment applied at $$B$$ as shown in the figure. Assume shear modulus, $$G=77$$ GPa. The angle of twist at $$C$$ (in  degrees) is ________\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Y8SFgcJjJcTfjjdhH/762sjnXsKO4OvhwlYcrfIMCQwBZOg/AJ1HXzsesiYGRcHLNnAT4V/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2015 Set 1 Strength of Materials - Torsion Question 20 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.24",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-stepped-shaft-subjected-to-a-twisting-moment-appl-gate-me-2015-set-1-marks-1-fomtrpkk8oefucwo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aEqcRoGErUeSiE7Y",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A cantilever beam with flexural rigidity of 200 N.m<sup>2</sup> is loaded as shown in the figure. The deflection (in mm) at the tip of the beam is _______ .\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/QQ4wzUVa2AzKiOBlF/5p9CkF2beGM3P8r9a6cXTfY7hP7Pk/fQiS559d9D6KXJ1qubK2JX/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2015 Set 1 Strength of Materials - Deflection of Beams Question 9 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.26",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cantilever-beam-with-flexural-rigidity-of-200-nm2-is-loade-gate-me-2015-set-1-marks-2-aeqcrogeruesie7y.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WviLZZliGqyLByUc",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "columns-and-struts",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a steel (Young\u2019s modulus $$E = 200$$ $$GP$$a) column hinged on both sides. Its height is $$1.0$$ $$m$$ and cross-section is $$10 mm$$ $$ \\times $$ $$20 mm$$. The lowest Euler critical buckling load (in $$N$$) is __________ .",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3289",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-steel-youngs-modulus-e-200-gpa-column-hinged-on-b-gate-me-2015-set-1-marks-1-wvilzzligqylbyuc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                }
+            ],
+            "title": "Strength of Materials"
+        },
+        {
+            "_id": "Theory of Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EUMJ4tZZ1rX3SfTj",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analysis-of-plane-mechanisms",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A wheel of radius r rolls without slipping on a horizontal surface shown below. If the velocity of point P is 10m/s in the horizontal direction, the magnitude of velocity of point Q (in m/s) is ______\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/iIqvGD2wQK6BZZjEk/tUGMBCArDmxwWQdB2yCwVx3qV0UTk/Q2MvxiRn09vNgwk1kNThFs/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2015 Set 1 Theory of Machines - Analysis of Plane Mechanisms Question 42 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "20",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-wheel-of-radius-r-rolls-without-slipping-on-a-horizontal-s-gate-me-2015-set-1-marks-1-eumj4tzz1rx3sftj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lTcICuwi28HglaX4",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "gears-and-gear-trains",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A pinion with radius $${r_1}$$, and inertia $${{\\rm I}_1}$$ is driving a gear with radius $${r_2}$$ and inertia $${{\\rm I}_2}$$ . Torque $${\\tau _1}$$ is applied on pinion. The following are free body diagrams of pinion and gear showing important forces   ($${F_1}$$and  $${F_2}$$) of interaction. Which of the following relations hold true?\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/bAZcAGhZJf0woweCP/7rvrZGPY8ixzNVZgGjITVG5M54wtY/3F27k03fh4E4REbl0Ot75U/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2015 Set 1 Theory of Machines - Gears and Gear Trains Question 10 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${F_1} \\ne {F_2};{\\tau _1} = {{\\rm{I}}_1}\\mathop \\theta \\limits^{..} {}_1;{F_2} = {{\\rm{I}}_2}{{{r_1}} \\over {{r_2}}}{\\mathop \\theta \\limits^{..} _1}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${F_1} = {F_2};{\\tau _1} = \\left[ {{{\\rm{I}}_1} + {{\\rm{I}}_2}{{\\left( {{{{r_1}} \\over {{r_2}}}} \\right)}^2}} \\right]\\mathop \\theta \\limits^{..} {}_1;{F_2} = {{\\rm{I}}_2}{{{r_1}} \\over {{r_2}}}\\mathop \\theta \\limits^{..} {}_1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${F_1} = {F_2};{\\tau _1} = {{\\rm{I}}_1}\\mathop \\theta \\limits^{..} {}_1;{F_2} = {{\\rm{I}}_2}{1 \\over {{r_2}}}\\mathop \\theta \\limits^{..} {}_2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${F_1} \\ne {F_2};{\\tau _1} = \\left[ {{{\\rm{I}}_1} + {{\\rm{I}}_2}{{\\left( {{{{r_1}} \\over {{r_2}}}} \\right)}^2}} \\right]\\mathop \\theta \\limits^{..} {}_1;{F_2} = {{\\rm{I}}_2}{1 \\over {{r_2}}}\\mathop \\theta \\limits^{..} {}_2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-pinion-with-radius-r1-and-inertia-rm-i1-is-driving-a-gear-gate-me-2015-set-1-marks-2-ltcicuwi28hglax4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "h2ovenYzAEcDKFx5",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "flywheel",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a slider crank mechanism with nonzero masses and inertia. A constant torque $$\\tau $$ is applied on the crank as shown in the figure. Which of the following plots best resembles variation of crank angle, $$\\theta $$  versus time\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/6r7OAJKVDyJJrmEkk/ikA38qXxdEmNEsS2VFgToMbNdasO2/btNXZ2Hx0OA4dPGUvP11iK/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2015 Set 1 Theory of Machines - Flywheel Question 3 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/FJCuGyYbh2u1IvSWH/MEMsL0K2G69h0ZvdHLj6Din7MNrGk/gtg7WPJEcMsdgqysdrPGYW/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2015 Set 1 Theory of Machines - Flywheel Question 3 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/T6th0TB3l1QbZOCbV/D9CDfzVOXVJZL5y8dzo1aYl1MUZem/IevHQwhmVudUObxslILfJG/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2015 Set 1 Theory of Machines - Flywheel Question 3 English Option 2\">"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/wxOyrBoomLuTvZSwi/a45TYgaBvvG5TvHv1mQOg5vkdY28v/yyXJ6j915Hh2VE9Vj1aPCO/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2015 Set 1 Theory of Machines - Flywheel Question 3 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/frPUHqc0RXoof2own/bX2dp2hmcGJ6In3K9QOZzM4Jul0Oy/LfcyzbzrWwecDFLxTC5iHD/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2015 Set 1 Theory of Machines - Flywheel Question 3 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-slider-crank-mechanism-with-nonzero-masses-and-in-gate-me-2015-set-1-marks-1-h2ovenyzaecdkfx5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EnKjvN4tfmhs3ZsW",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vibrations",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A precision instrument package (m = 1kg) needs to be mounted on a surface vibrating at 60 Hz. It is desired that only 5% of the base surface vibration amplitude be transmitted to the instrument. Assume that the isolation is designed with its natural frequency significantly lesser than 60Hz, so that the effect of damping may be ignored. The stiffness (in N/m) of the required mounting pad is _____________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "6767",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-precision-instrument-package-m-1kg-needs-to-be-mounted-on-gate-me-2015-set-1-marks-2-enkjvn4tfmhs3zsw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ew3A5WzNwybX9bsi",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vibrations",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A mobile phone has a small motor with an eccentric mass used for vibrator mode. The location of the eccentric mass on motor with respect to center of gravity $$(CG)$$ of the mobile and the rest of the dimensions of the mobile phone are shown. The mobile is kept on a flat horizontal surface.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/k5fDJUzxJYQxakebV/6LvqnVUEKRLNxClPwVrT4hFxHawoZ/ilMMndACGEEWsaRd5C1GWB/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2015 Set 1 Theory of Machines - Vibrations Question 21 English\"> \n<p>Given in addition that the eccentric mass = $$2$$ grams, eccentricity = $$2.19$$ mm, mass of the mobile = $$90$$ grams, g = $$9.81$$ $$m/{s^2}.$$ Uniform speed of the motor in $$RPM$$ for which the mobile will get just lifted off the ground at the end $$Q$$ is approximately</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3000$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3500$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$4000$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4500$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-mobile-phone-has-a-small-motor-with-an-eccentric-mass-used-gate-me-2015-set-1-marks-2-ew3a5wznwybx9bsi.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NsC7OmNOQdPTe9Td",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vibrations",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Considering massless rigid rod and small oscillations, the natural frequency (in rad/s) of vibration of the system shown in the figure is\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/QsduECqvM00SlhmUQ/X7ZTLfwjM2XG5lkRavzv9MCvzKF8P/gvPAaufWMlf4n3GAaWvO8t/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2015 Set 1 Theory of Machines - Vibrations Question 22 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\sqrt {{{400} \\over 1}} $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\sqrt {{{400} \\over 2}} $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\sqrt {{{400} \\over 3}} $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\sqrt {{{400} \\over 4}} $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "considering-massless-rigid-rod-and-small-oscillations-the-na-gate-me-2015-set-1-marks-2-nsc7omnoqdpte9td.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                }
+            ],
+            "title": "Theory of Machines"
+        },
+        {
+            "_id": "Thermodynamics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hYSzEAXeX4puFzPF",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "properties-of-pure-substances",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For an ideal gas with constant values of specific heats, for calculation of the specific enthalpy,",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "it is sufficient to know only the temperature "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "both temperature and pressure are required to be known "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "both temperature and volume are required to be known "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "both temperature and mass are required to be known "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-an-ideal-gas-with-constant-values-of-specific-heats-for-gate-me-2015-set-1-marks-1-hyszeaxex4pufzpf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fPvMHkbGYAecRMKy",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-concepts-and-zeroth-law",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Temperature of nitrogen in a vessel of volume $$2{m^3}$$ is $$288$$ $$K.$$ $$A$$ $$U$$-tube manometer connected to the vessel shows a reading of $$70$$ $$cm$$ of mercury (level higher in the end open to atmosphere). The universal gas constant is $$8314$$ $$J/kmol$$-$$K,$$ atmospheric pressure is $$1.01325$$ bar, acceleration due to gravity is $$9.81$$ $$m/{s^2}$$  and density of mercury is $$13600$$ $$kg/{m^3}.$$ The mass of nitrogen (in $$kg$$) in the vessel is _________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "4.4 to 4.6",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "temperature-of-nitrogen-in-a-vessel-of-volume-2m3-is-288-k-a-gate-me-2015-set-1-marks-2-fpvmhkbgyaecrmky.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dlivAMJDfSufkVaj",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "first-law-of-thermodynamics",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A well insulated rigid container of volume $$1{m^3}$$ contains $$1.0$$ $$kg$$ of an ideal gas $$\\left[ {{C_p} =1000\\,\\,\\,J/\\left( {kg.K} \\right)} \\right.$$ and $$\\left. {{C_v} = 800J/\\left( {kg.K} \\right)} \\right]$$ at a pressure of $${10^5}\\,\\,Pa.$$ A stirrer is rotated at constant $$rpm$$ in the container for $$1000$$ rotations and the applied torque is $$100$$ $$N$$-$$m.$$ The final temperature of the gas (in $$K$$) is  _______________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1283.4 to 1287.4",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-well-insulated-rigid-container-of-volume-1m3-contains-10-k-gate-me-2015-set-1-marks-2-dlivamjdfsufkvaj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RE7vZo2ZhRVzZH1M",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "second-law-of-thermodynamics",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A Carnot engine $$(CE$$-$$1)$$ works between two temperature reservoirs $$A$$ and $$B,$$ where $${T_A} = 900K$$ and $${T_B} = 500K.$$ A second Carnot engine $$(CE$$-$$2)$$ works between temperature reservoirs $$B$$ and $$C,$$ where $${T_c} = 300\\,\\,K.$$ In each cycle of $$CE$$-$$1$$ and $$CE$$-$$2,$$ all the heat rejected by $$CE$$-$$1$$ to reservoir $$B$$ is used by $$CE$$-$$2.$$ For one cycle operation, if the net $$Q$$ absorbed by $$CE$$-$$1$$ from reservoir $$A$$ is $$150$$ $$MJ,$$ the net heat rejected to reservoir $$C$$ by $$CE$$-$$2$$ (in $$MJ$$) is ______________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "50",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-carnot-engine-ce-1-works-between-two-temperature-reservoir-gate-me-2015-set-1-marks-1-re7vzo2zhrvzzh1m.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0iPmtanl8BSFAiOI",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "rankine-cycle",
+                    "year": 2015,
+                    "paperTitle": "GATE ME 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Steam enters a well insulated turbine and expands isentropically throughout. At an intermediate pressure, $$20$$ percent of the mass is extracted for process heating and the remaining steam expands isentropically to $$9$$ $$kPa.$$ Inlet to turbine $$P=14$$ $$MPa,$$ $$T = {560^ \\circ }C,$$ $$h=3486$$ $$kJ/kg,$$ $$s=6.6$$ $$kJ/(kg.K)$$\n<p>Intermediate stage: $$h=2776$$ $$kJ/kg$$\n<br>Exit of turbine : $$P=9kPa,$$ $${h_f} = 174\\,\\,kJ/kg,$$\n<br>$$\\eqalign{\n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,{h_g} = 2574\\,\\,kJ/kg,\\,\\,\\,{s_f} = 0.6kJ/\\left( {kg.K} \\right);  \\cr \n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,{s_g} = 8.1\\,\\,kJ/(kg.K) \\cr} $$</p>\n<p>If the flow rate of steam entering the turbine is $$100$$  $$kg/s,$$ then the work output (in $$MW$$) is __________.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "123.56 to 127.57",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "steam-enters-a-well-insulated-turbine-and-expands-isentropic-gate-me-2015-set-1-marks-2-0ipmtanl8bsfaioi.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2015-set-1"
+                }
+            ],
+            "title": "Thermodynamics"
+        }
+    ]
+}

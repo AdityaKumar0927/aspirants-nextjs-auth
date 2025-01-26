@@ -1,0 +1,2957 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Analog Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "irOXBRkaltk2gtYm",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "small-signal-modeling",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the transistor amplifier shown in figure, the ratio of small signal voltage gain when the emitter resistor is bypassed by the capacitor $$'{C_e}'$$ to when it is not bypassed. (Assuming of simplified approximate $$h$$- parameter model for transistor) is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/mRwykCM8eR5k0esD9/2r5C7cI1WLDxaBIOIE4ULUlvd67kO/yKoiPNKvTiw3y0NKiFLAea/image.png\" loading=\"lazy\" alt=\"GATE EE 1996 Analog Electronics - Small Signal Modeling Question 4 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{h_{fe}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{\\left( {1 + {h_{fe}}} \\right){R_e}} \\over {h{\\,_{ie}}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1 + {{\\left( {1 + {h_{fe}}} \\right){R_e}} \\over {h{\\,_{ie}}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-transistor-amplifier-shown-in-figure-the-ratio-of-sm-1996-marks-1-iroxbrkaltk2gtym.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PcEdpTT2COplEfRE",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bjt-and-mosfet-biasing",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The depletion region (or) space charge region (or) transition region in a semiconductor $$p-n$$ junction diode has",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "electrons and holes"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "positive ions and electrons "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "positive and negative ions"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "negative ions and holes"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-depletion-region-or-space-charge-region-or-transition-re-gate-ee-1996-marks-1-pcedptt2coplefre.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "H3aFhTul4by6vpYG",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A non inverting op - amp amplifier is shown in figure. The o/p voltage is \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/pQohdOHrcGsvZIi1C/lJrXq1cOeGLlDJ0IwWHZAKTLXF8Ie/0IPz2cHPQ2Pu2OgajJ8Sru/image.svg\" loading=\"lazy\" alt=\"GATE EE 1996 Analog Electronics - Operational Amplifier Question 51 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${3 \\over 2}\\,\\,\\sin 100t$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3\\,\\sin 100t$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2\\,\\sin 100t$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of these "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-non-inverting-op-amp-amplifier-is-shown-in-figure-the-op-v-gate-ee-1996-marks-1-h3afhtul4by6vpyg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EmPzSfNd6SVhVwJR",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let the magnitude of the gain in the inverting op - amp amplifier circuit shown be $$x$$ with switch $${S_1}$$ open. When the switch $${S_1}$$ is closed, the magnitude of gain becomes. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/oVHo6Gxcm2730poYr/r21dydlfIB6rQeuaQRFipTgukfVxa/Mdbi7zHmj3AIUuXIbQnGp3/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 1996 Analog Electronics - Operational Amplifier Question 50 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$x/2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-x$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2$$ $$x$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$-2$$ $$x$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-the-magnitude-of-the-gain-in-the-inverting-op-amp-amplif-gate-ee-1996-marks-1-empzsfnd6svhvwjr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                }
+            ],
+            "title": "Analog Electronics"
+        },
+        {
+            "_id": "Control Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GCLqtfyLng7Et2g2",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "polar-nyquist-and-bode-plot",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The closed - loop transfer function of a control system is given by $${{C\\left( s \\right)} \\over {R\\left( s \\right)}} = {1 \\over {\\left( {1 + s} \\right)}}$$ \n<br>For the input $$\\,r\\left( t \\right)\\,\\, = \\,\\,\\sin \\,t,$$ the steady state value of $$c(t)$$ is equal to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over {\\sqrt 2 }}\\cos t$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${1 \\over {\\sqrt 2 }}sint$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${1 \\over {\\sqrt 2 }}sin\\left( {1 - {\\pi  \\over 4}} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-closed-loop-transfer-function-of-a-control-system-is-giv-gate-ee-1996-marks-1-gclqtfylng7et2g2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GnuLs18Cx5ROnggT",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "time-response-analysis",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the system shown in Figure, with a damping ratio $$\\xi $$ of $$0.7$$ and an undamped natural frequency $${\\omega _n}$$ of $$4$$ rad/sec, the values of $$' K '$$ and $$' a '$$ are \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/dygG2EsmehOmEgSAU/WuJSV9sN5NCQTcr77cfwy2wvrGJOw/OH9YDj0Z9x3zsL0ucrQfcD/image.svg\" loading=\"lazy\" alt=\"GATE EE 1996 Control Systems - Time Response Analysis Question 9 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$K = 4,a = 0.35$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$K = 8,a = 0.455$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$K = 16,a = 0.225$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$K = 64,a = 0.9$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-system-shown-in-figure-with-a-damping-ratio-xi-of-07-gate-ee-1996-marks-2-gnuls18cx5ronggt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "e9zQuQBfyeuGMpQa",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "time-response-analysis",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The unit - impulse response of a unity - feedback control system is given by $$c\\left( t \\right) =  - t{e^{ - t}} + 2\\,\\,{e^{ - t}},\\,\\left( {t \\ge 0} \\right)$$ the open loop transfer function is equal to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{s + 1} \\over {{{\\left( {s + 2} \\right)}^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{2s + 1} \\over {{s^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{s + 1} \\over {{{\\left( {s + 1} \\right)}^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{s + 1} \\over {{s^2}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-unit-impulse-response-of-a-unity-feedback-control-system-gate-ee-1996-marks-1-e9zquqbfyeugmpqa.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Rk3V30NgXVnesPFF",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "time-response-analysis",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the unit step response of a unity feedback control system whose open loop transfer function is $$G\\left( s \\right) = {1 \\over {s\\left( {s + 1} \\right)}}.$$ The maximum overshoot is equal to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.143$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.153$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.163$$  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.173$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-unit-step-response-of-a-unity-feedback-control-gate-ee-1996-marks-1-rk3v30ngxvnespff.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LwDUtTMNb0WKwJhV",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "time-response-analysis",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a feedback control system of type $$2,$$ the steady state error for a ramp input is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "infinite "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "constant "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "indeterminate "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-feedback-control-system-of-type-2-the-steady-state-err-gate-ee-1996-marks-1-lwduttmnb0wkwjhv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bbzICpIHhHRgiSA5",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "time-response-analysis",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The unit impulse response of a system is given as $$c\\left( t \\right) =  - 4{e^{ - t}} + 6{e^{ - 2t}}.\\,\\,\\,$$ The step response of the same system for $$\\,t \\ge 0$$ is equal to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$ - 3{e^{ - 2t}} - 4{e^{ - t}} + 1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$ - 3{e^{ - 2t}} + 4{e^{ - t}} - 1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$ - 3{e^{ - 2t}} - 4{e^{ - t}} - 1$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$  3{e^{ - 2t}} + 4{e^{ - t}} - 1$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-unit-impulse-response-of-a-system-is-given-as-cleft-t-ri-gate-ee-1996-marks-2-bbzicpihhhrgisa5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                }
+            ],
+            "title": "Control Systems"
+        },
+        {
+            "_id": "Digital Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "63rgwlr5TKU8O0RV",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logic-gates",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Boolean expression for the output of the logic circuit shown in figure is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/2nWP92YhfEAuWElOK/biZlIgmGleLGfvHBeF1jES07SBUke/L8aYoRSxOfDOyQUbNq6ubi/image.png\" loading=\"lazy\" alt=\"GATE EE 1996 Digital Electronics - Logic Gates Question 3 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$Y = \\overline A \\overline B  + AB + \\overline C $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$Y = \\overline A \\overline B  + AB + C$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$Y = \\overline A B + \\overline A B + C$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$Y = \\overline A B + \\overline A \\overline B  + \\overrightarrow C $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-boolean-expression-for-the-output-of-the-logic-circuit-s-1996-marks-1-63rgwlr5tku8o0rv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Vl0xVGW0YY8iibvO",
+                    "exam": "gate-ee",
+                    "marks": 3,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "microprocessor",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a $$8085$$ microprocessor, the following instructions  may result in change of accumulator contents and change in status flags. Choose the correct match for each instruction. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/YSdl51z6fUxgfXEZ6/isGp6rtgpRSNXGufK68f9U3rZUyC7/03DOHR8cibOAgwkf4DKA6m/image.png\" loading=\"lazy\" alt=\"GATE EE 1996 Digital Electronics - Microprocessor Question 3 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$a - T,\\,\\,b - S,\\,\\,c - P$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-8085-microprocessor-the-following-instructions-ma-1996-marks-3-vl0xvgw0yy8iibvo.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                }
+            ],
+            "title": "Digital Electronics"
+        },
+        {
+            "_id": "Electric Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JVlAp13aV5GlynN4",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transient-response",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the series $$RC$$ circuit shown in Fig. the voltage across $$C$$ starts increasing when the $$d.c.$$ source is switched on. The rate of increase of voltage across $$C$$ at the instant just after the switch is closed (i.e., at $$t = {0^ + }$$), will be\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/sCXJTvfgXB6p6gIDk/RVpK65YMsoiueBBCLDVWzjxsQcGxK/iXbCUmjdw8rSBk2Uo3vg2e/image.png\" loading=\"lazy\" alt=\"GATE EE 1996 Electric Circuits - Transient Response Question 8 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "infinity "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$RC$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1/RC$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-series-rc-circuit-shown-in-fig-the-voltage-acros-1996-marks-1-jvlap13av5glynn4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jYYSn3HSSiAVa7Yu",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-analysis",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit shown in Fig.  $$X$$ $$-$$ is an element which always absorbs power. During a particular operation, it sets up a current of $$1$$ $$amp$$ in the direction shown and absorbs a power $${P_{x}}.$$ It is possible that $$X$$ can absorb the same power $${P_x}$$ for another current $$i.$$ Then the value of this current is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/MLH7mU0FaX0Gc4mNk/y9uEkIyt0fSiyO8DNUGaZV4xPJsH8/ePXCJ25xOaN6hUzXOKh5QJ/image.png\" loading=\"lazy\" alt=\"GATE EE 1996 Electric Circuits - Sinusoidal Steady State Analysis Question 34 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {3 - \\sqrt {14} } \\right)\\,\\,amps$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {3 + \\sqrt {14} } \\right)\\,\\,amps$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$5$$ $$amps$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of these "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-in-fig-x-is-an-element-whic-1996-marks-1-jyysn3hssiava7yu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OrsPFJfpLHkibEy7",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-analysis",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A coil (which can be modeled as a series $$RL$$ circuit) has been designed for high $$-$$ $$Q$$ performance at a rated voltage and a specified frequency. If the frequency of operation is doubled, and the coil is operated at the same rated voltage, then the $$Q$$$$-$$factor and the active power $$P$$ consumed by the coil will be affected as follows ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P$$ is doubled, $$Q$$ is halved"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P$$ is halved, $$Q$$ is doubled"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P$$ remains constant, $$Q$$ is doubled "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P$$ decreased $$4$$ times, $$Q$$ is doubled"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-coil-which-can-be-modeled-as-a-series-rl-circuit-has-1996-marks-2-orspfjfplhkibey7.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a888edc01650",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The v - i characteristic as seen from the terminal pair (A,B) of the network of Fig.(1) is shown in Fig.(2). If an inductance of value 6 mH is connected across the terminal - pair (A,B), the time constant of the system will be\n<img alt=\"GATE EE 1996 Electric Circuits - Network Elements Question 57 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/68f4c778e8fe29cdf4289ed4943437715e81c47947cd5e2217bd67a693d98e0b.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "3 \u00b5 sec"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "12 sec"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "32 sec"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "unknown, unless the actual network is specified"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-v-i-characteristic-as-seen-from-the-terminal-pair-ab-of-gate-ee-1996-marks-1-5a888edc01650.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                }
+            ],
+            "title": "Electric Circuits"
+        },
+        {
+            "_id": "Electrical and Electronics Measurement",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Y4BgXMcRbUq7YnlM",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-indicating-instruments",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An advantage of a permanent magnet moving coil instrument is that it is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "free from friction error "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "has high (torque/weight of the moving parts) ratio "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "has low (torque/weight of the moving parts) ratio "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "can be used on both a.c. and d.c."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-advantage-of-a-permanent-magnet-moving-coil-instrument-is-gate-ee-1996-marks-1-y4bgxmcrbuq7ynlm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9XLvaezu0U6Di2gH",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-indicating-instruments",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The scale of a voltmeter  is uniform. Its type is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "moving iron "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "induction "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "moving coil permanent magnet "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "moving coil dynamometer"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-scale-of-a-voltmeter-is-uniform-its-type-is-gate-ee-1996-marks-1-9xlvaezu0u6di2gh.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SQdATrq6nzjiBm7p",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-indicating-instruments",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a given frequency, the deflecting torque of an induction ammeter is directly proportional to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "current<sup>2</sup>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "current<sup>3</sup> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\sqrt {current} $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "current "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-given-frequency-the-deflecting-torque-of-an-induction-gate-ee-1996-marks-1-sqdatrq6nzjibm7p.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZuDvdydQaJJo0LXm",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "measurement-of-energy-and-power",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The moving coil in a dynamometer wattmeter is connected",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "in series with the fixed coil "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "across the supply "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "in series with the load "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "across the load "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-moving-coil-in-a-dynamometer-wattmeter-is-connected-gate-ee-1996-marks-1-zudvdydqajjo0lxm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "reWYoMyAZQnCqYyO",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "measurement-of-energy-and-power",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A water boiler at home is switched on to the $$A.C$$ mains supplying power at $$230$$ $$V/50$$ $$Hz.$$ The frequency of instantaneous power consumed by the boiler is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ $$Hz$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$50$$  $$Hz$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$100$$  $$Hz$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$150$$  $$Hz$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-water-boiler-at-home-is-switched-on-to-the-ac-mains-supply-gate-ee-1996-marks-1-rewyomyazqncqyyo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "M9IAmeOs4Lh7KFih",
+                    "exam": "gate-ee",
+                    "marks": 3,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "cathode-ray-oscilloscope",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In an oscilloscope the input to the horizontal plates is a $$100Hz$$ voltage signal. The lissajous patterns $$(A), (B)$$ and $$(C)$$ will be generated when different frequency voltage signals are applied to vertical plates. Match each lissajous pattern to the corresponding frequency by\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/abFH9AIEEZVnAA41B/DkhETghckA8TZQSnmkcPuuYXv6GbM/BiboUFbD6PvhRy4kCQgQaw/image.svg\" loading=\"lazy\" alt=\"GATE EE 1996 Electrical and Electronics Measurement - Cathode Ray Oscilloscope Question 1 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$\\left( a \\right)\\, - \\,\\left( p \\right),\\,\\,\\left( b \\right)\\, - \\,\\left( s \\right),\\,\\,\\left( c \\right)\\, - \\,\\left( u \\right)$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-an-oscilloscope-the-input-to-the-horizontal-plates-is-a-1-gate-ee-1996-marks-3-m9iameos4lh7kfih.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                }
+            ],
+            "title": "Electrical and Electronics Measurement"
+        },
+        {
+            "_id": "Electrical Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "V8HKgbX6NPpInGOD",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In Figure. The characteristic that corresponds to the variation of synchronous reactance of synchronous motor with field current is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/snk9Tf9rF82ouWGo0/JvFLdSH9YeD1XLZ6I5bZjnnBGeLxV/asom14QpjFXmeo1RwlKHDv/image.png\" loading=\"lazy\" alt=\"GATE EE 1996 Electrical Machines - Synchronous Machines Question 6 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "curve $${\\rm I}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "curve $${\\rm I}$$$${\\rm I}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "curve  $${\\rm I}$$$${\\rm I}$$$${\\rm I}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "curve $${\\rm IV}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-figure-the-characteristic-that-corresponds-to-the-variat-1996-marks-1-v8hkgbx6nppingod.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "y8eOSAffNsU1u5XO",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "induction-machines",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Unbalanced supply voltage given to a $$3-$$ phase, data-connected induction motor will cause",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "zero sequence currents "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "less heating of the rotor "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "negative sequence component current"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "all of these "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "unbalanced-supply-voltage-given-to-a-3-phase-data-conn-1996-marks-1-y8eosaffnsu1u5xo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RrlhN6DLQHo6mho0",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "induction-machines",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "When the supply voltage to an induction motor is reduced by $$10\\% $$, the maximum torque will decrease by approximately",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$5\\% $$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$10\\% $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$20\\% $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$40\\% $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "when-the-supply-voltage-to-an-induction-motor-is-reduced-by-1996-marks-1-rrlhn6dlqho6mho0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "R3UQrGt3sQ6AlBvO",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "induction-machines",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In case of a split phase motor, the phase shift between currents in the two windings is around",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$30$$ degrees "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$70$$ degrees "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$90$$ degrees "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$120$$ degrees "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-case-of-a-split-phase-motor-the-phase-shift-between-curr-1996-marks-1-r3uqrgt3sq6albvo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SjKWE7Dg5LtYLwCX",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "induction-machines",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An induction motor having full load torque of $$60$$ $$Nm$$ when delta-connected develops a starting torque of $$120$$ $$N$$-$$m.$$ For the same simply voltage, if the motor is changed to star-connection, the starting torque developed will be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$40$$ $$Nm$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$60$$ $$Nm$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$90$$ $$Nm$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$120$$ $$Nm$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-induction-motor-having-full-load-torque-of-60-nm-1996-marks-1-sjkwe7dg5ltylwcx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mRStgT5MxLQderb8",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "induction-machines",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In an induction motor, if the air gap is increased",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "speed will reduce "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "efficiency will improve"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "power factor will be lower"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "breakdown torque will reduce"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-an-induction-motor-if-the-air-gap-is-increased-1996-marks-1-mrstgt5mxlqderb8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yWJKDuAXnvsB6wl8",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "During hunting of synchronous motor ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "negative phase sequence currents are generated"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "harmonics are developed in the armature circuit"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "damper bar develops torque"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "field excitation increases"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "during-hunting-of-synchronous-motor-1996-marks-1-ywjkduaxnvsb6wl8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QhIvAcQDfSs8xuQt",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The per unit voltage of two synchronous machines connected through a lossless line are $$0.95\\,\\,\\angle \\,{10^0}\\,\\,$$ and $$1.0\\,\\,\\angle \\,{0^0}\\,\\,$$. Match the two sides in the following \n<br>$$(a)$$ Real power of Machine $$1$$ \n<br>$$(b)$$ Reactive power of machine $$1$$ \n<br>$$(c)$$ Power factor of Machine $$1$$\n<p>$$(P)$$ Positive real power\n<br>$$(Q)$$ Positive reactive power\n<br>$$(R)$$ Negative real power\n<br>$$(S)$$ Negative reactive power\n<br>$$(T)$$ Leading power factor\n<br>$$(U)$$ Lagging power factor</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$a - P,\\,b - S,\\,C - T$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-per-unit-voltage-of-two-synchronous-machines-connected-t-1996-marks-5-qhivacqdfss8xuqt.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iUmPc3IMjjVz7pFT",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$4$$ pole dynamo with wave wound armature has $$51$$ slots containing $$20$$ conductors in each slot. The induced $$emf$$ is $$357$$ volts and the speed is $$5800$$ $$rpm$$. The flux per pole will be  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3.5$$ $$mWb$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.2$$ $$mWb$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$14mWb$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$21$$ $$mWb$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-4-pole-dynamo-with-wave-wound-armature-has-51-slot-1996-marks-1-iumpc3imjjvz7pft.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PQW2uXi19sbdtriP",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The function of oil in a transformer is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "to provide insulation and cooling "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "to provide protection against lightning"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "to provide protection against short circuit "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "to provide lubrication "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-function-of-oil-in-a-transformer-is-1996-marks-1-pqw2uxi19sbdtrip.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "akuRuNmDGw6S6JHl",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Auto-transformer is used in transmission and distribution ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "when operator is not available "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "when iron losses are to be reduced "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "when efficiency considerations can be ignored "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "when the transformation ratio is small "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "auto-transformer-is-used-in-transmission-and-distribution-1996-marks-1-akurunmdgw6s6jhl.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VBIUQHDm1Kt4d7kz",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Keeping in view the requirement of parallel operation, which of the $$3$$-phase connections given below are possible? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "delta-delta to delta-star"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "delta-delta to star-delta "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "star-star to delta-star "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "delta-star to star-delta "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "keeping-in-view-the-requirement-of-parallel-operation-which-1996-marks-1-vbiuqhdm1kt4d7kz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a9716e4294be",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The torque speed characteristic of a Repulsion motor resembles which of the following dc motor characteristic?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Separately excited"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Shunt"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Series"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Compound"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-torque-speed-characteristic-of-a-repulsion-motor-resembl-gate-ee-1996-marks-1-5a9716e4294be.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a971802f411e",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which type of motor is most suitable for computer printer device?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Reluctance motor"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Hysteresis motor"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Shaded pole motor"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Stepper motor"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-type-of-motor-is-most-suitable-for-computer-printer-de-gate-ee-1996-marks-1-5a971802f411e.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                }
+            ],
+            "title": "Electrical Machines"
+        },
+        {
+            "_id": "Electromagnetic Fields",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iLLVjoSwu6GtqZYk",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electromagnetic-fields",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "magnetostatics",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The energy stored in the magnetic field of solenoid $$30$$ $$cm$$ long and $$3$$ $$cm$$ diameter wound with $$1000$$ turns of wire carrying a current of $$10$$ $$A$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.015\\,\\,J$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.15$$ $$J$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.5$$ $$J$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1.15$$ $$J$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-energy-stored-in-the-magnetic-field-of-solenoid-30-1996-marks-1-illvjoswu6gtqzyk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8d7fc67cf1c",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electromagnetic-fields",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "electrostatics",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If v, w, q stand for voltage, energy and charge, then v can be expressed",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$v=\\frac{dq}{dw}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$v=\\frac{dw}{dq}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$dv=\\frac{dw}{dq}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$dv=\\frac{dq}{dw}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-v-w-q-stand-for-voltage-energy-and-charge-then-v-can-be-e-gate-ee-1996-marks-1-5a8d7fc67cf1c.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                }
+            ],
+            "title": "Electromagnetic Fields"
+        },
+        {
+            "_id": "Power Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "76LCSVEeFUSPQsQp",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "power-semiconductor-devices",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which semiconductor power device out of the following is not a current triggered device?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Thyristor"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$G.T.O$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Triac"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$MOSFET$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-semiconductor-power-device-out-of-the-following-is-not-gate-ee-1996-marks-1-76lcsveefuspqsqp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OJQNDaf2tlkYHDb6",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "power-semiconductor-devices",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Triac can be used only in ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Inverter "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Rectifier "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Multiquadrant chopper "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Cycloconverter"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-triac-can-be-used-only-in-gate-ee-1996-marks-1-ojqndaf2tlkyhdb6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pQaMdG0EdBNmXBbj",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "power-semiconductor-devices",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following does not cause permanent damage of an $$SCR?$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "High current "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "High rate of rise of current "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "High temperature rise "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "High rate of rise of voltage "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-does-not-cause-permanent-damage-of-an-gate-ee-1996-marks-1-pqamdg0edbnmxbbj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9k8rJapes3NpM5CD",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "single-and-three-phase-rectifier",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a $$3$$ - phase controlled bridge rectifier, with an increase of overlap angle the output $$dc$$ voltage",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Decreases "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Increases"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Does not change "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Depends upon load inductance"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-3-phase-controlled-bridge-rectifier-with-an-increase-of-gate-ee-1996-marks-1-9k8rjapes3npm5cd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AKePKiwSLMdxWu5m",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "choppers-and-commutation-techniques",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a thyristor $$dc$$ chopper which type of commutation results in best performance?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Voltage commutation "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Current commutation"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Load commutation "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Supply commutation"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-thyristor-dc-chopper-which-type-of-commutation-results-gate-ee-1996-marks-1-akepkiwslmdxwu5m.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                }
+            ],
+            "title": "Power Electronics"
+        },
+        {
+            "_id": "Power System Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "q4txrbh67c5koCfO",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a $$500$$ Hz frequency excitation, a $$50$$ km short power line will be modeled as ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Short line "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Medium line "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Long line "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Data insufficient for decision."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-500-hz-frequency-excitation-a-50-km-short-power-line-w-gate-ee-1996-marks-1-q4txrbh67c5kocfo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "d9ANNwmGFOLbYWZp",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For equilateral spacing of conductors of an untransposed $$3$$-phase line, we have ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Balanced receiving and voltage and no communication interference."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Unbalanced receiving end voltage and no communication interference."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Balanced receiving end voltage and communication interference."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Unbalanced receiving end voltage and communication interference. "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-equilateral-spacing-of-conductors-of-an-untransposed-3-p-gate-ee-1996-marks-2-d9annwmgfolbywzp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EJuYD4Gq9S95DdMW",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "power-system-stability",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "During  a disturbance on synchronous machine, the rotor swings from A to B before finally settling down to a steady state at a point C on the power angle curve. The speed of the machine during oscillation is synchronous at point(s)",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "A and B"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "A and C "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "B and C "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Only at C "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "during-a-disturbance-on-synchronous-machine-the-rotor-swings-gate-ee-1996-marks-1-ejuyd4gq9s95ddmw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZFrJwVWa7j4LfUuh",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "symmetrical-components-and-symmetrical-and-unsymmetrical-faults",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For an unbalanced fault, with paths for zero sequence currents, at the point of fault",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The negative and zero sequence voltages are minimum. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The negative and zero sequence voltages are maximum. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The negative sequence voltage is minimum and zero sequence voltage is maximum."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The negative sequence voltage  is maximum and zero sequence voltage is minimum."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-an-unbalanced-fault-with-paths-for-zero-sequence-current-gate-ee-1996-marks-1-zfrjwvwa7j4lfuuh.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FQkswj6GnGWmHfv7",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "circuit-breaker",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Resistance switching is normally employed in ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "All breakers "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Bulk oil breakers"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Minimum oil breakers "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Air blast circuit breakers "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "resistance-switching-is-normally-employed-in-gate-ee-1996-marks-1-fqkswj6gngwmhfv7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "eadfYtuosItfX4je",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "switch-gear-and-protection",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the fault current is $$2000$$ A, the relay setting is $$50$$% and CT ratio is $$400:5,$$ the plug setting multiplier will be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$25$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$15$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$50$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$10$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-fault-current-is-2000-a-the-relay-setting-is-50-and-c-gate-ee-1996-marks-1-eadfytuositfx4je.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jH4U11d1cbcPV6R4",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "generating-power-station",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which material is used in controlling chain reaction in a nuclear reactor? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Thorium "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Heavy water "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Boron "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Beryllium "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-material-is-used-in-controlling-chain-reaction-in-a-nu-gate-ee-1996-marks-1-jh4u11d1cbcpv6r4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DcpqVBprBaSWt1tT",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "switch-gear-and-protection",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The per unit voltages of two synchronous machines connected through a lossless line are $$0.95\\,\\angle {10^ \\circ }$$ and $$1.0\\,\\angle {0^ \\circ }.$$ Match the two sides in the following \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Wv9uKCwbJBtiAshNH/CCrUPzeydjpcmoBb9IzApU2vtWtR1/scHSUSuKHCgs6cvMx40pu7/image.svg\" loading=\"lazy\" alt=\"GATE EE 1996 Power System Analysis - Switch Gear and Protection Question 3 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$\\left( a \\right) - \\left( P \\right),\\,\\,\\left( b \\right) - \\left( Q \\right),\\,\\,\\left( c \\right) - \\left( T \\right)$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-per-unit-voltages-of-two-synchronous-machines-connected-gate-ee-1996-marks-5-dcpqvbprbaswt1tt.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "p3X6YHUrCxComvcu",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "load-flow-studies",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the reference bus is changed in two load flow runs with same system data and power obtained for reference bus taken as specified P and Q in the latter run",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The system losses will be unchanged but complex bus voltages will change."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The system losses will change but complex bus voltages remain unchanged."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The system losses as well as complex bus voltage will change."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The system losses as well as complex bus voltage will be unchanged."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-reference-bus-is-changed-in-two-load-flow-runs-with-s-gate-ee-1996-marks-1-p3x6yhurcxcomvcu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                }
+            ],
+            "title": "Power System Analysis"
+        },
+        {
+            "_id": "Signals and Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HNIMLETocQyVqqyh",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-periodic-signal-fourier-series",
+                    "year": 1996,
+                    "paperTitle": "GATE EE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A periodic rectangular signal, $$x(t)$$ has the waveform shown in Figure.  Frequency of the fifth harmonic of its spectrum is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/qFjHCF1zp2mEA5EDJ/ovhzCvbUMpHhExsRsnsYInd8Oubss/36m1ak2DXdnEL5vp68dyVq/image.png\" loading=\"lazy\" alt=\"GATE EE 1996 Signals and Systems - Continuous Time Periodic Signal Fourier Series Question 9 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$40$$ $$Hz$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$200$$ $$Hz$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$250$$ $$Hz$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1250$$ $$Hz$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-periodic-rectangular-signal-xt-has-the-waveform-sho-1996-marks-1-hnimletocqyvqqyh.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1996"
+                }
+            ],
+            "title": "Signals and Systems"
+        }
+    ]
+}

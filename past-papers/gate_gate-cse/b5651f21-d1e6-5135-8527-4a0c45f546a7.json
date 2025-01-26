@@ -1,0 +1,3101 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Algorithms",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "k4w5ARXvqIaTgCE0",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complexity-analysis-and-asymptotic-notations",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two alternate packages A and B are available for processing a database having 10<sup>k</sup> records. Package A requires 0.0001n<sup>2</sup> time units and package B requires $$10n.\\log _{10}^n$$ time units to process n records. What is the smallest value of k for which package B will be preferred over A?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "12"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "10"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "6"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "5"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-alternate-packages-a-and-b-are-available-for-processing-gate-cse-2010-marks-1-k4w5arxvqiatgce0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "adFepuh2B1INf3lC",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "greedy-method",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a complete undirected graph with vertex set {0, 1, 2, 3, 4}. Entry W(ij) in the matrix W below is the weight of the edge {i, j}.\n$$$w = \\left( {\\matrix{\n   0 &amp; 1 &amp; 8 &amp; 1 &amp; 4  \\cr \n   1 &amp; 0 &amp; {12} &amp; 4 &amp; 9  \\cr \n   8 &amp; {12} &amp; 0 &amp; 7 &amp; 3  \\cr \n   1 &amp; 4 &amp; 7 &amp; 0 &amp; 2  \\cr \n   4 &amp; 9 &amp; 3 &amp; 2 &amp; 0  \\cr \n\n } } \\right)$$$\nWhat is the minimum possible weight of a spanning tree T in this graph such that vertex 0 is a leaf node in the tree T?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "7"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "8"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "9"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "10"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-complete-undirected-graph-with-vertex-set-0-1-2-3-gate-cse-2010-marks-2-adfepuh2b1inf3lc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mCHwKfy9m0tObCLv",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "greedy-method",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a complete undirected graph with vertex set {0, 1, 2, 3, 4}. Entry W(ij) in the matrix W below is the weight of the edge {i, j}.\n$$$w = \\left( {\\matrix{\n   0 &amp; 1 &amp; 8 &amp; 1 &amp; 4  \\cr \n   1 &amp; 0 &amp; {12} &amp; 4 &amp; 9  \\cr \n   8 &amp; {12} &amp; 0 &amp; 7 &amp; 3  \\cr \n   1 &amp; 4 &amp; 7 &amp; 0 &amp; 2  \\cr \n   4 &amp; 9 &amp; 3 &amp; 2 &amp; 0  \\cr \n\n } } \\right)$$$\nWhat is the minimum possible weight of a path P from vertex 1 to vertex 2 in this graph such that P contains at most 3 edges?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "7"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "8"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "9"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "10"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-complete-undirected-graph-with-vertex-set-0-1-2-3-gate-cse-2010-marks-2-mchwkfy9m0tobclv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                }
+            ],
+            "title": "Algorithms"
+        },
+        {
+            "_id": "Compiler Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YsJ9ydXKv3HSScC0",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "syntax-directed-translation",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>The program below uses six temporary variables a, b, c, d, e, f.</p>\n<pre><code class=\"c\">a = 1 \nb = 10 \nc = 20 \nd = a + b \ne = c + d \nf = c + e \nb = c + e \ne = b + f \nd = 5 + e \nreturn d + f</code></pre>\n<p>Assuming that all operations take their operands from registers, what is the minimum number of registers needed to execute this program without spilling?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "3"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "4"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "6"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-program-below-uses-six-temporary-variables-a-b-c-d-e-fa-gate-cse-2010-marks-2-ysj9ydxkv3hsscc0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nItF9ZD1FLX5txfb",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "lexical-analysis",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which data structure in a compiler is used for managing information about variables and their attributes?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Abstract syntax tree "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Symbol table "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Semantic stack "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Parse table"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-data-structure-in-a-compiler-is-used-for-managing-info-gate-cse-2010-marks-1-nitf9zd1flx5txfb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PlvYbWo38OLxNucc",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parsing",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The grammar $$S \\to aSa\\,|\\,\\,bS\\,|\\,\\,c$$ is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "LL(1) but not LR(1) "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "LR(1) but not LR(1)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Both LL(1) and LR(1)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Neither LL(1) nor LR(1)"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-grammar-s-to-asabsc-is-gate-cse-2010-marks-2-plvybwo38olxnucc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mbpBec4a8Irw1h4D",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "code-generation-and-optimization",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which languages necessarily need heap allocation in the runtime environment? \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Those that support recursion "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Those that use dynamic scoping"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Those that allow dynamic data structures"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Those that use global variables"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-languages-necessarily-need-heap-allocation-in-the-runt-gate-cse-2010-marks-1-mbpbec4a8irw1h4d.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                }
+            ],
+            "title": "Compiler Design"
+        },
+        {
+            "_id": "Computer Networks",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PAf4ACtX6Hp74SMJ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "concepts-of-layering",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following is not a client-server application?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Internet chat"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Web browsing"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "E-mail"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Ping"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "Ping is the name of a standard software utility, used to test connectivity either between client-client or client-server."
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-is-not-a-client-server-applicatio-gate-cse-2010-marks-1-paf4actx6hp74smj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xA4Mn7xpngHbjVf0",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-layer",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "One of the header fields in an IP datagram is the Time to Live (TTL) field. Which of the following statements best explains the need for this field?  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "It can be used to prioritize packets "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "It can be used to reduce delays"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "It can be used to optimize throughput"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "It can be used to prevent packet looping"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "one-of-the-header-fields-in-an-ip-datagram-is-the-time-to-li-gate-cse-2010-marks-1-xa4mn7xpnghbjvf0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nZHluiFJcbq5FWdi",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-layer",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose computers A and B have IP addresses 10.105.1.113 and 10.105.1.91 respectively and they both use the same net mask N. Which of the values of N given below should not be used if A and B should belong to the same network?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "255.255.255.0 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "255.255.255.128"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "255.255.255.192"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "255.255.255.224"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-computers-a-and-b-have-ip-addresses-101051113-and-10-gate-cse-2010-marks-2-nzhluifjcbq5fwdi.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "squCH770GNa0YQpW",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "routing-algorithm",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Consider a network with 6 routers R1 to R6 connected with links having\nweights as shown in the following diagram</p>\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/rZgVwljvrNRZcxEwu/DxNcOIddYPF7lRSwLpuyfOhN1qr0g/Z8AWp9p6kfeQWqVHXfdo44/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2010 Computer Networks - Routing Algorithm Question 7 English\">\n<p>All the routers use the distance vector based routing algorithm to update their\nrouting tables. Each router starts with its routing table initialized to contain an\nentry for each neighbour with the weight of the respective connecting link.\nAfter all the routing tables stabilize, how many links in the network will never\nbe used for carrying any data?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "4"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "3"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-network-with-6-routers-r1-to-r6-connected-with-li-gate-cse-2010-marks-2-squch770gna0yqpw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xtimgMI1wyxTnc1F",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "routing-algorithm",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Consider a network with 6 routers R1 to R6 connected with links having\nweights as shown in the following diagram</p>\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/rZgVwljvrNRZcxEwu/DxNcOIddYPF7lRSwLpuyfOhN1qr0g/Z8AWp9p6kfeQWqVHXfdo44/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2010 Computer Networks - Routing Algorithm Question 6 English\">\nSuppose the weights of all unused links in the previous question are changed to 2 and the distance vector algorithm is used again until all routing tables stabilize. How many links will now remain unused?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "3"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-network-with-6-routers-r1-to-r6-connected-with-li-gate-cse-2010-marks-2-xtimgmi1wyxtnc1f.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                }
+            ],
+            "title": "Computer Networks"
+        },
+        {
+            "_id": "Computer Organization",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CyWtcWi6F5CxUUVM",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-interfacing",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A main memory unit with a capacity of $$4$$ megabytes is built using $$1M \\times 1$$-bit $$DRAM$$ chips. Each $$DRAM$$ chip has $$1K$$ rows of cells with $$1K$$ cells in each row. The time taken for a single refresh operation is $$100$$ nanoseconds. The time required to perform one refresh operation on all the cells in the memory unit is\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$100$$ nanoseconds "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$100 * {2^{10}}$$ nanoseconds "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$100 * {2^{20}}$$ nanoseconds "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3200 * {2^{20}}$$ nanoseconds "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-main-memory-unit-with-a-capacity-of-4-megabytes-is-built-u-gate-cse-2010-marks-1-cywtcwi6f5cxuuvm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BQfm5ZMWashwoPdH",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-interfacing",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A computer system has an $$L1$$ cache, an $$L2$$ cache, and a main memory unit connected as shown below. The block size in $$L1$$ cache is $$4$$ words. The block size in $$L2$$ cache is $$16$$ words. The memory access times are $$2$$ nanoseconds, $$20$$ nanoseconds and $$200$$ nanoseconds for $$L1$$ cache, $$L2$$ cache and main memory unit respectively. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/fU2Bzp3qkmVwuW4YC/Tc2gHrRosfVXFUjbPFvf1VLNA9P5x/vbAaBHcNydeSEchKVXm1Bv/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2010 Computer Organization - Memory Interfacing Question 22 English\"> \n<p>When there is a miss in both $$L1$$ cache and $$L2$$ cache, first a block is transferred from main memory to $$L2$$ cache, and then a block is transferred from $$L2$$ cache to $$L1$$ cache. \n<br>What is the total time taken for these transfers?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$222$$ nanoseconds "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$888$$ nanoseconds "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$902$$ nanoseconds"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$968$$ nanoseconds"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-computer-system-has-an-l1-cache-an-l2-cache-and-a-main-mem-gate-cse-2010-marks-2-bqfm5zmwashwopdh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "V2zRdR6jN15D97dY",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-interfacing",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A computer system has an $$L1$$ cache, an $$L2$$ cache, and a main memory unit connected as shown below. The block size in $$L1$$ cache is $$4$$ words. The block size in $$L2$$ cache is $$16$$ words. The memory access times are $$2$$ nanoseconds, $$20$$ nanoseconds and $$200$$ nanoseconds for $$L1$$ cache, $$L2$$ cache and main memory unit respectively. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/fU2Bzp3qkmVwuW4YC/Tc2gHrRosfVXFUjbPFvf1VLNA9P5x/vbAaBHcNydeSEchKVXm1Bv/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2010 Computer Organization - Memory Interfacing Question 23 English\"> \n<p>When there is a miss in $$L1$$ cache and a hit in $$L2$$ cache, a block is transferred from $$L2$$ cache to $$L1$$ cache. What is the time taken for this transfer?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2$$ nanoseconds"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$20$$ nanoseconds"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$22$$ nanoseconds"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$88$$ nanoseconds"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-computer-system-has-an-l1-cache-an-l2-cache-and-a-main-mem-gate-cse-2010-marks-2-v2zrdr6jn15d97dy.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nGMRbUgWy6EuASB7",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pipelining",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$5$$-stage pipelined processor has Instruction Fetch $$(IF),$$ Instruction Decode $$(ID),$$ Operand Fetch $$(OF),$$ Perform Operation $$(PO)$$ and Write Operand $$(WO)$$ stages. The $$IF, ID, OF$$ and $$WO$$ stages take $$1$$ clock cycle each for any instruction. The $$PO$$ stage takes $$1$$ clock cycle for $$ADD$$ and $$SUB$$ instructions, $$3$$ clock cycles for $$MUL$$ instruction, and $$6$$ clock cycles for $$DIV$$ instruction respectively. Operand forwarding is used in the pipeline. What is the number of clock cycles needed to execute the following sequence of instructions?\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/xe2D8RcnuEva1x4BO/1IqbDElGeaUWn6ok5A3MuwY7QEdKA/zFBjLLQHS3GXcgyPjNSevz/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2010 Computer Organization - Pipelining Question 25 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$13$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$15$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$17$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$19$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-5-stage-pipelined-processor-has-instruction-fetch-if-instr-gate-cse-2010-marks-2-ngmrbugwy6euasb7.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                }
+            ],
+            "title": "Computer Organization"
+        },
+        {
+            "_id": "Data Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YgEHlrF8jsU5VTY2",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "hashing",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A hash table of length 10 uses open addressing with hash function h(k)=k mod 10, and linear probing. After inserting 6 values into an empty hash table, the table is as shown below \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/cewxzPNF2ZCYCUC9r/DKuHrpaBKVcNFGW7Lb5mXvv0iE65x/DOfyKJXMcGGXijNaBx6Zhr/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2010 Data Structures - Hashing Question 9 English\">\nHow many different insertion sequences of the key values using the same hash function and linear probing will result in the hash table shown above?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "10"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "20"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "30"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "40"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-hash-table-of-length-10-uses-open-addressing-with-hash-fun-gate-cse-2010-marks-2-ygehlrf8jsu5vty2.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iGKQ4J8JiW1C0std",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linked-list",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following C function takes a simply-linked list as input argument. It modifies the list by moving the last element to the front of the list and returns the modified list. Some part of the code is left blank.\n<pre><code class=\"c\">typedef struct node { \n    int value; \n    struct node *next; \n} Node;\n \nNode *move_to_front(Node *head) { \n     Node *p, *q; \n     if ((head = = NULL: || (head-&gt;next = = NULL)) return head; \n     q = NULL; p = head; \n     while (p-&gt; next !=NULL) { \n       q=P; \n       p=p-&gt;next; \n     } \n     return head; \n} </code></pre>\nChoose the correct alternative to replace the blank line. ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "q = NULL; p-&gt;next = head; head = p; "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "q-&gt;next = NULL; head = p; p-&gt;next = head; "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "head = p; p-&gt;next = q; q-&gt;next = NULL; "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "q-&gt;next = NULL; p-&gt;next = head; head = p;"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-c-function-takes-a-simply-linked-list-as-input-gate-cse-2010-marks-2-igkq4j8jiw1c0std.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hiuyVOalF1okUmux",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graphs",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a complete undirected graph with vertex set {0,1,2,3,4}. Entry W<sub>ij</sub> in the matrix W below is the weight of the edge {i, j}\n$$$W = \\left( {\\matrix{\n   0 &amp; 1 &amp; 8 &amp; 1 &amp; 4  \\cr \n   1 &amp; 0 &amp; {12} &amp; 4 &amp; 9  \\cr \n   8 &amp; {12} &amp; 0 &amp; 7 &amp; 3  \\cr \n   1 &amp; 4 &amp; 7 &amp; 0 &amp; 2  \\cr \n   4 &amp; 9 &amp; 3 &amp; 2 &amp; 0  \\cr \n\n } } \\right)$$$\nWhat is the minimum possible weight of a spanning tree T in this graph such that vertex 0 is a leaf node in the tree T?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "7"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "8"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "9"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "10"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-complete-undirected-graph-with-vertex-set-01234-e-gate-cse-2010-marks-2-hiuyvoalf1okumux.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jGqrK6f6ismgOC00",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graphs",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a complete undirected graph with vertex set {0,1,2,3,4}. Entry W<sub>ij</sub> in the matrix W below is the weight of the edge {i, j}\n$$$W = \\left( {\\matrix{\n   0 &amp; 1 &amp; 8 &amp; 1 &amp; 4  \\cr \n   1 &amp; 0 &amp; {12} &amp; 4 &amp; 9  \\cr \n   8 &amp; {12} &amp; 0 &amp; 7 &amp; 3  \\cr \n   1 &amp; 4 &amp; 7 &amp; 0 &amp; 2  \\cr \n   4 &amp; 9 &amp; 3 &amp; 2 &amp; 0  \\cr \n\n } } \\right)$$$\nWhat is the minimum possible weight of a path P from vertex 1 to vertex 2 in this graph such that P contains at most 3 edges?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "7"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "8"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "9"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "10"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-complete-undirected-graph-with-vertex-set-01234-e-gate-cse-2010-marks-2-jgqrk6f6ismgoc00.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jmRpMJ2JvvkBJgnO",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "hashing",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A hash table of length 10 uses open addressing with hash function h(k)=k mod 10, and linear probing. After inserting 6 values into an empty hash table, the table is as shown below \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/cewxzPNF2ZCYCUC9r/DKuHrpaBKVcNFGW7Lb5mXvv0iE65x/DOfyKJXMcGGXijNaBx6Zhr/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2010 Data Structures - Hashing Question 10 English\">\nWhich one of the following choices gives a possible order in which the key values could have been inserted in the table?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "46, 42, 34, 52, 23, 33 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "34, 42, 23, 52, 33, 46 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "46, 34, 42, 23, 52, 33"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "42, 46, 33, 23, 34, 52"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-hash-table-of-length-10-uses-open-addressing-with-hash-fun-gate-cse-2010-marks-2-jmrpmj2jvvkbjgno.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                }
+            ],
+            "title": "Data Structures"
+        },
+        {
+            "_id": "Database Management System",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QcJB0byPkV36XIuw",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "structured-query-language",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>A relational schema for a train reservation database is given below:</p>\n<p>Passenger ( pid, pname, age)\n <br>Reservation (pid, cass, tid)</p> \n<p><b>Table: Passenger</b></p>\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-baqh{text-align:center;vertical-align:top}\n.tg .tg-yw4l{vertical-align:top}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-yw4l\">pid</th>\n    <th class=\"tg-yw4l\">pname</th>\n    <th class=\"tg-yw4l\">age</th>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">0</td>\n    <td class=\"tg-baqh\">'Sachin'</td>\n    <td class=\"tg-baqh\">65</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">1</td>\n    <td class=\"tg-baqh\">'Rahul'</td>\n    <td class=\"tg-baqh\">66</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">2</td>\n    <td class=\"tg-baqh\">'Sourav'</td>\n    <td class=\"tg-baqh\">67</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">3</td>\n    <td class=\"tg-baqh\">'Anil'</td>\n    <td class=\"tg-baqh\">69</td>\n  </tr>\n</tbody></table>\n<p><b>Table: Reservation</b></p>\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-baqh{text-align:center;vertical-align:top}\n.tg .tg-yw4l{vertical-align:top}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-yw4l\">pid</th>\n    <th class=\"tg-baqh\">class</th>\n    <th class=\"tg-baqh\">tid</th>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">0</td>\n    <td class=\"tg-baqh\">'AC'</td>\n    <td class=\"tg-baqh\">8200</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">1</td>\n    <td class=\"tg-baqh\">'AC'</td>\n    <td class=\"tg-baqh\">8201</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">2</td>\n    <td class=\"tg-baqh\">'SC'</td>\n    <td class=\"tg-baqh\">8201</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">5</td>\n    <td class=\"tg-baqh\">'AC'</td>\n    <td class=\"tg-baqh\">8203</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">1</td>\n    <td class=\"tg-baqh\">'SC'</td>\n    <td class=\"tg-baqh\">8204</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">3</td>\n    <td class=\"tg-baqh\">'AC'</td>\n    <td class=\"tg-baqh\">8202</td>\n  </tr>\n</tbody></table>\n<p>What pids are returned by the following SQL query for the above instance of the tables?</p>\n<pre><code class=\"sql\">SELECT   pid\nFROM   Reservation\nWHERE   class 'AC' AND \nEXISTS (SELECT * \nFROM Passenger \nWHERE age &gt; 65 \nAND Passenger.pid = Reservation.pid);</code></pre>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1, 0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1, 2"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1, 3"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1, 5"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-relational-schema-for-a-train-reservation-database-is-give-gate-cse-2010-marks-1-qcjb0bypkv36xiuw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NQ8MDNUvEAXuxXEV",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "relational-algebra",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following functional dependencies hold for relations R(A, B, C) and S(B, D, E):\n$$$\\eqalign{\n  &amp; B \\to A  \\cr \n  &amp; A \\to C \\cr} $$$\n<p>The relation R contains 200 tuples and the relation S contains 100 tuples. What is\nthe maximum number of tuples possible in the natural join R $$\\Join$$ S?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "100"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "200"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "300"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2000"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-functional-dependencies-hold-for-relations-ra-gate-cse-2010-marks-2-nq8mdnuveaxuxxev.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "K4kLMlVuxGyoJCFF",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transactions-and-concurrency",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following concurrency control protocols ensure both conflict serializability and freedom from deadlock? \n<p>I. 2-phase locking \n<br>II. Time-stamp ordering </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "I only"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "II only"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Both I and II"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Neither I nor II"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-concurrency-control-protocols-ensure-gate-cse-2010-marks-1-k4klmlvuxgyojcff.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6etERWArfNzy8kOn",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transactions-and-concurrency",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following schedule for transactions T1, T2 and T3:\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/XuzlRsBgkWAUShRcn/kd4sLDTxgcLyLjGgpFa6f8IUohrnU/ZMaI9gYSjp0I8ewOU7N0DR/image.svg\" loading=\"lazy\" alt=\"GATE CSE 2010 Database Management System - Transactions and Concurrency Question 21 English\">\nWhich one of the schedules below is the correct serialization of the above?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$T1 \\to T3 \\to T2$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$T2 \\to T1 \\to T3$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$T2 \\to T3 \\to T1$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$T3 \\to T1 \\to T2$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-schedule-for-transactions-t1-t2-and-t-gate-cse-2010-marks-2-6eterwarfnzy8kon.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xYQNtWmqjBak1bUq",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-structures-and-indexing",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a B<sup>+</sup>- tree in which the maximum number of keys in a node is 5. What is the minimum number of keys in any non-root node?  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "3"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "4"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-b-tree-in-which-the-maximum-number-of-keys-in-a-n-gate-cse-2010-marks-1-xyqntwmqjbak1buq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                }
+            ],
+            "title": "Database Management System"
+        },
+        {
+            "_id": "Digital Logic",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "eUyyXlNA2PxX3YkZ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "number-systems",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$P$$ is a $$16$$-bit signed integer. The $$2's$$ complement representtation of $$P$$ is $${\\left( {F87B} \\right)_{16}}$$ . The $$2's$$ complement representation of $$8{}^ * \\,P$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\left( {C3D8} \\right)_{16}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\left( {187B} \\right)_{16}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\left( {F878} \\right)_{16}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\left( {987B} \\right)_{16}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "p-is-a-16-bit-signed-integer-the-2s-complement-representtati-gate-cse-2010-marks-1-euyyxlna2pxx3ykz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8CSDTPIfqGPZq0aB",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The minters expansion of $$f\\left( {P,Q,R} \\right) = PQ + Q\\overline R  + P\\overline R $$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${m_2} + {m_4} + {m_6} + {m_7}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${m_0} + {m_1} + {m_3} + {m_5}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${m_0} + {m_1} + {m_6} + {m_7}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${m_2} + {m_3} + {m_4} + {m_5}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-minters-expansion-of-fleft-pqr-right-pq-qoverline-r-pove-gate-cse-2010-marks-1-8csdtpifqgpzq0ab.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8ITuOIU9AIrQYxyU",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the Boolean expression for the output f of the combinational logic circuit of NOR gates given below?\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/VCnpqeent1tXE3hW6/9lcRmEh04ZtGhLSedpt9OZTGow01W/KduVVUNDNm9Cv1mgg4yGod/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2010 Digital Logic - Boolean Algebra Question 29 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\overline {Q + R} $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\overline {P + Q} $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\overline {P + R} $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\overline {P+Q + R} $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-the-boolean-expression-for-the-output-f-of-the-combi-gate-cse-2010-marks-2-8ituoiu9airqyxyu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3L8Amuuu5OYc4Lcj",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinational-circuits",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Boolean expression for the output $$f$$ of the multiplexer shown below is\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/5d763dJwZtbMClkwy/3NH70D9dPG8QjblWbCPdpHwG9Hi2h/W8usS3FCy9W9OjgVYv3yzB/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2010 Digital Logic - Combinational Circuits Question 18 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\overline {P \\oplus Q \\oplus R} $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${P \\oplus Q \\oplus R}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P+Q+R$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\overline {P + Q + R} $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-boolean-expression-for-the-output-f-of-the-multiplexer-s-gate-cse-2010-marks-1-3l8amuuu5oyc4lcj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                }
+            ],
+            "title": "Digital Logic"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uMUOHXGwS1jYJTTz",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose the predicate $$F(x,y,t)$$ is used to represent the statements that person $$x$$ can fool person $$y$$ at time   $$t$$. Which one of the statements below expresses best the meaning of the formula $$\\forall x\\exists y\\exists t\\left( {\\neg F\\left( {x,y,t} \\right)} \\right)?$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Everyone can fool some person at some time."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "No one can fool everyone all the time."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Everyone cannot fool some person all the time. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "No one can fool some person at some time."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-the-predicate-fxyt-is-used-to-represent-the-statemen-gate-cse-2010-marks-2-umuohxgws1jyjttz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Up4fdo1Mihe39Cfk",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a company that assembles computers. The probability of a faulty assembly of any computer is P. The company therefore subjects each computer to a testing process. This gives the correct result for any computer with a probability of q. What is the probability of a computer being declared faulty?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "pq + (1 - p) (1 - q)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1 - q) p"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "(1 - p) q"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "pq"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-company-that-assembles-computers-the-probability-gate-cse-2010-marks-2-up4fdo1mihe39cfk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "IxpeJVnrDJ9ak9hf",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the possible number of reflexive relations on a set $$5$$ elements? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2<sup>10</sup>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2<sup>15</sup>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2<sup>20</sup>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2<sup>25</sup>"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-the-possible-number-of-reflexive-relations-on-a-set-gate-cse-2010-marks-1-ixpejvnrdj9ak9hf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5dLf69b1jzRtizsg",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the set $$S = \\left\\{ {1,\\,\\omega ,\\,{\\omega ^2}} \\right\\},$$ where $$\\omega $$ and $${{\\omega ^2}}$$, are cube roots of unity. If $$ * $$ denotes the multiplication operation, the structure $$\\left\\{ {S,\\, * } \\right\\}$$ forms",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a group "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a ring "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "an integral domain "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a field "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-set-s-left-1omega-omega-2-right-where-omega-and-gate-cse-2010-marks-1-5dlf69b1jzrtizsg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fG2G4gpUvZPFVm1G",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$G$$ $$\\,\\,\\,\\,\\, = \\,\\,\\,\\left( {V,\\,\\,\\,\\,\\,E} \\right)$$ be a graph. Define $$\\xi \\left( G \\right) = \\sum\\limits_d {{i_d} \\times } {\\mkern 1mu} d,$$ where $${{i_d}}$$ is the number of vertices of degree $$d$$ in $$G$$. If $$S$$ and $$T$$ are two different trees with $$\\xi \\left( S \\right) = \\xi \\left( T \\right)$$, then ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left| S \\right| = 2\\left| T \\right|$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left| S \\right| = \\left| T \\right| - 1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left| S \\right| = \\left| T \\right|$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left| S \\right| = \\left| T \\right| + 1$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-g-left-ve-right-be-a-graph-define-xi-left-g-right-sumlim-gate-cse-2010-marks-1-fg2g4gpuvzpfvm1g.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aPeMLGY13z8rWFqK",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the value of $$\\mathop {\\lim }\\limits_{n \\to \\infty } {\\left[ {1 - {1 \\over n}} \\right]^{2n}}?$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${e^{ - 2}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${e^{ - 1/2}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-the-value-of-mathop-lim-limitsn-to-infty-left-1-1-ov-gate-cse-2010-marks-1-apemlgy13z8rwfqk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FmB6bN8MfVvnXqfl",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The degree sequence of a simple graph is the sequence of the degrees of the nodes in the graph in decreasing order. Which of the following sequences can not be the degree sequence of any graph? \n<br>$${\\rm I}.$$$$\\,\\,\\,\\,\\,7,6,5,4,4,3,2,1$$\n<br>$${\\rm I}{\\rm I}.$$$$\\,\\,\\,\\,\\,6,6,6,6,3,3,2,2$$ \n<br>$${\\rm I}{\\rm I}{\\rm I}.$$$$\\,\\,\\,\\,\\,7,6,6,4,4,3,2,2$$\n<br>$${\\rm I}V.$$$$\\,\\,\\,\\,\\,8,7,7,6,4,2,1,1$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\rm I}$$ and $${\\rm I}$$$${\\rm I}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\rm I}$$$${\\rm I}$$$${\\rm I}$$ and $${\\rm I}$$$$V$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\rm I}$$$$V$$ only "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\rm I}$$$${\\rm I}$$ and $${\\rm I}$$$$V$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-degree-sequence-of-a-simple-graph-is-the-sequence-of-the-gate-cse-2010-marks-2-fmb6bn8mfvvnxqfl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FQFQw2aRborQmZAr",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following matrix $$A = \\left[ {\\matrix{\n   2 &amp; 3  \\cr \n   x &amp; y  \\cr \n\n } } \\right]\\,\\,$$ If the eigen values of $$A$$ are $$4$$ and $$8$$, then ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$x = 4,\\,\\,y = 10$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$x = 5,\\,\\,y = 8$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$x = -3,\\,\\,y = 9$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$x = -4,\\,\\,y = 10$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-matrix-a-left-matrix-2-3-cr-x-y-cr-ri-gate-cse-2010-marks-2-fqfqw2arborqmzar.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Mn8ugeKk0ZSQO8ak",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following matrix $$A = \\left[ {\\matrix{\n   2 &amp; 3  \\cr \n   x &amp; y  \\cr \n\n } } \\right].$$ \n<br>If the eigen values of $$A$$ are $$4$$ and $$8$$ then ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$x=4, y=10$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$x=5, $$ $$y=8$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$x=-3,$$ $$y=9$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$x=-4,$$ $$y=10$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-matrix-a-left-matrix-2-3-cr-x-y-cr-ri-gate-cse-2010-marks-1-mn8ugekk0zsqo8ak.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WEcJOXTlh9e6D66n",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the probability that divisor of $${10^{99}}$$ is a multiple of $${10^{96}}$$ ?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1/625"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "4/625"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "12/625"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "16/625"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-the-probability-that-divisor-of-1099-is-a-multiple-o-gate-cse-2010-marks-2-wecjoxtlh9e6d66n.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SHuvSqyL61j9dyO4",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A system uses FIFO policy for page replacement. It has $$4$$ pages frames with no pages loaded to begin with. The system first accesses $$100$$ distinct pages in some order and then accesses the same $$100$$ pages but now in the reverse order. How many page faults will occur?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$196$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$192$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$197$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$195$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-system-uses-fifo-policy-for-page-replacement-it-has-4-page-gate-cse-2010-marks-1-shuvsqyl61j9dyo4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "v2tL56JsWxpX2B7j",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deadlocks",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A system has n resources R<sub>0</sub>,.....,R<sub>n-1</sub>, and k processes P<sub>0</sub>,.....,P<sub>k-1</sub>. The\nimplementation of the resource request logic of each process P<sub>i</sub>, is as follows: \n<pre><code>if (i%2==0) {\n  if (i &lt; n) request R<sub>i</sub>;\n  if (i+2 &lt; n) request R<sub>i+2</sub> ;\n}\nelse {\n  if (i &lt; n) request R<sub>n-i</sub>;\n  if (i+2 &lt; n) request R<sub>n-i-2</sub>;\n}</code></pre>\nIn which one of the following situations is a deadlock possible?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "n = 40, k = 26"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "n = 21, k = 12"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "n = 20, k = 10"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "n = 41, k = 19"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-system-has-n-resources-r0rn-1-and-k-processes-p0pk-1-theim-gate-cse-2010-marks-2-v2tl56jswxpx2b7j.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Xhw3NvvktmqBfaTJ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following statements are true?\n<br>$${\\rm I}.$$ Shortest remaining time first scheduling may cause starvation\n<br>$${\\rm II}.$$ Preemptive scheduling may cause starvation\n<br>$${\\rm III}.$$ Round robin is better than $$FCFS$$ in terms of response time",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\rm I}$$ only "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\rm I}$$ and $${\\rm II}$$ only "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\rm II}$$ and $${\\rm III}$$ only "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\rm I},$$ $${\\rm II}$$ and $${\\rm III}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-statements-are-truerm-i-shortest-rema-gate-cse-2010-marks-1-xhw3nvvktmqbfatj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uiY2njg8u111aUFx",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronization-and-concurrency",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the methods used by processes P1 and P2 for accessing their critical sections whenever needed, as given below. The initial values of shared boolean variables S1 and S2 are randomly assigned.<br><br>\n <img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/ZVIWDbpOPCIn5CgYF/UbwsMFmhGchnpDgku8rK5OTFcySOo/RaS0OTgNsfBctGtsKLFLb9/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2010 Operating Systems - Synchronization and Concurrency Question 31 English\"><br>\nWhich of the following statement describes the properties achieved?\n ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Mutual exclusion but not progress"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Progress but not mutual exclusion"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Neither mutual exclusion nor progress"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Both mutual exclusion and progress"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-methods-used-by-processes-p1-and-p2-for-accessi-gate-cse-2010-marks-1-uiy2njg8u111aufx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "thdxAt1GTy63gCgP",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronization-and-concurrency",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following program consists of 3 concurrent processes and 3 binary semaphores. The semaphores are initialized as S0=1, S1=0, S2=0.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/5CuGPwuG6rKKVMiG2/TcLZHerR2rrxpPh6I2WuGm18FagnN/NoAbLofnZo6jLzhw0YnPqc/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2010 Operating Systems - Synchronization and Concurrency Question 14 English\"> \nHow many times will process P0 print '0'?\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "At least twice"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Exaclty twice"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Exactly thrice"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Exactly once"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-program-consists-of-3-concurrent-processes-and-gate-cse-2010-marks-2-thdxat1gty63gcgp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                }
+            ],
+            "title": "Operating Systems"
+        },
+        {
+            "_id": "Programming Languages",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "a5fGmnRsmeSvKSUD",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which languages necessarily need heap allocation in the runtime environment?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Those that support recursion"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Those that use dynamic scoping"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Those that allow dynamic data structures"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Those that use global variables"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-languages-necessarily-need-heap-allocation-in-the-runt-gate-cse-2010-marks-1-a5fgmnrsmesvksud.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ljlNeZB9o42aWkIS",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pointer-and-structure-in-c",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What does the following program print?\n<pre><code>#include &lt; stdio.h &gt;\nvoid f (int *p, int *q) {\n     p = q;\n    *p = 2;\n}\nint i = 0, j = 1;\nint main ( ){\n     f(&amp;i, &amp;j);\n     printf (\"%d %d \\ n\", i, j);\n     return 0;\n}</code></pre>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2 2"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2 1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0 1"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0 2"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-does-the-following-program-printinclude-stdioh-void-f-i-gate-cse-2010-marks-1-ljlnezb9o42awkis.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                }
+            ],
+            "title": "Programming Languages"
+        },
+        {
+            "_id": "Software Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fpWlDQ56hRGGXMTF",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "software-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "software-engineering",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Cyclomatic complexity of each of the module $$A$$ &amp; $$B$$ shown below is $$10.$$ What is the cyclomatic complexity of the sequential integration show on the right hand side? \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/lQm25sFo9s3Oarzj9/w43nLmlNwv3o4NYXRk3TkCvwoEH5G/XQP3FZqoseCp3KanFK35yc/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2010 Software Engineering - Software Engineering Question 23 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$19$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$21$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$20$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$10$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-cyclomatic-complexity-of-each-of-the-module-a-b-2010-marks-1-fpwldq56hrggxmtf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Eo4gCjdN0GD9jqhT",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "software-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "software-engineering",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the appropriate pairing of items in the two columns using listing various activities encountered in a software use cycle?\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/E9jswFRSFMAVsUEV8/ohTjX27hGYpzMnFJ42KZ5D3GU4wR5/lyTmjSXwkwTVJzASSl2ZLr/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2010 Software Engineering - Software Engineering Question 22 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P - 3,\\,\\,Q - 2,\\,\\,R - 4,\\,\\,S - 1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P - 2,\\,\\,Q - 3,\\,\\,R - 1,\\,\\,S - 4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P - 3,\\,\\,Q - 2,\\,\\,R - 1,\\,\\,S - 4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P - 2,\\,\\,Q - 3,\\,\\,R - 4,\\,\\,S - 1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-the-appropriate-pairing-of-items-in-the-two-columns-2010-marks-1-eo4gcjdn0gd9jqht.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "l5g3t2DfzQAr5xPI",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "software-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "software-engineering",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following program is to be tested for statement coverage:\n<br>begin\n<br>if $$\\left( {a = \\,\\, = b} \\right)\\,\\,\\left\\{ {S1;\\,\\,exit;} \\right\\}$$\n<br>else if $$\\left( {c = \\,\\, = d} \\right)\\,\\,\\left\\{ {S2;} \\right\\}$$\n<br>else $$\\left\\{ {S3;\\,\\,exit;} \\right\\}$$\n<br>$$S4;$$\n<br>end\n<p>The test cases $${T_1},\\,{T_2},\\,{T_3}\\,\\,\\&amp; \\,{T_4}$$ given below are expressed in terms of the properties satisfied by the values of variables $$a, b, c$$ and $$d.$$ The exact values are not given.\n<br>$${T_1}:\\,a,\\,b,\\,c\\,\\&amp; \\,d$$ are all equal\n<br>$${T_2}:\\,a,\\,b,\\,c\\,\\&amp; \\,d$$ are all distinct\n<br>$${T_3}:\\,a = b\\,\\,\\,\\&amp; \\,\\,\\,\\,c\\,!\\, = \\,d$$\n<br>$${T_4}:\\,a! = b\\,\\,\\,\\&amp; \\,\\,\\,\\,c\\, = \\,d$$</p>\n<p>Which of the test suites given below ensures coverage of statements $${S_1},\\,{S_2},\\,{S_3}\\,\\,\\&amp; \\,{S_4}$$ ? </p>\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${T_1},\\,{T_2},\\,{T_3}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${T_2},\\,{T_4}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${T_3},\\,{T_4}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${T_1},\\,{T_2},\\,{T_4}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-program-is-to-be-tested-for-statement-coverage-2010-marks-2-l5g3t2dfzqar5xpi.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                }
+            ],
+            "title": "Software Engineering"
+        },
+        {
+            "_id": "Theory of Computation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GZxpfolTVFycd7t1",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $${L_1}$$ recursive language. Let $${L_2}$$ and $${L_3}$$ be languages that are recursively enumerable but not recursive. Which of the following statement is not necessarily true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${L_2}$$ $$-$$ $${L_1}$$ is recursively enumerable."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${L_1}$$ $$-$$ $${L_3}$$ recursively enumerable. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${L_2} \\cap {L_1}$$ is recursively enumerable. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${L_2} \\cup {L_1}$$ is recursively enumerable."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-l1-recursive-language-let-l2-and-l3-be-languages-that-ar-gate-cse-2010-marks-1-gzxpfoltvfycd7t1.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kEoZMoknipCyWjeL",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$L = \\left\\{ {w \\in {{\\left( {0 + 1} \\right)}^ * }\\left| {\\,w} \\right.} \\right.$$ has even number of $$\\,\\left. {1's} \\right\\},$$ i.e $$L$$ is the set of all bit strings with even number of $$1's.$$ which one of rhe regular expression below represents $$L.$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {{0^ * }{{10}^ * }1} \\right){}^ * $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${0^ * }\\left( {{{10}^ * }{{10}^ * }} \\right){}^ * $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${0^ * }\\left( {{{10}^ * }1} \\right){}^ * {0^ * }$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${0^ * }\\,\\,1\\left( {{{10}^ * }1} \\right){}^ * {10^ * }$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-l-left-w-in-left-0-1-right-left-w-right-right-has-even-n-gate-cse-2010-marks-2-keozmoknipcywjel.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YmIfYVhlVbbx85nV",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$w$$ be any string of length $$n$$ in $${\\left\\{ {0,1} \\right\\}^ * }$$. Let $$L$$ be the set of all substrings of $$w.$$ What is the minimum number of states in a non-deterministic finite automation that accepts $$L$$?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$n-1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$n$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$n+1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${2^{n + 1}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-w-be-any-string-of-length-n-in-left-01-right-let-l-be-th-gate-cse-2010-marks-2-ymifyvhlvbbx85nv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CPg06wSxsCwkORYF",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 2010,
+                    "paperTitle": "GATE CSE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the languages \n$$$\\eqalign{\n  &amp; {L_1} = \\left\\{ {{0^i}{1^j}\\,\\left| {i \\ne j} \\right.} \\right\\},\\,{L_2} = \\left\\{ {{0^i}{1^j}\\,\\left| {i = j} \\right.} \\right\\},  \\cr \n  &amp; {L_3} = \\left\\{ {{0^i}{1^j}\\,\\left| {i = 2j + 1} \\right.} \\right\\},  \\cr \n  &amp; {L_4} = \\left\\{ {{0^i}{1^j}\\,\\left| {i \\ne 2j} \\right.} \\right\\}, \\cr} $$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "only $${L_2}$$ is context free  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "only $${L_2}$$ and $${L_3}$$ are context free "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "only $${L_1}$$ and $${L_2}$$ are context free "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "all are context free "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-languages-eqalign-l1-left-0i1jleft-i-ne-j-right-gate-cse-2010-marks-2-cpg06wsxscwkoryf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2010"
+                }
+            ],
+            "title": "Theory of Computation"
+        }
+    ]
+}

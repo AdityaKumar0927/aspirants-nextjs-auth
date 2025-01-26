@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useMemo } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
@@ -7,11 +9,11 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { ArrowLeft, Download, Target, Award, TrendingUp, AlertCircle, CheckCircle, PieChart, LineChart, Lightbulb, BookOpen, Clock } from 'lucide-react'
-import { Pie, Bar, Radar } from 'react-chartjs-2'
-import html2pdf from 'html2pdf.js'
-import 'chart.js/auto';
-import { ExamResultsType, QuestionType } from "@/lib/exam-helpers"
+import { ArrowLeft, Download, Target, Award, TrendingUp, AlertCircle, CheckCircle, PieChart, LineChart, Lightbulb, BookOpen, Clock } from "lucide-react"
+import { Pie, Bar, Radar } from "react-chartjs-2"
+import html2pdf from "html2pdf.js"
+import "chart.js/auto"
+import { ExamResultsType } from "@/lib/exam-helpers"
 
 const formatTime = (seconds: number) => {
   const minutes = Math.floor(seconds / 60)
@@ -19,17 +21,28 @@ const formatTime = (seconds: number) => {
   return `${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
 }
 
-function AdvancedExamResults({ examResults, onStartNewExam, onExit }: { examResults: ExamResultsType; onStartNewExam: () => void; onExit: () => void }) {
-  const [difficultyFilter, setDifficultyFilter] = useState<'Easy' | 'Medium' | 'Hard' | 'All'>('All')
+function AdvancedExamResults({
+  examResults,
+  onStartNewExam,
+  onExit,
+}: {
+  examResults: ExamResultsType
+  onStartNewExam: () => void
+  onExit: () => void
+}) {
+  const [difficultyFilter, setDifficultyFilter] = useState<"Easy" | "Medium" | "Hard" | "All">("All")
 
+  // Filter the displayed questions by difficulty
   const filteredQuestions = useMemo(() => {
-    return difficultyFilter === 'All'
-      ? examResults.questions
-      : examResults.questions.filter(q => q.difficulty === difficultyFilter)
+    if (difficultyFilter === "All") {
+      return examResults.questions
+    }
+    return examResults.questions.filter((q) => (q.difficulty || "") === difficultyFilter)
   }, [examResults.questions, difficultyFilter])
 
+  // Generate PDF content
   const generatePdfContent = () => {
-    const content = document.createElement('div')
+    const content = document.createElement("div")
     content.innerHTML = `
       <h1>Exam Results</h1>
       <h2>Summary</h2>
@@ -40,45 +53,60 @@ function AdvancedExamResults({ examResults, onStartNewExam, onExit }: { examResu
       <p>Average Time per Question: ${formatTime(Math.round(examResults.averageTimePerQuestion))}</p>
       
       <h2>Topic Performance</h2>
-      ${Object.entries(examResults.topicPerformance).map(([topic, performance]) => `
-        <p>${topic}: ${((performance.correct / performance.total) * 100).toFixed(2)}%</p>
-      `).join('')}
+      ${Object.entries(examResults.topicPerformance)
+        .map(([topic, performance]) => {
+          const pct = (performance.correct / performance.total) * 100
+          return `<p>${topic}: ${pct.toFixed(2)}%</p>`
+        })
+        .join("")}
       
       <h2>Strengths</h2>
-      ${examResults.topStrengths.map(([topic, performance]) => `
-        <p>${topic}: ${((performance.correct / performance.total) * 100).toFixed(2)}%</p>
-      `).join('')}
+      ${examResults.topStrengths
+        .map(([topic, performance]) => {
+          const pct = (performance.correct / performance.total) * 100
+          return `<p>${topic}: ${pct.toFixed(2)}%</p>`
+        })
+        .join("")}
       
       <h2>Areas for Improvement</h2>
-      ${examResults.topWeaknesses.map(([topic, performance]) => `
-        <p>${topic}: ${((performance.correct / performance.total) * 100).toFixed(2)}%</p>
-      `).join('')}
+      ${examResults.topWeaknesses
+        .map(([topic, performance]) => {
+          const pct = (performance.correct / performance.total) * 100
+          return `<p>${topic}: ${pct.toFixed(2)}%</p>`
+        })
+        .join("")}
       
       <h2>Question Review</h2>
-      ${examResults.questions.map((question, index) => `
-        <h3>Question ${index + 1}</h3>
-        <p>${question.text}</p>
-        <p>Your Answer: ${examResults.userAnswers[index] || "Not answered"}</p>
-        <p>Correct Answer: ${question.correctOption}</p>
-        <p>Time Spent: ${formatTime(examResults.timeSpentPerQuestion[index])}</p>
-        <p>Explanation: ${question.explanation}</p>
-      `).join('')}
+      ${examResults.questions
+        .map((question, index) => {
+          return `
+            <h3>Question ${index + 1}</h3>
+            <p>${question.text}</p>
+            <p>Your Answer: ${examResults.userAnswers[index] || "Not answered"}</p>
+            <p>Correct Answer: ${question.correctOption}</p>
+            <p>Time Spent: ${formatTime(examResults.timeSpentPerQuestion[index])}</p>
+            <p>Explanation: ${question.explanation || ""}</p>
+          `
+        })
+        .join("")}
     `
     return content
   }
 
+  // PDF download
   const handleDownloadPdf = () => {
     const content = generatePdfContent()
     const opt = {
       margin: 10,
-      filename: 'exam_results.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
+      filename: "exam_results.pdf",
+      image: { type: "jpeg", quality: 0.98 },
       html2canvas: { scale: 2 },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
     }
     html2pdf().from(content).set(opt).save()
   }
 
+  // Renders a "Summary" card
   const renderSummaryCard = (
     <Card className="overflow-hidden bg-gradient-to-br from-primary/10 to-primary/5">
       <CardHeader className="border-b border-primary/10">
@@ -90,23 +118,49 @@ function AdvancedExamResults({ examResults, onStartNewExam, onExit }: { examResu
       <CardContent className="p-6">
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <p className="text-sm font-medium">Total Questions: <span className="font-bold text-primary">{examResults.totalQuestions}</span></p>
-            <p className="text-sm font-medium">Correct Answers: <span className="font-bold text-green-600">{examResults.correctAnswersCount}</span></p>
-            <p className="text-sm font-medium">Incorrect Answers: <span className="font-bold text-red-600">{examResults.incorrectAnswers}</span></p>
+            <p className="text-sm font-medium">
+              Total Questions:{" "}
+              <span className="font-bold text-primary">{examResults.totalQuestions}</span>
+            </p>
+            <p className="text-sm font-medium">
+              Correct Answers:{" "}
+              <span className="font-bold text-green-600">
+                {examResults.correctAnswersCount}
+              </span>
+            </p>
+            <p className="text-sm font-medium">
+              Incorrect Answers:{" "}
+              <span className="font-bold text-red-600">
+                {examResults.incorrectAnswers}
+              </span>
+            </p>
           </div>
           <div className="space-y-2">
-            <p className="text-sm font-medium">Score: <span className="font-bold text-primary">{examResults.score.toFixed(2)}%</span></p>
-            <p className="text-sm font-medium">Average Time per Question: <span className="font-bold">{formatTime(Math.round(examResults.averageTimePerQuestion))}</span></p>
+            <p className="text-sm font-medium">
+              Score:{" "}
+              <span className="font-bold text-primary">
+                {examResults.score.toFixed(2)}%
+              </span>
+            </p>
+            <p className="text-sm font-medium">
+              Average Time per Question:{" "}
+              <span className="font-bold">
+                {formatTime(Math.round(examResults.averageTimePerQuestion))}
+              </span>
+            </p>
           </div>
         </div>
         <div className="mt-6">
           <Progress value={examResults.score} className="h-2 w-full" />
-          <p className="text-xs text-muted-foreground mt-2 text-center">Your performance</p>
+          <p className="text-xs text-muted-foreground mt-2 text-center">
+            Your performance
+          </p>
         </div>
       </CardContent>
     </Card>
   )
 
+  // Renders a chart + list of topic performance
   const renderTopicPerformance = (
     <Card>
       <CardHeader className="border-b">
@@ -118,29 +172,33 @@ function AdvancedExamResults({ examResults, onStartNewExam, onExit }: { examResu
       <CardContent className="p-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <Pie 
+            <Pie
               data={{
                 labels: Object.keys(examResults.topicPerformance),
-                datasets: [{
-                  data: Object.values(examResults.topicPerformance).map(p => p.correct),
-                  backgroundColor: [
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(54, 162, 235, 0.8)',
-                    'rgba(255, 206, 86, 0.8)',
-                  ],
-                }]
+                datasets: [
+                  {
+                    data: Object.values(examResults.topicPerformance).map((p) => p.correct),
+                    backgroundColor: [
+                      "rgba(255, 99, 132, 0.8)",
+                      "rgba(54, 162, 235, 0.8)",
+                      "rgba(255, 206, 86, 0.8)",
+                      "rgba(75, 192, 192, 0.8)",
+                      "rgba(153, 102, 255, 0.8)",
+                    ],
+                  },
+                ],
               }}
               options={{
                 responsive: true,
                 plugins: {
                   legend: {
-                    position: 'bottom',
+                    position: "bottom",
                   },
                   title: {
                     display: true,
-                    text: 'Correct Answers by Topic'
-                  }
-                }
+                    text: "Correct Answers by Topic",
+                  },
+                },
               }}
             />
           </div>
@@ -150,9 +208,14 @@ function AdvancedExamResults({ examResults, onStartNewExam, onExit }: { examResu
                 <div key={topic}>
                   <div className="flex justify-between text-sm mb-2">
                     <span className="font-medium">{topic}</span>
-                    <span className="font-bold">{((performance.correct / performance.total) * 100).toFixed(2)}%</span>
+                    <span className="font-bold">
+                      {((performance.correct / performance.total) * 100).toFixed(2)}%
+                    </span>
                   </div>
-                  <Progress value={(performance.correct / performance.total) * 100} className="h-2" />
+                  <Progress
+                    value={(performance.correct / performance.total) * 100}
+                    className="h-2"
+                  />
                 </div>
               ))}
             </div>
@@ -162,61 +225,45 @@ function AdvancedExamResults({ examResults, onStartNewExam, onExit }: { examResu
     </Card>
   )
 
-  const renderAnswerReview = (
-    <Card>
-      <CardHeader className="border-b">
-        <CardTitle className="text-2xl font-semibold tracking-tight flex items-center">
-          <CheckCircle className="w-6 h-6 mr-2 text-primary" />
-          Answer Review
+  // Renders a bar chart for topics with the most incorrect answers
+  const renderIncorrectAnswers = (
+    <Card className="bg-gradient-to-br from-red-100 to-red-50 dark:from-red-900/20 dark:to-red-800/20">
+      <CardHeader>
+        <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-red-800 dark:text-red-100">
+          <AlertCircle className="w-6 h-6 mr-2" />
+          Topics with Most Incorrect Answers
         </CardTitle>
-        <CardDescription>
-          Filter by difficulty:
-          <div className="flex space-x-2 mt-2">
-            {['All', 'Easy', 'Medium', 'Hard'].map((difficulty) => (
-              <Badge
-                key={difficulty}
-                variant={difficultyFilter === difficulty ? "default" : "outline"}
-                className="cursor-pointer"
-                onClick={() => setDifficultyFilter(difficulty as 'All' | 'Easy' | 'Medium' | 'Hard')}
-              >
-                {difficulty}
-              </Badge>
-            ))}
-          </div>
-        </CardDescription>
       </CardHeader>
       <CardContent className="p-6">
-        <ScrollArea className="h-[400px]">
-          <Accordion type="single" collapsible className="w-full">
-            {filteredQuestions.map((question, index) => (
-              <AccordionItem value={`question-${index}`} key={question.id}>
-                <AccordionTrigger>
-                  <div className="flex items-center">
-                    <span className={`w-6 h-6 rounded-full mr-2 flex items-center justify-center text-white ${examResults.userAnswers[index] === question.correctOption ? "bg-green-500" : "bg-red-500"}`}>
-                      {examResults.userAnswers[index] === question.correctOption ? "✓" : "✗"}
-                    </span>
-                    <span>Question {index + 1}</span>
-                    <Badge variant="outline" className="ml-2">{question.difficulty}</Badge>
-                    <Badge variant="outline" className="ml-2">{question.topic}</Badge>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="space-y-2">
-                    <p className="font-medium">{question.text}</p>
-                    <p>Your Answer: <span className={examResults.userAnswers[index] === question.correctOption ? "text-green-600 font-semibold" : "text-red-600 font-semibold"}>{examResults.userAnswers[index] || "Not answered"}</span></p>
-                    <p>Correct Answer: <span className="text-green-600 font-semibold">{question.correctOption}</span></p>
-                    <p>Time Spent: <span className="font-semibold">{formatTime(examResults.timeSpentPerQuestion[index])}</span></p>
-                    <p className="text-sm text-muted-foreground">{question.explanation}</p>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </ScrollArea>
+        <Bar
+          data={{
+            labels: Object.keys(examResults.topicWiseIncorrectAnswers),
+            datasets: [
+              {
+                label: "Incorrect Answers",
+                data: Object.values(examResults.topicWiseIncorrectAnswers),
+                backgroundColor: "rgba(255, 99, 132, 0.8)",
+              },
+            ],
+          }}
+          options={{
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "top" as const,
+              },
+              title: {
+                display: true,
+                text: "Incorrect Answers by Topic",
+              },
+            },
+          }}
+        />
       </CardContent>
     </Card>
   )
 
+  // Strengths/weaknesses cards
   const renderStrengthsAndWeaknesses = (
     <div className="grid gap-6 md:grid-cols-2">
       <Card className="bg-gradient-to-br from-green-100 to-green-50 dark:from-green-900/20 dark:to-green-800/20">
@@ -230,7 +277,9 @@ function AdvancedExamResults({ examResults, onStartNewExam, onExit }: { examResu
           <ul className="space-y-4">
             {examResults.topStrengths.map(([topic, performance], index) => (
               <li key={topic} className="flex items-center">
-                <span className="w-8 h-8 rounded-full bg-green-200 dark:bg-green-800 flex items-center justify-center mr-3 text-green-800 dark:text-green-200 font-bold">{index + 1}</span>
+                <span className="w-8 h-8 rounded-full bg-green-200 dark:bg-green-800 flex items-center justify-center mr-3 text-green-800 dark:text-green-200 font-bold">
+                  {index + 1}
+                </span>
                 <div>
                   <p className="font-semibold">{topic}</p>
                   <p className="text-sm text-green-600">
@@ -253,8 +302,9 @@ function AdvancedExamResults({ examResults, onStartNewExam, onExit }: { examResu
           <ul className="space-y-4">
             {examResults.topWeaknesses.map(([topic, performance], index) => (
               <li key={topic} className="flex items-center">
-                <span className="w-8 h-8 rounded-full bg-yellow-200 dark:bg-yellow-800 flex items-center justify-center mr-3 text-yellow-800 dark:text-yellow-200 font-bol
-d">{index + 1}</span>
+                <span className="w-8 h-8 rounded-full bg-yellow-200 dark:bg-yellow-800 flex items-center justify-center mr-3 text-yellow-800 dark:text-yellow-200 font-bold">
+                  {index + 1}
+                </span>
                 <div>
                   <p className="font-semibold">{topic}</p>
                   <p className="text-sm text-yellow-600">
@@ -269,41 +319,7 @@ d">{index + 1}</span>
     </div>
   )
 
-  const renderIncorrectAnswers = (
-    <Card className="bg-gradient-to-br from-red-100 to-red-50 dark:from-red-900/20 dark:to-red-800/20">
-      <CardHeader>
-        <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-red-800 dark:text-red-100">
-          <AlertCircle className="w-6 h-6 mr-2" />
-          Topics with Most Incorrect Answers
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="p-6">
-        <Bar
-          data={{
-            labels: Object.keys(examResults.topicWiseIncorrectAnswers),
-            datasets: [{
-              label: 'Incorrect Answers',
-              data: Object.values(examResults.topicWiseIncorrectAnswers),
-              backgroundColor: 'rgba(255, 99, 132, 0.8)',
-            }]
-          }}
-          options={{
-            responsive: true,
-            plugins: {
-              legend: {
-                position: 'top' as const,
-              },
-              title: {
-                display: true,
-                text: 'Incorrect Answers by Topic'
-              }
-            }
-          }}
-        />
-      </CardContent>
-    </Card>
-  )
-
+  // Radar for skill assessment
   const renderSkillAssessment = (
     <Card>
       <CardHeader>
@@ -317,27 +333,29 @@ d">{index + 1}</span>
           <Radar
             data={{
               labels: Object.keys(examResults.skillLevels),
-              datasets: [{
-                label: 'Skill Level',
-                data: Object.values(examResults.skillLevels),
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgb(54, 162, 235)',
-                pointBackgroundColor: 'rgb(54, 162, 235)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgb(54, 162, 235)'
-              }]
+              datasets: [
+                {
+                  label: "Skill Level",
+                  data: Object.values(examResults.skillLevels),
+                  backgroundColor: "rgba(54, 162, 235, 0.2)",
+                  borderColor: "rgb(54, 162, 235)",
+                  pointBackgroundColor: "rgb(54, 162, 235)",
+                  pointBorderColor: "#fff",
+                  pointHoverBackgroundColor: "#fff",
+                  pointHoverBorderColor: "rgb(54, 162, 235)",
+                },
+              ],
             }}
             options={{
               scales: {
                 r: {
                   angleLines: {
-                    display: false
+                    display: false,
                   },
                   suggestedMin: 0,
-                  suggestedMax: 100
-                }
-              }
+                  suggestedMax: 100,
+                },
+              },
             }}
           />
         </div>
@@ -345,6 +363,101 @@ d">{index + 1}</span>
     </Card>
   )
 
+  // Answer Review accordion
+  const renderAnswerReview = (
+    <Card>
+      <CardHeader className="border-b">
+        <CardTitle className="text-2xl font-semibold tracking-tight flex items-center">
+          <CheckCircle className="w-6 h-6 mr-2 text-primary" />
+          Answer Review
+        </CardTitle>
+        <CardDescription>
+          Filter by difficulty:
+          <div className="flex space-x-2 mt-2">
+            {["All", "Easy", "Medium", "Hard"].map((diff) => (
+              <Badge
+                key={diff}
+                variant={difficultyFilter === diff ? "default" : "outline"}
+                className="cursor-pointer"
+                onClick={() => setDifficultyFilter(diff as any)}
+              >
+                {diff}
+              </Badge>
+            ))}
+          </div>
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="p-6">
+        <ScrollArea className="h-[400px]">
+          <Accordion type="single" collapsible className="w-full">
+            {filteredQuestions.map((question, index) => {
+              const isCorrect = examResults.userAnswers[index] === question.correctOption
+              return (
+                <AccordionItem value={`question-${index}`} key={question.id}>
+                  <AccordionTrigger>
+                    <div className="flex items-center">
+                      <span
+                        className={`w-6 h-6 rounded-full mr-2 flex items-center justify-center text-white ${
+                          isCorrect ? "bg-green-500" : "bg-red-500"
+                        }`}
+                      >
+                        {isCorrect ? "✓" : "✗"}
+                      </span>
+                      <span>Question {index + 1}</span>
+                      {question.difficulty ? (
+                        <Badge variant="outline" className="ml-2">
+                          {question.difficulty}
+                        </Badge>
+                      ) : null}
+                      {question.topic ? (
+                        <Badge variant="outline" className="ml-2">
+                          {question.topic}
+                        </Badge>
+                      ) : null}
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="space-y-2">
+                      <p className="font-medium">{question.text}</p>
+                      <p>
+                        Your Answer:{" "}
+                        <span
+                          className={
+                            isCorrect
+                              ? "text-green-600 font-semibold"
+                              : "text-red-600 font-semibold"
+                          }
+                        >
+                          {examResults.userAnswers[index] || "Not answered"}
+                        </span>
+                      </p>
+                      <p>
+                        Correct Answer:{" "}
+                        <span className="text-green-600 font-semibold">
+                          {question.correctOption}
+                        </span>
+                      </p>
+                      <p>
+                        Time Spent:{" "}
+                        <span className="font-semibold">
+                          {formatTime(examResults.timeSpentPerQuestion[index])}
+                        </span>
+                      </p>
+                      {question.explanation ? (
+                        <p className="text-sm text-muted-foreground">{question.explanation}</p>
+                      ) : null}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              )
+            })}
+          </Accordion>
+        </ScrollArea>
+      </CardContent>
+    </Card>
+  )
+
+  // Basic Recommendations
   const renderRecommendations = (
     <Card>
       <CardHeader>
@@ -355,13 +468,14 @@ d">{index + 1}</span>
       </CardHeader>
       <CardContent className="p-6">
         <ul className="space-y-4">
-          {examResults.topWeaknesses.map(([topic, performance]) => (
+          {examResults.topWeaknesses.map(([topic]) => (
             <li key={topic} className="flex items-start">
               <BookOpen className="w-5 h-5 mr-2 mt-1 text-primary" />
               <div>
                 <p className="font-semibold">Improve your {topic} skills</p>
                 <p className="text-sm text-muted-foreground">
-                  Focus on studying {topic} concepts. We recommend reviewing chapters related to this topic and practicing more problems.
+                  We recommend reviewing chapters related to {topic}, practicing more problems, and
+                  revisiting fundamental concepts.
                 </p>
               </div>
             </li>
@@ -371,7 +485,9 @@ d">{index + 1}</span>
             <div>
               <p className="font-semibold">Time Management</p>
               <p className="text-sm text-muted-foreground">
-                Your average time per question is {formatTime(Math.round(examResults.averageTimePerQuestion))}. Try to improve your speed without sacrificing accuracy.
+                Your average time per question is{" "}
+                {formatTime(Math.round(examResults.averageTimePerQuestion))}. Try to improve your
+                speed without sacrificing accuracy.
               </p>
             </div>
           </li>
@@ -389,7 +505,7 @@ d">{index + 1}</span>
       className="container mx-auto py-12 space-y-8 px-4 sm:px-6 lg:px-8"
     >
       <div className="text-center space-y-2">
-        <motion.h1 
+        <motion.h1
           className="font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -397,7 +513,7 @@ d">{index + 1}</span>
         >
           Exam Results
         </motion.h1>
-        <motion.p 
+        <motion.p
           className="text-xl text-muted-foreground"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -406,6 +522,7 @@ d">{index + 1}</span>
           Your performance at a glance
         </motion.p>
       </div>
+
       <Tabs defaultValue="summary" className="w-full">
         <TabsList className="grid w-full grid-cols-5 mb-8">
           <TabsTrigger value="summary">Summary</TabsTrigger>
@@ -440,7 +557,8 @@ d">{index + 1}</span>
           </TabsContent>
         </motion.div>
       </Tabs>
-      <motion.div 
+
+      <motion.div
         className="flex justify-between mt-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -464,4 +582,3 @@ d">{index + 1}</span>
 }
 
 export default AdvancedExamResults
-

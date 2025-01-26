@@ -1,0 +1,1921 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Control Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "chapter": "stability",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Nyquist stability criterion and the Routh criterion both are powerful analysis tools for\ndetermining the stability of feedback controllers. Identify which of the following statements\nis FALSE.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The closed-loop frequency response for a unity feedback system cannot be obtained\nfrom the Nyquist plot."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The Routh criterion is not applicable in the condition of transport lag, which can be\nreadily handled by the Nyquist criterion."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The general shape of the Nyquist plot is readily obtained from the Bode magnitude plot\nfor all minimum-phase systems."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Both the criteria provide information relative to the stable gain range of the system."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "zHOH184bijVaPLDuNrjf769xsjzj59p4a",
+                    "updated_time": 1566264560,
+                    "permalink": "the-nyquist-stability-criterion-and-the-routh-criterion-both-gate-ece-control-systems-stability-yrix9jpndimlokjw",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "chapter": "frequency-response-analysis",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The figure below shows the Bode magnitude and phase plots of a stable transfer function\n<br><br>$$G(s) = {{{n_0}} \\over {{s^3} + {d_2}{s^2} + {d_1}s + {d_0}}}$$.\n<picture><source media=\"(max-width: 320px)\" srcset=\"https://imagex.cdn.examgoal.net/jf769xsjzj5o8ic/8b51f109-92ed-4f39-8597-7b3e205dc8fb/b0ea6d40-c2ea-11e9-bec9-eb7a83e2b7e4/file-jf769xsjzj5o8id-320w.png\"><source media=\"(max-width: 500px)\" srcset=\"https://imagex.cdn.examgoal.net/jf769xsjzj5o8ic/8b51f109-92ed-4f39-8597-7b3e205dc8fb/b0ea6d40-c2ea-11e9-bec9-eb7a83e2b7e4/file-jf769xsjzj5o8id-500w.png\"><source media=\"(max-width: 680px)\" srcset=\"https://imagex.cdn.examgoal.net/jf769xsjzj5o8ic/8b51f109-92ed-4f39-8597-7b3e205dc8fb/b0ea6d40-c2ea-11e9-bec9-eb7a83e2b7e4/file-jf769xsjzj5o8id-680w.png\"><img src=\"https://imagex.cdn.examgoal.net/jf769xsjzj5o8ic/8b51f109-92ed-4f39-8597-7b3e205dc8fb/b0ea6d40-c2ea-11e9-bec9-eb7a83e2b7e4/file-jf769xsjzj5o8id-860w.png\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;\" loading=\"lazy\" alt=\"GATE ECE 2018 Control Systems - Frequency Response Analysis Question 6 English\"></picture>\n<br><br>Consider the negative unity feedback configuration with gain k in the feedforward path.\nThe closed loop is stable for k &lt; k<sub>0</sub>. The maximum value of k<sub>0</sub> is ______.\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.1 to 0.1",
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "bbEu4C60DqX76IJHN4jf769xsjzj5u0le",
+                    "updated_time": null,
+                    "permalink": "the-figure-below-shows-the-bode-magnitude-and-phase-plots-of-gate-ece-control-systems-frequency-response-analysis-9i7gyjtb5x7vf4yi",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "chapter": "stability",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider p(s) = s<sup>3</sup> + $${a_2}$$s<sup>2</sup> + $${a_1}$$s + $${a_0}$$  with all real coefficients. It is known that its\nderivative p'(s) has no real roots. The number of real roots of p(s) is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "3"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "kbeIY4upyRAAsuqrR2jf769xsjzj4uq2m",
+                    "updated_time": null,
+                    "permalink": "consider-ps--ssup3sup--a2ssup2sup---gate-ece-control-systems-stability-kbowlimdcxvjnnuu",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "chapter": "frequency-response-analysis",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a unity feedback control system with the forward path transfer function\n<br><br>$$G(s) = {K \\over {s\\left( {s + 2} \\right)}}$$\n<br><br>The peak resonant magnitude M<sub>r</sub>\nof the closed-loop frequency response is 2. The\ncorresponding value of the gain\nK\n(correct to two decimal places) is _________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "14 to 17",
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "mFv6kDES2veDOWUShzjf769xsjzj62qoz",
+                    "updated_time": null,
+                    "permalink": "for-a-unity-feedback-control-system-with-the-forward-path-tr-gate-ece-control-systems-frequency-response-analysis-j2aqehatghy25dm5",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "chapter": "state-space-analysis",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 2,
+                    "negMarks": 0.67,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The state equation and the output equation of a control system are given below:\n<br><br>$$\\mathop x\\limits^.  = \\left[ {\\matrix{\n   { - 4} &amp; { - 1.5}  \\cr \n   4 &amp; 0  \\cr \n\n } } \\right]x + \\left[ {\\matrix{\n   2  \\cr \n   0  \\cr \n\n } } \\right]u,$$\n<br><br>$$y = \\left[ {\\matrix{\n   {1.5} &amp; {0.625}  \\cr \n\n } } \\right]x.$$\n<br><br>The transfer function representation of the system is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{3s + 5} \\over {{s^2} + 4s + 6}}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{3s - 1.875} \\over {{s^2} + 4s + 6}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{4s + 1.5} \\over {{s^2} + 4s + 6}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{6s + 5} \\over {{s^2} + 4s + 6}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "RxdTFs4wKAXzDgyuSFjf769xsjzj6pbwg",
+                    "updated_time": null,
+                    "permalink": "the-state-equation-and-the-output-equation-of-a-control-syst-gate-ece-control-systems-state-space-analysis-bpdzcg1h6smhig9c",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                }
+            ],
+            "title": "Control Systems"
+        },
+        {
+            "_id": "Digital Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "chapter": "logic-gates",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The logic gates shown in the digital circuit below use strong pull-down nMOS transistors for\nLOW logic level at the outputs. When the pull-downs are off, high-value resistors set the\noutput logic levels to HIGH (i.e. the pull-ups are weak). Note that some nodes are\nintentionally shorted to implement \u201cwired logic\u201d. Such shorted nodes will be HIGH only if\nthe outputs of all the gates whose outputs are shorted are HIGH.\n<br><picture><source media=\"(max-width: 320px)\" srcset=\"https://imagex.cdn.examgoal.net/jf7629jjz2hutly/4ae4fc4a-01eb-45a6-a9a0-73a606cc43d4/02947060-b9c1-11e9-8dd7-afa307a7b101/file-jf7629jjz2hutlz-320w.jpg\"><img src=\"https://imagex.cdn.examgoal.net/jf7629jjz2hutly/4ae4fc4a-01eb-45a6-a9a0-73a606cc43d4/02947060-b9c1-11e9-8dd7-afa307a7b101/file-jf7629jjz2hutlz-500w.jpg\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;\" loading=\"lazy\" alt=\"GATE ECE 2018 Digital Circuits - Logic Gates Question 3 English\"></picture>\n<br><br>The number of distinct values of X<sub>3</sub>X<sub>2</sub>X<sub>1</sub>X<sub>0</sub> (out of the 16 possible values) that give\n\ud835\udc4c = 1 is _______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "8 to 8",
+                            "explanation": "<picture><source media=\"(max-width: 320px)\" srcset=\"https://imagex.cdn.examgoal.net/jf7629jjz2i4wek/66dfbde9-b35a-44ef-99ee-2dd6fe6709d0/1ad484c0-b9c2-11e9-8dd7-afa307a7b101/file-jf7629jjz2i4wel-320w.jpg\"><img src=\"https://imagex.cdn.examgoal.net/jf7629jjz2i4wek/66dfbde9-b35a-44ef-99ee-2dd6fe6709d0/1ad484c0-b9c2-11e9-8dd7-afa307a7b101/file-jf7629jjz2i4wel-500w.jpg\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;\" loading=\"lazy\" alt=\"GATE ECE 2018 Digital Circuits - Logic Gates Question 3 English Explanation\"></picture>\n<br><br>From figure, M = $$\\left( {{X_1} \\oplus {X_2}} \\right){\\overline X _3}$$\n<br><br>N = $$\\left( {A.{X_0}} \\right){\\overline X _0}$$\n<br><br>&nbsp;&nbsp;&nbsp; = 0 [ as $${X_0}{\\overline X _0}$$ = 0 ]\n<br><br>Y = (N + X<sub>3</sub>) = X<sub>3</sub>\n<br><br>The number of distinct values possible with X<sub>3</sub>X<sub>2</sub>X<sub>1</sub>X<sub>0</sub> = 16. And out of 16 combinations <b>8</b> such combination present when X<sub>3</sub> = 1 and gives output Y = 1."
+                        }
+                    },
+                    "question_id": "QYG4jGkiGfUvKy9W7Xjf7629jjz1ohdez",
+                    "updated_time": 1565261762,
+                    "permalink": "the-logic-gates-shown-in-the-digital-circuit-below-use-stron-gate-ece-digital-circuits-logic-gates-qivghtyouwt5grmm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "chapter": "sequential-circuits",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A traffic signal cycles from GREEN to YELLOW, YELLOW to RED and RED to GREEN.\nIn each cycle, GREEN is turned on for 70 seconds, YELLOW is turned on for\n5 seconds and the RED is turned on for 75 seconds. This traffic light has to be implemented\nusing a finite state machine (FSM). The only input to this FSM is a clock of 5 second period.\nThe minimum number of flip-flops required to implement this FSM is _______.\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "5 to 5",
+                            "explanation": "According to the question,\n<br><br>Green is turned ON for 70 seconds\n <br><br>Yellow is turned ON for 5 seconds.\n <br><br>Red is turned ON for 75 seconds\n<br><br>$$ \\therefore $$ Total time to complete one cycle for all 3 lights = (70 + 5 +75) seconds = 150 seconds\n<br><br>Available time period of clock = 5 seconds\n<br><br>Total number of clock cycles in one complete cycle = $${{150} \\over 5}$$ = 30\n<br><br>Assume number of flip-flops required = n\n<br><br>We know possible number of states using n flip-flops = $${2^n}$$\n<br><br>So to get 30 clock cycle or 30 states,\n<br><br>$${2^n}$$ $$ \\ge $$ 30\n<br><br>$$ \\Rightarrow $$ n $$ \\ge $$ 4.90\n<br><br>$$ \\therefore $$ Minimum number of required flip-flops is = 5"
+                        }
+                    },
+                    "question_id": "BMOX3jbT1fi0v83uZyjf769xsjziq38f8",
+                    "updated_time": null,
+                    "permalink": "a-traffic-signal-cycles-from-green-to-yellow-yellow-to-red-gate-ece-digital-circuits-sequential-circuits-ipmjv2b38gscpxpe",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "chapter": "sequential-circuits",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit shown below, a positive edge-triggered D Flip-Flop is used for sampling input\ndata D<sub>in</sub> using clock CK. The XOR gate outputs 3.3 volts for logic HIGH and 0 volts for\nlogic LOW levels. The data bit and clock periods are equal and the value of $${{\\Delta T} \\over {{T_{CK}}}}$$ = 0.15,\nwhere the parameters $$\\Delta T$$ and T<sub>CK</sub> are shown in the figure. Assume that the Flip-Flop and the\nXOR gate are ideal.\n<picture><source media=\"(max-width: 320px)\" srcset=\"https://imagex.cdn.examgoal.net/jf769xsjziqk279/19ac074e-ae28-47ed-86f1-9805c9850daf/93de8550-c2af-11e9-bec9-eb7a83e2b7e4/file-jf769xsjziqk27a-320w.png\"><source media=\"(max-width: 500px)\" srcset=\"https://imagex.cdn.examgoal.net/jf769xsjziqk279/19ac074e-ae28-47ed-86f1-9805c9850daf/93de8550-c2af-11e9-bec9-eb7a83e2b7e4/file-jf769xsjziqk27a-500w.png\"><source media=\"(max-width: 680px)\" srcset=\"https://imagex.cdn.examgoal.net/jf769xsjziqk279/19ac074e-ae28-47ed-86f1-9805c9850daf/93de8550-c2af-11e9-bec9-eb7a83e2b7e4/file-jf769xsjziqk27a-680w.png\"><img src=\"https://imagex.cdn.examgoal.net/jf769xsjziqk279/19ac074e-ae28-47ed-86f1-9805c9850daf/93de8550-c2af-11e9-bec9-eb7a83e2b7e4/file-jf769xsjziqk27a-860w.png\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;\" loading=\"lazy\" alt=\"GATE ECE 2018 Digital Circuits - Sequential Circuits Question 6 English\"></picture>\n<br><br>If the probability of input data bit (D<sub>in</sub>) transition in each clock period is 0.3, the average\nvalue (in volts, accurate to two decimal places) of the voltage at node X, is _______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.82 to 0.86",
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "41qJJSu5hHotIUnLHGjf769xsjziqwe4s",
+                    "updated_time": null,
+                    "permalink": "in-the-circuit-shown-below-a-positive-edge-triggered-d-flip-gate-ece-digital-circuits-sequential-circuits-6eu0f1pub76pe9ua",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "chapter": "semiconductor-memories",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 2,
+                    "negMarks": 0.67,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 2 $$ \\times $$ 2 ROM array is built with the help of diodes as shown in the circuit below. Here W<sub>0</sub>\nand W<sub>1</sub> are signals that select the word lines and B<sub>0</sub> and B<sub>1</sub> are signals that are output of the\nsense amps based on the stored data corresponding to the bit lines during the read operation.\n<picture><source media=\"(max-width: 320px)\" srcset=\"https://imagex.cdn.examgoal.net/jf769xsjziuavkb/4ec10203-96b8-4fe2-9610-73499e6053ec/38f9f1b0-c2be-11e9-bec9-eb7a83e2b7e4/file-jf769xsjziuavkc-320w.png\"><img src=\"https://imagex.cdn.examgoal.net/jf769xsjziuavkb/4ec10203-96b8-4fe2-9610-73499e6053ec/38f9f1b0-c2be-11e9-bec9-eb7a83e2b7e4/file-jf769xsjziuavkc-500w.png\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;\" loading=\"lazy\" alt=\"GATE ECE 2018 Digital Circuits - Semiconductor Memories Question 1 English\"></picture>\n<br>During the read operation, the selected word line goes high and the other word line is in a\nhigh impedance state. As per the implementation shown in the circuit diagram above, what\nare the bits corresponding to D<sub>ij</sub> (where i = 0 or 1 and j = 0 or 1) stored in the ROM?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left[ {\\matrix{\n   1 &amp; 0  \\cr \n   0 &amp; 1  \\cr \n\n } } \\right]$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left[ {\\matrix{\n   0 &amp; 1  \\cr \n   1 &amp; 0  \\cr \n\n } } \\right]$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left[ {\\matrix{\n   1 &amp; 0  \\cr \n   1 &amp; 0  \\cr \n\n } } \\right]$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left[ {\\matrix{\n   1 &amp; 1  \\cr \n   0 &amp; 0  \\cr \n\n } } \\right]$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "sBzqzACDuf3I7vsruKjf769xsjziuvi6r",
+                    "updated_time": null,
+                    "permalink": "a-2--times--2-rom-array-is-built-with-the-help-of-diode-gate-ece-digital-circuits-semiconductor-memories-z8j83axorixnxvox",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "chapter": "combinational-circuits",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 2,
+                    "negMarks": 0.67,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A four-variable Boolean function is realized using\n4 $$ \\times $$ 1\nmultiplexers as shown in the\nfigure.\n<picture><source media=\"(max-width: 320px)\" srcset=\"https://imagex.cdn.examgoal.net/jf76dm0jz3utbc4/901ae970-c575-429c-aadf-ae9f4e5fe622/77fbc640-ba80-11e9-98a9-d9fba6ebbc7e/file-jf76dm0jz3utbc5-320w.png\"><source media=\"(max-width: 500px)\" srcset=\"https://imagex.cdn.examgoal.net/jf76dm0jz3utbc4/901ae970-c575-429c-aadf-ae9f4e5fe622/77fbc640-ba80-11e9-98a9-d9fba6ebbc7e/file-jf76dm0jz3utbc5-500w.png\"><img src=\"https://imagex.cdn.examgoal.net/jf76dm0jz3utbc4/901ae970-c575-429c-aadf-ae9f4e5fe622/77fbc640-ba80-11e9-98a9-d9fba6ebbc7e/file-jf76dm0jz3utbc5-680w.png\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;\" loading=\"lazy\" alt=\"GATE ECE 2018 Digital Circuits - Combinational Circuits Question 5 English\"></picture>\n<br>The minimized expression for F(U, V, W, X)\nis\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {UV + \\overline U \\overline V } \\right)\\overline W $$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {UV + \\overline U \\overline V } \\right)\\left( {\\overline W \\overline X  + \\overline W X} \\right)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {U\\overline V  + \\overline U V} \\right)\\overline W $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {U\\overline V  + \\overline U V} \\right)\\left( {\\overline W \\overline X  + \\overline W X} \\right)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "We know\n<br><br>Output expression of 4 $$ \\times $$ 1 MUX is,\n<br><br>F = $${\\overline S _1}{\\overline S _0}{I_0}$$ + $${\\overline S _1}{S_0}{I_1}$$ + $${S_1}{\\overline S _0}{I_2} + {S_1}{S_2}{I_3}$$\n<br><br>For first MUX,\n<br><br>f<sub>1</sub>(U, V) = $$\\overline U \\overline V .0 + \\overline U V.1 + U\\overline V .1 + UV.0$$\n<br><br>f<sub>1</sub>(U, V) = $$\\overline U V + U\\overline V$$\n<br><br>For second MUX,\n<br><br>F(U, V, W, X) = $${\\overline W \\overline X }$$.f<sub>1</sub> + $${\\overline W X}$$.f<sub>1</sub> + $${W\\overline X }$$.0 + $$WX.0$$\n<br><br>F(U, V, W, X) = $${\\overline W {f_1}\\left( {X + \\overline X } \\right)}$$ \n<br><br>F(U, V, W, X) = $${\\overline W {f_1}}$$ = $$\\overline W \\left( {U\\overline V  + \\overline U V} \\right)$$"
+                        }
+                    },
+                    "question_id": "o0mcK01mMYorrNfG2cjf76dm0jz3zr1og",
+                    "updated_time": null,
+                    "permalink": "a-four-variable-boolean-function-is-realized-using-4--tim-gate-ece-digital-circuits-combinational-circuits-cu2ujezymzevo6zc",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "chapter": "boolean-algebra",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A function F(A, B, C) defined by three Boolean variables A, B and C when expressed as sum\nof products is given by \n<br><br>F = $$\\overline A .\\overline B .\\overline C  + \\overline A .B.\\overline C  + A.\\overline B .\\overline C $$\n<br><br>where, $$\\overline A $$, $$\\overline B $$, and $$\\overline C $$ are the complements of the respective variables. The product of sums\n(POS) form of the function F is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "F = (A + B + C)(A + $$\\overline B $$ + C)($$\\overline A $$ + B + C)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "F = ($$\\overline A $$ + $$\\overline B $$ + $$\\overline C $$)($$\\overline A $$ + B + $$\\overline C $$)(A + $$\\overline B $$ + $$\\overline C $$)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "F = (A + B + $$\\overline C $$)(A + $$\\overline B $$ + $$\\overline C $$)($$\\overline A $$ + B + $$\\overline C $$)($$\\overline A $$ + $$\\overline B $$ + C)($$\\overline A $$ + $$\\overline B $$ + $$\\overline C $$)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "F = ($$\\overline A $$ + $$\\overline B $$ + C)($$\\overline A $$ + B + C)(A + $$\\overline B $$ + C)(A + B + $$\\overline C $$)(A + B + C)"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "Given that : \n<br><br>F(A, B, C) = $$\\overline A .\\overline B .\\overline C  + \\overline A .B.\\overline C  + A.\\overline B .\\overline C $$\n<br><br>$$\\overline A .\\overline B .\\overline C$$ = 000 = 0\n<br><br>$$\\overline A .B.\\overline C$$ = 010 = 2\n<br><br>$$A.\\overline B .\\overline C $$ = 100 = 4\n<br><br>So, F(A, B, C) = $$\\sum {\\left( {0,2,4} \\right)} $$\n<br><br>Above expression is in SOP form.\n<br><br>$$ \\therefore $$ POS form is\n<br><br> F(A, B, C) = $$\\pi \\left( {1,3,5,6,7} \\right)$$\n<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = $$\\pi \\left( {001,011,101,110,111} \\right)$$\n<br><br>In POS form,\n<br><br>001 = (A + B + $$\\overline C $$)\n<br>011 = (A + $$\\overline B $$ + $$\\overline C $$)\n<br>101 = ($$\\overline A $$ + B + $$\\overline C $$)\n<br>110 = ($$\\overline A $$ + $$\\overline B $$ + C)\n<br>111 = ($$\\overline A $$ + $$\\overline B $$ + $$\\overline C $$)\n<br><br>$$ \\therefore $$ F(A, B, C) in POS form\n<br><br>= (A + B + $$\\overline C $$)(A + $$\\overline B $$ + $$\\overline C $$)($$\\overline A $$ + B + $$\\overline C $$)($$\\overline A $$ + $$\\overline B $$ + C)($$\\overline A $$ + $$\\overline B $$ + $$\\overline C $$)"
+                        }
+                    },
+                    "question_id": "coyWMfHSQSUPqcdOxIjf7629jjz1mxbe1",
+                    "updated_time": 1565205596,
+                    "permalink": "a-function-fa-b-c-defined-by-three-boolean-variables-a-gate-ece-digital-circuits-boolean-algebra-qeuwjzlkuwbkevua",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                }
+            ],
+            "title": "Digital Circuits"
+        },
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "chapter": "linear-algebra",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let\n<b>M</b>\nbe a real\n4 $$ \\times $$ 4\nmatrix. Consider the following statements :\n<br><br>S1:\n<b>M</b>\nhas\n4\nlinearly independent eigenvectors.\n <br><br>S2:\n<b>M</b>\nhas\n4\ndistinct eigenvalues.\n <br><br>S3:\n<b>M</b>\nis non-singular (invertible).\n<br><br>Which one among the following is TRUE?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "S1 implies S2"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "S2 implies S1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "S1 implies S3"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "S3 implies S2"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "When eigen values of a matrix are distinct, then it will have linearly independent eigen vectors.\n<br><br>So, S2 implies S1."
+                        }
+                    },
+                    "question_id": "HvuaugYrGHPNyDbtBtjf76htyjzkishmx",
+                    "updated_time": null,
+                    "permalink": "let-bmb-be-a-real-4--times--4-matrix-consider-the-gate-ece-engineering-mathematics-linear-algebra-w24nnkces5vwzxub",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "chapter": "linear-algebra",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider matrix $$A = \\left[ {\\matrix{\n   k &amp; {2k}  \\cr \n   {{k^2} - k} &amp; {{k^2}}  \\cr \n\n } } \\right]$$ and\n<br><br>vector $$X = \\left[ {\\matrix{\n   {{x_1}}  \\cr \n   {{x_2}}  \\cr \n\n } } \\right]$$.\n<br><br>The number of distinct real values\nof\nk\nfor which the equation\nAX = 0\nhas infinitely many solutions is _______.\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2 to 2",
+                            "explanation": "Given that,\n<br><br>$$A = \\left[ {\\matrix{\n   k &amp; {2k}  \\cr \n   {{k^2} - k} &amp; {{k^2}}  \\cr \n\n } } \\right]$$ and $$X = \\left[ {\\matrix{\n   {{x_1}}  \\cr \n   {{x_2}}  \\cr \n\n } } \\right]$$\n<br><br>and AX = 0\n<br><br>Which means it is in the form of Homogenous equation.\n<br><br>According to the question,\n<br><br>the system must have infinitely many solutions.\n<br><br>Which is possible only when\n<br><br>|A| = 0\n<br><br>$$ \\Rightarrow $$ $$\\left| {\\matrix{\n   k &amp; {2k}  \\cr \n   {{k^2} - k} &amp; {{k^2}}  \\cr \n\n } } \\right|$$ = 0\n<br><br>$$ \\Rightarrow $$ k<sup>3</sup> - 2k(k<sup>2</sup> - k) = 0\n<br><br>$$ \\Rightarrow $$ k<sup>3</sup> - 2k<sup>3</sup> + 2k<sup>2</sup> = 0\n<br><br>$$ \\Rightarrow $$ 2k<sup>2</sup> - k<sup>3</sup> = 0\n<br><br>$$ \\Rightarrow $$ k<sup>2</sup>(2 - k) = 0\n<br><br>$$ \\Rightarrow $$ k = 0, 2\n<br><br>$$ \\therefore $$ Number of distinct values of K for infinite number of solutions = 2.\n"
+                        }
+                    },
+                    "question_id": "dkVYpHNYd9Tojo7EtLjf76htyjzkjh866",
+                    "updated_time": null,
+                    "permalink": "consider-matrix-a--left-matrix-k--2k-cr-gate-ece-engineering-mathematics-linear-algebra-yxbnrlrpcrdsuvvy",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "chapter": "differential-equations",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The position of a particle y(t) is described by the differential equation :\n<br><br>$${{{d^2}y} \\over {d{t^2}}} =  - {{dy} \\over {dt}} - {{5y} \\over 4}$$.\n<br><br>The initial conditions are y(0) = 1 and $${\\left. {{{dy} \\over {dt}}} \\right|_{t = 0}}$$ = 0.\n<br><br>The position (accurate to two\ndecimal places) of the particle at t = $$\\pi $$ is _______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "-0.23 to -0.19",
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "vucmoqymlfksfytR79jf76htyjzl7rex8",
+                    "updated_time": null,
+                    "permalink": "the-position-of-a-particle-yt-is-described-by-the-differen-gate-ece-engineering-mathematics-differential-equations-hgexglywfbyo0uki",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "chapter": "calculus",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$f\\left( {x,y} \\right) = {{a{x^2} + b{y^2}} \\over {xy}}$$, where\n$$a$$\nand\n$$b$$\nare constants. If $${{\\partial f} \\over {\\partial x}} = {{\\partial f} \\over {\\partial y}}$$ at\nx = 1 and y = 2, then\nthe relation between\n$$a$$\nand\n$$b$$\nis\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$a = {b \\over 4}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$a = {b \\over 2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$a = 2b$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$a = 4b$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "h81LWP55y2CScCkGdHjf76htyjzl8851u",
+                    "updated_time": null,
+                    "permalink": "let-fleft-xy-right--ax2--by2-over-xy-gate-ece-engineering-mathematics-calculus-iyeuhpxt0ffolpic",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "chapter": "calculus",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let r = x<sup>2</sup> + y - z and z<sup>3</sup> - xy + yz + y<sup>3</sup> = 1. Assume that x and y are independent\nvariables. At (x, y, z) = (2, -1, 1), the value (correct to two decimal places) of $${{\\partial r} \\over {\\partial x}}$$ is ________________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "4.4 to 4.6",
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "zuth6GEVZ6NlEstcMRjf76htyjzl8fa5z",
+                    "updated_time": null,
+                    "permalink": "let-r--xsup2sup--y-z-and-zsup3sup-xy--yz--gate-ece-engineering-mathematics-calculus-pv2rargwkcgcl0vt",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "chapter": "differential-equations",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 2,
+                    "negMarks": 0.67,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A curve passes through the point\n($$x$$ = 1, $$y$$ = 0)\nand satisfies the differential equation\n<br><br>$${{dy} \\over {dx}} = {{{x^2} + {y^2}} \\over {2y}} + {y \\over x}$$. The equation that describes the curve is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\ln \\left( {1 + {{{y^2}} \\over {{x^2}}}} \\right) = x - 1$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over 2}\\ln \\left( {1 + {{{y^2}} \\over {{x^2}}}} \\right) = x - 1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${1 \\over 2}\\ln \\left( {1 + {y \\over x}} \\right) = x - 1$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\ln \\left( {1 + {y \\over x}} \\right) = x - 1$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "Ha3PTrhp6diJjbLdEwjf76htyjzl7xtl1",
+                    "updated_time": null,
+                    "permalink": "a-curve-passes-through-the-point-x--1-y--0-and-gate-ece-engineering-mathematics-differential-equations-3bobcrjhwu8q3ezx",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "chapter": "complex-variable",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The contour\nC\ngiven below is on the complex plane $$z = x + jy$$, where $$j = \\sqrt { - 1} $$.\n<img src=\"https://imagex.cdn.examgoal.net/jf76htyjzl8ja1j/9f85b0c8-46b2-49e9-a04f-b080544ba03e/73bd9a70-c40f-11e9-8a74-7f4f47aa0c85/file-jf76htyjzl8ja1k-320w.png\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;\" loading=\"lazy\" alt=\"GATE ECE 2018 Engineering Mathematics - Complex Variable Question 5 English\">\nThe value of the integral $${1 \\over {\\pi j}}\\oint\\limits_C {{{dz} \\over {{z^2} - 1}}} $$ is ________________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2 to 2",
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "vWs5AKvedMVK1IwevKjf76htyjzlg6zpx",
+                    "updated_time": null,
+                    "permalink": "the-contour-c-given-below-is-on-the-complex-plane-z--x--gate-ece-engineering-mathematics-complex-variable-rmqiuxx8pxporafx",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "chapter": "probability-and-statistics",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let\nX<sub>1</sub>\n, X<sub>2</sub>\n, X<sub>3</sub>\nand\nX<sub>4</sub>\nbe independent normal random variables with zero mean and unit\nvariance. The probability that\nX<sub>4</sub>\nis the smallest among the four is _______.\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.25 to 0.25",
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "EHMAxrhDIIvsmsgaoMjf76htyjzlgw4i1",
+                    "updated_time": null,
+                    "permalink": "let-xsub1sub--xsub2sub--xsub3sub-and-xsub-gate-ece-engineering-mathematics-probability-and-statistics-sb9pmd55bssdbq0x",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "chapter": "calculus",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Taylor series expansion of $$f\\left( x \\right) = \\int\\limits_0^x {{e^{ - \\left( {{{{t^2}} \\over 2}} \\right)}}} dt$$ around \ud835\udc65 = 0 has the form\n<br><br>f(x) = $${a_0} + {a_1}x + {a_2}{x^2} + ...$$\n<br><br>The coefficient $${a_2}$$ (correct to two decimal places) is equal to _______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "-0.01 to 0.01",
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "Wk1gc2cMp4vmQOKe8Djf76htyjzlgk8da",
+                    "updated_time": null,
+                    "permalink": "taylor-series-expansion-of-fleft-x-right--intlimits-gate-ece-engineering-mathematics-calculus-zjk90tgxx3gu1jdh",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "General Aptitude",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 2,
+                    "negMarks": 0.67,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A cab was involved in a hit and run accident at night. You are given the following data about the cabs in\nthe city and the accident.\n<br><br>(i) 85% of cabs in the city are green and the remaining cabs are blue.\n<br><br>(ii) A witness identified the cab involved in the accident as blue.\n<br><br>(iii) It is known that a witness can correctly identify the cab colour only 80% of the time.\n<br><br>Which of the following options is closest to the probability that the accident was caused by\na blue cab?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "41%"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "15%"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "12%"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "80%"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "SyrEW89OoPNsemaQM7jf762sdjyvcn5b4",
+                    "updated_time": null,
+                    "permalink": "a-cab-was-involved-in-a-hit-and-run-accident-at-night-you-a-gate-ece-general-aptitude-numerical-ability-9dcnujqawlyjvhbc",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the number 715 \u25a0 423 is divisible by 3 (\u25a0 denotes the missing digit in the thousandths place), then the\nsmallest whole number in the place of \u25a0 is _______.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "6"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "5"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "bxYpKI8TEb2lYWk4Qfjf762sdjyt1b6qh",
+                    "updated_time": null,
+                    "permalink": "if-the-number-715-9632-423-is-divisible-by-3-9632-den-gate-ece-general-aptitude-numerical-ability-djjvkgdhi1qqxymi",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 1.5 m tall person is standing at a distance of 3 m from a lamp post. The light from the lamp at the top\nof the post casts her shadow. The length of the shadow is twice her height. What is the height of the lamp\npost in meters?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1.5"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "3"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "4.5"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "6"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "cLl31FBVKJbmjOhWjhjf762sdjyt14und",
+                    "updated_time": null,
+                    "permalink": "a-15-m-tall-person-is-standing-at-a-distance-of-3-m-from-a-gate-ece-general-aptitude-numerical-ability-txg74uwx2q6fknzx",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "chapter": "verbal-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "\"Even though there is a vast scope for its __________, tourism has remained a/an _________ area.\"\n<br><br>The words that best fill the blanks in the above sentence are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Improvement, neglected"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Rejection, approved"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Fame, glum"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Interest, disinterested"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "5tGLqZuApfoJUgQNaHjf762sdjyt1dwd0",
+                    "updated_time": null,
+                    "permalink": "even-though-there-is-a-vast-scope-for-its--touri-gate-ece-general-aptitude-verbal-ability-echpyy0h5t08lljj",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the value of $$1 + {1 \\over 4} + {1 \\over {16}} + {1 \\over {64}} + {1 \\over {256}} + ......$$?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${7 \\over 4}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${3 \\over 2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${4 \\over 3}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "r6mMuWvnM1nYgDGF71jf762sdjyt1jwbh",
+                    "updated_time": null,
+                    "permalink": "what-is-the-value-of-1--1-over-4--1-over-16--1-gate-ece-general-aptitude-numerical-ability-tnhvrfphtbbagvxs",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "chapter": "verbal-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "\"By giving him the last __________ of the cake, you will ensure lasting ________ in our house today.\"\n<br><br>The words that best fill the blanks in the above sentence are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "piece, peace"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "peace , piece"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "peace, peas"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "peas, piece"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "JYzPsMpYksWQvO2RJ7jf762sdjyt1myy6",
+                    "updated_time": null,
+                    "permalink": "by-giving-him-the-last--of-the-cake-you-will-ens-gate-ece-general-aptitude-verbal-ability-gqgvuzpuxo6gt8qt",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "chapter": "verbal-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 2,
+                    "negMarks": 0.67,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Cricket Board has long recognized John's potential as a leader of the team. However, his on-field\ntemper has always been a matter of concern for them since his junior days. While this aggression has filled\nstadia with die-hard fans, it has taken a toll on his own batting. Until recently, it appeared that he found it\ndifficult to convert his aggression into big scores. Over the past three seasons though, that picture of John\nhas been replaced by a cerebral, calculative and successful batsman-captain. After many years, it appears\nthat the team has finally found a complete captain.\n<br><br>Which of the following statements can be logically inferred from the above paragraph?\n<br><br> (i) Even as a junior cricketer. John was considered a good captain.\n <br><br>(ii) Finding a complete captain is a challenge.\n<br><br> (iii) Fans and the Cricket Board have differing views on what they want in a captain\n <br><br>(iv) Over the past three seasons John has accumulated big scores.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "(ii) and (iv) only"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "(i), (ii) and (iii) only"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "(iii) and (iv) only"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "(i), (ii), (iii) and (iv)"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "h7zGAnu2Pglpvkxy7Njf762sdjyvcewjv",
+                    "updated_time": null,
+                    "permalink": "the-cricket-board-has-long-recognized-johns-potential-as-a-gate-ece-general-aptitude-verbal-ability-iaidgpmi4k2uoav9",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "chapter": "verbal-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 2,
+                    "negMarks": 0.67,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A coastal region with unparalleled beauty is home to many species of animals. It is dotted with coral reefs\nand unspoilt white sandy beaches. It has remained inaccessible to tourists due to poor connectivity and\nlack of accommodation. A company has spotted the opportunity and is planning to develop a luxury resort\nwith helicopter service to the nearest major city airport. Environmentalists are upset that this would lead\nto the region becoming crowded and polluted like any other major beach resorts.\n<br><br>Which one of the following statements can be logically inferred from the information given in the\nabove paragraph?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The culture and tradition of the local people will be influenced by the tourists."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The region will become crowded and polluted due to tourism."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The coral reefs are on the decline and could soon vanish."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Helicopter connectivity would lead to an increase in tourists coming to the region."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "aQJ0Qkegn4oNO2EN1Ojf762sdjyvcbkkl",
+                    "updated_time": null,
+                    "permalink": "a-coastal-region-with-unparalleled-beauty-is-home-to-many-sp-gate-ece-general-aptitude-verbal-ability-o7zzxmximgwxyel9",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 2,
+                    "negMarks": 0.67,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two alloys A and B contain gold and copper in the ratios of 2 : 3 and 3 : 7 by mass, respectively. Equal\nmasses of alloys A and B are melted to make an alloy C. The ratio of gold to copper in alloy C is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "6 : 11"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "5 : 10"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "7 : 13"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "9 : 13"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "bVoaONnxTkp04l0Jnxjf762sdjyvci8lg",
+                    "updated_time": null,
+                    "permalink": "two-alloys-a-and-b-contain-gold-and-copper-in-the-ratios-of-gate-ece-general-aptitude-numerical-ability-415fyxl0x5x1d7ff",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 2,
+                    "negMarks": 0.67,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Leila aspires to buy a car worth Rs. 10,00,000 after 5 years. What is the minimum amount\nin Rupees that she should deposit now in a bank which offers 10% annual rate of interest, if the interest\nwas compounded annually?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "5,00,000"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "6,21,000"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "6,66,667"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "7,50,000"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "SLIZXchJFHuuNOGRkRjf762sdjyvcl2wy",
+                    "updated_time": null,
+                    "permalink": "leila-aspires-to-buy-a-car-worth-rs-1000000-after-5-years-gate-ece-general-aptitude-numerical-ability-n0buuiefwwmqxc0f",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                }
+            ],
+            "title": "General Aptitude"
+        },
+        {
+            "_id": "Network Theory",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lgNR7U5jWNwnkiqF",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Consider the network shown below with R<sub>1</sub> = 1 $$\\Omega $$, R<sub>2</sub> = 2 $$\\Omega $$ and R<sub>3</sub> = 3 $$\\Omega $$. The network is\nconnected to a constant voltage source of 11 V.</p>\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/7dA0eiQXcBvwlC0Pv/bpRTLZwN2qVT2eOMMqjdVoia5HqQK/7G3f2ZvG3zks6dCDlInadu/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2018 Network Theory - Network Elements Question 6 English\">\n<p>The magnitude of the current (in amperes, accurate to two decimal places) through the\nsource is _______.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "7.9 to 8.1",
+                            "explanation": "<p>Given R<sub>1</sub> = 1 $$\\Omega$$, R<sub>2</sub> = 2 $$\\Omega$$, R<sub>3</sub> = 3 $$\\Omega$$</p>\n<p>Network is symmetric; so V<sub>A</sub> = V<sub>B</sub> and V<sub>C</sub> = V<sub>D</sub>.</p>\n<p>So the circuits reduces to</p>\n<p> <img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1kyakf9l9/7bd5e169-b1c0-470c-9259-9e48a789a5ec/e4d29fd0-731c-11ec-9656-cd2d4c2142f9/file-1kyakf9la.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1kyakf9l9/7bd5e169-b1c0-470c-9259-9e48a789a5ec/e4d29fd0-731c-11ec-9656-cd2d4c2142f9/file-1kyakf9la.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 60vh\" alt=\"GATE ECE 2018 Network Theory - Network Elements Question 6 English Explanation 1\"> </p>\n<p> <img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1kyakgbyl/a3e30194-7d1b-4532-ae84-758ccff620f4/027683d0-731d-11ec-9656-cd2d4c2142f9/file-1kyakgbym.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1kyakgbyl/a3e30194-7d1b-4532-ae84-758ccff620f4/027683d0-731d-11ec-9656-cd2d4c2142f9/file-1kyakgbym.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 60vh\" alt=\"GATE ECE 2018 Network Theory - Network Elements Question 6 English Explanation 2\"> </p>\n<p>$${R_{eq}} = ({R_1}||{R_1}) + ({R_1}||{R_1}||{R_3}||{R_3}) + ({R_1}||{R_1})$$</p>\n<p>$${R_{eq}} = {{{R_1}} \\over 2} + \\left( {{{{R_1}} \\over 2}||{{{R_3}} \\over 2}} \\right) + {{{R_1}} \\over 2}$$</p>\n<p>$$ = {R_1} + {{({R_1} \\times {R_3})} \\over {{{{R_1}} \\over 2} + {{{R_3}} \\over 2}}} = {R_1} + {{{R_1}{R_3}} \\over {2({R_1} + {R_3})}}$$</p>\n<p>$$ = 1 + {{1 \\times 3} \\over {2(1 + 3)}} = 1 + {3 \\over 8} = {{11} \\over 8}$$</p>\n<p>$${I_s} = {{{V_s}} \\over {{R_{eq}}}} = {{11} \\over {11/8}} = 8A$$</p>"
+                        }
+                    },
+                    "permalink": "consider-the-network-shown-below-with-r1-1-omega-r2-2018-marks-2-lgnr7u5jwnwnkiqf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "chapter": "two-port-networks",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The ABCD matrix for a two-port network is defined by :\n<br><br>$$\\left[ {\\matrix{\n   {{V_1}}  \\cr \n   {{I_1}}  \\cr \n\n } } \\right] = \\left[ {\\matrix{\n   A &amp; B  \\cr \n   C &amp; D  \\cr \n\n } } \\right]\\left[ {\\matrix{\n   {{V_2}}  \\cr \n   { - {I_2}}  \\cr \n\n } } \\right]$$\n<img src=\"https://imagex.cdn.examgoal.net/jf762sdjyvd3ot0/9487e874-fc6c-448d-bb99-90ff208767f9/eef5a140-b5d4-11e9-a092-5b9aaf57c6e8/file-jf762sdjyvd3ot1-320w.png\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;\" loading=\"lazy\" alt=\"GATE ECE 2018 Network Theory - Two Port Networks Question 6 English\">\n<br><br>The parameter\nB\nfor the given two-port network (in ohms, correct to two decimal places)\nis _______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "4.3 to 5.3",
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "RLnoS5EoOFlLHpgK2Wjf762sdjyvdavaa",
+                    "updated_time": null,
+                    "permalink": "the-abcd-matrix-for-a-two-port-network-is-defined-by--br-gate-ece-network-theory-two-port-networks-zpbb1h3otdjxaebw",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "chapter": "transient-response",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the circuit given in the figure, the magnitude of the loop current (in amperes, correct to\nthree decimal places) 0.5 second after closing the switch is _______.\n<br><img src=\"https://imagex.cdn.examgoal.net/jf7629jjyx7nepr/81d7021d-bd86-4d9a-97e0-971668185dee/2ddf2cf0-b6d9-11e9-8dd7-afa307a7b101/file-jf7629jjyx7neps-320w.png\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;\" loading=\"lazy\" alt=\"GATE ECE 2018 Network Theory - Transient Response Question 4 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.284 to 0.348",
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "HuBJtzgJ8No0LbxdBOjf7629jjyx7sa6k",
+                    "updated_time": null,
+                    "permalink": "for-the-circuit-given-in-the-figure-the-magnitude-of-the-lo-gate-ece-network-theory-transient-response-dqr4osv2tlbeoouy",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "chapter": "sinusoidal-steady-state-response",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 2,
+                    "negMarks": 0.67,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the circuit given in the figure, the voltage\nV<sub>C</sub>\n(in volts) across the capacitor is :\n<picture><source media=\"(max-width: 320px)\" srcset=\"https://imagex.cdn.examgoal.net/jf7629jjyy4cnu4/902cd617-d262-4bac-a15e-db4652d5ce4c/10476ec0-b759-11e9-8dd7-afa307a7b101/file-jf7629jjyy4cnu5-320w.jpg\"><img src=\"https://imagex.cdn.examgoal.net/jf7629jjyy4cnu4/902cd617-d262-4bac-a15e-db4652d5ce4c/10476ec0-b759-11e9-8dd7-afa307a7b101/file-jf7629jjyy4cnu5-500w.jpg\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;\" loading=\"lazy\" alt=\"GATE ECE 2018 Network Theory - Sinusoidal Steady State Response Question 4 English\"></picture>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1.25$$\\sqrt 2 $$ sin(5t - 0.25$$\\pi $$)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1.25$$\\sqrt 2 $$ sin(5t - 0.125$$\\pi $$)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2.5$$\\sqrt 2 $$ sin(5t - 0.25$$\\pi $$)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2.5$$\\sqrt 2 $$ sin(5t - 0.125$$\\pi $$)"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "JsoQtUPMAG66p6yXvGjf7629jjyy4tlqj",
+                    "updated_time": null,
+                    "permalink": "for-the-circuit-given-in-the-figure-the-voltage-vsubcsu-gate-ece-network-theory-sinusoidal-steady-state-response-wcmxdirgbsqh70tx",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                }
+            ],
+            "title": "Network Theory"
+        },
+        {
+            "_id": "Signals and Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "chapter": "representation-of-continuous-time-signal-fourier-series",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let \ud835\udc65(\ud835\udc61) be a periodic function with period \ud835\udc47 = 10. The Fourier series coefficients for this\nseries are denoted by \ud835\udc4e<sub>\ud835\udc58</sub>, that is\n<br><br>$$x\\left( t \\right) = \\sum\\limits_{k =  - \\infty }^\\infty  {{a_k}} {e^{jk{{2\\pi } \\over T}t}}$$\n<br><br>The same function \ud835\udc65(\ud835\udc61) can also be considered as a periodic function with period T' = 40.\nLet b<sub>k</sub> be the Fourier series coefficients when period is taken as T'. If $$\\sum\\limits_{k =  - \\infty }^\\infty  {\\left| {{a_k}} \\right|}  = 16$$, then $$\\sum\\limits_{k =  - \\infty }^\\infty  {\\left| {{b_k}} \\right|}  = 16$$ is equal to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "256"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "64"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "16"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "4"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "L5zkOYOJMVfHAhwtAxjf7629jjyy87og4",
+                    "updated_time": null,
+                    "permalink": "let--be-a-periodic-function-with-period---10-the-f-gate-ece-signals-and-systems-representation-of-continuous-time-signal-fourier-series-km1fdbq3hittgzpj",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "chapter": "representation-of-continuous-time-signal-fourier-series",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let the input be\nu\nand the output be\ny\nof a system, and the other parameters are real\nconstants. Identify which among the following systems is not a linear system:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<picture><source media=\"(max-width: 320px)\" srcset=\"https://imagex.cdn.examgoal.net/jf7629jjyy7pity/bfea82da-0a5a-4330-a8cc-baaf4bfedc91/3151c360-b766-11e9-8dd7-afa307a7b101/file-jf7629jjyy7pitz-320w.jpg\"><source media=\"(max-width: 500px)\" srcset=\"https://imagex.cdn.examgoal.net/jf7629jjyy7pity/bfea82da-0a5a-4330-a8cc-baaf4bfedc91/3151c360-b766-11e9-8dd7-afa307a7b101/file-jf7629jjyy7pitz-500w.jpg\"><img src=\"https://imagex.cdn.examgoal.net/jf7629jjyy7pity/bfea82da-0a5a-4330-a8cc-baaf4bfedc91/3151c360-b766-11e9-8dd7-afa307a7b101/file-jf7629jjyy7pitz-680w.jpg\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;\" loading=\"lazy\" alt=\"GATE ECE 2018 Signals and Systems - Representation of Continuous Time Signal Fourier Series Question 4 English Option 1\"></picture>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$y\\left( t \\right) = \\int\\limits_0^t {{e^{\\alpha \\left( {t - \\tau } \\right)}}} \\beta u\\left( \\tau  \\right)d\\tau $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "y = au + b, b $$ \\ne $$ 0"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "y = au"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "bV5xZjtwagjjouVjBVjf7629jjyy7t8qt",
+                    "updated_time": null,
+                    "permalink": "let-the-input-be-u-and-the-output-be-y-of-a-system-and-the-gate-ece-signals-and-systems-representation-of-continuous-time-signal-fourier-series-h5iehnovohsopqgg",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "chapter": "discrete-time-signal-fourier-series-fourier-transform",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let X[k] = k + 1, 0 \u2264 k \u2264 7 be 8-point DFT of a sequence x[n],\n<br><br>where X[k] = $$\\sum\\limits_{n = 0}^{N - 1} {x\\left[ n \\right]{e^{ - j2\\pi nk/N}}} $$.\n<br><br>The value (correct to two decimal places) of $$\\sum\\limits_{n = 0}^3 {x\\left[ {2n} \\right]} $$ is ___________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2.90 to 3.10",
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "MMEQrt357jOpOG1Nz4jf7629jjyy8q9u2",
+                    "updated_time": null,
+                    "permalink": "let-xk--k--1-0--k--7-be-8-point-dft-of-a-sequence-xn-gate-ece-signals-and-systems-discrete-time-signal-fourier-series-fourier-transform-tawctdd6t8qnvjq6",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ece",
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "chapter": "discrete-time-signal-z-transform",
+                    "year": 2018,
+                    "paperTitle": "GATE ECE 2018",
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A discrete time all-pass system has two of its poles at\n0.25$$\\angle 0^\\circ $$ and $$\\angle 30^\\circ $$. Which one of the following statements about the system is TRUE?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "It has two more poles at\n0.5$$\\angle 30^\\circ $$\nand\n4$$\\angle 0^\\circ $$."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "It is stable only when the impulse response is two-sided."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "It has constant phase response over all frequencies."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "It has constant phase response over the entire\nz-plane."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "0pEtolYrXLbyoermVEjf7629jjyy8fjna",
+                    "updated_time": null,
+                    "permalink": "a-discrete-time-all-pass-system-has-two-of-its-poles-at-025-gate-ece-signals-and-systems-discrete-time-signal-z-transform-r1czlz0bcxqfwmdd",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2018"
+                }
+            ],
+            "title": "Signals and Systems"
+        }
+    ]
+}

@@ -1,0 +1,725 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sQsfec7vxMLJSFoz",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 1996,
+                    "paperTitle": "GATE CE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The directional derivative of the function $$f(x, y, z) = x + y$$ at the point $$P(1,1,0)$$  along the direction $$\\overrightarrow i  + \\overrightarrow j $$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1/\\sqrt 2 $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\sqrt 2 $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$ - \\sqrt 2 $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-directional-derivative-of-the-function-fx-y-z-x-y-at-the-gate-ce-1996-marks-1-sqsfec7vxmljsfoz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ebM5iuqLBpWv0q04",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 1996,
+                    "paperTitle": "GATE CE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Solve $${{{d^4}v} \\over {d{x^4}}} + 4{\\lambda ^4}v = 1 + x + {x^2}$$ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$v = {e^{ - \\lambda x}}\\left[ {{c_1}\\cos \\lambda x + {c_2}\\sin \\lambda x} \\right].$$ \n<br>$$\\,\\,\\,\\,\\,\\,\\, + {e^{\\lambda x}}\\left[ {{c_3}\\cos \\lambda x + {c_4}\\sin \\lambda x} \\right] + {{\\left( {1 + x + {x^2}} \\right)} \\over {4{\\lambda ^4}}}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "solve-d4v-over-dx4-4lambda-4v-1-x-x2-gate-ce-1996-marks-2-ebm5iuqlbpwv0q04.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6aJwJKXHIUEhE2VD",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 1996,
+                    "paperTitle": "GATE CE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Using Laplace transform, solve the initial value problem $$9{y^{11}} - 6{y^1} + y = 0$$ \n<br>$$y\\left( 0 \\right) = 3$$ and $${y^1}\\left( 0 \\right) = 1,$$ where prime denotes derivative with respect to $$t.$$ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$y\\left( t \\right) = 3{e^{{\\raise0.5ex\\hbox{$\\scriptstyle t$}\n\\kern-0.1em/\\kern-0.15em\n\\lower0.25ex\\hbox{$\\scriptstyle 3$}}}}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "using-laplace-transform-solve-the-initial-value-problem-9y11-gate-ce-1996-marks-2-6ajwjkxhiuehe2vd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1996"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Fluid Mechanics and Hydraulic Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2a1e79e3a49",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics-and-hydraulic-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "properties-of-fluids",
+                    "year": 1996,
+                    "paperTitle": "GATE CE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Shear stress in the Newtonian fluid is proportional to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "pressure"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "strain"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "strain rate"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "the inverse of the viscosity"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "shear-stress-in-the-newtonian-fluid-is-proportional-to-gate-ce-1996-marks-2-5a2a1e79e3a49.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2a2371a245d",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics-and-hydraulic-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-statics",
+                    "year": 1996,
+                    "paperTitle": "GATE CE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If, for a fluid in motion, pressure at a point is same in all directions then the fluid is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a real fluid"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a Newtonian fluid"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "an ideal fluid"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a non-Newtonian fluid"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-for-a-fluid-in-motion-pressure-at-a-point-is-same-in-all-gate-ce-1996-marks-1-5a2a2371a245d.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2a7c2789e60",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics-and-hydraulic-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "properties-of-fluids",
+                    "year": 1996,
+                    "paperTitle": "GATE CE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A liquid of density $$\\mathrm\\rho$$ and dynamic viscosity $$\\mathrm\\mu$$ flows steadily down an inclined plane in a thin sheet of constant thickness t. Neglecting air friction the shear stress on the bottom surface due to the liquid flow is (where \u03b8 is the angle, the plane makes with horizontal)",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\mathrm\\rho\\;\\mathrm g\\;\\mathrm t\\;\\sin\\left(\\mathrm\\theta\\right)$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\mathrm\\rho\\;\\mathrm g\\;\\mathrm t\\;\\cos\\left(\\mathrm\\theta\\right)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\mathrm\\mu\\sqrt{\\mathrm g/\\mathrm t}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\mathrm{\u03c1g}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-liquid-of-density-mathrmrho-and-dynamic-viscosity-mathrmmu-gate-ce-1996-marks-2-5a2a7c2789e60.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1996"
+                }
+            ],
+            "title": "Fluid Mechanics and Hydraulic Machines"
+        },
+        {
+            "_id": "Geotechnical Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a271a1d46be2",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "geotechnical-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "definitions-and-properties-of-soils",
+                    "year": 1996,
+                    "paperTitle": "GATE CE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following relations is not correct?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\mathrm e=\\frac{\\mathrm n}{1-\\mathrm n}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\gamma_{sat}=\\gamma_w\\left[\\frac{G+e}{1+e}\\right]$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\mathrm n=\\frac{\\mathrm e}{1-\\mathrm e}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\mathrm e=\\frac{\\mathrm{wG}}{\\mathrm S}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-relations-is-not-correct-gate-ce-1996-marks-1-5a271a1d46be2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1996"
+                }
+            ],
+            "title": "Geotechnical Engineering"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Fc4feuFH6y0sg5C2",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-collapse-compression",
+                    "year": 1996,
+                    "paperTitle": "GATE CE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The effective length of a circular electric pole of length $$L$$ and constant diameters erected on ground is, ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.80$$ $$L$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.20$$ $$L$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.50$$ $$L$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2.00$$ $$L$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-effective-length-of-a-circular-electric-pole-of-length-1996-marks-1-fc4feufh6y0sg5c2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1996"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OciL1Lv2z9bbyDuH",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "arches-and-cable",
+                    "year": 1996,
+                    "paperTitle": "GATE CE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Reaction at support $$'B'$$ of the structure shown is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/8adAc8zMJeDaDtyUc/zRutHdKt9JSQP2vmOjwYgRQ1PnL51/iaW0gtN3Ric5dlSFLA3ENH/image.png\" loading=\"lazy\" alt=\"GATE CE 1996 Structural Analysis - Arches and Cable Question 6 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P\\sqrt 2 $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${P \\over {\\sqrt 2 }}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${P \\over 2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "reaction-at-support-b-of-the-structure-shown-is-1996-marks-2-ocil1lv2z9bbyduh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "i0qaJ1sZ1bGICIem",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 1996,
+                    "paperTitle": "GATE CE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$M$$-$$\\theta $$ relationship for a simply supported beam shown below is given by\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/m8jYcCFqZ1NJBHCZF/q1dNEefLnAjoCpkpNy9ORbkmtjYBX/TUQiDIu9QcSfk76JQ7e6tx/image.png\" loading=\"lazy\" alt=\"GATE CE 1996 Structural Analysis - Moment Distribution Method Question 13 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{ML} \\over {EI}} = 2\\theta $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{ML} \\over {EI}} = 3\\theta $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{ML} \\over {EI}} = 4\\theta $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{ML} \\over {EI}} = 6\\theta $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "m-theta-relationship-for-a-simply-supported-beam-s-1996-marks-2-i0qaj1sz1bgiciem.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "U9ZnpZqpq8zxZRyx",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 1996,
+                    "paperTitle": "GATE CE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Rotational stiffness-coefficient, $${K_{11}}$$ for the frame having two members of equal $$EI/L$$ is given by.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/q8XDRuF62jAv0UUBw/zzvvejAJlFpmTLOz1aS6hCmOV5k3x/xD5xJ0DaelOgAUQqBXX6I8/image.png\" loading=\"lazy\" alt=\"GATE CE 1996 Structural Analysis - Moment Distribution Method Question 12 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{5EI} \\over \\ell }$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{6EI} \\over \\ell }$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{7EI} \\over \\ell }$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{8EI} \\over \\ell }$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "rotational-stiffness-coefficient-k11-for-the-frame-1996-marks-2-u9znpzqpq8zxzryx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WivGvwBjnSuMDmKv",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 1996,
+                    "paperTitle": "GATE CE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Bending moments at joint $$b$$ and $$C$$ of the portal frame are respectively, \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/nYp9uYxvVFtMZRXUf/esG0g2JKn4uqPtzv9Kop5vsjyaHFW/cc3O9umzOUa7S2FFQoYQKD/image.png\" loading=\"lazy\" alt=\"GATE CE 1996 Structural Analysis - Moment Distribution Method Question 11 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$ + {{PL} \\over 2}, - {{PL} \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$ + {{PL} \\over 2}, + {{PL} \\over 2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$ + {{PL} \\over 4}, - {{PL} \\over 4}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ + {{PL} \\over 4}, + {{PL} \\over 4}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "bending-moments-at-joint-b-and-c-of-the-portal-frame-1996-marks-2-wivgvwbjnsumdmkv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EQf6CRh2Lran3HZl",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "matrix-method",
+                    "year": 1996,
+                    "paperTitle": "GATE CE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Horizontal stiffness coefficient, $${K_{11}}$$ of bar $$ab$$ is given by,\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/2eaFblyb5gFfJSe7N/dnl8VDv4s1GRRB09o9ms3oBT6Z2AN/5CfznedFKY3k7tNegn4JAO/image.png\" loading=\"lazy\" alt=\"GATE CE 1996 Structural Analysis - Matrix Method Question 3 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{AE} \\over {L\\sqrt 2 }}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{AE} \\over {2L}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{AE} \\over L}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{2AE} \\over L}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "horizontal-stiffness-coefficient-k11-of-bar-ab-1996-marks-2-eqf6crh2lran3hzl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1996"
+                }
+            ],
+            "title": "Structural Analysis"
+        }
+    ]
+}

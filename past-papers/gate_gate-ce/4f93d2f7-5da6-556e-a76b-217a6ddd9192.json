@@ -1,0 +1,1547 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nRvxuPgNQ6aoKn0m",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a given matrix $$A = \\left[ {\\matrix{\n   2 &amp; { - 2} &amp; 3  \\cr \n   { - 2} &amp; { - 1} &amp; 6  \\cr \n   1 &amp; 2 &amp; 0  \\cr \n\n } } \\right],$$ one of the eigen value is $$3.$$ The other two eigen values are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2,-5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3,-5$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2,5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3,5$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-given-matrix-a-left-matrix-2-2-3-cr-2-1-6-cr-1-2-0-cr-gate-ce-2006-marks-2-nrvxupgnq6aokn0m.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cjT9jTlN6zKZBQ8p",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Using Cauchy's Integral Theorem, the value of the integral (integration  being taken in counter clockwise direction)\n<br><br>$$\\int\\limits_C {{{{z^3} - 6} \\over {3z - i}}} dz$$ is where C is |z| = 1",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{2\\pi } \\over {81}} - 4\\pi i$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\pi  \\over 8} - 6\\pi i$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{4\\pi } \\over {81}} - 6\\pi i$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "using-cauchys-integral-theorem-the-value-of-the-integral-int-gate-ce-2006-marks-2-cjt9jtln6zkzbq8p.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uX753UTTHStRSdB8",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The solution of the differential equation $$\\,{x^2}{{dy} \\over {dx}} + 2xy - x + 1 = 0\\,\\,\\,$$  given that at $$x=1,$$ $$y=0$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\,{1 \\over 2} - {1 \\over x} + {1 \\over {2{x^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\,{1 \\over 2} - {1 \\over x} - {1 \\over {2{x^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${1 \\over 2} + {1 \\over x} + {1 \\over {2{x^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ - {1 \\over 2} + {1 \\over x} + {1 \\over {2{x^2}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-solution-of-the-differential-equation-x2dy-over-dx-2xy-x-gate-ce-2006-marks-1-ux753utthstrsdb8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2loklgyUQL73Rabb",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The directional derivative of $$\\,\\,f\\left( {x,y,z} \\right) = 2{x^2} + 3{y^2} + {z^2}\\,\\,$$  at the point $$P(2,1,3)$$  in the direction of the vector $${\\mkern 1mu} \\vec a = \\widehat i - 2\\widehat k{\\mkern 1mu} $$  is _________.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-2.785$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-2.145$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$-1.789$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1.000$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-directional-derivative-of-fleft-xyz-right-2x2-3y2-z2-at-gate-ce-2006-marks-2-2loklgyuql73rabb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kJz0Mku4VOm1LlE2",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Solution for the system defined by the set  of equations $$4y+3z=8, 2x-z=2$$ &amp; $$3x+2y=5$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$x=0, y=1,z=4/5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$x=0,y=1/2,z=2$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$x=1,y=1/2,z=2$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "non existent"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "solution-for-the-system-defined-by-the-set-of-equations-4y3z-gate-ce-2006-marks-1-kjz0mku4vom1lle2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "W0Jvc9WV4ZAE9HAK",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bond",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "As per $$IS:$$ $$456$$-$$2000,$$ consider the following statements:\n<p>$$1.$$ The modular ratio considered in the working stress method depends on the type of steel used.\n<br>$$2.$$ There is an upper limit on the nominal shear stress in beams (even with shear reinforcement) due to the possibility of crushing of concrete in diagonal compression.\n<br>$$3.$$ A rectangular slab whose length is equal to its width may not be a two-way slab for some support conditions.</p>\n<p>The TRUE statements are </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$ and $$2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2$$ and $$3$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1$$ and $$3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1,2$$ and $$3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "as-per-is-456-2000-consider-the-following-stat-2006-marks-1-w0jvc9wv4zae9hak.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YNmcDSlneC02Oeob",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-collapse-shear",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Assuming concrete below the neutral  axis to be cracked, the shear stress across the depth of a singly-reinforced rectangular beam section ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Increase parabolically to the neutral axis and then drops suddenly to zero value. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Increases parabolically to the neutral axis and then remains constant over the remaining depth."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Increases linearly to the neutral axis and then remains constant up to the tension steel.  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Increases parabolically to the neutral axis and then remains constant up to the tension steel. "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "assuming-concrete-below-the-neutral-axis-to-be-cracked-the-2006-marks-1-ynmcdslnec02oeob.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YoDRPOwE26b4Vt3K",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "singly-reinforced-sections",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the design of beams for the limit state of collapse in flexure as per $$IS:$$ $$456$$ - $$2000,$$ let the maximum strain in concrete be limited to $$0.0025$$ (in place of $$0.0035$$). For this situation, consider a rectangular beam section with breadth as $$250$$ $$mm,$$ effective depth as $$350$$ $$mm,$$ area of tension steel as $$1500\\,\\,m{m^2},$$ and characteristic strengths of concrete and steel as $$30$$ $$MPa$$ and $$250$$ $$MPa$$ respectively. \n<p>At the limiting state of collapse in flexure, the force acting on the compression zone of the section is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$326$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$389$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$424$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$542$$ $$kN$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-design-of-beams-for-the-limit-state-of-collapse-in-fl-2006-marks-2-yodrpowe26b4vt3k.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "eU4Rf9noMEHq1zQd",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "singly-reinforced-sections",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following statements:\n<p>$$1.\\,\\,\\,\\,\\,\\,$$ The width-to-thickness ratio limitations on the plate elements under \n<br>$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ compression in steel members are imposed by $$IS:$$ $$800$$ - $$1984$$ in order to avoid \n<br>$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ fabrication difficulties.\n<br>$$2.\\,\\,\\,\\,\\,\\,$$ In a doubly reinforced concrete beam, the strain in compressive reinforcement is \n<br>$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ higher than the strain in the adjoining concrete.\n<br>$$3.\\,\\,\\,\\,\\,\\,$$ If a cantilever $${\\rm I}$$-section supports slab construction all along its length with \n<br>$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ sufficient friction between them, the permissible bending stress in compression \n<br>$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ will be the same as that in tension.</p>\n<p>The TRUE statements are </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$ and $$2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2$$ and $$3$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Only $$3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1,2$$ and $$3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-statements-1-the-wi-2006-marks-2-eu4rf9nomehq1zqd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EjVrTHFXxlZHRkKE",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "singly-reinforced-sections",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the design of beams for the limit state of collapse in flexure as per $$IS:$$ $$456$$ - $$2000,$$ let the maximum strain in concrete be limited to $$0.0025$$ (in place of $$0.0035$$). For this situation, consider a rectangular beam section with breadth as $$250$$ $$mm,$$ effective depth as $$350$$ $$mm,$$ area of tension steel as $$1500\\,\\,m{m^2},$$ and characteristic strengths of concrete and steel as $$30$$ $$MPa$$ and $$250$$ $$MPa$$ respectively. \n<p>The depth of neutral axis for the balanced failure is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$140$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$156$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$168$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$185$$ $$mm$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-design-of-beams-for-the-limit-state-of-collapse-in-fl-2006-marks-2-ejvrthfxxlzhrkke.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Steel Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XjtWYfuaDoJkawlb",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "compression-members",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following statements\n<p>$${\\rm I}.\\,\\,\\,\\,$$ Effective length of a battened column is usually increased to account for the additional load on battens due to the lateral expansion of columns.\n<br>$${\\rm II}.\\,\\,\\,\\,$$ As per $$IS:$$ $$800$$-$$1984,$$ permissible stress in bending compression depends on both Euler buckling stress and the yield stress of steel.\n<br>$${\\rm III}.\\,\\,\\,\\,$$ As per $$IS:$$ $$800$$-$$1984,$$ the effective length of a column effectively held in position at both ends but not restrained against rotation, is taken to be greater than that in the ideal end conditions.</p>\n<p>The TRUE statements are</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "only $${\\rm I}$$ and $${\\rm I}$$$${\\rm I}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "only $${\\rm I}$$$${\\rm I}$$ and $${\\rm I}$$$${\\rm I}$$$${\\rm I}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "only $${\\rm I}$$ and $${\\rm I}$$$${\\rm I}$$$${\\rm I}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\rm I}$$, $${\\rm I}$$$${\\rm I}$$ and $${\\rm I}$$$${\\rm I}$$$${\\rm I}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-statements-rm-i-effec-2006-marks-1-xjtwyfuadojkawlb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OcoXx36Hl8rKyfK5",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "tension-members",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the design of welded tension members, consider the following statements:\n<p>$${\\rm I}.\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ The entire cross-sectional area of the connected leg is assumed to contribute to the effective area in case of angles. \n<br>$${\\rm II}.\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ Two angles back-to-back and tack-welded as per code requirements may be assumed to be behave as a $$T$$-section\n<br>$${\\rm III}.\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ A check on slenderness ratio may be necessary in some cases.</p>\n<p>The TRUE statements are</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Only $${\\rm I}$$ and $${\\rm I}$$$${\\rm I}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Only $${\\rm I}$$$${\\rm I}$$ and $${\\rm I}$$$${\\rm I}$$$${\\rm I}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Only $${\\rm I}$$ and $${\\rm I}$$$${\\rm I}$$$${\\rm I}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\rm I}$$, $${\\rm I}$$$${\\rm I}$$ and $${\\rm I}$$$${\\rm I}$$$${\\rm I}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-design-of-welded-tension-members-consider-the-follow-2006-marks-1-ocoxx36hl8rkyfk5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                }
+            ],
+            "title": "Steel Structures"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7B6rdThj9W5v8PQB",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "columns-and-struts",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The buckling load $$P = {P_{cr}}$$ for the column $$AB$$ in figure, as $${K_T}$$ approaches infinity, becomes $$\\alpha {{{\\pi ^2}E{\\rm I}} \\over {{L^2}}}$$ \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/pE9suzlY3hl9svM5k/goVg9LUdPL9xa83mHCPbaGmVH6JPH/f5JNxRN920f8avLxM82ZSh/image.png\" loading=\"lazy\" alt=\"GATE CE 2006 Strength of Materials Or Solid Mechanics - Columns and Struts Question 3 English\"> \n<p>Where $$\\alpha $$ is equal to </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.25$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.00$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2.05$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4.00$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-buckling-load-p-pcr-for-the-column-ab-in-2006-marks-2-7b6rdthj9w5v8pqb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rJ878VwF2ChvOD5s",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "propped-cantilever-beam",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a propped cantilever $$ABC$$ under two loads of magnitude $$P$$ each as shown in figure below. Flexural rigidity of the beam is $$EI$$. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/mA6vJTbUH4xJ6lDow/aEQLpgymcFvDj6tGBgIh1w312wFj1/3FP8Ef6NDHdJeHdj4dEULt/image.png\" loading=\"lazy\" alt=\"GATE CE 2006 Strength of Materials Or Solid Mechanics - Propped Cantilever Beam Question 2 English\"> \n<p>The reaction at $$C$$ is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{9Pa} \\over {16L}}\\left( {upwards} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{9Pa} \\over {16L}}\\left( {downwards} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{9Pa} \\over {8L}}\\left( {upwards} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{9Pa} \\over {8L}}\\left( {downwards} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-propped-cantilever-abc-under-two-loads-of-mag-2006-marks-2-rj878vwf2chvod5s.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "F9O5PVdEJKMb4opI",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "propped-cantilever-beam",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a propped cantilever $$ABC$$ under two loads of magnitude $$P$$ each as shown in figure below. Flexural rigidity of the beam is $$EI$$. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/mA6vJTbUH4xJ6lDow/aEQLpgymcFvDj6tGBgIh1w312wFj1/3FP8Ef6NDHdJeHdj4dEULt/image.png\" loading=\"lazy\" alt=\"GATE CE 2006 Strength of Materials Or Solid Mechanics - Propped Cantilever Beam Question 1 English\">  \n<p>The rotation at $$B$$ is </p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{5PLa} \\over {16EI}}\\left( {clockwise} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{5PLa} \\over {16EI}}\\left( {anti-clockwise} \\right)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{59PLa} \\over {16EI}}\\left( {clockwise} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{59PLa} \\over {16EI}}\\left( {anti-clockwise} \\right)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-propped-cantilever-abc-under-two-loads-of-mag-2006-marks-2-f9o5pvdejkmb4opi.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5rnlPzCrAN2gwCLI",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "thin-cylinder",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A thin-walled long cylindrical tank of inside radius $$'r'$$ is subjected simultaneously to internal gas pressure $$P$$ and axial compressive force $$F$$ at its ends. In order to produce 'pure shear' state of stress in the wall of the cylinder, $$F$$ should be equal to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P\\pi {r^2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2P\\pi {r^2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3P\\pi {r^2}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4P\\pi {r^2}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-thin-walled-long-cylindrical-tank-of-inside-radius-r-2006-marks-2-5rnlpzcran2gwcli.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "USgPG3kD4v9Urxfi",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the beam $$AB$$ shown in the figure below. Part $$AC$$ of the beam is rigid while Part $$CB$$ has the flexural rigidity $$EI$$. Identify the correct combination of deflection at end $$B$$ and bending moment at end $$A,$$ respectively. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/SN3clCWlkI9zSbqeW/abzjXnk3E0leAkgXB5SevaBcIONFj/d1GlRsKxluNjeGAKtUUuGG/image.png\" loading=\"lazy\" alt=\"GATE CE 2006 Strength of Materials Or Solid Mechanics - Deflection of Beams Question 12 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{P{L^3}} \\over {3EI}},2PL$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{P{L^3}} \\over {3EI}},PL$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{8P{L^3}} \\over {3EI}},2PL$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{8P{L^3}} \\over {3EI}},PL$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-beam-ab-shown-in-the-figure-below-part-a-2006-marks-2-usgpg3kd4v9urxfi.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yBoLyzVpyWHix8cO",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "centroid-and-moment-of-inertia",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the section shown below, second moment of the area about an axis $$d/4$$ distance above the bottom of the area is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/2JvhWTrO7vFo7RGjZ/ABzPpKYcvl1irnz6ZU1XJ2HnfgSHp/j1A1xm2M1uQSNXj83JCd88/image.png\" loading=\"lazy\" alt=\"GATE CE 2006 Strength of Materials Or Solid Mechanics - Centroid and Moment of Inertia Question 6 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{b{d^3}} \\over {48}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{b{d^3}} \\over {12}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{7b{d^3}} \\over {48}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{b{d^3}} \\over 3}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-section-shown-below-second-moment-of-the-area-about-2006-marks-2-ybolyzvpywhix8co.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TTZeUhfc337y8sqj",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pure-bending",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A beam with cross-section given below is subjected to a positive bending moment (causing compression at the top) of $$16$$ $$kN$$-$$m$$ acting around the horizontal axis. The tensile force acting on the hatched area of the cross-section is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/tIT7sGERh7a3Bwohu/OdtE5iGUf4LbdGf8u15EmrZSredKs/kYLS9QCvPRNsN9hps2Ed5N/image.png\" loading=\"lazy\" alt=\"GATE CE 2006 Strength of Materials Or Solid Mechanics - Pure Bending Question 1 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$5.9$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$8.9$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$17.8$$ $$kN$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-beam-with-cross-section-given-below-is-subjected-to-a-posi-2006-marks-2-ttzeuhfc337y8sqj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WZ9v09yuErsJJAj7",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-stress-in-beams",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$${\\rm I}$$-section of a beam is formed by gluing wooden planks as shown  in the figure below.  If this beam transmits a constant vertical shear force of $$3000$$ $$N$$, the glue at any of the four joints will be subjected to a shear force (in $$kN$$ per meter length ) of \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Lzg1Je2P5zfD9wI9h/0zcuoSSIYz9lXlYW3lpfaFNGtTyCb/vNvT7zllPCZaraZtERylM9/image.png\" loading=\"lazy\" alt=\"GATE CE 2006 Strength of Materials Or Solid Mechanics - Shear Stress In Beams Question 2 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3.0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$4.0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$8.0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$10.7$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "rm-i-section-of-a-beam-is-formed-by-gluing-wooden-pla-2006-marks-2-wz9v09yuersjjaj7.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TYpW7buWerBBXWZc",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "torsion",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A long shaft of diameter $$d$$ is subjected to twisting moment  $$T$$ at its ends. The maximum normal stress acting at its cross-section is equal to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{16T} \\over {\\pi {d^3}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{32T} \\over {\\pi {d^3}}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{64T} \\over {\\pi {d^3}}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-long-shaft-of-diameter-d-is-subjected-to-twisting-mome-2006-marks-1-typw7buwerbbxwzc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QI55lcMGtEfyHL4n",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-force-and-bending-moment",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A simply supported beam $$AB$$ has the bending moment diagram as shown in the following figure : \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/GtJUH24hUQLqtV2vj/VCuyGm42vIVdU9ZIJ26ZnQwVOfh7s/jg2YXQwNEB1dmiGR1wvhU4/image.png\" loading=\"lazy\" alt=\"GATE CE 2006 Strength of Materials Or Solid Mechanics - Shear Force and Bending Moment Question 6 English\"> \n<p>The beam is possibly under the action of following loads </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Couples of $$M$$ at $$C$$ and $$2M$$ at $$D$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Couples of $$2$$ $$M$$ at $$C$$ and $$M$$ at $$D$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Concentrated loads of $$M/L$$ at $$C$$ and $$2M/L$$ at $$D$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Concentrated load of $$M/L$$ at $$C$$ and couple of $$2$$ $$M$$ at $$D$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-simply-supported-beam-ab-has-the-bending-moment-diagra-2006-marks-2-qi55lcmgtefyhl4n.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xQb6SD1ZlMYtWh5b",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-stress",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Mohr's cicle for the state of stress defined by $$\\left[ {\\matrix{\n   {30} &amp; 0  \\cr \n   0 &amp; {30}  \\cr \n\n } } \\right]$$ $$MPa$$ is a circle with ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Center at $$(0,0)$$ and Radius $$30$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Center at $$(0,0)$$ and Radius $$60$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Center at $$(30,0)$$ and Radius $$30$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Center at $$(30, 0)$$ and Zero  radius "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "mohrs-cicle-for-the-state-of-stress-defined-by-left-m-2006-marks-1-xqb6sd1zlmytwh5b.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0CNVnMY6ynqYpNQe",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "When the triangular section of a beam as shown below becomes a plastic hinge, the compressive force acting on the section (with $${\\sigma _y}$$ denoting the yield stress) becomes \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/rB0znDDJOITCBzx0Y/Cak8dFqAGlGxZ63EHky5wjW4u675t/9SZj9F6HOQ3JtxGECKRSg7/image.png\" loading=\"lazy\" alt=\"GATE CE 2006 Structural Analysis - Plastic Analysis Question 5 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{bh{\\sigma _y}} \\over 4}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{2bh{\\sigma _y}} \\over 9}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{bh{\\sigma _y}} \\over 2}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{bh{\\sigma _y}} \\over 3}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "when-the-triangular-section-of-a-beam-as-shown-below-becomes-2006-marks-2-0cnvnmy6ynqypnqe.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2hXYfZXlnFCAOfaA",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Carry-over factor $${C_{AB}}$$ for the beam shown in the figure below is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/jiR4fERJxpIDMWt7M/WVugLLe67uxl1hapQgHtlP8mywDMK/a6tUBHyGaBS52Um93YhtDV/image.png\" loading=\"lazy\" alt=\"GATE CE 2006 Structural Analysis - Moment Distribution Method Question 2 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1/4$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1/2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3/4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "carry-over-factor-cab-for-the-beam-shown-in-the-fig-2006-marks-2-2hxyfzxlnfcaofaa.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZdW895TGdXAXPTN5",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Vertical reaction developed at $$B$$ in the frame below due to the applied load of $$100$$ $$kN$$ (with $$150,000$$ $$m{m^2}$$ cross- sectional area and $$3.125 \\times {10^9}$$ $$m{m^4}$$  moment of inertia for both members) is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/gQxfHqKoM7eU7fQFb/WBwmquZwtu8mN2ZTIuxDh5f5H0W0o/drAj9I9fxc93Z4MiEmBw6O/image.png\" loading=\"lazy\" alt=\"GATE CE 2006 Structural Analysis - Moment Distribution Method Question 4 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$5.9$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$30.2$$ $$kN$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$66.3$$  $$kN$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$94.1$$ $$kN$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "vertical-reaction-developed-at-b-in-the-frame-below-due-2006-marks-2-zdw895tgdxaxptn5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tnGTq5sf7AdWRahn",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "influence-line-diagram",
+                    "year": 2006,
+                    "paperTitle": "GATE CE 2006",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the beam $$ABCD$$ and the influence line as shown below. The influence line pertains to \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Qvg8nDZldjcDlzArj/s6WOD1ymub0p4CxM0HOPypnPYvGBN/GN1C59eV3lRhLgEyGIu4Vz/image.png\" loading=\"lazy\" alt=\"GATE CE 2006 Structural Analysis - Influence Line Diagram Question 7 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Reaction at $$A,\\,\\,{R_A}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Shear force $$B,\\,\\,{V_B}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Shear force on the left of $$C,\\,\\,V_C^ - $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Shear force on the right of $$C,\\,\\,V_C^ + $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-beam-abcd-and-the-influence-line-as-shown-b-2006-marks-2-tngtq5sf7adwrahn.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2006",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2006"
+                }
+            ],
+            "title": "Structural Analysis"
+        }
+    ]
+}

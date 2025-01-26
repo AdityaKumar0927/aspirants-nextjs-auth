@@ -1,0 +1,663 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HnvQmV2ciFr5IZOJ",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 1993,
+                    "paperTitle": "GATE CE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given the differential equation $${y^1} = x - y$$ with initial condition $$y(0)=0.$$ The value of $$y(0.1)$$ calculated numerically upto the third place of decimal by the $${2^{nd}}$$ order Runge-Kutta method with step size $$h=0.1$$ is  ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${1 \\over {200}}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-the-differential-equation-y1-x-y-with-initial-conditio-gate-ce-1993-marks-1-hnvqmv2cifr5izoj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1993"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a194bfc462a2",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 1993,
+                    "paperTitle": "GATE CE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The factored loads at the limit state of collapse for DL + LL, DL + WL, and DL + LL + WL combinations, according to IS: 456 - 2000 are respectively",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1.5 DL + 1.5 LL, 1.2 DL + 1.2 WL, 1.5 DL + 1.5 LL + 1.5 WL"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "{0.9 or 1.5) DL + 1.5 LL, 1.5 DL + 1.5 WL, 1.2 DL + 1.2 LL + 1.2 WL"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1.2 DL + 1.2 LL, 1.5 DL + 1.5 WL, 1.5 DL + 1.5 LL + 1.5 WL"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1.5 DL + 1.5 LL, (0.9 or 1.5) DL + 1.5 WL, 1.2 DL + 1.2 LL + 1.2 WL"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-factored-loads-at-the-limit-state-of-collapse-for-dl-ll-gate-ce-1993-marks-1-5a194bfc462a2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oeM4QApZruvvUqqh",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-collapse-compression",
+                    "year": 1993,
+                    "paperTitle": "GATE CE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Interaction diagram of a rectangular reinforced concrete beam-column is shown in Fig. with reference to this figure, which of the following statements in $$(a)$$ and in $$(b)$$ below are correct?\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/nizPr0l4KZomGvubk/3A3UIkkCZzh3F310DrHvh5iTOOrdW/8HEDJD5LxAzmWuOwVbFhsG/image.png\" loading=\"lazy\" alt=\"GATE CE 1993 Reinforced Cement Concrete - Limit State of Collapse Compression Question 1 English\"> \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$PQ$$ corresponds to the primary tension failure range "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$QR$$ corresponds to the primary tension failure range "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$QR$$ corresponds to the primary compression failure range "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$PQ$$ corresponds to the range of increase in axial force capacity with increase in bending moment capacity"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "interaction-diagram-of-a-rectangular-reinforced-concrete-bea-1993-marks-2-oem4qapzruvvuqqh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "82Xf2CDUJfLkylbD",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-collapse-compression",
+                    "year": 1993,
+                    "paperTitle": "GATE CE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Interaction diagram of a rectangular reinforced concrete beam-column is shown in Fig. with reference to this figure, which of the following statements in $$(a)$$ and in $$(b)$$ below are correct?\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/nizPr0l4KZomGvubk/3A3UIkkCZzh3F310DrHvh5iTOOrdW/8HEDJD5LxAzmWuOwVbFhsG/image.png\" loading=\"lazy\" alt=\"GATE CE 1993 Reinforced Cement Concrete - Limit State of Collapse Compression Question 2 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Point $$Q$$ represents balanced failure"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Point $$R$$ represents balanced failure"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Point $$P$$ represents balanced failure"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Point $$Q$$ represents balanced failure under maximum eccentric compression "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "interaction-diagram-of-a-rectangular-reinforced-concrete-bea-1993-marks-2-82xf2cdujflkylbd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "n9v9gQHyJ1FhLlgY",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "prestressed-concrete",
+                    "year": 1993,
+                    "paperTitle": "GATE CE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$jd$$ be the lever arm between the resultant tensile force $$T$$ in the reinforcing prestressing steel and the resultant compressive force $$C$$ in concrete of a reinforced / prestressed concrete beam. When subjected to increase in the external bending moment, which one of the following statements is true in reinforced and prestressed concrete beams?\n<p>In reinforced concrete beams</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$T$$ increases at a faster rate than $$jd$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Both $$T$$ and $$jd$$ increases at the same rate "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$jd$$ increases at a faster rate than $$T$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Neither $$T$$ nor $$jd$$ increases"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-jd-be-the-lever-arm-between-the-resultant-tensile-fo-1993-marks-1-n9v9gqhyj1fhllgy.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9SW6Fh17FmeI5GO4",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "prestressed-concrete",
+                    "year": 1993,
+                    "paperTitle": "GATE CE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$jd$$ be the lever arm between the resultant tensile force $$T$$ in the reinforcing prestressing steel and the resultant compressive force $$C$$ in concrete of a reinforced / prestressed concrete beam. When subjected to increase in the external bending moment, which one of the following statements is true in reinforced and prestressed concrete beams?\n<p>In prestressed concrete beams</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$T$$ increases at a faster rate than $$jd$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Both $$T$$ and $$jd$$ increases at the same rate"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$jd$$ increases at a faster rate than $$T$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Neither $$T$$ nor $$jd$$ increases"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-jd-be-the-lever-arm-between-the-resultant-tensile-fo-1993-marks-1-9sw6fh17fmei5go4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1993"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Hs8kLWwhiu7Js8lV",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-stress",
+                    "year": 1993,
+                    "paperTitle": "GATE CE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following Mohr's circles shown below qualitatively and correctly represents the state of plane stress at a point in a beam above the neutral axis, where it is subjected to combined shear and bending compressive stresses",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/sjQnJMH5flHH8rEZt/HsdH8OrAUnzuXXUA3MMxHkCPqcwv6/szL3sKo4s4VabllgKVxgQ9/image.png\" loading=\"lazy\" alt=\"GATE CE 1993 Strength of Materials Or Solid Mechanics - Complex Stress Question 8 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Ng2OE4jlta0FlYOyz/Bamz1T806RakVyIygdPwjTt2Ueg9Q/ujJ0QZ0fLI9SqskXeDhfpF/image.png\" loading=\"lazy\" alt=\"GATE CE 1993 Strength of Materials Or Solid Mechanics - Complex Stress Question 8 English Option 2\">"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/NuIm4yKkS18EXeu59/5laC1wtVn2LsEbgMwx8Qc6zaCqyf1/6ww4zNbH1NesddNCUKscxS/image.png\" loading=\"lazy\" alt=\"GATE CE 1993 Strength of Materials Or Solid Mechanics - Complex Stress Question 8 English Option 3\">"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/SlXoMUKknanNvNMAh/YQi56rqeCDSYRaDLFJgxlpCZyp5km/ooFB7f9o5jNUfBHQ3DHJia/image.png\" loading=\"lazy\" alt=\"GATE CE 1993 Strength of Materials Or Solid Mechanics - Complex Stress Question 8 English Option 4\">"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-mohrs-circles-shown-below-qualitativ-1993-marks-2-hs8klwwhiu7js8lv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "66MXbo2kXdQTXUG4",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 1993,
+                    "paperTitle": "GATE CE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A simply supported beam of span length $$L$$ and flexural stiffness $$EI$$ has another spring support at the center span of stiffness $$K$$ as shown in fig. The central deflection of the beam due to a central concentrated load of $$P$$ would be\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Kian92ZlhGU2HGoYR/fVXShhOkQBjpDN3Pj5FWHxMlx4JjE/Z5BQNt3yohWjXgXoMsg866/image.png\" loading=\"lazy\" alt=\"GATE CE 1993 Strength of Materials Or Solid Mechanics - Deflection of Beams Question 18 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {P{L^3}/48EI} \\right) + \\left( {P/K} \\right)$$ v"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P/\\left( {\\left( {48EI/{L^3}} \\right) - K} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {P{L^3}/48EI} \\right) - \\left( {P/K} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P/\\left( {\\left( {48EI/{L^3}} \\right) + K} \\right)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-simply-supported-beam-of-span-length-l-and-flexural-st-1993-marks-2-66mxbo2kxdqtxug4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1993"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dQ7pDWWML3OVP2Ng",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stability-and-static-indeterminacy",
+                    "year": 1993,
+                    "paperTitle": "GATE CE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The plane figure shown below is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/aWF0blt9eB2lCKNRz/prUKirgsIGcIMFJNqNGQvNDUGjeGz/SRKENgb8rbBOdErpu2c4XM/image.png\" loading=\"lazy\" alt=\"GATE CE 1993 Structural Analysis - Stability and Static Indeterminacy Question 3 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "stable and statically determinate "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "unstable and statically determinate "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "stable and statically indeterminate"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "unstable and statically indeterminate"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-plane-figure-shown-below-is-1993-marks-2-dq7pdwwml3ovp2ng.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LNj4Y79tzPRR7TT6",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "indeterminacy",
+                    "year": 1993,
+                    "paperTitle": "GATE CE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The degrees  of freedom of the following frames is ___________\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Fx8ErsY0JkMdZdQe7/V2ZcISBLSgtr1GMeWIxBnTBlZdjwI/NvoIZ7J6RPImZZ768LiDkd/image.png\" loading=\"lazy\" alt=\"GATE CE 1993 Structural Analysis - Indeterminacy Question 13 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "5",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-degrees-of-freedom-of-the-following-frames-is-1993-marks-1-lnj4y79tzprr7tt6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "346tDNQJBRFshbsc",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "methods-of-analysis",
+                    "year": 1993,
+                    "paperTitle": "GATE CE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Method of Indeterminate structural analysis may be grouped under force method or displacement method. Which of the groupings given below is correct?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<b>Force method :</b> Moment distribution method, Consistent deformation method;\n<br><b>Displacement method :</b> Method of three moments, Slope deflection method."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<b>Force method :</b> Method of three moments, Consistent deformation method;\n<br><b>Displacement method :</b> Moment distribution method, Slope deflection method."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<b>Force method :</b> Slope deflection method, Consistent deformation method;\n<br><b>Displacement method :</b> Moment distribution method, Method of three moments."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<b>Force method :</b> Moment distribution method of three moments;\n<br><b>Displacement method :</b> Slope deflection method, Consistent declamation method."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "method-of-indeterminate-structural-analysis-may-be-grouped-u-1994-marks-2-346tdnqjbrfshbsc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Xt0b7pDLyYEWa97f",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 1993,
+                    "paperTitle": "GATE CE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Equilibrium condition, yield conditions $$\\left( {M \\le {M_p}} \\right)$$ and mechanism condition (formation of a plastic collapse mechanism) are the conditions to be satisfied by any correct plastic analysis results. Which of the above conditions does the statical methods of plastic analysis consider?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Equilibrium condition alone "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Equilibrium and mechanism conditions"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Yield and mechanism conditions "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Equilibrium and yield conditions"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "equilibrium-condition-yield-conditions-left-m-le-mp-1993-marks-1-xt0b7pdlyyewa97f.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-1993"
+                }
+            ],
+            "title": "Structural Analysis"
+        }
+    ]
+}

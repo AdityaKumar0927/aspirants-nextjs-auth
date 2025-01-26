@@ -1,0 +1,2527 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Analog Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Axq7ItXog7ZO4KnP",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "oscillators",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the oscillator circuit shown in the figure. The function of the network (shown in dotted lines) consisting of the 100 k $$\\Omega$$ resistor in series with the two diodes connected back- to is to:\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/de37d2b0e9a4cd5cddfe32aeef3306b40b61112725744414ca8c91a0a7061bcb.jpg\" loading=\"lazy\" alt=\"GATE ECE 2016 Set 1 Analog Circuits - Oscillators Question 8 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "introduce amplitude stabilization by preventing the op-amp from saturating and thus producing\nsinusoidal oscillations of fixed amplitude"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "introduce amplitude stabilization by forcing the op-amp to swing between positive and negative\nsaturation and thus producing square wave oscillations of fixed amplitude"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "introduce frequency stabilization frequency stabilization by forcing the circuit to oscillate at a single frequency"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "enable the loop gain to take on a value that produces square wave oscillations"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-oscillator-circuit-shown-in-the-figure-the-func-gate-ece-2016-set-1-marks-1-axq7itxog7zo4knp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YgwEkjCRPcXFq7W2",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the constant current source shown in the figure below. Let  $$\\beta $$  represent the current gain of the transistor\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/655230aa6cca2cd8fde425e5518993b4a9c39cac65eb86722c5574e84bcc9983.jpg\" loading=\"lazy\" alt=\"GATE ECE 2016 Set 1 Analog Circuits - Operational Amplifier Question 64 English\"> \n<p>The load current I<sub>0</sub> through R<sub>L</sub> is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${I_0} = \\left[ {{{\\beta  + 1} \\over \\beta }} \\right]{{{V_{ref}}} \\over R}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${I_0} = \\left[ {{\\beta  \\over {\\beta  + 1}}} \\right]{{{V_{ref}}} \\over R}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${I_0} = \\left[ {{{\\beta  + 1} \\over \\beta }} \\right]{{{V_{ref}}} \\over {2R}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${I_0} = \\left[ {{\\beta  \\over {\\beta  + 1}}} \\right]{{{V_{ref}}} \\over {2R}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-constant-current-source-shown-in-the-figure-bel-gate-ece-2016-set-1-marks-1-ygwekjcrpcxfq7w2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "atOvqYmkIa7oOG4C",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following signal V<sub>i</sub> of peak voltage 8V is applied to the non-inverting terminal of an ideal Opamp. The transistor has V<sub>BE</sub> = 0.7 V,  $$\\beta \\, = \\,100;$$  V<sub>LED</sub> = 1.5 V, V<sub>CC</sub> = 10V and -V<sub>CC</sub> = -10V.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/e66b549edc01a2513e162ddb6dc654a5f905e885ac4e9de0045574213577955f.jpg\" loading=\"lazy\" alt=\"GATE ECE 2016 Set 1 Analog Circuits - Operational Amplifier Question 63 English 1\"> \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/705ecef7bfa4936171d47863ee066068b9e5ef6d748226e777d53ecb33823abd.jpg\" loading=\"lazy\" alt=\"GATE ECE 2016 Set 1 Analog Circuits - Operational Amplifier Question 63 English 2\"> \n<p> The number of times the LED glows is ______.</p> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-signal-vi-of-peak-voltage-8v-is-applied-to-the-gate-ece-2016-set-1-marks-1-atovqymkia7oog4c.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XTTJrO8RPTDvpGRI",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An ideal opamp has voltage source V<sub>1</sub>, V<sub>3</sub>, V<sub>5</sub>, ......, V<sub>N-1</sub>, connected to the    non- inverting input and V<sub>2</sub>, V<sub>4</sub>, V<sub>6</sub>,    .....V<sub>N</sub> connected to the inverting input as shown in the figure below (+V<sub>CC</sub>= 15 volt, -V<sub>CC</sub> = -15 volt). The voltage V<sub>1</sub>, V<sub>2</sub>, V<sub>3</sub>,V<sub>4</sub>, V<sub>5</sub>, V<sub>6</sub>   ....... are 1, -1/2, 1/3, -1/4, 1/5, -1/6, .... volt, respectively. As N approaches infinity, the output voltage (in volt) is _______\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/d2d798058bce1c4f6002486f5593e7dd9bd421ef8e491f5b736aebc56afc9a6f.jpg\" loading=\"lazy\" alt=\"GATE ECE 2016 Set 1 Analog Circuits - Operational Amplifier Question 20 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "15",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-ideal-opamp-has-voltage-source-v1-v3-v5-vn-1-connected-to-gate-ece-2016-set-1-marks-2-xttjro8rptdvpgri.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OHDzYrMQvG7xZfNv",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A p-i-n photo diode of responsivity 0.8A/W is connected to the inverting input of an ideal opamp as shown in the figure, +V<sub>CC</sub>  = 15V,  - V<sub>CC</sub> = -15V, Load resistor  R<sub>L</sub> = 10 k$$\\Omega $$ . If 10$$\\mu $$W of power is incident on the photodiode, then the value of the photocurrent (in $$\\mu $$A) through the load  is _____.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/d64e119487a3963ecc949c924ef2c86633d312b34df138f60a69e7e5bd147b3c.jpg\" loading=\"lazy\" alt=\"GATE ECE 2016 Set 1 Analog Circuits - Operational Amplifier Question 19 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "-800",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-p-i-n-photo-diode-of-responsivity-08aw-is-connected-to-the-gate-ece-2016-set-1-marks-2-ohdzyrmqvg7xzfnv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                }
+            ],
+            "title": "Analog Circuits"
+        },
+        {
+            "_id": "Communications",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "p1qleLizlzfnxq9A",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "digital-communication-systems",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider binary data transmission at a rate of 56  kbps using baseband binary pulse amplitude modulation     (PAM)   that is designed to have a raised-cosine spectrum.  The transmission bandwidth   (in   kHz) required for a roll-off factor of 0.25 is ______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "35",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-binary-data-transmission-at-a-rate-of-56-kbps-using-gate-ece-2016-set-1-marks-1-p1qlelizlzfnxq9a.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rO0CrKdyhiGXqTtA",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "random-signals-and-noise",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An antenna pointing in a certain direction has a noise temperature of 50K. The ambient\ntemperature is 290K. The antenna is connected to a pre-amplifier that has a noise figure of 2dB\nand an available gain of 40 dB over an effective bandwidth of 12 MHz. The effective input noise\ntemperature T<sub>e</sub> for the amplifier and the noise power P<sub>ao</sub> at the output of the preamplifier,\nrespectively, are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${T_e} = 169.36K\\,\\,\\,$$ and $${P_{ao}} = 3.73 \\times {10^{ - 10}}\\,\\,W$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${T_e} = 170.8K\\,\\,\\,$$ and $${P_{ao}} = 4.56 \\times {10^{ - 10}}\\,\\,W$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${T_e} = 182.5K\\,\\,\\,$$ and $${P_{ao}} = 3.85 \\times {10^{ - 10}}\\,\\,W$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${T_e} = 160.62K\\,\\,\\,$$ and $${P_{ao}} = 4.6 \\times {10^{ - 10}}\\,\\,W$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-antenna-pointing-in-a-certain-direction-has-a-noise-tempe-gate-ece-2016-set-1-marks-2-ro0crkdyhigxqtta.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vnRaCwUnOkCQ9m7Z",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fundamentals-of-information-theory",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a discreet memoryless source with alphabet $$S = \\left\\{ {{s_0},\\,{s_1},\\,{s_2},\\,{s_3},\\,{s_{4......}}} \\right\\}$$ and respective probabilities of occurrence $$P = \\left\\{ {{1 \\over 2},\\,{1 \\over 4},\\,{1 \\over 8},\\,{1 \\over {16}},\\,{1 \\over {32}},......} \\right\\}$$. The entropy of the source (in bits) is__________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2 ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-discreet-memoryless-source-with-alphabet-s-left-s-gate-ece-2016-set-1-marks-2-vnracwunokcq9m7z.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Wyt5lY69iPPgq6Ip",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "noise-in-digital-communication",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A digital communication system uses a repetition code for channel encoding/decoding. During transmission, each bit is repeated three times (0 is transmitted as 000, and 1 is transmitted as 111). It is assumed that the source puts out symbols independently and with equal probability. The decoder operates as follows: In a block of three received bits, if the number of zeros exceeds the number of ones, the decoder decides in favor of a 0, and if the number of ones exceeds the number\nof zeros, the decoder decides in favor of a 1, Assuming a binary symmetric channel with crossover probability p = 0.1, the average probability of error is _______",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.028",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-digital-communication-system-uses-a-repetition-code-for-ch-gate-ece-2016-set-1-marks-2-wyt5ly69ippgq6ip.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sDaOCEqLVvG8kI1Z",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "noise-in-digital-communication",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An analog pulse s(t) is transmitted over an additive white Gaussian noise (AWGN) channel. The received signal is r(t) = s(t) + n(t), where n(t) is additive white Gaussian noise with power spectral density $${{{N_0}} \\over 2}$$. The received signal is passed through a filter with impulse response h(t). Let $${E_s}$$ and $${E_n}$$ denote the energies of the pulse s(t) and the filter h(t), respectively. When the signal-to-noise ratio (SNR) is maximized at the output of the filter $$\\left( {SN{R_{\\max }}} \\right)$$, which of the following holds?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${E_s} = \\,{E_h};\\,\\,SN{R_{\\max }} = \\,{{2{E_s}} \\over {{N_0}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${E_s} = \\,{E_h};\\,\\,SN{R_{\\max }} = \\,{{{E_s}} \\over {2{N_0}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${E_s} &gt; \\,\\,{E_h};\\,\\,SN{R_{\\max }} &gt; \\,\\,{{2{E_s}} \\over {{N_0}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${E_s} &lt; \\,\\,{E_h};\\,\\,SN{R_{\\max }} = \\,\\,{{2{E_h}} \\over {{N_0}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-analog-pulse-st-is-transmitted-over-an-additive-white-gau-gate-ece-2016-set-1-marks-2-sdaoceqlvvg8ki1z.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a109b7178762",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analog-communication-systems",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A super heterodyne receiver operates in the frequency range of 58 MHz \u2013 68 MHz. The\nintermediate frequency f<sub>1F</sub> and local oscillator frequency f<sub>L0</sub> are chosen such that\nf<sub>1F</sub> $$\\leq$$ f<sub>L0</sub>.It is\nrequired that the image frequencies fall outside the 58 MHz \u2013 68 MHz band. The minimum\nrequired\nf<sub>1F</sub> (in MHz) is ___________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "5",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-super-heterodyne-receiver-operates-in-the-frequency-range-gate-ece-2016-set-1-marks-1-5a109b7178762.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                }
+            ],
+            "title": "Communications"
+        },
+        {
+            "_id": "Control Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0ca23277449",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "time-response-analysis",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The open-loop transfer function of a unity-feedback control system is\n$$$G\\left(S\\right)\\;=\\frac K{s(s\\;+\\;2)}$$$\n For the peak overshoot of the closed-loop system to a unit step input to be\n10%, the value of K is __________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.2 to 1.3",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-open-loop-transfer-function-of-a-unity-feedback-control-gate-ece-2016-set-1-marks-2-5a0ca23277449.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0d70a8901a9",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stability",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the inferences X, Y, and Z, about a system, to the corresponding properties of the\nelements of first column in Routh's Table of the system characteristic equation.\n<p>X: The system is stable \u2026\n<br>Y: The system is unstable \u2026 \n<br>Z: The test breaks down \u2026 </p>\n\n\n <p>P: \u2026 when all elements are positive\n<br>Q: \u2026 when any one element is zero\n<br>R: \u2026 when there is a change in sign of\ncoefficients</p>\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "X\u2192P, Y\u2192Q, Z\u2192R"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "X\u2192Q, Y\u2192P, Z\u2192R "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "X\u2192R, Y\u2192Q, Z\u2192P"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "X\u2192P, Y\u2192R, Z\u2192Q"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-inferences-x-y-and-z-about-a-system-to-the-corresp-gate-ece-2016-set-1-marks-1-5a0d70a8901a9.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0edbb885482",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "root-locus-diagram",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The open-loop transfer function of a unity-feedback control system is\n$$$G\\left(s\\right)=\\frac K{s^2+5s+5}$$$\nThe value of K at the breakaway point of the feedback control system's root-locus plot is\n_____________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.25",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-open-loop-transfer-function-of-a-unity-feedback-control-gate-ece-2016-set-1-marks-2-5a0edbb885482.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a86df271e26b",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stability",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The transfer function of a linear time invariant system is given by $$H\\left(s\\right)\\;=\\;2s^4\\;-\\;5s^3\\;+\\;5s\\;-\\;2$$.\nThe number of zeros in the right half of the s-plane is __________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-transfer-function-of-a-linear-time-invariant-system-is-g-gate-ece-2016-set-1-marks-2-5a86df271e26b.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QugFxbFuJDOj2VmM",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "frequency-response-analysis",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A closed-loop control system is stable if the Nyquist plot of the corresponding open-loop transfer\nfunction ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "encircles the s-plane point (\u22121 + j0) in the counterclockwise direction as many times as the\nnumber of right-half s-plane poles. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "encircles the s-plane point (0 \u2212 j1) in the clockwise direction as many times as the number of\nright-half s-plane poles. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "encircles the s-plane point (\u22121 + j0) in the counterclockwise direction as many times as the\nnumber of left-half s-plane poles. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "encircles the s-plane point (\u22121 + j0) in the counterclockwise direction as many times as the\nnumber of right-half s-plane zeros. "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-closed-loop-control-system-is-stable-if-the-nyquist-plot-o-gate-ece-2016-set-1-marks-1-qugfxbfujdoj2vmm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                }
+            ],
+            "title": "Control Systems"
+        },
+        {
+            "_id": "Digital Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "L9TzVxq0cfcl1Q3M",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logic-gates",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The output of the combinational circuit given below is\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/6fd7997b5b870afe09d5ccd4034d7262691e57b9612d2d341518ae8b743b88b7.jpg\" loading=\"lazy\" alt=\"GATE ECE 2016 Set 1 Digital Circuits - Logic Gates Question 19 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "A+B+C"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "A(B+C)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "B(C+A)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "C(A+B)"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-output-of-the-combinational-circuit-given-below-is-gate-ece-2016-set-1-marks-1-l9tzvxq0cfcl1q3m.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TD38yq2T8hG9vOOZ",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinational-circuits",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Identify the circuit below. \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/12ceefa47cf6435992eac93f1e35204a2e9950c08dfbb9075184a1832cc7e75b.jpg\" loading=\"lazy\" alt=\"GATE ECE 2016 Set 1 Digital Circuits - Combinational Circuits Question 22 English\">\n\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Binary to Gray code converter "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Binary to XS3 converter"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Gray to Binary converter"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "XS3 to Binary converter"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "identify-the-circuit-below-gate-ece-2016-set-1-marks-2-td38yq2t8hg9vooz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EYHR2c32538kF6ly",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinational-circuits",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The functionality implemented by the circuit below is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/b228ff11293d1189c067fedc3d3f634960fe9e44d88b5392b2d150322307fa77.jpg\" loading=\"lazy\" alt=\"GATE ECE 2016 Set 1 Digital Circuits - Combinational Circuits Question 21 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2-to-1 multiplexer \n "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "4-to-1 multiplexer"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "7-to-1 multiplexer"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "6-to-1 multiplexer"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-functionality-implemented-by-the-circuit-below-is-gate-ece-2016-set-1-marks-2-eyhr2c32538kf6ly.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                }
+            ],
+            "title": "Digital Circuits"
+        },
+        {
+            "_id": "Electromagnetics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "i7KPZpujupmM8A0m",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "uniform-plane-waves",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The electric field of a uniform plane wave travelling along the negative $$z$$ direction is given by the following equation:\n$$$\\overrightarrow E {}_w^i = \\left( {{{\\widehat a}_{_x}} + j{{\\widehat a}_{_y}}} \\right){E_0}{e^{jkz}}$$$\n<p>This wave is incident upon a receiving antenna placed at the origin and whose radiated electric field towards the incident wave is given by the following equation:</p>\n$$${\\overrightarrow E _{_a}} = \\left( {{{\\widehat a}_{_x}} + 2{{\\widehat a}_{_y}}} \\right){E_1}{1 \\over r}{e^{ - jkr}}$$$\n<p>The polarization of the incident wave, the polarization of the antenna and losses due to the\npolarization mismatch are, respectively,</p>\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Linear, Circular (clockwise), $$\u22125dB$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Circular (clockwise), Linear, $$\u22125dB$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Circular (clockwise), Linear, $$\u22123dB$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Circular (anti clockwise), Linear, $$\u22123dB$$  "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-electric-field-of-a-uniform-plane-wave-travelling-along-gate-ece-2016-set-1-marks-2-i7kpzpujupmm8a0m.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2tibhXweC7tottuS",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transmission-lines",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The propagation constant of a lossy transmission line is (2 + j5) $${m^{ - 1}}$$ and its characteristic impedance is (50 + j0) $$\\Omega $$ at $$\\omega  = \\,{10^6}\\,rad\\,{S^{ - 1}}$$. The values of the line constants L, C, R, G are, respectively, ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\matrix{\n   {L = \\,200\\,\\mu H/\\,m,\\,C = 0.1\\,\\,\\mu F/\\,m,\\,}  \\cr \n   {R = 50\\,\\,\\Omega /m,\\,G = 0.02\\,S/m,}  \\cr \n\n } $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\matrix{\n   {L = \\,250\\,\\mu H/\\,m,\\,C = 0.1\\,\\,\\mu F/\\,m,\\,}  \\cr \n   {R = 100\\,\\,\\Omega /m,\\,G = 0.04\\,S/m,}  \\cr \n\n } }$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\matrix{\n   {L = \\,200\\,\\mu H/\\,m,\\,C = 0.2\\,\\,\\mu F/\\,m,\\,}  \\cr \n   {R = 100\\,\\,\\Omega /m,\\,G = 0.02\\,S/m,}  \\cr \n\n } }$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\matrix{\n   {L = \\,250\\,\\mu H/\\,m,\\,C = 0.2\\,\\,\\mu F/\\,m,\\,}  \\cr \n   {R = 50\\,\\,\\Omega /m,\\,G = 0.04\\,S/m,}  \\cr \n\n } }$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-propagation-constant-of-a-lossy-transmission-line-is-2-j-gate-ece-2016-set-1-marks-1-2tibhxwec7tottus.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gS09PdJU8rDhmxb7",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "antennas",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An antenna pointing in a certain direction has a noise temperature of $$50K$$. The ambient temperature is $$290K$$. The antenna is connected to a pre-amplifier that has a noise figure of 2 dB and an available gain of 40 dB over an effective bandwidth of $$12$$ $$MHz$$. The effective input noise temperature $${T_e}$$ for the amplifier and the noise power $${P_{ao}}$$ at the output of the preamplifier, respectively, are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${T_e} = 169.36K$$ and $${P_{ao}} = 3.73 \\times {10^{ - 10}}\\,\\,\\,W$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${T_e} = 170.8K$$ and $${P_{ao}} = 4.56 \\times {10^{ - 10}}\\,\\,\\,W$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${T_e} = 182.5K$$ and $${P_{ao}} = 3.85 \\times {10^{ - 10}}\\,\\,\\,W$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${T_e} = 160.62K$$ and $${P_{ao}} = 4.6 \\times {10^{ - 10}}\\,\\,\\,W$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-antenna-pointing-in-a-certain-direction-has-a-noise-tempe-gate-ece-2016-set-1-marks-2-gs09pdju8rdhmxb7.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FNXUuPCrI7oObofu",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "antennas",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two lossless X-band horn antennas are separated by a distance of $$200\\lambda $$. The amplitude reflection coefficients at the terminals of the transmitting and receiving antennas are $$0.15$$ and $$0.18$$, respectively. The maximum directivities of the transmitting and receiving antennas (over the isotropic antenna) are $$18$$ $$dB$$ and $$22$$ $$dB$$, respectively. Assuming that the input power in the lossless transmission line connected to the antenna is $$2$$ $$W$$, and that the antennas are perfectly aligned and polarization matched, the power ( in mW) delivered to the load at the receiver is ________ .",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2.9",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-lossless-x-band-horn-antennas-are-separated-by-a-distanc-gate-ece-2016-set-1-marks-2-fnxuupcri7oobofu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Od5XsfAMhQVV71Yw",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "antennas",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The far-zone power density radiated by a helical antenna is approximated as:\n$$$\\overrightarrow W {\\,_{rad}} = \\overrightarrow W \\,average\\, \\approx \\,\\widehat a{}_rC{}_0\\,{1 \\over {{r^2}}}{\\cos ^4}\\theta $$$\n<p>The radiated power density is symmetrical with respect to $$\\phi $$ and exists only in the upper hemisphere: $$0 \\le \\theta  \\le {\\pi  \\over 2};\\,\\,\\,\\,0 \\le \\theta  \\le 2\\pi ;$$ </p>\n<p>$${C_0}$$ is a constant. The power radiated by the antenna (in   watts) and the maximum directivity of the antenna, respectively, are </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.5{C_0},\\,\\,10dB$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.256{C_0},\\,\\,10dB$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.256{C_0},\\,\\,12dB$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1.5{C_0},\\,\\,12dB$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-far-zone-power-density-radiated-by-a-helical-antenna-is-gate-ece-2016-set-1-marks-2-od5xsfamhqvv71yw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a121824a29ab",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "maxwell-equations",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Concentric spherical shells of radii 2 m, 4 m, and 8 m carry uniform surface charge densities\nof 20 nC/m<sup>2</sup>\n, \u22124 nC/m<sup>2</sup>\nand \u03c1<sub>s</sub>\n,respectively. The value of \u03c1<sub>s</sub> (nC/m<sup>2</sup>) required to ensure that the\nelectric flux density $$\\overrightarrow D=\\overrightarrow0$$\nat radius 10 m is _________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "-0.25",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "concentric-spherical-shells-of-radii-2-m-4-m-and-8-m-carry-u-gate-ece-2016-set-1-marks-1-5a121824a29ab.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                }
+            ],
+            "title": "Electromagnetics"
+        },
+        {
+            "_id": "Electronic Devices and Vlsi",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa7ffd161e3a",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "ic-basics-and-mosfet",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the voltage V<sub>out</sub> in the following circuit?\n<img alt=\"GATE ECE 2016 Set 1 Electronic Devices and VLSI - IC Basics and MOSFET Question 49 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/2056152dfb57cb7b0167d0726305ccc184e292d658a3686d36a20660f16ebdef.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0 V"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left(\\left|V_T\\;of\\;PMOS\\right|\\;+\\;V_T\\;of\\;NMOS\\right)/2$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Switching threshold of inverter"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "V<sub>DD</sub>"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-the-voltage-vout-in-the-following-circuit-gate-ece-2016-set-1-marks-1-5aa7ffd161e3a.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0f638896ea3",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "semiconductor-physics",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A small percentage of impurity is added to an intrinsic semiconductor at 300 K. Which one of the\nfollowing statements is true for the energy band diagram shown in the following figure?\n<img alt=\"GATE ECE 2016 Set 1 Electronic Devices and VLSI - Semiconductor Physics Question 27 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/eb5772206510f029f082ee18fb483e7c1ab6b2d019e75afb5feeed8171cfe730.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Intrinsic semiconductor doped with pentavalent atoms to form n-type semiconductor"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Intrinsic semiconductor doped with trivalent atoms to form n-type semiconductor"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Intrinsic semiconductor doped with pentavalent atoms to form p-type semiconductor"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Intrinsic semiconductor doped with trivalent atoms to form p-type semiconductor"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-small-percentage-of-impurity-is-added-to-an-intrinsic-semi-gate-ece-2016-set-1-marks-1-5a0f638896ea3.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa7ff011b570",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "ic-basics-and-mosfet",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following statements for a metal oxide semiconductor field effect transistor\n(MOSFET):\n<p><br>P: As channel length reduces, OFF-state current increases.\n<br>Q:As channel length reduces, output resistance increases.\n<br>R: As channel length reduces, threshold voltage remains constant.\n<br>S: As channel length reduces, ON current increases.</p>\nWhich of the above statements are INCORRECT?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "P and Q"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "P and S"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Q and R"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "R and S"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-statements-for-a-metal-oxide-semicond-gate-ece-2016-set-1-marks-1-5aa7ff011b570.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "S3Hf1uQIRyiN0adl",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "ic-basics-and-mosfet",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider an n-channel metal oxide semiconductor field effect transistor (MOSFET) with a gate-to-source\nvoltage of 1.8 V.   Assume that $${W \\over L} = 4,{\\mu _{\\rm N}}{C_{ox}} = 70 \\times {10^{ - 6}}{\\rm A}{V^{ - 2}}$$  , the threshold voltage is 0.3V, and the channel length modulation parameter is 0.09 V<sup>-1</sup>, In the saturation region, the drain conductance (in micro siemens) is__________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "28.35",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-an-n-channel-metal-oxide-semiconductor-field-effect-gate-ece-2016-set-1-marks-2-s3hf1uqiryin0adl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                }
+            ],
+            "title": "Electronic Devices and Vlsi"
+        },
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KvRcc66AEcn7JSDP",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $${M^4} = {\\rm I}$$ (where $${\\rm I}$$ denotes the identity matrix) and $$M \\ne {\\rm I},\\,\\,{M^2} \\ne {\\rm I}$$ and $${M^3} \\ne {\\rm I}$$.  Then, for any natural number $$k, $$ $${M^{ - 1}}$$ equals: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${M^{4k + 1}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${M^{4k + 2}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${M^{4k + 3}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${M^{4k}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-m4-rm-i-where-rm-i-denotes-the-identity-matrix-and-m-ne-gate-ece-2016-set-1-marks-1-kvrcc66aecn7jsdp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XCEeIevxzQSuF4W6",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A sequence $$x\\left[ n \\right]$$ is specified as \n$$$\\left[ {\\matrix{\n   {x\\left[ n \\right]}  \\cr \n   {x\\left[ {n - 1} \\right]}  \\cr \n\n } } \\right] = {\\left[ {\\matrix{\n   1 &amp; 1  \\cr \n   1 &amp; 0  \\cr \n\n } } \\right]^n}\\left[ {\\matrix{\n   1  \\cr \n   0  \\cr \n\n } } \\right],\\,\\,for\\,\\,n \\ge 2.$$$\n<br>The initial conditions are $$x\\left[ 0 \\right] = 1,\\,\\,x\\left[ 1 \\right] = 1$$ and $$x\\left[ n \\right] = 0$$ for $$n &lt; 0.$$ The value of $$x\\left[ {12} \\right]$$ is __________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "233",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-sequence-xleft-n-right-is-specified-as-left-matrix-xleft-n-gate-ece-2016-set-1-marks-2-xceeievxzqsuf4w6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dSnvIJBKrGDJbsRs",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The integral $$\\,\\,{1 \\over {2\\pi }}\\int {\\int_D {\\left( {x + y + 10} \\right)dxdy\\,\\,} } $$ where $$D$$ denotes the disc: $${x^2} + {y^2} \\le 4,$$ evaluates to _________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "20 ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-integral-1-over-2pi-int-intd-left-x-y-10-rightdxdy-where-gate-ece-2016-set-1-marks-2-dsnvijbkrgdjbsrs.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "E6U3frFXpCPmVEIP",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given the following statements about a function $$f:R \\to R,$$ select the right option: \n<br>$$P:$$ If $$f(x)$$ is continuous at $$x = {x_0},$$ then it is also differentiable at $$x = {x_0},$$\n<br>$$Q:$$ If $$f(x)$$ is continuous at $$x = {x_0},$$ then it may not be differentiable at $$x = {x_0},$$\n<br>$$R:$$ If $$f(x)$$ is differentiable at $$x = {x_0},$$ then it is also  continuous at $$x = {x_0},$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P$$ is true, $$Q$$ is false, $$R$$ is false "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P$$ is false, $$Q$$ is true, $$R$$ is true "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P$$ is false, $$Q$$ is true, $$R$$ is false "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P$$ is true, $$Q$$ is false, $$R$$ is true"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-the-following-statements-about-a-function-fr-to-r-sele-gate-ece-2016-set-1-marks-1-e6u3frfxpcpmveip.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xZJQ0QonS675OhoJ",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The region specified by \n<br>$$\\left\\{ {\\left( {\\rho ,\\varphi ,{\\rm Z}} \\right):3 \\le \\rho  \\le 5,\\,\\,{\\pi  \\over 8} \\le \\phi  \\le {\\pi  \\over 4},\\,\\,3 \\le z \\le 4.5} \\right\\}$$ in cylindrical coordinates has volume of ___________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "4.71",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-region-specified-by-left-left-rho-varphi-rm-z-right3-le-gate-ece-2016-set-1-marks-2-xzjq0qons675ohoj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kBlAs0IAgUlVfrfL",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The second moment of a Poisson-distributed random variables is $$2.$$ The mean of the random variable is _______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-second-moment-of-a-poisson-distributed-random-variables-gate-ece-2016-set-1-marks-1-kblas0iagulvfrfl.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cKN1uU4B6opQIi4x",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two random variables $$X$$ and $$Y$$ are distributed according to \n$$${f_{X,Y}}\\left( {x,y} \\right) = \\left\\{ {\\matrix{\n   {\\left( {x + y} \\right),} &amp; {0 \\le x \\le 1,} &amp; {0 \\le y \\le 1}  \\cr \n   {0,} &amp; {otherwise} &amp; \\,  \\cr \n\n } } \\right.$$$\n<p>The probability $$P\\left( {X + Y \\le 1} \\right)$$ is ________.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.33 ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-random-variables-x-and-y-are-distributed-according-to-fx-gate-ece-2016-set-1-marks-2-ckn1uu4b6opqii4x.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HeWgQuZpXYMyfDjH",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the following integral, the contour $$C$$ encloses the points $${2\\pi j}$$ and $$-{2\\pi j}$$. The value of the integral $$ - {1 \\over {2\\pi }}\\oint\\limits_c {{{\\sin z} \\over {{{\\left( {z - 2\\pi j} \\right)}^3}}}} dz$$ is ___________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "- 133.8",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-following-integral-the-contour-c-encloses-the-points-gate-ece-2016-set-1-marks-2-hewgquzpxymyfdjh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "General Aptitude",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a3959aa164d3",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a huge pile of apples and oranges, both ripe and unripe mixed together, 15% are unripe\nfruits. Of the unripe fruits, 45% are apples. Of the ripe ones, 66% are oranges. If the pile\ncontains a total of 5692000 fruits, how many of them are apples?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2029198"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2467482"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2789080"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "3577422"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-huge-pile-of-apples-and-oranges-both-ripe-and-unripe-mi-gate-ece-2016-set-1-marks-1-5a3959aa164d3.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a395abec3024",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Michael lives 10 km away from where I live. Ahmed lives 5 km away and Susan lives 7 km\naway from where I live. Arun is farther away than Ahmed but closer than Susan from where I\nlive. From the information provided here, what is one possible distance (in km) at which I live\nfrom Arun's place?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "3.00"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "4.99"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "6.02"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "7.01"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "michael-lives-10-km-away-from-where-i-live-ahmed-lives-5-km-gate-ece-2016-set-1-marks-1-5a395abec3024.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                }
+            ],
+            "title": "General Aptitude"
+        },
+        {
+            "_id": "Microprocessors",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "b4bookeAmGFeVvWl",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "microprocessors",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "instruction-set-and-programming-with-8085",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In an 8085 system, a PUSH operation requires more clock cycles than a POP operation. Which one of the following options\n is the correct reason for this?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "For POP, the data transceivers remain in the same direction as for instruction fetch (memory to\nprocessor), whereas for PUSH their direction has to be reversed.\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Memory write operations are slower than memory read operations in an 8085 based system."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The stack pointer needs to be pre-decremented before writing registers in a PUSH, whereas a\nPOP operation uses the address already in the stack pointer. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Order of registers has to be interchanged for a PUSH operation, whereas POP uses their natural order.\n"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-an-8085-system-a-push-operation-requires-more-clock-cycle-gate-ece-2016-set-1-marks-2-b4bookeamgfevvwl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                }
+            ],
+            "title": "Microprocessors"
+        },
+        {
+            "_id": "Network Theory",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Jd8OcSanc0FOqczK",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-response",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A network consisting of a finite number of linear resistor (R), inductor (L), and capacitor (C) elements, connected all in series or all in parallel, is excited with a source of the form\n<br>$$\\sum\\limits_{k = 1}^3 {{a_k}\\,\\,\\cos \\,\\left( {k{\\omega _0}t} \\right),\\,\\,\\,} $$ where $${a_k} \\ne 0,\\,\\,{\\omega _0} \\ne 0$$.\n<p>The source has nonzero impedance. Which one of the following is a possible form of the output measured across a resistor in the network?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\sum\\limits_{k = 1}^3 {{b_k}{\\mkern 1mu} {\\mkern 1mu} \\cos \\left( {k{\\omega _0}t + {\\phi _k}} \\right),{\\mkern 1mu} {\\mkern 1mu} {\\mkern 1mu} } $$  where $${b_k} \\ne {a_k},\\,\\,\\forall k$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\sum\\limits_{k = 1}^3 {{b_k}\\,\\,\\cos \\left( {k{\\omega _0}t + {\\phi _k}} \\right)\\,\\,\\,} $$ , where $${b_k} \\ne 0,\\,\\,\\forall k$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\sum\\limits_{k = 1}^3 {{a_k}\\,\\,\\cos \\left( {k{\\omega _0}t + {\\phi _k}} \\right)\\,\\,\\,} $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\sum\\limits_{k = 1}^3 {{a_k}\\,\\,\\cos \\left( {k{\\omega _0}t + {\\phi _k}} \\right)\\,\\,\\,} $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-network-consisting-of-a-finite-number-of-linear-resistor-r-gate-ece-2016-set-1-marks-2-jd8ocsanc0foqczk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a09f1ba2cac0",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-response",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>An AC voltage source V = 10 sin(t) volts is applied to the following network. Assume that\nR<sub>1</sub> = 3 k\u03a9, R<sub>2</sub> = 6 k\u03a9 and R<sub>3</sub> = 9 k\u03a9\nand that the diode is ideal.</p>\n<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l9iv5qxc/f58c5816-8936-4972-9939-1f8bf4d15c58/86e81900-5173-11ed-8946-3d48b1fe9d23/file-1l9iv5qxd.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l9iv5qxc/f58c5816-8936-4972-9939-1f8bf4d15c58/86e81900-5173-11ed-8946-3d48b1fe9d23/file-1l9iv5qxd.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2016 Set 1 Network Theory - Sinusoidal Steady State Response Question 49 English\">\n<p>RMS current I<sub>rms</sub> (in mA) through the diode is _________.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1",
+                            "explanation": "The current through $R_1$ is\n<br/><br/>$$\nI_{\\mathrm{R} 1}=\\left(\\frac{I_{\\mathrm{rms}}}{3}\\right)\n$$\n<br/><br/>The current through $R_2$ is\n<br/><br/>$$\nI_{\\mathrm{R} 2}=\\left(\\frac{1}{2}\\right)\\left(\\frac{I_{\\mathrm{rms}}}{3}\\right)=\\left(\\frac{I_{\\mathrm{rms}}}{6}\\right)\n$$\n<br/><br/>The current through $R_3$ is\n<br/><br/>$$\nI_{\\mathrm{R} 3}=\\left(\\frac{I_{\\mathrm{rms}}}{6}\\right)+\\left(\\frac{I_{\\mathrm{rms}}}{6}\\right)=\\left(\\frac{I_{\\mathrm{rms}}}{3}\\right)\n$$\n<br/><br/>Let RMS current $I_{\\mathrm{rms}}=I$\n<br/><br/>Resistance $R_1=3 \\mathrm{k} \\Omega$\n<br/><br/>Resistance $R_2=6 \\mathrm{k} \\Omega$\n<br/><br/>Resistance $R_3=9 \\mathrm{k} \\Omega$,\n<br/><br/>$$\n\\begin{aligned}\nV &=\\frac{I}{3}\\left[R_1\\right]+\\frac{I}{6}\\left[R_2\\right]+\\frac{I}{3} R_3 \\\\\\\\\n&=\\frac{I}{3}[3]+\\frac{I}{6}[6]+\\frac{I}{3}[9] \\\\\\\\\nV &=I[5 \\Omega] \\\\\\\\\n\\frac{V}{I} &=5 \\Omega\n\\end{aligned}\n$$\n<br/><br/>For half weve rectifier\n<br/><br/>$$\n\\begin{aligned}\n&I_{\\text {rms}}=\\frac{I_m}{(2)}=\\frac{10 \\sin t}{5 k \\Omega}=2 \\sin t \\mathrm{~mA} \\\\\\\\\n&\\therefore I_{\\mathrm{rms}}=\\frac{I_m}{2}=1 \\mathrm{~mA}\n\\end{aligned}\n$$"
+                        }
+                    },
+                    "permalink": "an-ac-voltage-source-v-10-sint-volts-is-applied-to-the-follo-gate-ece-2016-set-1-marks-2-5a09f1ba2cac0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0aaf22ab4d5",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "two-port-networks",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a two-port network with the transmission matrix: T = $$\\begin{bmatrix}A&amp;B\\\\C&amp;D\\end{bmatrix}$$. If the network is\nreciprocal, then",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "T<sup>-1</sup> = T"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "T<sup>2</sup> = T"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Determinant (T) = 0"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Determinant (T) = 1"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-two-port-network-with-the-transmission-matrix-t-b-gate-ece-2016-set-1-marks-1-5a0aaf22ab4d5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a07235c070a1",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-theorems",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>In the circuit shown in the figure, the maximum power (in watt) delivered to the resistor R is _________.</p>\n<img alt=\"GATE ECE 2016 Set 1 Network Theory - Network Theorems Question 13 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/5ab4e6f2a81511bb8bd92a8da6af421567798b4d934e3eb04fcdbd4c76c161e7.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.8",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-in-the-figure-the-maximum-power-in-watt-gate-ece-2016-set-1-marks-2-5a07235c070a1.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                }
+            ],
+            "title": "Network Theory"
+        },
+        {
+            "_id": "Signals and Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YabSzYZ1J3GKY0J1",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "discrete-time-signal-z-transform",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A sequence x$$\\left[ n \\right]$$ is specified as $$\\left[ {\\matrix{\n   {x\\left[ n \\right]}  \\cr \n   {x\\left[ {n - 1} \\right]}  \\cr \n\n } } \\right] = {\\left[ {\\matrix{\n   1  \\cr \n   1  \\cr \n\n } \\,\\matrix{\n   1  \\cr \n   0  \\cr \n\n } } \\right]^n}\\left[ {\\matrix{\n   1  \\cr \n   0  \\cr \n\n } } \\right]$$, for  n $$ \\ge $$2.\n<br> The initial conditions are x$$\\left[ 0 \\right]$$ = 1, x$$\\left[ 1 \\right]$$=1 and x$$\\left[ n \\right]$$=0 for n&lt; 0. The value of x$$\\left[ 12 \\right]$$ is _____________________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "233",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-sequence-xleft-n-right-is-specified-as-left-matrix-xleft-n-gate-ece-2016-set-1-marks-2-yabszyz1j3gky0j1.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pNDLXVdM22XNeRPR",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "discrete-time-signal-z-transform",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the sequence\n<br> $$x\\left[ n \\right]$$= $${a^n}u\\left[ n \\right] + {b^{\\partial n}}u\\left[ n \\right]$$ , where u[n]  denotes the unit step sequence and 0&lt;$$\\left| a \\right| &lt; \\left| b \\right| &lt; 1.$$\n<br> The region of convergence (ROC) of the z-transform of $$\\left[ n \\right]$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left| z \\right| &gt; \\left| a \\right|$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left| z \\right| &gt; \\left| b \\right|$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left| z \\right| &lt; \\left| a \\right|$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left| a \\right| &lt; \\left| z \\right| &lt; \\left| b \\right|$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-sequence-xleft-n-right-anuleft-n-right-bpartial-gate-ece-2016-set-1-marks-1-pndlxvdm22xnerpr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jQkmwis4Sccuqamy",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "discrete-time-signal-fourier-series-fourier-transform",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the signal $$x\\left[ n \\right] = 6\\delta \\left[ {n + 2} \\right] + 3\\delta \\left[ {n + 1} \\right] + 8\\delta \\left[ n \\right] + 7\\delta \\left[ {n - 1} \\right] + 4\\delta \\left[ {n - 2} \\right]$$.\n<p> If X$$({e^{t\\omega }})$$is the discrete-time Fourier transform of x[n], </p>\n<p> then $${1 \\over \\pi }\\int\\limits_{ - \\pi }^\\pi  X ({e^{j\\omega }}){\\sin ^2}(2\\omega )d\\omega $$ is equal to ____________. </p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "8",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-signal-xleft-n-right-6delta-left-n-2-right-3del-gate-ece-2016-set-1-marks-2-jqkmwis4sccuqamy.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Cc7r98wq6WYcxCF1",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transmission-of-signal-through-continuous-time-lti-systems",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A continuous-time sinusoid of frequency 33 Hz is multiplied with a periodic Dirac impulse train of frequency 46 Hz. The resulting signal is passed through an ideal analog low-pass filter with a cutoff frequency of 23Hz. The fundamental frequency (in Hz) of the output is _____________________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "13",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-continuous-time-sinusoid-of-frequency-33-hz-is-multiplied-gate-ece-2016-set-1-marks-1-cc7r98wq6wycxcf1.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Q5SLvL65kj7F4iYG",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sampling",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A continuous -time function $$x\\left( t \\right)$$ is periodic with period $$T$$. The function is sampled uniformly with a sampling period $${T_s}$$.  In which one of the following cases is the sampled signal periodic? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$T\\,\\, = \\,\\,\\sqrt 2 \\,\\,{T_s}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$T\\,\\, = \\,\\,1.2T$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Always "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Never "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-continuous-time-function-xleft-t-right-is-periodic-with-pe-gate-ece-2016-set-1-marks-1-q5slvl65kj7f4iyg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "q11meVoqFDdpHtJc",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transmission-of-signal-through-continuous-time-lti-systems",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A first-order low-pass filter of time constant T is excited with different input signals (with zero initial conditions up to t = 0). Match the excitation signals X, Y, Z with the corresponding time responses for $$t\\, \\ge 0$$:\n<br> X: Impulse                    P: 1 $$ - {e^{ - t/T}}$$\n<br> Y: Unit step                   Q: t $$ - T(1 - {e^{ - t/T}})$$\n<br> Z: Ramp                         R:  $${e^{ - t/T}}$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$X \\to R,\\,Y \\to Q,\\,\\,Z \\to P$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$X \\to Q,\\,Y \\to P,\\,\\,Z \\to R$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$X \\to R,\\,Y \\to P,\\,\\,Z \\to Q$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$X \\to P,\\,Y \\to R,\\,\\,Z \\to Q$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-first-order-low-pass-filter-of-time-constant-t-is-excited-gate-ece-2016-set-1-marks-2-q11mevoqfddphtjc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CFe6m59calxj8TM0",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-signal-laplace-transform",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Laplace transform of the casual periodic square wave of period T shown in the figure below is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/b7c151dfc9ea22f7d1c4d861cd5c995deef648d021c9d807898155a2e876efeb.jpg\" loading=\"lazy\" alt=\"GATE ECE 2016 Set 1 Signals and Systems - Continuous Time Signal Laplace Transform Question 3 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$F\\left( s \\right) = {1 \\over {1 + {e^{ - sT/2}}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$F\\left( s \\right) = {1 \\over {s\\left[ {1 + {e^{{{sT} \\over 2}}}} \\right]}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$F\\left( s \\right) = {1 \\over {s\\left( {1 + {e^{ - sT}}} \\right)}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$F\\left( s \\right) = {1 \\over {1 - {e^{ - sT}}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-laplace-transform-of-the-casual-periodic-square-wave-of-gate-ece-2016-set-1-marks-2-cfe6m59calxj8tm0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1h81IYHvViTMBUl2",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fourier-transform",
+                    "year": 2016,
+                    "paperTitle": "GATE ECE 2016 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following is an eight function of the class of all continuous-time, linear, time- invariant systems u(t) denotes the unit-step function?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${e^{j{\\omega _0}t}}u(t)$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\cos ({\\omega _0}t)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${e^{j{\\omega _0}t}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\sin ({\\omega _0}t)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-is-an-eight-function-of-the-class-gate-ece-2016-set-1-marks-1-1h81iyhvvitmbul2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2016-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2016-set-1"
+                }
+            ],
+            "title": "Signals and Systems"
+        }
+    ]
+}

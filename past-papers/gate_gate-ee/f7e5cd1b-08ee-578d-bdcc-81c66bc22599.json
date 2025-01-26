@@ -1,0 +1,1790 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Electrical and Electronics Measurement",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ee",
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "chapter": "basic-of-indicating-instruments",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "marks": 2,
+                    "negMarks": 0.67,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 0-1 Ampere moving iron ammeter has an internal resistance of 50 m$$\\Omega $$ and inductance of\n0.1 mH. A shunt coil is connected to extend its range to 0-10 Ampere for all operating\nfrequencies. The time constant in milliseconds and resistance in m$$\\Omega $$ of the shunt coil\nrespectively are\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2, 5.55"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2, 1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2.18, 0.55"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "11.1, 2"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "ZTEGOvSLPN9zwaUmqwjf76htyjzomitvb",
+                    "updated_time": null,
+                    "permalink": "a-0-1-ampere-moving-iron-ammeter-has-an-internal-resistance-gate-ee-electrical-and-electronics-measurement-basic-of-indicating-instruments-pvfpt8udbdttvklx",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ee",
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "chapter": "measurement-of-energy-and-power",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two wattmeter method is used for measurement of power in a balanced three-phase load\nsupplied from a balanced three-phase system. If one of the wattmeters reads half of the\nother (both positive), then the power factor of the load is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0.532"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.632"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0.707"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0.866"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "1Rxl1zrBpxdxElIQhnjf76htyjzomnyby",
+                    "updated_time": null,
+                    "permalink": "two-wattmeter-method-is-used-for-measurement-of-power-in-a-b-gate-ee-electrical-and-electronics-measurement-measurement-of-energy-and-power-1tktkgl2yyr0aurd",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                }
+            ],
+            "title": "Electrical and Electronics Measurement"
+        },
+        {
+            "_id": "Electrical Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Z4uCX7m0WJgxLSJN",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A transformer with toroidal core of permeability $$\\mu $$ is shown in the figure. Assuming\nuniform flux density across the circular core cross-section of radius r $$ \\ll $$ R, and neglecting\nany leakage flux, the best estimate for the mean radius R is\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/8Ox1yHRWvzZx9AMPJ/xKHl26ayvbRrxpFY2R4BwirTQUY3D/PoeSq6ADXLg6wDqc8wWu69/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2018 Electrical Machines - Transformers Question 6 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{\\mu V{r^2}N_P^2\\omega } \\over I}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{\\mu I{r^2}{N_P}{N_S}\\omega } \\over V}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{\\mu V{r^2}N_P^2\\omega } \\over {2I}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{\\mu V{r^2}N_P^2\\omega } \\over {2V}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-transformer-with-toroidal-core-of-permeability-mu-is-2018-marks-2-z4ucx7m0wjgxlsjn.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CMR0Ndv1qox3EuPH",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single-phase 100 kVA, 1000 V / 100 V, 50 Hz transformer has a voltage drop of 5%\nacross its series impedance at full load. Of this, 3% is due to resistance. The percentage\nregulation of the transformer at full load with 0.8 lagging power factor is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "4.8"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "6.8"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "8.8"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "10.8"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-single-phase-100-kva-1000-v-100-v-50-hz-transformer-ha-2018-marks-1-cmr0ndv1qox3euph.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dYys5By7JJOrRmD1",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A separately excited dc motor has an armature resistance R<sub>$$a$$</sub> = 0.05\u2061\u03a9. The field excitation\nis kept constant. At an armature voltage of 100 V, the motor produces a torque of 500 Nm\nat zero speed. Neglecting all mechanical losses, the no-load speed of the motor (in radian/s)\nfor an armature voltage of 150 V is _____ (up to 2 decimal places).",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "600",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-separately-excited-dc-motor-has-an-armature-resistance-r-2018-marks-1-dyys5by7jjorrmd1.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sapWVteBCwHV6nQ9",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 3-phase 900 kVA, 3 kV / $$\\sqrt 3 $$ kV (\u0394/Y), 50 Hz transformer has primary (high voltage\nside) resistance per phase of 0.3 \u03a9 and secondary (low voltage side) resistance per phase of\n0.02 \u03a9. Iron loss of the transformer is 10 kW. The full load % efficiency of the transformer\noperated at unity power factor is _______ (up to 2 decimal places).",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "97.20 to 97.55",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-3-phase-900-kva-3-kv-sqrt-3-kv-y-50-hz-tran-2018-marks-2-sapwvtebcwhv6nq9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "B5S700NsYhI33DwZ",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 200 V DC series motor, when operating from rated voltage while driving a certain load,\ndraws 10 A current and runs at 1000 r.p.m. The total series resistance is 1 \u03a9. The magnetic\ncircuit is assumed to be linear. At the same supply voltage, the load torque is increased by\n44%. The speed of the motor in r.p.m. (rounded to the nearest integer) is ________ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "823 to 827",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-200-v-dc-series-motor-when-operating-from-rated-voltage-w-2018-marks-2-b5s700nsyhi33dwz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fsocXu6t8JEBI1av",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a salient pole synchronous motor, the developed reluctance torque attains the maximum\nvalue when the load angle in electrical degrees is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "45"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "60"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "90"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-salient-pole-synchronous-motor-the-developed-reluctanc-2018-marks-1-fsocxu6t8jebi1av.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PxpaLQj353dRgVSH",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "induction-machines",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The equivalent circuit of a single phase induction motor is shown in the figure, where the\nparameters are\n<br><br>R<sub>1</sub> = R<sub>2</sub><sup>'</sup> = X<sub>l1</sub> = X<sub>l2</sub><sup>'</sup> = 12 $$\\Omega $$, X<sub>m</sub> = 240 $$\\Omega $$\n<br><br>and s is the slip. At no-load, the\nmotor speed can be approximated to be the synchronous speed. The no-load lagging power\nfactor of the motor is___________ (up to 3 decimal places).\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/AIHbF2FK0EqqvYnQj/ju3IWB9KEM7bRbZXMbotRPoSXALlk/BNR9jn6DRhqfOr0RfQjGqS/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2018 Electrical Machines - Induction Machines Question 9 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.104 to 0.112",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-equivalent-circuit-of-a-single-phase-induction-motor-is-2018-marks-2-pxpalqj353drgvsh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                }
+            ],
+            "title": "Electrical Machines"
+        },
+        {
+            "_id": "Electromagnetic Fields",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ee",
+                    "subjectGroup": null,
+                    "subject": "electromagnetic-fields",
+                    "chapterGroup": null,
+                    "chapter": "electrostatics",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A positive charge of 1 nC is placed at (0, 0, 0.2) where all dimensions are in metres.\nConsider the\nx - y\nplane to be a conducting ground plane. \n<br><br>Take $${\\varepsilon _0} = 8.85 \\times {10^{ - 12}}$$ F/m. \n<br><br>The Z\ncomponent of the E field at (0, 0, 0.1) is closest to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "899.18 V/m"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "- 899.18 V/m"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "999.09 V/m"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "- 999.09 V/m"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "UJVfUv3C6SKxJB4iR5jf76htyjzoug9vk",
+                    "updated_time": null,
+                    "permalink": "a-positive-charge-of-1-nc-is-placed-at-0-0-02-where-all-gate-ee-electromagnetic-fields-electrostatics-kci4pwuoceqftq4f",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ee",
+                    "subjectGroup": null,
+                    "subject": "electromagnetic-fields",
+                    "chapterGroup": null,
+                    "chapter": "electrostatics",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The capacitance of an air-filled parallel-plate capacitor is 60 pF. When a dielectric slab\nwhose thickness is half the distance between the plates, is placed on one of the plates\ncovering it entirely, the capacitance becomes 86 pF. Neglecting the fringing effects, the\nrelative permittivity of the dielectric is _____________ (up to 2 decimal places).",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2.50 to 2.55",
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "iFFwZVGKo1Wzkxsjzzjf76htyjzouj6qi",
+                    "updated_time": null,
+                    "permalink": "the-capacitance-of-an-air-filled-parallel-plate-capacitor-is-gate-ee-electromagnetic-fields-electrostatics-9psjnnt43xvf9y1z",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                }
+            ],
+            "title": "Electromagnetic Fields"
+        },
+        {
+            "_id": "General Aptitude",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VqyKdC4vamBovcZt",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A designer uses marbles of four different colours for his designs. The cost of each marble\nis the same, irrespective of the colour. The table below shows the percentage of marbles of\neach colour used in the current design. The cost of each marble increased by 25%.\nTherefore, the designer decided to reduce equal numbers of marbles of each colour to keep\nthe total cost unchanged. What is the percentage of blue marbles in the new design?\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/f0NaBoIKk2OkI6JZR/TSVwVv2VEEbmKFCECVqC4ztF5wDE0/bs4dwY1OTPXQlkXMRu5Kyl/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2018 General Aptitude - Numerical Ability Question 25 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "35.75"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "40.25"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "43.75"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "46.25"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-designer-uses-marbles-of-four-different-colours-for-his-de-gate-ee-2018-marks-2-vqykdc4vambovczt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "X53V0G7yNi3Brm2L",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "verbal-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "\"A common misconception among writers is that sentence structure mirrors thought; the\nmore _________ the structure, the more complicated the ideas.\"\n<br><br>The word that best fills the blank in the above sentence is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "detailed "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "simple"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "clear"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "convoluted"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-common-misconception-among-writers-is-that-sentence-struct-gate-ee-2018-marks-1-x53v0g7yni3brm2l.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Q6bM7faRBs6C1KPE",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The three roots of the equation f(x) = 0 are x = {-2, 0, 3}. What are the three values of x\nfor which f(x -3) = 0?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "-5, -3, 0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "\u22122, 0, 3"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0, 6, 8"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1, 3, 6"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-three-roots-of-the-equation-fx-0-are-x-2-0-3-what-are-th-gate-ee-2018-marks-1-q6bm7farbs6c1kpe.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fvR7FbeQ4SF1U8LO",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For what values of k given below is $${{{{\\left( {k + 2} \\right)}^2}} \\over {k - 3}}$$ an integer?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "4, 8, 18"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "4, 10, 16"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "4, 8, 28"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "8, 26, 28"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-what-values-of-k-given-below-is-left-k-2-right2-over-k-3-gate-ee-2018-marks-1-fvr7fbeq4sf1u8lo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Qpmcrs2jJlgYBx2X",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "verbal-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "\"Since you have gone off the ________, the _________ sand is likely to damage the car.\"\n<br>The words that best fill the blanks in the above sentence are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "course, coarse"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "course, course"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "coarse, course"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "coarse, coarse"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "since-you-have-gone-off-the-the-sand-is-likely-to-damage-the-gate-ee-2018-marks-1-qpmcrs2jjlgybx2x.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aqJaiJCxvPRXtKQM",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An e-mail password must contain three characters. The password has to contain one\nnumeral from 0 to 9, one upper case and one lower case character from the English\nalphabet. How many distinct passwords are possible?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "6,760"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "13,520"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "40,560"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1,05,456"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-e-mail-password-must-contain-three-characters-the-passwor-gate-ee-2018-marks-2-aqjaijcxvprxtkqm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QP6zML29EnwmlATm",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "verbal-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a certain code, AMCF is written as EQGJ and NKUF is written as ROYJ. How will\nDHLP be written in that code?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "RSTN"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "TLPH"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "HLPT"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "XSVR"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-certain-code-amcf-is-written-as-eqgj-and-nkuf-is-writte-gate-ee-2018-marks-2-qp6zml29enwmlatm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oCocfOl47p7DAK4m",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "P, Q, R and S crossed a lake in a boat that can hold a maximum of two persons, with only\none set of oars. The following additional facts are available.\n<br><br>(i) The boat held two persons on each of the three forward trips across the lake and one\nperson on each of the two return trips.\n<br><br>(ii) P is unable to row when someone else is in the boat.\n<br><br>(iii) Q is unable to row with anyone else except R.\n<br><br>(iv) Each person rowed for at least one trip.\n<br><br>(v) Only one person can row during a trip.\n<br><br>Who rowed twice?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "P"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Q"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "R"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "S"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "p-q-r-and-s-crossed-a-lake-in-a-boat-that-can-hold-a-maximum-gate-ee-2018-marks-2-ococfol47p7dak4m.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xRIZ9SNsKFZKkBur",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A class of twelve children has two more boys than girls. A group of three children are\nrandomly picked from this class to accompany the teacher on a field trip. What is the\nprobability that the group accompanying the teacher contains more girls than boys?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{325} \\over {864}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{525} \\over {864}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{5} \\over {12}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-class-of-twelve-children-has-two-more-boys-than-girls-a-gr-gate-ee-2018-marks-2-xriz9snskfzkkbur.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iXjWkzuPR5mrPRNM",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Functions F(a, b) and G(a, b) are defined as follows:\n<br>F(a, b) = (a - b)<sup>2</sup> and G(a, b) = |a - b| , where |x| represents the absolute value of x.\n<br>What would be the value of G(F(1, 3), G(1, 3))?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "4"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "6"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "36"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "functions-fa-b-and-ga-b-are-defined-as-followsfa-b-a-b2-and-gate-ee-2018-marks-1-ixjwkzupr5mrprnm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                }
+            ],
+            "title": "General Aptitude"
+        },
+        {
+            "_id": "Power Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ee",
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "chapter": "single-and-three-phase-rectifier",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The waveform of the current drawn by a semi-converter from a sinusoidal AC voltage\nsource is shown in the figure. If I<sub>0</sub> = 20 A, the rms value of fundamental component of the\ncurrent is ___________A (up to 2 decimal places).\n<picture><source media=\"(max-width: 320px)\" srcset=\"https://imagex.cdn.examgoal.net/jf76htyjznd7lmz/f509dde6-ead1-4195-afa2-93e7636a91ba/4deed1b0-c53b-11e9-8a74-7f4f47aa0c85/file-jf76htyjznd7ln0-320w.png\"><source media=\"(max-width: 500px)\" srcset=\"https://imagex.cdn.examgoal.net/jf76htyjznd7lmz/f509dde6-ead1-4195-afa2-93e7636a91ba/4deed1b0-c53b-11e9-8a74-7f4f47aa0c85/file-jf76htyjznd7ln0-500w.png\"><img src=\"https://imagex.cdn.examgoal.net/jf76htyjznd7lmz/f509dde6-ead1-4195-afa2-93e7636a91ba/4deed1b0-c53b-11e9-8a74-7f4f47aa0c85/file-jf76htyjznd7ln0-680w.png\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;\" loading=\"lazy\" alt=\"GATE EE 2018 Power Electronics - Single and Three Phase Rectifier Question 9 English\"></picture>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "16.90 to 17.70",
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "wD9Jm4Mu1uRCuEbGIEjf76htyjznd9c65",
+                    "updated_time": 1566533691,
+                    "permalink": "the-waveform-of-the-current-drawn-by-a-semi-converter-from-a-gate-ee-power-electronics-single-and-three-phase-rectifier-x4fspq7o26eqht9z",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ee",
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "chapter": "single-and-three-phase-rectifier",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A phase controlled single phase rectifier, supplied by an AC source, feeds power to an\nR-L-E load as shown in the figure. The rectifier output voltage has an average value given\nby $${V_0} = {{{V_m}} \\over {2\\pi }}\\left( {3 + \\cos \\alpha } \\right)$$, where $${V_m} = 80\\pi $$ volts and $$\\alpha $$ is the firing angle. If the power\ndelivered to the lossless battery is 1600 W, $$\\alpha $$ in degree is________ (up to 2 decimal\nplaces).\n<picture><source media=\"(max-width: 320px)\" srcset=\"https://imagex.cdn.examgoal.net/jf76htyjzndolya/e154be09-ca6c-46ff-873e-daf6472f1968/26ee5020-c53d-11e9-8a74-7f4f47aa0c85/file-jf76htyjzndolyb-320w.png\"><img src=\"https://imagex.cdn.examgoal.net/jf76htyjzndolya/e154be09-ca6c-46ff-873e-daf6472f1968/26ee5020-c53d-11e9-8a74-7f4f47aa0c85/file-jf76htyjzndolyb-500w.png\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;\" loading=\"lazy\" alt=\"GATE EE 2018 Power Electronics - Single and Three Phase Rectifier Question 7 English\"></picture>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "90 to 90",
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "tcc2KdlYZx44r0BHt6jf76htyjzndvcy2",
+                    "updated_time": 1566533779,
+                    "permalink": "a-phase-controlled-single-phase-rectifier-supplied-by-an-ac-gate-ee-power-electronics-single-and-three-phase-rectifier-zxnatuucghe3cibo",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ee",
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "chapter": "single-and-three-phase-rectifier",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single phase fully controlled rectifier is supplying a load with an anti-parallel diode as\nshown in the figure. All switches and diodes are ideal. Which one of the following is true\nfor instantaneous load voltage and current?\n<img src=\"https://imagex.cdn.examgoal.net/jf76htyjzndbgka/59d3d938-3e09-481c-a9f5-dce78e945520/b93fcfa0-c53b-11e9-8a74-7f4f47aa0c85/file-jf76htyjzndbgkb-320w.png\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;\" loading=\"lazy\" alt=\"GATE EE 2018 Power Electronics - Single and Three Phase Rectifier Question 8 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${v_0} \\ge 0\\,\\,\\&amp; \\,\\,{i_0} &lt; 0$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${v_0} &lt; 0\\,\\,\\&amp; \\,\\,{i_0} &lt; 0$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${v_0} \\ge 0\\,\\,\\&amp; \\,\\,{i_0} \\ge 0$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${v_0} &lt; 0\\,\\,\\&amp; \\,\\,{i_0} \\ge 0$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "kjD1DqEAHcYTnBciJMjf76htyjzndg4rm",
+                    "updated_time": 1566533741,
+                    "permalink": "a-single-phase-fully-controlled-rectifier-is-supplying-a-loa-gate-ee-power-electronics-single-and-three-phase-rectifier-jdzhvfnly3q7t5fc",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ee",
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "chapter": "choppers-and-commutation-techniques",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The figure shows two buck converters connected in parallel. The common input dc voltage\nfor the converters has a value of 100 V. The converters have inductors of identical value.\nThe load resistance is 1 $$\\Omega $$. The capacitor voltage has negligible ripple. Both converters\noperate in the continuous conduction mode. The switching frequency is 1 kHz, and the\nswitch control signals are as shown. The circuit operates in the steady state. Assuming that\nthe converters share the load equally, the average value of $${i_{S1}}$$, the current of switch S1 (in\nAmpere), is _____ (up to 2 decimal places).\n<picture><source media=\"(max-width: 320px)\" srcset=\"https://imagex.cdn.examgoal.net/jf76htyjzne4eyp/c5cfef13-4ea0-48c0-a697-81b2400a2251/de7aba20-c53e-11e9-8a74-7f4f47aa0c85/file-jf76htyjzne4eyr-320w.png\"><source media=\"(max-width: 500px)\" srcset=\"https://imagex.cdn.examgoal.net/jf76htyjzne4eyp/c5cfef13-4ea0-48c0-a697-81b2400a2251/de7aba20-c53e-11e9-8a74-7f4f47aa0c85/file-jf76htyjzne4eyr-500w.png\"><source media=\"(max-width: 680px)\" srcset=\"https://imagex.cdn.examgoal.net/jf76htyjzne4eyp/c5cfef13-4ea0-48c0-a697-81b2400a2251/de7aba20-c53e-11e9-8a74-7f4f47aa0c85/file-jf76htyjzne4eyr-680w.png\"><img src=\"https://imagex.cdn.examgoal.net/jf76htyjzne4eyp/c5cfef13-4ea0-48c0-a697-81b2400a2251/de7aba20-c53e-11e9-8a74-7f4f47aa0c85/file-jf76htyjzne4eyr-860w.png\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;\" loading=\"lazy\" alt=\"GATE EE 2018 Power Electronics - Choppers and Commutation Techniques Question 7 English\"></picture>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "11.50 to 13.50",
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "83qihzGpmwNk1t3FOPjf76htyjzne64bd",
+                    "updated_time": 1566533611,
+                    "permalink": "the-figure-shows-two-buck-converters-connected-in-parallel-gate-ee-power-electronics-choppers-and-commutation-techniques-3zg3y8epanlxdvgg",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ee",
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "chapter": "choppers-and-commutation-techniques",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A dc to dc converter shown in the figure is charging a battery bank, B2 whose voltage is\nconstant at 150 V. B1 is another battery bank whose voltage is constant at 50 V. The value\nof the inductor, L is 5 mH and the ideal switch, S is operated with a switching frequency of\n5 kHz with a duty ratio of 0.4. Once the circuit has attained steady state and assuming the\ndiode D to be ideal, the power transferred from B1 to B2 (in Watt) is ___________ (up to 2\ndecimal places).\n<picture><source media=\"(max-width: 320px)\" srcset=\"https://imagex.cdn.examgoal.net/jf76htyjzo79qgu/e84f2c5b-bc6e-42e2-bbf4-ff2a3f982c39/db2805e0-c5b0-11e9-8a74-7f4f47aa0c85/file-jf76htyjzo79qgv-320w.png\"><img src=\"https://imagex.cdn.examgoal.net/jf76htyjzo79qgu/e84f2c5b-bc6e-42e2-bbf4-ff2a3f982c39/db2805e0-c5b0-11e9-8a74-7f4f47aa0c85/file-jf76htyjzo79qgv-500w.png\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;\" loading=\"lazy\" alt=\"GATE EE 2018 Power Electronics - Choppers and Commutation Techniques Question 6 English\"></picture>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "12 to 12",
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "OKD4KKwPMMdX7kahgEjf76htyjzo7c6rb",
+                    "updated_time": null,
+                    "permalink": "a-dc-to-dc-converter-shown-in-the-figure-is-charging-a-batte-gate-ee-power-electronics-choppers-and-commutation-techniques-paetqzlfmp3tnbrf",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xXwAEyFndsiT1iAU",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "power-semiconductor-devices",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Four power semiconductor devices are shown in the figure along with their relevant\nterminals. The device(s) that can carry dc current continuously in the direction shown when\ngated appropriately is (are)\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/DljjNZfJkrRyoNBqN/EUYz4QpmdHHu8Ch2a7RUqLYMdvybI/UaWWGDZ8kAX7C5hFPRFkXW/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2018 Power Electronics - Power Semiconductor Devices Question 4 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Triac only"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Triac and MOSFET"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Triac and GTO"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Thyristor and Triac"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "four-power-semiconductor-devices-are-shown-in-the-figure-alo-2018-marks-1-xxwaeyfndsit1iau.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                }
+            ],
+            "title": "Power Electronics"
+        },
+        {
+            "_id": "Power System Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ee",
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "chapter": "symmetrical-components-and-symmetrical-and-unsymmetrical-faults",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "marks": 2,
+                    "negMarks": 0.67,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The positive, negative and zero sequence impedances of a three phase generator are Z<sub>1</sub>, Z<sub>2</sub>\nand Z<sub>0</sub> respectively. For a line-to-line fault with fault impedance Z<sub>f</sub>, the fault current\nis I<sub>f1</sub> = kI<sub>f</sub>, where I<sub>f</sub> is the fault current with zero fault impedance. The relation between\nZ<sub>f</sub> and k is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${Z_f} = {{\\left( {{Z_1} + {Z_2}} \\right)\\left( {1 - k} \\right)} \\over k}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${Z_f} = {{\\left( {{Z_1} + {Z_2}} \\right)\\left( {1 + k} \\right)} \\over k}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${Z_f} = {{\\left( {{Z_1} + {Z_2}} \\right)k} \\over {1 - k}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${Z_f} = {{\\left( {{Z_1} + {Z_2}} \\right)k} \\over {1 + k}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "DkEreNwJ7gPt2uEhlGjf76htyjzolke1o",
+                    "updated_time": null,
+                    "permalink": "the-positive-negative-and-zero-sequence-impedances-of-a-thr-gate-ee-power-system-analysis-symmetrical-components-and-symmetrical-and-unsymmetrical-faults-y0hbjbmongimti1m",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ee",
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the figure, the voltages are\n<br><br>$${v_1}\\left( t \\right) = 100\\cos \\left( {\\omega t} \\right)$$\n<br><br>$${v_2}\\left( t \\right) = 100\\cos \\left( {\\omega t + {\\pi  \\over {18}}} \\right)$$\n<br><br>and $${v_3}\\left( t \\right) = 100\\cos \\left( {\\omega t + {\\pi  \\over {36}}} \\right)$$.\n<br><br>The circuit is in sinusoidal steady state, and R &lt;&lt; $${\\omega L}$$.\nP<sub>1</sub>, P<sub>2</sub> and P<sub>3</sub> are the average power outputs. Which one of the following statements is true?\n<picture><source media=\"(max-width: 320px)\" srcset=\"https://imagex.cdn.examgoal.net/jf76htyjzok09ge/89a84e88-ff9b-4e65-b901-c521e8d5b722/aa694fe0-c5e2-11e9-8a74-7f4f47aa0c85/file-jf76htyjzok09gf-320w.png\"><img src=\"https://imagex.cdn.examgoal.net/jf76htyjzok09ge/89a84e88-ff9b-4e65-b901-c521e8d5b722/aa694fe0-c5e2-11e9-8a74-7f4f47aa0c85/file-jf76htyjzok09gf-500w.png\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;\" loading=\"lazy\" alt=\"GATE EE 2018 Power System Analysis - Parameters and Performance of Transmission Lines Question 4 English\"></picture>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "P<sub>1</sub> = P<sub>2</sub> = P<sub>3</sub> = 0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "P<sub>1</sub> &lt; 0, P<sub>2</sub> &gt; 0, P<sub>3</sub> &gt; 0"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "P<sub>1</sub> &lt; 0, P<sub>2</sub> &gt; 0, P<sub>3</sub> &lt; 0"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "P<sub>1</sub> &gt; 0, P<sub>2</sub> &lt; 0, P<sub>3</sub> &gt; 0"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "AsNXXW6sMJpiJhVx2Hjf76htyjzok4fyz",
+                    "updated_time": null,
+                    "permalink": "in-the-figure-the-voltages-are-brbrv1left-t-r-gate-ee-power-system-analysis-parameters-and-performance-of-transmission-lines-d6tbbksaaobycxsm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ee",
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "marks": 2,
+                    "negMarks": 0.67,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the two bus power system network with given loads as shown in the figure. All\nthe values shown in the figure are in per unit. The reactive power supplied by generator G<sub>1</sub>\nand G<sub>2</sub> are Q<sub>G1</sub> and Q<sub>G2</sub> respectively. The per unit values of Q<sub>G1</sub>, Q<sub>G2</sub>, and line reactive\npower loss (Q<sub>loss</sub>) respectively are\n<picture><source media=\"(max-width: 320px)\" srcset=\"https://imagex.cdn.examgoal.net/jf76htyjzokm2nv/6299c508-8149-4fd4-bcdf-ef374e710907/08f72cb0-c5e5-11e9-8a74-7f4f47aa0c85/file-jf76htyjzokm2nw-320w.png\"><source media=\"(max-width: 500px)\" srcset=\"https://imagex.cdn.examgoal.net/jf76htyjzokm2nv/6299c508-8149-4fd4-bcdf-ef374e710907/08f72cb0-c5e5-11e9-8a74-7f4f47aa0c85/file-jf76htyjzokm2nw-500w.png\"><img src=\"https://imagex.cdn.examgoal.net/jf76htyjzokm2nv/6299c508-8149-4fd4-bcdf-ef374e710907/08f72cb0-c5e5-11e9-8a74-7f4f47aa0c85/file-jf76htyjzokm2nw-680w.png\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;\" loading=\"lazy\" alt=\"GATE EE 2018 Power System Analysis - Parameters and Performance of Transmission Lines Question 3 English\"></picture>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "5. 00, 12.68, 2.68"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "6.34, 10.00, 1.34"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "6.34, 11.34, 2.68"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "5.00, 11.34, 1.34"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "OaFTwgH9HKk9aQPd7Cjf76htyjzokqjab",
+                    "updated_time": null,
+                    "permalink": "consider-the-two-bus-power-system-network-with-given-loads-a-gate-ee-power-system-analysis-parameters-and-performance-of-transmission-lines-govdwfplfnyaxvc2",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ee",
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "chapter": "symmetrical-components-and-symmetrical-and-unsymmetrical-faults",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The series impedance matrix of a short three-phase transmission line in phase coordinates is\n$$\\left[ {\\matrix{\n   {{Z_s}} &amp; {{Z_m}} &amp; {{Z_m}}  \\cr \n   {{Z_m}} &amp; {{Z_s}} &amp; {{Z_m}}  \\cr \n   {{Z_m}} &amp; {{Z_m}} &amp; {{Z_s}}  \\cr \n\n } } \\right]$$.\n<br><br>If the positive sequence impedance is (1 + \ud835\udc57 10) $$\\Omega $$, and the zero\nsequence is (4 + \ud835\udc57 31) $$\\Omega $$, then the imaginary part of Z<sub>m</sub> (in $$\\Omega $$) is ______(up to 2 decimal\nplaces).",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "7 to 7",
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "OIizhQgoEjdVcGraFrjf76htyjzol6c10",
+                    "updated_time": null,
+                    "permalink": "the-series-impedance-matrix-of-a-short-three-phase-transmiss-gate-ee-power-system-analysis-symmetrical-components-and-symmetrical-and-unsymmetrical-faults-tmxsfcx6i3amw3o3",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ee",
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "chapter": "symmetrical-components-and-symmetrical-and-unsymmetrical-faults",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The positive, negative and zero sequence impedances of a 125 MVA, three-phase, 15.5 kV,\nstar-grounded, 50 Hz generator are \ud835\udc570.1 pu, j0.05 pu and j0.01 pu respectively on the\nmachine rating base. The machine is unloaded and working at the rated terminal voltage. If\nthe grounding impedance of the generator is j0.01 pu, then the magnitude of fault current\nfor a b-phase to ground fault (in kA) is __________ (up to 2 decimal places).\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "73 to 74",
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "mqHjdH3uwOTp1Szc12jf76htyjzol8szf",
+                    "updated_time": null,
+                    "permalink": "the-positive-negative-and-zero-sequence-impedances-of-a-125-gate-ee-power-system-analysis-symmetrical-components-and-symmetrical-and-unsymmetrical-faults-fiazpcgyzl2q8moi",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ee",
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "chapter": "load-flow-studies",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "marks": 2,
+                    "negMarks": 0.67,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The per-unit power output of a salient-pole generator which is connected to an infinite bus,\nis given by the expression, P = 1.4 sin $$\\delta $$ + 0.15 sin 2$$\\delta $$, where $$\\delta $$ is the load angle. Newton-Raphson method is used to calculate the value of $$\\delta $$ for P = 0.8 pu. If the initial guess is\n$$30^\\circ $$, then its value (in degree) at the end of the first iteration is\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$15^\\circ $$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$28.48^\\circ $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$31.20^\\circ $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$28.74^\\circ $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "Bn4oAs9zQa1UjrqbVEjf76htyjzom3xc9",
+                    "updated_time": null,
+                    "permalink": "the-per-unit-power-output-of-a-salient-pole-generator-which-gate-ee-power-system-analysis-load-flow-studies-4deygywttqfflvxa",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ee",
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "chapter": "power-system-stability",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "marks": 1,
+                    "negMarks": 0.33,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a lossy transmission line with\nV<sub>1</sub>\nand\nV<sub>2</sub>\nas the sending and receiving end\nvoltages, respectively.\nZ\nand\nX\nare the series impedance and reactance of the line,\nrespectively. The steady-state stability limit for the transmission line will be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "greater than $$\\left| {{{{V_1}{V_2}} \\over X}} \\right|$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "less than $$\\left| {{{{V_1}{V_2}} \\over X}} \\right|$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "equal to $$\\left| {{{{V_1}{V_2}} \\over X}} \\right|$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "equal to $$\\left| {{{{V_1}{V_2}} \\over Z}} \\right|$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "ou50CRJhUBUHw84RR3jf76htyjzols817",
+                    "updated_time": null,
+                    "permalink": "consider-a-lossy-transmission-line-with-vsub1sub-and-v-gate-ee-power-system-analysis-power-system-stability-6snkchawcg57osy2",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "exam": "gate-ee",
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "chapter": "load-flow-studies",
+                    "year": 2018,
+                    "paperTitle": "GATE EE 2018",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "languages": [
+                        "en"
+                    ],
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 1000 $$ \\times $$ 1000 bus admittance matrix for an electric power system has 8000 non-zero\nelements. The minimum number of branches (transmission lines and transformers) in this\nsystem are _____ (up to 2 decimal places).\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3500 to 3500",
+                            "explanation": null
+                        }
+                    },
+                    "question_id": "U5nxfRV5RWvaqVeb05jf76htyjzolw0m5",
+                    "updated_time": null,
+                    "permalink": "a-1000--times--1000-bus-admittance-matrix-for-an-electr-gate-ee-power-system-analysis-load-flow-studies-rqpx4w13rijqvzfh",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2018",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2018"
+                }
+            ],
+            "title": "Power System Analysis"
+        }
+    ]
+}

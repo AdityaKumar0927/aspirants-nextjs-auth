@@ -1,0 +1,2119 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Analog Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "V9Q9qWbaU7H6dKBA",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Find the output voltage, V<sub>0</sub> in the following circuit assuming that the Op-Amps are ideal.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/a6ba44293b122c3fa0b10d3c21d152175a35cc0674491b643e0f880d0c4cb78c.jpg\" loading=\"lazy\" alt=\"GATE ECE 1993 Analog Circuits - Operational Amplifier Question 12 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "V<sub>0</sub> = 6 V",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "find-the-output-voltage-v0-in-the-following-circuit-assuming-gate-ece-1993-marks-5-v9q9qwbau7h6dkba.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2d9b8e8bdc0",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bipolar-junction-transistor",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The bandwidth of an n-stage tuned amplifier, with each stage having a band\nwidth of B, is given by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "B/n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\mathrm B/\\sqrt{\\mathrm n}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\mathrm B\\sqrt{2^\\frac1{\\mathrm n}-1}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\mathrm B/\\sqrt{2^\\frac1{\\mathrm n}-1}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-bandwidth-of-an-n-stage-tuned-amplifier-with-each-stage-gate-ece-1993-marks-1-5a2d9b8e8bdc0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2d9d30d5f12",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bipolar-junction-transistor",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the amplifier circuit of figure, the transistor has a $$\\mathrm\\beta$$ of 800. The mid-band voltage\ngain $$V_0/V_1$$ of the circuit will be\n<img alt=\"GATE ECE 1993 Analog Circuits - Bipolar Junction Transistor Question 70 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/dd6cb1fb2360dfc59a17e1370c2a4c3a222d8d8f0b784ebb86c6bf3ca66c2c79.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "&lt; 1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\approx$$ 1"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "800"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-amplifier-circuit-of-figure-the-transistor-has-a-mat-gate-ece-1993-marks-1-5a2d9d30d5f12.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RKNTHi7O6BFkU7GK",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "frequency-response",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a multi-stage RC-Coupled Amplifier the coupling capacitor.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "limits the low frequency response."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "limits the high frequency response.  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "does not affect the frequency response. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "blocks the d.c. components without effecting the frequency response. "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-multi-stage-rc-coupled-amplifier-the-coupling-capacitor-gate-ece-1993-marks-1-rknthi7o6bfku7gk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pbMlNFyojmIH61pl",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "feedback-amplifier",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Negative feedback in Amplifiers.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "improves the signal to noise ratio at the i/p."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "improves the signal to noise ratio at the o/p."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "does not effect the signal to noise ratio at the o/p."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Reduces distortion"
+                                }
+                            ],
+                            "correct_options": [
+                                "B",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "negative-feedback-in-amplifiers-gate-ece-1993-marks-1-pbmlnfyojmih61pl.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SE6Jp8fIUD6c8SRr",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "power-amplifier",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a transistor push-pull Amplifier",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "there is no d.c present in the o/p."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "there is no distortion  in the o/p."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "there is no even harmonics in the o/p."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "there is no odd harmonics in the o/p."
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-transistor-push-pull-amplifier-gate-ece-1993-marks-1-se6jp8fiud6c8srr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QtozvscnUckaHH9I",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the ideal Op-Amp circuit of fig. Determine the output voltage V<sub>0</sub>\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/f7fbe1f3017b2a20947a97d8e3b708d4498e843a06e4f11756626962e229758f.jpg\" loading=\"lazy\" alt=\"GATE ECE 1993 Analog Circuits - Operational Amplifier Question 59 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.02 V",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-ideal-op-amp-circuit-of-fig-determine-the-output-vol-gate-ece-1993-marks-2-qtozvscnuckahh9i.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                }
+            ],
+            "title": "Analog Circuits"
+        },
+        {
+            "_id": "Communications",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a10a3a7bc0c8",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analog-communication-systems",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following demodulator(s) can be used for demodulating the signal\n$$x(t)\\;=\\;5\\left(1+2\\;\\cos200\\mathrm{\u03c0t}\\right)\\cos\\;20000\\;\\mathrm{\u03c0t}$$ .",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Envelope demodulator"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "square law demodulator"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "synchronous demodulator"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-demodulators-can-be-used-for-demodula-gate-ece-1993-marks-2-5a10a3a7bc0c8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a10a58d668c1",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analog-communication-systems",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A superheterodyne radio receiver with an intermediate frequency of 455 KHz is\ntuned to a station operating at 1200 KHz. The associated image frequency is\n______ KHz.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2110",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-a-superheterodyne-radio-receiver-with-an-intermediate-frequ-gate-ece-1993-marks-2-5a10a58d668c1.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                }
+            ],
+            "title": "Communications"
+        },
+        {
+            "_id": "Control Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0d70ad6b50a",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stability",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$s^3+\\;3s^2\\;+\\;4s\\;+A\\;=\\;0$$ ,then all the roots of this equation are in the left half plane\nprovided that ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "A &gt; 12"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "-3 &lt; A &lt; 4"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0 &lt; A &lt; 12"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "5 &lt; A &lt; 12"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-s33s24sa0-then-all-the-roots-of-this-equation-are-in-the-gate-ece-1993-marks-2-5a0d70ad6b50a.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                }
+            ],
+            "title": "Control Systems"
+        },
+        {
+            "_id": "Digital Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "E5HO35KsmzMlOJaZ",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logic-gates",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The truth table for the output Y in terms of three inputs A, B and C are given in\ntable. Draw a logic circuit realization using only NOR gates. \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/34a214a096d971bc39dd133a9ea62e000567b722dad5f2cf54f6ac8e959fc78e.jpg\" loading=\"lazy\" alt=\"GATE ECE 1993 Digital Circuits - Logic Gates Question 7 English\"> \n ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$Y = \\left( {\\overline A  + \\overline C } \\right)\\left( {\\overline A  + \\overline B } \\right)\\left( {\\overline B  + \\overline C } \\right)$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-truth-table-for-the-output-y-in-terms-of-three-inputs-a-gate-ece-1993-marks-5-e5ho35ksmzmlojaz.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YabEEfvEYob3c8SL",
+                    "exam": "gate-ece",
+                    "marks": 10,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinational-circuits",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Signals A,B,C,D and $$\\overline D $$ are available. Using a single 8 - to - 1 multiplexer and no other gate, implement the Boolean function.\n<br><br>$$f(A,B,C,D) = B.C + A.B.\\bar D + \\bar A.\\bar C.\\bar D$$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it. ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "signals-abcd-and-overline-d-are-available-using-a-single-8-t-gate-ece-1993-marks-10-yabeefveyob3c8sl.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "t7lx8jCOcg6NpvJh",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A pulse train with a frequency of 1 MHz is counted using a modulo-1024 ripple-counter built with J-K flip flops. For proper operation of the counter, the maximum permissible propagation delay per flip flop stage is ______ n sec.  ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "100",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-pulse-train-with-a-frequency-of-1-mhz-is-counted-using-a-m-gate-ece-1993-marks-1-t7lx8jcocg6npvjh.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1038cfc8227",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "number-system-and-code-convertions",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "2\u2019s complement representation of a 16-bit number (one sign bit and 15\nmagnitude bits) is FFFI. Its magnitude in decimal representation is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$32, 767$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$65,535$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "2s-complement-representation-of-a-16-bit-number-one-sign-bit-gate-ece-1993-marks-1-5a1038cfc8227.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lISSJDNnygveSOvJ",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logic-gates",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Boolean expression for the output of XNOR (equivalence) logic gate with inputs A and B is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$A\\overline B  + \\overline A B$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\overline A \\,\\overline B  + AB$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$(\\overline A  + B)(A + \\overline B )$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$(\\overline A \\, + \\overline B )(A + B)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B",
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "boolean-expression-for-the-output-of-xnor-equivalence-logic-gate-ece-1993-marks-1-lissjdnnygvesovj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "w88phGjiaAEaRuzu",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logic-gates",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the logic circuit shown in Figure, the output is equal to\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/011b69401f14e4c5c6bdf7cb9928b7eb4f7f420d37c7aea62c2de3de2a23392f.jpg\" loading=\"lazy\" alt=\"GATE ECE 1993 Digital Circuits - Logic Gates Question 35 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\overline A \\,.\\overline B .\\overline C $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\overline A \\, + \\overline B  + \\overline C $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\overline {AB}  + \\overline {BC}  + \\overline A  + \\overline C $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\overline {AB}  + \\overline {BC} $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-logic-circuit-shown-in-figure-the-output-is-equal-to-gate-ece-1993-marks-1-w88phgjiaaearuzu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                }
+            ],
+            "title": "Digital Circuits"
+        },
+        {
+            "_id": "Electromagnetics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Nq3Z7HF7bwaiZmOB",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "uniform-plane-waves",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A material is described by the following electrical parameters at a frequency of $$10$$ GHz is $$\\sigma  = {10^6}$$ mho/m, $$\\mu  = {\\mu _0},$$ and $$ \\in /{ \\in _0} = 10.$$ The material at this frequency is considered to be $$\\left( {{ \\in _0} = {1 \\over {36\\,\\,\\pi }} \\times {{10}^{ - 9}}\\,\\,F/m} \\right)$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a good conductor "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a good dielectric"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "neither a good conductor nor a good dielectric "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a good magnetic material "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-material-is-described-by-the-following-electrical-paramete-gate-ece-1993-marks-2-nq3z7hf7bwaizmob.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yfTM5qSbNOLxcoqV",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transmission-lines",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a transmission line of characteristic impedance 50 ohm. Let it be terminated at one end by ( + j50) ohm. The VSWR produced by it in the transmission line will be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "+ 1"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\infty $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "+ j"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-transmission-line-of-characteristic-impedance-50-gate-ece-1993-marks-2-yftm5qsbnolxcoqv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fC6nvEDFgPldt125",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "uniform-plane-waves",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A plane wave is incident normally on a perfect conductor as shown in Fig. Here $$E_x^i,\\,\\,H_y^i$$ and $$\\overrightarrow P {}^i$$ are electric field, magnetic field and Poynting vector respectively, for the incident wave. The reflected wave should have\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/vbLtBhl1nWO4hP5Lv/KBdZ6zudRBr3PosErwghqwYEK2xFv/mKdnxXQUEC8XowVdXaMbQ9/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 1993 Electromagnetics - Uniform Plane Waves Question 52 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$E_x^r =  - E_x^i$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$H_y^r =  - H_y^i$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\overrightarrow P {}^r =  - \\overrightarrow P {}^i$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$E_x^r =   E_x^i$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-plane-wave-is-incident-normally-on-a-perfect-conductor-as-gate-ece-1993-marks-2-fc6nvedfgpldt125.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TBb1ZKVoXdWmN05A",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "uniform-plane-waves",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the following descriptions with each of the diagrams given in Fig. Fields are near the interface, but on opposite sides of the boundary. Vectors are drawn to scale.\n<p>(a) Medium $$1$$ and medium $$2$$ are dielectrics with $${\\varepsilon _1} &gt; {\\varepsilon _2}$$\n<br>(b) Medium $$1$$ and medium $$2$$ are dielectrics with $${\\varepsilon _1} &lt; {\\varepsilon _2}$$\n<br>(c) Medium $$2$$ is a perfect conductor\n<br>(d) Impossible\n<br>(e) Medium $$1$$ is a perfect conduct</p>\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/JjCMOERn1iMIQreoH/iQmXAau7XovY9nYoOfBdb1IfhMSeR/2rieE3I9yyZAIwcxIp2Ug6/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 1993 Electromagnetics - Uniform Plane Waves Question 17 English 1\">\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/exYhOCfzVOEOV2EGr/pYzWnJAuq84fLMYERSgYxHMdMUI8a/4BGZ6MZEgfDv9kWr7t3yvK/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 1993 Electromagnetics - Uniform Plane Waves Question 17 English 2\"> \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/cLDIQbivLffZGzZ4L/BTZJme84kGgh9fYstRxJaWDFR6fSo/d5fAPcuMaTllpygQrgE6SO/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 1993 Electromagnetics - Uniform Plane Waves Question 17 English 3\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(A - iii), (B - ii), (C - i), (d - v) and (E - iv).",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-following-descriptions-with-each-of-the-diagrams-g-gate-ece-1993-marks-5-tbb1zkvoxdwmn05a.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DzZpEVxMWZc4Kyo0",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "antennas",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider an array of two non-directional radiators with spacing $$d\\,\\, = \\,\\,0.5\\,\\,\\lambda $$. Determine the directions of maximum radiation when the radiators are excited as shown in Fig.. Calculate the phase shift required for turning the direction of the maximum radiation  by $${90^ \\circ }$$ keeping the separation d unchanged. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/BVVc0YqPeoeWrTQoC/1NVMUOePOliatGo58LlO6hcXdEqyj/LqGZkshmVPNfeVPAmB66gX/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 1993 Electromagnetics - Antennas Question 22 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Directions of maximum radiation are  $$ =  \\pm {90^ \\circ }$$  , Phase shift $$ = {180^ \\circ }$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-an-array-of-two-non-directional-radiators-with-spac-gate-ece-1993-marks-5-dzzpevxmwzc4kyo0.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QDQzY3kkzAWmvEMZ",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "waveguides",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An optical fiber consists of a cylindrical dielectric rod of refractive index $$n_1$$, surrounded by another dielectric of refractive index $$n_2$$ where $$n_2$$ &lt; $$n_1$$ as shown in the following Fig. If a ray is incident from air at angle i to the axis, then it undergoes total internal reflection at the interface AB if \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/K420ylipPSKXV0xYc/nbsRmN8J0I7ppYYRPKuXg3SWaOVAl/PfS2NXHRiuOcgygdOlbfgp/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 1993 Electromagnetics - Waveguides Question 13 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$i\\,\\, \\ge \\,\\,{\\sin ^{ - 1}}\\,\\sqrt {{n_1}^2 - {n_2}^2} $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$i\\,\\, &lt; \\,\\,{\\sin ^{ - 1}}\\,\\sqrt {{n_1} - {n_2}} $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$i\\,\\, \\le \\,\\,{\\sin ^{ - 1}}\\,\\sqrt {{n_1}^2 - {n_2}^2} $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$i\\,\\, = \\,\\,{\\sin ^{ - 1}}\\,\\sqrt {{n_1} - {n_2}} $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-optical-fiber-consists-of-a-cylindrical-dielectric-rod-of-gate-ece-1993-marks-2-qdqzy3kkzawmvemz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a12a87e85384",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "maxwell-equations",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Given,$$\\overrightarrow V=x\\cos^2y\\;\\;\\widehat{\\mathrm i}\\;+\\;\\mathrm x^2\\mathrm e^\\mathrm z\\;\\widehat{\\mathrm j}\\;+\\;\\mathrm{zsin}^2\\mathrm y\\;\\widehat{\\mathrm k}$$ and S the surface of a unit cube with one\ncorner at the origin and edges parallel to the coordinate axes, the value of the\nintegral is</p>\n<img src=\"https://gateclass.cdn.examgoal.net/examside/questions/72d5f47faa6e1fed96f1488777f322da7d53b21217f350376b5fc45ad9efde84.jpg\" style=\"text-align:center;height:auto;max-width:100%;\" loading=\"lazy\" alt=\"GATE ECE 1993 Electromagnetics - Maxwell Equations Question 32 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(1/2)sin(2)",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "givenoverrightarrow-vxcos2ywidehatmathrm-imathrm-x2mathrm-em-gate-ece-1993-marks-2-5a12a87e85384.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                }
+            ],
+            "title": "Electromagnetics"
+        },
+        {
+            "_id": "Electronic Devices and Vlsi",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a182fd975b73",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pn-junction",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The built-in potential (Diffusion Potential) in a p-n junction",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "is equal to the difference in the Fermi level of the two sides, expressed in\nvolts. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "increases with the increase in the doping levels of the two sides. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "increases with the increase in temperature."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "is equal to the average of the Fermi levels of the two sides."
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-built-in-potential-diffusion-potential-in-a-p-n-junction-gate-ece-1993-marks-2-5a182fd975b73.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                }
+            ],
+            "title": "Electronic Devices and Vlsi"
+        },
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DtGHqPfKF8GZaicW",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the linear velocity $${\\overrightarrow V }$$ is given by $$\\overrightarrow V  = {x^2}y\\overrightarrow i  + xyz\\overrightarrow j  - y{z^2}\\overrightarrow k $$  then the angular velocity $$\\overrightarrow W $$ at the point $$\\left( {1,1, - 1} \\right)$$ is _______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$ - \\left( {\\widehat i + \\widehat k} \\right)$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-linear-velocity-overrightarrow-v-is-given-by-overrigh-gate-ece-1993-marks-1-dtghqpfkf8gzaicw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VpObpbqARVRv0RSq",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given the differential equation $${y^1} = x - y$$ with initial condition $$y(0)=0.$$ The value of $$y(0.1)$$ calculated numerically upto the third place of decimal by the $${2^{nd}}$$ order Runge-Kutta method with step size $$h=0.1$$ is ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${1 \\over {200}}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-the-differential-equation-y1-x-y-with-initial-conditio-gate-ece-1993-marks-1-vpobpbqarvrv0rsq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Microprocessors",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3hekfx1M9WioxxMu",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "microprocessors",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "instruction-set-and-programming-with-8085",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a microprocessor, the register which holds the address of the next instruction to be fetched is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Accumulator"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Program Counter"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Stack Pointer"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Instruction Register"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-microprocessor-the-register-which-holds-the-address-of-gate-ece-1993-marks-1-3hekfx1m9wioxxmu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a10405c85180",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "microprocessors",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pin-details-of-8085-and-interfacing-with-8085",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a microcomputer, wait states are used to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "make the processor wait during a DMA operation"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "make the processor wait during an interrupt processing"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "make the processor wait during a power shutdown"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "interface slow peripherals to the processor"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-microcomputer-wait-states-are-used-to-gate-ece-1993-marks-1-5a10405c85180.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                }
+            ],
+            "title": "Microprocessors"
+        },
+        {
+            "_id": "Network Theory",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xpdscFiqw06TuFzL",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An infinite grid is built up by connecting resistors in the manner indicated in\nfigure, where each branch represents one ohm resistor. Calculate the effective\nresistance between the nodes A and B.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/NSbYOcznOn31XCXbX/6xuJKBzgVlHQytB1w85Gtp9ce8DSq/IteaxEetfTF1amgXsTWEwf/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 1993 Network Theory - Network Elements Question 7 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2/3 \u03a9",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-infinite-grid-is-built-up-by-connecting-resistors-in-the-gate-ece-1993-marks-5-xpdscfiqw06tufzl.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qUSh4onatKnseOHX",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transient-response",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the following circuit the capacitance varies as C = KQ, where K is a constant\nequal to 0.5 Farads/Coulomb and Q, the charge on the capacitor in Coulombs.\nDetermine the current through the circuit and sketch the voltage waveform\nacross the capacitor (V<sub>C</sub>) for a step input V<sub>i</sub> as shown in figure.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/HfNEAN61dgwnBktuX/SFD0qhZXAH0nT7qr7FWomPvWUDO8B/p2Lk8OUDkli62QlOxh5SYu/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 1993 Network Theory - Transient Response Question 12 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Question is incomplete",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-following-circuit-the-capacitance-varies-as-c-kq-wher-gate-ece-1993-marks-5-qush4onatknseohx.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Ktf7Tyl7O8oK17M3",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-response",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In figure, A<sub>1</sub>, A<sub>2</sub> and A<sub>3</sub> are ideal ammeters. If A<sub>1</sub> reads 5 A, A<sub>2</sub>, A<sub>2</sub> reads 12 A, then A<sub>3</sub> should read \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/C8XhSoyF9mBJwYMc9/c2fs17hp6XAoCr3gHOeGl4qz8rGH3/bfP3TAO4om1aZDKHjjxXT5/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 1993 Network Theory - Sinusoidal Steady State Response Question 5 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "7A "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "12A "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "13A "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "17A"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-figure-a1-a2-and-a3-are-ideal-ammeters-if-a1-reads-5-a-a2-gate-ece-1993-marks-2-ktf7tyl7o8ok17m3.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a021ec46073c",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>A network contains linear resistors and ideal voltage sources. If values of all the\nresistors are doubled, then the voltage across each resistor is </p>\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "halved "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "doubled \n"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "increased by four times "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "not changed"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "Initially : <br/><br/>Voltage across each resistor,<br/><br/>$${V_R} = V \\times {R \\over {3R}} = {V \\over 3}$$<br/><br/>Finally : R' = 2R<br/><br/>Now voltage across each resistor<br/><br/>$$V{'_R} = V \\times {{R'} \\over {3R'}}$$<br/><br/>$$V{'_R} = V \\times {{2R} \\over {6R}}$$<br/><br/>$$V{'_R} = V \\times {R \\over {3R}} = {V \\over 3}$$<br/><br/>If resistors are doubled then current get halved by same factor and voltage across each resistor remains the same."
+                        }
+                    },
+                    "permalink": "a-network-contains-linear-resistors-and-ideal-voltage-source-gate-ece-1993-marks-2-5a021ec46073c.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1993",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a021f75b4323",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p> The two electrical sub-network N<sub>1</sub> and N<sub>2</sub>  are connected through three resistors\nas shown in figure. The voltage across 5 \u03a9 resistor and 1 \u03a9 resistor are\ngiven to be 10 V and 5 V, respectively. Then voltage across 15 \u03a9 resistor is</p>\n<img alt=\"GATE ECE 1993 Network Theory - Network Elements Question 23 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/8f8e03d7c9654bb1f8e760a776842719e64dbfd9ac35b08f3bc50192ac729838.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "-105 V"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "+105 V"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "-15 V"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "+15 V"
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "Current through 5 $$\\Omega $$ resistor,\n<br/><br/>$${i_2} = {{10} \\over 5} = 2A$$, \n<br/><br/>Current through 1 $$\\Omega $$ resistor,\n\n<br/><br/>$${i_3} = {5 \\over 1} = 5A$$\n\n<br/><br/>Applying KCL at N<sub>1</sub>,<br/><br/>$${i_1} + {i_2} + {i_3} = 0$$<br/><br/>$${i_1} =  - ({i_2} + {i_3}) =  - 7A$$<br/><br/>Voltage across 15$$\\Omega$$ resistor is,<br/><br/>$${V_{15\\Omega }} = {i_1} \\times 15 = 15 \\times ( - 7) =  - 105\\,V$$"
+                        }
+                    },
+                    "permalink": "-the-two-electrical-sub-network-n1-and-n2-are-connected-thro-gate-ece-1993-marks-2-5a021f75b4323.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1993",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a043bb599def",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-theorems",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>If the secondary winding of the ideal transformer shown in the circuit of the\nfigure has 40 turns, the number of turns in the primary winding for maximum\npower transfer to the 2 \u03a9 resistor will be</p>\n<img alt=\"GATE ECE 1993 Network Theory - Network Theorems Question 51 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/d0cb11f4de8e2413741b1209a884a7eba28602534e8b4cc04a066615edfc5e08.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "20"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "40"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "80"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "160"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-secondary-winding-of-the-ideal-transformer-shown-in-t-gate-ece-1993-marks-1-5a043bb599def.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a08ceb23d40f",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-response",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the series circuit shown in figure, for series resonance, the value of the\ncoupling coefficient K will be\n<img alt=\"GATE ECE 1993 Network Theory - Sinusoidal Steady State Response Question 68 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/1264f21b60b9f1d9acf693e74e7b8127b82d70b359216b3cad64679c8331c14c.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0.25"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.5"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0.999"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1.0"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-series-circuit-shown-in-figure-for-series-resonance-t-gate-ece-1993-marks-1-5a08ceb23d40f.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0b3429bca1d",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-theorems",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit of figure, when switch S1\n is closed, the ideal ammeter M<sub>1</sub>\nreads 5A.\nWhat will be ideal voltmeter M<sub>2</sub>\n read when S<sub>1</sub>\nis kept open? (The value of E is not\nspecified).\n<img alt=\"GATE ECE 1993 Network Theory - Network Theorems Question 6 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/3d224674528253dc27097c39a1e0639b4cecfd995da8f2ddd94ce30a36f2f21f.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "50",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-of-figure-when-switch-s1-is-closed-the-ideal-gate-ece-1993-marks-2-5a0b3429bca1d.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "59fca207de4bf",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>A dc circuit shown in figure has a voltage source V, a current source I and several\nresistors. A particular resistor R dissipates a power of 4 Watts when V alone is\nactive. The same resistor R dissipates a power of 9 Watts when I alone is active.\nThe power dissipated by R when both sources are active will be </p>\n<img src=\"https://gateclass.cdn.examgoal.net/examside/questions/6edd4028716b5b8212dc195be3d335bdd173d1f1ac5e2e92693e37f5af571d92.jpg\" style=\"text-align:center;height:auto;max-width:100%;\" loading=\"lazy\" alt=\"GATE ECE 1993 Network Theory - Network Elements Question 49 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1 W"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "5 W"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "13 W"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "25 W"
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "According to superposition theorem,<br/><br/>I = I<sub>1</sub> + I<sub>2</sub> (when I<sub>1</sub> and I<sub>2</sub> are in same direction)<br/><br/>I = I<sub>1</sub> $$-$$ I<sub>2</sub> (when I<sub>1</sub> and I<sub>2</sub> are in opposite direction)<br/><br/>Total power is given by,<br/><br/>P = (I<sub>1</sub> $$\\pm$$ I<sub>2</sub>)<sup>2</sup> R = I$$_1^2$$ R + I$$_2^2$$ R $$\\pm$$ 2I<sub>1</sub>I<sub>2</sub> R<br/><br/>P = P<sub>1</sub> + P<sub>2</sub> $$\\pm$$ $$\\sqrt {{P_1}{P_2}} $$<br/><br/>P = 4 + 9 $$\\pm$$ 12 = 25 W or 1 W<br/><br/>Hence, the correct options  are (A) and (D)."
+                        }
+                    },
+                    "permalink": "a-dc-circuit-shown-in-figure-has-a-voltage-source-v-a-curren-gate-ece-1993-marks-1-59fca207de4bf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-1993",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                }
+            ],
+            "title": "Network Theory"
+        },
+        {
+            "_id": "Signals and Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ShC10HzzN6IH4xdw",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-signal-laplace-transform",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If        $$F\\left( s \\right) = L\\left[ {f\\left( t \\right)} \\right] = {K \\over {\\left( {s + 1} \\right)\\,\\left( {{s^2} + 4} \\right)}}$$     then $$\\matrix{\n   {Lim\\,f\\,\\left( t \\right)}  \\cr \n   {t \\to \\infty }  \\cr \n\n } $$ is given by ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "K/4 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "infinite "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "undefined "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-fleft-s-right-lleft-fleft-t-right-right-k-over-left-s-1-r-gate-ece-1993-marks-2-shc10hzzn6ih4xdw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zA2g9amYKTL0RcQZ",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-signal-laplace-transform",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Laplace transform of the periodioc function f(t) describe4d by the curve below, i.e.,\n$$f\\left( t \\right) = \\left\\{ {\\matrix{\n   {\\sin \\,t\\,\\,\\,if\\,\\left( {2n - 1} \\right)\\pi  \\le t \\le 2n\\pi }  \\cr \n   {0\\,\\,\\,\\,\\,\\,\\,\\,otherwise}  \\cr \n\n } } \\right.$$ \n<br>is _________. (fill in the blank), n is an integer.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/2d9e499ad99d7b22200040f4711fac189402724ad74abce429b38bb8c93f48d8.jpg\" loading=\"lazy\" alt=\"GATE ECE 1993 Signals and Systems - Continuous Time Signal Laplace Transform Question 20 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$F\\left( s \\right) =  - {{{e^{ - \\Pi S}}} \\over {\\left( {{s^2} + 1} \\right)\\left( {1 - {e^{ - \\Pi S}}} \\right)}}$$  ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-laplace-transform-of-the-periodioc-function-ft-describe4-gate-ece-1993-marks-2-za2g9amyktl0rcqz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ywJwZt1BItZ5ionq",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-linear-invariant-system",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following interconnection of the three LTI systems (Fig.1). $${h_1}(t)$$ , $${h_2}(t)$$ and $${h_3}(t)$$ are the impulse responses of these three LTI systems with $${H_1}(\\omega )$$, $${H_2}(\\omega )$$, and $${H_3}(\\omega )$$ as their respective Fourier transforms. Given that $${h_1}\\,(t)\\, = \\,{d \\over {dt}}\\left[ {{{\\sin ({\\omega _0}t)} \\over {2\\,\\pi \\,t}}} \\right],{H_2}(\\omega ) = \\exp \\left( {{{ - j2\\pi \\omega } \\over {{\\omega _0}}}} \\right)$$ \n<br> $${h_3}\\,(t)\\, = u(t)\\,and\\,x(t)\\, = \\,\\sin \\,2\\,{\\omega _0}t\\, + \\,\\cos \\,({\\omega _0}t/2),$$ find the output y(t).\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/2a7c248a9270ec5baea08a37c0ba80955516a3461c75adb8560421e9f26715b2.jpg\" loading=\"lazy\" alt=\"GATE ECE 1993 Signals and Systems - Continuous Time Linear Invariant System Question 4 English\">\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "y(t) =$$\\cos \\left( {{{{w_0}} \\over 2}} \\right)t$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-interconnection-of-the-three-lti-syst-gate-ece-1993-marks-5-ywjwzt1bitz5ionq.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0FLLNqW4rah1kByw",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transmission-of-signal-through-continuous-time-lti-systems",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Sketch the waveform (with properly marked axes) at the output of a matched filter matched for a signal s(t), of duration T, given by $$s(t) = \\left\\{ {\\matrix{\n   {A\\,\\,\\,\\,for} &amp; {0 \\le t &lt; {2 \\over 3}T}  \\cr \n   {0\\,\\,\\,\\,\\,\\,for} &amp; {{2 \\over 3}T \\le t &lt; T}  \\cr \n\n } } \\right.$$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "sketch-the-waveform-with-properly-marked-axes-at-the-output-gate-ece-1993-marks-2-0fllnqw4rah1kbyw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uLmEXHQkdx1F9Zne",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transmission-of-signal-through-continuous-time-lti-systems",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Obtain an expression for the signal  in figure, for the signal $${v_3}(t)$$ in Fig for  $${v_1}(t) = 100\\cos (2000\\pi t) + 4\\sin (200\\pi t)$$. Assume that $${v_2}(t)$$=$${v_1}(t)$$+0.1 $$v_1^2(t)$$ and that the BPF is an ideal unity gain filter with pass band from 800 Hz to 1200 Hz.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/7468c3db1db217f434537af60f7725d80fdf4d690a24986a1853be8d233e03e9.jpg\" loading=\"lazy\" alt=\"GATE ECE 1993 Signals and Systems - Transmission of Signal Through Continuous Time LTI Systems Question 9 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$\\,{v_3}(t) = 10\\cos \\,(2000\\pi t) + 8\\,\\cos \\,(2000\\,\\pi t)\\sin \\,(200\\pi t)$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "obtain-an-expression-for-the-signal-in-figure-for-the-signal-gate-ece-1993-marks-5-ulmexhqkdx1f9zne.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Qm2plkK3pqoJiQDy",
+                    "exam": "gate-ece",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sampling",
+                    "year": 1993,
+                    "paperTitle": "GATE ECE 1993",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A low pass signal m(t) band-limited to B Hz is sampled by a periodic rectangular pulse train, $${p_\\tau }(t)$$ of period $${T_s}$$ = 1/(3B) sec. Assuming natural sampling and that the pulse amplitude and pulse width are A volts and 1/(30B) sec, respectively, obtain an expression for the frequency spectrum of the sampled signal $${m_s}$$(t)",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${\\mkern 1mu} {\\mkern 1mu} {M_s}(f) = 0.1{\\mkern 1mu} A\\sum\\limits_{n =  - \\infty }^\\infty  {\\sin c(0.1n)M(f - n{f_s})} $$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-low-pass-signal-mt-band-limited-to-b-hz-is-sampled-by-a-pe-gate-ece-1993-marks-5-qm2plkk3pqojiqdy.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ece-1993",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-1993"
+                }
+            ],
+            "title": "Signals and Systems"
+        }
+    ]
+}

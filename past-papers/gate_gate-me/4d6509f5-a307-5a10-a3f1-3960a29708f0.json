@@ -1,0 +1,1453 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "K5wTVR8MjQXctZf7",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Laplace transform of $${\\left( {a + bt} \\right)^2}$$ where $$'a'$$ and $$'b'$$ are constants is given by:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\left( {a + bs} \\right)^2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1/{\\left( {a + bs} \\right)^2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {{a^2}/s} \\right) + \\left( {2ab/{s^2}} \\right) + \\left( {2{b^2}/{s^3}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {{a^2}/s} \\right) + \\left( {2ab/{s^2}} \\right) + \\left( {{b^2}/{s^3}} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "laplace-transform-of-left-a-bt-right2-where-a-and-b-are-cons-gate-me-1999-marks-1-k5wtvr8mjqxctzf7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oSwhCoZWVyhhM2Df",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The equation $$\\,\\,\\,{{{d^2}u} \\over {d{x^2}}} + \\left( {{x^2} + 4x} \\right){{dy} \\over {dx}} + y = {x^8} - 8\\,\\,{u \\over {{x^2}}} = 8.\\,\\,\\,$$  is a ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "partial differential equation "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "non-linear differential equation "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "non-homogeneous differential equation "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "ordinary differential equation"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-equation-d2u-over-dx2-left-x2-4x-rightdy-over-dx-y-x8-8u-gate-me-1999-marks-1-oswhcozwvyhhm2df.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "u59lgZgUUVxGsMgd",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Four arbitrary points $$\\,\\,\\,\\left( {{x_1},{y_1}} \\right),\\,\\,\\left( {{x_2},{y_2}} \\right),\\,\\,\\left( {{x_3},{y_3}} \\right),\\,\\,\\left( {{x_4},{y_4}} \\right),\\,\\,\\,\\,$$ are given in the $$xy$$ $$-$$ plane using the method of least squares. If regression of $$y$$ upon $$x$$ gives the fitted line $$y=ax+b;$$ and regression of $$x$$ upon $$y$$ gives the fitted line $$x=cy+d,$$ then ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "the two fitted lines must coincide"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the two fitted lines need not coincide "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "it is possible that $$ac=0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a must be $$1/c$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "four-arbitrary-points-left-x1y1-rightleft-x2y2-rightleft-x3y-gate-me-1999-marks-2-u59lgzguuvxgsmgd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sdYqYBR5VceKnVTf",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Value of the function $$\\mathop {Lim}\\limits_{x \\to a} \\,{\\left( {x - a} \\right)^{x - a}}$$ is _______.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\infty $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$a$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "value-of-the-function-mathop-limlimitsx-to-a-left-x-a-rightx-gate-me-1999-marks-1-sdyqybr5vceknvtf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Engineering Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "eRBTa4Qj7CQAoi7M",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "engineering-mechanics-static-and-dynamics",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A shown in Figure, a person A is standing at he centre of a rotating platform facing person B who is riding a bicycle, heading East. The relevant speeds and distances are shown in given figure  person, a bicycle, heading East. At the instant under consideration, what is the apparent velocity of B as seen by A? \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/hjpM8odYHH845Rq2C/lDAQmnLaDndDPBrS3nfFO3A2Gbncm/9u2sR8YToOp9IZmY8Bc8Qc/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1999 Engineering Mechanics - Engineering Mechanics Static and Dynamics Question 62 English\"> \n ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "3 m/s heading East "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "3 m/s heading West "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "8 m/s heading East "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "13 m/s heading East "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-shown-in-figure-a-person-a-is-standing-at-he-centre-of-a-r-gate-me-1999-marks-2-erbta4qj7cqaoi7m.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                }
+            ],
+            "title": "Engineering Mechanics"
+        },
+        {
+            "_id": "Fluid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sPBXh8F5T0JVLrPG",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-dynamics",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Water flows through a vertical contraction  from a pipe of diameter $$d$$ to another of diameter $$d/2$$ (see Figure). The flow velocity at the inlet to the contraction is $$2m/s$$ and pressure $$200$$ $$kN/{m^2}.$$  If the height of the contraction measures $$2m$$, then pressure at the exit of the contraction will be very nearly \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/PK5DcrcKgLNYqOr7B/Md57bZ8AnPc7jNLh1MVFV5ea8ZOmM/d4XnrZ1czaq2ORIcNcgrz4/image.svg\" loading=\"lazy\" alt=\"GATE ME 1999 Fluid Mechanics - Fluid Dynamics Question 19 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$168\\,\\,kN/{m^2}.$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$192\\,\\,kN/{m^2}.$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$150\\,\\,kN/{m^2}.$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$174\\,\\,kN/{m^2}.$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "water-flows-through-a-vertical-contraction-from-a-pipe-of-di-gate-me-1999-marks-2-spbxh8f5t0jvlrpg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YbPMqWEzS5EG5ZJs",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-properties",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Kinematic viscosity of air at $${20^0}C$$ is given to be $$1.6 \\times {10^{ - 5}}\\,\\,\\,{m^2}s.$$ Its kinematic viscosity at $${70^0}C$$ will be varying approximately : ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2.2 \\times {10^{ - 5}}\\,\\,{m^2}/s$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.6 \\times {10^{ - 5}}\\,\\,{m^2}s$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.2 \\times {10^{ - 5}}\\,\\,{m^2}s$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3.2 \\times {10^{ - 5}}\\,\\,{m^2}s$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "kinematic-viscosity-of-air-at-200c-is-given-to-be-16-times-1-gate-me-1999-marks-1-ybpmqwezs5eg5zjs.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0nLHtaXsivtUPikT",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-properties",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$'P'$$ is the gauge pressure within a spherical droplet, then gauge pressure within a bubble of the same fluid and of same size will be: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${P \\over 4}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${P \\over 2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2P$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-p-is-the-gauge-pressure-within-a-spherical-droplet-then-g-gate-me-1999-marks-1-0nlhtaxsivtupikt.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                }
+            ],
+            "title": "Fluid Mechanics"
+        },
+        {
+            "_id": "Heat Transfer",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wzkfcTLP1l2QuH2n",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "heat-exchangers",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two fluids, $$A$$ and $$B$$ exchange heat in a counter-current heat exchanger. Fluid $$A$$ enters at $${420^ \\circ }C$$ and has a mass flow rate of $$1$$ $$kg/s.$$ Fluid $$B$$ enters at $${20^ \\circ }C$$ and also has a mass flow rate of $$1$$ $$kg/s,$$ Effectiveness of heat exchanger is $$75\\% $$. Determine the heat transfer rate and exit temperature of fluid $$B.$$ (Specific heat of fluid $$A$$ is $$1$$ $$kJ/kg$$ $$K$$ and that of fluid $$B$$ is $$4$$ $$kJ/kgK$$).",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Heat transfer rate $$=300kW$$\n<br>Exit temperature $$=300$$ $$kW$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-fluids-a-and-b-exchange-heat-in-a-counter-current-heat-e-gate-me-1999-marks-5-wzkfctlp1l2quh2n.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BTeRZYVmDhtLs98t",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "conduction",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "It is proposed to coat a $$1mm$$ diameter wire with enamel paint $$\\left( {k\\,\\,\\,\\, = 0.1W/m} \\right.$$ - $$\\left. K \\right)$$ to increase heat transfer with air. If the air side heat transfer co-efficiency is $$100$$ $$W/{m^2}K,$$ the optimum thickness of enamel paint should be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.25$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.5$$ $$mm$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2$$ $$mm$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "it-is-proposed-to-coat-a-1mm-diameter-wire-with-enamel-paint-gate-me-1999-marks-2-bterzyvmdhtls98t.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                }
+            ],
+            "title": "Heat Transfer"
+        },
+        {
+            "_id": "Industrial Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bXwGltO9L4E3vDwD",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "queuing",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "At a production machine, parts arrive according to a Poisson process at the rate of $$0.35$$ parts per minute. Processing time for parts have exponential distribution with mean of $$2$$ minutes. What is the probability that a random part arrival finds that there are already $$8$$ parts in the system (in machine $$ + $$ in queue)?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.0247$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.0576$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.0173$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.082$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "at-a-production-machine-parts-arrive-according-to-a-poisson-1999-marks-2-bxwglto9l4e3vdwd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "l8tnTCu3yNgpHzb7",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "inventory-control",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In computing Wilson\u2019s economic lot size for an item, by mistake the demand rate estimate used was $$40\\% $$ higher than the tree demand rate. Due to this error in the lot size computation, the total cost of setups plus inventory holding per unit time, would rise above the true optimum by approximately ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.4\\% $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$6.3\\% $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$18.3\\% $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$8.7\\% $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-computing-wilsons-economic-lot-size-for-an-item-by-mi-1999-marks-2-l8tntcu3yngphzb7.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                }
+            ],
+            "title": "Industrial Engineering"
+        },
+        {
+            "_id": "Production Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vmoYcWThh6UOeNnp",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sheet-metal-forming-processes",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Identify the stress strain in the flange portion of a partially drawn cylindrical cup  when deep drawing without a blank holder",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Tensile in all three directions "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "No stress in the flange at all, because there is no blank - holder "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Tensile stress in one direction and compressive in the other direction "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Tensile  in two directions and compressive in third  direction "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "identify-the-stress-strain-in-the-flange-portion-of-a-partia-1999-marks-2-vmoycwthh6uoennp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QXdGvBFH2KgLmd0G",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In an orthogonal cutting experiment with a tool of rake angle $$7$$$$deg$$, the chip thickness was found to be $$2.5mm$$ when the uncut chip thickness was set to $$1mm,$$ find the shear angle $$\\phi $$ and find the friction angle $$\\beta $$ assuming that Merchants's formula holds good.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$\\eqalign{\n  &amp; \\phi  = {22.65^ \\circ }  \\cr \n  &amp; \\beta  = {51.7^ \\circ } \\cr} $$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-an-orthogonal-cutting-experiment-with-a-tool-of-rake-angl-gate-me-1999-marks-5-qxdgvbfh2kglmd0g.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gaePPt7C34hCix5E",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The lives of two tools $$A$$ &amp; $$B$$, governed by the equation $$V{T^{0.125}} = 2.5$$ and $$V{T^{0.25}} = 7$$ respectively in certain machining operation where $$V$$ is the cutting velocity in $$m/s$$ and $$T$$ is the tool life in sec. Find out the speed $$V$$ at which both the tools will have the same life. \n<p>Also calculate the corresponding tool life. If you have to machine at a cutting speed of $$1m/s$$, then which one of these tools will you choose in order to have less frequent tool changes? </p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$V=0.77$$ $$m/sec$$ \n<br>Tool $$A$$ life $$=1526$$ $$sec$$ \n<br>Tool $$B$$ life $$=2401$$ $$sec$$ \n<br>Tool $$B$$ will be chosen ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-lives-of-two-tools-a-b-governed-by-the-equation-vt0125-2-gate-me-1999-marks-5-gaeppt7c34hcix5e.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jL23FGQ2HJ3gRsHq",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the approximate $$\\% $$ change in the life, $$t,$$ of the tool with zero rake angle used in orthogonal cutting when its clearance angle, $$\\alpha ,$$ is changed from $$10$$ to $$7$$ deg?\n<p>(Hint: flank wear rate is proportional to $$\\cot \\,\\alpha $$)</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$30\\% $$ increase"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$30\\% $$ decrease"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$70\\% $$ increase"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$70\\% $$ decrease"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-the-approximate-change-in-the-life-t-of-the-tool-wit-gate-me-1999-marks-2-jl23fgq2hj3grshq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CYPGQpLqELHjQNQI",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 1.5,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding-process",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In butt welding operation on plates, the heat input necessary is given by \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/59NPLeC739I13ATLx/ac1bgMo7fpUVeTIfu4V4L4m8iGHlk/ajd7lgNdG5ZiEzMsInn1GY/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1999 Production Engineering - Welding Process Question 8 English\">\n<p>$$Q = 8\\,K\\,{T_c}\\,t\\,\\,\\,\\left[ {0.2 + {{Vb} \\over {4\\alpha }}} \\right]$$\n<br>Where $$K=$$ thermal conductivity, \n<br>$${T_c} = $$ temp increases from room temp up to $$MP,$$\n<br>$$t=$$ thickness of plate,\n<br>$$V=$$ welding speed, \n<br>$$b=$$ width of weld,\n<br>$$\\alpha  = thermal diffusivity </p>\n<p>Two alloy steel plates as shown in fig are to be welded using a power source rated at $$5$$ $$kVA$$ having a duty cycle of $$75\\% .$$ Using the given data, determine the maximum welding speed for the job given in $$mm/s$$</p>\n<p>Data : $$K = 45\\,W/{m^0}C,\\,\\,{T_c} = {1450^ \\circ }C,$$ and \n<br>$$\\alpha  = 1.2 \\times {10^{ - 5}}\\,\\,{m^2}/s.$$</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$14.2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$19.0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$10.65$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "none "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-butt-welding-operation-on-plates-the-heat-input-necessary-gate-me-1999-marks-5-cypgqplqelhjqnqi.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XPccheazmvvHH8t9",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 1.5,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding-process",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For butt welding $$40mm$$ thick steel plates, when the expected quantity of such jobs is $$5000$$ per month over a period of $$10$$ years, choose the best suitable welding process out of the following available alternatives. \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$SAW$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Oxy-acytylene gas welding"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$EBM$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$MIG$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-butt-welding-40mm-thick-steel-plates-when-the-expected-q-gate-me-1999-marks-5-xpccheazmvvhh8t9.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "awk89jUUAeJz3KPF",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "casting",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a particular mold design, the down sprue has an area of Cross section of $$6.45\\,\\,c{m^2}$$ where the pouring basin leads into the sprue. The sprue is $$20$$ $$cm$$ long. The required metal flow rate at the top section of the sprue is $$820$$ $$c{m^3}/s.$$ Determine the pouring height necessary above the sprue top. Also determine the area of $$C.S$$ of sprue at its bottom to avoid the aspiration of liquid molten metal. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Pouring height $$=28.24$$ $$cm$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-particular-mold-design-the-down-sprue-has-an-area-of-cr-gate-me-1999-marks-5-awk89juuaejz3kpf.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Th5gcxpk0GhmQQ7U",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "casting",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following materials requires the largest shrinkage allowance, while making a pattern for casting?\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Aluminium "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Brass "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Cast Iron "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Plain Carbon Steel "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-materials-requires-the-largest-shrink-gate-me-1999-marks-1-th5gcxpk0ghmqq7u.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                }
+            ],
+            "title": "Production Engineering"
+        },
+        {
+            "_id": "Theory of Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wgJxgb06LPO9FBSl",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vibrations",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the system of two wagons shown in Figure. The natural frequencies of this system are \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/LWc6lZ7C7OvIytbuT/bfCzzrXY8Ivj92z1EHg0feqwEN5oU/DVQEzuR1a7fLOAlusUKOqm/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1999 Theory of Machines - Vibrations Question 49 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0,\\sqrt {{{2k} \\over m}} $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\sqrt {{k \\over m}} ,\\sqrt {{{2k} \\over m}} $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\sqrt {{k \\over m}} ,\\sqrt {{k \\over {2m}}} $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0,\\sqrt {{{k} \\over 2m}} $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-system-of-two-wagons-shown-in-figure-the-natura-gate-me-1999-marks-2-wgjxgb06lpo9fbsl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zS08wIqypzHGO46M",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "gears-and-gear-trains",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A planetary gear train is shown in Figure. Internal gear (1) has 104 teeth and is held fixed and planet gear (2) has 96 teeth. How much does the planet gear rotate for sixty revolutions of the planet carrier (3) in clockwise direction?\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/fRZGhZQbI2PWmidS9/cG4PQCmh0bXO6exkGxcpxw1Z9lHoM/nOgtpNgdHxfMGNkDVw3iIl/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1999 Theory of Machines - Gears and Gear Trains Question 5 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "5  rpm in CCW",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-planetary-gear-train-is-shown-in-figure-internal-gear-1-ha-gate-me-1999-marks-5-zs08wiqypzhgo46m.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "L6mAhQ6Hw5lB78MY",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analysis-of-plane-mechanisms",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the audio Cassette mechanism shown in Figure given below where is the instantaneous center of rotation (point) of the two spools? \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/sSHfmk0L9OaCOHr0L/tljsyg4Nd8cg3HtrcMW72zZuRVtQF/sX4dWcgmJcxbevBOekiEOL/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1999 Theory of Machines - Analysis of Plane Mechanisms Question 31 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Point $$P$$ lies to the left of both the spools but a infinity along the line joining $$A$$ and $$H$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Point P lies in between the two spools on the line joining A and H, such that $$\\overline {PH} \\,\\, = \\,\\,2\\overline {AP} $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Point $$P$$ lies to the right of both the spools on the line joining $$A$$ and $$H$$, such that AH = HP"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Point $$P$$ lies at the intersection of the line joining $$B$$ and $$C$$ and the line joining $$G$$ and $$F$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-audio-cassette-mechanism-shown-in-figure-given-below-gate-me-1999-marks-2-l6mahq6hw5lb78my.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "p8eInN45QBdzYJpA",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analysis-of-plane-mechanisms",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the planar mechanism shown in Fig. select the most appropriate choice for the motion of link 2 when link 4 is moved upwards.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/WvxZsAg9KzYDGnXY5/ahsgG4NvIFvmyTJZuiXfic7VaIizb/uDcsup9oeo2XcGOwAp45Kp/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1999 Theory of Machines - Analysis of Plane Mechanisms Question 63 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Link 2 rotates clockwise"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Link 2 rotates counter - clockwise\n(c)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Link 2 does not move "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Link 2 motion cannot be determined  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-planar-mechanism-shown-in-fig-select-the-most-approp-gate-me-1999-marks-1-p8einn45qbdzyjpa.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                }
+            ],
+            "title": "Theory of Machines"
+        },
+        {
+            "_id": "Thermodynamics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZAwf9a6I0LFaYMht",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-concepts-and-zeroth-law",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An isolated thermodynamic system executes a process. Choose the correct statement $$(s)$$ from the following:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "No heat is transferred "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "No work is done\n "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "No mass flows across the boundary of the system "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "No chemical reaction takes place within the system "
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "B",
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-isolated-thermodynamic-system-executes-a-process-choose-t-gate-me-1999-marks-2-zawf9a6i0lfaymht.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sHnWiBPh2c3Ilr4v",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "rankine-cycle",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An adiabatic steam turbine receives dry saturated steam at $$1.0\\,\\,\\,MN/{m^2}$$ and discharges it $$0.1\\,\\,\\,MN/{m^2}.$$ The steam flow rate is $$3$$ $$kg/s$$ and the moisture at exit in negligible. If the ambient temperature is $$300$$ $$K,$$ determine the rate of entropy production and the lost power. \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/IRfeoefVQNhmgL4ny/ePtXFpAqv12WLh1UgHQKOjUWQjx6V/CBG26kVXoEsl6oOZp8CooW/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1999 Thermodynamics - Rankine Cycle Question 8 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Rate of entropy production $$=2.32$$ $$kW/K$$\n<br>Lost power $$=695.7$$ $$kW$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-adiabatic-steam-turbine-receives-dry-saturated-steam-at-1-gate-me-1999-marks-5-shnwibph2c3ilr4v.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fCH7hxF68eZGLgpi",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "first-law-of-thermodynamics",
+                    "year": 1999,
+                    "paperTitle": "GATE ME 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A steel ball of mass $$1$$ $$kg$$ and specific heat $$0.4$$ $$kJ/kg$$ is at temperature of $${60^ \\circ }C.$$ It is dropped into $$1$$ $$kg$$ water at $${20^ \\circ }C.$$ The final steady state temperature of water is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${23.5^ \\circ }C.$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${30^ \\circ }C.$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${35^ \\circ }C.$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${40^ \\circ }C.$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-steel-ball-of-mass-1-kg-and-specific-heat-04-kjkg-is-at-te-gate-me-1999-marks-1-fch7hxf68ezglgpi.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1999"
+                }
+            ],
+            "title": "Thermodynamics"
+        }
+    ]
+}

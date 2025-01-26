@@ -1,0 +1,515 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gPNwXSA0VfkRR6ZP",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2012,
+                    "paperTitle": "GATE IN 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given that $$A = \\left[ {\\matrix{\n   { - 5} &amp; { - 3}  \\cr \n   2 &amp; 0  \\cr \n\n } } \\right]$$ and $${\\rm I} = \\left[ {\\matrix{\n   1 &amp; 0  \\cr \n   0 &amp; 1  \\cr \n\n } } \\right],$$ the value of $${A^3}$$ is  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$15A+12$$ $${\\rm I}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$19A+30$$ $${\\rm I}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$17A+15$$ $${\\rm I}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$17A+21$$ $${\\rm I}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-that-a-left-matrix-5-3-cr-2-0-cr-right-and-rm-i-left-m-gate-in-2012-marks-1-gpnwxsa0vfkrr6zp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LRDGewpBjLXIU73n",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2012,
+                    "paperTitle": "GATE IN 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The maximum value of $$f\\left( x \\right) = {x^3} - 9{x^2} + 24x + 5$$ in the interval $$\\left[ {1,6} \\right]$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$21$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$25$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$41$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$46$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-maximum-value-of-fleft-x-right-x3-9x2-24x-5-in-the-inter-gate-in-2012-marks-2-lrdgewpbjlxiu73n.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WWbiR7MsYU5HwNFB",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2012,
+                    "paperTitle": "GATE IN 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The direction of vector $$A$$ is radially outward from the origin, with $$\\left| A \\right| = K\\,{r^n}$$ where $${r^2} = {x^2} + {y^2} + {z^2}$$  and $$K$$ is constant. The value  of $$n$$ for which $$\\nabla .A = 0\\,\\,$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-direction-of-vector-a-is-radially-outward-from-the-origi-gate-in-2012-marks-2-wwbir7msyu5hwnfb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fk24FqclEgEt7Rmv",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2012,
+                    "paperTitle": "GATE IN 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two independent random variables $$X$$ and $$Y$$ are uniformly distributed in the interval $$\\left[ { - 1,1} \\right].$$ The probability that max $$\\left[ {X,Y} \\right]$$ is less than $$1/2$$  is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3/4$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$9/16$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1/4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2/3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-independent-random-variables-x-and-y-are-uniformly-distr-gate-in-2012-marks-1-fk24fqcleget7rmv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PvKb0EM2lGLybU5V",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2012,
+                    "paperTitle": "GATE IN 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A fair coin is tossed till a head appears for  the first time. The probability that the number of required tosses is odd, is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1/3$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1/2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2/3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3/4$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-fair-coin-is-tossed-till-a-head-appears-for-the-first-time-gate-in-2012-marks-2-pvkb0em2lglybu5v.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "eSUtdLhxuBbP4FZM",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2012,
+                    "paperTitle": "GATE IN 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "With initial condition $$x\\left( 1 \\right)\\,\\,\\, = \\,\\,\\,\\,0.5,\\,\\,\\,$$ the solution of the differential equation, $$\\,\\,\\,t{{dx} \\over {dt}} + x = t\\,\\,\\,$$ is  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$x = t - {1 \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$x = {t^2} - {1 \\over 2}$$  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$xt = {{{t^2}} \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$x = {t \\over 2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "with-initial-condition-xleft-1-right-05-the-solution-of-the-gate-in-2012-marks-1-esutdlhxubbp4fzm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yZROLrALAXcnTFi8",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2012,
+                    "paperTitle": "GATE IN 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$x\\left[ N \\right] = {\\left( {1/3} \\right)^{\\left| n \\right|}} - {\\left( {1/2} \\right)^n}\\,u\\left[ n \\right],$$ then the region of convergence $$(ROC)$$ of its $$Z$$-transform in the $$Z$$-plane will be  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over 3} &lt; \\left| z \\right| &lt; 3$$   "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over 3} &lt; \\left| z \\right| &lt; {1 \\over 2}$$  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${1 \\over 2} &lt; \\left| z \\right| &lt; 3$$  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${1 \\over 3} &lt; \\left| z \\right|$$  "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-xleft-n-right-left-13-rightleft-n-right-left-12-rightnule-gate-in-2012-marks-1-yzrolralaxcntfi8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LqJOuB7F7w8rQHk0",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2012,
+                    "paperTitle": "GATE IN 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The unilateral Laplace transform of $$f(t)$$ is \n<br>$$\\,{1 \\over {{s^2} + s + 1}}.$$ The unilateral Laplace transform of $$t$$ $$f(t)$$ is  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$ - {s \\over {{{\\left( {{s^2} + s + 1} \\right)}^2}}}$$  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$ - {{2s + 1} \\over {{{\\left( {{s^2} + s + 1} \\right)}^2}}}$$  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${s \\over {{{\\left( {{s^2} + s + 1} \\right)}^2}}}$$  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{2s + 1} \\over {{{\\left( {{s^2} + s + 1} \\right)}^2}}}$$  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-unilateral-laplace-transform-of-ft-is-1-over-s2-s-1-the-gate-in-2012-marks-1-lqjoub7f7w8rqhk0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2012"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SoeYj8DQss6oi03h",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2012,
+                    "paperTitle": "GATE IN 2012",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the differential equation \n<br>$${{{d^2}y\\left( t \\right)} \\over {d{t^2}}} + 2{{dy\\left( t \\right)} \\over {dt}} + y\\left( t \\right) = \\delta \\left( t \\right)$$\n<br>with $$y\\left( t \\right)\\left| {_{t = 0} =  - 2} \\right.$$ and $${{dy} \\over {dt}}\\left| {_{t = 0}} \\right. = 0.$$\n<p>The numerical value of $${{dy} \\over {dt}}\\left| {_{t = 0}.} \\right.$$ is </p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-differential-equation-d2yleft-t-right-over-dt2-gate-in-2012-marks-2-soeyj8dqss6oi03h.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2012",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2012"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        }
+    ]
+}

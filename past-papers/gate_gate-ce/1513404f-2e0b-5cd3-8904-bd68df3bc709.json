@@ -1,0 +1,1238 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jMaLZlh64z3ARJvg",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$\\left\\{ x \\right\\}$$ is a continuous, real valued random variable defined over the interval $$\\left( { - \\infty ,\\,\\, \\pm \\infty } \\right)$$ and its occurrence is defined by  the density function given as: $$f\\left( x \\right) = {1 \\over {\\sqrt {2\\pi  * b} }}{e^{ - {1 \\over 2}{{\\left( {{{x - a} \\over b}} \\right)}^2}}}$$  where $$'a'$$ and $$'b'$$ are the statistical attributes of the random variable $$\\left\\{ x \\right\\}$$. The value of the integral $$\\int\\limits_{ - \\infty }^a {{1 \\over {\\sqrt {2\\pi  * b} }}{e^{ - {1 \\over 2}{{\\left( {{{x - a} \\over b}} \\right)}^2}}}} dx\\,\\,\\,$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.5$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\pi $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\pi  \\over 2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-left-x-right-is-a-continuous-real-valued-random-variable-gate-ce-2014-set-2-marks-2-jmalzlh64z3arjvg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Z12yrfYCojmaEsNn",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$z = {{2 - 3i} \\over { - 5 + i}}$$ can be expressed as ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-0.5-0.5i$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-0.5+0.5i$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.5-0.5i$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.5+0.5i$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "z-2-3i-over-5-i-can-be-expressed-as-gate-ce-2014-set-2-marks-1-z12yrfycojmaesnn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AGL0lAmkUO0CCHQG",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Water is following at a steady rate through a homogeneous and saturated horizontal soil strip of $$10$$m length. The strip is being subjected to a constant water head $$(H)$$ of $$5$$m at the beginning and $$1$$m at the end. If the governing equation of flow in the soil strip is $$\\,\\,{{{d^2}H} \\over {d{x^2}}} = 0\\,\\,$$ (where $$x$$ is the distance along the soil strip), the value of $$H$$ (in m) at the middle of the strip is _______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "water-is-following-at-a-steady-rate-through-a-homogeneous-an-gate-ce-2014-set-2-marks-2-agl0lamkuo0cchqg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wwLVadGSGNKMqPge",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The integrating factor for the differential equation $${{dP} \\over {dt}} + {k_2}\\,P = {k_1}{L_0}{e^{ - {k_1}t}}\\,\\,$$  is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${e^{ - {k_1}t}}\\,$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${e^{ - {k_2}t}}\\,$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${e^{  {k_1}t}}\\,$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${e^{  {k_2}t}}\\,$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-integrating-factor-for-the-differential-equation-dp-over-gate-ce-2014-set-2-marks-1-wwlvadgsgnkmqpge.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "I20TQ13agHoM5429",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An observer counts $$240$$veh/h at a specific highway location. Assume that the vehicle arrival at the location is Poisson distributed, the probability of having one vehicle arriving over a $$30$$-second time interval is _______. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.27",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-observer-counts-240vehh-at-a-specific-highway-location-as-gate-ce-2014-set-2-marks-2-i20tq13aghom5429.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jVVx5G518V6QpYV4",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A fair (unbiased) coin was tossed four times in succession and resulted in the following outcomes; (i) Head, (ii) Head, (III) Head, (iv) Head. The probability of obtaining a ''Tail'' when the coin is tossed again is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${4 \\over 5}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${1 \\over 5}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-fair-unbiased-coin-was-tossed-four-times-in-succession-and-gate-ce-2014-set-2-marks-1-jvvx5g518v6qpyv4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "llSJOq9FZOZOxDRT",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The expression $$\\mathop {Lim}\\limits_{a \\to 0} \\,{{{x^a} - 1} \\over a}\\,\\,$$ is equal to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\log \\,x$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$x$$ $$log$$ $$x$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\infty $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-expression-mathop-limlimitsa-to-0-xa-1-over-a-is-equal-t-gate-ce-2014-set-2-marks-2-llsjoq9fzozoxdrt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "J3IusdhcJwNqtziS",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The rank of the matrix $$\\left[ {\\matrix{\n   6 &amp; 0 &amp; 4 &amp; 4  \\cr \n   { - 2} &amp; {14} &amp; 8 &amp; {18}  \\cr \n   {14} &amp; { - 14} &amp; 0 &amp; { - 10}  \\cr \n\n } } \\right]$$ is",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-rank-of-the-matrix-left-matrix-6-0-4-4-cr-2-14-8-18-cr-1-gate-ce-2014-set-2-marks-1-j3iusdhcjwnqtzis.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OeioJohaUaoBmyej",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The determinant of matrix $$\\left[ {\\matrix{\n   0 &amp; 1 &amp; 2 &amp; 3  \\cr \n   1 &amp; 0 &amp; 3 &amp; 0  \\cr \n   2 &amp; 3 &amp; 0 &amp; 1  \\cr \n   3 &amp; 0 &amp; 1 &amp; 2  \\cr \n\n } } \\right]$$ is ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "88",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-determinant-of-matrix-left-matrix-0-1-2-3-cr-1-0-3-0-cr-gate-ce-2014-set-2-marks-1-oeiojohauaobmyej.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Geomatics Engineering Or Surveying",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a444346b8d74",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "geomatics-engineering-or-surveying",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-concepts",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The survey carried out to delineate natural features, such as hills, rivers, forests and manmade\nfeatures, such as towns, villages, buildings, roads, transmission lines and canals is\nclassified as",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "engineering survey"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "geological survey"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "land survey"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "topographic survey"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-survey-carried-out-to-delineate-natural-features-such-as-gate-ce-2014-set-2-marks-1-5a444346b8d74.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                }
+            ],
+            "title": "Geomatics Engineering Or Surveying"
+        },
+        {
+            "_id": "Geotechnical Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a29b55500500",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "geotechnical-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "definitions-and-properties-of-soils",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A certain soil has the following properties: G<sub>s</sub> = 2.71, n = 40% and w = 20%. The degree of saturation of the soil (rounded off to the nearest percent) is _________ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "81",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-certain-soil-has-the-following-properties-gs-271-n-40-and-gate-ce-2014-set-2-marks-1-5a29b55500500.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                }
+            ],
+            "title": "Geotechnical Engineering"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1ada1549991",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The modulus of elasticity, E = 5000$$\\sqrt{{\\mathrm f}_\\mathrm{ck}}$$ where f<sub>ck</sub> is the characteristic compressive strength\nof concrete, specified in IS:456-2000 is based on",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Tangent modulus"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Initial tangent modulus"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Secant modulus"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Chord modulus"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-modulus-of-elasticity-e-5000sqrtmathrm-fmathrmck-where-f-gate-ce-2014-set-2-marks-1-5a1ada1549991.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1ad55ea7ad0",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The target mean strength f<sub>cm</sub> for concrete mix design obtained from the characteristic strength\n(f<sub>ck</sub>) and standard deviation $$\\sigma$$, as defined in IS:456-2000, is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\mathrm f}_\\mathrm{ck}\\;+\\;1.35\\mathrm\\sigma$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\mathrm f}_\\mathrm{ck}\\;+\\;1.45\\mathrm\\sigma$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\mathrm f}_\\mathrm{ck}\\;+\\;1.55\\mathrm\\sigma$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\mathrm f}_\\mathrm{ck}\\;+\\;1.65\\mathrm\\sigma$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-target-mean-strength-fcm-for-concrete-mix-design-obtaine-gate-ce-2014-set-2-marks-1-5a1ad55ea7ad0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1ad971e040f",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The flexural tensile strength of M25 grade of concrete, in N/mm<sup>2</sup>, as per IS:456-2000 is\n__________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3.5",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-flexural-tensile-strength-of-m25-grade-of-concrete-in-nm-gate-ce-2014-set-2-marks-1-5a1ad971e040f.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "F8ZX14anIz6iEDZJ",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "propped-cantilever-beam",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The axial load (in $$kN$$) in the member $$PQ$$ for the arrangement/assembly shown in the figure given below is ___________\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/tJJQTVVu8H3xGTMWv/s8fRiHQNotCrbBHp4CFi8PH6Qmxvk/qDYeEw2JqTR8ipPMOyHiPo/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2014 Set 2 Strength of Materials Or Solid Mechanics - Propped Cantilever Beam Question 4 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "50",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-axial-load-in-kn-in-the-member-pq-for-the-arra-2014-set-2-marks-2-f8zx14aniz6iedzj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "U7c1VGTgvg017QI9",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "centroid-and-moment-of-inertia",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Polar moment of inertia $$\\left( {{{\\rm I}_p}} \\right),$$  in $$c{m^4},$$ of a rectangular section having width, $$b=2$$ $$cm$$ and depth $$d=6$$ $$cm$$ is __________ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "40",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "polar-moment-of-inertia-left-rm-ip-right-i-2014-set-2-marks-1-u7c1vgtgvg017qi9.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "196YwE6bqLW8eWYv",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pure-bending",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The beam of an overall depth $$250$$ $$mm$$ (shown below) is used in a building subjected to two different thermal environments. The temperatures at the top and bottom surfaces of the beam are $${36^ \\circ }C$$ and $${72^ \\circ }C$$ respectively. Considering coefficient of thermal expansion $$\\left( \\alpha  \\right)$$ as $$1.50 \\times {10^{ - 5}}\\,\\,$$ per$${}^ \\circ C,$$ the vertical deflection of the beam (in $$mm$$) at its mid-span due to temperature gradient is ______________\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/r6KChfLuw8idwNwLZ/hRTdIOrNplq1NlgqdOINI1ai6yqAW/wkrXQNeTT03VwbFbsy9tT9/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2014 Set 2 Strength of Materials Or Solid Mechanics - Pure Bending Question 5 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2.38 to 2.45",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-beam-of-an-overall-depth-250-mm-shown-below-is-2014-set-2-marks-2-196ywe6bqlw8ewyv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DObY8OSwPGAIuA4M",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "centroid-and-moment-of-inertia",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The first moment of area about the axis of bending for a beam cross-section is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Moment of inertia"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Section modulus "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Shape factor "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Polar moment of inertia "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-first-moment-of-area-about-the-axis-of-bending-for-a-bea-2014-set-2-marks-1-doby8oswpgaiua4m.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GBFlDD4QImWBIZin",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-force-and-bending-moment",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The values of axial stress $$\\left( \\sigma  \\right)$$ in $$kN/{m^2},$$ bending moment $$(M)$$ in $$kNm,$$ and shear force $$(V)$$ in $$kN$$ acting at point $$P$$ for the arrangement shown in the figure are respectively.\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/fhfcyUYVpiTPgQf5H/UylxBvZ6Zi0agBTjqQteSIFiaQRcX/bmEjjcrqIl5cDun0Cw7pbC/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2014 Set 2 Strength of Materials Or Solid Mechanics - Shear Force and Bending Moment Question 14 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1000,75$$ and $$25$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1250, 150$$ and $$50$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1500,225$$ and $$75$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1750,300$$ and $$100$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-values-of-axial-stress-left-sigma-right-in-k-2014-set-2-marks-2-gbfldd4qimwbizin.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VZZ8EFnCfSJCLyAP",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-stress",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the state of plane stress (in $$MPa$$) shown in the figure below, the maximum shear stress  (in $$MPa$$) is ___________\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/H6LhAW0VzHPJAvv0K/mSc03EOmEnv3uexHB4FEX6st4XhmM/129TaGqF72end8F5cXkVR3/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2014 Set 2 Strength of Materials Or Solid Mechanics - Complex Stress Question 10 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "5",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-state-of-plane-stress-in-mpa-shown-in-the-figu-2014-set-2-marks-2-vzz8efncfsjclyap.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zbcjk7prRabVD0ge",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A prismatic beam (as shown below) has plastic moment capacity of $${{M_P}}$$, then the collapse load $$P$$ of the beam is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/VGuUid1bN8eQhzS0H/hJxtt6LqWVB2Hzz8DExtGgZoMfZIX/q8Yg7yReuCMuXPYwJLl6wd/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2014 Set 2 Structural Analysis - Plastic Analysis Question 21 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{2{M_P}} \\over L}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{4{M_P}} \\over L}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{6{M_P}} \\over L}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{8{M_P}} \\over L}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-prismatic-beam-as-shown-below-has-plastic-moment-capacit-2014-set-2-marks-2-zbcjk7prrabvd0ge.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9IjvrU89EVNgVJbL",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Considering the symmetry of a rigid frame as shown below, the magnitude of the bending moment (in $$kN$$-$$m$$) at $$P$$ (preferably using the moment distribution method) is \n <img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/uwgcTOAbLZcXY9xFl/el8fYSPIL6N3gAWsFNY7kTIaKeDWL/n2AqqgcjJ9daDGLw3kO2PS/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2014 Set 2 Structural Analysis - Moment Distribution Method Question 18 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$170$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$172$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$176$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$178$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "considering-the-symmetry-of-a-rigid-frame-as-shown-below-th-2014-set-2-marks-2-9ijvru89evngvjbl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uGC0yyk3fp5mzD0c",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "arches-and-cable",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The tension (in $$kN$$) in a $$10$$ $$m$$ long cable, shown in the figure, neglecting its self-weight is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/3FEIsDz0uCVhavcns/yTrYKrXr5X3ezAARW6mNrI9559r8B/yDcHyRNCBF5plRKUg90xiE/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2014 Set 2 Structural Analysis - Arches and Cable Question 2 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$120$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$75$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$60$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$45$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-tension-in-kn-in-a-10-m-long-cable-shown-2014-set-2-marks-2-ugc0yyk3fp5mzd0c.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a18935aba4fe",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stability-and-static-indeterminacy",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The static indeterminacy of the two-span continuous beam with an internal hinge, shown\nbelow, is ______________.\n<img alt=\"GATE CE 2014 Set 2 Structural Analysis - Stability and Static Indeterminacy Question 13 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/1b68c6d40a467de1041c2365f1cb9d37a04c007d6f337f95a0f14bec922048be.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-static-indeterminacy-of-the-two-span-continuous-beam-wit-gate-ce-2014-set-2-marks-1-5a18935aba4fe.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                }
+            ],
+            "title": "Structural Analysis"
+        },
+        {
+            "_id": "Transportation Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a41ae5b968c6",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "transportation-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "highway-geometric-design",
+                    "year": 2014,
+                    "paperTitle": "GATE CE 2014 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A road is being designed for a speed of 110 km/hr on a horizontal curve with a super\nelevation of 8%. If the coefficient of side friction is 0.10, the minimum radius of the curve (in\nm) required for safe vehicular movement is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "115.0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "152.3"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "264.3"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "528.5"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-road-is-being-designed-for-a-speed-of-110-kmhr-on-a-horizo-gate-ce-2014-set-2-marks-1-5a41ae5b968c6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2014-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2014-set-2"
+                }
+            ],
+            "title": "Transportation Engineering"
+        }
+    ]
+}

@@ -1,0 +1,403 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TQsrw4EPFynEnBqb",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2013,
+                    "paperTitle": "GATE IN 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The dimension of the null space of the matrix $$\\left[ {\\matrix{\n   0 &amp; 1 &amp; 1  \\cr \n   1 &amp; { - 1} &amp; 0  \\cr \n   { - 1} &amp; 0 &amp; { - 1}  \\cr \n\n } } \\right]$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-dimension-of-the-null-space-of-the-matrix-left-matrix-0-gate-in-2013-marks-1-tqsrw4epfynenbqb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sCBL9JgBn4Bj8oHm",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2013,
+                    "paperTitle": "GATE IN 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "One pair of eigenvectors corresponding to the two eigen values of the matrix $$\\left[ {\\matrix{\n   0 &amp; { - 1}  \\cr \n   1 &amp; {0 - }  \\cr \n\n } } \\right]$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left[ {\\matrix{\n   1  \\cr \n   { - j}  \\cr \n\n } } \\right],\\left[ {\\matrix{\n   j  \\cr \n   { - 1}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left[ {\\matrix{\n   0  \\cr \n   1  \\cr \n\n } } \\right],\\left[ {\\matrix{\n   { - 1}  \\cr \n   0  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left[ {\\matrix{\n   1  \\cr \n   j  \\cr \n\n } } \\right],\\left[ {\\matrix{\n   0  \\cr \n   1  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left[ {\\matrix{\n   1  \\cr \n   j  \\cr \n\n } } \\right],\\left[ {\\matrix{\n   j  \\cr \n   1  \\cr \n\n } } \\right]$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "one-pair-of-eigenvectors-corresponding-to-the-two-eigen-valu-gate-in-2013-marks-2-scbl9jgbn4bj8ohm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nTeHNRLNDRgrgKge",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2013,
+                    "paperTitle": "GATE IN 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a vector $$E,$$   which one of the following statements is NOT TRUE? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "If  $$\\nabla .E = 0,E$$ is called"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "If $$\\nabla  \\times E = 0,$$ $$E$$ is called conservative "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "If $$\\nabla  \\times E = 0,$$  $$E$$ is called irrotational "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "If $$\\nabla .E = 0,E$$  is called irrotational "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-vector-e-which-one-of-the-following-statements-is-not-gate-in-2013-marks-1-ntehnrlndrgrgkge.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RWCXXBRU8O9qpOon",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2013,
+                    "paperTitle": "GATE IN 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A continuous random variable $$X$$ has a probability density function $$f\\left( x \\right) = {e^{ - x}},0 &lt; x &lt; \\infty .$$  Then $$P\\left\\{ {X &gt; 1} \\right\\}$$ is  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.368$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.5$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.632$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1.0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-continuous-random-variable-x-has-a-probability-density-fun-gate-in-2013-marks-1-rwcxxbru8o9qpoon.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bKHziGxEoNkAnB04",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2013,
+                    "paperTitle": "GATE IN 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The maximum value of the solution $$y$$ $$(t)$$ of the differential equation $$\\,\\,y\\left( t \\right) + \\mathop y\\limits^{ \\bullet \\,\\, \\bullet } \\left( t \\right) = 0\\,\\,\\,$$ with initial conditions $$\\,\\,\\mathop y\\limits^ \\bullet  \\left( 0 \\right) = 1\\,\\,$$  and $$\\,\\,y\\left( 0 \\right) = 1,\\,\\,$$ for $$\\,t \\ge 0\\,\\,$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\pi $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\sqrt 2 $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-maximum-value-of-the-solution-y-t-of-the-differential-eq-gate-in-2013-marks-2-bkhzigxeonkanb04.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nHBQ93KD1svhgyrW",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2013,
+                    "paperTitle": "GATE IN 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The type of the partial differential  equation $${{\\partial f} \\over {\\partial t}} = {{{\\partial ^2}f} \\over {\\partial {x^2}}}\\,\\,is$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Parabolic"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Elliptic"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Hyperbolic"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Nonlinear "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-type-of-the-partial-differential-equation-partial-f-over-gate-in-2013-marks-1-nhbq93kd1svhgyrw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LNwRgfEeQG5cZJkD",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2013,
+                    "paperTitle": "GATE IN 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "While numerically solving the differential  equation $$\\,{{dy} \\over {dx}} + 2x{y^2} = 0,y\\left( 0 \\right) = 1\\,\\,$$ using Euler's predictor corrector (improved Euler- Cauchy) method with a step size of $$0.2,$$  the value of $$y$$ after the first step is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.00$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.03$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.97$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.96$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "while-numerically-solving-the-differential-equation-dy-over-gate-in-2013-marks-1-lnwrgfeeqg5czjkd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2013"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        }
+    ]
+}

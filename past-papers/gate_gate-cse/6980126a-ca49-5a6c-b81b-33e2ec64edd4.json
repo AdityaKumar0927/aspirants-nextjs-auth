@@ -1,0 +1,1249 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Algorithms",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NfYnN320qO6XLfDV",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "p-and-np-concepts",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following problems is not NP-hard?\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Hamiltonian circuit problem"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The 0/1 Knapsack problem"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Finding bi-connected components of a graph"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The graph coloring problem"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-problems-is-not-np-hard-gate-cse-1992-marks-2-nfynn320qo6xlfdv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2WsnSnEEbnS0uiZE",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "greedy-method",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Complexity of Kruskal\u2019s algorithm for finding the minimum spanning tree of an undirected graph containing n vertices and m edges if the edges are sorted is _______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$\\Theta (m\\log m)$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "complexity-of-kruskals-algorithm-for-finding-the-minimum-spa-gate-cse-1992-marks-2-2wsnsneebns0uize.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YS8HIlmg0GC6qvxN",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "divide-and-conquer-method",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Assume that the last element of the set is used as partition element in Quicksort. If n distinct elements from the set [1\u2026n] are to be sorted, give an input for which Quicksort takes maximum time.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "10, 9, 8, 7, 6, 5, 4, 3, 2, 1",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "assume-that-the-last-element-of-the-set-is-used-as-partition-gate-cse-1992-marks-2-ys8hilmg0gc6qvxn.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YWMoo4fbGTNoZfdE",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "searching-and-sorting",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Following algorithm(s) can be used to sort n integers in the range [1....... n<sup>3</sup>] in O(n) time",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Heapsort"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Quicksort"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Merge sort"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Radix sort"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "following-algorithms-can-be-used-to-sort-n-integers-in-the-r-gate-cse-1992-marks-2-ywmoo4fbgtnozfde.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                }
+            ],
+            "title": "Algorithms"
+        },
+        {
+            "_id": "Compiler Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Ung4Yypi8vt3LGgd",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parsing",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the SLR(1) and LALR (1) parsing tables for a context-free grammar. Which of the following statements is/are true? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The goto part of both tables may be different. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The shift entries are identical in both the tables."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The reduce entries in the tables may be different."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The error entries in the tables may be different."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-slr1-and-lalr-1-parsing-tables-for-a-context-fr-gate-cse-1992-marks-2-ung4yypi8vt3lggd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                }
+            ],
+            "title": "Compiler Design"
+        },
+        {
+            "_id": "Computer Organization",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vyDyvaDm7fEBd6sn",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "io-interface",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Start and stop bits do not contain 'information' but these are used in serial communication for ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Error detection "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Error correction"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Synchronization "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Slowing down the communication"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "start-and-stop-bits-do-not-contain-information-but-these-are-gate-cse-1992-marks-1-vydyvadm7febd6sn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                }
+            ],
+            "title": "Computer Organization"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iGPFiZTAxVtH1bt6",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following predicate calculus statements is/are valid?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {\\forall \\,x} \\right){\\rm P}\\left( x \\right) \\vee \\left( {\\forall \\,x} \\right)Q\\left( x \\right) \\to \\left( {\\forall \\,x} \\right)$$\n<br>$$\\left\\{ {{\\rm P}\\left( x \\right) \\vee Q\\left( x \\right)} \\right\\}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {\\exists \\,x} \\right){\\rm P}\\left( x \\right) \\wedge \\left( {\\exists \\,x} \\right)Q\\left( x \\right) \\to \\left( {\\exists \\,x} \\right)$$\n<br>$$\\left\\{ {{\\rm P}\\left( x \\right) \\wedge Q\\left( x \\right)} \\right\\}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {\\forall \\,x} \\right)\\,\\left\\{ {{\\rm P}\\left( x \\right) \\vee Q\\left( x \\right)} \\right\\} \\to \\left( {\\forall \\,x} \\right)\\,\\,$$\n<br>$${\\rm P}\\left( x \\right) \\vee \\left( {\\forall \\,x} \\right)\\,\\,Q\\left( x \\right)$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {\\exists \\,x} \\right)\\,\\,\\left\\{ {{\\rm P}\\left( x \\right) \\vee Q\\left( x \\right)} \\right\\} \\to  \\sim \\left( {\\forall \\,x} \\right)\\,\\,$$\n<br>$$\\,{\\rm P}\\left( x \\right) \\vee \\left( {\\exists \\,x} \\right)Q\\left( x \\right)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-predicate-calculus-statements-isare-v-gate-cse-1992-marks-1-igpfiztaxvth1bt6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vm425bYzmzsiAqKw",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Maximum number of edges in a planar graph with $$n$$ vertices is _______ .",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$3n - 6$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "maximum-number-of-edges-in-a-planar-graph-with-n-vertices-is-gate-cse-1992-marks-2-vm425byzmzsiaqkw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SpC23MOpjGBDH3Hs",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "(a) If G is a group of even order, then \n<br>show that there exists an element $$a \\ne e$$, \n<br>the identifier $$g$$, such that \n<br>$${a^2} = e$$\n<p>(b) Consider the set of integers $$\\left\\{ {1,2,3,4,6,8,12,24} \\right\\}$$ together with the two binary operations LCM (lowest common multiple) and GCD (greatest common divisor). Which of the following algebraic structures does this represent?\n<br>i) Group        ii) ring\n<br> iii) field        iv) lattice\n<br>Justify your answer</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-if-g-is-a-group-of-even-order-then-show-that-there-exists-gate-cse-1992-marks-5-spc23mopjgbdh3hs.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GqETdCzeGD4BknzQ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following is/are tautology? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {a \\vee b} \\right) \\to \\left( {b \\wedge c} \\right)$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {a \\wedge b} \\right) \\to \\left( {b \\vee c} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {a \\vee b} \\right) \\to \\left( {b \\to c} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {a \\to b} \\right) \\to \\left( {b \\to c} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-isare-tautology-gate-cse-1992-marks-1-gqetdczegd4bknzq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zlNbDKN7QAJU3bMD",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A non-planar graph with minimum number of vertices has ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "9 edges, 6 vertices"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "6 edges, 4 vertices"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "10 edges, 5 vertices"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "9 edges, 5 vertices"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-non-planar-graph-with-minimum-number-of-vertices-has-gate-cse-1992-marks-1-zlnbdkn7qaju3bmd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bdi3yWfPOSO8cY72",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Uses Modus ponens $$\\left( {A,\\,\\,A \\to B\\,|\\,\\, = B} \\right)$$ or resolution to show that the following set is inconsistent:\n<p>(1) $$Q\\left( x \\right) \\to P\\left( x \\right)V \\sim R\\left( a \\right)$$\n<br>(2)  $$R\\left( a \\right) \\vee  \\sim Q\\left( a \\right)$$\n<br>(3) $$Q\\left( a \\right)$$ \n<br>(4)  $$ \\sim P\\left( y \\right)$$\n<br>where $$x$$ and $$y$$ are universally quantifies variables, $$a$$ is a constant and $$P,  Q,  R$$ are monadic predicates. </p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "uses-modus-ponens-left-aa-to-b-b-right-or-resolution-to-show-gate-cse-1992-marks-5-bdi3ywfposo8cy72.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0BrAsshuZYXjyJ8Z",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deadlocks",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A computer system has 6 tape drives, with n process completing for them.\nEach process may need 3 tape drives. The maximum value of n for which the\nsystem is guaranteed to be deadlock free is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "3"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "4"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-computer-system-has-6-tape-drives-with-n-process-completin-gate-cse-1992-marks-2-0brasshuzyxjyj8z.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NWeDD6UkmCecdvs3",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let the page reference and the working set window be <b>c c d b c e c e a d</b> and <b>4,</b> respectively. The initial working set at time $$t = 0$$ contains the pages <b>{a, d, e},</b> where a was referenced at time $$t = 0, d$$ was referenced at time $$t = -1,$$ and $$e$$ was referenced at time $$t = -2.$$ Determine the total number of page faults and the average number of page frames used by computing the working set at each reference. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "No of page fault $$=4$$ \n<br>Average page frames used $$=4.$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-the-page-reference-and-the-working-set-window-be-c-c-d-b-gate-cse-1992-marks-5-nwedd6ukmcecdvs3.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TIO1aalrox85nUgQ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which page replacement policy sometimes leads to more page faults when size of memory is increased?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Optimal "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "LRU"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "FIFO"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of these "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-page-replacement-policy-sometimes-leads-to-more-page-f-gate-cse-1992-marks-1-tio1aalrox85nugq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wJD0mJ1BIjNYkcfr",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronization-and-concurrency",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "At a particular time of computation the value of a counting semaphore is 7. Then 20 P operations and 15 V operations were completed on this semaphore. The resulting value of the semaphore is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "42"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "7"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "12"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "at-a-particular-time-of-computation-the-value-of-a-counting-gate-cse-1992-marks-2-wjd0mj1bijnykcfr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ewEEqz5pvOg5r2mx",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following is an example of a spooled device?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The terminal used to the input data for a program being executed. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The secondary memory device in a virtual memory system."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "A line printer used to print the output of a number of jobs. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-which-of-the-following-is-an-example-of-a-spooled-device-gate-cse-1992-marks-2-eweeqz5pvog5r2mx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                }
+            ],
+            "title": "Operating Systems"
+        },
+        {
+            "_id": "Theory of Computation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aL5kL1KMYt5bu2pG",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "recursively-enumerable-language-and-turing-machine",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following statements is / are true / false?\n<p>Union of two recursive languages is recursive </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-statements-is-are-true-falseunion-of-gate-cse-1992-marks-1-al5kl1kmyt5bu2pg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LQ8CqBQ1DQZ5EiqZ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "recursively-enumerable-language-and-turing-machine",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following statements is / are true / false?\n<p>Regular languages are closed under infinite union.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-statements-is-are-true-falseregular-l-gate-cse-1992-marks-1-lq8cqbq1dqz5eiqz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "S9kzTiSpIRorcmjH",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "recursively-enumerable-language-and-turing-machine",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following statements is / are true / false?\n<p>The language $$\\left\\{ {{0^n}\\,\\left| {\\,n} \\right.} \\right.$$ is prime$$\\left. \\, \\right\\}$$ is not regular</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-statements-is-are-true-falsethe-langu-gate-cse-1992-marks-1-s9kztispirorcmjh.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MLjgBXFlIUjrljVT",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "recursively-enumerable-language-and-turing-machine",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In which of the cases stated below is the following statement true?\n<br>\u201cFor every non-deterministic machine $${M_1}$$ there exists an equivalent deterministic machine $${M_2}$$\nrecognizing the same language\u201c.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${M_1}$$ is nondeterministic finite automation"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${M_1}$$ is a nondeterministic $$PDA$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${M_1}$$ is a non-deterministic Turing machine\n "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "For no machine $${M_1}$$ use the above statement true  "
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-which-of-the-cases-stated-below-is-the-following-statemen-gate-cse-1992-marks-2-mljgbxfliujrljvt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HRGvMycVjawI3SVT",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Context-free languages are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "closed under union"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "closed under complementation "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "closed under intersection"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "closed under Kleene closure."
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "context-free-languages-are-gate-cse-1992-marks-2-hrgvmycvjawi3svt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2BpUnwcsbYQRC7zM",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$G$$ is a context-free grammar and $$w$$ is a string of length $$n$$ in $$L(G),$$ how long is a derivation of $$w$$ in $$G,$$ if $$G$$ is Chomsky normal form?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2n$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2n+1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2n-1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$n$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-g-is-a-context-free-grammar-and-w-is-a-string-of-length-n-gate-cse-1992-marks-2-2bpunwcsbyqrc7zm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fNhEYudMmyueOxz6",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 1992,
+                    "paperTitle": "GATE CSE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following regular expression identities are true? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$r\\left( {^ * } \\right) = r{}^ * $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {r{}^ * s{}^ * } \\right){}^ *  = \\left( {r + s} \\right){}^ * $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\,\\left( {r + s} \\right){}^ *  = r{}^ *  + s{}^ * $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$r{}^ * s{}^ *  = r{}^ *  + s{}^ * $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-regular-expression-identities-are-tru-gate-cse-1992-marks-2-fnheyudmmyueoxz6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1992"
+                }
+            ],
+            "title": "Theory of Computation"
+        }
+    ]
+}

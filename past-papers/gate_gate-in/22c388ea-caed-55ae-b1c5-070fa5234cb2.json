@@ -1,0 +1,384 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RVu9fwA3Gv1Oe755",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2015,
+                    "paperTitle": "GATE IN 2015",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$A$$ be an $$n \\times n$$ matrix with rank $$r\\left( {0 &lt; r &lt; n} \\right).$$ Then $$AX=0$$ has $$p$$ independent  solutions, where $$p$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$r$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$n$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$n-r$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$n+r$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-a-be-an-n-times-n-matrix-with-rank-rleft-0-r-n-right-the-gate-in-2015-marks-1-rvu9fwa3gv1oe755.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2015",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2015"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nvXCHU6cvLkYncIK",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2015,
+                    "paperTitle": "GATE IN 2015",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The double integral $$\\,\\,\\int_0^a {\\int_0^y {f\\left( {x,y} \\right)\\,dx\\,dy\\,\\,\\,} } $$ is equivalent to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\int_0^x {\\int_0^y {f\\left( {x,y} \\right)dx\\,dy} } $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\int_0^a {\\int_x^y {f\\left( {x,y} \\right)dx\\,dy} } $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\int_0^a {\\int_x^a {f\\left( {x,y} \\right)dx\\,dy} } $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\int_0^a {\\int_0^a {f\\left( {x,y} \\right)dx\\,dy} } $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-double-integral-int0a-int0y-fleft-xy-rightdxdy-is-equiva-gate-in-2015-marks-1-nvxchu6cvlkyncik.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2015",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2015"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YSNPSa6KA2QNNIK6",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2015,
+                    "paperTitle": "GATE IN 2015",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The magnitude of the directional derivative of the function $$f\\left( {x,y} \\right) = {x^2} + 3{y^2}$$ in a direction normal to the circle $$\\,{x^2} + {y^2} = 2,$$ at the point $$(1,1),$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$4\\sqrt 2 $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$5\\sqrt 2 $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$7\\sqrt 2 $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$9\\sqrt 2 $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-magnitude-of-the-directional-derivative-of-the-function-gate-in-2015-marks-1-ysnpsa6ka2qnnik6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2015",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2015"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MwjTt240z5cSd2c8",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2015,
+                    "paperTitle": "GATE IN 2015",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The  probability that a thermistor randomly picked up from a production unit is defective is $$0.1.$$ The probability that out of $$10$$ thermistors randomly picked up, $$3$$ are defective is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.001$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.057$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.107$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-probability-that-a-thermistor-randomly-picked-up-from-a-gate-in-2015-marks-1-mwjtt240z5csd2c8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2015",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2015"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FtPPWgEXQknD13df",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2015,
+                    "paperTitle": "GATE IN 2015",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The  probability density function of a random variable $$X$$ is $$\\,{P_x}\\left( x \\right) = {e^{ - x}}\\,\\,$$ for $$\\,\\,x \\ge 0\\,\\,$$  and $$0$$ otherwise. The expected value of the function $$\\,{g_x}\\left( x \\right) = {e^{3x/4}}$$   is___________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "4",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-probability-density-function-of-a-random-variable-x-is-p-gate-in-2015-marks-2-ftppwgexqknd13df.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2015",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2015"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yhrmxinsXtPKQRSx",
+                    "exam": "gate-in",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2015,
+                    "paperTitle": "GATE IN 2015",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A coin is tossed thrice. Let $$X$$ be the event that head occurs in each of the first two tosses. Let $$Y$$ be the event that a tail occurs on the third toss. Let $$Z$$ be the event that two tails occur in three tosses. Based on the above information, which one of the following statements is TRUE? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$X$$ and $$Y$$ are not independent  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$Y$$ and $$Z$$ are dependent "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$Y$$ and $$Z$$ are independent  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$X$$ and $$Z$$ are independent  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-coin-is-tossed-thrice-let-x-be-the-event-that-head-occurs-gate-in-2015-set-3-marks-2-yhrmxinsxtpkqrsx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-in-2015",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2015"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BbqrZkSuilKzLHO1",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2015,
+                    "paperTitle": "GATE IN 2015",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of $$\\oint\\limits_c {{1 \\over {{z^2}}}dz} $$ where the contour is the unit circle traversed clock - wise, is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$ - 2\\pi i$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$  2\\pi i$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$  4\\pi i$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-ointlimitsc-1-over-z2dz-where-the-contour-is-th-gate-in-2015-set-2-marks-1-bbqrzksuilkzlho1.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2015",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2015"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        }
+    ]
+}

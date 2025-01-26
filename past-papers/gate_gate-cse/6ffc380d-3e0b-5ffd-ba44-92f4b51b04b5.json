@@ -1,0 +1,327 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TtXI4Hj3CSoKui4c",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2017,
+                    "paperTitle": "GATE CSE 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$P = \\left[ {\\matrix{\n   1 &amp; 1 &amp; { - 1}  \\cr \n   2 &amp; { - 3} &amp; 4  \\cr \n   3 &amp; { - 2} &amp; 3  \\cr \n\n } } \\right]$$ and $$Q = \\left[ {\\matrix{\n   { - 1} &amp; { - 2} &amp; { - 1}  \\cr \n   6 &amp; {12} &amp; 6  \\cr \n   5 &amp; {10} &amp; 5  \\cr \n\n } } \\right]$$ be two matrices. \n<br>Then the rank of $$P+Q$$ is _______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-p-left-matrix-1-1-1-cr-2-3-4-cr-3-2-3-cr-right-and-q-lef-gate-cse-2017-set-2-marks-1-ttxi4hj3csokui4c.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QmLB1rkIrXEWebi3",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2017,
+                    "paperTitle": "GATE CSE 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the characteristic polynomial of a $$3 \\times 3$$ matrix $$M$$ over $$R$$(the set of real numbers) is $${\\lambda ^3} - 4{\\lambda ^2} + a\\lambda  + 30.\\,a \\in R,$$ and one eigenvalue of $$M$$ is $$2,$$ then the largest among the absolute values of the eigenvalues of $$M$$ is ________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "5 ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-characteristic-polynomial-of-a-3-times-3-matrix-m-ove-gate-cse-2017-set-2-marks-2-qmlb1rkirxewebi3.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AvUdGsiNx6hpIk3A",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2017,
+                    "paperTitle": "GATE CSE 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$f\\left( x \\right)\\,\\,\\, = \\,\\,\\,R\\,\\sin \\left( {{{\\pi x} \\over 2}} \\right) + S.f'\\left( {{1 \\over 2}} \\right) = \\sqrt 2 $$ and $$\\int_0^1 {f\\left( x \\right)dx = {{2R} \\over \\pi }} ,$$  then the constants $$R$$ and $$S$$ are respectively. ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{2 \\over \\pi }}$$ and $${{16 \\over \\pi }}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{2 \\over \\pi }}$$  and $$0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{4 \\over \\pi }}$$ and $$0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{4 \\over \\pi }}$$ and $${{16 \\over \\pi }}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-fleft-x-right-rsin-left-pi-x-over-2-right-sfleft-1-over-2-gate-cse-2017-set-2-marks-1-avudgsinx6hpik3a.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lDjCuCxo5hNJ92uI",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2017,
+                    "paperTitle": "GATE CSE 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a quadratic equation $${x^2} - 13x + 36 = 0$$  with coefficients in a base $$b.$$  The solutions of this equation in the same  base $$b$$ are $$x=5$$ and $$x=6$$. Then $$b=$$ ______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "8",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-quadratic-equation-x2-13x-36-0-with-coefficients-gate-cse-2017-set-2-marks-1-ldjcucxo5hnj92ui.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UwVgi9EInxDO1VyG",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2017,
+                    "paperTitle": "GATE CSE 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$P$$ and $$Q$$ are considering to apply for a job. The probability that $$P$$ applies for the job is $${1 \\over 4},$$ the probability that $$P$$ applies for the job given that $$Q$$ applies for the job is $${1 \\over 2},$$ and the probability that $$Q$$ applies for the job given that $$P$$ applies for the job is $${1 \\over 3}.$$  Then the probability that $$P$$ does not apply for the job given that $$Q$$ does not apply for the job is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${4 \\over 5}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${5 \\over 6}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${7 \\over 8}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${11 \\over 12}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "p-and-q-are-considering-to-apply-for-a-job-the-probability-t-gate-cse-2017-set-2-marks-2-uwvgi9einxdo1vyg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LKHVWb1wHjqBqihO",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2017,
+                    "paperTitle": "GATE CSE 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If a random variable $$X$$ has a Poisson distribution with mean $$5,$$ then the expectation $$E\\left[ {{{\\left( {X + 2} \\right)}^2}} \\right]$$ equals _________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "54",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-a-random-variable-x-has-a-poisson-distribution-with-mean-gate-cse-2017-set-2-marks-2-lkhvwb1whjqbqiho.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Y2rYqhxeHosUHk1G",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2017,
+                    "paperTitle": "GATE CSE 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For any discrete random variable $$X,$$ with probability mass function $$P\\left( {X = j} \\right) = {p_j},$$\n<br>$${p_j}\\,\\, \\ge 0,\\,j \\in \\left\\{ {0,..........,\\,\\,\\,N} \\right\\},$$ and $$\\,\\,\\sum\\limits_{j = 0}^N {{p_j} = 1,\\,\\,} $$  define the polynomial function $${g_x}\\left( z \\right) = \\sum\\limits_{j = 0}^N {{p_j}{z^j}} .$$  For a certain discrete random variable $$Y$$, there exists a scalar $$\\beta $$ $$ \\in \\left[ {0,1} \\right]$$ such that $${g_y}\\left( z \\right) = {\\left\\{ {1 - \\beta  + \\left. {\\beta z} \\right)} \\right.^N}.$$  The expectation of $$Y$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$N\\beta \\left( {1 - \\beta } \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$N\\beta \\left( {1 - \\beta } \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$N\\left( {1 - \\beta } \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Not expressible in terms of $$N$$ and $$\\beta $$ alone "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-any-discrete-random-variable-x-with-probability-mass-fun-gate-cse-2017-set-2-marks-2-y2ryqhxehosuhk1g.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2017-set-2"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        }
+    ]
+}

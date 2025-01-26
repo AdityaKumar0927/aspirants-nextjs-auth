@@ -1,0 +1,1794 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Casting",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2a3OUC2pIf4KRH1F",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "casting",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "casting-process",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two cast iron blocks $$P$$ and $$Q,$$ each of $$500$$ $$mm$$ length, have the same cross-sectional area. Block $$P$$ has rectangular cross-section of $$100\\,\\,mm \\times 200\\,\\,mm.$$ Block $$Q$$ is of square cross-section. Both $$P$$ and $$Q$$ were cast under the same conditions with all their surfaces enclosed within the mould. The solidification time of a casting is proportional to the square of the ratio of its volume to its surface area. The ratio of solidification time of the block $$P$$ to that of the block $$Q$$ is _________________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.88 to 0.92",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-cast-iron-blocks-p-and-q-each-of-500-mm-length-have-the-gate-pi-2016-marks-2-2a3ouc2pif4krh1f.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                }
+            ],
+            "title": "Casting"
+        },
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CmVuJWpbiMBEMQfj",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The range of values of $$k$$ for which the function $$\\,\\,f\\left( x \\right) = \\left( {{k^2} - 4} \\right){x^2} + 6{x^3} + 8{x^4}$$ has a local maxima at point $$x=0$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$k &lt;  - 2\\,\\,\\,or\\,\\,\\,k &gt; 2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$k \\le  - 2\\,\\,\\,or\\,\\,\\,k \\ge 2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$ - 2 &lt; k &lt; 2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ - 2 \\le k \\le 2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-range-of-values-of-k-for-which-the-function-fleft-x-righ-gate-pi-2016-marks-2-cmvujwpbimbemqfj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7FOmwvl69HQ3Az6r",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The eigen values of the matrix are $$\\left[ {\\matrix{\n   0 &amp; 1  \\cr \n   { - 1} &amp; 0  \\cr \n\n } } \\right]$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$i $$ and $$-i$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$ and $$-1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0$$ and $$1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0$$ and $$-1$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-eigen-values-of-the-matrix-are-left-matrix-0-1-cr-1-0-cr-gate-pi-2016-marks-1-7fomwvl69hq3az6r.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xtB9Hp8c1Mg5tybs",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of solutions of the simultaneous algebraic equations $$y=3x+3$$ and $$y=3x+5$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "infinite "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-solutions-of-the-simultaneous-algebraic-equati-gate-pi-2016-marks-1-xtb9hp8c1mg5tybs.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SopNLpXcTXhvM3l2",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "At $$x=0,$$ the function is $$f\\left( x \\right) = \\left| {\\sin {{2\\pi x} \\over L}} \\right|\\left( { - \\infty  &lt; x &lt; \\infty ,L &gt; 0} \\right)$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "continuous and differentiable."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "not continuous and not differentiable."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "not continuous but differentiable."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "continuous but not differentiable."
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "at-x0-the-function-is-fleft-x-right-left-sin-2pi-x-over-l-ri-gate-pi-2016-marks-1-sopnlpxctxhvm3l2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OGwGIC4zeOKbfgjA",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the two functions \n<br>$$f\\left( {x,y} \\right) = {x^3} - 3x{y^2}\\,\\,$$ and $$\\,\\,g\\left( {x,y} \\right) = 3{x^2}y - {y^3}\\,\\,$$ \n<p>Which one of the following options is correct?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{\\partial f} \\over {\\partial x}} = {{\\partial g} \\over {\\partial x}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{\\partial f} \\over {\\partial x}} =  - {{\\partial g} \\over {\\partial y}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{\\partial f} \\over {\\partial y}} =  - {{\\partial g} \\over {\\partial x}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{\\partial f} \\over {\\partial y}} = {{\\partial g} \\over {\\partial x}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-two-functions-fleft-xy-right-x3-3xy2-and-gleft-xy-ri-gate-pi-2016-marks-1-ogwgic4zeokbfgja.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Spof6PdiRnmylxTT",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$\\mathop {\\lim }\\limits_{x \\to 0} \\left( {{{{e^{5x}} - 1} \\over x}} \\right)$$  is equal to ________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "15",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "mathop-lim-limitsx-to-0-left-e5x-1-over-x-right-is-equal-to-gate-pi-2016-marks-2-spof6pdirnmylxtt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JeMOgKOvcLD5Haz4",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A normal random variable $$X$$ has the following probability density function \n$$${f_x}\\left( x \\right) = {1 \\over {\\sqrt {8\\pi } }}e{}^{ - \\left\\{ {{{{{\\left( {x - 1} \\right)}^2}} \\over 8}} \\right\\}}, - \\infty  &lt; x &lt; \\infty $$$\n<br>Then $$\\,\\int\\limits_1^\\infty  {{f_x}\\left( x \\right)dx = } $$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{1 \\over 2}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${1 - {1 \\over e}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-normal-random-variable-x-has-the-following-probability-den-gate-pi-2016-marks-2-jemogkovcld5haz4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8hSGZOHUyAiwkJzB",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A fair coin is tossed $$N$$ times. The probability that head does not turn up in any of the tosses is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\left( {{1 \\over 2}} \\right)^{N - 1}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1 - {\\left( {{1 \\over 2}} \\right)^{N - 1}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\left( {{1 \\over 2}} \\right)^N}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1 - {\\left( {{1 \\over 2}} \\right)^N}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-fair-coin-is-tossed-n-times-the-probability-that-head-does-gate-pi-2016-marks-1-8hsgzohuyaiwkjzb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XEs5vn6Mmg1l3yFw",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "To solve the equation $$2sinx=x$$ by Newton- Raphson method, the initial guess was chosen to be $$x=2.0.$$ Consider $$x$$ in radian  only. The value of $$x$$ (in radian) obtained after one iteration will be closest to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-8.101$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.901$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2.099$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$12.101$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "to-solve-the-equation-2sinxx-by-newton-raphson-method-the-in-gate-pi-2016-marks-1-xes5vn6mmg1l3yfw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qe1pV91h21jAf5it",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The function $$f\\left( z \\right) = {{{z^2} + 1} \\over {{z^2} + 4}}$$ is singular at ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$z =  \\pm 2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$z =  \\pm 1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$z =  \\pm i$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$z =  \\pm 2i$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-function-fleft-z-right-z2-1-over-z2-4-is-singular-at-gate-pi-2016-marks-1-qe1pv91h21jaf5it.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Engineering Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mpwPXVHvGESOPR2q",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "engineering-mechanics-static-and-dynamics",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In abrasive water jet machining, the velocity of water at the exit of the orifice, before mixing with abrasives, is 800 m/s. The mass flow rate of water is 3.4 kg/min. The abrasives are added to the water jet at a rate of 0.6 kg/min with negligible velocity. Assume that at the end of the focusing tube, abrasive particles and water come out with equal velocity. Consider that there is no air in the abrasive water jet. Assuming conservation of momentum, the velocity (in m/s) of the abrasive water jet at the end of the focusing tube is _________.  ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "680",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-abrasive-water-jet-machining-the-velocity-of-water-at-the-gate-pi-2016-marks-2-mpwpxvhvgesopr2q.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                }
+            ],
+            "title": "Engineering Mechanics"
+        },
+        {
+            "_id": "Fluid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XDHLfmUunpC2OL6L",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-dynamics",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A vertical cylindrical tank of $$1$$ $$m$$ diameter is filled with water up to a height of $$5$$ $$m$$ from its bottom. Top surface of water is exposed to atmosphere. A hole of $$5$$ $$m{m^2}$$ area forms at the bottom of the tank. Considering the coefficient of discharge of the hole to be unity and the acceleration due to gravity to be $$10\\,\\,m/{s^2}$$, the rate of leakage of water (in litre/min) through the hole from the tank to the atmosphere, under the given conditions, is ______________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-vertical-cylindrical-tank-of-1-m-diameter-is-filled-with-w-gate-pi-2016-marks-1-xdhlfmuunpc2ol6l.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "S9M5sta8NVzK8ET6",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "turbulent-flow",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a fully developed turbulent flow through a circular pipe, a head loss of \u0744$${{h_1}}$$ is observed. The diameter of the pipe is increased by $$10\\% $$ for the same flow rate and a head loss of \u0744$${{h_2}}$$ is noted. Assume friction factor for both the cases of pipe flow is the same. The ratio of $${{{h_2}} \\over {{h_1}}}$$is closest to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.34$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.62$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.87$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1.00$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-fully-developed-turbulent-flow-through-a-circular-pipe-gate-pi-2016-marks-2-s9m5sta8nvzk8et6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1uhpONoAf3fwYHNs",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-statics",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$2m \\times 2m$$ square operating in a vertical wall is covered with a metalic plate of the same dimensions as shown in the figure below. Consider the acceleration due to gravity to be $$10.0\\,\\,m/{s^2}.$$ The force (in kN) exerted by water on the plate is _____________.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/wzBnLVLF8wdtMMKxU/S9WYbOn4EqAcnmDPocTrcBIxkrBjw/iC70We4kaHteIkxoCCt8Yb/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2016 Fluid Mechanics - Fluid Statics Question 2 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "120",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-2m-times-2m-square-operating-in-a-vertical-wall-is-covered-gate-pi-2016-marks-2-1uhponoaf3fwyhns.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                }
+            ],
+            "title": "Fluid Mechanics"
+        },
+        {
+            "_id": "Heat Transfer",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NeoXLpoRE8sr0mE2",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fin-design-and-transient-heat-conduction",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A long slender metallic rod of length $$L$$ is used as a fin. As shown in the figure below, the left end of the fin is kept at a constant temperature $${t_b}.$$ The fin loses heat by convection to the atmosphere which is at a temperature ta $${t_a}\\,\\,\\left( {{t_a} &lt; {t_b}} \\right).$$ Four options of temperature profiles are shown. Identify the correct option.  \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/WKuKcIkE0TyzafNRM/9opUHNuS4Djnjl7jEsbkAnHpdAO4J/8swqva4d8ZEf91upD8ikVE/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2016 Heat Transfer - Fin Design and Transient Heat Conduction Question 1 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/JGN8fiZ0qC0cDS6NF/9JPznSNsjJtojeBNRVT8zHMNxqk0N/7xCqb4CefcRJn3xc5OBzaZ/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2016 Heat Transfer - Fin Design and Transient Heat Conduction Question 1 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/b6wxvvAWtOHu6f5AJ/SZwPQolcBjVAQN4cG7tbSokT1I6u2/fFQmaZPyGixLSPZstvQnLj/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2016 Heat Transfer - Fin Design and Transient Heat Conduction Question 1 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/zuaJoAXrniusaKMas/jrjzWNHuTI8ijCd6oWxIGH2DSbIIZ/ylConYSaVhsK5AKjHo4kKt/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2016 Heat Transfer - Fin Design and Transient Heat Conduction Question 1 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/bNATJQYqVBggqyQrw/4vfXKf6fbo4DfisHPJqEcOA7CjVUZ/3DFwU473sYHK8mBvFIXHjm/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2016 Heat Transfer - Fin Design and Transient Heat Conduction Question 1 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-long-slender-metallic-rod-of-length-l-is-used-as-a-fin-as-gate-pi-2016-marks-2-neoxlpore8sr0me2.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                }
+            ],
+            "title": "Heat Transfer"
+        },
+        {
+            "_id": "Industrial Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "888Nk3eeFU3mw0Or",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "inventory-control",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The throughput rate of a production system is $$20$$ units per hour. The average flow time is $$30$$ minutes and the cycle time is $$3$$ minutes. The average inventory (in units) in the system is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$9$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$10$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$11.33$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-throughput-rate-of-a-production-system-is-20-units-p-2016-marks-1-888nk3eefu3mw0or.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Hnm3w72tJ3shX1hV",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pert-and-cpm",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a network with nodes $$1, 2, 3, 4, 5$$ and $$6.$$ The nodes are connected with directed arcs as shown in the table below. The respective costs (in $$INR$$) incurred while traversing the directed arcs are also mentioned.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/1mmfg43vKLARDsjWf/5hKe5qmoNRnKtTZER0FD5W0tLdQq1/gH6vzEb1Rqg9WdXZ1vHGlB/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2016 Industrial Engineering - Pert and Cpm Question 2 English\">\n<p>The second shortest path from node $$1$$ to node $$6$$ (i.e. the path that has the second least total cost and does not use any part of the shortest path) has a total cost (in $$INR$$) of </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$7$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$8$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$15$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$19$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-network-with-nodes-1-2-3-4-5-and-6-t-2016-marks-2-hnm3w72tj3shx1hv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                }
+            ],
+            "title": "Industrial Engineering"
+        },
+        {
+            "_id": "Joining of Materials",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cgVLsZwrskp2u8Co",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "joining-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In linear gas tungsten arc welding of two plates of the same material, the peak temperature $$T$$ (in $$K$$) is given as \u0736$$T = {{{c_1}q} \\over \\alpha },$$ where $$q$$ is the heat input per unit length (in $$J/m$$) of weld, $$\\alpha $$ is the thermal diffusivity (in $${m^2}/s$$) of the plate materials and $${C_1}$$ is a constant independent of process parameters and material types. Two welding cases are given below. \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/uU7nunPGwRZClOHZn/f3ZykYush7QmbqrJYnulzc7AkwX44/fbB16ZNS1OfI6o6N1NDjhW/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2016 Joining of Materials - Welding Question 15 English\"> \n<p>where, $$V$$ is welding voltage, $$I$$ is welding current, $$v$$ is welding speed, and $$k,$$ $$\\rho $$ and $$C$$ refer to the thermal conductivity, the density and the specific heat of the plate materials, respectively. Consider that electrical energy is completely converted to thermal energy. All other conditions remain same. </p>\n<p>The ratio of the peak temperature in Case $${\\rm I}$$ to that in Case $${\\rm I}{\\rm I}$$ is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over 3}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over 2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-linear-gas-tungsten-arc-welding-of-two-plates-of-the-same-gate-pi-2016-marks-2-cgvlszwrskp2u8co.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Kwk5snCDmIWcccY4",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "joining-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two flat steel sheets, each of $$2.5$$ $$mm$$ thickness, are being resistance spot welded using a current of $$6000$$ $$A$$ and weld time of $$0.2$$ $$s.$$ The contact resistance at the interface between the two sheets is $$200\\,\\,\\mu \\Omega $$ and the specific energy to melt steel is $$10 \\times {10^9}\\,\\,J/{m^3}.$$ A spherical melt pool of diameter $$4$$ $$mm$$ is formed at the interface due to the current flow. Consider that electrical energy is completely converted to thermal energy. The ratio of the heat used for melting to the total resistive heat generated is _____________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.20 to 0.25",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-flat-steel-sheets-each-of-25-mm-thickness-are-being-resi-gate-pi-2016-marks-2-kwk5sncdmiwcccy4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                }
+            ],
+            "title": "Joining of Materials"
+        },
+        {
+            "_id": "Machine Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nCdakSaDozLR2Lca",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "design-of-spur-gears",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A helical gear with involute tooth profile has been machined with a disc-type form gear milling cutter. The helical gear has $$30$$ teeth and a helix angle of  $${30^ \\circ }$$.  The module of the gear milling cutter is $$2.$$ The pitch circle diameter (in $$mm$$) of the helical gear is _______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "69.2 to 69.4",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-helical-gear-with-involute-tooth-profile-has-been-machined-gate-pi-2016-marks-2-ncdaksadozlr2lca.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                }
+            ],
+            "title": "Machine Design"
+        },
+        {
+            "_id": "Machine Tools and Machining",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6ZB8hBKx8eu4csdX",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A cylindrical bar of $$100$$ $$mm$$ diameter is orthogonally straight turned with cutting velocity, feed and depth of cut of $$120$$ $$m/min$$, $$0.25$$ $$mm/rev$$ and $$4$$ $$mm,$$ respectively. The specific cutting energy of the work material is $$1 \\times {10^9}\\,\\,J/{m^3}.$$ Neglect the contribution of feed force towards cutting power. The main or tangential cutting force (in $$N$$) is __________________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1000",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cylindrical-bar-of-100-mm-diameter-is-orthogonally-straigh-gate-pi-2016-marks-2-6zb8hbkx8eu4csdx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zXarsujH6Wr6fiVx",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single point right handed turning tool is used for straight turning. The feed is $$0.25$$ $$mm/rev$$ and the uncut chip thickness is found to be $$0.25$$ $$mm.$$ The inclination angle of the main cutting edge is $${10^ \\circ }.$$ The back rake angle (in degrees) is ________________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "10",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-single-point-right-handed-turning-tool-is-used-for-straigh-gate-pi-2016-marks-1-zxarsujh6wr6fivx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nhiiUUQLxPdCeHwk",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$60$$ $$mm$$ wide block of low carbon steel is face milled at a cutting speed of $$120$$ $$m/min,$$ feed of $$0.1$$ $$mm$$/tooth and axial depth of cut of $$4$$ $$mm.$$ A schematic representation of the face milling process is shown below. The diameter of the cutter is $$120$$ $$mm$$ and it has $$12$$ cutting edges. The material removal rate (in $$m{m^3}/s)$$ is __________\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/XGHOecV0PK6Mjp8AS/ySD9nKLoXgLUJIuqrC2XJaipeJBLM/bWoOIixGdI2cvWYqjUy6Om/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2016 Machine Tools and Machining - Metal Cutting Question 2 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1526 to 1530",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-60-mm-wide-block-of-low-carbon-steel-is-face-mille-2016-marks-2-nhiiuuqlxpdcehwk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "F5ODJQX9ZOLaXJXG",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "advance-machine-tools",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following statements.\n<br>$$(P)$$ Computer aided process planning $$(CAPP)$$ takes input from material requirement plan $$(MRP).$$\n<br>$$(Q)$$ Production flow analysis helps in work cell formation.\n<br>$$(R)$$ Group technology takes input from choice of machining or cutting parameters.\n<p>Among the above statements, the correct one(s) is (are) </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P$$ only "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$Q$$ and $$R$$ only "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P$$ and $$R$$ only "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$Q$$ only "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-statements-p-computer-aided-pr-2016-marks-1-f5odjqx9zolaxjxg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "n7fHZPiAZ6zrYg3O",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "machine-tools-and-machining",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "advance-machine-tools",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single axis $$CNC$$ table is driven by a $$DC$$ servo motor that is directly coupled to a lead screw of $$5$$ $$mm$$ pitch. The circular encoder attached to the lead screw generates $$1000$$ voltage  pulses per revolution of the lead screw. The table moves at a constant speed of $$6$$ $$m/min.$$ The corresponding frequency (in $$kHz$$) of the voltage pulses generated by the circular encoder is __________________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "20",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-single-axis-cnc-table-is-driven-by-a-dc-servo-moto-2016-marks-2-n7fhzpiaz6zryg3o.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                }
+            ],
+            "title": "Machine Tools and Machining"
+        },
+        {
+            "_id": "Metal Forming",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cm4VG4UlnxH8gdlt",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "metal-forming",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming-process",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a single-pass rolling operation, a $$200$$ $$mm$$ wide metalic strip is rolled from a thickness $$10$$ $$mm$$ to a thickness $$6$$ $$mm.$$ The roll radius is $$100$$ $$mm$$ and it rotates at $$200$$ $$rpm$$. The roll-strip contact length is a function of roll radius and, initial and final thickness of the strip. If the average flow  stress in plane strain of the strip material in the roll gap is $$500$$ $$MPa$$, the roll separating force (in $$kN$$) is _________________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1990 to 2010",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-single-pass-rolling-operation-a-200-mm-wide-metalic-str-gate-pi-2016-marks-2-cm4vg4ulnxh8gdlt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nEVLIzC3Mhuh1LyX",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "metal-forming",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming-process",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two solid cylinders of equal diameter have different heights. They are compressed plastically by a pair of rigid dies to create the same percentage reduction in their respective heights. Consider that the die-work-piece interface friction is negligible. The ratio of the final diameter of the shorter cylinder to that of the longer cylinder is _________________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1 ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-solid-cylinders-of-equal-diameter-have-different-heights-gate-pi-2016-marks-2-nevlizc3mhuh1lyx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8qXv4PkTCFDa6pSO",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "metal-forming",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sheet-metal-forming-processes",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The ratio of press force required to punch a square hole of $$30$$ $$mm$$ side in a $$1$$ $$mm$$ thick aluminium sheet to that needed to punch a square hole of $$60$$ $$mm$$ side in a $$2$$ $$mm$$ thick aluminium sheet is________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.25",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-ratio-of-press-force-required-to-punch-a-square-hole-of-2016-marks-1-8qxv4pktcfda6pso.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                }
+            ],
+            "title": "Metal Forming"
+        },
+        {
+            "_id": "Metrology",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "V9NATY1M6Cj4uCU3",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "metrology",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metrology-and-inspection",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The limits of a shaft designated as $$100h5$$ are $$100.000$$ $$mm$$ and $$100.014$$ $$mm.$$ Similarly, the limits of a shaft designated as $$100h8$$ are $$100.000$$ $$mm$$ and $$100.055$$ $$mm.$$ If a shaft is designated as $$100h6,$$ the fundamental deviation (in $$\\mu m$$ ) for the same is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-22$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$22$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$24$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-limits-of-a-shaft-designated-as-100h5-are-100000-2016-marks-1-v9naty1m6cj4ucu3.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "csPnOvLwOWAO2cJH",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "metrology",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metrology-and-inspection",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The roughness profile of a surface is depicted below.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/tRLQLri4pifctddIs/hZRRYB8kGPvhcI3omGplUsNfg5oo0/6N6wpFzKN8QzJqLVGvX8gG/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2016 Metrology - Metrology and Inspection Question 31 English\"> \n<p>The surface roughness parameter $${R_a}\\,\\,$$ (in $$\\mu m$$) is ________________.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-roughness-profile-of-a-surface-is-depicted-below-the-2016-marks-1-cspnovlwowao2cjh.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                }
+            ],
+            "title": "Metrology"
+        },
+        {
+            "_id": "Strength of Materials",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DcSBjwrByqWZxl5r",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "simple-stress-and-strain",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A beam is subjected to an inclined concentrated load as shown in the figure below. Neglect the weight of the beam. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/v0Rj282ELbMvdQBMZ/CmDLigPfHowlZPMqrrXo3HKKMqYzd/sOJO9XHUcmjc5Q5g38s5g6/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2016 Strength of Materials - Simple Stress and Strain Question 3 English\"> \n<p><b>The correct Free Body Diagram of the beam is </b></p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/J8gDWAfFkIhgbozcH/OFaI8RPlhPdADKvUBqO65m53Ns3Qh/PBy4XQcIxAJNQgnTz9uxq9/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2016 Strength of Materials - Simple Stress and Strain Question 3 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/c81A1XWqCgvN8gMPe/L0sFgJb9M2ospJLAB6ThIWhhQHrw9/Ls4Uvrb5BJptzKufiI0nMD/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2016 Strength of Materials - Simple Stress and Strain Question 3 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/RHiqtGRPZHNXObBc5/iDG0GOlHRoDmDLSrH42YGhDNFlpbd/dcq7pOXsju1xADjP56YFqT/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2016 Strength of Materials - Simple Stress and Strain Question 3 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/fgRuQ1IaDxMFD3teB/zeAD2JKOF60ZBXZJ20lCjYidctlpT/Bmmfd94lsXFgwMxj8FjiT5/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2016 Strength of Materials - Simple Stress and Strain Question 3 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-beam-is-subjected-to-an-inclined-concentrated-load-as-show-gate-pi-2016-marks-1-dcsbjwrbyqwzxl5r.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sLk5wsMmfnnnoVGJ",
+                    "exam": "gate-pi",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "simple-stress-and-strain",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following statements:\n<br>(P) Hardness is the resistance of a material to indentation.\n<br>(Q) Elastic modulus is a measure of ductility.\n<br>(R) Deflection depends on stiffness.\n<br>(S) The total area under the stress-strain curve is a measure of resilience.\n<p>Among the above statements, the correct ones are</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "P and Q only. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Q and S only."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "P and R only."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "R and S only.  "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-statementsp-hardness-is-the-resistanc-gate-pi-2016-marks-1-slk5wsmmfnnnovgj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uL33bn23Q5CdjxDE",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-stresses",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A bar of rectangular cross-sectional area of $$50$$ mm<sup>2</sup> is pulled from both the sides by equal forces of $$100$$ N as shown in the figure below. The shear stress (in MPa) along the plane making an angle $$45$$<sup>0</sup> with the axis, shown as a dashed line in the figure, is _______. \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/DU8cwthM9bjPKf3qK/gfz4dj1O3xTZbT80A0VwqfSEBLxEs/M3VV2dhuUWODMjqllsIYad/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2016 Strength of Materials - Complex Stresses Question 1 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-bar-of-rectangular-cross-sectional-area-of-50-mm2-is-pulle-gate-pi-2016-marks-2-ul33bn23q5cdjxde.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LXdpiXJusz4Ci8Wv",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pure-bending",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 1 m \u00d7 10 mm $$ \\times $$  10 mm cantilever beam is subjected to a uniformly distributed load per unit length of 100 N/m as shown in the figure below. The normal stress (in MPa) due to bending at point P is ____________.  \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/S6nkkZ5SFO4ieV68c/vYOaNa9OVnLPoy0pNu3ZpYNy1DFn5/kmR8sl2DLYuX4afhpdUZ9E/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE PI 2016 Strength of Materials - Pure Bending Question 1 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "300",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-1-m-10-mm-times-10-mm-cantilever-beam-is-subjected-to-a-un-gate-pi-2016-marks-2-lxdpixjusz4ci8wv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dBH9bSf35fhKQ1Hr",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "thin-cylinders",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A thin-walled cylindrical pressure vessel of internal diameter 2 m is designed to withstand an internal pressure of 500 kPa (gauge). If the allowable normal stress at any point within the cylindrical portion of the vessel is 100 MPa, the minimum thickness of the plate of the vessel (in mm) is _______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "5",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-thin-walled-cylindrical-pressure-vessel-of-internal-diamet-gate-pi-2016-marks-2-dbh9bsf35fhkq1hr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                }
+            ],
+            "title": "Strength of Materials"
+        },
+        {
+            "_id": "Theory of Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pCsn5jQmQ9hMoh4E",
+                    "exam": "gate-pi",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "flywheel",
+                    "year": 2016,
+                    "paperTitle": "GATE PI 2016",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An engine, connected with a flywheel, is designed to operate at an average angular speed of $$800$$ rpm. During operation of the engine, the maximum change in kinetic energy in a cycle is found to be $$6240$$ <b>J.</b> In order to keep the fluctuation of the angular speed within $$ \\pm 1\\% $$ of its average value, the moment of inertia (in kg-m<sup>2</sup>) of the flywheel should be ____________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "44.45",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-engine-connected-with-a-flywheel-is-designed-to-operate-a-gate-pi-2016-marks-2-pcsn5jqmq9hmoh4e.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-pi-2016",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-pi-2016"
+                }
+            ],
+            "title": "Theory of Machines"
+        }
+    ]
+}

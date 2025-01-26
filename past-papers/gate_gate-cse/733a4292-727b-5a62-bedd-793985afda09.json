@@ -1,0 +1,227 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Compiler Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LyHzK3TavcrJiUbP",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "lexical-analysis",
+                    "year": 1988,
+                    "paperTitle": "GATE CSE 1988",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a compiler the module that checks every character of the source text is called:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The code generator"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The code optimizer "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The lexical analyzer"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The syntax analyzer"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-compiler-the-module-that-checks-every-character-of-the-gate-cse-1988-marks-1-lyhzk3tavcrjiubp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1988",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1988"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "unYAtYjIgsp5zY0C",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parsing",
+                    "year": 1988,
+                    "paperTitle": "GATE CSE 1988",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Consider the following grammar:</p>\n$$\\eqalign{\n  &amp; S \\to S  \\cr \n  &amp; S \\to SS\\,|\\,a\\,|\\,\\varepsilon  \\cr} $$\n<p>(a) Construct the collection of sets of LR(0) items for this grammar and draw its go to graph.</p>\n<p>(b) Indicate the shift-reduce and reduce-reduce conflict (if any) in the various state of the LR(0) parser.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-grammareqalign-s-to-s-cr-s-to-ssavare-gate-cse-1988-marks-5-unyatyjigsp5zy0c.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1988",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1988"
+                }
+            ],
+            "title": "Compiler Design"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dbhVD9LTr1pYwEei",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1988,
+                    "paperTitle": "GATE CSE 1988",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The complement(s) of the element 'a' in the lattice shown in Fig.  is (are) ........... .\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/AQH1T271vGhXxUC9K/WIaCPAeucbdcykPyy4s54jsrXSENO/O3hesG9k39cNmIgM5xAMpH/image.svg\" loading=\"lazy\" alt=\"GATE CSE 1988 Discrete Mathematics - Set Theory &amp; Algebra Question 38 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "d, b, c, e",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-complements-of-the-element-a-in-the-lattice-shown-in-fig-gate-cse-1988-marks-2-dbhvd9ltr1pyweei.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1988",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1988"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vibwUjVwu5WaP7AM",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinatorics",
+                    "year": 1988,
+                    "paperTitle": "GATE CSE 1988",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Solve the recurrence equations: \n<br>$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,T\\left( n \\right) = \\left( {{n \\over 2}} \\right) + 1$$\n<br>$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,T\\left( 1 \\right) = 1$$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$\\,\\,\\,\\,T\\left( n \\right) = \\log \\matrix{\n   n  \\cr \n   2  \\cr \n\n }  + 1$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "solve-the-recurrence-equations-tleft-n-right-left-n-over-2-r-gate-cse-1988-marks-2-vibwujvwu5wap7am.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1988",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1988"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uxLDCeGb51zCeML6",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 1988,
+                    "paperTitle": "GATE CSE 1988",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "State an undesirable characteristic of each of the following criteria for measuring performance of an operating system: \n<br>(a)  Turn around time.   (b) Waiting time.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "The CPU efficiency decrease as the turn-aroun time/wating time of the processor increases.It is better to have less turn-around and waiting time ,for all process.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "state-an-undesirable-characteristic-of-each-of-the-following-gate-cse-1988-marks-2-uxldcegb51zceml6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1988",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1988"
+                }
+            ],
+            "title": "Operating Systems"
+        }
+    ]
+}

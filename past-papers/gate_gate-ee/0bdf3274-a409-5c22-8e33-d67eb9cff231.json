@@ -1,0 +1,2096 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Analog Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QS5NBpuYNhxjVYHb",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the following circuit the output $$'V'$$ follows an equation of the form \n<br>$${{{d^2}V} \\over {d{t^2}}} + a.{{dV} \\over {dt}} + bV = f\\left( t \\right).$$\n<br>Find $$a,b$$ and $$f(t)$$\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/ycPzGWcxbGZubdkWY/KkhxX9iE8jqoHPJ9eDsAvKmcAMMim/tZ7O855uNqlyR9PbBaibpy/image.png\" loading=\"lazy\" alt=\"GATE EE 1992 Analog Electronics - Operational Amplifier Question 43 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$\\eqalign{\n  &amp; a = {1 \\over {2RC}}  \\cr \n  &amp; b = {1 \\over {2{R^2}{C^2}}}  \\cr \n  &amp; f\\left( t \\right) = {{{e^t}} \\over {2{R^2}{C^2}}}\\left( {1 + {1 \\over {RC}}} \\right) \\cr} $$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-following-circuit-the-output-v-follows-an-equat-1992-marks-2-qs5nbpuynhxjvyhb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "IfBZVrWskyh8XuAU",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$(a)$$ For the circuit shown in figure\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/XYJiiAlws5go7hOp6/u6JEMcLlIaow7a8ShQw2KoR6GZmbj/lYgRGKwrtvd4HpfAhpSJPN/image.png\" loading=\"lazy\" alt=\"GATE EE 1992 Analog Electronics - Operational Amplifier Question 10 English\"> \n<p>$$(i)$$ Calculate the transfer function $${{{V_0}} \\over {{V_i}}}$$ \n<br>$$(ii)$$ plot the amplitude and phase response as a function for $$R = {R_1}$$</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$(i)$$ $$\\,\\,\\,\\,\\,\\,\\,\\,\\,{{{V_o}} \\over {{V_i}}} = \\left( {{{SCR - 1} \\over {SCR + 1}}} \\right)$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-for-the-circuit-shown-in-figure-i-calculate-1992-marks-5-ifbzvrwskyh8xuau.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SCCDCRhIX7pNAErw",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "feedback-amplifiers-and-oscillator-circuits",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a common Emitter amplifier, the un bypassed emitter resistance provides",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Voltage - shunt feedback"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Current - Series feedback"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Negative - Voltage feedback "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Positive - current feedback"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-common-emitter-amplifier-the-un-bypassed-emitter-resis-1992-marks-1-sccdcrhix7pnaerw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gjSpYMd7I3OtKbLX",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "feedback-amplifiers-and-oscillator-circuits",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The voltage series feedback in a feedback amplifier leads to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "increase in band width, while the voltage gain becomes less sensitive to variations in components and device characteristics"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "decrease in overall gain, while the input resistance decreases"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "increase in distortion, while the output resistance decreases"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "decrease in input resistance, while the output resistance increases "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-voltage-series-feedback-in-a-feedback-amplifier-leads-to-1992-marks-1-gjspymd7i3otkblx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2XGsoh1njHw8m1jk",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Circuit shown in figure is excited by the input wave form shown. Sketch the wave form of the output. Assume all the components are ideal\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/XroyqVxaLe2OcJzqB/WMeW0LYRZOh9kSM0zw2HqthtlRNmd/X5UUfCZToF5UfzUpkauXbY/image.png\" loading=\"lazy\" alt=\"GATE EE 1992 Analog Electronics - Operational Amplifier Question 44 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-circuit-shown-in-figure-is-excited-by-the-input-wave-for-1992-marks-2-2xgsoh1njhw8m1jk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oR7UxBPNixWwlbQn",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "frequency-response",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In an $$RC$$- coupled common Emitter amplifier which of the following is true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Coupling Capacitance affects the high frequency $$\\left( {hF} \\right)$$ response and bypass capacitance affects Low frequency $$\\left( {lF} \\right)$$ response."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Both coupling and by pass capacitances affects the $$lF$$ response."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Both coupling  and by pass capacitances affects the $$hF$$ response."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Coupling Capacitance affects the $$lf$$ response and the bypass capacitance affects the $$hF$$ response."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-an-rc-coupled-common-emitter-amplifier-which-of-the-1992-marks-2-or7uxbpnixwwlbqn.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Y3tlBVYUeBTW5MXc",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "small-signal-modeling",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the $$JFET$$ amplifier shown in figure $$\\mu  = 100,\\,{r_d} = 50k\\Omega $$ \n<br>$$(i)$$ Draw the $$AC$$ equivalent circuit\n<br>$$(ii)$$ Find the voltage gain of the amp\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/NazNXxRglSbVTM4Ms/6SMfbHivsKvnLQttp3JubmpLIqHxY/KXtH7B8906G7zxgCw61g2X/image.png\" loading=\"lazy\" alt=\"GATE EE 1992 Analog Electronics - Small Signal Modeling Question 2 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Voltage gain $$ =  - 66.667.$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-jfet-amplifier-shown-in-figure-mu-100r-1992-marks-5-y3tlbvyuebtw5mxc.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lAqOZWWH9AtD2rpJ",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "diode-circuits-and-applications",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the following circuit the $$5$$ $$V$$ zener diode requires a minimum current of $$10$$ $$mA.$$ For obtaining a regulated output of $$5V,$$ the maximum permissible load current $$\\left( {{{\\rm I}_L}} \\right)$$, is ______$$mA$$ and the minimum power rating of zener diode is ________ $$W$$.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/KZsnW3ei02b1CXJuJ/lEryan0gYm2JnjVnzOKT2LrDDDgKA/cJFjUlTFnds0xkqWgaYqa3/image.svg\" loading=\"lazy\" alt=\"GATE EE 1992 Analog Electronics - Diode Circuits and Applications Question 10 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$40$$ $$mA,$$ $$0.25$$ $$W$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-following-circuit-the-5-v-zener-diode-requires-a-mini-gate-ee-1992-marks-1-laqozwwh9atd2rpj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iSOU9hRzsCOTgNq1",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "diode-circuits-and-applications",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit shown in figure calculate and sketch the wave form of current $$'i'$$ over one period of the i/p voltages. Assume the diodes to be ideal\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Weiw96zKGnwqpnodw/XB8YJtynxtRtOMnLj7VCARqS6Phzd/G2stQAMF5uvgs1ezSvLd4Y/image.svg\" loading=\"lazy\" alt=\"GATE EE 1992 Analog Electronics - Diode Circuits and Applications Question 5 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$i = {1 \\over 3}\\left[ {\\cos t + \\sin t} \\right]$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-in-figure-calculate-and-sketch-the-wave-gate-ee-1992-marks-5-isou9hrzscotgnq1.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "V75Zf254DhGoqONE",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An ideal op-amp is used to make an inverting amplifier. The two input terminals of the op-amp are at the same potential because",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The two input terminals are directly shorted internally"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The input impedance of the op-amp is infinity"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The open-loop gain of the op-amp is infinity"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$CMRR$$ is infinity."
+                                }
+                            ],
+                            "correct_options": [
+                                "C",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-ideal-op-amp-is-used-to-make-an-inverting-amplifier-the-t-gate-ee-1992-marks-1-v75zf254dhgoqone.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                }
+            ],
+            "title": "Analog Electronics"
+        },
+        {
+            "_id": "Control Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "eAhKjiFjeUGORKSq",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "block-diagram-and-signal-flow-graph",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The overall transfer function of the system in Figure, is \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/nDBVItbBL5FU0Ly2U/6rbYMpuDLn1ZAWvsIzKqw0hfeJeJO/BCb6MH0h74PI78iL6pvpsU/image.svg\" loading=\"lazy\" alt=\"GATE EE 1992 Control Systems - Block Diagram and Signal Flow Graph Question 4 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${G \\over {1 - GH}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{2G} \\over {1 - GH}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{GH} \\over {1 - GH}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{GH} \\over {1 - H}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-overall-transfer-function-of-the-system-in-figure-is-gate-ee-1992-marks-1-eahkjifjeugorksq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NyYPjshQcnEM74QO",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "time-response-analysis",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For what values of $$'a'$$ does the system shown in figure have a zero steady state error $$\\left[ {i.e.,\\mathop {Lim}\\limits_{t \\to \\infty } \\,\\,E\\left( t \\right)} \\right]$$ for a step input?\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/84MKeRH1HIoAvABkO/Ys67uWRkVOBOCdieIKsMbY0LnG8Dk/rdCSMzqrOyEdgnoyN6GAq3/image.svg\" loading=\"lazy\" alt=\"GATE EE 1992 Control Systems - Time Response Analysis Question 10 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$a=0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$a=2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$a \\ge 4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "for no value of $$' a'$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-what-values-of-a-does-the-system-shown-in-figure-have-a-gate-ee-1992-marks-1-nyypjshqcnem74qo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dsEi7DcXrMVWnqLN",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "routh-hurwitz-stability",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For what range of $$K$$ is the following system (Figure) asymptotically stable Assume $$K \\ge 0$$ \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/t3nmHQShWUZw53wv2/MJGVOuOTMQBAjQ0L3q3CEfJlquwng/46EUbqTdJUJo0a9kLU5Cwv/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 1992 Control Systems - Routh Hurwitz Stability Question 26 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$0 &lt; K &lt; {4 \\over 5}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-what-range-of-k-is-the-following-system-figure-asymptoti-gate-ee-1992-marks-1-dsei7dcxrmvwnqln.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QdcWc1zmh2Pg9QQE",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "root-locus-techniques",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following figure(s) represent valid root loci in the $$s$$ - plane for positive $$K?$$ Assume that the system has transfer function with real coefficient. ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/PitSuUVrqqELH1ShE/KhHAYNkijPQKPs5SE8N4NuQydSguj/MfOPO9IXF1I5ha40dOc6HO/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 1992 Control Systems - Root Locus Techniques Question 12 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/jmt5NA35MP4fx56fY/iPGwATXiaYmSm8mNrYcdPTwpsxVn8/PypEYw27jxeq0swPeJXVpn/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 1992 Control Systems - Root Locus Techniques Question 12 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/kum4xknS43zB9FoSt/K6a0dTXqbyJAw0syVUG06e2RM2Q9L/scQjTb5WGXym3LRc8BLk6d/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 1992 Control Systems - Root Locus Techniques Question 12 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/y3tLiAlhQFaZbvVtV/wXGmqn2sSJsqGWY6iokFJ50pYkCbb/4SA3KyzhMJZHMaEaq7fwaX/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 1992 Control Systems - Root Locus Techniques Question 12 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-figures-represent-valid-root-loci-in-gate-ee-1992-marks-1-qdcwc1zmh2pg9qqe.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pib4V0xEM6QF94by",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "polar-nyquist-and-bode-plot",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A unity feedback system has the open loop transfer function $$G\\left( s \\right) = {1 \\over {\\left( {s - 1} \\right)\\left( {s + 2} \\right)\\left( {s + 3} \\right)}}$$ \n<br>The Nyquist plot of $$G$$  encircle the origin",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Never "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Once "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Twice "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Thrice"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-unity-feedback-system-has-the-open-loop-transfer-function-gate-ee-1992-marks-1-pib4v0xem6qf94by.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                }
+            ],
+            "title": "Control Systems"
+        },
+        {
+            "_id": "Digital Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nhgLwJzqBwpqI17u",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "microprocessor",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the $$HLT$$ instruction of a $$8085$$ microprocessor is executed, ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "the microprocessor is disconnected from the system bus till the Reset is pressed"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the microprocessor enters into a Halt state and the buses are tri-stated "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the microprocessor halts execution of the program and returns to monitor"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "the microprocessor reloads the program from the locations $$0024$$ and $$0025H.$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-hlt-instruction-of-a-8085-microprocessor-is-e-1992-marks-1-nhglwjzqbwpqi17u.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                }
+            ],
+            "title": "Digital Electronics"
+        },
+        {
+            "_id": "Electric Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MpSq2T05Uh71TbqW",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transient-response",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The time constant of the network shown in Fig. is\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/wi0BhOmwQKmhQFPTY/BmdK5e1sCijHWAAylMtbTq14TV7Zu/Y1rGo1QhLhvJ500WJguSYq/image.png\" loading=\"lazy\" alt=\"GATE EE 1992 Electric Circuits - Transient Response Question 9 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2$$ $$RC$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3$$ $$RC$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$RC/2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2RC/3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-time-constant-of-the-network-shown-in-fig-is-1992-marks-1-mpsq2t05uh71tbqw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sYV9mcfg9rq20dFW",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The equivalent inductance seen at terminals $$A-B$$ in Fig. is .................... $$H.$$ \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/QN7mb5KTmVMFCPqqf/qAY7O98OhRyfQrUX49isTSXoebZZ3/npB9ugk2pJv5Khh5RUBIJd/image.png\" loading=\"lazy\" alt=\"GATE EE 1992 Electric Circuits - Network Elements Question 14 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "8 ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-equivalent-inductance-seen-at-terminals-a-b-in-fig-1992-marks-2-syv9mcfg9rq20dfw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dkAwyvZ9ebVD4lT8",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transient-response",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit of Fig, the switch $$'S'$$ is closed at $$t=0$$ with $${i_L}\\left( 0 \\right) = 0$$  and $${V_C}\\left( 0 \\right) = 0.$$ In the steady state, $${V_C}$$  equals\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/jrdt7xfcNtofobtQM/1D63jUwB4ngJXQ6nmnmzh1a07KAPl/x0iRDOy5NRNCthh9j4TY7g/image.png\" loading=\"lazy\" alt=\"GATE EE 1992 Electric Circuits - Transient Response Question 7 English\">   ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$200$$ $$V$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$100$$ $$V$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$-100$$ $$V$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-of-fig-the-switch-s-is-closed-at-t0-1992-marks-1-dkawyvz9ebvd4lt8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VHuv3aB87hylcSce",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "three-phase-circuits",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Using Thevenin equivalent circuit, determine the $$rms$$ value of the voltage across the $$100$$ $$ohm$$ resistor after the switch is closed in the $$3$$ $$-$$ phase circuit shown in Figure. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/dDpCbWAowq5p8d0pe/8rAZiep4l5zZe5trITbSMB2HEvwDd/DsjZGVe7CjwYTbTVJc25ZF/image.png\" loading=\"lazy\" alt=\"GATE EE 1992 Electric Circuits - Three Phase Circuits Question 10 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$115.5$$ $$V$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "using-thevenin-equivalent-circuit-determine-the-rms-val-1992-marks-2-vhuv3ab87hylcsce.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8849d96a96f",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Resistances in the circuit of fig. are of R $$\\Omega$$ each. The switch is initially open. What happens to the lamp's intensity when the switch is closed?\n<img alt=\"GATE EE 1992 Electric Circuits - Network Elements Question 59 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/448f3898cdb0231924560014925ffd1b306dac0710c4efad5afcf6819eb9e75b.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "increases"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "decreases"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "remains the same"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "answer depends on the value of R"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "resistances-in-the-circuit-of-fig-are-of-r-omega-each-the-sw-gate-ee-1992-marks-1-5a8849d96a96f.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a886af49f913",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "All the resistances in the circuit of Fig. are of 1 $$\\Omega$$ each. The value of current 'I' is\n<img alt=\"GATE EE 1992 Electric Circuits - Network Elements Question 58 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/1d72b92b9e98c556860a1e9bce1286d86bd51adeca27e968f38bad6a9026bd40.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\frac1{15}A$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\frac2{15}A$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\frac4{15}A$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\frac8{15}A$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "all-the-resistances-in-the-circuit-of-fig-are-of-1-omega-eac-gate-ee-1992-marks-1-5a886af49f913.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                }
+            ],
+            "title": "Electric Circuits"
+        },
+        {
+            "_id": "Electrical and Electronics Measurement",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4WQUKZcxDnLxmYyc",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "error-analysis-and-measurement",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A resistance is measured by the voltmeter- ammeter method employing d.c. excitation and a voltmeter of very high resistance connected directly across the unknown resistance. If the voltmeter and ammeter readings are subject to maximum possible errors of $$ \\pm 2.4\\% $$ and $$ \\pm 1.0\\% $$ respectively, then the magnitude of the maximum possible percentage error in the value of resistance deduced from the measurement is nearly",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.4$$% "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.7%$$%"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2.4$$%"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3.4$$%"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-resistance-is-measured-by-the-voltmeter-ammeter-method-emp-gate-ee-1992-marks-1-4wqukzcxdnlxmyyc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "K4PDYtBdwJLIzA3p",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-indicating-instruments",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An unshielded moving iron voltmeter is used to measure the voltage in an a.c. circuit. If a stray d.c. magnetic field having a component along the axis of the meter coil appears, the meter reading would be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "unaffected "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "decreased "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "increased "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "either decreased or increased depending on the direction of the d.c. field "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-unshielded-moving-iron-voltmeter-is-used-to-measure-the-v-gate-ee-1992-marks-1-k4pdytbdwjliza3p.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UUponrkim0n1cFBS",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "potentiometer-and-instrument-transformers",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In $$d.c.$$ potentiometer measurements, a second reading is often taken after reversing the polarities of the $$s.c.$$ supply and the unknown voltage, and the average of the two readings is taken. This is, with a view to eliminate the effects of ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Ripples in the $$d.c.$$ supply"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Stray magnetic fields "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Stray thermal emf's "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Erroneous standardization "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-dc-potentiometer-measurements-a-second-reading-is-often-t-gate-ee-1992-marks-1-uuponrkim0n1cfbs.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "e6nPn71htuRue6EW",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "digital-voltmeters-questions",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a dual slope integrating type digital voltmeter the first integration is carried out for $$10$$ periods of the supply frequency of $$50Hz.$$ If the reference voltage used is $$2V,$$ the total conversion time for an input $$1$$ $$V$$ is _________ sec",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.3 to 0.3",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-dual-slope-integrating-type-digital-voltmeter-the-first-gate-ee-1992-marks-2-e6npn71hturue6ew.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                }
+            ],
+            "title": "Electrical and Electronics Measurement"
+        },
+        {
+            "_id": "Electrical Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PRW3KWsr8nHAYimE",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The torque angle of a synchronous machine operating from a constant voltage bus, is usually defined as the space angle between ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Rotor $$mmf$$ wave and stator $$mmf$$ wave "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Rotor  $$mmf$$ wave and resultant flux density wave "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Stator $$mmf$$ wave and resultant flux density wave "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Stator $$mmf$$ wave and resultant $$mmf$$ wave"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-torque-angle-of-a-synchronous-machine-operating-from-a-c-1992-marks-1-prw3kwsr8nhayime.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4kuSFeOAZExRWBPe",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The developed electromagnetic force and or torque in electro  $$-$mechanical  energy conversion systems act in a direction that tends ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "to increase the stored energy at constant $$mmf$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "to decrease the stored energy at constant flux "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "to decrease the co-energy at constant $$mmf$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "to decrease the stored energy at constant $$mmf$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-developed-electromagnetic-force-and-or-torque-in-electro-1992-marks-1-4kusfeoazexrwbpe.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SiacRZoSOjcfYdwV",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Figure depicts the load characteristics of an constant speed. Match the following sets of operating conditions with the given characteristics. Disregard the effects of saliency, saturation and stator resistance. \n<p>$$(a)$$ Constant excitation and non-zero leading power-factor\n<br>$$(b)$$ Constant excitation and zero power-factor, leading\n<br>$$(c)$$ Constant terminal voltage and zero power-factor, leading \n<br>$$(d)$$ Constant terminal voltage and non-zero leading power-factor</p>\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Fus80Ei3DUhzvoMKv/wbYXUtq46C6MX5uxAZjvlnOlXafgN/Xeyl7qH9KHoa4tZIWOoHGU/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 1992 Electrical Machines - Synchronous Machines Question 7 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$a - Q,\\,\\,b - P,\\,\\,c - S,\\,\\,d - R$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "figure-depicts-the-load-characteristics-of-an-constant-speed-1992-marks-5-siacrzosojcfydwv.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VCxscJBiWqPJ3VAM",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Neglecting all losses, the developed torque $$(T)$$ of $$d.c.$$ separately excited motor, operating under constant terminal voltage, is related to its output power $$(P)$$ as under ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$T\\,\\, \\propto \\,\\,\\sqrt P $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$T\\,\\, \\propto \\,\\,P$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${T^2}\\,\\, \\propto \\,\\,{P^3}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$T$$ independent of $$P$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "neglecting-all-losses-the-developed-torque-t-of-dc-1992-marks-1-vcxscjbiwqpj3vam.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WRyBe0oxvnqwP8pO",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A separately excited $$d.c.$$ motor has an armature resistance of $$0.5$$ $$ohm.$$ It runs off a $$250$$ $$V$$ $$d.c.$$ supply drawing an armature current of $$20$$ $$A$$ at $$1,500$$ $$rpm.$$ The torque developed for an armature current of $$10$$ $$A$$ will be __________ for the same field current.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$15.28$$ $$N$$-$$m$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-separately-excited-dc-motor-has-an-armature-resistan-1992-marks-5-wrybe0oxvnqwp8po.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TjG72bIty8oGVhSd",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two transformers of the same type, using the same grade of iron and conductor materials, are designed to work at the same flux and current densities; but the linear dimensions of one are two times those of the other in all respects. The ratio of $$kVA$$ of the two transformers closely equals ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$16$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$8$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-transformers-of-the-same-type-using-the-same-grade-of-i-1992-marks-1-tjg72bity8ogvhsd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "H8kH7oW7sKQVUfZi",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two transformers of different $$kVA$$ ratings workings in parallel share the load in proportion to their ratings when their ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "per unit leakage impedances on the same $$kVA$$ base are the same "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "per unit leakage impedances on their respective ratings are equal "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "ohmic values of the leakage impedances are inversely proportional to their ratings "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "ohmic values of the leakage magnetizing reactances are the same "
+                                }
+                            ],
+                            "correct_options": [
+                                "B",
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-transformers-of-different-kva-ratings-workings-in-pa-1992-marks-1-h8kh7ow7skqvufzi.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                }
+            ],
+            "title": "Electrical Machines"
+        },
+        {
+            "_id": "Electromagnetic Fields",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8d744d4629c",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electromagnetic-fields",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "electrostatics",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following equations represents the Gauss's law in a homogeneous isotropic medium? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\iint\\overrightarrow D.d\\overrightarrow s=\\iiint\\rho\\;dv$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\nabla\\times\\overrightarrow H=\\overrightarrow D$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\nabla.\\overrightarrow{J\\;}+\\rho=0$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\nabla.\\overrightarrow E=\\frac\\rho\\varepsilon$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-equations-represents-the-gausss-law-i-gate-ee-1992-marks-1-5a8d744d4629c.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8d7bd3a9ec4",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetic-fields",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "electrostatics",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An electrostatic potential is given by $$\\phi=2x\\sqrt y$$ volt in the rectangular co-ordinate system. The magnitude of the electric field at x = 1 m,y = 1 m is _________V/m",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$\\sqrt5$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-electrostatic-potential-is-given-by-phi2xsqrt-y-volt-in-t-gate-ee-1992-marks-1-5a8d7bd3a9ec4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                }
+            ],
+            "title": "Electromagnetic Fields"
+        },
+        {
+            "_id": "Power Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "70AZBjlp836vdm3F",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "single-and-three-phase-rectifier",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit shown in fig, $$L$$ is large and the average value of $$'i'$$ is $$100A.$$ The thyristor is gated in the half cycle of $$'e'$$ at a delay angle $$\\alpha $$ equal to ___________.\n<br>$$e\\left( t \\right) = \\sqrt 2 .00\\,\\,\\sin \\,\\,314t$$\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/FuGaeye11gMHQrSo5/NAJ5Q1hwUxUS5cwmfMKeU4pZD7ejZ/owowoJsNCrzCwKmrN2erBb/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 1992 Power Electronics - Single and Three Phase Rectifier Question 19 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "First, 122.22",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-in-fig-l-is-large-and-the-average-value-gate-ee-1992-marks-1-70azbjlp836vdm3f.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                }
+            ],
+            "title": "Power Electronics"
+        },
+        {
+            "_id": "Power System Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DKVqS47vFSlCeUY6",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The inductance of a power transmission line increases with ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Decreases in line length "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Increase in diameter of conductor "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Increase in spacing between the phase conductors. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Increase in load current carried by the conductors."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-inductance-of-a-power-transmission-line-increases-with-gate-ee-1992-marks-1-dkvqs47vfslceuy6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tX3H4RCYElILU7kN",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The selection of size of conductors for a distributor in a distribution system is governed by ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Corona loss "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Temperature rise "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Radio interference "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Voltage drop "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-selection-of-size-of-conductors-for-a-distributor-in-a-d-gate-ee-1992-marks-1-tx3h4rcyelilu7kn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OU3aBtzCNTkzBw0S",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "switch-gear-and-protection",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A Buchholz relay is used for ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Protection of a transformer against all internal faults "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Protection of a transformer against external faults"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Protection of a transformer against both internal and external faults"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Protection of induction motors."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-buchholz-relay-is-used-for-gate-ee-1992-marks-1-ou3abtzcntkzbw0s.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KsrjWWl6HYwncNtz",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "load-flow-studies",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In load flow studies of a power system, the quantities specified at a voltage-controlled bus are ____________and___________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Voltage, Power",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-load-flow-studies-of-a-power-system-the-quantities-specif-gate-ee-1992-marks-1-ksrjwwl6hywncntz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                }
+            ],
+            "title": "Power System Analysis"
+        },
+        {
+            "_id": "Signals and Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aseKTBGwTIFK6LBv",
+                    "exam": "gate-ee",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-time-invariant-systems",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The impulse response  of a network is $$h\\left( t \\right) = 1$$ for $$0 \\le t &lt; 1$$ and zero otherwise. Sketch the impulse response of two such networks in cascade, neglecting loading effects.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-impulse-response-of-a-network-is-hleft-t-right-1992-marks-5-asektbgwtifk6lbv.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "snWNZZAXp2xLhqlK",
+                    "exam": "gate-ee",
+                    "marks": 4,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-time-invariant-systems",
+                    "year": 1992,
+                    "paperTitle": "GATE EE 1992",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the following transfer functions and impulse responses\n<p><b>Transfer functions</b>\n<br>$$\\eqalign{\n  &amp; \\left( a \\right)\\,\\,\\,\\,\\,\\,\\,\\,{1 \\over {s\\left( {s + 1} \\right)}}  \\cr \n  &amp; \\left( b \\right)\\,\\,\\,\\,\\,\\,\\,\\,{1 \\over {{{\\left( {s + 1} \\right)}^2}}}  \\cr \n  &amp; \\left( c \\right)\\,\\,\\,\\,\\,\\,\\,\\,{1 \\over {s\\left( {s + 1} \\right) + 1}}  \\cr \n  &amp; \\left( d \\right)\\,\\,\\,\\,\\,\\,\\,\\,{1 \\over {{s^2} + 1}} \\cr} $$</p>\n<p><b>Impulse Responses</b>\n<br><img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/EtgpNenLyBUyPty3i/MSez8nzWJkguyTm6EcQFVsFn24Mua/mFryiqX4goq0JH51LF99On/image.png\" loading=\"lazy\" alt=\"GATE EE 1992 Signals and Systems - Linear Time Invariant Systems Question 11 English 1\"> \n<br><img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/YJgHfmTt6mDUOFwDY/FfJ2D0eBpror2dyZZepMo13C2AK3m/mY8U9obVcYoN2v7xTrWvEc/image.png\" loading=\"lazy\" alt=\"GATE EE 1992 Signals and Systems - Linear Time Invariant Systems Question 11 English 2\">\n<br><img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/98nu0FBa0wDrzSjjS/mQv4qf53pnFEoZkPEsyncK6Een3Wn/ijNnouJFi3NOYBum7ExteJ/image.png\" loading=\"lazy\" alt=\"GATE EE 1992 Signals and Systems - Linear Time Invariant Systems Question 11 English 3\">\n<br><img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/78gV9ainIvysyDT5x/007xH1rohqqPv7kPgLEy4wOQJPPWs/S3HsYnyrATnWwDMhiTkKbj/image.png\" loading=\"lazy\" alt=\"GATE EE 1992 Signals and Systems - Linear Time Invariant Systems Question 11 English 4\"></p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$\\left( {a - Q} \\right),\\,\\,\\left( {b - P} \\right),\\,\\,\\left( {c - S} \\right),\\,\\,\\left( {d - R} \\right)$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-following-transfer-functions-and-impulse-responses-1992-marks-4-snwnzzaxp2xlhqlk.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-ee-1992",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-1992"
+                }
+            ],
+            "title": "Signals and Systems"
+        }
+    ]
+}

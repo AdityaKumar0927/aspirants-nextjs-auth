@@ -1,0 +1,2645 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Analog Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1020e65300b",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "diodes",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The figure shows a half-wave rectifier. The diode D is ideal. The average steady-state current\n(in Amperes) through the diode is approximately ____________.\n<img alt=\"GATE ECE 2014 Set 3 Analog Circuits - Diodes Question 16 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/73f965938d1b5fcee774911e5e24278ea028e5e8d13bffd99c2c50fd2140b6cd.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.1",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-figure-shows-a-half-wave-rectifier-the-diode-d-is-ideal-gate-ece-2014-set-3-marks-1-5a1020e65300b.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a40d9baa84c9",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bipolar-junction-transistor",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit shown, the PNP transistor has $$\\left|{\\mathrm V}_\\mathrm{BE}\\right|=0.7\\;\\mathrm V$$ and \u03b2 = 50. Assume that R<sub>B</sub> = 100 k\u2126.\nFor V<sub>0</sub> to be 5 V, the value of R<sub>C</sub> ( in k\u2126)  is  _____________.\n<img alt=\"GATE ECE 2014 Set 3 Analog Circuits - Bipolar Junction Transistor Question 51 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/17e3dbe182479e18b99552c675fdca0f6d2c5efd4b0f3514a869fb2d87d2f9c8.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-the-pnp-transistor-has-leftmathrm-vmath-gate-ece-2014-set-3-marks-1-5a40d9baa84c9.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8Zv41RyNtJwIruT4",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bipolar-junction-transistor",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit shown, the silicon BJT has $$\\beta \\,\\,\\,\\,50.\\,\\,\\,\\,\\,$$ Assume $${V_{BE}}\\,\\,\\, = \\,\\,\\,0.7$$ and $${V_{CE\\left( {sat} \\right)}}\\, = \\,0.2V.$$ Which one of the following statements is correct ?\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/2e3ba9c5f7331154bd008638baaff9e6b7b32fd4f014f74e30f79427ee141c86.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 3 Analog Circuits - Bipolar Junction Transistor Question 17 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "For $${R_c}\\,\\, = \\,\\,1k\\Omega ,$$ the BJT operates in the saturation region."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "For For $${R_c}\\,\\, = \\,\\,3k\\Omega ,$$ the BJT operates in the saturation region "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "For For $${R_c}\\,\\, = \\,\\,20k\\Omega ,$$ the BJT operates in the cut-off region. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "For For $${R_c}\\,\\, = \\,\\,20k\\Omega ,$$ the BJT operates in the linear region."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-the-silicon-bjt-has-beta-50-assume-vbe-gate-ece-2014-set-3-marks-2-8zv41ryntjwirut4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kEhzy8h0QKdd3sQq",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "feedback-amplifier",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The desirable  characteristics of a transconductance amplifier are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "high input resistance and high output resistance"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "high input resistance and low output resistance"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "low  input resistance and high output resistance"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "low  input resistance and low output resistance"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-desirable-characteristics-of-a-transconductance-amplifie-gate-ece-2014-set-3-marks-1-kehzy8h0qkdd3sqq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0AfLMV7Y9dr79D5g",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Assuming that the Op-amp in the circuit shown is ideal, V<sub>0</sub> is given by \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/83c6826f02bea2efd33615eb8996714397c3b527a9d72341529072fec34833e5.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 3 Analog Circuits - Operational Amplifier Question 29 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${5 \\over 2}{V_1} - 3{V_2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2{V_1} - {5 \\over 2}{V_2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$ - {3 \\over 2}{V_1} + {7 \\over 2}{V_2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ - 3{V_1} + {{11} \\over 2}{V_2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "assuming-that-the-op-amp-in-the-circuit-shown-is-ideal-v0-is-gate-ece-2014-set-3-marks-2-0aflmv7y9dr79d5g.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                }
+            ],
+            "title": "Analog Circuits"
+        },
+        {
+            "_id": "Communications",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AVD32foQr0tqotN9",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "random-signals-and-noise",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$X(t)$$ be a wide sense stationary $$(WSS)$$ random procfess with power spectral density $${S_x}\\left( f \\right)$$. If $$Y(t)$$ is the process defined as $$Y(t) = X(2t - 1)$$, the power spectral density $${S_y}\\left( f \\right)$$ is \n.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${S_y}\\left( f \\right) = {1 \\over 2}{S_x}\\left( {{f \\over 2}} \\right){e^{ - j\\pi f}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${S_y}\\left( f \\right) = {1 \\over 2}{S_x}\\left( {{f \\over 2}} \\right){e^{ - j\\pi f/2}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${S_y}\\left( f \\right) = {1 \\over 2}{S_x}\\left( {{f \\over 2}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${S_y}\\left( f \\right) = {1 \\over 2}{S_x}\\left( {{f \\over 2}} \\right){e^{ - j2\\pi f}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-xt-be-a-wide-sense-stationary-wss-random-procfess-with-p-gate-ece-2014-set-3-marks-2-avd32foqr0tqotn9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tK5qfGc26ienCZbb",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "random-signals-and-noise",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A real band-limited random process $$X( t )$$ has two -sided power spectral density\n$$${S_x}\\left( f \\right) = \\left\\{ {\\matrix{\n   {{{10}^{ - 6}}\\left( {3000 - \\left| f \\right|} \\right)Watts/Hz} &amp; {for\\left| f \\right| \\le 3kHz}  \\cr \n   0 &amp; {otherwise}  \\cr \n\n } } \\right.$$$\n<p>Where f is the frequency expressed in $$Hz$$. The signal $$X( t )$$ modulates a carrier cos $$16000$$   $$\\pi t$$ and the resultant signal is passed through an ideal band-pass filter of unity gain with centre frequency of $$8kHz$$ and band-width of $$2kHz$$. The output power (in Watts) is ______.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2.5",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-real-band-limited-random-process-x-t-has-two-sided-power-s-gate-ece-2014-set-3-marks-2-tk5qfgc26ienczbb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "W94n71lblCpKJ36L",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "random-signals-and-noise",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $${X_1},\\,{X_2},$$ and $${X_3}$$ be independent and identically distributed random variables with the uniform distribution on $$\\left[ {0,\\,1} \\right]$$. The probability $$P\\left\\{ {{X_1} + {X_2} \\le {X_3}} \\right\\}$$ is ___________ .",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.17",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-x1x2-and-x3-be-independent-and-identically-distributed-r-gate-ece-2014-set-3-marks-2-w94n71lblcpkj36l.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nA19A2XeqMRi1lkp",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "digital-communication-systems",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a PCA system, the signal $$m(t) = \\{ \\sin (100\\,\\pi \\,t)\\, + \\cos (100\\,\\pi \\,t\\} $$ V is sampled at the Nyquist rate. The samples are processed by a uniform quantizer with step size 0.75 V. The minimum data rate of the PCM system in bits per second is________________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "200",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-pca-system-the-signal-mt-sin-100pi-t-cos-100pi-t-v-is-s-gate-ece-2014-set-3-marks-2-na19a2xeqmri1lkp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zV0xxDrPQs8EqqCk",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "digital-communication-systems",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A binary random variable X takes the value of 1 with probability 1/3. X is input to a casade of 2 independent identical binary symmetric channels (BSCs) each with crossover probability 1/2. The output of BSCs are the random variables $${Y_1}$$ and $${Y_2}$$ as shown in the figure.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/nkAONQliWVzq13h7j/RFZxwj5CpC7KMsladferbVcIfephr/FSELDqz4yr5MmtNkXeQKNf/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 3 Communications - Digital Communication Systems Question 14 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2 ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-binary-random-variable-x-takes-the-value-of-1-with-probabi-gate-ece-2014-set-3-marks-2-zv0xxdrpqs8eqqck.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a10906c21a86",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analog-communication-systems",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider an FM signal $$f\\left(t\\right)\\;=\\;\\cos\\left[2{\\mathrm{\u03c0f}}_\\mathrm c\\mathrm t\\;+\\;{\\mathrm\\beta}_1\\sin\\;2{\\mathrm{\u03c0f}}_1\\mathrm t\\;+\\;{\\mathrm\\beta}_2\\sin\\;2{\\mathrm{\u03c0f}}_2\\mathrm t\\right]$$ . The maximum\ndeviation of the instantaneous frequency from the carrier frequency f<sub>c</sub>\n is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\beta_1f_1+\\;\\beta_2f_2$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\beta_1f_2+\\;\\beta_2f_1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\beta_1+\\;\\beta_2$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$f_1+\\;f_2$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-an-fm-signal-flefttrightcosleft2mathrmfmathrm-cmath-gate-ece-2014-set-3-marks-1-5a10906c21a86.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                }
+            ],
+            "title": "Communications"
+        },
+        {
+            "_id": "Control Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a882bbf999d3",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "root-locus-diagram",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the root locus plot shown in the figure, the pole/zero marks and the arrows have been\nremoved. Which one of the following transfer functions has this root locus?\n<img alt=\"GATE ECE 2014 Set 3 Control Systems - Root Locus Diagram Question 2 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/3d9c66d02758611391a819af0414d871462a576f9c50b601212da62c66bdbfc6.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\frac{s+1}{\\left(s+2\\right)\\left(s+4\\right)\\left(s+7\\right)}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\frac{s+4}{\\left(s+1\\right)\\left(s+2\\right)\\left(s+7\\right)}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\frac{s+7}{\\left(s+1\\right)\\left(s+2\\right)\\left(s+4\\right)}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\frac{\\left(s+1\\right)\\left(s+2\\right)}{\\left(s+4\\right)\\left(s+7\\right)}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-root-locus-plot-shown-in-the-figure-the-polezero-mark-gate-ece-2014-set-3-marks-2-5a882bbf999d3.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0c9f30df322",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "time-response-analysis",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The steady state error of the system shown in the figure for a unit step input is _______.\n<img alt=\"GATE ECE 2014 Set 3 Control Systems - Time Response Analysis Question 35 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/6bfb72e3a8e8ec6c2636e43b7575c03854886172107696fb9069041293a9dbda.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.5",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-steady-state-error-of-the-system-shown-in-the-figure-for-gate-ece-2014-set-3-marks-2-5a0c9f30df322.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a7abe04df2e6",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "signal-flow-graph-and-block-diagram",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following block diagram in the figure. \n<img alt=\"GATE ECE 2014 Set 3 Control Systems - Signal Flow Graph and Block Diagram Question 11 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/d197584098d66ff1152b23f3e9e85c423f2aceba20d5d697e939d6453a53fc5a.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">\nThe transfer function $$\\frac{\\mathrm C\\left(\\mathrm s\\right)}{\\mathrm R\\left(\\mathrm s\\right)}$$ is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\frac{G_1G_2}{1+G_1G_2}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$G_1G_2\\;+\\;G_1\\;+\\;1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$G_1G_2\\;+\\;G_2\\;+\\;1$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\frac{G_1}{1+G_1G_2}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-block-diagram-in-the-figure-the-trans-gate-ece-2014-set-3-marks-1-5a7abe04df2e6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a81ff66a39a2",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "time-response-analysis",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The input $$-3\\mathrm e^{2\\mathrm t}\\;\\mathrm u\\left(\\mathrm t\\right)$$, where u(t) is the unit step function, is applied to a system with transfer\nfunction $$\\frac{s-2}{s+3}$$. If the initial value of the output is -2, then the value of the output at steady\nstate is __________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-input-3mathrm-e2mathrm-tmathrm-uleftmathrm-tright-where-gate-ece-2014-set-3-marks-1-5a81ff66a39a2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YbNhnIaL1NF92WOp",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "state-space-analysis",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The state equation of a second-order linear system is given by $$\\mathop x\\limits^ \\bullet  \\left( t \\right) = Ax\\left( t \\right),x\\left( 0 \\right) = {x_0}.$$ \n<br><b>For</b>   $${x_0} = \\left[ {\\matrix{\n   1  \\cr \n   { - 1}  \\cr \n\n } } \\right],x\\left( t \\right) = \\left[ {\\matrix{\n   {{e^{ - t}}}  \\cr \n   { - {e^{ - t}}}  \\cr \n\n } } \\right]$$ and for $${x_0} = \\left[ {\\matrix{\n   0  \\cr \n   1  \\cr \n\n } } \\right],x\\left( t \\right) = \\left[ {\\matrix{\n   {{e^{ - t}}} &amp; { - {e^{ - 2t}}}  \\cr \n   { - {e^{ - t}}} &amp; { + 2{e^{ - 2t}}}  \\cr \n\n } } \\right]$$ when  $${x_0} = \\left[ {\\matrix{\n   3  \\cr \n   5  \\cr \n\n } } \\right],x\\left( t \\right)$$  is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left[ {\\matrix{\n   { - 8{e^{ - t}}} &amp; { + 11{e^{ - 2t}}}  \\cr \n   {8{e^{ - t}}} &amp; { - 22{e^{ - 2t}}}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left[ {\\matrix{\n   {11{e^{ - t}}} &amp; { - 8{e^{ - 2t}}}  \\cr \n   { - 11{e^{ - t}}} &amp; { + 16{e^{ - 2t}}}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left[ {\\matrix{\n   {3{e^{ - t}}} &amp; { - 5{e^{ - 2t}}}  \\cr \n   { - 3{e^{ - t}}} &amp; { + 10{e^{ - 2t}}}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left[ {\\matrix{\n   {5{e^{ - t}}} &amp; { - 3{e^{ - 2t}}}  \\cr \n   { - 5{e^{ - t}}} &amp; { + 6{e^{ - 2t}}}  \\cr \n\n } } \\right]$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-state-equation-of-a-second-order-linear-system-is-given-gate-ece-2014-set-3-marks-2-ybnhnial1nf92wop.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                }
+            ],
+            "title": "Control Systems"
+        },
+        {
+            "_id": "Digital Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ILB1GHZvx6FEo8af",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "semiconductor-memories",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If WL is the Word Line and BL the Bit Line, an SRAM cell is shown in",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/80764431a2cd0755e27ad47ef25a3ced31f6503d48651444610f548e580a3f9d.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 3 Digital Circuits - Semiconductor Memories Question 2 English Option 1\">"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/93f4916d051abe272e079e45eef8a5341f53d2d69f71d22499f4218d4f1ac5ee.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 3 Digital Circuits - Semiconductor Memories Question 2 English Option 2\">"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/9db644a10741ca3f815ff0d942a246e6a401fd0564cdda14638ec7fd15467508.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 3 Digital Circuits - Semiconductor Memories Question 2 English Option 3\">"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/847c09716daa339cab869b07f6e3daef39f51452baa07150acbb40886bf6ce68.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 3 Digital Circuits - Semiconductor Memories Question 2 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-wl-is-the-word-line-and-bl-the-bit-line-an-sram-cell-is-s-gate-ece-2014-set-3-marks-2-ilb1ghzvx6feo8af.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "L8eTHX1y1J5GEPci",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinational-circuits",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit shown, \ud835\udc4a\ud835\udc4a and \ud835\udc4c\ud835\udc4c are MSBs of the control inputs. The output \ud835\udc39\ud835\udc39 is given by\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/a3de5667b52b5e9f159ce25e04255afc15c696b06c68e5c46512eda67bddc75d.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 3 Digital Circuits - Combinational Circuits Question 27 English\">\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$F = \\,W\\overline X  + \\overline W X + \\overline Y \\,\\overline Z $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$F = \\,W\\overline X  + \\overline W X + \\overline Y \\,Z$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$F = \\,W\\overline X \\,\\overline Y  + \\overline W X\\,\\overline Y $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$F = \\,(\\overline W  + \\overline X )\\,\\,\\overline Y \\,\\overline Z $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-and-are-msbs-of-the-control-inputs-the-gate-ece-2014-set-3-marks-2-l8ethx1y1j5gepci.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BXAnDF8YERNBGGqU",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinational-circuits",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If X and Y are inputs and the Difference (D = X \u2013 Y) and the Borrow (B) are the outputs, which one of the following diagrams\n implements a half-subtractor?\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/4dd5133553e9d3ed3972161ab52de6fb66003843645b67a8a9b564e34e6d220b.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 3 Digital Circuits - Combinational Circuits Question 26 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/a498a484b9e277ce794481b500ec5d01f69deb9ddc5bd7d13959e2679ad4092a.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 3 Digital Circuits - Combinational Circuits Question 26 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/57c2675f906b5724c8c5c65ad067644011623f71746c825c848a4038fdc117c4.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 3 Digital Circuits - Combinational Circuits Question 26 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/ff0ade2f3803e4a8e22be33569f640a07e6c38f5bb1b615d33b40fc2a101a2fa.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 3 Digital Circuits - Combinational Circuits Question 26 English Option 4\">  "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-x-and-y-are-inputs-and-the-difference-d-x-y-and-the-borro-gate-ece-2014-set-3-marks-2-bxandf8yernbggqu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mlrBA0qPI3pfVY6Z",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The circuit shown in the figure is a\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/df0fd28a793aed0be2b00c90f22619937e03bd4f3f9793940eb3993fe34d349f.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 3 Digital Circuits - Sequential Circuits Question 55 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Toggle Flip Flop "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "JK Flip Flop "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "SR Latch "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Master-Slave D Flip Flop  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-circuit-shown-in-the-figure-is-a-gate-ece-2014-set-3-marks-1-mlrba0qpi3pfvy6z.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "orMOGMkDDMxU4tXt",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the multiplexer based logic circuit shown in the figure. \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/23a33536da1a82009f029e3d8341fb642524830046a9c5694756a5c5626c06e4.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 3 Digital Circuits - Sequential Circuits Question 52 English\"> \n<p>Which one of the following Boolean functions is realized by the circuit?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "F = $$W\\overline {{S_1}} \\overline {{S_2}} $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "F = $$W{S_1}\\, + W{S_2}\\, + {S_1}{S_2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "F = $$\\overline W  + \\,{S_1} + {S_2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "F = $$W \\oplus {S_1} \\oplus {S_2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-multiplexer-based-logic-circuit-shown-in-the-fi-gate-ece-2014-set-3-marks-1-ormogmkddmxu4txt.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                }
+            ],
+            "title": "Digital Circuits"
+        },
+        {
+            "_id": "Electromagnetics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GWfZrqIjXpKrQacO",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transmission-lines",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the following figure, the transmitter Tx sends a wideband modulated RF signal via a coaxial cable to the receiver Rx. The output impedance $${Z_T}$$ of Tx, the characteristic impedance $${Z_0}$$ of the cable and the input impedance $${Z_R}$$ of Rx are all real.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/E6MhdyywdxcRF2dgc/7SxbLc1HGytdnvlHjlJpwWFprdoWQ/GxsYWUjqpIdccsJNprnaWj/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 3 Electromagnetics - Transmission Lines Question 13 English\">\nWhich one of the following statements is TRUE about the distortion of the received signal due to impedance mismatch?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The signal gets distorted if $${Z_R}\\, \\ne \\,{Z_0}$$ , irrespective of the value of $${Z_T}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The signal gets distorted if $${Z_T}\\, \\ne \\,{Z_0}$$, irrespective of the value of $${Z_R}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Signal distortion implies impedance mismatch at both ends: $${Z_T}\\, \\ne \\,{Z_0}$$ and $${Z_R}\\, \\ne \\,{Z_0}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Impedance mismatches do NOT result in signal distortion but reduce power transfer efficiency "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-following-figure-the-transmitter-tx-sends-a-wideband-gate-ece-2014-set-3-marks-1-gwfzrqijxpkrqaco.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "m9YuZBpBPI4dFHRs",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "uniform-plane-waves",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A region shown below contains a perfect conducting half-space and air. The surface current $${\\overrightarrow K _{_s}}$$ on the surface of the perfect conductor is $${\\overrightarrow K _{_s}} = \\widehat x\\,2$$ amperes per meter. The tangential $$\\overrightarrow H $$ field in the air just above the perfect conductor is\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/7qqlG646TeSN7oYUC/yO9L0qzU6RrYTW6wDc48BA8npBmVL/qQND6jLeI4XA310jjQIiuP/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 3 Electromagnetics - Uniform Plane Waves Question 24 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {\\widehat x + \\widehat z} \\right)2$$ amperes per meter "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\widehat x2$$ amperes per meter "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$ - \\widehat z2$$ amperes per meter "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$  \\widehat z2$$ amperes per meter "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-region-shown-below-contains-a-perfect-conducting-half-spac-gate-ece-2014-set-3-marks-2-m9yuzbpbpi4dfhrs.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "J4eV7bQHzMOBLNfo",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "uniform-plane-waves",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Assume that a plane wave in air with an electric field \n<br>$$\\overrightarrow E  = 10\\cos \\left( {\\omega t - 3x - \\sqrt {3z} } \\right){\\widehat a_{_y}}\\,\\,\\,V/m$$ is incident\n<br>on a non-magnetic dielectric slab of relative permittivity $$3$$ which covers the region $$z &gt; 0$$ . The angle of transmission in the dielectric slab is _______ degrees.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "30",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "assume-that-a-plane-wave-in-air-with-an-electric-field-overr-gate-ece-2014-set-3-marks-2-j4ev7bqhzmoblnfo.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "c1sGlpaNW3jhLUyT",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "waveguides",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider an air filled rectangular waveguide with a cross-section of $$5\\,\\,cm\\,\\, \\times \\,\\,3\\,cm$$. For this waveguide, the cut-off frequency (in MHz) of $$T{E_{21}}\\,$$ mode is __________________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "11.7",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-an-air-filled-rectangular-waveguide-with-a-cross-se-gate-ece-2014-set-3-marks-1-c1sglpanw3jhluyt.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a12bd14e9647",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "maxwell-equations",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given the vector $$$\\mathrm A=\\left(\\cos\\;\\mathrm x\\right)\\left(\\sin\\;\\mathrm y\\right)\\;{\\widehat{\\mathrm a}}_\\mathrm x\\;+\\;\\left(\\sin\\;\\mathrm x\\right)\\left(\\cos\\;\\mathrm y\\right){\\widehat{\\mathrm a}}_\\mathrm y$$$ where $${\\widehat{\\mathrm a}}_\\mathrm x$$ , $${\\widehat{\\mathrm a}}_\\mathrm y$$ denote unit vectors\nalong x, y directions, respectively. The magnitude of curl of A is ________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-the-vector-mathrm-aleftcosmathrm-xrightleftsinmathrm-y-gate-ece-2014-set-3-marks-2-5a12bd14e9647.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                }
+            ],
+            "title": "Electromagnetics"
+        },
+        {
+            "_id": "Electronic Devices and Vlsi",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0f507934112",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "semiconductor-physics",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A thin P-type silicon sample is uniformly illuminated with light which generates excess\ncarriers. The recombination rate is directly proportional to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The minority carrier mobility "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The minority carrier recombination lifetime"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The majority carrier concentration"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The excess minority carrier concentration "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-thin-p-type-silicon-sample-is-uniformly-illuminated-with-l-gate-ece-2014-set-3-marks-1-5a0f507934112.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0f5151e72b9",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "semiconductor-physics",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "At T = 300 K, the hole mobility of a semiconductor $$\\mu_p\\;=500\\;cm^2/V-s$$ and $$\\frac{kT}q\\;=\\;26\\;mV$$.The hole diffusion constant D<sub>p</sub> in cm<sup>2</sup>/s is__________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "13",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "at-t-300-k-the-hole-mobility-of-a-semiconductor-mup500cm2v-s-gate-ece-2014-set-3-marks-1-5a0f5151e72b9.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa7fd6a9c018",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "ic-basics-and-mosfet",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In MOSFET fabrication, the channel length is defined during the process of",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Isolation oxide growth"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Channel stop implantation"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Poly-silicon gate patterning"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Lithography step leading to the contact pads"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-mosfet-fabrication-the-channel-length-is-defined-during-t-gate-ece-2014-set-3-marks-1-5aa7fd6a9c018.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rVZOWJC4Q13BGrIj",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "ic-basics-and-mosfet",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The slope of the I<sub>D</sub> vs. V<sub>GS</sub> curve of an n-channel MOSFET in linear region is 10<sup>-3</sup>$${\\Omega ^{ - 1}}$$  at V<sub>DS</sub> = 0.1V. For the same device, neglecting channel length modulation, the slope of the  $$\\sqrt {{{\\rm I}_D}} $$ vs. V <sub>GS</sub> curve (in $$\\sqrt A /V$$ ) under saturation region is approximately ______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.0707 ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-slope-of-the-id-vs-vgs-curve-of-an-n-channel-mosfet-in-l-gate-ece-2014-set-3-marks-2-rvzowjc4q13bgrij.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8RmKHmiax5FyEApp",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "ic-basics-and-mosfet",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An ideal MOS capacitor has boron doping concentration of 10<sup>15</sup> cm<sup>-3</sup> in the substrate. When a gate voltage is applied, a depletion region of width 0.5 $$\\mu m$$ is formed with a surface (channel) potential of 0.2V. Given that $${\\varepsilon _0} = 80854 \\times {10^{ - 14}}F/cm$$ and the relative permittivities of silicon and silicon dioxide are 12 and 4, respectively, the peak electric field (in V/ $$\\mu m$$ ) in the oxide region is ______",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2.4",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-ideal-mos-capacitor-has-boron-doping-concentration-of-101-gate-ece-2014-set-3-marks-2-8rmkhmiax5fyeapp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "igmmOHaaTGshWvjK",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "ic-basics-and-mosfet",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the MOSFET M<sub>1</sub> shown in the figure, assume W/L =2, V<sub>DD</sub> = 2.0 V, $$\\mu n$$ C<sub>OX</sub> = 100$$\\mu {\\rm A}/{V^2}$$ and V<sub>TH</sub> =0.5 V. The transistor M<sub>1</sub> switches from saturation region to linear regionm when V<sub>in</sub>(in Volts) is _____\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/e03649ae77cc42ccd17972c49382ce895b677b9ab02a7fda319fdc242c12d5c2.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 3 Electronic Devices and VLSI - IC Basics and MOSFET Question 19 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.5",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-mosfet-m1-shown-in-the-figure-assume-wl-2-vdd-20-v-m-gate-ece-2014-set-3-marks-2-igmmohaatgshwvjk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                }
+            ],
+            "title": "Electronic Devices and Vlsi"
+        },
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xtneu5p6q22RIn8V",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following statements is NOT true for a square matrix $$A$$? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "If $$A$$ is upper triangular, the eigenvalues of $$A$$ are the diagonal elements of it"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "If $$A$$ is real symmetric, the eigenvalues of $$A$$ are always real and positive "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "If $$A$$ is real , the eigenvalues of $$A$$ and $${A^T}$$ are always the same "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "If all the principal minors of $$A$$ are positive , all the eigenvalues of $$A$$ are also positive "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-statements-is-not-true-for-a-squa-gate-ece-2014-set-3-marks-1-xtneu5p6q22rin8v.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Cn5sZHSxqbFD6tsG",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The maximum value of the function $$\\,f\\left( x \\right) = \\ln \\left( {1 + x} \\right) - x$$ (where $$x &gt;  - 1$$ ) occurs at $$x=$$________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-maximum-value-of-the-function-fleft-x-right-ln-left-1-x-gate-ece-2014-set-3-marks-1-cn5szhsxqbfd6tsg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gxZdzTHzqmNTEr9l",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$z=xy$$ $$ln(xy),$$ then ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$x{{\\partial z} \\over {\\partial x}} + y{{\\partial z} \\over {\\partial y}} = 0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$y{{\\partial z} \\over {\\partial x}} = x{{\\partial z} \\over {\\partial y}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$x{{\\partial z} \\over {\\partial x}} = y{{\\partial z} \\over {\\partial y}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$y{{\\partial z} \\over {\\partial x}} + x{{\\partial z} \\over {\\partial y}} = 0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-zxy-lnxy-then-gate-ece-2014-set-3-marks-1-gxzdzthzqmnter9l.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CsAOHZ2tI1uEXx73",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The maximum value of $$f\\left( x \\right) = 2{x^3} - 9{x^2} + 12x - 3$$ \n<br>in the interval $$\\,0 \\le x \\le 3$$ is __________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "6",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-maximum-value-of-fleft-x-right-2x3-9x2-12x-3-in-the-inte-gate-ece-2014-set-3-marks-2-csaohz2ti1uexx73.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yDJKppBzpDDZoNvo",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An unbiased coin is tossed an infinite number of times. The probability that the fourth head appears at the tenth toss is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.067$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.073$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.082$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.091$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-unbiased-coin-is-tossed-an-infinite-number-of-times-the-p-gate-ece-2014-set-3-marks-1-ydjkppbzpddzonvo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PVxHrxlI65rkvN9j",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A fair coin is tossed repeatedly till both head and tail appear at least once. The average number of tosses required is ________. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-fair-coin-is-tossed-repeatedly-till-both-head-and-tail-app-gate-ece-2014-set-3-marks-2-pvxhrxli65rkvn9j.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "T2AUnpWqUl6C8pK8",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let  $${X_1},{X_{2,}}$$ and $${X_{3,}}$$ be independent and identically distributed random variables with the uniform distribution on $$\\left[ {0,1} \\right].$$ The probability  $$P\\left\\{ {{X_1} + {X_2} \\le {X_3}} \\right\\}$$ is _______. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.16",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-x1x2-and-x3-be-independent-and-identically-distributed-r-gate-ece-2014-set-3-marks-2-t2aunpwqul6c8pk8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "INHUha3R1ScWjHGT",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which ONE of the following is a linear non - homogeneous differential equation , where $$x$$ and $$y$$ are the independent and dependent variables respectively?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{dy} \\over {dx}} + xy = {e^{ - x}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{dy} \\over {dx}} + xy = 0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{dy} \\over {dx}} + xy = {e^{ - y}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{dy} \\over {dx}} + {e^{ - y}} = 0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-is-a-linear-non-homogeneous-diffe-gate-ece-2014-set-3-marks-2-inhuha3r1scwjhgt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "t0O7Muw7vwbqDU1O",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the application to appropriate numerical method \n<p><b>Applications</b>\n<br>$$P1:$$ Numerical integration\n<br>$$P2:$$ Solution to a transcendental equation\n<br>$$P3:$$ Solution to a system of linear equations\n<br>$$P4:$$ Solution to a differential equation </p>\n<p><b>Numerical Method</b>\n<br>$$M1:$$ Newton-Raphson Method\n<br>$$M2:$$ Runge-Kutta Method\n<br>$$M3:$$ Simpson's $$1/3-$$rule\n<br>$$M4:$$ Gauss Elimination Method</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P1 - M3,\\,\\,P2 - M2,\\,\\,P3 - M4,\\,\\,P4 - M1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P1 - M3,\\,\\,P2 - M1,\\,\\,P3 - M4,\\,\\,P4 - M2$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P1 - M4,\\,\\,P2 - M1,\\,\\,P3 - M3,\\,\\,P4 - M2$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P1 - M2,\\,\\,P2 - M1,\\,\\,P3 - M3,\\,\\,P4 - M4$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-application-to-appropriate-numerical-method-applic-gate-ece-2014-set-3-marks-2-t0o7muw7vwbqdu1o.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Network Theory",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3q28vz4dgekMQfY2",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sinusoidal-steady-state-response",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the building block called 'Network N' shown in the figure. \n<br>Let $$C = 100\\,\\mu F\\,\\,$$ and $$R = 10\\,k\\Omega $$.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/ssyaxIZCGxkWJFQWR/1DftSseuqGsQbt4t8Etjh1XT38bo5/cCVn45gRFqlIooki9xW1d9/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 3 Network Theory - Sinusoidal Steady State Response Question 23 English 1\"> \n<p>Two such blocks are connected in cascade, as shown in the figure.</p>\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/YXMhr2Gz3bYG0cS5k/7Vg4zO8V97e3nGt8GoJHfLXTNmjhP/JYKTMpjkN4ubRUon4BapAg/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2014 Set 3 Network Theory - Sinusoidal Steady State Response Question 23 English 2\"> \n<p>The transfer function $${{{V_3}\\left( s \\right)} \\over {{V_1}\\left( s \\right)}}$$ of the cascaded network is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${s \\over {1 + s}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{{s^2}} \\over {1 + 3s + {s^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\left( {{s \\over {1 + s}}} \\right)^2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{s \\over {2 + s}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-building-block-called-network-n-shown-in-the-fi-gate-ece-2014-set-3-marks-2-3q28vz4dgekmqfy2.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a041f0f52a59",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>For the Y-network shown in the figure, the value of R<sub>1</sub> (in \u2126) in the equivalent \u2206 -network is ________. </p>\n<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l9fp2sat/54c54368-692b-4abb-aae5-0e95fcfbd4bf/63d14f50-4fb5-11ed-88d9-abb495ae8a3e/file-1l9fp2sau.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l9fp2sat/54c54368-692b-4abb-aae5-0e95fcfbd4bf/63d14f50-4fb5-11ed-88d9-abb495ae8a3e/file-1l9fp2sau.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2014 Set 3 Network Theory - Network Elements Question 11 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "10",
+                            "explanation": "Applying Y to $$\\Delta$$ conversion,<br/><br/>$${R_1} = {{{R_a}{R_b} + {R_b}{R_c} + {R_c}{R_a}} \\over {{R_b}}}$$<br/><br/>Hence, $${R_1} = {{5 \\times 7.5 + 7.5 \\times 3 + 3 \\times 5} \\over {7.5}}$$<br/><br/>R<sub>1</sub> = 10$$\\Omega$$<br/><br/>Hence, the value of R<sub>1</sub> in the equivalent network is 10$$\\Omega$$."
+                        }
+                    },
+                    "permalink": "for-the-y-network-shown-in-the-figure-the-value-of-r1-in-in-gate-ece-2014-set-3-marks-2-5a041f0f52a59.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a06dd66c8bd8",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-theorems",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit shown in the figure, the value of node voltage V<sub>2</sub> is\n<br><br><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l9fpr68t/c3989eab-dfd7-4f2d-9adf-8ec023546bce/0a0240d0-4fb8-11ed-88d9-abb495ae8a3e/file-1l9fpr68u.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l9fpr68t/c3989eab-dfd7-4f2d-9adf-8ec023546bce/0a0240d0-4fb8-11ed-88d9-abb495ae8a3e/file-1l9fpr68u.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2014 Set 3 Network Theory - Network Theorems Question 16 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "22 + j 2 V"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2 + j 22 V"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "22 - j 2 V"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2 - j 22 V"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l9fpr68t/c3989eab-dfd7-4f2d-9adf-8ec023546bce/0a0240d0-4fb8-11ed-88d9-abb495ae8a3e/file-1l9fpr68u.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l9fpr68t/c3989eab-dfd7-4f2d-9adf-8ec023546bce/0a0240d0-4fb8-11ed-88d9-abb495ae8a3e/file-1l9fpr68u.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2014 Set 3 Network Theory - Network Theorems Question 16 English Explanation\">\n<br><br>Applying KCL at node V<sub>1</sub>,<br><br>$$ - 4\\angle 0^\\circ  = {{{V_1}} \\over { - j3}} + {{{V_1} - {V_2}} \\over 4} + I = 0$$ ..... (i)<br><br>Applying KCL at node V<sub>2</sub>,<br><br>$${{{V_2}} \\over {j6}} + {{{V_2}} \\over 6} + {{{V_2} - {V_1}} \\over 4} - I = 0$$ ..... (ii)\n<br><br>Appling KVL for V<sub>1</sub>\n and V<sub>2</sub>\n, we get\n<br><br>$${V_1} - {V_2} = 10\\angle 0^\\circ $$ [From figure]<br><br>$${V_1} = {V_2} + 10$$ .... (iii)<br><br>From equation (i) and (ii),<br><br>$$ - 4\\angle 0^\\circ  + {{{V_1}} \\over { - j3}} + {{{V_1} - {V_2}} \\over 4} + {{{V_2}} \\over {j6}} + {{{V_2}} \\over 6} + {{{V_2} - {V_1}} \\over 4} = 0$$<br><br>$${V_1}\\left[ {{{ - 1} \\over {j3}} + {1 \\over 4} - {1 \\over 4}} \\right] + {V_2}\\left[ {{{ - 1} \\over 4} + {1 \\over {j6}} + {1 \\over 6} + {1 \\over 4}} \\right] = 4$$<br><br>$$j{{{V_1}} \\over 3} + {1 \\over 6}(1 - j){V_2} = 4$$ .... (iv)<br><br>From equation (iii) and (iv),<br><br>$${j \\over 3}({V_2} + 10) + {1 \\over 6}(1 - j){V_2} = 4$$<br><br>$${V_2}\\left[ {{j \\over 3} + {1 \\over 6} - {j \\over 6}} \\right] = 4 - {{j10} \\over 3}$$<br><br>$${{{V_2}} \\over 6}(1 + j) = 4 - {{j10} \\over 3}$$<br><br>$${V_2} = {{2(12 - j10)} \\over {1 + j}} = {{4(6 - j5)} \\over {1 + j}}$$<br><br>$${V_2} = {{4(6 - j5)(1 - j)} \\over {(1 + j)(1 - j)}}$$<br><br>$${V_2} = 2\\left[ {(6 - 5) - j11} \\right] = (2 - j22)\\,V$$"
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-in-the-figure-the-value-of-node-voltage-gate-ece-2014-set-3-marks-2-5a06dd66c8bd8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a06de65b5574",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-theorems",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit shown in the figure, the angular frequency $$\\omega$$ (in rad/s), at which the Norton equivalent impedance as seen from terminals b-b' is purely resistive, is _______.<br>\n<img alt=\"GATE ECE 2014 Set 3 Network Theory - Network Theorems Question 15 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/1c30f9428a4c60b5d33af7cdbe7aeeb72f00baa527c8088310c090feb56275bd.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-in-the-figure-the-angular-frequency-ome-gate-ece-2014-set-3-marks-2-5a06de65b5574.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0786628b627",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transient-response",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A series RC circuit is connected to a DC voltage source at time t = 0. The relation between the source voltage V<sub>S</sub>, the resistance R, the capacitance C, and the current i(t) is given below:\n$$$V_{s\\;}=\\;Ri(t)+\\frac1c\\int_0^ti(u)du$$$\nWhich one of the following represents the current f(t)?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img alt=\"GATE ECE 2014 Set 3 Network Theory - Transient Response Question 42 English Option 1\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/bf28cae288816b54893e7a05f19d5d9e00eaa2bebdc0ab09cd1cc53eb810e14a.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img alt=\"GATE ECE 2014 Set 3 Network Theory - Transient Response Question 42 English Option 2\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/b12db87d9ecc2c5d15a00137bc47786bf7bfb6dab56d376bb293fd8829e46dd9.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img alt=\"GATE ECE 2014 Set 3 Network Theory - Transient Response Question 42 English Option 3\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/931870770416818c1d28327a0f136659683a38009b8544d81d8811dd78a8086c.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img alt=\"GATE ECE 2014 Set 3 Network Theory - Transient Response Question 42 English Option 4\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/dd355f8fb65759a7a2331fa6348a2110eee606c2bf96a7bf8015e9af44ba6e55.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-series-rc-circuit-is-connected-to-a-dc-voltage-source-at-t-gate-ece-2014-set-3-marks-1-5a0786628b627.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a00e1d0c31ca",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>In the figure shown, the value of the current I (in Amperes) is __________. </p>\n<img alt=\"GATE ECE 2014 Set 3 Network Theory - Network Elements Question 30 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/c12bf6444da4cc873e5fe7822c319751ec782220f19db3e7eebf42ea8a968108.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.5",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-figure-shown-the-value-of-the-current-i-in-amperes-is-gate-ece-2014-set-3-marks-1-5a00e1d0c31ca.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                }
+            ],
+            "title": "Network Theory"
+        },
+        {
+            "_id": "Signals and Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tRS7ZccfnJozPh2D",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-signal-laplace-transform",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The input $$ - 3{e^{2t}}\\,\\,u\\left( t \\right)$$, where u(t) is the unit step function$$\\, {{s - 2} \\over {s + 3}}$$. If the initial value of the output is -2, then the value of the output at steady state is _____.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "-0.01 to 0.01",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-input-3e2tuleft-t-right-where-ut-is-the-unit-step-functi-gate-ece-2014-set-3-marks-1-trs7zccfnjozph2d.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kV8rID9wxteOcN9g",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-signal-laplace-transform",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let h(t) denote the impulse response of a casual system with transfer function $${1 \\over {s + 1}}$$. Consider the following three statements. \n<p>S1: The system is stable.\n<br>S2: $${{h\\left( {t + 1} \\right)} \\over {h\\left( t \\right)}}$$ is independent of t for t &gt; 0.\n<br>S3: A non-casual system with the same transfer function is stable. </p>\n<p>For the above system,</p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "only S1 and S2 are true "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "only S2 and S3 are true "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "only S1 and S3 are true "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "S1, S2 and S3 are true "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-ht-denote-the-impulse-response-of-a-casual-system-with-t-gate-ece-2014-set-3-marks-2-kv8rid9wxteocn9g.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AleO3t8kZnNexI4P",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "discrete-time-signal-z-transform",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For an all-pass system  H(z)= $${{({z^{ - 1}} - b)} \\over {(1 - a{z^{ - 1}})}}$$  where $$\\left| {H({e^{ - j\\omega }})} \\right| = \\,1$$ , for all $$\\omega $$. If Re (a) $$ \\ne $$ 0,$${\\mathop{\\rm Im}\\nolimits} (a) \\ne 0$$ then b equals",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a*"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1/a*"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1/a"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-an-all-pass-system-hz-z-1-b-over-1-az-1-where-left-he-jo-gate-ece-2014-set-3-marks-1-aleo3t8kznnexi4p.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "csDeEWGaGdDUQ6ks",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "discrete-time-signal-z-transform",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The z-transform of the sequence x$$\\left[ n \\right]$$ is given by x(z)= $${1 \\over {{{(1 - 2{z^{ - 1}})}^2}}}$$ , with the region of convergence $$\\left| z \\right| &gt; 2$$. Then, $$x\\left[ 2 \\right]$$ is ____________________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "12",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-z-transform-of-the-sequence-xleft-n-right-is-given-by-xz-gate-ece-2014-set-3-marks-2-csdeewgagdduq6ks.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DFWWKG7dEwgrGw1t",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "discrete-time-signal-z-transform",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $${H_1}(z) = {(1 - p{z^{ - 1}})^{ - 1}},{H_2}(z) = {(1 - q{z^{^{ - 1}}})^{ - 1}}$$ , H(z) =$${H_1}(z)$$ +r $${H_2}$$. The quantities p, q, r are real numbers. Consider , p=$${1 \\over 2}$$, q=-$${1 \\over 4}$$ $$\\left| r \\right|$$ &lt;1. If the zero H(z) lies on the unit circle, the r = ____________________________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.5",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-h1z-1-pz-1-1h2z-1-qz-1-1-hz-h1z-r-h2-the-quantities-p-q-gate-ece-2014-set-3-marks-2-dfwwkg7dewgrgw1t.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ttPNC8jH2nDvoihZ",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sampling",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$\\,x\\,\\,\\left( t \\right)\\,\\,\\, = \\,\\,\\,\\cos \\,\\,\\,\\left( {10\\pi t} \\right)\\,\\, + \\,\\,\\cos \\,\\,\\left( {30\\pi t} \\right)$$ be sampled at $$20\\,\\,\\,Hz$$ and reconstructed using an ideal low-pass filter with cut-off frequency of $$20\\,\\,\\,Hz$$.  The frequency/frequencies present in the reconstructed signal is/are. ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "5 Hz and 15 Hz only "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "10 Hz and 15 Hz only "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "5 Hz, 10 Hz and 15 Hz only "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "5 Hz only "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-xleft-t-right-cos-left-10pi-t-right-cos-left-30pi-t-righ-gate-ece-2014-set-3-marks-1-ttpnc8jh2ndvoihz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GloOdl3emLjRVJcI",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sampling",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A modulated signal is $$y\\left( t \\right)\\, = \\,\\,\\,\\,\\,\\,\\,\\,\\,m\\left( t \\right)\\,\\cos \\left( {40000\\pi t} \\right),$$  where the baseband signal  $$m\\left( t \\right)\\,$$  has frequency components less than 5 kHz only. The minimum required rate (in kHz) at which $$y\\,\\,\\left( t \\right)$$ should be sampled to recover $$m\\,\\,\\left( t \\right)$$ is ________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "10",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-modulated-signal-is-yleft-t-right-mleft-t-rightcos-left-40-gate-ece-2014-set-3-marks-1-gloodl3emljrvjci.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fXOZ9PEQPZNIUN7R",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "miscellaneous",
+                    "year": 2014,
+                    "paperTitle": "GATE ECE 2014 Set 3",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The phase response of a passband waveform at receiver is given by $$\\varphi \\,(f) =  - 2\\,\\pi \\,\\alpha \\,(f - {f_c}) - \\,2\\pi \\beta \\,{f_c}$$\n<p> where $${f_c}$$ is the centre frequency, and $$\\alpha $$ and $$\\beta $$ are positive constants. The actual signal propagation delay from the trasmitter to receiver is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{\\alpha  - \\beta } \\over {\\alpha  + \\beta }}\\,\\,\\,$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{\\alpha \\,\\beta } \\over {\\alpha  + \\beta }}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\alpha $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\beta $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-phase-response-of-a-passband-waveform-at-receiver-is-giv-gate-ece-2014-set-3-marks-1-fxoz9peqpzniun7r.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2014-set-3",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2014-set-3"
+                }
+            ],
+            "title": "Signals and Systems"
+        }
+    ]
+}

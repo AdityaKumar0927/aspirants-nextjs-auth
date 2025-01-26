@@ -1,0 +1,278 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Computer Networks",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "U2leZWFhXyhZ1Oqj",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-security",
+                    "year": 2017,
+                    "paperTitle": "GATE CSE 2017 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A sender S sends a message m to receiver R, which is digitally signed by S with its\nprivate key. In this scenario, one or more of the following security violations can take\nplace.\n<p><b>I.</b> S can launch a birthday attack to replace m with a fraudulent message.\n<br><b>II.</b> A third party attacker can launch a birthday attack to replace m with a fraudulent\nmessage.\n<br><b>III.</b> R can launch a birthday attack to replace m with a fraudulent message.</p> \nWhich of the following are possible security violations?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "I and II only"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "I only"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "II only"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "II and III only"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-sender-s-sends-a-message-m-to-receiver-r-which-is-digitall-gate-cse-2017-set-1-marks-1-u2lezwfhxyhz1oqj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2017-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2017-set-1"
+                }
+            ],
+            "title": "Computer Networks"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RVtvBmuMSpgCxHSQ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2017,
+                    "paperTitle": "GATE CSE 2017 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $${c_1},.....,\\,\\,{c_n}$$ be scalars, not all zero, such that $$\\sum\\limits_{i = 1}^n {{c_i}{a_i} = 0} $$ where $${{a_i}}$$ are column vectors in $${R^{11}}.$$ Consider the set of linear equations $$AX=b$$ \n<p>Where $$A = \\left[ {{a_1},.....,\\,\\,{a_n}} \\right]$$ and $$b = \\sum\\limits_{i = 1}^n {{a_i}.} $$\n<br>The set of equations has</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a unique solution at $$x\\,\\,\\, = \\,\\,\\,{J_n}$$ where $${J_n}$$ denotes a $$n$$-dimensional vector of all $$1$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "no solution "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "infinitely many solutions "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "finitely many solutions "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-c1cn-be-scalars-not-all-zero-such-that-sumlimitsi-1n-cia-gate-cse-2017-set-1-marks-1-rvtvbmumspgcxhsq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2017-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2017-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kSVpm4wlCFtCkKWl",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2017,
+                    "paperTitle": "GATE CSE 2017 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$A$$ be $$n\\,\\, \\times \\,\\,n$$ real valued square symmetric matrix of rank $$2$$ with $$\\sum\\limits_{i = 1}^n {\\sum\\limits_{j = 1}^n {A_{ij}^2 = 50.} } $$ \n<br>Consider the following statements.\n<br>$$(I)$$ One eigenvalue must be in $$\\left[ { - 5,5} \\right]$$\n<br>$$(II)$$ The eigenvalue with the largest magnitude must be strictly greater than $$5$$ \n<br>Which of the above statements about engenvalues of $$A$$ is/are necessarily <b>correct</b>?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both $$(I)$$ and $$(II)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$(I)$$ only "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$(II)$$ only "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Neither $$(I)$$ nor $$(II)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-a-be-n-times-n-real-valued-square-symmetric-matrix-of-ra-gate-cse-2017-set-1-marks-2-ksvpm4wlcftckkwl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2017-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2017-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0cQnrAgEAmHo8JWH",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2017,
+                    "paperTitle": "GATE CSE 2017 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The  value  of $$\\mathop {\\lim }\\limits_{x \\to 1} {{{x^7} - 2{x^5} + 1} \\over {{x^3} - 3{x^2} + 2}}.$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "is $$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "is  $$-1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "is $$1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "does not exit "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-mathop-lim-limitsx-to-1-x7-2x5-1-over-x3-3x2-2-gate-cse-2017-set-1-marks-2-0cqnrageamho8jwh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2017-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2017-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Am9CJIIYYycmO0F4",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2017,
+                    "paperTitle": "GATE CSE 2017 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$X$$ be a Gaussian random variable with mean $$0$$ and variance $${\\sigma ^2}$$ . Let $$Y=max(X,0)$$ where $$max(a, b)$$  is the maximum of $$a$$ and $$b$$. The median of $$Y$$ is ___________. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-x-be-a-gaussian-random-variable-with-mean-0-and-variance-gate-cse-2017-set-1-marks-1-am9cjiiyyycmo0f4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2017-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2017-set-1"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        }
+    ]
+}

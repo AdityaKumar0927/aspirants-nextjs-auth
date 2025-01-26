@@ -1,0 +1,2989 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Algorithms",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7pRy15WyDj4KU6SX",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complexity-analysis-and-asymptotic-notations",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the given options provides the increasing order of asymptotic Complexity of functions f<sub>1</sub>, f<sub>2</sub>, f<sub>3</sub> and f<sub>4</sub>?<br>\nf<sub>1</sub> = 2<sup>n</sup> f<sub>2</sub> = n<sup>3/2</sup><br>  f<sub>3</sub>(n) = $$n\\,\\log _2^n$$<br>\nf<sub>4</sub> (n) = n<sup> log<sub>2</sub>n</sup>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "f<sub>3</sub>, f<sub>2</sub>, f<sub>4</sub>, f<sub>1</sub>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "f<sub>3</sub>, f<sub>2</sub>, f<sub>1</sub>, f<sub>4</sub>"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "f<sub>2</sub>, f<sub>3</sub>, f<sub>1</sub>, f<sub>4</sub>"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "f<sub>2</sub>, f<sub>3</sub>, f<sub>4</sub>, f<sub>1</sub>"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-given-options-provides-the-increasing-order-of-gate-cse-2011-marks-2-7pry15wydj4ku6sx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LL5LiMvDh7tC7RKe",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "searching-and-sorting",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A max-heap is a heap where the value of each parent is greater than or equal to the value of its children. Which of the following is a max-heap?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/x2dqdRsUZJ2tM7CwY/KmHlRoBeGRG5OJDaPdJwQCOyg41om/d60L0byHh5RElbhzVDf2IO/image.svg\" loading=\"lazy\" alt=\"GATE CSE 2011 Algorithms - Searching and Sorting Question 32 English Option 1\">"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/WCDiY1mNpoOxUuPsF/KhCZNiCzi6Wle1G8vv5Q9Ab2AzSMN/2y1c5Vp2D7FzOxQnJdYG10/image.svg\" loading=\"lazy\" alt=\"GATE CSE 2011 Algorithms - Searching and Sorting Question 32 English Option 2\">"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/sY5jmCR491KSLaMxw/OB6r6pN7VDnVMGhybV8SxNRQFM01Q/qOicEVB9dIKHO7ZaVjUYVF/image.svg\" loading=\"lazy\" alt=\"GATE CSE 2011 Algorithms - Searching and Sorting Question 32 English Option 3\">"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/sQl4nE8jZLNiIvr3x/9qpGp10AFK5CKzd1Cu5IGIFztB607/QHQPuteEsZNS2MlVHJ84Hf/image.svg\" loading=\"lazy\" alt=\"GATE CSE 2011 Algorithms - Searching and Sorting Question 32 English Option 4\">"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-max-heap-is-a-heap-where-the-value-of-each-parent-is-great-gate-cse-2011-marks-1-ll5limvdh7tc7rke.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TYf6QUXIk58kuGgA",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "greedy-method",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An undirected graph G(V, E) contains n ( n &gt; 2 ) nodes named v<sub>1</sub> , v<sub>2</sub> ,\u2026.v<sub>n</sub>. Two nodes v<sub>i </sub>, v<sub>j</sub> are connected if and only if 0 &lt; |i \u2013 j| &lt;= 2. Each edge (v<sub>i</sub>, v<sub>j</sub> ) is assigned a weight i + j. A sample graph with n = 4 is shown below.\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/EAIvljzZFiXhbeC6v/ypcEG2xEyWuUAbbUI0aNxyzM9gNEG/973nFbgXWeuuHG29RFoLak/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2011 Algorithms - Greedy Method Question 20 English\">\nWhat will be the cost of the minimum spanning tree (MST) of such a graph with n nodes?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over {12}}(11{n^2} - 5n)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${n^2}{\\rm{  -  }}\\,n + 1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "6n \u2013 11"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2n + 1"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-undirected-graph-gv-e-contains-n-n-2-nodes-named-v1-v2-vn-gate-cse-2011-marks-2-tyf6quxik58kugga.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RXgovHUfS39Fmtjm",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "greedy-method",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An undirected graph G(V, E) contains n ( n &gt; 2 ) nodes named v<sub>1</sub> , v<sub>2</sub> ,\u2026.v<sub>n</sub>. Two nodes v<sub>i </sub>, v<sub>j</sub> are connected if and only if 0 &lt; |i \u2013 j| &lt;= 2. Each edge (v<sub>i</sub>, v<sub>j</sub> ) is assigned a weight i + j. A sample graph with n = 4 is shown below.\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/EAIvljzZFiXhbeC6v/ypcEG2xEyWuUAbbUI0aNxyzM9gNEG/973nFbgXWeuuHG29RFoLak/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2011 Algorithms - Greedy Method Question 19 English\">\nThe length of the path from v5 to v6 in the MST of previous question with n = 10 is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "11"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "25"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "31"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "41"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-undirected-graph-gv-e-contains-n-n-2-nodes-named-v1-v2-vn-gate-cse-2011-marks-2-rxgovhufs39fmtjm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HSSUami1Ne6Ins8b",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dynamic-programming",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An algorithm to find the length of the longest monotonically increasing sequence of numbers in an array A[0:n\u22121] is given below.\n<br><br>\nLet L<sub>i</sub>, denote the length of the longest monotonically increasing sequence starting at index i in the array.\n\nInitialize L<sub>n\u22121</sub>=1.\n<br><br>\nFor all i such that  $$0 \\leq i \\leq n-2$$<br><br>\n$$L_i = \\begin{cases} 1+ L_{i+1} &amp;  \\quad\\text{if A[i] &lt; A[i+1]} \\\\ 1 &amp; \\quad\\text{Otherwise}\\end{cases}$$\n<br><br> \nFinally, the length of the longest monotonically increasing sequence is max(L<sub>0</sub>, L<sub>1</sub>,\u2026,L<sub>n\u22121</sub>)  <br>\nWhich of the following statements is TRUE?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The algorithm uses dynamic programming paradigm"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The algorithm has a linear complexity and uses branch and bound paradigm"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The algorithm has a non-linear polynomial complexity and uses branch and bound paradigm"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The algorithm uses divide and conquer paradigm"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-algorithm-to-find-the-length-of-the-longest-monotonically-gate-cse-2011-marks-1-hssuami1ne6ins8b.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "h8Goa5esV3XuIBzF",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dynamic-programming",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Four matrices M<sub>1</sub>, M<sub>2</sub>, M<sub>3</sub> and M<sub>4</sub> of dimensions p $$\\times$$ q, q $$\\times$$ r, r $$\\times$$ s and s $$\\times$$ t respectively can be multiplied is several ways with different number of total scalar multiplications. For example, when multiplied as ((M<sub>1</sub> $$\\times$$ M<sub>2</sub>) $$\\times$$ (M<sub>3</sub> $$\\times$$ M<sub>4</sub>)), the total number of multiplications is pqr + rst + prt. When multiplied as (((M<sub>1</sub> $$\\times$$ M<sub>2</sub>) $$\\times$$ M<sub>3</sub>) $$\\times$$ M<sub>4</sub>), the total number of scalar multiplications is pqr + prs + pst.\n<br><br>\nIf p = 10, q = 100, r = 20, s = 5 and t = 80, then the number of scalar multiplications needed is: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "248000"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "44000"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "19000"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "25000"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "four-matrices-m1-m2-m3-and-m4-of-dimensions-p-times-q-q-time-gate-cse-2011-marks-2-h8goa5esv3xuibzf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                }
+            ],
+            "title": "Algorithms"
+        },
+        {
+            "_id": "Compiler Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gGks4FlQcWD3CsbR",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "lexical-analysis",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a compiler, keywords of a language are recognized during",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "parsing of the program"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the code generation"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the lexical analysis of the program"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "dataflow analysis"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-compiler-keywords-of-a-language-are-recognized-during-gate-cse-2011-marks-1-ggks4flqcwd3csbr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                }
+            ],
+            "title": "Compiler Design"
+        },
+        {
+            "_id": "Computer Networks",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7znX1nEboNvENnaK",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "routing-algorithm",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a network with five nodes, N1 to N5, as shown below. \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/rJYAp4dSGWWJz3g80/6Go2MvqLACllZO4960ijpbNeo3YXr/P8IZJ1Bur7Lrd5n98EARXe/image.svg\" loading=\"lazy\" alt=\"GATE CSE 2011 Computer Networks - Routing Algorithm Question 5 English\">\n<p>The network uses a Distance Vector Routing protocol. Once the routes have stabilized, the distance vectors at different nodes are as following</p> \n<p>N1 : ( 0, 1, 7, 8, 4 ) \n<br>N2 : ( 1, 0, 6, 7, 3 ) \n<br>N3 : ( 7, 6, 0, 2, 6 ) \n<br>N4 : ( 8, 7, 2, 0, 4 ) \n<br>N5 : ( 4, 3, 6, 4, 0 )</p> \nEach distance vector is the distance of the best known path at that instance to nodes, N1 to N5, where the distance to itself is 0. Also, all links are symmetric and the cost is identical in both directions. In each round, all nodes exchange their distance vectors with their respective neighbors. Then all nodes update their distance vectors. In between two rounds, any change in cost of a link will cause the two incident nodes to change only that entry in their distance vectors\n<p>The cost of link N2 - N3 reduces to 2 in (both directions). After the next round of\nupdates, what will be the new distance vector at node, N3?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "(3, 2, 0, 2, 5)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "(3, 2, 0, 2, 6)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "(7, 2, 0, 2, 5)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "(7, 2, 0, 2, 6)"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-network-with-five-nodes-n1-to-n5-as-shown-below-t-gate-cse-2011-marks-2-7znx1nebonvennak.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kWzxWCrSGyAnbcSt",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "routing-algorithm",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a network with five nodes, N1 to N5, as shown below. \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/rJYAp4dSGWWJz3g80/6Go2MvqLACllZO4960ijpbNeo3YXr/P8IZJ1Bur7Lrd5n98EARXe/image.svg\" loading=\"lazy\" alt=\"GATE CSE 2011 Computer Networks - Routing Algorithm Question 4 English\">\n<p>The network uses a Distance Vector Routing protocol. Once the routes have stabilized, the distance vectors at different nodes are as following</p> \n<p>N1 : ( 0, 1, 7, 8, 4 ) \n<br>N2 : ( 1, 0, 6, 7, 3 ) \n<br>N3 : ( 7, 6, 0, 2, 6 ) \n<br>N4 : ( 8, 7, 2, 0, 4 ) \n<br>N5 : ( 4, 3, 6, 4, 0 )</p> \nEach distance vector is the distance of the best known path at that instance to nodes, N1 to N5, where the distance to itself is 0. Also, all links are symmetric and the cost is identical in both directions. In each round, all nodes exchange their distance vectors with their respective neighbors. Then all nodes update their distance vectors. In between two rounds, any change in cost of a link will cause the two incident nodes to change only that entry in their distance vectors\n<p>After the update in the previous question, the link N1-N2 goes down. N2 will reflect this change immediately in its distance vector as cost, $$\\infty $$. After the <b>NEXT ROUND</b> of update, what will be the cost to N1 in the distance vector of N3? </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "3"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "9"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "10"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\infty $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-network-with-five-nodes-n1-to-n5-as-shown-below-t-gate-cse-2011-marks-2-kwzxwcrsgyanbcst.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LOq1qMW8yf9MiT5d",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "application-layer-protocol",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider different activities related to email:\n<p>m1: Send an email from a mail client to a mail server \n<br>m2: Download an email from mailbox server to a mail client \n<br>m3: Checking email in a web browser </p>\nWhich is the application level protocol used in each activity? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "m1: HTTP m2: SMTP m3: POP "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "m1: SMTP m2: FTP m3: HTTP "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "m1: SMTP m2: POP m3: HTTP"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "m1: POP m2: SMTP m3: IMAP"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-different-activities-related-to-emailm1-send-an-ema-gate-cse-2011-marks-1-loq1qmw8yf9mit5d.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hQLAKNsAJHJJCVMG",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-security",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A layer-4 firewall (a device that can look at all protocol headers up to the transport layer) CANNOT",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "block entire HTTP traffic during 9:00 PM and 5:00 AM"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "block all ICMP traffic"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "stop incoming traffic from a specific IP address but allow outgoing traffic to the same IP address"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "block TCP traffic from a specific user on a multi-user system during 9:00 PM and 5:00 AM"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-layer-4-firewall-a-device-that-can-look-at-all-protocol-he-gate-cse-2011-marks-1-hqlaknsajhjjcvmg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                }
+            ],
+            "title": "Computer Networks"
+        },
+        {
+            "_id": "Computer Organization",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GuKrKSwhZyiwQYBE",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-interfacing",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An $$8KB$$ direct-mapped write-back cache is organized as multiple blocks, each of size $$32$$-bytes. The processor generates $$32$$-bit addresses. The cache controller maintains the tag information for each cache block comprising of the following.\n<br>$$\\,\\,\\,\\,$$$$1$$ Valid bit\n<br>$$\\,\\,\\,\\,$$$$1$$ Modified bit\n<p>As many bits as the minimum needed to identify the memory block mapped in the cache.</p>\n<p>What is the total size of memory needed at the cache controller to store meta-data (tags) for the cache?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$4864$$ bits "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$6144$$ bits "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$6656$$ bits "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$5376$$ bits "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-8kb-direct-mapped-write-back-cache-is-organized-as-multip-gate-cse-2011-marks-2-gukrkswhzyiwqybe.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "A4kKwwu8TDPCeCgi",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pipelining",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider an instruction pipeline with four stages $$\\left( {S1,\\,S2,\\,S3,} \\right.$$ and $$\\left. {S4} \\right)$$ each with combinational circuit only. The pipeline registers are required between each stage and at the end of the last stage. Delays for the stages and for the pipeline registers are as given in the figure.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/sUSo1jSGBLQNIEVg5/rExK51MhCzRSUQhauCo6y5XoKy0mQ/ZxsYQVcIjWBC320XGjwusI/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2011 Computer Organization - Pipelining Question 24 English\">\n<p>What is the approximate speed up of the pipeline in steady state under ideal conditions when compared to the corresponding non-pipeline implementation? </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$4.0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2.5$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3.0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-an-instruction-pipeline-with-four-stages-left-s1s2s-gate-cse-2011-marks-2-a4kkwwu8tdpcecgi.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8sYEtlyGCW3wMgm3",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "machine-instructions-and-addressing-modes",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "On a non-pipelined sequential processor, a program segment, which is a part of the interrupt service routine, is given to transfer $$500$$ bytes from an $${\\rm I}/O$$ device to memory. Initialize the address register Initialize the count to $$500$$ \n<p>$$LOOP:$$ Load a byte from device Store in memory at address given by address register \n<br>Increment the address register\n<br>Decrement the count\n<br>If count! $$=0$$ go to $$LOOP$$</p>\n<p>Assume that each statement in this program is equivalent to a machine instruction which takes one clock cycle to execute if it is a non load/store instruction. The load-store instructions take two clock cycles to execute.</p>\n<p>The designer of the system also has an alternate approach of using the $$DMA$$ controller to implement the same transfer. The $$DMA$$ controller requires $$20$$ clock cycles for initialization and other overheads. Each $$DMA$$ transfer cycle takes two clock cycles to transfer one byte of data from the device to the memory.</p>\n<p>What is the approximate speed up when the $$DMA$$ controller based design is used in place of the interrupt driven program based input- output?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3.4$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$4.4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$5.1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$6.7$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "on-a-non-pipelined-sequential-processor-a-program-segment-wh-gate-cse-2011-marks-2-8syetlygcw3wmgm3.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6YBrUPAFLbuedp0H",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "io-interface",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A computer handles several interrupt sources of which of the following are relevant for this question. \n<p>$$ * \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ Interrupt from $$CPU$$ temperature sensor (raises interrupt if $$CPU$$ \n<br>$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ temperature is too high)\n<br>$$ * \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ Interrupt from Mouse (raises interrupt if the mouse is moved or a button is \n<br>$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$pressed) \n<br>$$ * \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ Interrupt from Keyboard (raises interrupt when a key is pressed or released)\n<br>$$ * \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ Interrupt from Hard Disk (raises interrupt when a disk read is completed)</p>\n<p>Which one of these will be handled at the $$HIGHEST$$ priority? </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Interrupt from Hard Disk"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Interrupt from Mouse "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Interrupt from Keyboard "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Interrupt from $$CPU$$ temperature sensor  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-computer-handles-several-interrupt-sources-of-which-of-the-gate-cse-2011-marks-1-6ybrupaflbuedp0h.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "umcxt9tRXiVqlA4w",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "io-interface",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "On a non-pipe-lined sequential processor, a program segment, which is a part of the interrrupt service routine, is given to transfer $$500$$ bytes from an $${\\rm I}/O$$ device to memory.  Initialize the address register Initialize the count to $$500$$\n<br>$$LOOP:$$ Load a byte from device Store in memory at address given by address register \n$$$\\eqalign{\n  &amp; Increment\\,\\,\\,the\\,\\,\\,address\\,\\,register  \\cr \n  &amp; Decrement\\,\\,\\,the\\,\\,count  \\cr \n  &amp; If\\,\\,\\,count!\\,\\,\\, = 0\\,\\,\\,go\\,\\,\\,to\\,\\,\\,LOOP \\cr} $$$\n<p>Assume that each statement in this program is equivalent to a machine instruction which takes one clock cycle to execute if it is non- load/store instruction. The load-store instructions take two clock cycles to execute.</p>\n<p>The designer of the system also has an alternate approach of using the $$DMA$$ controller to implement the same transfer. The $$DMA$$ controller requires $$20$$ clock cycles for initialization and other overheads. Each $$DMA$$ transfer cycle takes two clock cycles to transfer one byte of data from the device to the memory.</p>\n<p>What is the approximate speed up when the $$DMA$$ controller based design is used in place of the interrupt driven program based input-output?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3.4$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$4.4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$5.1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$6.7$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "on-a-non-pipe-lined-sequential-processor-a-program-segment-w-gate-cse-2011-marks-2-umcxt9trxivqla4w.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                }
+            ],
+            "title": "Computer Organization"
+        },
+        {
+            "_id": "Data Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gwJoZrwbLAyOjpIT",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "We are given a set of n distinct elements and an unlabeled binary tree with n nodes. In how many ways can we populate the tree with the given set so that it becomes a binary search tree? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "n!"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "(1/n+1) * <sup>2n</sup>C<sub>n</sub>"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "we-are-given-a-set-of-n-distinct-elements-and-an-unlabeled-b-gate-cse-2011-marks-2-gwjozrwblayojpit.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CJz6UujviRSEOQl6",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A max-heap is a heap where the value of each parent is greater than or equal to the value of its children. Which of the following is a max-heap?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/uNlGNrTgpPynxshDZ/SPFyBmYCH9zKRSQvVOmX2CTkiebKP/lcsz8aBT3i6N8UhxSkw2qg/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2011 Data Structures - Trees Question 64 English Option 1\">"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/ELoSeKxfdYc60ya6Y/hCGtGUx9tbwvQK8szjAb5PBWJS3wt/NrzUc4ivkss7kTALckih3V/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2011 Data Structures - Trees Question 64 English Option 2\">"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/sbeGFhnCI3CUFfF0p/648hDginUe14Cq8QmxGBSBIu5E6XM/eJppcHKYGWzdqzECKFUGq7/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2011 Data Structures - Trees Question 64 English Option 3\">"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/12vqDp1nmlsotvIW2/Q2TZpnge2W7vfHESOmMFrqJGkNH5k/BoE1LPvS7h7FaJ9FX0pHVy/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2011 Data Structures - Trees Question 64 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-max-heap-is-a-heap-where-the-value-of-each-parent-is-great-gate-cse-2011-marks-1-cjz6uujvirseoql6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                }
+            ],
+            "title": "Data Structures"
+        },
+        {
+            "_id": "Database Management System",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3tCxMh8riVGAxpPm",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "structured-query-language",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Database table by name Loan_Records is given below.</p>\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-uys7{border-color:inherit;text-align:center}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-uys7\"><span style=\"font-weight:bold;color:rgb(98, 0, 201)\">Borrower</span></th>\n    <th class=\"tg-uys7\"><span style=\"font-weight:bold;color:rgb(98, 0, 201)\">Bank_Manager</span></th>\n    <th class=\"tg-uys7\"><span style=\"font-weight:bold;color:rgb(98, 0, 201)\">Loan_Amount</span></th>\n  </tr>\n  <tr>\n    <td class=\"tg-uys7\">Ramesh</td>\n    <td class=\"tg-uys7\">Sunderajan</td>\n    <td class=\"tg-uys7\">10000.00</td>\n  </tr>\n  <tr>\n    <td class=\"tg-uys7\">Suresh</td>\n    <td class=\"tg-uys7\">Ramgopal</td>\n    <td class=\"tg-uys7\">5000.00</td>\n  </tr>\n  <tr>\n    <td class=\"tg-uys7\">Mahesh</td>\n    <td class=\"tg-uys7\">Sunderajan</td>\n    <td class=\"tg-uys7\">7000.00</td>\n  </tr>\n</tbody></table>\n<p>What is the output of the following SQL query?</p>\n<pre><code class=\"sql\">SELECT count(*) \nFROM ( \n(SELECT Borrower. Bank_Manager FROM Loan_Records) AS S \nNATURAL JOIN \n(SELECT Bank_Manager, Loan_Amount FROM Loan_Records) AS T );</code></pre>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "3"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "9"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "5"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "6"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "database-table-by-name-loanrecords-is-given-belowtg-border-c-gate-cse-2011-marks-2-3tcxmh8rivgaxppm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kWfeUJaV9jpu2LYT",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "structured-query-language",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Consider a database table T containing two columns X and Y each of type integer. After the creation of the table, one record (X = 1, Y = 1) is inserted in the table.</p>\n<p>Let MX and MY denote the respective maximum values of X and Y among all records in the table at any point in time. Using MX and MY, new records are inserted in the table 128 times with X and Y values being MX + 1, 2*MY + 1 respectively. It may be noted that each time after the insertion, values of MX and MY change.</p>\n<p>What will be the output of the following SQL query after the steps mentioned above are carried out?</p>\n<pre><code class=\"sql\">SELECT Y FROM T WHERE X=7; </code></pre>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "127"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "255"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "129"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "257"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-database-table-t-containing-two-columns-x-and-y-e-gate-cse-2011-marks-2-kwfeujav9jpu2lyt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PITGNqZEyRLra1dj",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "relational-algebra",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a relational table r with sufficient number of records, having attributes\nA<sub>1</sub>, A<sub>2</sub>,....., A<sub>n</sub> and let 1 $$ \\le $$ p $$ \\le $$ n. Two queries Q1 and Q2 are given below.\n<p>$$Q1: \\pi_{A_1, \\dots ,A_p} \\left(\\sigma_{A_p=c}\\left(r\\right)\\right)$$ where is a constant</p>\n<p>$$Q2: \\pi_{A_1, \\dots ,A_p} \\left(\\sigma_{c_1 \\leq A_p \\leq c_2}\\left(r\\right)\\right)$$ where c<sub>1</sub> and c<sub>2</sub> are constants</p>\n<p>The database can be configured to do ordered indexing on A<sub>p</sub> or hashing on A<sub>p</sub>. Which of the following statements is TRUE?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Ordered indexing will always outperform hashing for both queries"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Hashing will always outperform ordered indexing for both queries"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Hashing will outperform ordered indexing on Q1, but not on Q2"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Hashing will outperform ordered indexing on Q2, but not on Q1"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-relational-table-r-with-sufficient-number-of-reco-gate-cse-2011-marks-2-pitgnqzeyrlra1dj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sLD6fcjHeK7mW8Vq",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "er-diagrams",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a relation table with a single record for each registered student with a single record for each registered student with the following attributes.\n<br>$$1.$$ $$Registration$$ $$Num:$$ Unique registration number of each registered student. \n<br>$$2.$$ $$UID :$$ Unique identity number, unique at the national level for each cityzen.\n<br>$$3.$$ $$BankAccount_Num:$$ Unique account number at the bank. A student can have multiple accounts or joint accounts. This attribute stores the primary account number. \n<br>$$4.$$ $$Name:$$  Name of the student\n<br>$$5.$$ $$Hostel$$ $$Room:$$ Room number of the hostel.\n<p>Which of the following options is INCORRECT?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$BankAccount$$ $$Num$$ is candidate key\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$Registration$$ $$Num$$ can be a primary key "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$UID$$ is a candidate key if all students are from the same country "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "If $$S$$ is a superkey such that $$S \\cap UID$$ is NULL then $$S \\cup UID$$ is also a superkey "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-relation-table-with-a-single-record-for-each-regi-gate-cse-2011-marks-1-sld6fcjhek7mw8vq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                }
+            ],
+            "title": "Database Management System"
+        },
+        {
+            "_id": "Digital Logic",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6Lcy9sga5AVMQnMY",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The simplified $$SOP$$ (Sum of product) form of the Boolean expression \n<br>$$\\left( {P + \\overline Q  + \\overline R } \\right).\\left( {P + \\overline Q  + R} \\right).\\left( {P + Q + \\overline R } \\right)$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {\\overline P .Q + \\overline R } \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {P + \\overline Q .\\overline R } \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {\\overline P .Q + R} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {P.Q + R} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-simplified-sop-sum-of-product-form-of-the-boolean-expres-gate-cse-2011-marks-1-6lcy9sga5avmqnmy.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "muDh4IMjZdH3BEH6",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following circuits is <b>NOT</b> equivalent to a $$2$$-input $$XNOR$$ (exclusive <b>NOR</b>) gate",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/tJxNswZynEcsCjbTQ/Yal948voqFu3fn7DaYJzHcxxmRbii/CilNxxp9X1iYvl8yIThlQZ/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2011 Digital Logic - Boolean Algebra Question 45 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/Ea2WhjypKmCAEqnXT/GMeMYk7fS21hHXHzHq6SydlYUEAES/jtJYtx3lJotn1CBC6GY6Uh/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2011 Digital Logic - Boolean Algebra Question 45 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/ouuEoTAWYIVHFERzS/wu6UnPJu8Wjj6XkmePVjK3sqYgbZQ/dVmvD2yLExBMlpySPFTvAC/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2011 Digital Logic - Boolean Algebra Question 45 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/DI5ZuSe88YUTYa2i7/8rCulORwt6Xh2nL32Vecjcuywx2o1/e1EmP7wjOgnYmWq8YnohM7/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2011 Digital Logic - Boolean Algebra Question 45 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-circuits-is-not-equivalent-to-a-2-gate-cse-2011-marks-1-mudh4imjzdh3beh6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NKZFQ4Ea75lEY08N",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following circuit involving three Dtypes flip-flops  used in a certain type of Counter configuration.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/wNVlgobjgHQBR27g0/gk6qFz4UzpIKP93ZE30Uh42Z96Mwg/IsEwlel7lnMWii1ohVwuqY/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2011 Digital Logic - Sequential Circuits Question 18 English\">\n<p>If at some instance prior to the occurrence of the clock edge, $$P, Q$$ and $$R$$ have a value $$0,1$$ and $$0$$ respectively, what shall be the value of $$PQR$$ after the clock edge?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$000$$  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$001$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$010$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$011$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-circuit-involving-three-dtypes-flip-f-gate-cse-2011-marks-2-nkzfq4ea75ley08n.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mfdXV5AhjcYufpEa",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following circuit involving three Dtypes flip-flops  used in a certain type of Counter configuration.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/wNVlgobjgHQBR27g0/gk6qFz4UzpIKP93ZE30Uh42Z96Mwg/IsEwlel7lnMWii1ohVwuqY/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2011 Digital Logic - Sequential Circuits Question 19 English\">\n<p>If all the flip-flops were reset to $$0$$ at power on, what is the total number of distinct outputs (states) represented by $$PQR$$ generated by the counter?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$6$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-circuit-involving-three-dtypes-flip-f-gate-cse-2011-marks-2-mfdxv5ahjcyufpea.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                }
+            ],
+            "title": "Digital Logic"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EhM9OlIT4Eom8Bzc",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the difference between the expectation of the square of a random variable $$\\left( {E\\left[ {{X^2}} \\right]} \\right)$$ and the square of the expectation of the random variable $${\\left( {E\\left[ X \\right]} \\right)^2}$$ is denoted by R then ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "R = 0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "R &lt; 0"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$R\\, \\ge \\,0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "R &gt; 0"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-difference-between-the-expectation-of-the-square-of-a-gate-cse-2011-marks-1-ehm9olit4eom8bzc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uCOZtY6GpR5eplEM",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A deck of  5 cards (each carrying a distinct number from 1 to 5) is shuffled thoroughly. Two cards are then removed one at a time from the deck. What is probability that the two cards are selected with the number on the first card is one higher than the number on the  second card.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{1 \\over 5}}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{4 \\over 25}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{1 \\over 4}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{2 \\over 5}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-deck-of-5-cards-each-carrying-a-distinct-number-from-1-to-gate-cse-2011-marks-2-ucozty6gpr5eplem.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hGsJw2DY1bLLVCk1",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following options is <b>correct</b> given three positive integers $$x,  y$$ and $$z$$, and a predicate\n<br>$$P\\left( x \\right) = \\neg \\left( {x = 1} \\right) \\wedge \\forall y\\left( {\\exists z\\left( {x = y * z} \\right) \\Rightarrow \\left( {y = x} \\right) \\vee \\left( {y = 1} \\right)} \\right)$$\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P(x)$$ being true means that $$x$$ is a prime number"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P(x)$$ being true means that $$x$$ is a number other than 1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P(x)$$ is always true irrespective of the value of $$x$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P(x)$$ being true means that $$x$$ has exactly two factors other than 1 and $$x$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-options-is-correct-given-three-po-gate-cse-2011-marks-2-hgsjw2dy1bllvck1.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OwQCSMbD6ymaifOq",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given $$i = \\sqrt { - 1} ,$$ what will be the evaluation of the definite integral $$\\int\\limits_0^{\\pi /2} {{{\\cos x +i \\sin x} \\over {\\cos x - i\\,\\sin x}}dx?} $$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$-1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$i$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-i-sqrt-1-what-will-be-the-evaluation-of-the-definite-i-gate-cse-2011-marks-2-owqcsmbd6ymaifoq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5gKiEf6seYP9J1B4",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$K4$$ and $$Q3$$ are graphs with the following structures.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/djP5obFWWzqGEj9xk/vWrjON9vaHua6UlOj4Wdh6HBFmFlw/aazUuTw97DaQTKGmy15cw5/image.svg\" loading=\"lazy\" alt=\"GATE CSE 2011 Discrete Mathematics - Graph Theory Question 69 English\">\n<p>Which one of the following statements is <b>TRUE</b> in relation to these graphs?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$K4$$ is planar while $$Q3$$  is not "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Both $$K4$$ and $$Q3$$ are planar "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$Q3$$ is planar while $$K3$$ is not"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Neither $$K4$$ nor $$Q3$$ is planar "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "k4-and-q3-are-graphs-with-the-following-structureswhich-one-gate-cse-2011-marks-1-5gkief6seyp9j1b4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MQlBHQyPEcsJcpqN",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Four matrices $${M_1},\\,\\,\\,{M_2},\\,\\,\\,{M_3}$$ and $${M_4}$$ of dimensions $$p\\,\\,x\\,\\,q,\\,\\,\\,\\,\\,q\\,\\,x\\,\\,e,\\,\\,\\,\\,\\,r\\,\\,x\\,\\,s$$ and $$\\,\\,\\,\\,s\\,\\,x\\,\\,t$$ respectively can be multiplied in sevaral ways with different number of total scalar multiplications. For example when multiplied as $$\\left( {\\left( {{M_1}\\,\\,X\\,\\,{M_2}} \\right)\\,\\,X\\,\\,\\left( {{M_3}\\,\\,X\\,\\,{M_4}} \\right)} \\right)$$, the total number of scalar multiplications is  $$\\,\\,\\,\\,$$$$pqr + rst + prt$$.  When multiplied as $$\\left( {\\left( {\\left( {{M_1}\\,\\,X\\,\\,{M_2}} \\right)\\,\\,X\\,\\,{M_3}} \\right)X\\,\\,{M_4}} \\right)$$, the total number of scalar multiplications is $$pqr + prs + pst$$. If $$p = 10,\\,\\,q = 100,\\,\\,r = 20,\\,\\,s = 5,\\,\\,$$ and $$t = 80$$, then the minimum number of scalar multiplications needed is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$248000$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$44000$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$19000$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$25000$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "four-matrices-m1m2m3-and-m4-of-dimensions-pxqqxerxs-and-sxt-gate-cse-2011-marks-2-mqlbhqypecsjcpqn.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "J02K5Hv8t65FXWfE",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the matrix as given below. \n$$$\\left[ {\\matrix{\n   1 &amp; 2 &amp; 3  \\cr \n   0 &amp; 4 &amp; 7  \\cr \n   0 &amp; 0 &amp; 3  \\cr \n\n } } \\right]$$$\n<p>Which of the following options provides the <b>Correct</b> values of the Eigen values of the matrix?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1, 4, 3$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3, 7, 3$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$7, 3, 2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1, 2, 3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-matrix-as-given-below-left-matrix-1-2-3-cr-0-4-gate-cse-2011-marks-2-j02k5hv8t65fxwfe.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aHWIt8xB96Pf4z89",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$\\left[ A \\right]$$ is a square matrix which is neither symmetric nor skew-symmetric and $${\\left[ A \\right]^T}$$ is its transpose. The sum and differences of these matrices and defined as  $$\\left[ S \\right] = \\left[ A \\right] + {\\left[ A \\right]^T}$$ and $$\\left[ D \\right] = \\left[ A \\right] - {\\left[ A \\right]^T}$$ respectively. Which of the following statements is true? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both $$\\left[ S \\right]$$ and $$\\left[ D \\right]$$ are symmetric "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Both $$\\left[ S \\right]$$ and $$\\left[ D \\right]$$ are skew-symmetric "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left[ S \\right]$$ is skew-symmetric and $$\\left[ D \\right]$$ is symmetric"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left[ S \\right]$$ is symmetric and $$\\left[ D \\right]$$ is skew symmetric "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "left-a-right-is-a-square-matrix-which-is-neither-symmetric-n-gate-cse-2011-marks-2-ahwit8xb96pf4z89.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dfbrsLpV6jJgXisU",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a finite sequence of random values $$X = \\left\\{ {{x_1},{x_2},{x_3}, -  -  -  -  - {x_n}} \\right\\}..$$ Let $${\\mu _x}$$ be the mean and $${\\sigma _x}$$ be the standard deviation of $$X.$$ Let another finite sequence $$Y$$ of equal length be derived from this $${y_i} = a.{x_i} + b,$$ where $$a$$ and $$b$$ are positive constants. Let $${\\mu _y}$$ be the mean and $${\\sigma _y}$$ be the standard deviation of this sequence. Which one of the following statements is incorrect? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Index position of mode of $$X$$ in $$X$$ is the same as the index position of mode of $$Y$$ in $$Y$$. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Index position of median of $$X$$ in $$X$$ is the same as the index position of median of $$Y$$ in $$Y.$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\mu _y} = a{\\mu _x} + b$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\sigma _y} = a{\\sigma _x} + b$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-finite-sequence-of-random-values-x-left-x1x2x3-xn-gate-cse-2011-marks-2-dfbrslpv6jjgxisu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LYIJXZ35yFVoQQ4m",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If two fair coins are flipped and at least one of the outcomes is known to be a head, what is the probability that both outcomes are heads?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1/3"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\raise0.5ex\\hbox{$\\scriptstyle 1$}\n\\kern-0.1em/\\kern-0.15em\n\\lower0.25ex\\hbox{$\\scriptstyle 4$}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\raise0.5ex\\hbox{$\\scriptstyle 1$}\n\\kern-0.1em/\\kern-0.15em\n\\lower0.25ex\\hbox{$\\scriptstyle 2$}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2/3"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-two-fair-coins-are-flipped-and-at-least-one-of-the-outcom-gate-cse-2011-marks-1-lyijxz35yfvoqq4m.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SzQRe54kB41RO8m3",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An application loads $$100$$ libraries at startup. Loading each library requires exactly one disk access. The seek time of the disk to random location is given as $$10$$ $$ms$$. Rotational speed of disk is $$6000$$ $$rpm.$$ If all $$100$$ libraries are loaded from random locations on the disk, how long does it take to load all libraries? (The time to transfer data from the disk block once the head has been positioned at the start of the block may be neglected).",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.50s$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.50s$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.25s$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1.00s$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-application-loads-100-libraries-at-startup-loading-each-l-gate-cse-2011-marks-2-szqre54kb41ro8m3.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ia9bZX9Yfd0KQVpo",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A thread is usually defined as a ''light weight process'' because an operating system $$(OS)$$ maintains smaller data structures for a thread than for a process. In relation to this, which of the following is TRUE?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "On per-thread basis, the $$OS$$ maintains only $$CPU$$ register state. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The $$OS$$ does not maintain a separate stack for each thread "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "On per-thread basis, the $$OS$$ does not maintain virtual memory state. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "On per-thread basis, the $$OS$$ maintains only scheduling and accounting "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "Operating system mantains a separate program counter,stack and CPU register set for a thread,so options A , B and D will be false. All the threads within a process/task share the same virtual memory space. Hence the OS does not maintain virtual memory space for each individual threads."
+                        }
+                    },
+                    "permalink": "a-thread-is-usually-defined-as-a-light-weight-process-becaus-gate-cse-2011-marks-1-ia9bzx9yfd0kqvpo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sBusWHoiCNKVNmbl",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A Computer handles several interrupt sources of which the following are relevant for this question:\n<p>$$ * \\,\\,\\,$$ Interrupt from $$CPU$$ temperature sensor (raises interrupt if $$CPU$$ temperature is too high)</p>\n<p>$$ * \\,\\,\\,$$  Interrupt from Mouse (raises interrupt if the mouse is moved or a button is pressed) </p>\n<p>$$ * \\,\\,\\,$$ Interrupt from keyboard (raises interrupt when a key is pressed or release)</p>\n<p>$$ * \\,\\,\\,$$ Interrupt from Hard Disk (raises interrupt when a disk read is completed)&gt;/p&gt;\n</p><p>Which one these will be handled at the HIGHEST priority?</p>\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Interrupt from Hard Disk "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Interrupt from Mouse "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Interrupt from Keyboard "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Interrupt from $$CPU$$ temperature sensor."
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-computer-handles-several-interrupt-sources-of-which-the-fo-gate-cse-2011-marks-1-sbuswhoicnkvnmbl.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Z4erguESanC8sksM",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let the time taken to switch between user and kernel modes of execution be $${t_1}$$ while the time taken to switch between two processes be $${t_2}$$. \n<p>Which of the following is TRUE?</p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${t_1} &gt; {t_2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${t_1} = {t_2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${t_1} &lt; {t_2}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Nothing can be said about the relation between $${t_1}$$ and $${t_2}.$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "Since the kernel is what facilitates switching from one process to the other, you need to switch from user mode to kernel mode for the scheduler (which is part of the kernel) to take control, then, after it makes its decisions, you have a switch from kernel to user mode in the new process. So switching process to process likely takes at least twice as long as user to kernel, at least in the general case."
+                        }
+                    },
+                    "permalink": "let-the-time-taken-to-switch-between-user-and-kernel-modes-o-gate-cse-2011-marks-1-z4erguesanc8sksm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Iv9hjLLkobOVs9KG",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following table of arrival time and burst time for three processes $$P0,P1$$ and $$P2$$.\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-s6z2{text-align:center}\n.tg .tg-baqh{text-align:center;vertical-align:top}\n.tg .tg-s268{text-align:left}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-s268\"><span style=\"font-weight:bold\">Process</span></th>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">Arrival Time</span></th>\n    <th class=\"tg-baqh\"><span style=\"font-weight:bold\">Burst Time</span></th>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">P0</td>\n    <td class=\"tg-s6z2\">0 ms</td>\n    <td class=\"tg-baqh\">9 ms</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">P1</td>\n    <td class=\"tg-s6z2\">1 ms</td>\n    <td class=\"tg-baqh\">4 ms</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">P2</td>\n    <td class=\"tg-s6z2\">2 ms</td>\n    <td class=\"tg-baqh\">9 ms</td>\n  </tr>\n</tbody></table> \n<p>The pre-emptive shortest job first scheduling algorithm is used. Scheduling is carried out only a arrival or completion of processes. What is the average waiting time for the three processes? </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$5.0$$ $$ms$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$4.33$$ $$ms$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$6.33$$ $$ms$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$7.33$$ $$ms$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-table-of-arrival-time-and-burst-time-gate-cse-2011-marks-2-iv9hjllkobovs9kg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                }
+            ],
+            "title": "Operating Systems"
+        },
+        {
+            "_id": "Programming Languages",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VrBhNaZjGRIOSJyJ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pointer-and-structure-in-c",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What does the following fragment of C-program print?\n<pre><code>char c[ ] = \"GATE2011\";\nchar *p = c;\nprintf(\"%s\", p + p[3] - p[1]);</code></pre>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "GATE2011"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "E2011"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2011"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "01"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-does-the-following-fragment-of-c-program-printchar-c-ga-gate-cse-2011-marks-1-vrbhnazjgriosjyj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CI9O9nDuMxnTHzXs",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "function-and-recursion",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following recursive C function that takes two arguments:\n<pre><code class=\"c\">unsigned int foo (unsigned int n, unsigned int r) {\n  if (n &gt; 0) return((n % r) + foo(n/r, r));\n  else return 0;\n}</code></pre>\nWhat is the return value of the function foo when it is called as <b>foo (345, 10)</b>?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "345"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "12"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "5"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "3"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-recursive-c-function-that-takes-two-a-gate-cse-2011-marks-2-ci9o9ndumxnthzxs.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SJ9kizQxHYg0MuuP",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "function-and-recursion",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following recursive C function that takes two arguments:\n<pre><code class=\"c\">unsigned int foo (unsigned int n, unsigned int r) {\n  if (n &gt; 0) return((n % r) + foo(n/r, r));\n  else return 0;\n}</code></pre>\nWhat is the return value of the function foo when it is called as <b>foo (513, 2)</b>? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "9"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "8"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "5"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-recursive-c-function-that-takes-two-a-gate-cse-2011-marks-2-sj9kizqxhyg0muup.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                }
+            ],
+            "title": "Programming Languages"
+        },
+        {
+            "_id": "Software Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tZOzxEQwvYHOwMP5",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "software-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "software-engineering",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A company need to develop digital signal processing software for one of its newest inventions. The software is expected to have $$4000$$ lines of code. The company needs to determine the effort in person months needed to develop this software using basic $$COCOMO$$ model. The multiplicative factor for this model is given as $$2.8$$ for the software development on embedded systems. While the exponentiation factor is given as $$1.20.$$ What is the estimated effort in person months? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$234.25$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$932.50$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$287.80$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$122.40$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-company-need-to-develop-digital-signal-processing-software-2011-marks-1-tzozxeqwvyhowmp5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rNBkYP3yu2BFneKv",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "software-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "software-engineering",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following is NOT desired in a good Software Requirement Specifications $$(SRS)$$ document? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Functional Requirements "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Non Functional Requirements "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Goals of Implementation "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Algorithms for software Implementation "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-is-not-desired-in-a-good-software-req-2011-marks-1-rnbkyp3yu2bfnekv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LyisW0S6j282xxfg",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "software-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "software-engineering",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A company needs to develop a strategy for Software Product development for which it has a choice  of two programming language $${L_1}$$ and $${L_2}$$.  The number of lines of code $$(LOC)$$ developed using $${L_2}$$ is estimated to be twice the $$LOC$$ developed with $${L_1}$$ the product will have to be maintained for five years. Various parameters for the company are given in the table below.  \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/bsfr4iJQYKHyAE40f/IcVXgBLJQi7psJGsUf9wSidBb13m7/9nxZcBuK3WIfXVnnlb64uV/image.svg\" loading=\"lazy\" alt=\"GATE CSE 2011 Software Engineering - Software Engineering Question 13 English\"> \n<p>Total cost of the project includes cost of development &amp; maintenance. What is the $$LOC$$ for $${L_1}$$ for which the cost of the project using $${L_1}$$ is equal to the cost of the project using $${L_2}$$</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$4000$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$5000$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$4333$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4667$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-company-needs-to-develop-a-strategy-for-software-product-d-2011-marks-1-lyisw0s6j282xxfg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6arTTGE098wuMren",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "software-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "software-engineering",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following is comment written for $$a$$ $$c$$ function. This function computes the roots of quadratic equation. $$a{x^2} + bx + c = 0$$ the function stores two real roots in $${}^ * root1\\,\\,\\&amp; \\,\\,{}^ * root2\\,\\,\\,\\&amp; $$ returns the status of validity of roots. In handles four different kinds of cases\n<br>$$i)$$ When coefficient $$a$$ is zero or irrespective of discriminate\n<br>$$ii)$$ When discriminate is positive.\n<br>$$iii)$$ When discriminate is zero\n<br>$$iv)$$ When discriminate is negative \n<p>Only in cases $$(ii)$$ &amp; $$(iii)$$ the stored roots are valid Otherwise $$0$$ is stored in the roots the function returns $$0$$ when the roots are valid &amp; - $$1$$ otherwise. The function also ensures root $$1$$ $$&gt; =$$ root $$2.$$</p>\n<p>int get  QuadRoots(float a, float b, float c, float $${}^ * root1$$, float $${}^ * root2$$);  </p>\n<p>A software test engineer is assigned the job of doing block box testing. He comes up with the following test cases, many of which are redundant</p> \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/M7qdkHlRQHjhIuKMJ/78pODxzoMdw0sNTs8BT0vPCTfcYqN/NFaSI05FLF143VyscoCq6I/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2011 Software Engineering - Software Engineering Question 11 English\"> \n<p>Which one of the following options provide the set of non-redundant tests using equivalence class partitioning approach from input perspective for black box testing?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${T_1},\\,{T_2},\\,{T_3},\\,{T_6}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${T_1},\\,{T_3},\\,{T_4},\\,{T_5}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${T_2},\\,{T_4},\\,{T_5},\\,{T_6}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${T_2},\\,{T_3},\\,{T_4},\\,{T_5}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-is-comment-written-for-a-c-function-t-2011-marks-2-6arttge098wumren.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                }
+            ],
+            "title": "Software Engineering"
+        },
+        {
+            "_id": "Theory of Computation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rbU4aqz9GwDgM0nd",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Definition of the language $$L$$ with alphabet $$\\left\\{ a \\right\\}$$ is given as following. $$L = \\left\\{ {{a^{nk}}} \\right.\\left| {k &gt; 0,\\,n} \\right.$$ is a positive integer constant$$\\left. \\, \\right\\}$$ \n<p>What is the minimum number of states needed in a $$DFA$$ to recognize $$L$$?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$k+1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$n+1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${2^{n + 1}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${2^{k + 1}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "definition-of-the-language-l-with-alphabet-left-a-right-is-g-gate-cse-2011-marks-2-rbu4aqz9gwdgm0nd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HZtx39oAyZd6wWwF",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The lexical analysis for a modern computer language such as java needs the power of which one of the following machine model in a necessary and sufficient sense? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Finite state automata "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Deterministic pushdown automata "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Non -deterministic pushdown automata "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Turing machine "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-lexical-analysis-for-a-modern-computer-language-such-as-gate-cse-2011-marks-1-hztx39oayzd6wwwf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qShJ7TWz1Vrc0Mow",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the languages $${L_1}$$, $${L_2}$$ and $${L_3}$$ are given below.\n$$$\\eqalign{\n  &amp; {L_1} = \\left\\{ {{0^p}{1^q}\\left| {p,q \\in N} \\right.} \\right\\}  \\cr \n  &amp; {L_2} = \\left\\{ {{0^p}{1^q}\\left| {p,q \\in N} \\right.\\,\\,and\\,\\,p = q} \\right\\}\\,\\,and  \\cr \n  &amp; {L_3} = \\left\\{ {{0^p}{1^q}{0^r}\\left| {p,q,r\\, \\in N\\,\\,\\,and\\,\\,\\,p = q = r} \\right.} \\right\\}. \\cr} $$$\n<p>Which of the following statements is not TRUE?</p>\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Pushdown automata $$(PDA)$$ can be used to recognize $${L_1}$$ and $${L_2}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${L_1}$$ is a regular language "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "All the three languages are context free "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Turing machines can be used to recognize all the languages"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "<h3><strong>Given Languages :</strong></h3>\n\n<p><strong>$ L_1 = \\{ 0^p1^q \\mid p, q \\in N \\} $</strong></p>\n\n\n<p>Strings of any number of 0s followed by any number of 1s.</p>\n\n\n<p><strong>$ L_2 = \\{ 0^p1^q \\mid p, q \\in N \\text{ and } p = q \\} $</strong></p>\n\n\n<p>Strings where the number of 0s equals the number of 1s.</p>\n\n\n<p><strong>$ L_3 = \\{ 0^p1^q0^r \\mid p, q, r \\in N \\text{ and } p = q = r \\} $</strong></p>\n\n\n<p>Strings where the number of 0s, 1s, and 0s again are all equal.</p>\n\n<hr />\n<h3><strong>Analyzing Each Statement:</strong></h3>\n<h4><strong>Option A: PDAs can be used to recognize $ L_1 $ and $ L_2 $.</strong></h4>\n\n<p><p><strong>$ L_1 $:</strong></p></p>\n<p><p>Regular expression: $ 0^*1^* $</p></p>\n<p><p><strong>Regular language</strong>, hence can be recognized by a finite automaton (a PDA can also recognize it).</p></p>\n<p><p><strong>$ L_2 $:</strong></p></p>\n<p><p>Language of the form $ 0^n1^n $</p></p>\n<p><p><strong>Context-free language</strong>, can be recognized by a <strong>Pushdown Automaton (PDA)</strong>.</p></p>\n<p><p><strong>Conclusion:</strong> <strong>True</strong></p></p>\n\n<h4><strong>Option B: $ L_1 $ is a regular language.</strong></h4>\n\n<p><p><strong>$ L_1 $:</strong></p></p>\n<p><p>As established, it can be represented by the regular expression $ 0^*1^* $.</p></p>\n<p><p><strong>Regular language</strong>.</p></p>\n<p><p><strong>Conclusion:</strong> <strong>True</strong></p></p>\n\n<h4><strong>Option C: All three languages are context-free.</strong></h4>\n\n<p><p><strong>$ L_1 $:</strong> Regular (hence context-free).</p></p>\n<p><p><strong>$ L_2 $:</strong> Context-free.</p></p>\n<p><p><strong>$ L_3 $:</strong></p></p>\n<p><p>Language of the form $ 0^n1^n0^n $.</p></p>\n<p><p><strong>Not context-free</strong>. This is a well-known non-context-free language because context-free grammars cannot enforce equal counts of three different symbols.</p></p>\n<p><p><strong>Conclusion:</strong> <strong>False</strong></p></p>\n\n<h4><strong>Option D: Turing machines can be used to recognize all the languages.</strong></h4>\n\n<p><p><strong>Turing Machines:</strong></p></p>\n<p><p>Capable of recognizing <strong>all recursively enumerable languages</strong>, which include regular, context-free, and some non-context-free languages.</p></p>\n<p><p><strong>$ L_3 $:</strong></p></p>\n<p><p>Although not context-free, $ L_3 $ is recursively enumerable.</p></p>\n<p><p><strong>Conclusion:</strong> <strong>True</strong></p></p>\n\n<hr />\n<h3><strong>Final Answer:</strong></h3>\n\n<p><p><strong>Option A:</strong> True</p></p>\n<p><p><strong>Option B:</strong> True</p></p>\n<p><p><strong>Option C:</strong> <strong>False</strong></p></p>\n<p><p><strong>Option D:</strong> True</p></p>\n\n<hr />\n<p><strong>Therefore, the statement that is not true is:</strong></p>\n<p><strong>Answer: Option C</strong></p>"
+                        }
+                    },
+                    "permalink": "consider-the-languages-l1-l2-and-l3-are-given-beloweqalign-l-gate-cse-2011-marks-2-qshj7twz1vrc0mow.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jf5F4EA0Prp2FDME",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2011,
+                    "paperTitle": "GATE CSE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A deterministic finite automation $$(DFA)$$ $$D$$ with alphabet $$\\sum { = \\left\\{ {a,b} \\right\\}} $$ is given below\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/aK5yFBH50OEf3kKvn/JLMSqy0upz3NTpnMlnr7kaAzZqOaj/6IfZSOWC4gHIp3ccQwwulc/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2011 Theory of Computation - Finite Automata and Regular Language Question 38 English\"> \n<p>Which of the following finite state machines is a valid minimal $$DFA$$ which accepts the same languages as $$D?$$ </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Kp2dseMqMlR8LIPF4/AjviwLrEC5WCDJlFsDaqEwV5r36MN/9TcLaLku2pnpshORstI0oY/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2011 Theory of Computation - Finite Automata and Regular Language Question 38 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/5x7YxdEFnELpJ6eWO/GPB9Lh9G50mngwrYOr9UYmAuBQCMn/F2pq36H83sCLKj0oh0dnGC/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2011 Theory of Computation - Finite Automata and Regular Language Question 38 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/RS7Lynk6vDhgfAgHg/MQqGL8HCYrQo423yEUY1Kzek3f0bq/zcAehxEaBRPK17TE1DzmDe/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2011 Theory of Computation - Finite Automata and Regular Language Question 38 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/7TyoEDMAM7ybkNgwZ/JZRa09n11qgFzhrtaYxF6c4D4AGRK/eyKeoXu43CXRAWaeiYfh6Y/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2011 Theory of Computation - Finite Automata and Regular Language Question 38 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-deterministic-finite-automation-dfa-d-with-alphabet-sum-le-gate-cse-2011-marks-2-jf5f4ea0prp2fdme.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2011"
+                }
+            ],
+            "title": "Theory of Computation"
+        }
+    ]
+}

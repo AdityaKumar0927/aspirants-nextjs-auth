@@ -1,0 +1,1161 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ck923VwTTcFYZAca",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$F\\left( s \\right) = L\\left\\{ {f\\left( t \\right)} \\right\\} = {{2\\left( {s + 1} \\right)} \\over {{s^2} + 4s + 7}}$$ then the initial and final values of $$f(t)$$ are respectively ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0,2$$ $$0,{2 \\over 7}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2,0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0,{2 \\over 7}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${2 \\over 7},\\,0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-fleft-s-right-lleft-fleft-t-right-right-2left-s-1-right-o-gate-ce-2011-marks-2-ck923vwttcfyzaca.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "eSptLMENv2yVafvn",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For an analytic function $$f\\left( {x + i\\,y} \\right) = u\\left( {x,y} \\right) + i\\,v\\left( {x,y} \\right),\\,u$$ is given by $$u = 3{x^2} - 3{y^2}.$$ The expression for $$v,$$ considering $$k$$ is to be constant is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3{y^2} - 3{x^2} + k$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$6x - 6y + k$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$6y - 6x + k$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$6xy + k$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-an-analytic-function-fleft-x-iy-right-ule-2011-marks-1-esptlmenv2yvafvn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oCfqj6oNdZY3xxTC",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given two continuous time signals $$x\\left( t \\right) = {e^{ - t}}$$ and $$y\\left( t \\right) = {e^{ - 2t}}$$ which exists for $$t&gt;0$$ then the convolution $$z\\left( t \\right) = x\\left( t \\right) * y\\left( t \\right)$$ is ____________.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${e^{ - t}} - {e^{ - 2t}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${e^{ - 2t}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${e^{ - t}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${e^{ - t}} + {e^{ - 3t}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-two-continuous-time-signals-xleft-t-right-e-t-and-ylef-gate-ce-2011-marks-1-ocfqj6ondzy3xxtc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cbaFrkClObaDvAcR",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The square root of a number $$N$$ is to be obtained by applying the Newton $$-$$ Raphson iteration to the equation $$\\,{x^2} - N = 0.\\,\\,$$ If $$i$$ denotes the iteration index, the correct iterative scheme will be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${x_{i + 1}} = {1 \\over 2}\\left[ {{x_i} + {N \\over {{x_i}}}} \\right]$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${x_{i + 1}} = {1 \\over 2}\\left[ {x_i^2 - {N \\over {x_i^2}}} \\right]$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${x_{i + 1}} = {1 \\over 2}\\left[ {{x_i} + {{{N^2}} \\over {{x_i}}}} \\right]$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${x_{i + 1}} = {1 \\over 2}\\left[ {{x_i} - {N \\over {{x_i}}}} \\right]$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-square-root-of-a-number-n-is-to-be-obtained-by-applying-gate-ce-2011-marks-2-cbafrkclobadvacr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8oCPgAPIJbFCt01e",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The solution of the differential equation $${{dy} \\over {dx}} + {y \\over x} = x$$  with the condition that $$y=1$$ at $$x=1$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$y = {2 \\over {3{x^2}}} + {x \\over 3}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$y = {x \\over 2} + {1 \\over {2x}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$y = {2 \\over 3} + {x \\over 3}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$y = {2 \\over {3x}} + {{{x^2}} \\over 3}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-solution-of-the-differential-equation-dy-over-dx-y-over-gate-ce-2011-marks-1-8ocpgapijbfct01e.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hpl25756SESGWTOo",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "There are two containers with one containing $$4$$ red and $$3$$ green balls and the other containing $$3$$ blue balls and $$4$$ green balls. One ball is drawn at random from each container. The probability that one of the balls is red and the other is blue will be ___________.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over 7}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${9 \\over 49}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${12 \\over 49}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${3 \\over 7}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "there-are-two-containers-with-one-containing-4-red-and-3-gre-gate-ce-2011-marks-2-hpl25756sesgwtoo.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Mf6GdK4mR2ibNO0f",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$\\overrightarrow a $$ and $$\\overrightarrow b $$ are two arbitrary vectors with magnitudes $$a$$ and $$b$$ respectively, $${\\left| {\\overrightarrow a  \\times \\overrightarrow b } \\right|^2}$$  will be equal to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${a^2}\\,{b^2} - {\\left( {\\overrightarrow a .\\,\\overrightarrow b } \\right)^2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$ab - \\overrightarrow a .\\,\\overrightarrow b $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${a^2}\\,{b^2} + {\\left( {\\overrightarrow a .\\,\\overrightarrow b } \\right)^2}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ab + \\overrightarrow a .\\,\\overrightarrow b $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-overrightarrow-a-and-overrightarrow-b-are-two-arbitrary-v-gate-ce-2011-marks-1-mf6gdk4mr2ibno0f.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LvBKGQVe2zLYNmI8",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What should be the value of $$\\lambda $$ such that the function defined below is continuous at $$x = {\\pi  \\over 2}$$?\n<br>$$f\\left( x \\right) = \\left\\{ {\\matrix{\n   {{{\\lambda \\,\\cos x} \\over {{\\pi  \\over 2} - x}},} &amp; {if\\,\\,x \\ne {\\pi  \\over 2}}  \\cr \n   {1\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,,} &amp; {if\\,\\,x = {\\pi  \\over 2}}  \\cr \n\n } } \\right.$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${2\\pi }$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{\\pi  \\over 2}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-should-be-the-value-of-lambda-such-that-the-function-de-gate-ce-2011-marks-1-lvbkgqve2zlynmi8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ESkb1gvrWOvukK4p",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the value of the definite integral? $$\\,\\,\\int\\limits_0^a {{{\\sqrt x } \\over {\\sqrt x  + \\sqrt {a - x} }}dx\\,\\,} $$? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${a \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$a$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2a$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-the-value-of-the-definite-integral-intlimits0a-sqrt-gate-ce-2011-marks-2-eskb1gvrwovukk4p.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Fluid Mechanics and Hydraulic Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2a276846e9f",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics-and-hydraulic-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-statics",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a body completely submerged in a fluid, the centre of gravity (G) and centre of Buoyancy\n(O) are known. The body is considered to be in stable equilibrium is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "O does not coincide with the centre of mass of the displaced fluid"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "G coincides with the centre of mass of the displaced fluid"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "O lies below G"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "O lies above G"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-body-completely-submerged-in-a-fluid-the-centre-of-gra-gate-ce-2011-marks-1-5a2a276846e9f.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                }
+            ],
+            "title": "Fluid Mechanics and Hydraulic Machines"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0jvoRVuCbPD1fQ9u",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bond",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a bar of diameter $$'D'$$ embedded in a large concrete block as shown in the adjoining figure, with a pull out force $$P$$ being applied. Let $${\\sigma _b}$$ and $${\\sigma _{st}},$$ be the bond strength (between the bar and concrete) and the tensile strength of the bar, respectively. If the block is held in position and it is assumed that the material of the block does not fail, which of the following options represents the maximum value of $$P?$$ \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/jv8HYlxQRHOTqqZ0R/iug5B4l0zJ5C7D0CuqxObkPxHol4q/5YVm2TVeM2cs5axAxtaHZj/image.png\" loading=\"lazy\" alt=\"GATE CE 2011 Reinforced Cement Concrete - Bond Question 2 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Maximum of $$\\left( {{\\pi  \\over 4}{D^2}{\\sigma _b}} \\right)$$ and $$\\left( {\\pi \\,DL\\,{\\sigma _{st}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Maximum of $$\\left( {{\\pi  \\over 4}{D^2}\\,{\\sigma _{st}}} \\right)$$ and $$\\left( {\\pi \\,DL\\,{\\sigma _{b}}} \\right)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Maximum of $$\\left( {{\\pi  \\over 4}{D^2}\\,{\\sigma _{st}}} \\right)$$ and $$\\left( {\\pi \\,DL\\,{\\sigma _{b}}} \\right)$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Maximum of $$\\left( {{\\pi  \\over 4}{D^2}{\\sigma _b}} \\right)$$ and $$\\left( {\\pi \\,DL\\,{\\sigma _{st}}} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-bar-of-diameter-d-embedded-in-a-large-concr-2011-marks-2-0jvorvucbpd1fq9u.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JiV5s9qu4O06fGyi",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-collapse-shear",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider two $$RCC$$ beams, $$P$$ and $$Q$$, each having the section $$400$$ $$mm$$ $$ \\times \\,\\,750\\,\\,mm$$ (effective depth, $$d=750$$ $$mm$$) made with concrete having a $${\\tau _{c\\max }} = 2.1\\,\\,N/m{m^2}.$$ For the reinforcement provided and the grade of concrete used, it may be assumed that the $$\\,{\\tau _c} = 0.75\\,\\,N/m{m^2}.$$ The design shear in beam $$P$$ is $$400$$ $$kN$$ and in beam $$Q$$ is $$750$$ $$kN.$$ Considering the provisions of $$IS$$ $$456$$-$$2000.$$  \n<p>Which of the following statements is TRUE?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Shear reinforcement should be designed for $$175$$ $$kN$$ for beam $$P$$ and the section for beam $$Q$$ should be revised."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Nominal shear reinforcement is required for beam $$P$$ and the shear reinforcement should be designed for $$120$$ $$kN$$ for beam $$Q.$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Shear reinforcement should be designed for $$175$$ $$kN$$ for beam $$P$$ and the shear reinforcement should be designed for $$525$$ $$kN$$ for beam $$Q.$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The sections for both beams $$P$$ and $$Q$$ need to be revised."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-two-rcc-beams-p-and-q-each-having-the-2011-marks-2-jiv5s9qu4o06fgyi.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1ad24407e65",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The cross-section of a thermo-mechanically treated (TMT) reinforcing bar has",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Soft ferrite-pearlite throughout."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Hard martensite throughout"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "A soft ferrite-pearlite core with a hard martensitic rim."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "A hard martensitic core with a soft pearlite-bainitic rim."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-cross-section-of-a-thermo-mechanically-treated-tmt-reinf-gate-ce-2011-marks-1-5a1ad24407e65.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1c61a3dfaa4",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a reinforcing bar embedded in concrete. In a marine environment this bar undergoes\nuniform corrosion, which leads to deposition of corrosion products on its surface and an\nincrease in apparent volume of the bar. This subjects the surrounding concrete to expansive\npressure. As a result, corrosion cracks appear at surface of concrete. Which of the following\nstatement is true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Corrosion causes circumferential tensile stress in concrete and the cracks will be parallel\nto corroded reinforcing bar. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Corrosion causes radial tensile stresses in concrete and cracks will be parallel to corroded\nreinforcing bar. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Corrosion causes circumferential tensile stresses in concrete and cracks will be\nperpendicular to the direction corroded reinforcing bar."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Corrosion causes radial tensile stresses in concrete and cracks will be perpendicular to\ndirection of the corroded reinforcing bar. "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-reinforcing-bar-embedded-in-concrete-in-a-marine-gate-ce-2011-marks-2-5a1c61a3dfaa4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Steel Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4AHhsTYfGjdNSgSw",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plate-girder",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The adjoining figure shows a schematic representation of a steel plate  girder to be used as a simply supported beam with a concentrated load. For stiffeners, $$PQ$$ (running along the beam axis) and $$RS$$ (running between the top and bottom flanges) which of the following pairs of statements will be TRUE? \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/EaiEfq2Pq8TjAqAIt/IJxiTc2a5w3ZeyHBPEOx5Mh24RoKX/WUsmsLldLFgcJFYA3a0qjd/image.png\" loading=\"lazy\" alt=\"GATE CE 2011 Steel Structures - Plate Girder Question 2 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$(i)$$$$\\,\\,\\,\\,$$ $$RS$$ should be provided under the concentrated load only\n<br>$$(ii)$$$$\\,\\,\\,\\,$$ $$PQ$$ should be placed in the tension side of the flange."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$(i)$$$$\\,\\,\\,\\,$$ $$RS$$ helps to prevent local buckling of the web.\n<br>$$(ii)$$$$\\,\\,\\,\\,$$ $$PQ$$ should be placed in the compression side of the flange."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$(i)$$$$\\,\\,\\,\\,$$ $$RS$$ should be provided at supports\n<br>$$(ii)$$$$\\,\\,\\,\\,$$ $$PQ$$ should be placed along the neutral axis "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$(i)$$$$\\,\\,\\,\\,$$ $$RS$$ should be provided away from points of action of concentrated loads.\n<br>$$(ii)$$$$\\,\\,\\,\\,$$ $$PQ$$ should be provided on the compression side of the flange."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-adjoining-figure-shows-a-schematic-representation-of-a-s-2011-marks-2-4ahhstyfgjdnsgsw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "o2ynwOYToHp40JTU",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welded-connections",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the fillet weld of size $$'S'$$ shown in the adjoining figure the effective throat thickness is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/RfGm5kEqLeVHfWws7/q7yVzaBXjmdl9F2vtNud7J0CPles4/P2vA39n1wiOGGxKPqYKQGJ/image.png\" loading=\"lazy\" alt=\"GATE CE 2011 Steel Structures - Welded Connections Question 4 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.61$$ $$S$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.65$$ $$S$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.70$$ $$S$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.75$$ $$S$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-fillet-weld-of-size-s-shown-in-the-adjoining-f-2011-marks-1-o2ynwoytohp40jtu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                }
+            ],
+            "title": "Steel Structures"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jxAdCAwV3hwaOVur",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "centroid-and-moment-of-inertia",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A disc of radius $$'r'$$ has a hole of radius $$'r/2'$$ cut-out as shown. The centroid of the remaining disc (shaded portion) at a radial distance from the center $$''O''$$ is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/jEwtvFwo3TqFKrK69/LV9ypB0NOivwhvVhfWaCatnt7kXPS/uDs3o9YNuESC5sjlVhXGw4/image.png\" loading=\"lazy\" alt=\"GATE CE 2011 Strength of Materials Or Solid Mechanics - Centroid and Moment of Inertia Question 5 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\pi  \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\pi  \\over 3}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\pi  \\over 6}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\pi  \\over 8}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-disc-of-radius-r-has-a-hole-of-radius-r2-cut-2011-marks-2-jxadcawv3hwaovur.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PJbKUdOlXiSMRhcv",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pure-bending",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a simply supported beam with a uniformly distributed load having a neutral axis $$(NA)$$ as shown. For points $$P$$ (on the neutral axis) and $$Q$$ (at the bottom of the beam) the state of stress is best represented by which of the following pairs? (elements $$P$$ &amp; $$Q$$ are taken slightly right of mid span). \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/efUJ2lJ3ktBfSCo0v/IFKwpYSa24x6OOnRLhsAnQKWUWoVr/QVNVNIrn8VDe8oqDZXhvL3/image.png\" loading=\"lazy\" alt=\"GATE CE 2011 Strength of Materials Or Solid Mechanics - Pure Bending Question 3 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/4G6SLTcJkUvjuWuHH/wGFAxzaiwn2SYNcrXkN5D8i5BkjdB/FunYgUoyjZEzKJCSiK5y0W/image.png\" loading=\"lazy\" alt=\"GATE CE 2011 Strength of Materials Or Solid Mechanics - Pure Bending Question 3 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/xjgmHL9FGLPStfWF6/9UB3FpLUkten28I0zxYBRd5nDG2rL/qkALN0rRNvLZzIuQXR4f7h/image.png\" loading=\"lazy\" alt=\"GATE CE 2011 Strength of Materials Or Solid Mechanics - Pure Bending Question 3 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/b24vyjZlr5A4B9gS7/Pp0fXHCi4q5cpmwVxQnuBpZOGf708/Lfuw14uBCB0F9tTcXA6F9q/image.png\" loading=\"lazy\" alt=\"GATE CE 2011 Strength of Materials Or Solid Mechanics - Pure Bending Question 3 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/f8NAZSVRjZe5iHUPN/GTmyi1NWo9w4avSbVa41Q44wAxkvc/StTnrN3KNs8gUhVqmxbDT1/image.png\" loading=\"lazy\" alt=\"GATE CE 2011 Strength of Materials Or Solid Mechanics - Pure Bending Question 3 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-simply-supported-beam-with-a-uniformly-distribute-2006-marks-1-pjbkudolxismrhcv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "70bMvWzN93jvyvZb",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "torsion",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the cantilever bracket, $$PQRS,$$ loaded as shown in the adjoining figure $$(PQ=RS=L,$$ and $$QR=2L),$$  which of the following statements is FALSE ? \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/ei17xGE7QzoO6Lslv/Y5qPDON6rQjguNxPNYomDMVhmu50z/pVFXfifGPfCcasCRTS1QIe/image.png\" loading=\"lazy\" alt=\"GATE CE 2011 Strength of Materials Or Solid Mechanics - Torsion Question 5 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The portion $$RS$$ has a constant twisting moment with a value of $$2WL.$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The portion $$QR$$ has a varying twisting moment with a maximum value of $$WL.$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The portion $$PQ$$ has a varying bending moment with a maximum value of $$WL$$."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The portion $$PQ$$ has no twisting moment."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-cantilever-bracket-pqrs-loaded-as-shown-in-the-2011-marks-2-70bmvwzn93jvyvzb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Ijsd9gtOJkaChYBU",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 2011,
+                    "paperTitle": "GATE CE 2011",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of $$W$$ that results in the collapses of the beam shown in the adjoining figure and having a plastic moment capacity of $${M_P}$$ is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/quNFNE7HSzmPUyxig/9tEJbWKZPbKlgMiYT6pghUilxsE0K/2ReXI4BG7bzMyCxu6queVW/image.png\" loading=\"lazy\" alt=\"GATE CE 2011 Structural Analysis - Plastic Analysis Question 4 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{4{M_P}} \\over {21}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{3{M_P}} \\over {10}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{7{M_P}} \\over {21}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{13{M_P}} \\over {21}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-w-that-results-in-the-collapses-of-the-beam-2011-marks-2-ijsd9gtojkachybu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2011",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2011"
+                }
+            ],
+            "title": "Structural Analysis"
+        }
+    ]
+}

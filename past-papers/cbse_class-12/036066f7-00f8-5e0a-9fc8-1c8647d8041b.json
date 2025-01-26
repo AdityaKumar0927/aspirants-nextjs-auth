@@ -1,0 +1,2033 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Physics",
+            "questions": [
+                {
+                    "question_id": "jaoe38c1lrfte2jb",
+                    "chapter": "electrostatics",
+                    "chapterGroup": "electromagnetism",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pthe-magnitude-of-the-electric-field-due-to-a-point-charge-class-12-physics-units-and-measurements-ixxqpfh3mnvthn1e",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>The magnitude of the electric field due to a point charge object at a distance of $$4.0 \\mathrm{~m}$$ is $$9 \\frac{\\mathrm{N}}{\\mathrm{C}}$$. From the same charged object the electric field of magnitude, $$16 \\frac{\\mathrm{N}}{\\mathrm{C}}$$ will be at a distance of</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1 \\mathrm{~m}$$\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2 \\mathrm{~m}$$\n"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3 \\mathrm{~m}$$\n"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$6 \\mathrm{~m}$$\n"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>The magnitude of the electric field due to a point charge is given by:</p>\n<p>$$ E = \\frac{k \\cdot q}{r^2} $$</p>\n<p>where:</p>\n\n<p><p>$ E $ is the electric field,</p></p>\n<p><p>$ k $ is Coulomb's constant ($8.99 \\times 10^9 \\, \\frac{\\mathrm{Nm}^2}{\\mathrm{C}^2}$),</p></p>\n<p><p>$ q $ is the charge,</p></p>\n<p><p>$ r $ is the distance from the charge.</p></p>\n\n<p>Given:</p>\n\n<p><p>The electric field $ E_1 = 9 \\, \\frac{\\mathrm{N}}{\\mathrm{C}} $ at $ r_1 = 4.0 \\, \\mathrm{m} $.</p></p>\n<p><p>The electric field $ E_2 = 16 \\, \\frac{\\mathrm{N}}{\\mathrm{C}} $ and we need to find the corresponding distance $ r_2 $.</p></p>\n\n<p>Using the inverse square law relationship for electric fields from a point charge:</p>\n<p>$$ \\frac{E_1}{E_2} = \\frac{r_2^2}{r_1^2} $$</p>\n<p>Substituting the known values:</p>\n<p>$$ \\frac{9}{16} = \\frac{r_2^2}{(4.0)^2} $$</p>\n<p>which simplifies to:</p>\n<p>$$ \\frac{9}{16} = \\frac{r_2^2}{16} $$</p>\n<p>By cross-multiplying and solving for $ r_2 $:</p>\n<p>$$ 9 \\cdot 16 = 16 \\cdot r_2^2 $$</p>\n<p>$$ 9 = r_2^2 $$</p>\n<p>Finally, taking the square root of both sides:</p>\n<p>$$ r_2 = \\sqrt{9} = 3 \\, \\mathrm{m} $$</p>\n<p>Thus, the distance at which the electric field of magnitude $ 16 \\, \\frac{\\mathrm{N}}{\\mathrm{C}} $ will be:</p>\n<p><strong>Option C</strong>:</p>\n<p>$$3 \\, \\mathrm{m}$$</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 154285,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Electrostatics \u2022 Physics",
+                            "excerpt": "The magnitude of the electric field due to a point charge object at a distance of $$4.0 \\mathrm{~m}$$ is $$9 \\frac{\\mathrm{N}}{\\mathrm{C}}$$. From the same charged object the electric field of magnitude, $$16 \\frac{\\mathrm{N}}{\\mathrm{C}}$$..."
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrfthnb8",
+                    "chapter": "electrostatics",
+                    "chapterGroup": "electromagnetism",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pa-point-p-lies-at-a-distance-x-from-the-mid-point-class-12-physics-units-and-measurements-02wpecweqhmqn76t",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A point $$P$$ lies at a distance $$x$$ from the mid point of an electric dipole on its axis. The electric potential at point $$\\mathrm{P}$$ is proportional to</p>\n\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\frac{1}{x^2}$$\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\frac{1}{x^3}$$\n"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\frac{1}{x^4}$$\n"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\frac{1}{x^{1 / 2}}$$\n"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>Expression for electric potential due to dipole in given as $$V=\\frac{1}{4 \\pi \\varepsilon_0} \\frac{p}{x^2}$$</p>\n<p>So, $$V \\propto \\frac{1}{x^2}$$</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 154285,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Electrostatics \u2022 Physics",
+                            "excerpt": "A point $$P$$ lies at a distance $$x$$ from the mid point of an electric dipole on its axis. The electric potential at point $$\\mathrm{P}$$ is proportional to\n\n"
+                        }
+                    }
+                },
+                {
+                    "question_id": "jaoe38c1lrftjpzp",
+                    "chapter": "current-electricity",
+                    "chapterGroup": "electromagnetism",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pa-current-of-08-a-flows-in-a-conductor-of-40-omega-class-12-physics-units-and-measurements-iwbuybtn7jfikqx6",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A current of 0.8 A flows in a conductor of $$40 \\Omega$$ for 1 minute. The heat produced in the conductor will be</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1445 J"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1536 J"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1569 J"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1640 J"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>Given, $$R=40 \\Omega \\text { and } I=0.8 \\mathrm{~A}$$</p>\n<p>$$\\begin{aligned}\n& t=1 \\text { minute }=60 \\mathrm{~s} \\\\\n& \\text { Heat produced }=H=I^2 R t \\\\\n& \\text { Or, } \\quad H=(0.8)^2 \\times 40 \\times 60 \\\\\n& \\therefore \\quad H=1536 \\text { Joule } \\\\\n&\n\\end{aligned}$$</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 154285,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Current Electricity \u2022 Physics",
+                            "excerpt": "A current of 0.8 A flows in a conductor of $$40 \\Omega$$ for 1 minute. The heat produced in the conductor will be"
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrftncx8",
+                    "chapter": "current-electricity",
+                    "chapterGroup": "electromagnetism",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pa-cell-of-emf-e-is-connected-across-an-external-resis-class-12-physics-units-and-measurements-vdqtmcwihejmnto5",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A cell of emf $$E$$ is connected across an external resistance $$R$$. When current '$$I$$' is drawn from the cell, the potential difference across the electrodes of the cell drops to $$\\mathrm{V}$$. The internal resistance '$$r$$' of the cell is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left(\\frac{E-V}{E}\\right) R$$\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left(\\frac{E-V}{R}\\right)$$\n"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\frac{(E-V) R}{I}$$\n"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left(\\frac{(E-V)}{V}\\right) R$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "<p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1m0v8m7a0/8853c22f-0812-4256-9032-e607328b59bf/662fa670-6ecb-11ef-8726-e7c28587be07/file-jaoe38c1m0v8m7a1.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1m0v8m7a0/8853c22f-0812-4256-9032-e607328b59bf/662fa670-6ecb-11ef-8726-e7c28587be07/file-jaoe38c1m0v8m7a1.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"CBSE 12th Physics Outside Delhi Set 1 - 2023 Physics - Current Electricity Question 4 English Explanation\"></p>\n<p>Since, $$\\mathrm{I}=\\frac{E}{R+r}$$</p>\n<p>So, $$\\mathrm{E}=\\mathrm{I} r+\\mathrm{V}$$</p>\n<p>$$\\therefore \\quad r=\\frac{\\mathrm{E}-\\mathrm{V}}{\\mathrm{I}}$$</p>\n<p>Or, $$r=\\left(\\frac{E-V}{V}\\right) R \\quad[\\because \\mathrm{V}=\\mathrm{IR}]$$</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 154285,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Current Electricity \u2022 Physics",
+                            "excerpt": "A cell of emf $$E$$ is connected across an external resistance $$R$$. When current '$$I$$' is drawn from the cell, the potential difference across the electrodes of the cell drops to $$\\mathrm{V}$$. The internal resistance '$$r$$' of the ce..."
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrftpf0j",
+                    "chapter": "electrostatics",
+                    "chapterGroup": "electromagnetism",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pbeams-of-electrons-and-protons-move-parallel-to-each-othe-class-12-physics-units-and-measurements-pyk8mak8n4femhut",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Beams of electrons and protons move parallel to each other in the same direction. They</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "attract each other.\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "repel each other.\n"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "neither attract nor repel.\n"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "force of attraction or repulsion depends upon speed of beams.\n"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>Since, electron and proton has opposite charge and moving in the same direction, So there must be an attractive force between them.</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 154285,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Electrostatics \u2022 Physics",
+                            "excerpt": "Beams of electrons and protons move parallel to each other in the same direction. They"
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrftu8ys",
+                    "chapter": "magnetics",
+                    "chapterGroup": "electromagnetism",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pa-long-straight-wire-of-radius-a-carries-a-steady-c-class-12-physics-units-and-measurements-p5kltx6mkeyf52nc",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A long straight wire of radius '$$a$$' carries a steady current $$I$$. The current is uniformly distributed across its area of cross-section. The ratio of magnitude of magnetic field $$\\vec{B}_1$$ at $$\\frac{a}{2}$$ and $$\\vec{B}_2$$ at distance $$2 a$$ is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\frac{1}{2}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "4"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>Magnetic field inside</p>\n<p>$$B_1=\\frac{\\mu_0 i r}{2 \\pi a^2}=\\frac{\\mu_0 i(a / 2)}{2 \\pi a^2}=\\frac{\\mu_0 i}{4 \\pi a}\\quad$$ (Here, $$r=a/2$$)</p>\n<p>Magnetic field outside</p>\n<p>$$B_2=\\frac{\\mu_0 i}{2 \\pi r}=\\frac{\\mu_0 i}{2 \\pi(2 a)}=\\frac{\\mu_0 i}{4 \\pi a}\\quad$$ (Here, $$r=2a$$)</p>\n<p>So, The required ratio $$\\frac{B_1}{B_2}=1$$</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 154285,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Magnetics \u2022 Physics",
+                            "excerpt": "A long straight wire of radius '$$a$$' carries a steady current $$I$$. The current is uniformly distributed across its area of cross-section. The ratio of magnitude of magnetic field $$\\vec{B}_1$$ at $$\\frac{a}{2}$$ and $$\\vec{B}_2$$ at dis..."
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrftvrhu",
+                    "chapter": "electromagnetic-waves",
+                    "chapterGroup": "electromagnetism",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pvece-and-vecb-represent-the-electric-and-th-class-12-physics-units-and-measurements-bnctutgwcpxa6nko",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>$$\\vec{E}$$ and $$\\vec{B}$$ represent the electric and the magnetic field of an electro- magnetic wave respectively. The direction of propagation of the wave is along</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\vec{B}$$\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\vec{E}$$\n"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\vec{E} \\times \\vec{B}$$\n"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\vec{B} \\times \\vec{E}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>The direction of propagation of an electromagnetic wave is given by the cross product of the electric field vector ($$\\vec{E}$$) and the magnetic field vector ($$\\vec{B}$$). Mathematically, this is represented as :</p>\n<p>$$ \\vec{E} \\times \\vec{B} $$</p>\n<p>Hence, the direction of propagation of the wave is along Option C : $$\\vec{E} \\times \\vec{B}$$. </p>\n<p>In an electromagnetic wave, the electric field ($$\\vec{E}$$), the magnetic field ($$\\vec{B}$$), and the direction of propagation are all mutually perpendicular to each other. This relationship ensures that the wave propagates in a direction that is orthogonal to both the electric and magnetic fields.</p>\n<p>To summarize, for an electromagnetic wave :</p>\n\n<p><p>$$\\vec{E} \\perp \\vec{B}$$</p></p>\n<p><p>The wave propagation direction is given by $$\\vec{E} \\times \\vec{B}$$</p></p>\n\n<p>Thus, the correct answer is :</p>\n<p>Option C</p>\n<p>$$ \\vec{E} \\times \\vec{B} $$</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 154285,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Electromagnetic Waves \u2022 Physics",
+                            "excerpt": "$$\\vec{E}$$ and $$\\vec{B}$$ represent the electric and the magnetic field of an electro- magnetic wave respectively. The direction of propagation of the wave is along"
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrftx9nm",
+                    "chapter": "geometrical-optics",
+                    "chapterGroup": "optics",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pa-ray-of-monochromatic-light-propagating-in-air-is-incid-class-12-physics-units-and-measurements-om07g2aphclolrvo",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A ray of monochromatic light propagating in air, is incident on the surface of water. Which of the following will be the same for the reflected and refracted rays?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Energy carried\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Speed\n"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Frequency\n"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Wavelength"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>Frequency of light does not depend on medium through which light travels.</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 154285,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Geometrical Optics \u2022 Physics",
+                            "excerpt": "A ray of monochromatic light propagating in air, is incident on the surface of water. Which of the following will be the same for the reflected and refracted rays?"
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrfu8nah",
+                    "chapter": "wave-optics",
+                    "chapterGroup": "optics",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pa-beam-of-light-travels-from-air-into-a-medium-its-speed-class-12-physics-units-and-measurements-dbwvil9r5gtzjaxs",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A beam of light travels from air into a medium. Its speed and wavelength in the medium are $$1.5 \\times 10^8\\mathrm{ms}^{-1}$$ and $$230 \\mathrm{~nm}$$ respectively. The wavelength of light in air will be</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "230 nm"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "345 nm"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "460 nm"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "690 nm"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>In the medium</p>\n<p>$$\\begin{array}{rlrl}\n& c =n \\lambda \\\\\n\\text { or, } & 1.5 \\times 10^8 =n \\times 230 \\times 10^{-9} \\\\\n\\text { or, } & n =\\frac{1.5 \\times 10^8}{230 \\times 10^{-9}} \\\\\n \\therefore & n =\\frac{1.5}{230} \\times 10^{17} \\mathrm{~Hz}\n\\end{array}$$</p>\n<p>In air, Frequency remains unchanged. So,</p>\n<p>$$\\begin{aligned}\nn & =\\frac{1.5}{230} \\times 10^{17} \\mathrm{~Hz} \\\\\nv^{\\prime} & =n \\lambda^{\\prime}\n\\end{aligned}$$</p>\n<p>$$\\begin{aligned}\n& \\text { or, } \\quad 3 \\times 10^8=\\frac{1.5}{230} \\times 10^{17} \\times \\lambda^{\\prime} \\\\\n& \\therefore \\quad \\lambda^{\\prime}=3 \\times \\frac{230}{1.5} \\times 10^{-9} \\\\\n& =460 \\mathrm{~nm} \\\\\n&\n\\end{aligned}$$</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 154285,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Wave Optics \u2022 Physics",
+                            "excerpt": "A beam of light travels from air into a medium. Its speed and wavelength in the medium are $$1.5 \\times 10^8\\mathrm{ms}^{-1}$$ and $$230 \\mathrm{~nm}$$ respectively. The wavelength of light in air will be"
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrfu9zgo",
+                    "chapter": "dual-nature-of-radiation",
+                    "chapterGroup": "modern-physics",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pwhich-one-of-the-following-metals-does-not-exhibit-emissi-class-12-physics-units-and-measurements-kujs3ffr1rf0l5nh",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Which one of the following metals does not exhibit emission of electrons from its surface when irradiated by visible light?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Rubidium"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Sodium"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Cadmium"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Caesium"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>Cadmium emits electrons when irradiated by visible light.</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 154285,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Dual Nature of Radiation \u2022 Physics",
+                            "excerpt": "Which one of the following metals does not exhibit emission of electrons from its surface when irradiated by visible light?"
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrfufbp7",
+                    "chapter": "atoms-and-nuclei",
+                    "chapterGroup": "modern-physics",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pa-hydrogen-atom-makes-a-transition-from-n5-to-n1-class-12-physics-units-and-measurements-l0u6uugdv5zbzcgs",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A hydrogen atom makes a transition from $$n=5$$ to $$n=1$$ orbit. The wavelength of photon emitted is $$\\lambda$$. The wavelength of photon emitted when it makes a transition from $$n=5$$ to $$n=2$$ orbit is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\frac{8}{7} \\lambda$$\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\frac{16}{7} \\lambda$$\n"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\frac{24}{7} \\lambda$$\n"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\frac{32}{7} \\lambda$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>In 1<sup>st</sup> case</p>\n<p>$$\\begin{aligned}\n& \\frac{1}{\\lambda}=\\mathrm{R}\\left[\\frac{1}{1^2}-\\frac{1}{5^2}\\right] \\\\\n\\text{or,} \\quad & \\frac{1}{\\lambda}=\\mathrm{R}\\left[1-\\frac{1}{25}\\right]=\\mathrm{R}\\left[\\frac{24}{25}\\right] \\\\\n\\therefore \\quad & \\mathrm{R}=\\frac{25}{24} \\times \\frac{1}{\\lambda}\n\\end{aligned}$$</p>\n<p>In 2<sup>nd</sup> case</p>\n<p>$$\\begin{array}{rlrl} \n& \\frac{1}{\\lambda^{\\prime}} =\\mathrm{R}\\left[\\frac{1}{2^2}-\\frac{1}{5^2}\\right] \\\\\n\\text { or, } & \\frac{1}{\\lambda^{\\prime}} =\\mathrm{R}\\left[\\frac{1}{4}-\\frac{1}{25}\\right]=\\mathrm{R} \\times \\frac{21}{100} \\\\\n\\text { or, } & \\frac{1}{\\lambda^{\\prime}} =\\frac{25}{24} \\times \\frac{1}{\\lambda} \\times \\frac{21}{100} \\\\\n\\text { or, } & \\frac{1}{\\lambda^{\\prime}} =\\frac{21}{96 \\lambda} \\\\\n\\therefore & \\lambda^{\\prime} =\\frac{96}{21} \\lambda=\\frac{32}{7} \\lambda\n\\end{array}$$</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 154285,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Atoms and Nuclei \u2022 Physics",
+                            "excerpt": "A hydrogen atom makes a transition from $$n=5$$ to $$n=1$$ orbit. The wavelength of photon emitted is $$\\lambda$$. The wavelength of photon emitted when it makes a transition from $$n=5$$ to $$n=2$$ orbit is"
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrfuhry5",
+                    "chapter": "atoms-and-nuclei",
+                    "chapterGroup": "modern-physics",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pthe-curve-of-binding-energy-per-nucleon-as-a-function-of-class-12-physics-units-and-measurements-zz1ruzpuzlh6mbm2",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>The curve of binding energy per nucleon as a function of atomic mass number has a sharp peak for helium nucleus. This implies that helium nucleus is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "radioactive\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "unstable\n"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "easily fissionable\n"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "more stable nucleus than its neighbours\n"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>A nucleus becomes stable when its binding energy per nucleon is around $$8 \\mathrm{~MeV}$$. The peak indicates the binding energy per nucleon of He element is closer to $$8 \\mathrm{~MeV}$$. Binding energy per nucleon of He in actually 7.1 MeV. So, it is stable than its neighbours.</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 154285,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Atoms and Nuclei \u2022 Physics",
+                            "excerpt": "The curve of binding energy per nucleon as a function of atomic mass number has a sharp peak for helium nucleus. This implies that helium nucleus is"
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrfunw6e",
+                    "chapter": "electronic-devices",
+                    "chapterGroup": "modern-physics",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pin-an-extrinsic-semiconductor-the-number-density-of-hole-class-12-physics-units-and-measurements-2gl1lmdygi3nczf9",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>In an extrinsic semiconductor, the number density of holes is $$4 \\times 10^{20} \\mathrm{~m}^{-3}$$. If the number density of intrinsic carriers is $$1.2 \\times 10^{15} \\mathbf{m}^3$$, the number density of electrons in it is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.8 \\times 10^9 \\mathrm{~m}^{-3}$$\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2.4 \\times 10^{10} \\mathrm{~m}^{-3}$$\n"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3.6 \\times 10^9 \\mathrm{~m}^{-3}$$\n"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3.2 \\times 10^{10} \\mathrm{~m}^{-3}$$\n"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>From law of mass action,</p>\n<p>$$\\begin{aligned}\nn_i^2 & =n_e \\times n_h \\\\\n\\text{or,} \\quad \\left(1.2 \\times 10^{15}\\right)^2 & =n_e \\times 4 \\times 10^{20} \\\\\n\\text{or,} \\quad n_e & =(0.3 \\times 1.2) \\times 10^{10} \\\\\n\\therefore \\quad n_e & =3.6 \\times 10^9 \\mathrm{~m}^{-3}\n\\end{aligned}$$</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 154285,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Electronic Devices \u2022 Physics",
+                            "excerpt": "In an extrinsic semiconductor, the number density of holes is $$4 \\times 10^{20} \\mathrm{~m}^{-3}$$. If the number density of intrinsic carriers is $$1.2 \\times 10^{15} \\mathbf{m}^3$$, the number density of electrons in it is"
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrfve1qj",
+                    "chapter": "electronic-devices",
+                    "chapterGroup": "modern-physics",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "ppieces-of-copper-and-of-silicon-are-initially-at-room-tem-class-12-physics-units-and-measurements-bdvpxbur35j8bsqx",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Pieces of copper and of silicon are initially at room temperature. Both are heated to temperature T. The conductivity of</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "both increases.\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "both decreases.\n"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "copper increases and silicon decreases.\n"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "copper decreases and silicon increases.\n"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>Copper is a conductor. As the temperature of copper increases the ions vibrate vigorously. So, the number of collisions between the free electrons and the ions increases. Hence, the resistance increases and conductivity decreases.\nSilicon is a semiconductor. As the temperature increases, more covalent bonds rupture generating more free charge carriers. Hence, the resistance decreases and conductivity increases.</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 154285,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Electronic Devices \u2022 Physics",
+                            "excerpt": "Pieces of copper and of silicon are initially at room temperature. Both are heated to temperature T. The conductivity of"
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrfvmwz8",
+                    "chapter": "electronic-devices",
+                    "chapterGroup": "modern-physics",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pthe-formation-of-depletion-region-in-a-p-n-juncti-class-12-physics-units-and-measurements-kjm9nisqrdx84xgf",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>The formation of depletion region in a $$p$$-$$n$$ junction diode is due to</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "movement of dopant atoms\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "diffusion of both electrons and holes\n"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "drift of electrons only\n"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "drift of holes only\n"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>During formation of p-n junction, the electrons diffuse from $$n$$-side to p-side (since, electron concentration is more in $$\\mathrm{n}$$-side compared to $$\\mathrm{p}$$-side) and the holes diffuse from $$p$$-side to $$n$$-side (since, hole concentration is more in p-side compared to n-side).</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 154285,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Electronic Devices \u2022 Physics",
+                            "excerpt": "The formation of depletion region in a $$p$$-$$n$$ junction diode is due to"
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrfvqbh9",
+                    "chapter": "magnetic-properties-of-matter",
+                    "chapterGroup": "electromagnetism",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "passertion-a-diamagnetic-substances-exhibit-magnetism-class-12-physics-units-and-measurements-hbcnwdcbwusib8cn",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Assertion (A) : Diamagnetic substances exhibit magnetism.</p>\n<p>Reason (R) : Diamagnetic materials do not have permanent magnetic dipole moment.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both Assertion (A) and Reason (R) are true and Reason (R) is the correct explanation of the Assertion (A).\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Both Assertion (A) and Reason (R) and true, but Reason (R) is NOT the correct explanation of the Assertion (A).\n"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Assertion (A) is true, but Reason (R) is false.\n"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Assertion (A) is false, but Reason (R) is true.\n"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>The assertion is true. Diamagnetic substance shows faint repulsion. It is a property of magnetism. So, assertion is true.\nThe above property is observed in the substances which have even number of electrons in each atom/molecule. Electrons with opposite spins form pairs and so no net dipole moment is generated. Diamagnetic substances are such substances and hence exhibit the above magnetic property. So, the reason is true it explains the assertion.</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 154285,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Magnetic Properties of Matter \u2022 Physics",
+                            "excerpt": "Assertion (A) : Diamagnetic substances exhibit magnetism.\nReason (R) : Diamagnetic materials do not have permanent magnetic dipole moment."
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrfvt6le",
+                    "chapter": "electrostatics",
+                    "chapterGroup": "electromagnetism",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "passertion-a-work-done-in-moving-a-charge-around-a-clos-class-12-physics-units-and-measurements-uxqnvtdt9pwupasv",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Assertion (A) : Work done in moving a charge around a closed path, in an electric field is always zero.</p>\n<p>Reason (R) : Electrostatic force is a conservative force.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both Assertion (A) and Reason (R) are true and Reason (R) is the correct explanation of the Assertion (A).\n\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Both Assertion (A) and Reason (R) and true, but Reason (R) is not the correct explanation of the Assertion (A)."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Assertion (A) is true, but Reason (R) is false.\n"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Assertion (A) is false, but Reason (R) is true.\n"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>Electric field is said to be conservative since, work done in this field is path independent. It depends on the end points only. So, in an electric field, total work done in moving a charge from a point to the next point and again back to the first point is zero.</p>\n<p>Hence, assertion and reason both are true and reason explains the assertion.</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 154285,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Electrostatics \u2022 Physics",
+                            "excerpt": "Assertion (A) : Work done in moving a charge around a closed path, in an electric field is always zero.\nReason (R) : Electrostatic force is a conservative force."
+                        }
+                    }
+                },
+                {
+                    "question_id": "jaoe38c1lrfvvzkt",
+                    "chapter": "wave-optics",
+                    "chapterGroup": "optics",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 1,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "passertion-a-in-youngs-double-slit-experiment-all-frin-class-12-physics-units-and-measurements-iahe0kkq0quew4gn",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Assertion (A) : In Young's double slit experiment all fringes are of equal width.</p>\n<p>Reason (R) : The fringe width depends upon wavelength of light $$(\\lambda)$$ used, distance of screen from plane of slits (D) and slits separation (d). </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both Assertion (A) and Reason (R) are true and Reason (R) is the correct explanation of the Assertion (A).\n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Both Assertion (A) and Reason (R) and true, but Reason (R) is not the correct explanation of the Assertion (A).\n"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Assertion (A) is true, but Reason (R) is false.\n"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Assertion (A) is false, but Reason (R) is true.\n"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>Interference fringe width $$=\\beta=\\lambda D / d$$ It depends on wavelength of light used, distance between slits and distance of screen from the slit only. Hence, all fringes have equal width.</p>\n<p>So, assertion and reason both are true and the reason explains the assertion.</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 154285,
+                    "topic": null,
+                    "type": "mcq",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Wave Optics \u2022 Physics",
+                            "excerpt": "Assertion (A) : In Young's double slit experiment all fringes are of equal width.\nReason (R) : The fringe width depends upon wavelength of light $$(\\lambda)$$ used, distance of screen from plane of slits (D) and slits separation (d). "
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrfzkbfq",
+                    "chapter": "current-electricity",
+                    "chapterGroup": "electromagnetism",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pbriefly-explain-why-and-how-a-galvanometer-is-converted-i-class-12-physics-units-and-measurements-n5zvuaqhyifrwwca",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Briefly explain why and how a galvanometer is converted into an ammeter.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "",
+                            "explanation": "<p>Conversion of galvanometer into ammeter :</p>\n<p>Ammeter is connected in series in a circuit. So, its resistance should be such that it does not increase the equivalent resistance value of the circuit appreciably. So, to convert a galvanometer into an ammeter a very low resistance value shunt is to be connected in parallel with the galvanometer.</p>\n<p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1m0v8orfp/de0c2b25-d8c3-4d0a-8b3e-06b26077ee1d/ad604a40-6ecb-11ef-914b-253cafc4188c/file-jaoe38c1m0v8orfq.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1m0v8orfp/de0c2b25-d8c3-4d0a-8b3e-06b26077ee1d/ad604a40-6ecb-11ef-914b-253cafc4188c/file-jaoe38c1m0v8orfq.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"CBSE 12th Physics Outside Delhi Set 1 - 2023 Physics - Current Electricity Question 3 English Explanation\"></p>\n<p>If potential difference between points $$\\mathrm{X}$$ and $$\\mathrm{Y}$$ be $$\\mathrm{V}_x -V_{y^{\\prime}}$$ then</p>\n<p>$$V_x-V_y=I_g \\times G=I_s \\times S$$</p>\n<p>Or, $$\\quad I_g \\times G=I_s \\times S$$</p>\n<p>$$\\therefore \\quad S=\\frac{I_g}{I_s} \\times G$$ ..... (1)</p>\n<p>$$\\begin{array}{rlrl} \n&amp; \\text { Again } \\quad I =I_s+I_g \\\\\n&amp;\\therefore \\quad I_s =I-I_g\n\\end{array}$$</p>\n<p>Putting in equation (1)</p>\n<p>$$S=\\frac{I_g}{I-I_g} \\times \\mathrm{G}$$</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 308570,
+                    "topic": null,
+                    "type": "subjective",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Current Electricity \u2022 Physics",
+                            "excerpt": "Briefly explain why and how a galvanometer is converted into an ammeter."
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrfzr1vi",
+                    "chapter": "electromagnetic-waves",
+                    "chapterGroup": "electromagnetism",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pa-how-are-infrared-waves-produced-why-are-these-waves-class-12-physics-units-and-measurements-k1no82n6ratd0tod",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>(a) How are infrared waves produced? Why are these waves referred to as heat waves? Give any two uses of infrared waves.</p>\n<p>OR</p>\n<p>(b) How are X-rays produced? Give any two uses of these.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "",
+                            "explanation": "<p>(a) Production of infrared waves :</p>\n<p>$$\\bullet$$ Any object having temperature emits infrared (even ice emits infrared).</p>\n<p>$$\\bullet$$ Sun is a source of infrared.</p>\n<p>$$\\bullet$$ Infrared is produced by Nernst lamp, infrared laser etc.</p>\n<p>Infrared waves are heat waves :</p>\n<p>$$\\bullet$$ It increases the vibration of atoms of the substances on which it falls and thus increases the internal energy and temperature of the substance.</p>\n<p>Uses of infrared :</p>\n<p>$$\\bullet$$ It is used for photography at night and through fog.</p>\n<p>$$\\bullet$$ It is used for relieve of muscular pain.</p>\n<p>OR</p>\n<p>(b) Production of X-rays :</p>\n<p>$$\\bullet$$ X-rays are produced when high energy electron beam bombards metallic target of high melting and point heavy atomic weight.</p>\n<p>$$\\bullet$$ $$\\mathrm{X}$$-ray is produced in Coolidge tube.</p>\n<p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1m0v8rcar/30afa56e-cdc0-41c4-b3c5-fdf0c07d54a4/f51c6530-6ecb-11ef-914b-253cafc4188c/file-jaoe38c1m0v8rcas.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1m0v8rcar/30afa56e-cdc0-41c4-b3c5-fdf0c07d54a4/f51c6530-6ecb-11ef-914b-253cafc4188c/file-jaoe38c1m0v8rcas.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"CBSE 12th Physics Outside Delhi Set 1 - 2023 Physics - Electromagnetic Waves Question 1 English Explanation\"></p>\n<p>Uses of X-ray :</p>\n<p>$$\\bullet$$ It is used to photograph bones for the diagnosis of any fracture and dislocation.</p>\n<p>$$\\bullet$$ It is used to radiotherapy to destroy cancerous cells and to shrink tumors.</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 308570,
+                    "topic": null,
+                    "type": "subjective",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Electromagnetic Waves \u2022 Physics",
+                            "excerpt": "(a) How are infrared waves produced? Why are these waves referred to as heat waves? Give any two uses of infrared waves.\nOR\n(b) How are X-rays produced? Give any two uses of these."
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrfzvplg",
+                    "chapter": "geometrical-optics",
+                    "chapterGroup": "optics",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pin-the-given-figure-the-radius-of-curvature-of-curved-fac-class-12-physics-units-and-measurements-sg8wzryqvlb1esgz",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>In the given figure the radius of curvature of curved face in the plano-convex and the plano-concave lens is $$15 \\mathrm{~cm}$$ each. The refractive index of the material of the lenses is 1.5. Find the final position of the image formed.</p>\n<p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1m17hn0wo/940d9313-07da-41bf-a3c7-2ba7b1752008/17079670-7588-11ef-886e-29539d58c48f/file-jaoe38c1m17hn0wp.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1m17hn0wo/940d9313-07da-41bf-a3c7-2ba7b1752008/17079670-7588-11ef-886e-29539d58c48f/file-jaoe38c1m17hn0wp.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"CBSE 12th Physics Outside Delhi Set 1 - 2023 Physics - Geometrical Optics Question 3 English\"></p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "",
+                            "explanation": "<p>In the given figure, the radius of curvature for the curved face in both the plano-convex and the plano-concave lenses is 15 cm each. The refractive index of the lens material is 1.5. We need to determine the final position of the formed image.</p>\n<h3>Focal Length of the Plano-Convex Lens</h3>\n<p>Let the focal length of the plano-convex lens be $ f_1 $:</p>\n<p>$  \\frac{1}{f_1} = (1.5 - 1) \\left(\\frac{1}{15} - \\frac{1}{\\infty}\\right) $</p>\n<p>Simplifying:</p>\n<p>$  \\frac{1}{f_1} = \\frac{1}{30}  $</p>\n<p>Thus,</p>\n<p>$  f_1 = 30 \\, \\text{cm} $</p>\n<h3>Focal Length of the Plano-Concave Lens</h3>\n<p>Let the focal length of the plano-concave lens be $ f_2 $:</p>\n<p>$  \\frac{1}{f_2} = (1.5 - 1) \\left(\\frac{1}{\\infty} - \\frac{1}{15}\\right)  $</p>\n<p>Thus,</p>\n<p>$  \\frac{1}{f_2} = -\\frac{1}{30}  $</p>\n<p>So,</p>\n<p>$  f_2 = -30 \\, \\text{cm} $</p>\n<h3>Position of the Image</h3>\n<p>Since parallel rays are incident on the plano-convex lens, it will form an image at a distance of 30 cm from the lens (since its focal length is 30 cm). This image will act as an object for the plano-concave lens.</p>\n<h3>Object Distance for Plano-Concave Lens</h3>\n<p>$  \\text{Object distance} = 30 \\, \\text{cm} - 20 \\, \\text{cm} = 10 \\, \\text{cm} $</p>\n<h3>Applying the Lens Formula for the Plano-Concave Lens</h3>\n<p>$  \\frac{1}{v_2} - \\frac{1}{u_2} = \\frac{1}{f_2} $</p>\n<p>Substitute the known values:</p>\n<p>$  \\frac{1}{v_2} - \\frac{1}{10} = -\\frac{1}{30} $</p>\n<p>Solving for $ v_2 $:</p>\n<p>$  \\frac{1}{v_2} = \\frac{1}{10} - \\frac{1}{30} $</p>\n<p>$  \\frac{1}{v_2} = \\frac{3 - 1}{30} = \\frac{2}{30} = \\frac{1}{15} $</p>\n<p>Thus,</p>\n<p>$  v_2 = 15 \\, \\text{cm} $</p>\n<p>The final image is formed 15 cm from the plano-concave lens.</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 308570,
+                    "topic": null,
+                    "type": "subjective",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Geometrical Optics \u2022 Physics",
+                            "excerpt": "In the given figure the radius of curvature of curved face in the plano-convex and the plano-concave lens is $$15 \\mathrm{~cm}$$ each. The refractive index of the material of the lenses is 1.5. Find the final position of the image formed.\n"
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrfzy5fq",
+                    "chapter": "wave-optics",
+                    "chapterGroup": "optics",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pwhat-happens-to-the-interference-pattern-when-two-coheren-class-12-physics-units-and-measurements-40t4wdgh801ldkoq",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>What happens to the interference pattern when two coherent sources are</p>\n<p>(a) infinitely close, and</p>\n<p>(b) far apart from each other</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "",
+                            "explanation": "<p>When considering the interference pattern between two coherent sources :</p>\n<h3>(a) When Two Coherent Sources Are Infinitely Close</h3>\n<p>The interference fringe width ($ \\beta $) is given by :</p>\n<p>$ \\beta = \\lambda \\frac{D}{d} $</p>\n<p>From this, we see that :</p>\n<p>$ \\beta \\propto \\frac{1}{d} $</p>\n<p>If the coherent sources are infinitely close, $ d $ approaches zero. As a result, the fringe width ($ \\beta $) becomes extremely large. This means a single fringe will occupy the entire screen, making it impossible to detect any distinct interference pattern.</p>\n<h3>(b) When Two Coherent Sources Are Far Apart</h3>\n<p>Conversely, if the coherent sources are far apart, $ d $ becomes very large. Consequently, the fringe width ($ \\beta $) becomes extremely small. The fringes will be too tiny to be resolved separately on the screen, leading to no detectable interference pattern.</p>\n<p>By understanding the relationship between fringe width and the distance between coherent sources, we can predict the visibility and clarity of the interference pattern.</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 308570,
+                    "topic": null,
+                    "type": "subjective",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Wave Optics \u2022 Physics",
+                            "excerpt": "What happens to the interference pattern when two coherent sources are\n(a) infinitely close, and\n(b) far apart from each other"
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrg01vr6",
+                    "chapter": "atoms-and-nuclei",
+                    "chapterGroup": "modern-physics",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pa-what-is-meant-by-ionisation-energy-write-its-value-f-class-12-physics-units-and-measurements-b0y8d97d96jcuoat",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>(a) What is meant by ionisation energy? Write its value for hydrogen atom.</p>\n<p>OR</p>\n<p>(b) Define the term, mass defect. How is it related to stability of the nucleus?</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "",
+                            "explanation": "<p>(a) Ionisation energy:</p>\n<p>Ionisation energy is the minimum amount of energy which is to be supplied to an atom in its ground state so that it gets converted into an ion i.e., the minimum energy requires to shift an electron from $$n=1$$ to $$n=\\infty$$.</p>\n<p>The value of ionization energy for Hydrogen is 13.6 $$\\mathrm{eV}$$.</p>\n<p>OR</p>\n<p>(b) Mass defect:</p>\n<p>Mass defect is the difference of total mass of all the nucleons present in a nucleus and the rest mass of the nucleus.</p>\n<p>Mass defect $$=\\Delta m=Z m_P+(A-Z) m_n-M$$</p>\n<p>As the mass defect increases, binding energy of the nucleus increases. This means the stability of the nucleus increases as mass defect increases.</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 308570,
+                    "topic": null,
+                    "type": "subjective",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Atoms and Nuclei \u2022 Physics",
+                            "excerpt": "(a) What is meant by ionisation energy? Write its value for hydrogen atom.\nOR\n(b) Define the term, mass defect. How is it related to stability of the nucleus?"
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrg02ymk",
+                    "chapter": "electronic-devices",
+                    "chapterGroup": "modern-physics",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pdraw-energy-band-diagram-for-an-n-type-and-p-type-class-12-physics-units-and-measurements-olzk4yurrseocfhj",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Draw energy band diagram for an $$n$$-type and $$p$$-type semiconductor at $$\\mathrm{T}>0 \\mathrm{~K}$$.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "",
+                            "explanation": "<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1m17hs2zc/b6b8f653-c9f5-4326-9c17-82902b4793a4/a3ad9980-7588-11ef-886e-29539d58c48f/file-jaoe38c1m17hs2zd.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1m17hs2zc/b6b8f653-c9f5-4326-9c17-82902b4793a4/a3ad9980-7588-11ef-886e-29539d58c48f/file-jaoe38c1m17hs2zd.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"CBSE 12th Physics Outside Delhi Set 1 - 2023 Physics - Semiconductor Question 3 English Explanation\">"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 308570,
+                    "topic": null,
+                    "type": "subjective",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Electronic Devices \u2022 Physics",
+                            "excerpt": "Draw energy band diagram for an $$n$$-type and $$p$$-type semiconductor at $$\\mathrm{T}>0 \\mathrm{~K}$$."
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrg04oho",
+                    "chapter": "electronic-devices",
+                    "chapterGroup": "modern-physics",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 2,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "panswer-the-following-giving-reasonsp-pi-a-p--class-12-physics-units-and-measurements-wz2cwn4c5fjc4ske",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Answer the following giving reasons:</p>\n<p>(i) A $$p$$-$$n$$ junction diode is damaged by a strong current.</p>\n<p>(ii) Impurities are added in intrinsic semiconductors.</p>\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "",
+                            "explanation": "<p>(a) A p-n junction diode is damaged by strong current due to generation of heat.</p>\n<p>(b) Impurities are added to intrinsic semiconductor to convert it to extrinsic semiconductor so that they achieve conductivity even at $$0 \\mathrm{~K}$$.</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 308570,
+                    "topic": null,
+                    "type": "subjective",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Electronic Devices \u2022 Physics",
+                            "excerpt": "Answer the following giving reasons:\n(i) A $$p$$-$$n$$ junction diode is damaged by a strong current.\n(ii) Impurities are added in intrinsic semiconductors.\n"
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrg0jfu1",
+                    "chapter": "capacitor",
+                    "chapterGroup": "electromagnetism",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 3,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pa-two-charged-conducting-spheres-of-radii-a-and-b-class-12-physics-units-and-measurements-unxunduofegv9c4c",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>(a) Two charged conducting spheres of radii $$a$$ and $$b$$ are connected to each other by a wire. Find the ratio of the electric fields at their surfaces.</p>\n<p>OR</p>\n<p>(b) A parallel plate capacitor (A) of capacitance C is charged by a battery to voltage $$V$$. The battery is disconnected and an uncharged capacitor (B) of capacitance $$2 \\mathrm{C}$$ is connected across $$\\mathrm{A}$$. Find the ratio of</p>\n<p>(i) final charges on A and B.</p>\n<p>(ii) total electrostatic energy stored in A and B finally and that stored in A initially.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "",
+                            "explanation": "<p>(a) For sphere with radius a,</p>\n<p>Potential $$=$$ V (since, both the charged spheres are connected by a wire)</p>\n<p>$$\\begin{aligned}\n\\text { Charge } & =Q_a \\\\\n\\text { Capacitance } & =C_a \\\\\n\\text { Electric field, } & =E_a=\\frac{Q_a}{4 \\pi \\varepsilon_0 a^2}\n\\end{aligned}$$</p>\n<p>For sphere with radius $$b$$, Potential $$=V$$ (since both the charged spheres are connected by a wire)</p>\n<p>$$\\begin{aligned}\n\\text { Charge } & =Q_b \\\\\n\\text { Capacitance } & =C_b \\\\\n\\text { Electric field } & =E_b \\\\\n& =\\frac{Q_b}{4 \\pi \\varepsilon_0 b^2}\n\\end{aligned}$$</p>\n<p>Now,</p>\n<p>$$\\begin{aligned}\n& \\frac{E_a}{E_b}=\\frac{Q_a}{Q_b} \\times \\frac{b^2}{a^2} \\quad \\text{..... (1)}\\\\\n& \\frac{Q_a}{Q_b}=\\frac{C_a V}{C_b V} \\\\\n\\text{Or,} \\quad & \\frac{Q_a}{Q_b}=\\frac{C_a}{C_b} \\\\\n\\text{Or,} \\quad & \\frac{Q_a}{Q_b}=\\frac{a}{b} \\quad \\text{.... (2)}\n\\end{aligned}$$</p>\n<p>$$\\text { (since, } C_d / C_b=a / b \\text { ) }$$</p>\n<p>Putting in equation (1)</p>\n<p>$$\\begin{aligned}\n& \\frac{E_a}{E_b}=\\left(\\frac{a}{b}\\right) \\times\\left(\\frac{b^2}{a^2}\\right) \\\\\n& \\therefore \\quad \\frac{E_a}{E_b}=\\frac{b}{a} \\\\\n\\end{aligned}$$</p>\n<p>OR</p>\n<p>(b) (i) Initially,</p>\n<p>Charge on A capacitor $$=\\mathrm{CV}$$</p>\n<p>Charge on $$\\mathrm{B}$$ capacitor $$=0$$</p>\n<p>After connecting A with B,</p>\n<p>$$\\begin{aligned}\n\\text { Final potential }=V^{\\prime} & =\\frac{\\text { Total Charge }}{\\text { total capacitance }} \\\\\n& =\\frac{Q+0}{C+2 C}=\\frac{Q}{3 C}\n\\end{aligned}$$</p>\n<p>Final charge on A capacitor after redistribution</p>\n<p>$$=C V^{\\prime}=\\frac{C Q}{3 C}=\\frac{Q}{3}$$</p>\n<p>Final charge on $$B$$ capacitor after redistribution</p>\n<p>$$=2 C V^{\\prime}=\\frac{2 C Q}{3 C}=\\frac{2 Q}{3}$$</p>\n<p>So, the ratio of charges $$=\\frac{Q / 3}{2 Q / 3}=1: 2$$</p>\n<p>(ii) Initially energy stored in $$\\mathrm{A}=\\frac{1}{2} C V^2$$</p>\n<p>Finally energy stored in $$\\mathrm{A}=\\frac{1}{2} C V^{\\prime 2}$$</p>\n<p>$$\\begin{aligned}\n& =\\frac{1}{2} \\times C \\times\\left(\\frac{Q}{3 C}\\right)^2 \\\\\n& =\\frac{1}{2} \\times C \\times\\left(\\frac{V}{3}\\right)^2\n\\end{aligned}$$</p>\n<p>$$=\\frac{C V^2}{18}$$</p>\n<p>Finally energy stored in $$\\mathrm{B}=\\frac{1}{2} 2 \\mathrm{CV}^2$$</p>\n<p>$$\\begin{aligned}\n& =\\frac{1}{2} \\times 2 C \\times\\left(\\frac{Q}{3 C}\\right)^2 \\\\\n& =\\frac{1}{2} \\times 2 C \\times\\left(\\frac{V}{3}\\right)^2 \\\\\n& =\\frac{C V^2}{9}\n\\end{aligned}$$</p>\n<p>Total energy stored in A and B</p>\n<p>$$\\begin{aligned}\n& =\\frac{C V^2}{18}+\\frac{C V^2}{9} \\\\\n& =\\frac{C V^2}{6}\n\\end{aligned}$$</p>\n<p>$$\\begin{aligned}\n\\text { So, the required ratio } & =\\frac{\\text { Find energy stored in } \\mathrm{A} \\text { and } \\mathrm{B}}{\\text { Initial energy stored in } \\mathrm{A}} \\\\\n& =\\frac{C V^2 / 6}{C V^2 / 2} \\\\\n& =\\frac{1}{3}\n\\end{aligned}$$</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 462855,
+                    "topic": null,
+                    "type": "subjective",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Capacitor \u2022 Physics",
+                            "excerpt": "(a) Two charged conducting spheres of radii $$a$$ and $$b$$ are connected to each other by a wire. Find the ratio of the electric fields at their surfaces.\nOR\n(b) A parallel plate capacitor (A) of capacitance C is charged by a battery to vo..."
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrg0obel",
+                    "chapter": "current-electricity",
+                    "chapterGroup": "electromagnetism",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 3,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pdefine-current-density-and-relaxation-time-derive-an-exp-class-12-physics-units-and-measurements-itfnvztgdqazyup7",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Define current density and relaxation time. Derive an expression for resistivity of a conductor in terms of number density of charge carriers in the conductor and relaxation time.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "",
+                            "explanation": "<p>Current density: Current density is the current per unit area of cross-section of a conductor.</p>\n<p>$$J=\\frac{I}{A}$$</p>\n<p>Relaxation time: Relaxation time is the time interval between two successive collisions of electrons in a conductor.</p>\n<p>Expression for resistivity:</p>\n<p>$$v_d=\\frac{e \\mathrm{E}}{m} \\tau$$</p>\n<p>or, $$v_d=\\frac{e \\mathrm{~V}}{m l} \\tau \\quad \\text { (since, } E=\\frac{V}{l} \\text { ) }$$</p>\n<p>or, $$V=\\frac{v_d m l}{e \\tau}$$</p>\n<p>or, $$I R=\\frac{v_d m l}{e \\tau}$$ (since from Ohm's law, $$V=I R$$ )</p>\n<p>or, $$R=\\frac{v_d m l}{e \\tau I}$$</p>\n<p>or, $$\\frac{\\rho l}{A}=\\frac{v_d m l}{e \\tau I}$$ (since $$R=\\frac{\\rho l}{A}$$ )</p>\n<p>or, $$\\rho=\\frac{v_d m A}{e \\tau I}$$</p>\n<p>or, $$\\rho=\\frac{v_d m A}{e \\tau\\left(n e A v_d\\right)}$$ (since, $$I=n e A v_d$$)</p>\n<p>$$\\therefore \\quad \\rho=\\frac{m}{n e^2 \\tau}$$</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 462855,
+                    "topic": null,
+                    "type": "subjective",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Current Electricity \u2022 Physics",
+                            "excerpt": "Define current density and relaxation time. Derive an expression for resistivity of a conductor in terms of number density of charge carriers in the conductor and relaxation time."
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrg16lsj",
+                    "chapter": "alternating-current",
+                    "chapterGroup": "electromagnetism",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 3,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pa-series-cr-circuit-with-r200-omega-and-c50---class-12-physics-units-and-measurements-eixnhwsqcylunaf9",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>A series CR circuit with $$R=200 \\Omega$$ and $$C=(50 / \\pi)$$ $$\\mu \\mathrm{F}$$ is connected across an ac source of peak voltage $$\\varepsilon_0=100 \\mathrm{~V}$$ and frequency $$v=50 \\mathrm{~Hz}$$. Calculate (a) impedance of the circuit $$(\\mathrm{Z})$$, (b) phase angle $$(\\phi)$$, and (c) voltage across the resistor.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "",
+                            "explanation": "<p>$$\\text { (a) Given, } R=200 \\Omega, C=\\frac{50}{\\pi} \\mu F$$</p>\n<p>$$\\begin{array}{ll}\n\\text { Impedance: } & Z=\\sqrt{R^2+\\left(\\frac{1}{\\omega C}\\right)^2} \\\\\n\\text { Or, } & Z=\\sqrt{(200)^2+\\left(\\frac{1}{2 \\pi \\times 50 \\times \\frac{50}{\\pi} \\times 10^{-6}}\\right)^2} \\\\\n\\text { Or, } & Z=\\sqrt{(200)^2+(200)^2} \\\\\n\\therefore & Z=200 \\sqrt{2}\n\\end{array}$$</p>\n<p>(b) Phase angle:</p>\n<p>$$\\begin{aligned}\n\\theta & =\\tan ^{-1} \\frac{1}{\\omega C R} \\\\\n\\text { or, } \\quad \\theta & =\\tan ^{-1}\\left(\\frac{1}{2 \\pi \\times 50 \\times \\frac{50}{\\pi} \\times 10^{-6} \\times 200}\\right)\n\\end{aligned}$$</p>\n<p>or, $$\\theta=\\tan ^{-1} 1$$</p>\n<p>$$\\therefore \\quad \\theta=45^0$$</p>\n<p>(c) Voltage across resistor:</p>\n<p>$$\\begin{array}{rlrl} \n& I_{R M S} =\\frac{\\varepsilon_{\\mathrm{RMS}}}{\\mathrm{Z}} \\\\\n\\text { Or, } & I_{R M S}  =\\frac{\\frac{\\varepsilon_0}{\\sqrt{2}}}{\\mathrm{Z}} \\\\\n\\text { Or, } & I_{R M S} =\\frac{\\frac{100}{\\sqrt{2}}}{200 \\sqrt{2}} \\\\\n\\therefore & I_{R M S} =\\frac{1}{4} \\mathrm{~A} \\\\\n& V_R =I_{R M S} \\times R \\\\\n\\text { Or, } & V_R =\\frac{1}{4} \\times 200 \\\\\n\\therefore & \\quad V_R =50 \\mathrm{~V}\n\\end{array}$$</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 462855,
+                    "topic": null,
+                    "type": "subjective",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Alternating Current \u2022 Physics",
+                            "excerpt": "A series CR circuit with $$R=200 \\Omega$$ and $$C=(50 / \\pi)$$ $$\\mu \\mathrm{F}$$ is connected across an ac source of peak voltage $$\\varepsilon_0=100 \\mathrm{~V}$$ and frequency $$v=50 \\mathrm{~Hz}$$. Calculate (a) impedance of the circuit..."
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrg1is8d",
+                    "chapter": "geometrical-optics",
+                    "chapterGroup": "optics",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 3,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pdefine-critical-angle-for-a-given-pair-of-media-and-total-class-12-physics-units-and-measurements-l1bncim0nl3g5cag",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>Define critical angle for a given pair of media and total internal reflection. Obtain the relation between the critical angle and refractive index of the medium.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "",
+                            "explanation": "<p>Critical angle :</p>\n<p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1m17hwczh/26953371-31b4-4556-b04f-cb430adcd11b/1aa476d0-7589-11ef-886e-29539d58c48f/file-jaoe38c1m17hwczi.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1m17hwczh/26953371-31b4-4556-b04f-cb430adcd11b/1aa476d0-7589-11ef-886e-29539d58c48f/file-jaoe38c1m17hwczi.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"CBSE 12th Physics Outside Delhi Set 1 - 2023 Physics - Geometrical Optics Question 2 English Explanation 1\"></p>\n<p>When light refracts from a denser to a rarer medium, the angle of incidence for which the angle of refraction is $$90^{\\circ}$$ is known as the critical angle.</p>\n<p>Total internal reflection :</p>\n<p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1m17hwa56/2541a27e-2e35-431e-ab16-dd3efeb2ff4a/18727ba0-7589-11ef-886e-29539d58c48f/file-jaoe38c1m17hwa57.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1m17hwa56/2541a27e-2e35-431e-ab16-dd3efeb2ff4a/18727ba0-7589-11ef-886e-29539d58c48f/file-jaoe38c1m17hwa57.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"CBSE 12th Physics Outside Delhi Set 1 - 2023 Physics - Geometrical Optics Question 2 English Explanation 2\"></p>\n<p>When light refracts from a denser to a rarer medium, if the angle of incidence is greater than the critical angle, the light is reflected back to the denser medium. This phenomenon is known as total internal reflection.</p>\n<p>Relation between critical angle and refractive index :</p>\n<p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1m17hw74u/17efc227-a3bf-457c-b31c-316a16eed85b/161f63e0-7589-11ef-886e-29539d58c48f/file-jaoe38c1m17hw74v.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1m17hw74u/17efc227-a3bf-457c-b31c-316a16eed85b/161f63e0-7589-11ef-886e-29539d58c48f/file-jaoe38c1m17hw74v.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"CBSE 12th Physics Outside Delhi Set 1 - 2023 Physics - Geometrical Optics Question 2 English Explanation 3\"></p>\n<p>Refractive index of denser medium $$=\\mu_{\\text {denser }}$$</p>\n<p>Refractive index of rarer medium $$=\\mu_{\\text {rarer }}$$</p>\n<p>Critical angle $$=\\theta_c$$</p>\n<p>$$\\therefore$$ denser $$\\mu_{\\text {rarer }}=\\frac{\\sin \\theta_c}{\\sin 90^{\\circ}}$$</p>\n<p>$$\\frac{\\mu_{\\text {rarer }}}{\\mu_{\\text {denser }}}=\\sin \\theta_c$$</p>\n<p>or, $$\\frac{\\mu_{\\text {denser }}}{\\mu_{\\text {rarer }}}=\\frac{1}{\\sin \\theta_c}$$</p>\n<p>If the rarer medium is air, then $$\\mu_{\\text {rarer }}=1$$</p>\n<p>$$\\therefore \\mu=\\frac{1}{\\sin \\theta_c}$$</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 462855,
+                    "topic": null,
+                    "type": "subjective",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Geometrical Optics \u2022 Physics",
+                            "excerpt": "Define critical angle for a given pair of media and total internal reflection. Obtain the relation between the critical angle and refractive index of the medium."
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrg1wo1b",
+                    "chapter": "atoms-and-nuclei",
+                    "chapterGroup": "modern-physics",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 3,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pa-i-distinguish-between-nuclear-fission-and-fusion-gi-class-12-physics-units-and-measurements-pviah7n9moixysig",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>(a) (i) Distinguish between nuclear fission and fusion giving an example of each.</p>\n<p>(ii) Explain the release of energy in nuclear fission and fusion on the basis of binding energy per nucleon curve.</p>\n<p>OR</p>\n<p>(b) (i) How is the size of a nucleus found experimentally? Write the relation between the radius and mass number of a nucleus.</p>\n<p>(ii) Prove that the density of a nucleus is independent of its mass number.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "",
+                            "explanation": "<p>(a) (i) Nuclear fission &amp; fusion:</p>\n<p><style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\n  overflow:hidden;padding:10px 5px;word-break:normal;}\n.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\n  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}\n.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}\n.tg .tg-0lax{text-align:left;vertical-align:top}\n</style>\n<table class=\"tg\" style=\"undefined;table-layout: fixed; width: 420px\">\n<colgroup>\n<col style=\"width: 210px\">\n<col style=\"width: 210px\">\n</colgroup>\n<thead>\n  <tr>\n    <th class=\"tg-amwm\">Nuclear fission</th>\n    <th class=\"tg-amwm\">Nuclear fusion</th>\n  </tr>\n</thead>\n<tbody>\n  <tr>\n    <td class=\"tg-0lax\">Heavy nucleus splits into comparatively lighter nuclei.</td>\n    <td class=\"tg-0lax\">Lighter nuclei fuse to form comparatively heavier nuclei.</td>\n  </tr>\n  <tr>\n    <td class=\"tg-0lax\">Energy released is less than that of fusion.</td>\n    <td class=\"tg-0lax\">Energy released is more than that of fission.</td>\n  </tr>\n  <tr>\n    <td class=\"tg-0lax\">Does not naturally occur.</td>\n    <td class=\"tg-0lax\">Occur naturally in stars.</td>\n  </tr>\n  <tr>\n    <td class=\"tg-0lax\">Comparatively less amount of energy required to start the process.</td>\n    <td class=\"tg-0lax\">Huge amount of energy is required to start the process.</td>\n  </tr>\n  <tr>\n    <td class=\"tg-0lax\">Application: Atomic bomb</td>\n    <td class=\"tg-0lax\">Application: Hydrogen bomb</td>\n  </tr>\n  <tr>\n    <td class=\"tg-0lax\">Example:<br>$$\\begin{aligned}<br>&amp; { }_{92} \\mathrm{U}^{238}+{ }_0 \\mathrm{n}^1 \\rightarrow{ }_{56} \\mathrm{Ba}^{141}+ { }_{36} \\mathrm{Kr}^{92}+3{ }_0 \\mathrm{n}^1+\\mathrm{Q}<br>\\end{aligned}$$</td>\n    <td class=\"tg-0lax\">Example:<br>$$\\begin{aligned}<br>&amp; { }_1 \\mathrm{H}^1+{ }_1 \\mathrm{H}^1 \\rightarrow{ }_1 \\mathrm{H}^2+{ }_{+1} \\mathrm{e}^0 +v+\\mathrm{Q}<br>\\end{aligned}$$</td>\n  </tr>\n</tbody>\n</table></p>\n<p>(ii) In nuclear fusion, the binding energy of the products is greater than the binding energy of reactants.</p>\n<p>In nuclear fission, binding energy of fragments is greater than the binding energy of the parent.</p>\n<p>This difference in binding energy is released in form of energy.</p>\n<p>OR</p>\n<p>(b) (i) Experimental determination of size of nucleus :</p>\n<p>Size of nucleus was determined experimentally by Rutherford by his alpha particle scattering experiment.</p>\n<p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1m17i2th1/9fb75c43-0446-4b00-95f2-89123eeffc6a/ce3bce50-7589-11ef-886e-29539d58c48f/file-jaoe38c1m17i2th2.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1m17i2th1/9fb75c43-0446-4b00-95f2-89123eeffc6a/ce3bce50-7589-11ef-886e-29539d58c48f/file-jaoe38c1m17i2th2.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"CBSE 12th Physics Outside Delhi Set 1 - 2023 Physics - Atoms and Nuclei Question 1 English Explanation\"></p>\n<p>In the experiment, a gold foil of thickness $$2.1 \\times 10^{-7}$$ was bombarded by energetic $$\\alpha$$-particles generated from $${ }_{83} \\mathrm{Bi}^{214}$$ source.</p>\n<p>Scattered $$\\alpha$$-particles were observed on a $$\\mathrm{ZnS}$$ screen with the help of a microscope.</p>\n<p>It was observed that most of the $$\\alpha$$-particles passed through the gold foil undeviated.</p>\n<p>About $$14 \\% ~\\alpha$$-particles were scattered by an angle more than $$1^0$$.</p>\n<p>1 out of $$8000 ~\\alpha$$-particles was scattered by an angle more than $$90^{\\circ}$$.</p>\n<p>Very few $$\\alpha$$-particles was scattered by an angle $$180^{\\circ}$$.</p>\n<p>From these observations Rutherford calculated the impact parameter and distance of closest approach and concluded that the size of nucleus lies between $$10^{-15} \\mathrm{~m}$$ and $$10^{-14} \\mathrm{~m}$$.</p>\n<p>Relation between radius and mass number: $$\\left.r=\\mathrm{R}_0 \\mathrm{A}^{1 / 3} \\text { (where } R_0=1.25 \\mathrm{fm}\\right)$$</p>\n<p>(ii) Density of nucleus is independent of mass number :</p>\n<p>$$\\begin{aligned}\n&amp; \\rho=\\frac{M}{V} \\\\\n\\text{or,} \\quad &amp; \\rho=\\frac{m A}{\\frac{4}{3} \\pi r^3}\n\\end{aligned}$$</p>\n<p>or, $$\\rho=\\frac{m A}{\\frac{4}{3} \\pi R_0^3 A} \\quad\\left(\\text { since } r=R_0 A^{1 / 3}\\right)$$</p>\n<p>$$\\therefore \\quad \\rho=\\frac{m}{\\frac{4}{3} \\pi R_0^3}$$</p>\n<p>Hence, it is independent of mass number.</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 462855,
+                    "topic": null,
+                    "type": "subjective",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Atoms and Nuclei \u2022 Physics",
+                            "excerpt": "(a) (i) Distinguish between nuclear fission and fusion giving an example of each.\n(ii) Explain the release of energy in nuclear fission and fusion on the basis of binding energy per nucleon curve.\nOR\n(b) (i) How is the size of a nucleus fou..."
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrg2d4nc",
+                    "chapter": "electrostatics",
+                    "chapterGroup": "electromagnetism",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 5,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pa-i-use-gauss-law-to-obtain-an-expression-for-the-el-class-12-physics-units-and-measurements-vgtmgksofgawo6lw",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>(a) (i) Use Gauss' law to obtain an expression for the electric field due to an infinitely long thin straight wire with uniform linear charge density $$\\lambda$$.</p>\n<p>(ii) An infinitely long positively charged straight wire has a linear charge density $$\\lambda$$. An electron is revolving in a circle with a constant speed $$v$$ such that the wire passes through the centre, and is perpendicular to the plane, of the circle. Find the kinetic energy of the electron in terms of magnitudes of its charge and linear charge density $$\\lambda$$ on the wire.</p>\n<p>(iii) Draw a graph of kinetic energy as a function of linear charge density $$\\lambda$$.</p>\n<p>OR</p>\n<p>(b) (i) Consider two identical point charges located at points $$(0,0)$$ and $$(a, 0)$$.</p>\n<p>(1) Is there a point on the line joining them at which the electric field is zero?</p>\n<p>(2) Is there a point on the line joining them at which the electric potential is zero?</p>\n<p>Justify your answers for each case.</p>\n<p>(ii) State the significance of negative value of electrostatic potential energy of a system of charges.</p>\n<p>Three charges are placed at the corners of an equilateral triangle $$A B C$$ of side $$2.0 \\mathrm{~m}$$ as shown in figure. Calculate the electric potential energy of the system of three charges.</p>\n<p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1m17i5h2r/386452a6-ece1-4c97-b3c6-669bb805a200/1815c030-758a-11ef-886e-29539d58c48f/file-jaoe38c1m17i5h2s.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1m17i5h2r/386452a6-ece1-4c97-b3c6-669bb805a200/1815c030-758a-11ef-886e-29539d58c48f/file-jaoe38c1m17i5h2s.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"CBSE 12th Physics Outside Delhi Set 1 - 2023 Physics - Electrostatics Question 4 English\"></p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "",
+                            "explanation": "<p>(a) (i) Electric field due to an infinitely long thin straight wire with uniform linear charge density:</p>\n<p>Linear charge density $$=\\lambda$$</p>\n<p>A point $$\\mathrm{P}$$ is considered at a distance $$x$$ where the electric field is to be determined.</p>\n<p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1m17i7ccy/e66d5a23-f259-43f3-b516-9eaad4c0bf53/4c0f4320-758a-11ef-886e-29539d58c48f/file-jaoe38c1m17i7ccz.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1m17i7ccy/e66d5a23-f259-43f3-b516-9eaad4c0bf53/4c0f4320-758a-11ef-886e-29539d58c48f/file-jaoe38c1m17i7ccz.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"CBSE 12th Physics Outside Delhi Set 1 - 2023 Physics - Electrostatics Question 4 English Explanation 1\"></p>\n<p>A cylindrical Gaussian surface of length $$l$$ and radius $$x$$ is considered with the wire as its axis.</p>\n<p>Magnitude of electric field at every point the curved surface of the cylinder is same and is directed outward making an angle $$0^0$$ with the direction of area vector.</p>\n<p>Electric fields at the two flat surfaces of the cylinder are zero since, the direction of electric field through those surfaces and the direction of area vector are perpendicular.</p>\n<p>So, total flux through the curved surface $$=\\phi=E \\times 2 \\pi x l$$</p>\n<p>According to Gauss' law, $$\\phi=\\frac{l \\lambda}{\\varepsilon_0}$$</p>\n<p>$$\\begin{aligned}\n&amp; \\therefore &amp; E \\times 2 \\pi x l &amp; =\\frac{l \\lambda}{\\varepsilon_0} \\\\\n&amp; \\therefore &amp; E &amp; =\\frac{1}{2 \\pi \\varepsilon_0} \\frac{\\lambda}{x}\n\\end{aligned}$$</p>\n<p>(ii) Electric field produced by an infinitely long straight charged wire,</p>\n<p>$$E=\\frac{\\lambda}{2 \\pi \\varepsilon_0 r}$$</p>\n<p>This field provides the centripetal force to the revolving electron.</p>\n<p>or, $$e E=\\frac{m v^2}{r}$$</p>\n<p>or, $$\\frac{\\lambda}{2 \\pi \\varepsilon_0 r}=\\frac{m v^2}{r}$$</p>\n<p>or, $$\\quad m v^2=\\frac{e \\lambda}{2 \\pi \\varepsilon_0}$$</p>\n<p>$$\\therefore$$ Kinetic energy (KE) $$=\\frac{1}{2} m v^2=\\frac{e \\lambda}{4 \\pi \\varepsilon_0}$$</p>\n<p>(iii) The required equation,</p>\n<p>$$\\frac{1}{2} m v^2=\\frac{e \\lambda}{4 \\pi \\varepsilon_0}$$</p>\n<p>It is the equation of a straight line passing through the origin.</p>\n<p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1m17i8yaw/ba1407f7-16e2-4ec8-9af0-2238f1e1bf4e/78d1b280-758a-11ef-886e-29539d58c48f/file-jaoe38c1m17i8yax.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1m17i8yaw/ba1407f7-16e2-4ec8-9af0-2238f1e1bf4e/78d1b280-758a-11ef-886e-29539d58c48f/file-jaoe38c1m17i8yax.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"CBSE 12th Physics Outside Delhi Set 1 - 2023 Physics - Electrostatics Question 4 English Explanation 2\"></p>\n<p>OR</p>\n<p>(b) (i) (1) Yes, Electric field will be zero at $$\\left(\\frac{a}{2}, 0\\right)$$ point. At this point the magnitudes of both the electric fields are same in magnitude and are oppositely directed.</p>\n<p>(2) Electric potential will not be zero at any point since at every point the potential will be the summation of both the potentials and both charges are of similar nature.</p>\n<p>(ii) Significance of negative electrostatic potential energy :</p>\n<p>Negative electrostatic potential energy of a system of charges means work is to be done against the field to move the charges apart.</p>\n<p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1m17ia7ae/83b1c6f1-4111-480a-bae4-282462a8a3b0/9b91e060-758a-11ef-886e-29539d58c48f/file-jaoe38c1m17ia7af.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1m17ia7ae/83b1c6f1-4111-480a-bae4-282462a8a3b0/9b91e060-758a-11ef-886e-29539d58c48f/file-jaoe38c1m17ia7af.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"CBSE 12th Physics Outside Delhi Set 1 - 2023 Physics - Electrostatics Question 4 English Explanation 3\"></p>\n<p>Potential energy due to charges at A and B</p>\n<p>$$U_1=\\frac{k q_1 q_2}{r}$$</p>\n<p>Or, $$U_1=\\frac{9 \\times 10^9 \\times(-4) \\times(4) \\times 10^{-12}}{2}$$</p>\n<p>$$\\therefore \\quad U_1=-72 \\times 10^{-3} \\mathrm{~J}$$</p>\n<p>Potential energy due to charges at $$\\mathrm{A}$$ and $$\\mathrm{C}$$</p>\n<p>$$U_2=\\frac{k q_1 q_3}{r}$$</p>\n<p>Or, $$\\quad U_1=\\frac{9 \\times 10^9 \\times(4) \\times(2) \\times 10^{-12}}{2}$$</p>\n<p>$$\\therefore \\quad U_2=36 \\times 10^{-3} \\mathrm{~J}$$</p>\n<p>Potential energy due to charges at B and C</p>\n<p>$$U_3=\\frac{k q_2 q_3}{r}$$</p>\n<p>Or, $$U_3=\\frac{9 \\times 10^9 \\times(-4) \\times(2) \\times 10^{-12}}{2}$$</p>\n<p>$$\\therefore \\quad U_3=-36 \\times 10^{-3} \\mathrm{~J}$$</p>\n<p>Net potential energy of the system of three charges.</p>\n<p>$$\\begin{aligned}\n&amp; U =U_1+U_2+U_3 \\\\\n\\text { Or, } &amp; U =-72 \\times 10^{-3} \\mathrm{~J}+36 \\times 10^{-3} \\mathrm{~J}-36 \\times 10^{-3} \\mathrm{~J} \\\\\n\\therefore &amp; \\quad U =-72 \\times 10^{-3} \\mathrm{~J}\n\\end{aligned}$$</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 771425,
+                    "topic": null,
+                    "type": "subjective",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Electrostatics \u2022 Physics",
+                            "excerpt": "(a) (i) Use Gauss' law to obtain an expression for the electric field due to an infinitely long thin straight wire with uniform linear charge density $$\\lambda$$.\n(ii) An infinitely long positively charged straight wire has a linear charge ..."
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrg32dxu",
+                    "chapter": "electromagnetic-induction",
+                    "chapterGroup": "electromagnetism",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 5,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pa-i-define-coefficient-of-self-induction-obtain-an-e-class-12-physics-units-and-measurements-helenw5xteqtlzk5",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>(a) (i) Define coefficient of self-induction. Obtain an expression for self-inductance of a long solenoid of length $$l$$, area of cross- section A having $$\\mathbf{N}$$ turns.</p>\n<p>(ii) Calculate the self-inductance of a coil using the following data of obtained when an AC source of frequency $$\\left(\\frac{200}{\\pi}\\right) \\mathrm{~Hz}$$ and a DC source is applied across the coil.</p>\n<p><style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\n  overflow:hidden;padding:10px 5px;word-break:normal;}\n.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\n  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}\n.tg .tg-baqh{text-align:center;vertical-align:top}\n.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}\n</style>\n<table class=\"tg\" style=\"undefined;table-layout: fixed; width: 338px\">\n<colgroup>\n<col style=\"width: 114px\">\n<col style=\"width: 113px\">\n<col style=\"width: 111px\">\n</colgroup>\n<thead>\n  <tr>\n    <th class=\"tg-amwm\" colspan=\"3\">AC Source</th>\n  </tr>\n</thead>\n<tbody>\n  <tr>\n    <td class=\"tg-amwm\">S.No.</td>\n    <td class=\"tg-amwm\">V (Volts)</td>\n    <td class=\"tg-amwm\">I(A)</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">1</td>\n    <td class=\"tg-baqh\">3.0</td>\n    <td class=\"tg-baqh\">0.5</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">2</td>\n    <td class=\"tg-baqh\">6.0</td>\n    <td class=\"tg-baqh\">1.0</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">3</td>\n    <td class=\"tg-baqh\">9.0</td>\n    <td class=\"tg-baqh\">1.5</td>\n  </tr>\n</tbody>\n</table></p>\n<p><style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\n  overflow:hidden;padding:10px 5px;word-break:normal;}\n.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\n  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}\n.tg .tg-baqh{text-align:center;vertical-align:top}\n.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}\n</style>\n<table class=\"tg\" style=\"undefined;table-layout: fixed; width: 338px\">\n<colgroup>\n<col style=\"width: 114px\">\n<col style=\"width: 113px\">\n<col style=\"width: 111px\">\n</colgroup>\n<thead>\n  <tr>\n    <th class=\"tg-amwm\" colspan=\"3\">DC Source</th>\n  </tr>\n</thead>\n<tbody>\n  <tr>\n    <td class=\"tg-amwm\">S.No.</td>\n    <td class=\"tg-amwm\">V (Volts)</td>\n    <td class=\"tg-amwm\">I(A)</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">1</td>\n    <td class=\"tg-baqh\">4.0</td>\n    <td class=\"tg-baqh\">1.0</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">2</td>\n    <td class=\"tg-baqh\">6.0</td>\n    <td class=\"tg-baqh\">1.5</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">3</td>\n    <td class=\"tg-baqh\">8.0</td>\n    <td class=\"tg-baqh\">2.0</td>\n  </tr>\n</tbody>\n</table></p>\n<p>OR</p>\n<p>(b) (i) With the help of a labelled diagram, describe the principle and working of an ac generator. Hence, obtain an expression for the instantaneous value of the emf generated.</p>\n<p>(ii) The coil of an ac generator consists of 100 turns of wire, each of area $$0.5 \\mathrm{~m}^2$$. The resistance of the wire is $$100 \\Omega$$. The coil is rotating in a magnetic field of $$0.8 \\mathrm{~T}$$ perpendicular to its axis of rotation, at a constant angular speed of 60 radian per second. Calculate the maximum emf generated and power dissipated in the coil.</p>\n<p>(ii) Calculation of self inductance:</p>\n<p><style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\n  overflow:hidden;padding:10px 5px;word-break:normal;}\n.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\n  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}\n.tg .tg-baqh{text-align:center;vertical-align:top}\n.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}\n</style>\n<table class=\"tg\" style=\"undefined;table-layout: fixed; width: 695px\">\n<colgroup>\n<col style=\"width: 104px\">\n<col style=\"width: 120px\">\n<col style=\"width: 121px\">\n<col style=\"width: 175px\">\n<col style=\"width: 175px\">\n</colgroup>\n<thead>\n  <tr>\n    <th class=\"tg-amwm\" colspan=\"5\">DC SOURCE</th>\n  </tr>\n</thead>\n<tbody>\n  <tr>\n    <td class=\"tg-amwm\">S. No.</td>\n    <td class=\"tg-amwm\">V(Volts)</td>\n    <td class=\"tg-amwm\">I(Ampere)</td>\n    <td class=\"tg-amwm\">Resistance (Ohms)</td>\n    <td class=\"tg-amwm\">Average resistance value (R)</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">1</td>\n    <td class=\"tg-baqh\">4.0</td>\n    <td class=\"tg-baqh\">1.0</td>\n    <td class=\"tg-baqh\">4.0</td>\n    <td class=\"tg-baqh\" rowspan=\"3\"><br><br>$$4.0\\Omega$$</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">2.</td>\n    <td class=\"tg-baqh\">6.0</td>\n    <td class=\"tg-baqh\">1.5</td>\n    <td class=\"tg-baqh\">4.0</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">3</td>\n    <td class=\"tg-baqh\">8.0</td>\n    <td class=\"tg-baqh\">2.0</td>\n    <td class=\"tg-baqh\">4.0</td>\n  </tr>\n</tbody>\n</table></p>\n<p><style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\n  overflow:hidden;padding:10px 5px;word-break:normal;}\n.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;\n  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}\n.tg .tg-baqh{text-align:center;vertical-align:top}\n.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}\n</style>\n<table class=\"tg\" style=\"undefined;table-layout: fixed; width: 695px\">\n<colgroup>\n<col style=\"width: 104px\">\n<col style=\"width: 120px\">\n<col style=\"width: 121px\">\n<col style=\"width: 175px\">\n<col style=\"width: 175px\">\n</colgroup>\n<thead>\n  <tr>\n    <th class=\"tg-amwm\" colspan=\"5\">AC SOURCE</th>\n  </tr>\n</thead>\n<tbody>\n  <tr>\n    <td class=\"tg-amwm\">S. No.</td>\n    <td class=\"tg-amwm\">V(Volts)</td>\n    <td class=\"tg-amwm\">I(Ampere)</td>\n    <td class=\"tg-amwm\">Impedance (Ohms)</td>\n    <td class=\"tg-amwm\">Average Impedance value (Z)</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">1</td>\n    <td class=\"tg-baqh\">3.0</td>\n    <td class=\"tg-baqh\">0.5</td>\n    <td class=\"tg-baqh\">6.0</td>\n    <td class=\"tg-baqh\" rowspan=\"3\"><br><br>$$6.0\\Omega$$</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">2.</td>\n    <td class=\"tg-baqh\">6.0</td>\n    <td class=\"tg-baqh\">1.0</td>\n    <td class=\"tg-baqh\">6.0</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">3</td>\n    <td class=\"tg-baqh\">9.0</td>\n    <td class=\"tg-baqh\">1.5</td>\n    <td class=\"tg-baqh\">6.0</td>\n  </tr>\n</tbody>\n</table></p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "",
+                            "explanation": "<p>(a) (i) Coefficient of self induction: Coefficient of self induction of a coil is defined as the emf induced in the coil per unit rate of change of current in the same coil.</p>\n<p>Self-inductance of a long solenoid:</p>\n<p>Length of the solenoid $$=l$$</p>\n<p>Total number of turns $$=\\mathrm{N}$$</p>\n<p>Area of cross section $$=A$$</p>\n<p>Current flowing through the solenoid $$=i$$</p>\n<p>Magnetic flux associated with each turn $$=\\mu_0 \\mu_r n i \\mathrm{~A}$$</p>\n<p>Magnetic flux at any point on the axis</p>\n<p>$$=\\mu_0 \\mu_r\\left(\\frac{N}{l}\\right) i\n$$</p>\n<p>Magnetic flux associated with each turn</p>\n<p>$$=\\mu_0 \\mu_r\\left(\\frac{N}{l}\\right) i \\mathrm{~A}$$</p>\n<p>Total magnetic flux associated with the solenoid $$=\\phi$$</p>\n<p>$$\\begin{aligned}\n& =\\mu_0 \\mu_{\\mathrm{r}}\\left(\\frac{N}{l}\\right) i A N \\\\\n& =\\mu_0 \\mu_r\\left(\\frac{N^2}{l}\\right) i A\n\\end{aligned}$$</p>\n<p>Self inductance of the solenoid $$=L=\\frac{\\phi}{i}$$</p>\n<p>$$=\\mu_0 \\mu_r\\left(\\frac{N^2}{l}\\right) A \\text { Henry }$$</p>\n<p>$$\\begin{array}{rlrl} \n& \\qquad X_L & =\\sqrt{Z^2-R^2} \\\\\n& \\text { Or, } & 2 \\pi f L & =\\sqrt{6^2-4^2} \\\\\n& \\text { Or, } & 2 \\pi f L & =\\sqrt{20} \\\\\n& \\text { Or, } & 2 \\pi \\times \\frac{200}{\\pi} \\times L & =\\sqrt{20} \\\\\n& \\therefore & L & =\\frac{1}{40} \\sqrt{5} \\text { Henry }\n\\end{array}$$</p>\n<p>OR</p>\n<p>(b) (i) Refer the answer of Q28 of CBSE 12 DELHI, Set-1.</p>\n<p>(ii) Given,</p>\n<p>$$\\begin{aligned}\n\\mathrm{N} & =100 \\\\\n\\mathrm{~A} & =0.5 \\mathrm{~m}^2 \\\\\n\\omega & =60 \\mathrm{~radians} / \\text { second } \\\\\n\\mathrm{B} & =0.8 \\mathrm{~T} \\\\\nr & =100 \\Omega\n\\end{aligned}$$</p>\n<p>Maximum emf generated $$=$$ NBA $$\\omega$$</p>\n<p>Or, Maximum emf generated $$=100 \\times 0.8 \\times 0.5 \\times 60$$</p>\n<p>$$\\therefore$$ Maximum emf generated $$=\\mathrm{E}_0=2400 \\mathrm{~V}$$</p>\n<p>Maximum current $$=\\mathrm{I}_0=\\frac{\\mathrm{E}_0}{\\mathrm{R}}=\\frac{2400}{100}=24 \\mathrm{~A}$$</p>\n<p>Power dissipation $$=\\mathrm{E}_0 \\mathrm{I}_0=2400 \\times 24=57600$$ Watt</p>"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 771425,
+                    "topic": null,
+                    "type": "subjective",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Electromagnetic Induction \u2022 Physics",
+                            "excerpt": "(a) (i) Define coefficient of self-induction. Obtain an expression for self-inductance of a long solenoid of length $$l$$, area of cross- section A having $$\\mathbf{N}$$ turns.\n(ii) Calculate the self-inductance of a coil using the followin..."
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrg39bxx",
+                    "chapter": "wave-optics",
+                    "chapterGroup": "optics",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 5,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pa-i-state-huygens-principle-with-the-help-of-a-diag-class-12-physics-units-and-measurements-klhqm9uild3inomk",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>(a) (i) State Huygen's principle. With the help of a diagram, show how a plane wave is reflected from a surface. Hence, verify the law of reflection.</p>\n<p>(ii) A concave mirror of focal length $$12 \\mathrm{~cm}$$ forms a three times magnified virtual image of an object. Find the distance of the object from the mirror.</p>\n<p>OR</p>\n<p>(b) (i) Draw a labelled ray diagram showing the image formation by a refracting telescope. Define its magnifying power. Write two limitations of a refracting telescope over a reflecting telescope.</p>\n<p>(ii) The focal lengths of the objective and the eyepiece of a compound microscope are $$1.0 \\mathrm{~cm}$$ and $$2.5 \\mathrm{~cm}$$ respectively. Find the tube length of the microscope for obtaining a magnification of 300.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "",
+                            "explanation": ""
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 771425,
+                    "topic": null,
+                    "type": "subjective",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Wave Optics \u2022 Physics",
+                            "excerpt": "(a) (i) State Huygen's principle. With the help of a diagram, show how a plane wave is reflected from a surface. Hence, verify the law of reflection.\n(ii) A concave mirror of focal length $$12 \\mathrm{~cm}$$ forms a three times magnified vi..."
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                },
+                {
+                    "question_id": "jaoe38c1lrg3dq96",
+                    "chapter": "electromagnetic-induction",
+                    "chapterGroup": "electromagnetism",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 4,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pa-consider-the-experimental-set-up-shown-in-the-figure-class-12-physics-units-and-measurements-giua2klog4cgl8pw",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>(a) Consider the experimental set up shown in the figure. This jumping ring experiment is an outstanding demonstration of some simple laws of Physics. A conducting non-magnetic ring is placed over the vertical core of a solenoid. When current is passed through the solenoid, the ring is thrown off.</p>\n<p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1m17idtru/bdfd2ec3-c20b-4933-9559-536b1dc19917/005db5a0-758b-11ef-886e-29539d58c48f/file-jaoe38c1m17idtrv.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1m17idtru/bdfd2ec3-c20b-4933-9559-536b1dc19917/005db5a0-758b-11ef-886e-29539d58c48f/file-jaoe38c1m17idtrv.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"CBSE 12th Physics Outside Delhi Set 1 - 2023 Physics - Electromagnetic Induction Question 2 English\"></p>\n<p>Answer the following questions :</p>\n<p>(i) Explain the reason of jumping of the ring when the switch is closed in the circuit.</p>\n<p>(ii) What will happen if the terminals of the battery are reversed and the switch is closed? Explain.</p>\n<p>(iii) Explain the two laws that help us understand this phenomenon.</p>\n<p>OR</p>\n<p>(b) Briefly explain various ways to increase the strength of magnetic field produced by a given solenoid.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "",
+                            "explanation": "<p>(a) </p>\n<p>(i) When the switch is closed, current flows through the solenoid, inducing an electromotive force (emf) in the ring. This emf generates a current in the ring.</p>\n<p>According to Lenz's Law, the induced current in the ring flows in the opposite direction of the current in the solenoid. This creates a repulsive force between the solenoid and the ring, causing the ring to jump off.</p>\n<p>(ii) If the battery's terminals are reversed, the direction of current in both the solenoid and the ring will change. However, the same phenomenon will occur: the currents will still repel each other, and the ring will be thrown off.</p>\n<p>(iii) The two laws explaining this phenomenon are :</p>\n\n<p><p><strong>Faraday's Law of Electromagnetic Induction :</strong> This law states that an emf is induced in a conductor when it is exposed to a changing magnetic field.</p></p>\n<p><p><strong>Lenz's Law :</strong> It specifies that the induced current will flow in a direction that opposes the change in the magnetic field that produced it.</p></p>\n\n<p>OR</p>\n<p>(b) Various ways to increase the magnetic field produced by a solenoid :</p>\n\n<p><p><strong>Using a soft iron core :</strong> Placing a soft iron core inside the solenoid enhances the magnetic field.</p></p>\n<p><p><strong>Increasing the number of turns per unit length :</strong> More turns per unit length intensify the magnetic field.</p></p>\n<p><p><strong>Increasing the current strength :</strong> A higher current boosts the strength of the magnetic field.</p></p>\n"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 617140,
+                    "topic": null,
+                    "type": "subjective",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Electromagnetic Induction \u2022 Physics",
+                            "excerpt": "(a) Consider the experimental set up shown in the figure. This jumping ring experiment is an outstanding demonstration of some simple laws of Physics. A conducting non-magnetic ring is placed over the vertical core of a solenoid. When curre..."
+                        }
+                    }
+                },
+                {
+                    "question_id": "jaoe38c1lrg5rswt",
+                    "chapter": "dual-nature-of-radiation",
+                    "chapterGroup": "modern-physics",
+                    "country": "in",
+                    "difficulty": null,
+                    "exam": "class-12",
+                    "examGroup": "cbse",
+                    "languages": [
+                        "en"
+                    ],
+                    "marks": 4,
+                    "negMarks": 0,
+                    "paperId": "cbse-12th-physics-outside-delhi-set-1-2023",
+                    "paperTitle": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                    "permalink": "pa-figure-shows-the-variation-of-photoelectric-current-m-class-12-physics-units-and-measurements-z0dwcpvaqyejauvi",
+                    "question": {
+                        "en": {
+                            "comprehension": null,
+                            "direction": null,
+                            "content": "<p>(a) Figure shows the variation of photoelectric current measured in a photo cell circuit as a function of the potential difference between the plates of the photo cell when light beams A, B, C and D of different wavelengths are incident on the photo cell. Examine the given figure and answer the following questions :</p>\n<p><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/jaoe38c1m17iik2g/07b57736-15bb-41e4-87d9-da83ac66a2a7/83ea2980-758b-11ef-886e-29539d58c48f/file-jaoe38c1m17iik2h.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/jaoe38c1m17iik2g/07b57736-15bb-41e4-87d9-da83ac66a2a7/83ea2980-758b-11ef-886e-29539d58c48f/file-jaoe38c1m17iik2h.png\" loading=\"lazy\" style=\"max-width: 100%;height: auto;display: block;margin: 0 auto;max-height: 40vh;vertical-align: baseline\" alt=\"CBSE 12th Physics Outside Delhi Set 1 - 2023 Physics - Dual Nature of Radiation Question 1 English\"></p>\n<p>(i) Which light beam has the highest frequency and why?</p>\n<p>(ii) Which light beam has the longest wavelength and why?</p>\n<p>(iii) Which light beam ejects photoelectrons with maximum momentum and why?</p>\n<p>OR</p>\n<p>(b) What is the effect on threshold frequency and stopping potential on increasing the frequency of incident beam of light? Justify your answer.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "",
+                            "explanation": "<p>(a) </p>\n<p>(i) Light beam B has the highest frequency. As frequency increases, and assuming the work function remains the same, the stopping potential also increases. Since light beam B has the maximum stopping potential, it therefore has the highest frequency.</p>\n<p>(ii) Light beam C has the lowest frequency. Since wavelength and frequency are inversely related, this beam has the longest wavelength.</p>\n<p>(iii) Light beam B has the highest frequency. Therefore, the electrons ejected by this radiation will have the highest kinetic energy and thus the maximum momentum.</p>\n<p>OR</p>\n<p>(b) </p>\n\n<p><p><strong>Stopping Potential:</strong> The stopping potential increases as the frequency of the incident light beam increases. According to Einstein\u2019s photoelectric equation:</p></p>\n<p><p>$h \\nu = h \\nu_0 + \\text{eV}_\\text{S}$</p></p>\n<p><p>Here, $\\nu_0$ (threshold frequency) is constant for a given substance. Therefore, as $\\nu$ (frequency) increases, $\\text{V}_\\text{S}$ (stopping potential) also increases.</p></p>\n<p><p><strong>Threshold Frequency:</strong> The threshold frequency $(\\nu_0)$ remains unaffected by changes in the frequency of the incident light. The threshold frequency is intrinsic to the material, meaning if the frequency of the incident light is below this threshold, no photoemission occurs; if it's above, photoemission happens.</p></p>\n"
+                        }
+                    },
+                    "section": [
+                        "chapter",
+                        "paper"
+                    ],
+                    "subject": "physics",
+                    "subjectGroup": null,
+                    "timeAllotted": 617140,
+                    "topic": null,
+                    "type": "subjective",
+                    "year": 2023,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "bookmark": {
+                        "en": {
+                            "title": "CBSE 12th Physics Outside Delhi Set 1 - 2023",
+                            "subTitle": "Dual Nature of Radiation \u2022 Physics",
+                            "excerpt": "(a) Figure shows the variation of photoelectric current measured in a photo cell circuit as a function of the potential difference between the plates of the photo cell when light beams A, B, C and D of different wavelengths are incident on ..."
+                        }
+                    },
+                    "yearKey": "cbse-12th-physics-outside-delhi-set-1-2023"
+                }
+            ],
+            "title": "Physics"
+        }
+    ]
+}

@@ -1,0 +1,3375 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Analog Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JMYGQklEFjW9Q1WB",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "diode-circuits-and-applications",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Assuming that the diodes an ideal in the given circuit, the voltage $${V_0}$$ is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/UPyME8CzNCLAvMN3c/KndCjid9DCAPOqWII5UHGuDWuNMvQ/hTSvJ4DlzVOISKcrPdVmrK/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Analog Electronics - Diode Circuits and Applications Question 26 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$4V$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$5V$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$7.5V$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$12.12V$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "assuming-that-the-diodes-an-ideal-in-the-given-circuit-the-v-gate-ee-2010-marks-1-jmygqklefjw9q1wb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jqwokmalo2Qcze2T",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bjt-and-mosfet-biasing",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The transistor circuit shown uses a silicon transistor with $${V_{BE}} = 0.7V,{{\\rm I}_C} \\approx {{\\rm I}_E}$$ and a $$DC$$ current gain of $$100.$$ The value of $${V_0}$$ is\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/wh5PRgr0v252dlhCV/oKr6TLGXjhUYgcFveUnWMS637dtJU/3oXSCeQIaeieq3M5ddUTne/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Analog Electronics - Bjt and Mosfet Biasing Question 15 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$4.65$$ $$V$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$5$$ $$V$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$6.3$$ $$V$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$7.32$$ $$V$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-transistor-circuit-shown-uses-a-silicon-transistor-with-gate-ee-2010-marks-2-jqwokmalo2qcze2t.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZmYDMQ8AtCbvAHGE",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given that the op-amp is ideal, the $$O/P$$ voltage $${V_0}$$ is \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/eiwErfMPjaOdHbeSE/wdDUR4z36MYZaANrG5C8AcCUyUUXI/OcLdIr40aF7Zkl1aQgt7Zc/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Analog Electronics - Operational Amplifier Question 61 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$4V$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$6V$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$7.5V$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$12.12V$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-that-the-op-amp-is-ideal-the-op-voltage-v0-is-gate-ee-2010-marks-1-zmydmq8atcbvahge.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GZoMRTYP2SD92KWe",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "feedback-amplifiers-and-oscillator-circuits",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "As shown in the figure, a negative feedback system has an amplifier of gain $$100$$ with $$ \\pm 10\\% $$ tolerance in the forward path, and an attenuator of value $$9/100$$ in the feedback path. The overall system gain is approximately.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/WJlR5Dr8RZ5msBJhD/bxX3aStJAgpFGcSetOC7NMGFQZ6G6/ozgOwhbLVj0PDxdrmuTDCQ/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Analog Electronics - Feedback Amplifiers and Oscillator Circuits Question 10 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$10 \\pm 1\\% $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$10 \\pm 2\\% $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$10 \\pm 5\\% $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$10 \\pm 10\\% $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "as-shown-in-the-figure-a-negative-feedback-system-has-an-am-2010-marks-1-gzomrtyp2sd92kwe.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                }
+            ],
+            "title": "Analog Electronics"
+        },
+        {
+            "_id": "Control Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fLswwhZBpKi4h72c",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "polar-nyquist-and-bode-plot",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The frequency response of $$G\\left( s \\right) = 1/\\left[ {s\\left( {s + 1} \\right)\\left( {s + 2} \\right)} \\right]$$ plotted in the complex $$\\,G\\left( {j\\omega } \\right)$$ plane  $$\\left( {for\\,\\,0 &lt; \\omega  &lt; \\infty } \\right)$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/ctB9SkWrZZsyCOTiA/GMeJC5O8h8t8x7CxM6UyfSsBjT5aM/ogHs0NvK3KJv7P3FG5zIfe/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Control Systems - Polar Nyquist and Bode Plot Question 25 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/MYPNEcHMrRn6Hsf7O/IvlZLMSBbdYL0bCT124elOpdYSSAK/79WRYKMZAzF3s9JfdOdEQO/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Control Systems - Polar Nyquist and Bode Plot Question 25 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/tMIDnlPdmZCdhF3qa/8j71bdIAFMsLCq86aIct4sSrl97qf/gMocTKysWL5uYYhF5B1fZc/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Control Systems - Polar Nyquist and Bode Plot Question 25 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/S4pC6sCOtAuID1HSv/4lVqRIyuBC9TvmNXNIiA46ObDl4ls/VRuibAKzMZzkWZsv30ZZhg/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Control Systems - Polar Nyquist and Bode Plot Question 25 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-frequency-response-of-gleft-s-right-1left-sleft-s-1-righ-gate-ee-2010-marks-2-flswwhzbpki4h72c.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "d8I7QXurVroPyXjd",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "time-response-analysis",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the system $${2 \\over {\\left( {s + 1} \\right)}},$$ the approximate time taken for a step response to reach $$98$$% of its final value is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1\\,s$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2\\,s$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$4\\,s$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$8\\,s$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-system-2-over-left-s-1-right-the-approximate-time-ta-gate-ee-2010-marks-1-d8i7qxurvropyxjd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iyL46dZP2MbwY4sw",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "root-locus-techniques",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The characteristic equation of a closed-loop system is $$s\\left( {s + 1} \\right)\\left( {s + 3} \\right) + \\,\\,k\\left( {s + 2} \\right) = 0,\\,\\,k &gt; 0.$$ \n<p>Which of the following statements is true?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Its roots are always real "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "It cannot have a breakaway point in the range $$ - 1 &lt; {\\mathop{\\rm Re}\\nolimits} \\left[ s \\right] &lt; 0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Two of its roots tend to infinity along the asymptotes $${\\mathop{\\rm Re}\\nolimits} \\left[ s \\right] =  - 1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "It may have complex roots in the right half plane "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-characteristic-equation-of-a-closed-loop-system-is-sleft-gate-ee-2010-marks-2-iyl46dzp2mbwy4sw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XHHbKRyz8nn6n8aK",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "state-variable-analysis",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The system $$\\mathop X\\limits^ \\bullet   = AX + BU$$  with $$A = \\left[ {\\matrix{\n   { - 1} &amp; 2  \\cr \n   0 &amp; 2  \\cr \n\n } } \\right],$$ $$B = \\left[ {\\matrix{\n   0  \\cr \n   1  \\cr \n\n } } \\right]$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "stable and controllable "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "stable but uncontrollable "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "unstable but controllable "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "unstable and uncontrollable"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-system-mathop-xlimits-bullet-ax-bu-with-a-left-matrix-1-gate-ee-2010-marks-2-xhhbkryz8nn6n8ak.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                }
+            ],
+            "title": "Control Systems"
+        },
+        {
+            "_id": "Digital Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vgsIvoRB9W4MTTi0",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "minimization",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A minimized form of the function $$F$$ is \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/rj00VdfuRqfaxHg0n/gMmVXZWGFyDDPZrhcWzn1CbYUecMX/c6uEZr6KZ5P0QuvQtQBxRD/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Digital Electronics - Minimization Question 5 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$F = \\overline X \\overline Y  + YZ$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$F = \\overline {XY}  + YZ$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$F = \\overline {XY}  + Y\\overline Z $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$F = \\overline {XY}  + \\overline Y Z$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-minimized-form-of-the-function-f-is-2010-marks-2-vgsivorb9w4mtti0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VLvXDGGR1VOLbX2O",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "minimization",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following circuits is a realization of the previous function $$F$$ $$?$$\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/FjFoZ7dHi1C2sQzkg/IkYjzozAr4GC3JJ8ULbUMYVPgJaVe/AOX2QtaAGBGnPO2Cf2muMf/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Digital Electronics - Minimization Question 4 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/EclqyNbN97SZ38IM6/wmuzlZBxcyFihRYN5YD5vfFyDKfUW/U7kPDr3zqC3jAJSIlsBKWD/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Digital Electronics - Minimization Question 4 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/xsyYSjJwQg4Tajfj7/1Y34PRM9cwzhLjuJzqYfAblrHxH7z/eksLJqUuUwevG4LBrIpQ4Q/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Digital Electronics - Minimization Question 4 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/hHiE42dHE3KviDmo9/hDe75OWcyv0GsVwmA4gLlT6dDsdEO/5g8xUL1wvRW8ADuhE19t9a/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Digital Electronics - Minimization Question 4 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-circuits-is-a-realization-of-the-abov-2010-marks-2-vlvxdggr1volbx2o.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QAoKFlfxE1BE2l3T",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logic-families-and-memories",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The $$TTL$$ circuit shown in the figure is fed with the waveform $$X$$ (also shown). All gates have equal propagation delay of $$10$$ $$ns.$$ The output $$Y$$ of the circuit is\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/K8Tk2cBkPWwbALdUs/snOV20dWcpuB9vKaBF9TVWGnyLl8r/J5OVFm29OVHCwh785sMlK2/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Digital Electronics - Logic Families and Memories Question 2 English 1\"> \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/U8qW0LaitEUYYhTqT/rcW7GvgNsYuizPml1w52dRUC6D3rw/y350zf4SWG1UVvzY8mSm41/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Digital Electronics - Logic Families and Memories Question 2 English 2\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/fugq79CEkg9bgYsEr/sOgIRYeEW2zwlpny36iIAqG60ABTo/QDb3npwX9fGksJNKpy3NiC/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Digital Electronics - Logic Families and Memories Question 2 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/54KpKfNIVCGBJIquo/qZoE27d1kysDrwytT2EiNmVkqyW3N/d342WSjqgnOmwpO4Ycoius/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Digital Electronics - Logic Families and Memories Question 2 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/Q7H6jvJxg9I2bFrMN/EMsQJRRp48gY9hZP3YlWPE0lRDf5J/cqVv2CWtkijDpVunJDghZF/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Digital Electronics - Logic Families and Memories Question 2 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/qCqjKQ7W8MTBK1Wlp/QOVi9AG9zy4pz1R22PMUEdWnrJ6Bn/qquCoty29xppxnOUe8ZWca/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Digital Electronics - Logic Families and Memories Question 2 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-ttl-circuit-shown-in-the-figure-is-fed-with-the-wave-2010-marks-2-qaokflfxe1be2l3t.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ex08Aqob115bFYRj",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "microprocessor",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "When a $$''CALL$$ $$addr'$$ instruction is executed, the $$CPU$$ carries out the following sequential operations internally.\n<p><b>Note:</b>\n<br>$$(R)$$ means content of register $$R$$\n<br>$$\\left( {\\left( R \\right)} \\right)$$ means content of memory locating pointed by $$R$$\n<br>$$PC$$ means Program Counter\n<br>$$SP$$ means Stack Pointer</p>\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\eqalign{\n  &amp; \\left( {SP} \\right)\\,\\,\\,\\,\\,\\,\\,incremented  \\cr \n  &amp; \\left( {PC} \\right)\\,\\,\\,\\,\\,\\, \\leftarrow \\left( {Addr} \\right)  \\cr \n  &amp; \\left( {\\left( {SP} \\right)} \\right) \\leftarrow \\left( {PC} \\right) \\cr} $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\eqalign{\n  &amp; \\left( {PC} \\right)\\,\\,\\,\\,\\,\\, \\leftarrow \\left( {Addr} \\right)  \\cr \n  &amp; \\left( {\\left( {SP} \\right)} \\right) \\leftarrow \\left( {PC} \\right)  \\cr \n  &amp; \\left( {SP} \\right)\\,\\,\\,\\,\\,\\,\\,incremented \\cr} $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\eqalign{\n  &amp; \\left( {PC} \\right)\\,\\,\\,\\,\\,\\, \\leftarrow \\left( {Addr} \\right)  \\cr \n  &amp; \\left( {SP} \\right)\\,\\,\\,\\,\\,\\,\\,incremented  \\cr \n  &amp; \\left( {\\left( {SP} \\right)} \\right) \\leftarrow \\left( {PC} \\right) \\cr} $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\eqalign{\n  &amp; \\left( {\\left( {SP} \\right)} \\right) \\leftarrow \\left( {PC} \\right)  \\cr \n  &amp; \\left( {SP} \\right)\\,\\,\\,\\,\\,\\,\\,incremented  \\cr \n  &amp; \\left( {PC} \\right)\\,\\,\\,\\,\\,\\, \\leftarrow \\left( {Addr} \\right) \\cr} $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "when-a-call-addr-instruction-is-executed-the-c-2010-marks-2-ex08aqob115bfyrj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                }
+            ],
+            "title": "Digital Electronics"
+        },
+        {
+            "_id": "Electric Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a89890d8fddd",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the electrical circuit of figure (b) is an equivalent of the coupled tank system of\nfigure (a), then\n<img alt=\"GATE EE 2010 Electric Circuits - Network Elements Question 46 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/a4ab24d867a732e7d16454cc703b8dd51290184469f306b4ce06a0a7e4f05064.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "A, B are resistances and C, D capacitances"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "A, C are resistances and B, D capacitances"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "A, B are capacitances and C, D resistances"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "A, C are capacitances and B, D resistances"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-electrical-circuit-of-figure-b-is-an-equivalent-of-th-gate-ee-2010-marks-1-5a89890d8fddd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a89b129a661b",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the 12 \u03a9 resistor draws a current of 1A as shown in the figure, the value of\nresistance R is\n<img alt=\"GATE EE 2010 Electric Circuits - Network Elements Question 38 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/e0a3ac55e411d4534397de06ca3c30139b71547180f99d76f74ed13e3c33c8bf.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "4"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "6"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "8"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "18"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-12-resistor-draws-a-current-of-1a-as-shown-in-the-fig-gate-ee-2010-marks-2-5a89b129a661b.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8bccb087c2c",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transient-response",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The switch in the circuit has been closed for a long time. It is opened at t = 0. At\nt = 0<sup>+</sup>, the current through the 1\u03bcF capacitor is\n<img alt=\"GATE EE 2010 Electric Circuits - Transient Response Question 30 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/61806131579ad1c2c30cff4834622d578ddf9ba0f7ed3d3693c12ce8fb3ae200.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0 A"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1 A"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1.25 A"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "5 A"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-switch-in-the-circuit-has-been-closed-for-a-long-time-it-gate-ee-2010-marks-1-5a8bccb087c2c.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8d6b51c3d71",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "two-port-networks",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The two-port network P shown in the figure has ports 1 and 2, denoted by\nterminals (a, b) and (c, d), respectively. It has an impedance matrix Z with\nparameters denoted by z<sub>ij</sub>. A 1 \u03a9 resistor is connected in series with the network at\nport 1 as shown in the figure. The impedance matrix of the modified two-port\nnetwork (shown as a dashed box) is\n<img alt=\"GATE EE 2010 Electric Circuits - Two Port Networks Question 11 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/2720b4a981a84ee71c52f9fe38ab49e80613ecdb817ed8d91feec49151b74c79.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\begin{pmatrix}z_{11}+1&amp;z_{12}+1\\\\z_{21}&amp;z_{22}+1\\end{pmatrix}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\begin{pmatrix}z_{11}+1&amp;z_{12}\\\\z_{21}&amp;z_{22}+1\\end{pmatrix}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\begin{pmatrix}z_{11}+1&amp;z_{12}\\\\z_{21}&amp;z_{22}\\end{pmatrix}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\begin{pmatrix}z_{11}+1&amp;z_{12}\\\\z_{21}+1&amp;z_{22}\\end{pmatrix}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-two-port-network-p-shown-in-the-figure-has-ports-1-and-2-gate-ee-2010-marks-2-5a8d6b51c3d71.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a89858dae3a0",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electric-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "As shown in the figure, a 1 \u03a9 resistance is connected across a source that\nhas a load line v + i = 100. The current through the resistance is\n<img alt=\"GATE EE 2010 Electric Circuits - Network Elements Question 47 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/6ff2d1be98241072415d3de92deb9ade809db13985d2e958772460d74c71c580.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "25 A"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "50 A"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "100 A"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "200 A"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "as-shown-in-the-figure-a-1-resistance-is-connected-across-a-gate-ee-2010-marks-1-5a89858dae3a0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                }
+            ],
+            "title": "Electric Circuits"
+        },
+        {
+            "_id": "Electrical and Electronics Measurement",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "POA2gjtIepMJKvGB",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-indicating-instruments",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An ammeter has a current range of $$0$$-$$5A,$$ and its internal resistance is $$0.2\\Omega $$. In order to change the range to $$0$$-$$25$$ $$A$$ we need to add a resistance of ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.8\\,\\Omega $$ in series with the meter "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.0\\,\\Omega $$ in series with the meter."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.04\\,\\Omega $$ in parallel with the meter"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.05\\,\\Omega $$ in parallel with the meter "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-ammeter-has-a-current-range-of-0-5a-and-its-internal-resi-gate-ee-2010-marks-1-poa2gjtiepmjkvgb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "40z5qW7IdO4YDRVc",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "measurement-of-resistance-and-ac-bridges",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Maxwell's bridge shown in the fig. is at balance, the parameters of the inductive coil are \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/8gXEsVsWeK13SJhxD/ARNciLmAzSDuwMrbX6R4XcVVkJhhy/LzgnUo9gkM9CJmBaxpqo0B/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Electrical and Electronics Measurement - Measurement of Resistance and A.C Bridges Question 7 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$R = {{{R_2}{R_3}} \\over {{R_4}}}\\,\\,\\,\\,L = {C_4}{R_2}{R_3}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$L = {{{R_2}{R_3}} \\over {{R_4}}}\\,\\,\\,\\,R = {C_4}{R_2}{R_3}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$R = {{{R_4}} \\over {{R_2}{R_3}}}\\,\\,\\,\\,L = {1 \\over {{C_4}{R_2}{R_3}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$L = {{{R_4}} \\over {{R_2}{R_3}}}\\,\\,\\,\\,R = {1 \\over {{C_4}{R_2}{R_3}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-maxwells-bridge-shown-in-the-fig-is-at-balance-the-param-gate-ee-2010-marks-2-40z5qw7ido4ydrvc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WsMhc7LwAEocaONv",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-and-electronics-measurement",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "measurement-of-energy-and-power",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A wattmeter is connected as shown in the fig. the wattmeter reads \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/LSx1yZHWVSU1eiNjF/nVrYhiQ0UVnAUV9j6qWrpDpU2G1Zd/FCLUtsuA4yUkl3bygS4QZy/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Electrical and Electronics Measurement - Measurement of Energy and Power Question 23 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "zero always "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Total power consumed by $${Z_1}$$ &amp; $${Z_2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Power consumed by $${Z_1}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Power consumed by $${Z_2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-wattmeter-is-connected-as-shown-in-the-fig-the-wattmeter-r-gate-ee-2010-marks-1-wsmhc7lwaeocaonv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                }
+            ],
+            "title": "Electrical and Electronics Measurement"
+        },
+        {
+            "_id": "Electrical Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RSybASiaY5Km5Zhl",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$50$$ $$Hz$$ synchronous generator is initially connected to a long lossless transmission line which is open circuited at the receiving end. With the field voltage held constant, the generator is disconnected from the transmission line. Which of the following may be said about the steady state terminal voltage and field current of the generator?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The magnitude of terminal voltages decreases, and the field current does not change. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The magnitude of terminal voltage increases, and the field current dose not change."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The magnitude of terminal voltages decreases, and the field current increases. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The magnitude of terminal voltage does not change, and the field current decreases."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-50-hz-synchronous-generator-is-initially-connected-2010-marks-2-rsybasiay5km5zhl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PWp0pvXIf6rp5m2U",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronous-machines",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A separately excited $$dc$$ machine is coupled to a $$50Hz,$$ three-phase, 4-pole induction machine as shown in the figure. The dc machine is energized first and the machines rotate at $$1600$$ $$rpm.$$ Subsequently the induction machine is also connected to a $$50Hz,$$ three-phase source, the phase sequence being consistent with the direction of rotation. In steady state\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/ASgxIRN1wrh5xqLo3/hZsZo4XhDhdWxKjiQolVOs8t9zGb3/Nt40Nyl9p4DHbk3UbVuTZI/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Electrical Machines - Synchronous Machines Question 27 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "both machine act as generators "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the $$dc$$ machine acts as a generator, and the induction machine acts as a motor "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the $$dc$$ machine acts as a motor, and the induction  machine acts as a generator "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "both machines act as motors "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-separately-excited-dc-machine-is-coupled-to-a-50hz-2010-marks-2-pwp0pvxif6rp5m2u.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a988ef6a7017",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A separately excited DC motor runs at 1500 rpm under no-load with 200 V applied\nto the armature. The field voltage is maintained at its rated value. The speed of\nthe motor, when it delivers a torque of 5 Nm, is 1400 rpm as shown in the figure.\nThe rotational losses and armature reaction are neglected.\n<img alt=\"GATE EE 2010 Electrical Machines - D.C Machines Question 40 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/92ad005bd57ad1808c69385358f5a0e55deccb7a6dc57aba3c1c0729509ea326.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">\nFor the motor to deliver a torque of 2.5 Nm at 1400 rpm the armature voltage to\nbe applied is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "125.5 V"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "193.3 V"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "200 V"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "241.7 V"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-separately-excited-dc-motor-runs-at-1500-rpm-under-no-load-gate-ee-2010-marks-2-5a988ef6a7017.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a988dc57186a",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dc-machines",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A separately excited DC motor runs at 1500 rpm under no-load with 200 V applied\nto the armature. The field voltage is maintained at its rated value. The speed of\nthe motor, when it delivers a torque of 5 Nm, is 1400 rpm as shown in the figure.\nThe rotational losses and armature reaction are neglected.\n<img alt=\"GATE EE 2010 Electrical Machines - D.C Machines Question 41 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/92ad005bd57ad1808c69385358f5a0e55deccb7a6dc57aba3c1c0729509ea326.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">\nThe armature resistance of the motor is,",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2\\;\\Omega$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3.4\\;\\Omega$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$4.4\\;\\Omega$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$7.7\\;\\Omega$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-separately-excited-dc-motor-runs-at-1500-rpm-under-no-load-gate-ee-2010-marks-2-5a988dc57186a.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a9eacb89d3ac",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single-phase transformer has a turns ratio of 1:2, and is connected to a purely\nresistive load as shown in the figure. The magnetizing current drawn is 1 A, and\nthe secondary current is 1 A. If core losses and leakage reactances are neglected,\nthe primary current is\n<img alt=\"GATE EE 2010 Electrical Machines - Transformers Question 84 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/1c45d52e1d5554524cc5a067bf0dca258751a23c142035156dddb0af1f3327f8.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1.41 A"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2 A"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2.24 A"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "3 A"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-single-phase-transformer-has-a-turns-ratio-of-12-and-is-co-gate-ee-2010-marks-1-5a9eacb89d3ac.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa034f573047",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transformers",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A balanced star-connected and purely resistive load is connected at the secondary\nof a star-delta transformer as shown in the figure. The line-to-line voltage rating of\nthe transformer is 110 V/220 V. Neglecting the non-idealities of the transformer, the\nimpedance 'Z' of the equivalent star-connected load, referred to the primary side of\nthe transformer, is\n<img alt=\"GATE EE 2010 Electrical Machines - Transformers Question 58 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/07216ea2bb4495b59e98899d60125946086e5629e0213e8031ff24025e84f40c.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "(3 + j0) \u03a9"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "(0.866 \u2212 j0.5) \u03a9"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "(0.866 + j0.5) \u03a9"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "(1 + j0) \u03a9"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-balanced-star-connected-and-purely-resistive-load-is-conne-gate-ee-2010-marks-2-5aa034f573047.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa3ee417499a",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electrical-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "induction-machines",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A balanced three-phase voltage is applied to a star-connected induction motor, the\nphase to neutral voltage being V. The stator resistance, rotor resistance referred\nto the stator, stator leakage reactance, rotor leakage reactance referred to the\nstator, and the magnetizing reactance are denoted by $$r_s,\\;r_r,\\;r_s,\\;r_r\\;and\\;X_m$$,\nrespectively. The magnitude of the starting current of the motor is given by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\frac V{\\sqrt{\\left(r_s+r_r\\right)^2+\\left(x_s+x_r\\right)^2}}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\frac V{\\sqrt{r_s^2+\\left(r_s+X_m\\right)^2}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\frac V{\\sqrt{\\left(r_s+r_r\\right)^2+\\left(X_m+x_r\\right)^2}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\frac V{\\sqrt{r_s^2+\\left(X_m+x_r\\right)^2}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-balanced-three-phase-voltage-is-applied-to-a-star-connecte-gate-ee-2010-marks-1-5aa3ee417499a.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                }
+            ],
+            "title": "Electrical Machines"
+        },
+        {
+            "_id": "Electromagnetic Fields",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a8d96da6d185",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electromagnetic-fields",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "electrostatics",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Divergence of the three-dimentional radial vector field $$\\overrightarrow F$$ is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "3"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1/r"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\widehat i+\\widehat j+\\widehat k$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3\\left(\\widehat i+\\widehat j+\\widehat k\\right)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "divergence-of-the-three-dimentional-radial-vector-field-over-gate-ee-2010-marks-1-5a8d96da6d185.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                }
+            ],
+            "title": "Electromagnetic Fields"
+        },
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qUPmhDn2OkmxyDfl",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given $$f\\left( t \\right) = {L^{ - 1}}\\left[ {{{3s + 1} \\over {{s^3} + 4{s^2} + \\left( {k - 3} \\right)}}} \\right].$$ \n<br>$$\\mathop {Lt}\\limits_{t \\to  \\propto } \\,\\,f\\left( t \\right) = 1$$ then value of $$k$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-fleft-t-right-l-1left-3s-1-over-s3-4s2-left-k-3-right-gate-ee-2010-marks-1-qupmhdn2okmxydfl.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TkMVi4Xgf71ttRms",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the set of equations \n$$${x_1} + 2{x_2} + {x_3} + 4{x_4} = 2,$$$\n$$$3{x_1} + 6{x_2} + 3{x_3} + 12{x_4} = 6.$$$\n<br>The following statement is true ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "only the trivial solution $${x_1} = {x_2} = {x_3} = {x_4} = 0$$ exist"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "there are no solutions "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "a unique non-trivial solution exist "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "multiple non-trivial solution exist"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-set-of-equations-x1-2x2-x3-4x4-23x1-6x2-3x3-12x4-6th-gate-ee-2010-marks-2-tkmvi4xgf71ttrms.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ws6kB8Ok2fTcVHDc",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An eigen vector of $$p = \\left[ {\\matrix{\n   1 &amp; 1 &amp; 0  \\cr \n   0 &amp; 2 &amp; 2  \\cr \n   0 &amp; 0 &amp; 3  \\cr \n\n } } \\right]$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\left[ {\\matrix{\n   { - 1} &amp; 1 &amp; 1  \\cr \n\n } } \\right]^T}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\left[ {\\matrix{\n   {  1} &amp; 2 &amp; 1  \\cr \n\n } } \\right]^T}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\left[ {\\matrix{\n   {  1} &amp; - 1 &amp; 2  \\cr \n\n } } \\right]^T}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\left[ {\\matrix{\n   {  2} &amp; 1 &amp; -1  \\cr \n\n } } \\right]^T}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-eigen-vector-of-p-left-matrix-1-1-0-cr-0-2-2-cr-0-0-3-cr-gate-ee-2010-marks-1-ws6kb8ok2ftcvhdc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Y7BSycCir7vLt4NJ",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The  value of the quantity, where $$P = \\int\\limits_0^1 {x{e^x}\\,dx\\,\\,\\,} $$  is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$e$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1/e$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-the-quantity-where-p-intlimits01-xexdx-is-gate-ee-2010-marks-2-y7bsyccir7vlt4nj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2CZyZlRuPynG8cnu",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "At $$t=0,$$ the function $$f\\left( t \\right) = {{\\sin t} \\over t}\\,\\,$$ has ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a minimum "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a discontinuity"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "a point of inflection "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a maximum "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "at-t0-the-function-fleft-t-right-sin-t-over-t-has-gate-ee-2010-marks-1-2czyzlrupyng8cnu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ID7kGp0KJeFarR35",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Divergence of the $$3$$ $$-$$ dimensional radial vector field $$\\overrightarrow r $$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over r}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\widehat i + \\widehat j + \\widehat k$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3\\left( {\\widehat i + \\widehat j + \\widehat k} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "divergence-of-the-3-dimensional-radial-vector-field-overrigh-gate-ee-2010-marks-1-id7kgp0kjefarr35.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "03NY6usCgytG52kD",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A box contains $$4$$ white balls and $$3$$ red balls. In succession, two balls are randomly selected and removed from the box. Given that first removed ball is white, the probability that the $$2$$<sup>nd</sup> removed ball is red is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1/3$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3/7$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1/2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4/7$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-box-contains-4-white-balls-and-3-red-balls-in-succession-t-gate-ee-2010-marks-1-03ny6uscgytg52kd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "siaPdYn1lZQmypLO",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the differential  equation  $${{{d^2}x} \\over {d{t^2}}} + 6{{dx} \\over {dt}} + 8x = 0$$ with initial conditions $$x(0)=1$$ and $${\\left( {{{dx} \\over {dt}}} \\right)_{t = 0}}$$ $$=0$$ the solution",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$x\\left( t \\right) = 2{e^{ - 6t}} - {e^{ - 2t}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$x\\left( t \\right) = 2{e^{ - 2t}} - {e^{ - 4t}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$x\\left( t \\right) =  - {e^{ - 6t}} - 2{e^{ - 4t}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$x\\left( t \\right) =  - {e^{ - 2t}} - 2{e^{ - 4t}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-differential-equation-d2x-over-dt2-6dx-over-dt-8x-0-gate-ee-2010-marks-2-siapdyn1lzqmyplo.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Power Electronics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NYi1zVqaa5SJVEkj",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "power-semiconductor-devices",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Figure shows a composite switch consisting of a power transistor $$(BJT)$$ in series with a diode. Assuming that the transistor switch and the diode are ideal, the $$I$$-$$V$$ characteristic of the composite switch is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/0inilTLfSvcmU2mUC/ZpqrEuJFqVAv1yYfdiNxMGTV48ONr/wheyxdfEjgjOYVewTRG874/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power Electronics - Power Semiconductor Devices Question 19 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/sGWzkrzjeMfOQ3UXO/aVIb0fJLwKYmfx7b0GtJ6ajAVEnWn/I9ySTWmRE3OpnhQ5EWajvz/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power Electronics - Power Semiconductor Devices Question 19 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/hF9INAYbpJtKOu8fN/9eMyuCFmzjZ91RrA71KCZSf0f9SaD/KipMq2iFO1E4h4poNEzgoF/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power Electronics - Power Semiconductor Devices Question 19 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/6OBRsZbaw5asRJ6H5/u0kGazQcUw6t4Tjhi8ozSMPNfLTrg/Pdw1RSRejuP6uZ9Er8Mg25/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power Electronics - Power Semiconductor Devices Question 19 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/ogyhLJk81DwiGgXtE/rTF0vuInPDVJTXveT4fyDdEH4vSJ1/aJyTaFj7KK1Gsf6YBkYB95/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power Electronics - Power Semiconductor Devices Question 19 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "figure-shows-a-composite-switch-consisting-of-a-power-transi-gate-ee-2010-marks-1-nyi1zvqaa5sjvekj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WC0thGx4Ivd6TUOF",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "single-and-three-phase-rectifier",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The fully controlled thyristor converter in the figure is fed from a single-phase source. When the firing angle is $${0^ \\circ }$$, the $$dc$$ output voltage of the converter is $$300V.$$ What will be the output voltage for a firing angle of $${60^ \\circ }$$, assuming continuous conduction? \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/YoHJOUzxee1kE6Eck/3IfMd2QbqMSYi5i9yXKMDkTZclpwo/mNiV9Jrs6UY3HanJmw1Bmb/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power Electronics - Single and Three Phase Rectifier Question 48 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$150V$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$210V$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$300V$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$100\\pi V$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-fully-controlled-thyristor-converter-in-the-figure-is-fe-gate-ee-2010-marks-1-wc0thgx4ivd6tuof.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "z75PpX2wyWJaMfjq",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "choppers-and-commutation-techniques",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The power electronic converter shown in the figure has a single-pole double-throw switch. The pole $$P$$ of the switch is connected alternately to throws $$A$$ and $$B.$$ The converter shown is a\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/7Z6PWvAIJJ3jXsvCC/mUfQR6kDFCcCK47MPgbMba8nBY3Ih/hEM8VjesPh2TZW77ZbjgmB/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power Electronics - Choppers and Commutation Techniques Question 39 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "step-down chopper (buck converter)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "half-wave rectifier "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "step-up chopper (boost converter) "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "full-wave rectifier "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-power-electronic-converter-shown-in-the-figure-has-a-sin-gate-ee-2010-marks-1-z75ppx2wywjamfjq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6TSo1T2ykLrgglXs",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "choppers-and-commutation-techniques",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The <b>L-C</b> circuit shown in the figure has an inductance $$L=1mH$$ and a capacitance $$C = 10\\mu F.$$\n<p>The initial current through the inductor is zero, while the initial capacitor voltage is $$100$$ $$V.$$ The switch is closed at $$t = 0.$$ The current $$i$$ through the circuit is: </p>\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/0sRN3VTS4FEp7PK6V/BVLm7PELceE5dONkWAeZQH1kanNq8/6WEvwgU6J0VjgjlsVNy04m/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power Electronics - Choppers and Commutation Techniques Question 29 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$5cos\\left( {5 \\times {{10}^3}t} \\right)A$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$5\\sin \\left( {{{10}^4}t} \\right)A$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$10cos\\left( {5 \\times {{10}^3}t} \\right)A$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$10\\sin \\left( {{{10}^4}t} \\right)A$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-l-c-circuit-shown-in-the-figure-has-an-inductance-l1mh-a-gate-ee-2010-marks-2-6tso1t2yklrgglxs.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sqDXmtIO7qnP4bYm",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-electronics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "choppers-and-commutation-techniques",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The <b>L-C</b> circuit shown in the figure has an inductance $$L=1mH$$ and a capacitance $$C = 10\\mu F.$$\n<p>The $$L$$-$$C$$ circuit $$Q.13$$ is used to commutate a thyristor, which is initially carrying a current of $$5A$$ as shown in the figure below. The values and initial conditions of $$L$$ and $$C$$ are the same as in $$Q.13.$$ The switch is closed at $$t = 0.$$ If the forward drop is negligible, the time taken for the device to turn off is</p>\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/HJRIkjQUQHazsbFnb/yiXwHMMirKt6NpqdbUTGnYxS8wuxj/k7BHcFpS7z8nosObePWs95/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power Electronics - Choppers and Commutation Techniques Question 28 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$52\\mu s$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$156\\mu s$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$312\\mu s$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$26\\mu s$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-l-c-circuit-shown-in-the-figure-has-an-inductance-l1mh-a-gate-ee-2010-marks-2-sqdxmtio7qnp4bym.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                }
+            ],
+            "title": "Power Electronics"
+        },
+        {
+            "_id": "Power System Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tWgyg7QW3pnL1wtZ",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a three-phase, $$50Hz,$$ $$11$$ $$kV$$ distribution system. Each of the conductors is suspended by an insulator string having two identical porcelain insulators. The self capacitance of the insulator is $$5$$ times the shunt capacitance between the link an the ground, as shown in the figure. The voltage across the two insulators are \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/SC7jA3lA2Rvq240eb/U4jplCY4hspRjiUdrLANtj6dtAxhm/HJkBAbz64VytHpdObBb1kZ/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power System Analysis - Parameters and Performance of Transmission Lines Question 31 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${e_1} = 3.74\\,kV,\\,{e_2} = 2.61\\,kV$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${e_1} = 3.46\\,kV,\\,{e_2} = 2.89\\,kV$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${e_1} = 6.0\\,kV,\\,{e_2} = 4.23\\,kV$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${e_1} = 5.5\\,kV,\\,{e_2} = 5.5\\,kV$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-three-phase-50hz-11-kv-distribution-system-each-o-gate-ee-2010-marks-2-twgyg7qw3pnl1wtz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4upKu5fNotR9H8ZX",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "symmetrical-components-and-symmetrical-and-unsymmetrical-faults",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The zero-sequence circuit of the three phase transformer shown in the figure is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/bSm6wFelytCDAO7ox/EArNYdQ9tfHhjwXSCKJ8Yz2THKtCM/GEkdqATGxxkRTXdL2GUPdx/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power System Analysis - Symmetrical Components and Symmetrical and Unsymmetrical Faults Question 15 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/hSLw9CnQok1rOIHvc/A2CsWBvxsHZ58ZgJ8PZVJmSCDIREp/Ateyj8muKXMTIW2QPN3fTy/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power System Analysis - Symmetrical Components and Symmetrical and Unsymmetrical Faults Question 15 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/orH67xpnpr30ZLlV6/yx4MdHpr7fb55i4k40oLuUG5TLa8K/aY1oziBMLeP6NhZDRT7XXv/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power System Analysis - Symmetrical Components and Symmetrical and Unsymmetrical Faults Question 15 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/UH6LTi4EDMEEXw1cF/Xg2iQOXZEOVSD4TUeiToEk7gJ7GnJ/KwGKcXmnVpw1eqkdPUaCxn/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power System Analysis - Symmetrical Components and Symmetrical and Unsymmetrical Faults Question 15 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/qcTalKlGyDmbWTJJV/G3CfhsunDgzJ83NLn4WvgN2eVOS5q/y8v15Ajyhf8JZ3r2O6Zkk8/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power System Analysis - Symmetrical Components and Symmetrical and Unsymmetrical Faults Question 15 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-zero-sequence-circuit-of-the-three-phase-transformer-sho-gate-ee-2010-marks-2-4upku5fnotr9h8zx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "m7LN65bIjN14oaMU",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "circuit-breaker",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A three-phase, $$33$$ kV oil circuit breaker is rated $$1200$$ A, $$2000$$ MVA, $$3$$s. The symmetrical breaking current is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1200$$ A "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3600$$ A "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$35$$ kA"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$104.8$$ kA"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-three-phase-33-kv-oil-circuit-breaker-is-rated-1200-a-2000-gate-ee-2010-marks-2-m7ln65bijn14oamu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WJtRN2Y7zP3SdNqA",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "switch-gear-and-protection",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a stator winding of an alternator with an internal high resistance ground fault. The currents under the fault condition are as shown in the figure. The winding is protected using a differential current scheme with current transformers of ratio $$400/5$$ $$A$$ as shown. The current through the operating coil is \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/QeIeRO2Si0bmwsOSu/KvbMbTFdJAfp4O8CQHTPDg8AOx3Ab/1saKMMHTNUuTEa4NjC5lfC/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power System Analysis - Switch Gear and Protection Question 8 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.1875$$ $$A$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.2$$ $$A$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.375$$ $$A$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$60$$ $$kA$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-stator-winding-of-an-alternator-with-an-internal-gate-ee-2010-marks-2-wjtrn2y7zp3sdnqa.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JT4Y536KG4k8aqYV",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "high-voltage-dc-transmission",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Power is transferred from system $$A$$ to system $$B$$ by an $$HVDC$$ link as shown in the figure. If the voltage $${V_{AB}}$$ and $${V_{CD}}$$   are as indicated in the figure, and 1 &gt; 0, then \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/bhul9qysdOwaTEBzZ/1Mg17vYyWdbmr6hc9pBXBDve0MTLY/8fMXSCx6pJDS2CmQnC0HB3/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power System Analysis - High Voltage Dc Transmission Question 2 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${V_{AB}}\\, &lt; \\,0,\\,\\,{V_{CD}}\\, &lt; 0,\\,\\,{V_{AB}}\\, &gt; \\,{V_{CD}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${V_{AB}}\\, &gt; \\,0,\\,\\,{V_{CD}}\\, &gt; 0,\\,\\,{V_{AB}}\\, &lt; \\,{V_{CD}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${V_{AB}}\\, &gt; \\,0,\\,\\,{V_{CD}}\\, &gt; 0,\\,\\,{V_{AB}}\\, &gt; \\,{V_{CD}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${V_{AB}}\\, &gt; \\,0,\\,\\,{V_{CD}}\\, &lt; 0,\\,\\,{V_{AB}}\\, &gt; \\,{V_{CD}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "power-is-transferred-from-system-a-to-system-b-by-an-hvdc-li-gate-ee-2010-marks-1-jt4y536kg4k8aqyv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uWtauyakHFqK5xeX",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "per-unit-system",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the power system shown in the figure below, the specifications of the components are the following:\n<br>$$G1: 25$$ $$kV,$$ $$100$$ $$MVA,$$ $$X=9$$%\n<br>$$G2: 25$$ $$kV,$$ $$100$$ $$MVA,$$ $$X=9$$%\n<br>$$T1: 25$$ $$kV/220$$ $$kV,$$ $$90$$ $$MVA,$$ $$X=12$$%\n<br>$$T2: 220$$ $$kV/ 25$$ $$kV,$$ $$90$$ $$MVA,$$ $$X=12$$%\n<br>$$Line$$ $$1: 220$$ $$kV,$$ $$X= 150$$ $$ohms$$ \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/jsZZQj7JG7UcvRxMB/B2sCBpcEzD53TrAmLU6sTBUFKqIvq/gxVa2TLAShD9EjXZUOBa5A/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power System Analysis - Per Unit System Question 6 English\"> \n<p>Choose $$25$$ $$kV$$ as the base voltage at the generator $$G1,$$ and $$200$$ $$MVA$$ as the $$MVA$$ base. The impedance diagram is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/58SCa0xf5bUXdSQTl/gVSCSx6hr27BngoTfOVaOY3kzHjYV/LJEfrqeoAJY0iBnFLKJ0AP/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power System Analysis - Per Unit System Question 6 English Option 1\"> "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/Ya1tb0RBcWmZAlaRn/hsDl55Wdr8swTcNydokJCzXwEuQHy/qNx9FE6XDYSJG0YisOfNY5/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power System Analysis - Per Unit System Question 6 English Option 2\"> "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/DmicN5UrXjCjEipMU/gtqO5Lr8HUWy3STfqPeeXCuhCgEcX/Djh0JusMFkFgjy4cnFIZgn/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power System Analysis - Per Unit System Question 6 English Option 3\"> "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/drp3JTuqKtwUMVFQF/G5JX64ts8Of7v40Wv7FVM3HKTreur/v4a1BzceUhgSaXbn30y9L5/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power System Analysis - Per Unit System Question 6 English Option 4\"> "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-power-system-shown-in-the-figure-below-the-specifica-gate-ee-2010-marks-2-uwtauyakhfqk5xex.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aOcJ71SXzh4ugU7e",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$50$$ $$Hz$$ synchronous generator is initially connected to a long lossless transmission line which is open circuited at the receiving end. With the field voltage held constant, the generator is disconnected from the transmission line. Which of the following may be said about the steady state terminal voltage and field current of the generator?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The magnitude of terminal voltage decreases, and the field current does not change."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The magnitude of terminal voltage increases, and the field current does not change."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The magnitude of terminal voltage increases, and the field current increases."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The magnitude of terminal voltage does not change, and the field current decreases."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-50-hz-synchronous-generator-is-initially-connected-to-a-lo-gate-ee-2010-marks-2-aocj71sxzh4ugu7e.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tUu2xF4zbZV7aE1L",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a step voltage wave of magnitude $$1$$ pu travelling along a loss less transmission line that terminates in a reactor. The voltage magnitude across the reactor at the instant the travelling wave reaches the reactor is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/3ui4FB8Av7XYi0KhE/k8D4pg1hcH8EbPH0Ad5N6hro7FD1v/2BmfwQ2bA6i5dhluuIfeb0/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power System Analysis - Parameters and Performance of Transmission Lines Question 69 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-1$$ pu"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$ pu"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2$$ pu"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3$$ pu"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-step-voltage-wave-of-magnitude-1-pu-travelling-al-gate-ee-2010-marks-1-tuu2xf4zbzv7ae1l.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xzxIUzJGWcpdgaHp",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider two buses connected by an impedance of $$\\left( {0 + j5} \\right)\\Omega .$$ The bus $$1$$ voltage is $$100$$$$\\angle {30^ \\circ }\\,\\,\\,V,$$ and bus $$2$$ voltage is $$100\\angle {0^ \\circ }\\,\\,\\,V,$$ The real and reactive power supplied by bus $$1,$$ respectively, are ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1000$$ $$W,$$ $$268$$ VAR"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-1000$$ $$W,$$ $$-134$$ VAR"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$276.9$$ $$W,$$ $$-56.7$$ VAR  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$-276.9$$ $$W,$$ $$56.7$$ VAR"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-two-buses-connected-by-an-impedance-of-left-0-j5-ri-gate-ee-2010-marks-1-xzxiuzjgwcpdgahp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8Z3tXNbhjttxTVQG",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "power-system-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parameters-and-performance-of-transmission-lines",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a three-core, three phase, $$50$$ $$Hz$$, $$11$$ $$kV$$ cable whose conductors are denoted as $$R, Y$$ and $$B$$ in the figure. The inter-phase capacitance $$\\left( {{C_1}} \\right)$$ between each pair of conductors is $$0.2$$ $$\\mu F$$ and the capacitance between each line conductor and the sheath is $$0.4$$ $$\\mu F$$ . The per-phase charging current is\n <img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/X2lDK6gh4BvOgNHvG/5iJc6iZkLRpb9E12yN9u4UPXpZF3s/7QvJrU7itLIeXorjQK6tUd/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE EE 2010 Power System Analysis - Parameters and Performance of Transmission Lines Question 32 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2.0$$ $$A$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2.4$$ $$A$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2.7$$ $$A$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3.5$$ $$A$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-three-core-three-phase-50-hz-11-kv-cable-whose-co-gate-ee-2010-marks-2-8z3txnbhjttxtvqg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                }
+            ],
+            "title": "Power System Analysis"
+        },
+        {
+            "_id": "Signals and Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a91632b77500",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-time-invariant-systems",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the system $$\\frac2{\\left(s+1\\right)}$$,\nthe approximate time taken for a step response to reach 98%\nof its final value is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1 s"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2 s"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "4 s"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "8 s"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-system-frac2lefts1rightthe-approximate-time-taken-fo-gate-ee-2010-marks-1-5a91632b77500.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a91a8aa6090e",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-time-invariant-systems",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given the finite length input x[n] and the corresponding finite length output y[n]\nof an LTI system as shown below, the impulse response h[n] of the system is\n<img alt=\"GATE EE 2010 Signals and Systems - Linear Time Invariant Systems Question 35 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/6711dea7ecd28aad2d4f2fec873fc50c389500cfefdff07078bb91aba8feb9a5.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\begin{array}{l}h\\left[n\\right]=\\left\\{1,\\;0,\\;0,\\;1\\right\\}\\\\\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\uparrow\\end{array}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\begin{array}{l}h\\left[n\\right]=\\left\\{1,\\;0,\\;1\\right\\}\\\\\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\uparrow\\end{array}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\begin{array}{l}h\\left[n\\right]=\\left\\{1,\\;1,\\;1,\\;1\\right\\}\\\\\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\uparrow\\end{array}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\begin{array}{l}h\\left[n\\right]=\\left\\{1,\\;1,\\;1\\right\\}\\\\\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\;\\uparrow\\end{array}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-the-finite-length-input-xn-and-the-corresponding-finit-gate-ee-2010-marks-2-5a91a8aa6090e.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a91653bc3ec7",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-time-invariant-systems",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The system represented by the input-output relationship $$y\\left(t\\right)=\\int_{-\\infty}^{5t}x\\left(\\tau\\right)d\\tau$$, t &gt; 0 is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Linear and causal"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Linear but not causal"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Causal but not linear"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Neither linear nor causal"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-system-represented-by-the-input-output-relationship-ylef-gate-ee-2010-marks-1-5a91653bc3ec7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a930fc4c7073",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-periodic-signal-fourier-series",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The second harmonic component of the periodic waveform given in the figure has\nan amplitude of\n<img alt=\"GATE EE 2010 Signals and Systems - Continuous Time Periodic Signal Fourier Series Question 21 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/db666bab1e55f366f202ac9f2abfb90ad16b1766566bb317d8b021e4afd2524c.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2/\\mathrm\\pi$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\sqrt5$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-second-harmonic-component-of-the-periodic-waveform-given-gate-ee-2010-marks-1-5a930fc4c7073.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a93164405eeb",
+                    "exam": "gate-ee",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-periodic-signal-fourier-series",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The period of the signal $$x\\left(t\\right)=8\\sin\\left(0.8\\mathrm{\u03c0t}+\\frac{\\mathrm\\pi}4\\right)$$ is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.4\\;\\mathrm\\pi\\;\\mathrm s$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.8\\;\\mathrm\\pi\\;\\mathrm s$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1.25 s"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2.5 s"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-period-of-the-signal-xlefttright8sinleft08mathrmtfracmat-gate-ee-2010-marks-1-5a93164405eeb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a9360b2e0ead",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-signal-fourier-transform",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "x(t) is a positive rectangular pulse from t = -1 to t = +1 with unit height as shown\nin the figure. The value of $$\\int_{-\\infty}^\\infty\\left|X\\left(\\omega\\right)\\right|^2d\\omega$$ {where X($$\\mathrm\\omega$$) is the Fourier transform of\nx(t)} is\n<img alt=\"GATE EE 2010 Signals and Systems - Continuous Time Signal Fourier Transform Question 3 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/83a8b081c0be91b54b3438ca1d3cc29ad0b56d8f514027046f0271b786e559d4.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2$$\\mathrm\\pi$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "4"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "4$$\\mathrm\\pi$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "xt-is-a-positive-rectangular-pulse-from-t-1-to-t-1-with-unit-gate-ee-2010-marks-2-5a9360b2e0ead.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a97127a35162",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "miscellaneous",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given f(t) and g(t)as shown below:\n<img alt=\"GATE EE 2010 Signals and Systems - Miscellaneous Question 1 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/c20926a96534ef45bd590d57048857e9f51cf00373cc869f4ed17df314bd780b.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">\nThe Laplace transform of g(t) is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\frac1s\\left(e^{3s}\\;-\\;e^{5s}\\right)$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\frac1s\\left(e^{-5s}\\;-\\;e^{-3s}\\right)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\frac{e^{-3s}}s\\left(1\\;-\\;e^{-2s}\\right)$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\frac1s\\left(e^{5s}\\;-\\;e^{3s}\\right)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-ft-and-gtas-shown-belowthe-laplace-transform-of-gt-is-gate-ee-2010-marks-2-5a97127a35162.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a970fd4af842",
+                    "exam": "gate-ee",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "miscellaneous",
+                    "year": 2010,
+                    "paperTitle": "GATE EE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given f(t) and g(t)as shown below:\n<img alt=\"GATE EE 2010 Signals and Systems - Miscellaneous Question 2 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/c20926a96534ef45bd590d57048857e9f51cf00373cc869f4ed17df314bd780b.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">\ng(t) can be expressed as",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "g(t) = f(2t - 3)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "g(t) = $$f\\left(\\frac t2-3\\right)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "g(t) = $$f\\left(2t-\\frac32\\right)$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "g(t) = $$f\\left(\\frac t2-\\frac32\\right)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-ft-and-gtas-shown-belowgt-can-be-expressed-as-gate-ee-2010-marks-2-5a970fd4af842.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ee-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ee-2010"
+                }
+            ],
+            "title": "Signals and Systems"
+        }
+    ]
+}

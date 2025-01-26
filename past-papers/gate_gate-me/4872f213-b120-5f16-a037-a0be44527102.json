@@ -1,0 +1,2191 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AzNet4rkwYkZ9wwq",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two coins are tossed simultaneously. The probability (upto two decimal points accuracy) of getting at least one head is _________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.75",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-coins-are-tossed-simultaneously-the-probability-upto-two-gate-me-2017-set-2-marks-1-aznet4rkwykz9wwq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zaduAuEaZSdVbbKN",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The determinant of a $$2 \\times 2$$ matrix is $$50.$$ If one eigenvalue of the matrix is $$10,$$ the other eigenvalue is __________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "5 ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-determinant-of-a-2-times-2-matrix-is-50-if-one-eigenvalu-gate-me-2017-set-2-marks-1-zaduaueazsdvbbkn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8keiECgaNqkkGFi4",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the matrix $$A = \\left[ {\\matrix{\n   {50} &amp; {70}  \\cr \n   {70} &amp; {80}  \\cr \n\n } } \\right]$$ whose eigenvectors corresponding to eigen values $${\\lambda _1}$$ and $${\\lambda _2}$$ are $${x_1} = \\left[ {\\matrix{\n   {70}  \\cr \n   {{\\lambda _1} - 50}  \\cr \n\n } } \\right]$$  and $${x_2} = \\left[ {\\matrix{\n   {{\\lambda _2} - 80}  \\cr \n   {70}  \\cr \n\n } } \\right],$$ respectively. The value of $$x_1^T{x_2}$$ is ________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-matrix-a-left-matrix-50-70-cr-70-80-cr-right-wh-gate-me-2017-set-2-marks-2-8keiecganqkkgfi4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JyfZINpa9Qlx4iqc",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The surface integral  $$\\int {\\int\\limits_s {F.ndS} } $$  over the surface $$S$$ of the sphere $${x^2} + {y^2} + {z^2} = 9,$$  where $$\\,F = \\left( {x + y} \\right){\\rm I} + \\left( {x + z} \\right)j + \\left( {y + z} \\right)k\\,\\,$$  and $$n$$ is the unit outward surface normal,  yields ___________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "226.08",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-surface-integral-int-intlimitss-fnds-over-the-surface-s-gate-me-2017-set-2-marks-2-jyfzinpa9qlx4iqc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "O077R502e1bb3eVW",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A simple of $$15$$ data is as follows; $$17,18,17,17,13,18,5,5,6,7,8,9,20,17,3.$$  The mode of the data is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$4$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$13$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$17$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$20$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-simple-of-15-data-is-as-follows-17181717131855678920173-th-gate-me-2017-set-2-marks-1-o077r502e1bb3evw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zWELdjrzsgAD4YOh",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the differential equation $$\\,\\,3y''\\left( x \\right) + 27y\\left( x \\right) = 0\\,\\,$$ with initial conditions $$y\\left( 0 \\right) = 0$$ and $$y'\\left( 0 \\right) = 2000.\\,\\,$$  The value of $$y$$ at $$x=1$$ is __________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "94.08",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-differential-equation-3yleft-x-right-27yleft-x-gate-me-2017-set-2-marks-2-zweldjrzsgad4yoh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wqTmuxUVEXyqhGZ7",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$f\\left( z \\right) = \\left( {{x^2} + a{y^2}} \\right) + ibxy$$ is a complex analytic function of $$z=x+iy,$$ \n<br>where $${\\rm I} = \\sqrt { - 1} ,$$ then",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$a=-1,b=-1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$a=-1, b=2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$a=1, b=2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$a=2, b=2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-fleft-z-right-left-x2-ay2-right-ibxy-is-a-complex-analyti-gate-me-2017-set-2-marks-2-wqtmuxuvexyqhgz7.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Engineering Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "41paMT5XbFuQG5UB",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "engineering-mechanics-static-and-dynamics",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The rod PQ of length L = 2 m, and uniformly distributed mass of M = 10 kg, is released from rest at the position shown in the figure. The ends slide along the frictionless faces OP and OQ. Assume acceleration due to gravity, g = 10 m/s<sup>2</sup> . The mass moment of inertia of the rod about its centre of mass and an axis perpendicular to the plane of the figure is (ML<sup>2</sup> /12). At this instant, the magnitude of angular acceleration (in radian/s<sup>2</sup> ) of the rod is ____________.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/qju4ygh7S2OLqtXUw/oE7qaP2cOCyOREKWXCzlwHamO3GXr/UDCYfRhwNOW99g0gD27lXG/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2017 Set 2 Engineering Mechanics - Engineering Mechanics Static and Dynamics Question 21 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "7.5.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-rod-pq-of-length-l-2-m-and-uniformly-distributed-mass-of-gate-me-2017-set-2-marks-2-41pamt5xbfuqg5ub.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                }
+            ],
+            "title": "Engineering Mechanics"
+        },
+        {
+            "_id": "Fluid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7RoMtkjS7yyBzWVx",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-dynamics",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The arrangement shown in the figure measures the velocity $$V$$ of a gas of density $$1kg/{m^3}$$ flowing through a pipe. The acceleration due to gravity is $$9.81m/{s^2}.$$ If the manometric fluid is water (density $${1000kg/{m^3}}$$ ) and the velocity $$V$$ is $$20 m/s,$$ the differential head $$h$$ (in $$mm$$) between the two arms of the manometer is ______.\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/7QIvUjdVvDSTOnI85/9vbHcCvjs9r6uGbCQ34Y4SU6klMVw/ZQDCAuO7ko4TJy9uNbGVX2/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2017 Set 2 Fluid Mechanics - Fluid Dynamics Question 28 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "19  to 21",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-arrangement-shown-in-the-figure-measures-the-velocity-v-gate-me-2017-set-2-marks-2-7romtkjs7yybzwvx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0BZurUtcE03NOPSv",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "laminar-flow",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a laminar flow at zero over a flat plate . The shear stress at the wall is denoted by $${\\tau _w}.$$ The axial positions $${x_1}$$ and $${x_2}$$ on the plate are measured from the leading edge in the direction of flow. If $${x_2} &gt; {x_1},$$ then ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\tau _w}\\left| {_{{x_1}} = {\\tau _w}} \\right|{}_{{x_2}} = 0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\tau _w}\\left| {_{{x_1}} = {\\tau _w}} \\right|{}_{{x_2}} \\ne 0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\tau _w}\\left| {_{{x_1}} &gt; {\\tau _w}} \\right|{}_{{x_2}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\tau _w}\\left| {_{{x_1}} &lt; {\\tau _w}} \\right|{}_{{x_2}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-laminar-flow-at-zero-over-a-flat-plate-the-shear-gate-me-2017-set-2-marks-1-0bzurutce03nopsv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mVeQbZIJE5wQWb7h",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-dynamics",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$60$$ $$mm$$ $$-$$ diameter water jet strikes a plate containing a hole of $$40mm$$ diameter as shown in the figure. Part of the jet passes through the hole horizontally, and the remaining is deflected vertically. The density of water is $$1000$$ $$kg/{m^3}$$ . If velocities are as indicated in the figure, the magnitude of horizontal force (in $$N$$) required to hold the plate is _______________\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/EGkGYwELdC9JSDaJB/3j3yLQRcWwYiCivWtR9Ee4atQLS63/aDchuAwT9wbkp8Twr89NNQ/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2017 Set 2 Fluid Mechanics - Fluid Dynamics Question 27 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "627 to 629",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-60-mm-diameter-water-jet-strikes-a-plate-containing-a-hole-gate-me-2017-set-2-marks-2-mveqbzije5wqwb7h.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NZ4dbHo4WFo6ptNc",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-statics",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the stability of a floating body the",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "centre of buoyancy must coincide with the centre of gravity "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "centre of buoyancy must be above the centre of gravity "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "centre of gravity must be above the centre of buoyancy\n "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "metacentre must be above the centre of gravity "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-stability-of-a-floating-body-the-gate-me-2017-set-2-marks-2-nz4dbho4wfo6ptnc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                }
+            ],
+            "title": "Fluid Mechanics"
+        },
+        {
+            "_id": "Heat Transfer",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GtF1D0shhnnihDht",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fin-design-and-transient-heat-conduction",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The heat loss from a fin is $$6W.$$ The effectiveness of the fin are $$3$$ and $$0.75,$$ respectively. The heat loss (in $$W$$) from the fin, keeping the entire fin  surface at base temperature, is ___________________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "7.9 to 8.1",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-heat-loss-from-a-fin-is-6w-the-effectiveness-of-the-fin-gate-me-2017-set-2-marks-1-gtf1d0shhnnihdht.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cIOEeUQSnsddo7Ez",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.67,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fin-design-and-transient-heat-conduction",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A metal ball of diameter $$60mm$$ is initially at $${220^ \\circ }C.$$ The ball is suddenly cooled by an air jet of $${20^ \\circ }C.$$ The heat transfer coefficient is $$200\\,W/{m^2}.K.$$ The specific heat, thermal conductivity and density of the metal ball are $$400\\,\\,J/kg.K,\\,\\,400\\,\\,W/m.K$$ and $$\\,9000\\,\\,kg/{m^3},$$ respectively. The ball temperature (in $${}^ \\circ C$$) after $$90$$ seconds will be approximately.\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$141$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$163$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$189$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$210$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-metal-ball-of-diameter-60mm-is-initially-at-220-circ-c-the-gate-me-2017-marks-2-cioeeuqsnsddo7ez.htm",
+                    "updated_time": 1567749322,
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZXOcIvVmeqSqqkL7",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "radiation",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The emissive power of a blackbody is $$P.$$ If its absolute temperature is doubled, the emissive power becomes ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2P$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$4P$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$8P$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$16$$$$P$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-emissive-power-of-a-blackbody-is-p-if-its-absolute-tempe-gate-me-2017-set-2-marks-1-zxocivvmeqsqqkl7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "eXVA3yXHZoHg9bbh",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "heat-exchangers",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a counter-flow heat exchanger, water is heated at the rate of $$1.5kg/s$$ from $$\\,40{}^ \\circ C\\,$$ to $$\\,80{}^ \\circ C\\,$$ by an oil entering at $$\\,120{}^ \\circ C\\,$$ and leaving at $$\\,60{}^ \\circ C\\,$$. The specific heats of water and oil are $$4.2kJ/kgK$$ and $$2kJ/kgK,$$ respectively. The overall heat transfer coefficient is $$400\\,W/{m^2}K.$$ The required heat transfer surface are (in $${m^2}$$) is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.104$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.022$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$10.4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$21.84$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-counter-flow-heat-exchanger-water-is-heated-at-the-rate-gate-me-2017-set-2-marks-2-exva3yxhzohg9bbh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                }
+            ],
+            "title": "Heat Transfer"
+        },
+        {
+            "_id": "Industrial Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "y2q2at9sahF7mzOH",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pert-and-cpm",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The standard deviation of linear dimensions $$P$$ and $$Q$$ are $$3\\mu m$$ and $$4\\mu m$$, respectively. When assembled, the standard deviation (in $$\\mu m$$) of the following linear dimension $$(P+Q)$$ is ___________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "5",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-standard-deviation-of-linear-dimensions-p-and-q-2017-set-2-marks-1-y2q2at9sahf7mzoh.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8KKaMY4Q5nvwp00W",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pert-and-cpm",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A project starts with activity $$A$$ and ends with activity $$F.$$ The precedence relation and durations of the activities are as per the following table:\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/lhiRorxD5vEh1HKOk/wOLJaN5Zo7HovfzMjt8eVJpmGMqJ5/Kh3xzoemUXvshkbdeXMUXD/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2017 Set 2 Industrial Engineering - Pert and Cpm Question 8 English\"> \n<p>The minimum project completion time (in days) is ___________</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "30",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-project-starts-with-activity-a-and-ends-with-activity-2017-set-2-marks-2-8kkamy4q5nvwp00w.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XCY2z2yPzqjKHe3O",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "queuing",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a single server with Poisson arrival and exponential service time, the arrival rate is $$12$$ per hour. Which one of the following service rates will provide a steady state finite queue length?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$6$$ per hour"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$10$$ per hour"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$12$$ per hour"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$24$$ per hour"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-single-server-with-poisson-arrival-and-exponential-ser-2017-set-2-marks-1-xcy2z2ypzqjkhe3o.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Ax42D3fO6mXfsXsb",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-programming",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Maximize $$\\,\\,\\,\\,\\,\\,\\,\\,\\,Z = 5{x_1} + 3{x_2}$$ \n<br>Subject to $$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,{x_1} + 2{x_2} \\le 10,$$\n<br>$$\\eqalign{\n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,{x_1} - {x_2} \\le 8,  \\cr \n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,{x_1},{x_2} \\ge 0 \\cr} $$\n<p>In the starting simplex tableau, $${x_1}$$ and $${x_2}$$  are non-basic variables and the value of $$Z$$ is zero. The value of $$Z$$ in the next simplex tableau is __________________.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "40",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "maximize-z-5x1-3x2-subject-2017-set-2-marks-2-ax42d3fo6mxfsxsb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6mSdQAAyeWe725fo",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transportation",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A product made in two factories $$P$$ and $$Q,$$ is transported to two destinations, $$R$$ and $$S.$$ The per unit costs of transportation (in Rupees) from factories to destinations are as per the following matrix.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Buaiqypo20QQyJGvG/9qTJDIY0ldXNVlO9dvv9cySIUhFUa/3WduBJB9zt3I2AD3wlDO4K/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2017 Set 2 Industrial Engineering - Transportation Question 4 English\">\n<p>Factory $$P$$ produces $$7$$ units and factory $$Q$$ produces $$9$$ units of the product. Each destination requires $$8$$ units. If the north-west corner method provides the total transportation cost as $$X$$ (in Rupees) and the optimized (the minimum) total transportation cost $$Y$$ (in Rupees), then $$(X$$-$$Y),$$ in Rupees, is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$15$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$35$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$28$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-product-made-in-two-factories-p-and-q-is-transpor-2017-set-2-marks-2-6msdqaayewe725fo.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                }
+            ],
+            "title": "Industrial Engineering"
+        },
+        {
+            "_id": "Machine Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6WgCofIXwSAIGCkE",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "design-for-static-loading",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The principal stresses at a point in a critical section of a machine component are $${\\sigma _1} = 60\\,\\,MPa,\\,\\,{\\sigma _2} = 5\\,\\,MPa$$ and $${\\sigma _3} =  - 40\\,\\,MPa.$$ For the material of the component, the tensile yield strength is $${\\sigma _y} = 200\\,\\,MPa.$$ According to the maximum shear stress theory, the factor of safety is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.67$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2.00$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3.60$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4.00$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-principal-stresses-at-a-point-in-a-critical-section-of-a-gate-me-2017-set-2-marks-2-6wgcofixwsaigcke.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WpciVxKwnnDFC8hW",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fatigue-strength",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A machine component made of a ductile material is subjected to a variable loading with $${\\sigma _{\\min }} =  - 50MPa$$ and $${\\sigma _{\\max }} = 50MPa.$$ If the corrected endurance limit and the yield strength for the material are $$\\sigma {'_e}$$ $$100MPa$$  and $${\\sigma _y} = 300MPa,$$ respectively, the factor of safety is __________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-machine-component-made-of-a-ductile-material-is-subjected-gate-me-2017-set-2-marks-1-wpcivxkwnndfc8hw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4M2p6GSbnTpehzoN",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bolted-riveted-and-welded-joints",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A steel plate, connected to a fixed channel using three identical bolts $$A, B$$ and $$C,$$ carries a load of $$6kN$$ as shown in the figure. Considering the effect of direct load and moment, the magnitude of resultant shear force (in $$kN$$) on bolt $$C$$ is.\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/VtQZtJzNO5kYCWV5W/8mpVl9vpu3l36rFXaMSHTmtByM4J9/Z0muQFojBRqwGmzj99RiTA/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2017 Set 2 Machine Design - Bolted Riveted and Welded Joints Question 6 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$13$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$15$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$17$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$30$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-steel-plate-connected-to-a-fixed-channel-using-three-ident-gate-me-2017-set-2-marks-2-4m2p6gsbntpehzon.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SlTbNOhTjO0z8OI9",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "design-of-brakes-and-clutches",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single \u2013 plate clutch has a friction disc with inner and outer radii of $$20mm$$ and $$40$$ $$mm,$$ respectively. The friction lining in the disc is made in such a way that the coefficient of friction $$\\mu $$ varies radially as $$ = 0.01\\,r,$$ where $$r$$ is in $$mm.$$ The clutch needs to transmit a friction torque of $$18.85$$ $$kN.mm.$$ As per uniform pressure theory, the pressure (in $$MPa$$) on the disc is ___________________.\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.49 to 0.51",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-single-plate-clutch-has-a-friction-disc-with-inner-and-out-gate-me-2017-set-2-marks-1-sltbnohtjo0z8oi9.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                }
+            ],
+            "title": "Machine Design"
+        },
+        {
+            "_id": "Production Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gAIdiy9fk7N1tx65",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "It is desired to make a product having T-shaped cross - section from a rectangular aluminium block. Which one of the following processes is expected to provide the highest strength of the product? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Welding "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Casting "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Metal forming"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Machining "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "it-is-desired-to-make-a-product-having-t-shaped-cross-sectio-gate-me-2017-set-2-marks-1-gaidiy9fk7n1tx65.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "U4dOpLDvqtp0GHB8",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A strip of $$120mm$$ width and $$8mm$$ thickness is rolled between two $$300$$ $$mm$$-diameter rolls to get a strip of $$120mm$$ width and $$7.2mm$$ thickness. The speed of the strip at the exit is $$30m/min.$$ There is no front or back tension. Assuming uniform roll pressure of $$200$$ $$MPa$$ in the roll bite and $$100\\% $$ mechanical efficiency, the minimum total power (in $$kW$$) required to drive the two rolls is ____________________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "8.5 to 10",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-strip-of-120mm-width-and-8mm-thickness-is-rolled-between-t-gate-me-2017-set-2-marks-2-u4dopldvqtp0ghb8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SlBLXPTpdPGcDKXa",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A rod of length $$20$$ $$mm$$ is stretched to make a rod of length $$40$$ $$mm.$$ Subsequently, it is compressed to make a rod of final length $$10$$ $$mm.$$ Consider the longitudinal tensile strain as positive and compressive strain as negative. The total true longitudinal strain in the rod is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-0.5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-0.69$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$-0.75$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$-1.0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-rod-of-length-20-mm-is-stretched-to-make-a-rod-of-length-4-gate-me-2017-set-2-marks-2-slblxptpdpgcdkxa.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9rAn047PTBUoljVK",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In an orthogonal machining with a tool of $${9^ \\circ }$$ orthogonal rake angle, the uncut chip thickness is $$0.2$$ $$mm.$$ The chip thickness fluctuates between $$0.25$$ $$mm$$ and $$0.4$$ $$mm.$$  The ratio of the maximum shear angle to the minimum shear angle during machining is ______________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.45 to 1.53",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-an-orthogonal-machining-with-a-tool-of-9-circ-orthogonal-gate-me-2017-set-2-marks-2-9ran047ptbuoljvk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QgPAmwrAo4DfvR1b",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "During the turning of a $$20$$ $$mm-$$diameter steel bar at a spindle speed of $$400$$ $$rpm,$$ a tool life of $$20$$ minute is obtained. When the same bar is turned at $$200$$ $$rpm,$$ the tool life becomes $$60$$ $$minute.$$ Assume that Taylor's tool life equation is valid. When the bar is turned at $$300$$ $$rpm,$$ the tool life (in minute) is approximately",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$25$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$32$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$40$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$50$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "during-the-turning-of-a-20-mm-diameter-steel-bar-at-a-spindl-gate-me-2017-set-2-marks-2-qgpamwrao4dfvr1b.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2O28btJqJGoli0td",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metrology-and-inspection",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A cylindrical pin $$25_{ + 0.010}^{ + 0.020}\\,\\,mm$$  diameter is electroplated.  Plating thickness is \n<br>$${2.0^{ \\pm 0.005}}\\,\\,mm$$. Neglecting the gauge tolerance, the diameter (in $$mm,$$ up to $$3$$ decimal points accuracy) of the $$GO$$ ring gauge to inspect the plated pin is ___________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "29.03",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cylindrical-pin-25-0010-0020mm-diamet-2017-set-2-marks-2-2o28btjqjgoli0td.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                }
+            ],
+            "title": "Production Engineering"
+        },
+        {
+            "_id": "Strength of Materials",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "b5PAmzaOwVAj7PaR",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "simple-stress-and-strain",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A steel bar is held by two fixed supports as shown in the figure and is subjected to an increases of temperature $$\\Delta T = {100^ \\circ }C.$$ If the coefficient of thermal expansion and Young's modulus of elasticity of steel are $$11 \\times {10^{ - 6}}/{}^ \\circ C$$ and $$200$$GPa, respectively, the magnitude of thermal stress (in MPa) induced in the bar is __________. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/9sCK6N0QoW6qzxIbC/dToEj9gR5JuP8dkkiokMU3yMBnQ0x/n6c66SmyQkAlQ1ewrMRqZ4/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2017 Set 2 Strength of Materials - Simple Stress and Strain Question 19 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "220",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-steel-bar-is-held-by-two-fixed-supports-as-shown-in-the-fi-gate-me-2017-set-2-marks-1-b5pamzaowvaj7par.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qnuZEHJZm7Dcq2dT",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-stresses",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The state of stress at a point is $${\\sigma _x} = {\\sigma _y} = {\\sigma _z} = {\\tau _{xz}} = {\\tau _{zx}} = {\\tau _{yz}} = {\\tau _{zy}} = 0$$ and $${\\tau _{xy}} = {\\tau _{yx}} = 50$$MPa. The maximum normal stress (in MPa) at the point is _________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "50",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-state-of-stress-at-a-point-is-sigma-x-sigma-y-sigma-z-ta-gate-me-2017-set-2-marks-1-qnuzehjzm7dcq2dt.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KtAJPHkDykVxKrTV",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-force-and-bending-moment",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a loaded cantilever beam of uniform cross-section, the bending moment (in N-mm) along the length is M(x) = 5x<sup>2</sup>+10x, where x is the distance (in mm) measured from the free end of the beam. The magnitude of shear force (in N) in the cross-section at x=10mm is _________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "110",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-loaded-cantilever-beam-of-uniform-cross-section-the-be-gate-me-2017-set-2-marks-1-ktajphkdykvxkrtv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "IPHD8LqvHSNvUqPR",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "springs",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A helical compression spring made of wire of circular cross-section is subjected to a compressive load. The maximum shear stress induced in the cross-section of the wire is 24 MPa. For the same compressive load, if both the wire diameter and the mean coil diameter are doubled, the maximum shear stress (in MPa) induced in the cross-section of the wire is _____.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "6 ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-helical-compression-spring-made-of-wire-of-circular-cross-gate-me-2017-set-2-marks-2-iphd8lqvhsnvuqpr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GbJiVWJt7FrUuwSN",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "strain-energy-method",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A cantilever beam of length $$L$$ and flexural modulus $$EI$$ is subjected to a point load $$P$$ at the free end. The elastic strain energy stored in the beam due to bending (neglecting transverse shear) is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{{P^2}{L^3}} \\over {6EI}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{{P^2}{L^3}} \\over {3EI}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{P{L^3}} \\over {3EI}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{P{L^3}} \\over {6EI}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cantilever-beam-of-length-l-and-flexural-modulus-ei-is-sub-gate-me-2017-set-2-marks-1-gbjivwjt7fruuwsn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                }
+            ],
+            "title": "Strength of Materials"
+        },
+        {
+            "_id": "Theory of Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "93LfA48ZdwmQpYo6",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analysis-of-plane-mechanisms",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a slider-crank mechanism, the lengths of the crank and the connecting rod are 100mm and 160mm, respectively. The crank is rotating with an angular velocity of 10 radian/s counter-clockwise. The magnitude of linear velocity (in m/s) of the piston at the instant corresponding to the configuration shown in the figure is _____________\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/YU2KQvl8aiJ6jgoKC/FLxsPA7edzf8jYv3zxdnFAJ17LhRi/P434Z4iCZ68fkMf0h0ysVx/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2017 Set 2 Theory of Machines - Analysis of Plane Mechanisms Question 36 English\"> \n ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1 ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-slider-crank-mechanism-the-lengths-of-the-crank-and-the-gate-me-2017-set-2-marks-1-93lfa48zdwmqpyo6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EO0z4nxxqYk8emSX",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "analysis-of-plane-mechanisms",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Block 2 slides outward on link 1 at a uniform velocity of 6m/s as shown in the figure. Link 1 is rotating at a constant angular velocity of 20 radian/s counterclockwise. The magnitude of the total acceleration (in m/s<sup>2</sup> ) of point P of the block with respect to fixed point O is ____________\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/EGbw3fFhjED0WDwR4/rhHKpVKAL6VjOWVgT8KUc11bVLYgr/JxFSjC92BIMEygzhyq7Jkg/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2017 Set 2 Theory of Machines - Analysis of Plane Mechanisms Question 7 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "243.3",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "block-2-slides-outward-on-link-1-at-a-uniform-velocity-of-6m-gate-me-2017-set-2-marks-2-eo0z4nxxqyk8emsx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4Am3gbQS8GkyhJnT",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "gears-and-gear-trains",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A gear train shown in the figure consists of gears P, Q, R and S. Gear Q and gear R are mounted on the same shaft. All the gears are mounted on parallel shafts and the number of teeth of P, Q, R and S are 24, 45, 30 and 80, respectively. Gear P is rotating at 400 rpm. The speed (in rpm) of the gear S is _________ .\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/5PUU8mlsO3QDjmp5T/Sj9PbY5KgX2YjtbGiTMNUnXJOQR0g/OICmQ0W1z05ybpB82kRQIW/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2017 Set 2 Theory of Machines - Gears and Gear Trains Question 7 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "120",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-gear-train-shown-in-the-figure-consists-of-gears-p-q-r-and-gate-me-2017-set-2-marks-2-4am3gbqs8gkyhjnt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "o1bwtQz3vszQRq6n",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vibrations",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A mass $$m$$ is attached to two identical springs having spring constant $$k$$ as shown in the figure. The natural frequency of this single degree of freedom system is\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/8GnfZldUGtn0Xezsk/adbawunPKO8cjyqdO1OcSWrIQv2Kn/eGzOkhOVRvKBFQszUJFXQu/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2017 Set 2 Theory of Machines - Vibrations Question 51 English\">  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\sqrt {{{2k} \\over m}} $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\sqrt {{{k} \\over m}} $$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\sqrt {{{k} \\over 2m}} $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\sqrt {{{4k} \\over m}} $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-mass-m-is-attached-to-two-identical-springs-having-spring-gate-me-2017-set-2-marks-1-o1bwtqz3vszqrq6n.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "e6DTZ8IzGRlH9hNI",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vibrations",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The radius of gyration of a compound pendulum about the point of suspension is $$100$$ mm. The distance between the point of suspension and the centre of mass is $$250$$ mm. Considering the acceleration due to gravity as $$9.81$$ m/s<sup>2</sup>, the natural frequency (in radian/s) of the compound pendulum is _________. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "15.66",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-radius-of-gyration-of-a-compound-pendulum-about-the-poin-gate-me-2017-set-2-marks-2-e6dtz8izgrlh9hni.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                }
+            ],
+            "title": "Theory of Machines"
+        },
+        {
+            "_id": "Thermodynamics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QfSrsNhtDlzIA7Ep",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "rankine-cycle",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the Rankine cycle for a system power plant the turbine entry and exit enthalpies are $$2803$$ $$kJ/kg$$ and $$1800$$ $$kJ/kg$$, respectively. The enthalpies of water at pump entry and exit are $$121$$ $$kJ/kg$$ and $$124$$ $$kJ/kg,$$ respectively. The specific steam consumption (in $$kg/kW.h$$) of the cycle is __________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3.5 to 3.7",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-rankine-cycle-for-a-system-power-plant-the-turbine-en-gate-me-2017-set-2-marks-2-qfsrsnhtdlzia7ep.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AgyjLD61NavjnEkQ",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-concepts-and-zeroth-law",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The volume and temperature of air (assumed to be an ideal gas) in a closed vessel is $$2.87{m^3}$$ and $$300$$ $$K,$$ respectively. The gauge pressure indicated by a manometer fitted to the wall of the vessel is $$0.5$$ bar. If the gas constant of air is \n<br>$$R =287J/kgK$$ and the atmospheric pressure is $$1$$ bar, the mass of air (in $$kg$$) in the vessel is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1.67$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3.33$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$5.00$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$6.66$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-volume-and-temperature-of-air-assumed-to-be-an-ideal-gas-gate-me-2017-set-2-marks-2-agyjld61navjnekq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YMDpaei3EYbD365D",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "first-law-of-thermodynamics",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A calorically perfect gas (specific heat at constant pressure $$1000$$$$J/kg.K$$) enters and leaves a gas turbine with the same velocity. The temperatures of the gas at turbine entry and exit are $$1100K$$ and $$400K.$$ respectively. The power produced is $$4.6MW$$ and heat escapes at the rate of $$300kJ/s$$ through the turbine casing. The mass flow rate of the gas (in $$kg/s$$) through the turbine is.\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$6.14$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$7.00$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$7.50$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$8.00$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-calorically-perfect-gas-specific-heat-at-constant-pressure-gate-me-2017-set-2-marks-2-ymdpaei3eybd365d.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YEZHlBs2cjGJ1c5j",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculation-of-work-and-heat",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A mass $$m$$ of a perfect gas at pressure $${p_1}$$ and volume $${V_1}$$ undergoes an isothermal process. The final pressure is $${p_2}$$ and volume is $${V_2}.$$ The work done on the system is considered positive. If $$R$$ is the gas constant and $$T$$ is the temperature, then the work done in the process is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${p_1}{V_1}\\ell n{{{V_2}} \\over {{V_1}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$ - {p_1}{V_1}\\ell n{{{p_1}} \\over {{p_2}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$RT\\ell n{{{V_2}} \\over {{V_1}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ - mRT\\ell n{{{p_2}} \\over {{p_1}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-mass-m-of-a-perfect-gas-at-pressure-p1-and-volume-v1-under-gate-me-2017-set-2-marks-1-yezhlbs2cjgj1c5j.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "83pttGV413PJC8hY",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "entropy-and-irreversibility",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "One $$kg$$ of an ideal gas (gas constant $$R=287$$ $$J/kg$$-$$K$$) undergoes an irreversible process from state- $${\\rm I}$$ ( $$1$$ bar, $$300$$ $$K$$ ) to state-$$2$$ ( $$2$$ bar, $$300$$ $$K$$). The change in specific entropy $$\\left( {{s_2} - {s_1}} \\right)$$ of the gas (in $$J/kg$$.$$K$$) in the process is ____________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "-201 to -197",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "one-kg-of-an-ideal-gas-gas-constant-r287-jkg-k-undergoes-an-gate-me-2017-set-2-marks-2-83pttgv413pjc8hy.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                }
+            ],
+            "title": "Thermodynamics"
+        },
+        {
+            "_id": "Turbo Machinery",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vDES8xJUguMjszTp",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "turbo-machinery",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "turbo-machinery",
+                    "year": 2017,
+                    "paperTitle": "GATE ME 2017 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following statement is TRUE?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both Pelton and Francis turbines are impulse turbines. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Francis turbine is a reaction turbine but Kaplan turbine is an impulse turbine. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Francis turbine is an axial \u2013 flow reaction turbine. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Kaplan turbine is an axial \u2013 flow reaction turbine. "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-statement-is-true-gate-me-2017-set-2-marks-1-vdes8xjugumjsztp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2017-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2017-set-2"
+                }
+            ],
+            "title": "Turbo Machinery"
+        }
+    ]
+}

@@ -1,0 +1,3012 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Algorithms",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AkR4Ar7h7t90GYdR",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complexity-analysis-and-asymptotic-notations",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following is false?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$100\\,n\\,\\log n = O\\left( {{{n\\,\\log \\,n} \\over {100}}} \\right)$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\sqrt {\\log \\,n}  = O(\\log \\,\\log \\,n)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "if 0 &lt; x &lt; y then n <sup>x</sup> = O(n<sup>y</sup>)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${2^n} \\ne O({n^k})$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "<p><b>Option (a):</b> <br>100nlogn = O(nlogn) = O($${{n\\log n} \\over {100}}$$)(As 100 is a constant so multiplication or division does not change the order).<br>This is True. <br>\n<br><b>Option (b):</b> <br>$$\\sqrt {\\log n} $$ = log<sup>1/2</sup>n = 1/2(logn) = O(logn)<br>Which is not O(loglogn).So,this is False. <br>\n<br><b>Option (c):</b> <br>0 &lt; x &lt; y<br> Let x = 3, y = 5<br>n<sup>3</sup> = O(n<sup>5</sup>) = lower = O(higher)<br>This is True. <br>\n<br><b>Option (d):</b> <br>2<sup>n</sup> != O(n<sup>k</sup>) <br>Here,2<sup>n</sup> is higher growth rate function than n<sup>k</sup>.So,This option is True.</p>"
+                        }
+                    },
+                    "permalink": "which-of-the-following-is-false-gate-cse-1996-marks-1-akr4ar7h7t90gydr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7YnWsU2tavHHJgls",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "searching-and-sorting",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The minimum number of interchanges needed to convert the array\n<p>89, 19, 40, 17, 12, 10, 2, 5, 7, 11, 6, 9, 70</p>\ninto a heap with the maximum element at the root is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "3"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-minimum-number-of-interchanges-needed-to-convert-the-arr-gate-cse-1996-marks-2-7ynwsu2tavhhjgls.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "N4nRtAGUJkOChhuj",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "searching-and-sorting",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The average number of key comparisons done on a successful sequential search\nin list of length n is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "log n"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{n - 1} \\over 2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${n \\over 2}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{n + 1} \\over 2}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-average-number-of-key-comparisons-done-on-a-successful-s-gate-cse-1996-marks-2-n4nrtagujkochhuj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bSvPqMMhrMSYhtrt",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "divide-and-conquer-method",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Quicksort is run on two inputs shown below to sort in ascending order taking first element as pivot<br>\ni) 1, 2, 3,......., n<br>\nii) n, n-1, n-2,......, 2, 1 <br>\nLet C<sub>1</sub> and C<sub>2</sub> be the number of comparisons made for the inputs (i) and (ii) respectively. Then, ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$C_1 &lt; C_2$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$C_1 &gt; C_2$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$C_1 = C_2$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "we cannot say anything for arbitrary n"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "quicksort-is-run-on-two-inputs-shown-below-to-sort-in-ascend-gate-cse-1996-marks-2-bsvpqmmhrmsyhtrt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RSCHIWHAMa7k06Vp",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "divide-and-conquer-method",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The recurrence relation<br>\nT(1) = 2<br>\n T(n) = 3T(n/4) + n<br>\nhas the solution, T(n) equals to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "O(n)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "O(log n)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "O(n^3/4)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-recurrence-relationt1-2-tn-3tn4-nhas-the-solution-tn-equ-gate-cse-1996-marks-2-rschiwhama7k06vp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DsUV6JhYaBDRGGaK",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dynamic-programming",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A binary search tree is generated by inserting in order the following integers:<br><br>\n50, 15, 62, 5, 20, 58, 91, 3, 8, 37, 60, 24 <br><br>\nThe number of nodes in the left subtree and right subtree of the root respectively is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "(4, 7)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "(7, 4)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "(8, 3)\n"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "(3, 8)"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-binary-search-tree-is-generated-by-inserting-in-order-the-gate-cse-1996-marks-2-dsuv6jhyabdrggak.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                }
+            ],
+            "title": "Algorithms"
+        },
+        {
+            "_id": "Compiler Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HKkjcVLceTRTDV99",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parsing",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The pass numbers for each of the following activities\n<p>(i) object code generation \n<br>(ii) literals added to literal table \n<br>(iii) listing printed \n<br>(iv) address resolution of local symbols that occur in a two pass assembler respectively are</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1, 2, 1, 2"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2, 1, 2, 1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2, 1, 1, 2 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1, 2, 2, 2"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-pass-numbers-for-each-of-the-following-activitiesi-objec-gate-cse-1996-marks-1-hkkjcvlcetrtdv99.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                }
+            ],
+            "title": "Compiler Design"
+        },
+        {
+            "_id": "Computer Organization",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "g1tFxykqZ0APKqCJ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-interfacing",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$ROM$$ is used to store the table for multiplication of two $$8$$ bit unsigned integers. The size of $$ROM$$ required is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$256 \\times 16$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$64K \\times 8$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$4K \\times 16$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$64K \\times 16$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-rom-is-used-to-store-the-table-for-multiplication-of-two-8-gate-cse-1996-marks-1-g1tfxykqz0apkqcj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "z7ifS7PYF1tfcKk1",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-interfacing",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A computer system has a three level memory hierarchy, with access time and hit ratios as shown below:\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/rRPIHKA28OEvctbsn/Iic0kTTMZtEto1Ivgw4YwU2tJx9at/s3TxAHpnLoVrqzxnsM6U3p/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1996 Computer Organization - Memory Interfacing Question 24 English 1\">\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/dfU4fXiY0Jgzf0ro7/mYzuD9smPNRMx4ZBNui3nBmuWEi7d/oEEusTuuoylNwwtdFpKEtr/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1996 Computer Organization - Memory Interfacing Question 24 English 2\"> \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/TI8WtKevKaZI6HFNP/d8A0HdVJS9FzckU7LQUDrMOmrcqWB/bmRN8UYr32Ffi6FDwABgjR/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1996 Computer Organization - Memory Interfacing Question 24 English 3\"> \n<p>(i) What should be the minimum size of level  $$1$$ and $$2$$ memories to achieve an average access time of less than $$100$$ nsec? </p>\n<p>(ii) What is the average access time achieved using the chosen sizes of level $$1$$ and level $$2$$ memories?</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-computer-system-has-a-three-level-memory-hierarchy-with-ac-gate-cse-1996-marks-5-z7ifs7pyf1tfckk1.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "o8bitTnpP5LfKCfK",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "io-interface",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "It gives non-uniform priority to various devices.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "It gives non-uniform priority to various devices."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "It gives uniform priority to all devices."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "It is only useful for connecting slow devices to a processor "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "It requires a separate interrupt pin on the processor for each device."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "it-gives-non-uniform-priority-to-various-devices-gate-cse-1996-marks-1-o8bittnpp5lfkcfk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pNBqH2AZtOIidNZ5",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "computer-arithmetic",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Both\u2019s algorithm for integer multiplication gives worst performance when the multiplier pattern is  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$101010 ....1010$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$100000 .....0001$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$111111 ......1111$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$011111 .....1110$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "boths-algorithm-for-integer-multiplication-gives-worst-perfo-gate-cse-1996-marks-1-pnbqh2aztoiidnz5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BwRu7eB4jpJvAwDH",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "computer-arithmetic",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following floating point number representation\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/VCkqwJDBLl445DS6M/XqukjjIaxs5m5VzfXU2MCGOCrfXrb/EqsugQr7ojiqrwwUjG4LQe/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1996 Computer Organization - Computer Arithmetic Question 12 English\"> \n<p>The exponent is in $$2\u2019s$$ complement representation and mantissa is in the sign magnitude representation. The range of the magnitude of the normalized mantissa in this representation is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ to $$1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.5$$ to $$1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${2^{ - 23}}$$ to $$0.5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.5$$ to $$\\left( {1 - {2^{ - 23}}} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-floating-point-number-representation-gate-cse-1996-marks-2-bwru7eb4jpjvawdh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                }
+            ],
+            "title": "Computer Organization"
+        },
+        {
+            "_id": "Data Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SX1HrrfI35RxjzFb",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stacks-and-queues",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following statements: <br>\n(i) First-in-first out types of computations are efficiently supported by STACKS. <br>\n(ii) Implementing LISTS on linked lists is more efficient than implementing LISTS on an array for almost all the basic LIST operations. <br>\n(iii) Implementing QUEUES on a circular array is more efficient than implementing QUEUES on a linear array with two indices. <br>\n(iv) Last-in-first-out type of computations are efficiently supported by QUEUES. ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "(ii) and (iii) are true "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "(i) and (ii) are true"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "(iii) and (iv) are true "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "(ii) and (iv) are true"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-statements-i-first-in-first-out-types-gate-cse-1996-marks-1-sx1hrrfi35rxjzfb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pN0KSXMwEKu44iKF",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following sequences denotes the post order traversal sequence of the tree of previous question?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "f e g c d b a"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "g c b d a f e"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "g c d b f e a"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "f e d g c b a"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-sequences-denotes-the-post-order-trav-gate-cse-1996-marks-1-pn0ksxmweku44ikf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fxFQ2oxZNZlulOXB",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the balanced binary tree in Fig. given below, how many nodes will become unbalanced when a node is inserted as a child of the node \u201cg\u201d?\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/FLM1mZ554Ns2rN2nV/sjDRo3jiZPVHYHaPjrrS2FRHzJ5wN/9STmf9UQm9NEku4241o8YD/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1996 Data Structures - Trees Question 76 English\">\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "3"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "7"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "8"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-balanced-binary-tree-in-fig-given-below-how-many-node-gate-cse-1996-marks-1-fxfq2oxznzluloxb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Kx135QznN8z2eFbo",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A binary search tree is generated by inserting in order the following integers: \n50, 15, 62, 5, 20, 58, 91, 3, 8, 37, 60, 24 \nThe number of nodes in the left subtree and right subtree of the root respectively is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "(4, 7) "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "(7, 4) "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "(8, 3) "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "(8, 3) "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-binary-search-tree-is-generated-by-inserting-in-order-the-gate-cse-1996-marks-2-kx135qznn8z2efbo.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "q6DaCmemznPj1JWx",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "hashing",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An advantage of chained hash table (external hashing) over the open addressing scheme is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Worst case complexity of search operations is less"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Space used is less"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Deletion is easier "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-advantage-of-chained-hash-table-external-hashing-over-the-gate-cse-1996-marks-1-q6dacmemznpj1jwx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Kmk2phl0b1tdtZGL",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A binary search tree is used to locate the number 43. Which of the following\nprobe sequences are not possible?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "61   52   14   17   40   43"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2    3   50   40   60   43"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "10   65   31   48   37   43"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "17   77   27   66   18   43"
+                                }
+                            ],
+                            "correct_options": [
+                                "B",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-binary-search-tree-is-used-to-locate-the-number-43-which-o-gate-cse-1996-marks-2-kmk2phl0b1tdtzgl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                }
+            ],
+            "title": "Data Structures"
+        },
+        {
+            "_id": "Database Management System",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vUelmSTdXB562fIV",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "relational-algebra",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>A library relational database system uses the following schema</p>\n<p>USERS (User #, User Name, Home Town)</p>\n<p>BOOKS (Books # Book Title, Author Name)</p> <p>ISSUED (Book #, User #, Date)</p>\nExplain in one English sentence, what each of the following relational algebra queries is designed to determine.\n<p>(a) $$\\sigma_{ \\text{User#}=6}\\left(\\pi_{\\text{User#, Book Title}}\\left(\\left(\\text{USERS} \\bowtie \\text{ISSUED}\\right) \\bowtie \\text{BOOKS}\\right)\\right)$$</p>\n(b) $$\\pi_{\\text{Author Name}}\\left(\\text{BOOKS} \\bowtie \\sigma_{\\text{Home Town=Delhi}} \\left(\\text{USERS} \\bowtie \\text{ISSUED}\\right)\\right)$$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "<p>(a) Select the titles of the books issued to User# = 6</p>\n<p>(b) Select author names of the books issued to users who are from Delhi.</p> ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-library-relational-database-system-uses-the-following-sche-gate-cse-1996-marks-2-vuelmstdxb562fiv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                }
+            ],
+            "title": "Database Management System"
+        },
+        {
+            "_id": "Digital Logic",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bCUQKL5fr6kTYljQ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinational-circuits",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the circuit in Fig. Which has a four bit binary number $${b_3}\\,{b_2}\\,{b_1}\\,{b_0}\\,$$ as input and a five bit binary number $${d_3}\\,{d_2}\\,{d_1}\\,{d_0}\\,$$ as output. The circuit implements:\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/juqvFfoKlHlTStJm2/dAh2GZx7UYk8sYM1i7rf5BWEXufhV/CnGtvDC8HF52evJIjzdG2h/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1996 Digital Logic - Combinational Circuits Question 12 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Binary to Hex conversion"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Binary to $$BCD$$ conversion"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Binary to grey code conversion "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Binary to radix -$$12$$ conversion"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-circuit-in-fig-which-has-a-four-bit-binary-numb-gate-cse-1996-marks-2-bcuqkl5fr6ktyljq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RbnuRICAjCTHvNs0",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinational-circuits",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the circuit in fig shown $$f$$ implements \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/z23n8rlNoCaRyFt5g/XFatcUCKdPrXtluQXM6jJJwmqENbB/mJxT4dfRJm9FiymkwpqM3Y/image.svg\" loading=\"lazy\" alt=\"GATE CSE 1996 Digital Logic - Combinational Circuits Question 11 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\overline A \\overline B C + \\overline A B\\overline C  + ABC$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$A+B+C$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$A \\oplus B \\oplus C$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$AB + BC + CA$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-circuit-in-fig-shown-f-implements-gate-cse-1996-marks-2-rbnuricajcthvns0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "boLJf229hYUU2s9W",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the synchronous sequential circuit in fig.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/IwlKUv9WRkvattKK8/RpBmIUlfcxEVuSKgTroAwB3nsZJBl/XbQ7dPYTMxqUPqdVl5CDlO/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1996 Digital Logic - Sequential Circuits Question 11 English 1\"> \n<p>(a) Draw a state diagram which is implemented by the circuit. Use the following names for the states corresponding to the  values of flip-flops as given below.</p>\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/KsrrynOcYtIHRh1og/i85w4bGTEmPdpamK3NcASL1A2FwqZ/yhCimX0BktklWM6wlwe6Fp/image.svg\" loading=\"lazy\" alt=\"GATE CSE 1996 Digital Logic - Sequential Circuits Question 11 English 2\"> \n<p>(b) Given that the initial state of the circuit is $${S_4},$$ identify the set of states which are not reachable.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${S_4} \\to {S_2} \\to {S_5} \\to {S_6} \\to {S_7} \\to {S_3} \\to {S_1}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-synchronous-sequential-circuit-in-fig-a-draw-a-gate-cse-1996-marks-5-boljf229hyuu2s9w.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "z52OuYAiv4nRDvhG",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A logic network has two data inputs $$A$$ and $$B,$$ and two control inputs $${C_0}$$ and $${C_1}$$. It implements the function $$F$$ according to the following Table.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/23lzAsGWwnASgss8q/PRs9lqJwJiodPZ6hl9b4XpwCSNleO/rUHWFyCNmHp4KI5aLzZ3ZY/image.svg\" loading=\"lazy\" alt=\"GATE CSE 1996 Digital Logic - Boolean Algebra Question 24 English\"> \n<p>Implement the circuit using one $$4$$ to $$1$$ Multiplexor, one $$2$$-input Exclusive $$OR$$ gate, one $$2$$-input $$AND$$ gate, one $$2$$-input $$OR$$ gate and one Inverter. </p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-logic-network-has-two-data-inputs-a-and-b-and-two-control-gate-cse-1996-marks-5-z52ouyaiv4nrdvhg.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "P3Z540CFu1JV64S9",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "k-maps",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the equivalent Boolean expression in <b>product-of-sums</b> form for the Karnaugh map given in fig?\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/L6LjRKDkr2ufNBaVz/BFG03RjBMw2ox4XYyXkEuuckXoJAp/BCW6O2ZFsB0wC97c9NVVpH/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1996 Digital Logic - K Maps Question 8 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$B\\,\\overline D  + \\overline B \\,D$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {B + \\overline C  + D} \\right)\\left( {\\overline B  + C + \\overline D } \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {B + D} \\right)\\left( {\\overline B  + \\overline D } \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {B + \\overline D } \\right)\\left( {\\overline B  + D} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-the-equivalent-boolean-expression-in-product-of-sums-gate-cse-1996-marks-2-p3z540cfu1jv64s9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                }
+            ],
+            "title": "Digital Logic"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5pLO4DHFpjgv7EzT",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$A = \\left[ {\\matrix{\n   {{a_{11}}} &amp; {{a_{12}}}  \\cr \n   {{a_{21}}} &amp; {{a_{22}}}  \\cr \n\n } } \\right]\\,\\,$$ and $$B = \\left[ {\\matrix{\n   {{b_{11}}} &amp; {{b_{12}}}  \\cr \n   {{b_{21}}} &amp; {{b_{22}}}  \\cr \n\n } } \\right]\\,\\,$$  be \n<br>two matrices such that $$AB=1.$$\n<br>Let $$C = A\\left[ {\\matrix{\n   1 &amp; 0  \\cr \n   1 &amp; 1  \\cr \n\n } } \\right]$$ and $$CD=1.$$\n<br>Express the elements of $$D$$ in terms of the elements of $$B.$$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$D = \\left[ {\\matrix{\n   {{b_{11}}} &amp; {{b_{12}}}  \\cr \n   { - {b_{11}} + {b_{21}}} &amp; { - {b_{12}} + {b_{22}}}  \\cr \n\n } } \\right]$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-a-left-matrix-a11-a12-cr-a21-a22-cr-right-and-b-left-mat-gate-cse-1996-marks-1-5plo4dhfpjgv7ezt.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0dvqkitkdVTP0L2s",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two dice are thrown simultaneously. The probability that at least one of them will have 6 facing up is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over {36}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over {3}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${25 \\over {36}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${11\\over {36}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-dice-are-thrown-simultaneously-the-probability-that-at-l-gate-cse-1996-marks-1-0dvqkitkdvtp0l2s.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6zMu6dffgEwwajMF",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The probability that the top and bottom cards of a randomly shuffled deck are both access is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${4 \\over {52}}\\, \\times \\,{4 \\over {52}}\\,$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${4 \\over {52}}\\, \\times \\,{3 \\over {52}}\\,$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${4 \\over {52}}\\, \\times \\,{3 \\over {51}}\\,$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${4 \\over {52}}\\, \\times \\,{4 \\over {51}}\\,$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-probability-that-the-top-and-bottom-cards-of-a-randomly-gate-cse-1996-marks-2-6zmu6dffgewwajmf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OJR3XKXqMkyewKpe",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let R be a non-emply relation on a collection of sets defined by $${A^R}\\,B $$ if and only if $$A\\, \\cap \\,B\\, = \\,\\phi $$. Then, (pick the true statement)",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "R is reflexive and transitive"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "R is symmetric and not transitive"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "R is an equivalence relation"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "R is not reflexive and not symmetric "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-r-be-a-non-emply-relation-on-a-collection-of-sets-define-gate-cse-1996-marks-2-ojr3xkxqmkyewkpe.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1GmV7D5gA7bj3pjd",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following is false?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The set of all bijective functions on a finite set forms a group under function composition."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The set {1, 2, ..., p - 1} forms a group under multiplication mod p where p is a prime number."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The set of all strings over a finite alphabet $$\\sum $$ forms a group under concatenation."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "A subset $$s\\, \\ne \\,\\phi $$ of G is a subgroup of the group <g, *=\"\"> if and only if for any pair of elements $$a,\\,\\,b\\,\\, \\in \\,\\,s,\\,\\,a\\,\\,*\\,\\,{b^{ - 1}}\\,\\, \\in \\,s$$.</g,>"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-is-false-gate-cse-1996-marks-2-1gmv7d5ga7bj3pjd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qM88GEGKobZXm6HQ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let R denote the set of real numbers. Let f: $$R\\,x\\,R \\to \\,R\\,x\\,R\\,$$ be a bijective function defined by f (x, y ) = (x + y, x - y). The inverse function of f is given by ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${f^{ - 1}}\\,(x,\\,y)\\, = \\,\\left( {{1 \\over {x\\, + \\,y}},\\,{1 \\over {x\\, - \\,y}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${f^{ - 1}}\\,(x,\\,y)\\, = \\,\\,(x\\, - \\,y,\\,\\,x\\, + y)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${f^{ - 1}}\\,(x,\\,y)\\, = \\,\\left( {{{x\\, + \\,y} \\over 2},\\,{{x\\, - \\,y} \\over 2}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${f^{ - 1}}\\,(x,\\,y)\\, = \\,(2\\,(x\\, - \\,y),\\,2\\,(x\\, + y))$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-r-denote-the-set-of-real-numbers-let-f-rxr-to-rxr-be-a-b-gate-cse-1996-marks-2-qm88gegkobzxm6hq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DfgRh3lJKpAz9eX4",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$X$$ $$X = \\left\\{ {2,3,6,12,24} \\right\\}$$. Let $$ \\le $$ the partial order defined by $$x \\le y$$  if  $$x$$ divides $$y$$. The number of edges in the Hasse diagram of $$\\left( {X, \\le } \\right)$$ is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$4$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$9$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-x-x-left-2361224-right-let-le-the-partial-order-defined-gate-cse-1996-marks-1-dfgrh3ljkpaz9ex4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dul9ALg7dwPelntQ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose $$X$$ and $$Y$$ are sets and $$\\left| X \\right|$$ and $$\\left| Y \\right|$$ are their respective cardinalities. It is given that there are exactly 97  functions from $$X$$ to $$Y$$. From this one can conclude that",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left| X \\right| = 1,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\left| Y \\right| = 97$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left| X \\right| = 97,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\left| Y \\right| = 1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left| X \\right| = 97,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\left| Y \\right| = 97$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-x-and-y-are-sets-and-left-x-right-and-left-y-right-a-gate-cse-1996-marks-1-dul9alg7dwpelntq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JLyBS0h5WLDtbzaE",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$A$$ and $$B$$ be sets and let $${A^c}$$ and $${B^c}$$ denote the complements of the sets $$A$$ and $$B$$. The set $$\\left( {A - B} \\right) \\cup \\left( {B - A} \\right) \\cup \\left( {A \\cap B} \\right)$$ is equal to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${A \\cup B}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{A^c} \\cup {B^c}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${A \\cap B}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{A^c} \\cap {B^c}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-a-and-b-be-sets-and-let-ac-and-bc-denote-the-complements-gate-cse-1996-marks-1-jlybs0h5wldtbzae.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tYHFJrbHndWOUIkE",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following statements is false?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The set of rational numbers is an abelian group under addition. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The set of integers is an abelian group under addition."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The set of rational numbers from an abelian group under multiplication."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The set of real numbers excluding zero is an abelian group under multiplication."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-statements-is-false-gate-cse-1996-marks-1-tyhfjrbhndwouike.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "81QHt8C17mnf6czn",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let AX = B be a system of linear equations where A is an m x n matrix and B is a $$m\\,\\, \\times \\,\\,1$$ column vector and X is a n x 1 column vector of unknowns. Which of the following is false?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The system has a solution if and only if, both A and the augmented matrix [A B] have the same rank."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "If m &lt; n and B is the zero vector, then the system has infinitely many solutions."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "If m = n and B is a non zero vector, then the system has a unique solution."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The system will have only a trivial solution when m = n, B is the zero vector and rank (A) = n"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-ax-b-be-a-system-of-linear-equations-where-a-is-an-m-x-n-gate-cse-1996-marks-1-81qht8c17mnf6czn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bxD7reCemIzRbhdK",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinatorics",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The recurrence relation $$\\,\\,\\,\\,\\,$$   $$T\\left( 1 \\right) = 2$$ \n<br>$$T\\left( n \\right) = 3T\\left( {{n \\over 4}} \\right) + n$$  has the solution $$T(n)$$ equal to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$O(n)$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$O$$ (log n) "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$O\\left( {{n^{3/4}}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-recurrence-relation-tleft-1-right-2-tleft-n-right-3tleft-gate-cse-1996-marks-2-bxd7recemizrbhdk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YySexUgwmMvGOMr6",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The matrices$$\\left[ {\\matrix{\n   {\\cos \\,\\theta } &amp; { - \\sin \\,\\theta }  \\cr \n   {\\sin \\,\\,\\theta } &amp; {\\cos \\,\\,\\theta }  \\cr \n\n } } \\right]\\,\\,and$$ \n<br> $$\\left[ {\\matrix{\n   a &amp; 0  \\cr \n   0 &amp; b  \\cr \n\n } } \\right]\\,$$ commute under multiplication",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "if a = b or $$\\theta  = n\\,\\pi $$, n an integer "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "always"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "never"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "if a cos $$\\theta \\,\\, \\ne \\,\\,b\\,\\,\\sin \\,\\theta $$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-matricesleft-matrix-cos-theta-sin-theta-cr-sin-theta-cos-gate-cse-1996-marks-2-yysexugwmmvgomr6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qygVf4GdLHNfwu4q",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The formula used to  compute an approximation for the second derivative of a function $$f$$ at a point $${x_0}$$  is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{f\\left( {{x_0} + h} \\right) + f\\left( {{x_0} - h} \\right)} \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{f\\left( {{x_0} + h} \\right) - f\\left( {{x_0} - h} \\right)} \\over 2h}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{f\\left( {{x_0} + h} \\right) + 2f\\left( {{x_0}} \\right) + f\\left( {{x_0} - h} \\right)} \\over {{h^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{f\\left( {{x_0} + h} \\right) - 2f\\left( {{x_0}} \\right) + f\\left( {{x_0} - h} \\right)} \\over {{h^2}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-formula-used-to-compute-an-approximation-for-the-second-gate-cse-1996-marks-1-qygvf4gdlhnfwu4q.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bt9tmIbvGnnlo73D",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following is false? Read $$ \\wedge $$ as AND, $$ \\vee $$ as OR, $$ \\sim $$ as NOT, $$ \\to $$ as one way implication and $$ \\leftrightarrow $$ two way implication. ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( {\\left( {x \\to y} \\right) \\wedge x} \\right) \\to y$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {\\left( { \\sim x \\to y} \\right) \\wedge \\left( { \\sim x \\to  \\sim y} \\right)} \\right) \\to x$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {x \\to \\left( {x \\vee y} \\right)} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {\\left( {x \\vee y} \\right) \\leftrightarrow \\left( { \\sim x \\to  \\sim y} \\right)} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-is-false-read-wedge-as-and-vee-as-gate-cse-1996-marks-2-bt9tmibvgnnlo73d.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xVaiKYoqfgZAcu7e",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A ROM is sued to store the table for multiplication of two $$8$$-bit unsigned integers. The size of ROM required is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$256 \\times 16$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$64\\,K \\times 8$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$4\\,K \\times 16$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$64\\,K \\times 16$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-rom-is-sued-to-store-the-table-for-multiplication-of-two-8-gate-cse-1996-marks-1-xvaikyoqfgzacu7e.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qescTYgGgAF2yPL5",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronization-and-concurrency",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The concurrent programming constructs fork and join are as below: \nFork (label) which creates a new process executing from the specified label join (variable) which decrements the specified synchronization variable (by 1) and terminates the process if the new value is not 0. \nShow the precedence graph for S1, S2, S3, S4 and S5 of the concurrent program below. <br> \nN = 2<br> \nM = 2 <br> \nfork L3 <br> \nfork L4 <br> \nS1 <br> \nL1 : join N <br> \nS3 <br> \nL2: join M<br>  \nS5 <br> \nL3:S2 <br> \ngoto L1 <br> \nL4:S4 <br> \ngoto L2 <br> \nnext: ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve by yourself",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-concurrent-programming-constructs-fork-and-join-are-as-b-gate-cse-1996-marks-2-qesctygggaf2ypl5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3gfTzvukqshGFRtM",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronization-and-concurrency",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A solution to the Dining Philosophers Problem which avoids deadlock is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "ensure that all philosophers pick up the left fork before the right fork."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "ensure that all philosophers pick up the right fork before the left fork"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "ensure that one particular philosopher picks up the left fork before the right fork, and that all other philosophers pick up the right fork before the left fork"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-solution-to-the-dining-philosophers-problem-which-avoids-d-gate-cse-1996-marks-2-3gftzvukqshgfrtm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "x890GIaJNf3T9SO1",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$1000$$ Kbyte memory is managed using variable partitions but to compaction. It currently has two partitions of sizes $$200$$ Kbytes and $$260$$ Kbytes respectively. The smallest allocation request in Kbytes that could be denied is for ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$151$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$181$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$231$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$541$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-1000-kbyte-memory-is-managed-using-variable-partitions-but-gate-cse-1996-marks-2-x890giajnf3t9so1.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "K5fcVdTnpvNST3D0",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A demand paged virtual memory system uses $$16$$ bit virtual address, page size of $$256$$ bytes, and has $$1$$ Kbyte of main memory. $$LRU$$ page replacement is implemented using a list, whose current status (page numbers in decimal ) is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/jfjcIeCUBP1ldYWOg/NcPgbRyJ1Xpmbl8kA8aX4ylWqsMbx/GraCs9c4fvxBIb3ovijmT9/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1996 Operating Systems - Memory Management Question 28 English\"> \n<br>$$\\eqalign{\n  &amp; \\,\\, \\uparrow   \\cr \n  &amp; LRU\\,Page \\cr} $$\n<br>For each hexa decimal address in the address sequence given below, \n<br>$$00FF,$$ $$010D,$$ $$10FF,$$ $$11B0$$\n<br>Indicate,\n<br>i) The new status of the list\n<br>ii) Page faults, if any, and \n<br>iii) Page replacements, if any",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(ii) Page fault $$=3$$ \n<br>(iii) Page replacement $$=2$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-demand-paged-virtual-memory-system-uses-16-bit-virtual-add-gate-cse-1996-marks-5-k5fcvdtnpvnst3d0.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SBNNmMy66LRfPIj0",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A file system with a one-level directory structure is implemented on a disk with disk block size of $$4$$ K bytes. The disk is used as follows:\n<p> Disk-block $$0:$$ File Allocation Table, consisting of one $$8$$-bit entry per date block, representing the data block address of the next date block in the file:</p>\n<p>Disk block $$1:$$ $$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ Directory, with one $$32$$ bit entry per file:\n<br>Disk block $$2:$$ $$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ Data block $$1;$$\n<br>Disk block $$3:$$ $$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$ Data block $$2;$$ etc.</p>\n<p>(a) What is the maximum possible number of files?\n<br>(b) What is the maximum possible file size in blocks? </p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a) Max no of files $$=1024$$\n<br>(b) Max possible file size in blocks $$=254$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-file-system-with-a-one-level-directory-structure-is-implem-gate-cse-1996-marks-5-sbnnmmy66lrfpij0.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YnfEaBcpa9zukH8O",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deadlocks",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A computer system uses the Banker\u2019s Algorithm to deal with deadlocks. Its current state is shown in the tables below, where P0, P1, P2 are processes and R0, R1, R2 are resource types.\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/NDMSl4vSwoPigw2vr/e7ZTjJADuHrSZaiZU1wpAQ1HVMAZp/ZYRA2nGdG1xWpEJi8lrdjT/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1996 Operating Systems - Deadlocks Question 10 English\">\n<br>(a) Show that the system can be in this state.\n<br>(b) What will the system do on a request by process P0 for one unit of resource type R1?",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a) System is in the safe state.The safe state is \"P1,P2,P0\" \n<br>(b) By granting the request of P0, the system goes into unsafe state so system would delay the request and wait till resources are available.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-computer-system-uses-the-bankers-algorithm-to-deal-with-de-gate-cse-1996-marks-5-ynfeabcpa9zukh8o.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OeznpETAMefz1MZQ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The process state transition diagram in Figure is representative of \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/60ZZqL17mF8idHub7/a68IK83UyVwBkZa22IL395GfYPiSc/iWy910AmnSZcDhxrPEU9lY/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1996 Operating Systems - Process Concepts and Cpu Scheduling Question 65 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a batch operating system"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "an operating system with a preemptive scheduler "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "an operating system with a non-preemptive scheduler "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a uni-programmed operating system.  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "Here a process can go from running state to ready state. So it is always preemptive."
+                        }
+                    },
+                    "permalink": "the-process-state-transition-diagram-in-figure-is-representa-gate-cse-1996-marks-1-oeznpetamefz1mzq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QMuJJtK64XnaJkdV",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following is an example of spooled device?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "A line printer used to print the output of a number of jobs. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "A terminal used to enter input data to a running program. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "A secondary storage device in a virtual memory system."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "A graphic display device.  "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": "<p><b>SPOOL</b> means simultaneous peripheral operations on-line, spooling refers to putting jobs in a buffer, a special area in memory or on a disk where a device can access them when it is ready. Spooling is useful because devices access data at different rates.</p> \n\n<p>The most common spooling application is print spooling. Printers have a limited amount of memory, often times much smaller than the size of a document that you are wanting to print. Printer spooling allows you to send large documents, or multiple documents, to a printer and not have to wait for it to finish printing before continuing on to your next task.</p>"
+                        }
+                    },
+                    "permalink": "which-of-the-following-is-an-example-of-spooled-device-gate-cse-1996-marks-1-qmujjtk64xnajkdv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mnSxjTgfwWFPkL5u",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Four jobs to be executed on a single processor system arrive at time $${0^ + }$$  in the order $$A, B, C, D.$$ their burst $$CPU$$ time requirements are $$4, 1, 8, 1$$ time units respectively. The completion time of A under round robin scheduling with time slice of one time units.\n ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$10$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$8$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$9$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "four-jobs-to-be-executed-on-a-single-processor-system-arrive-gate-cse-1996-marks-2-mnsxjtgfwwfpkl5u.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4socoBozBVYRqBzF",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronization-and-concurrency",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A critical section is a program segment",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Which should run in certain specified amount of time"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Which avoids deadlocks"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Where shared resources are accessed"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Which must be enclosed by a pair of semaphore operations, P and V"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-critical-section-is-a-program-segment-gate-cse-1996-marks-1-4socobozbvyrqbzf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                }
+            ],
+            "title": "Operating Systems"
+        },
+        {
+            "_id": "Programming Languages",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6fX30snz4sJCn3Pg",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The correct matching for the following pairs is\n<p><b>List - I</b>\n<br>(A) Activation record\n<br>(B) Location counter\n<br>(C) Reference counts\n<br>(D) Address relocation\n</p>\n<p><b>List - II</b>\n<br>(1) Linking loader\n<br>(2) Garbage collection\n<br>(3) Subroutine call\n<br>(4) Assembler\n</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "A \u2013 3 B \u2013 4 C \u2013 1 D - 2"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "A \u2013 4 B \u2013 3 C \u2013 1 D - 2"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "A \u2013 4 B \u2013 3 C \u2013 2 D - 1"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "A \u2013 3 B \u2013 4 C \u2013 2 D - 1"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-correct-matching-for-the-following-pairs-islist-ia-activ-gate-cse-1996-marks-2-6fx30snz4sjcn3pg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                }
+            ],
+            "title": "Programming Languages"
+        },
+        {
+            "_id": "Theory of Computation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bOGZfIlywgHPhXgr",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "undecidability",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following statements is false?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The halting problem for Turing machine is un-decidable"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Determining whether ambiguity a context free grammar is un-decidable"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Given two arbitrary context free grammars $${G_1}$$ and $${G_2}$$ whether $$L\\left( {{G_1}} \\right) = L\\left( {{G_2}} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Given two regular grammars $${{G_1}}$$ and $${{G_2}},$$ it is un-decidable whether $$L\\left( {{G_1}} \\right) = L\\left( {{G_2}} \\right)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "Case (a): <br>The Halting Problem for TM is un-decidable problem. By un-decidable means no algorithm exist for it. <br><br>Case (b): <br>Ambiguity in a CFG is undecidable. No algorithm can decide if a CFG is ambiguous. By ambiguous means the CFG has two or more derivations for some sentence. <br><br>Case (c): <br>The equivalance problem of CFG's is undecideable. We have no algorithm to decide if two CFG's generate the same language. <br><br>Case (d): <br>The regular sets are a well behaved class of languages. Practically everything about Regular Language is decidable. "
+                        }
+                    },
+                    "permalink": "which-of-the-following-statements-is-false-gate-cse-1996-marks-1-bogzfilywghphxgr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zR08jJ1zzsnFHfgw",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which two of the following four regular expressions are equivalent? \n<br>(i) $${\\left( {00} \\right)^ * }\\left( {\\varepsilon  + 0} \\right)$$\n<br>(ii) $${\\left( {00} \\right)^ * }$$ \n<br>(iii) $${0^ * }$$ \n<br>(iv) $$0\\,\\,{\\left( {00} \\right)^ * }$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "(i) and (ii) "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "(ii) and (iii) "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "(i) and (iii) "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "(iii) and (vi)"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "0<sup>*</sup>= { \u03b5 ,0,00,000,............} <br>(00)<sup>*</sup>(\u03b5+0)= (00)<sup>*</sup> + (00)<sup>*</sup>0 = even + odd = 0<sup>*</sup> <br>So,0<sup>*</sup> = (00)<sup>*</sup>(\u03b5+0)"
+                        }
+                    },
+                    "permalink": "which-two-of-the-following-four-regular-expressions-are-equi-gate-cse-1996-marks-1-zr08jj1zzsnfhfgw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jizqe97cLHyJ4S1X",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$L \\subseteq \\sum {^{^ * }\\,} $$ where $$\\,\\sum { = \\,\\,\\left\\{ {a,b} \\right\\}\\,\\,} $$ which of the following is true? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$L = \\,\\,\\,\\left\\{ {\\left. x \\right|\\,\\,\\,x} \\right.$$ has an equal number of $$a's$$ and $$\\,\\left. {b's} \\right\\}$$ is regular "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$L = \\left\\{ {{a^n}{b^n}\\left| {n \\ge 1} \\right.} \\right\\}$$ is regular "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$L = \\,\\,\\,\\left\\{ {\\left. x \\right|\\,\\,\\,x} \\right.\\,$$ has more $$a's$$ than $$\\left. {b's} \\right\\}$$ is regular "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$L = \\left\\{ {{a^m}{b^n}\\left| {m \\ge 1,\\,n \\ge 1} \\right.} \\right\\}$$ is regular "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "For only option \"D\" we can draw a Finite Automata<br><img src=\"https://gatequestions.com/images/5953f104343d6.jpg\" style=\"max-width:100%;height:auto;\" loading=\"lazy\" alt=\"GATE CSE 1996 Theory of Computation - Finite Automata and Regular Language Question 102 English Explanation\"><br>So, Option D is correct."
+                        }
+                    },
+                    "permalink": "let-l-subseteq-sum-where-sum-left-ab-right-which-of-the-foll-gate-cse-1996-marks-1-jizqe97clhyj4s1x.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5lszSWucplXNaX4e",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $${L_1}$$ and $${L_2}$$ are context free languages and $$R$$ a regular set, one of the languages below is not necessarily a context free language. Which one? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${L_1}$$$${L_2}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${L_1}\\, \\cap \\,{L_2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${L_1}\\, \\cap \\,R$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${L_1}\\, \\cup \\,{L_2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-l1-and-l2-are-context-free-languages-and-r-a-regular-set-gate-cse-1996-marks-2-5lszswucplxnax4e.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "L5mk5vtYku7oVIkZ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 1996,
+                    "paperTitle": "GATE CSE 1996",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$G$$ be a context free grammar where $$G = \\left( {\\left\\{ {S,A,.B,C} \\right\\},\\left\\{ {a,b,d} \\right\\},P,S} \\right)$$ with productions $$P$$ given below \n<br>$$\\eqalign{\n  &amp; S \\to ABAC\\,\\,\\,\\,\\,\\,\\,\\,\\,S \\to aA{\\mkern 1mu} \\left| \\varepsilon  \\right.  \\cr \n  &amp; S \\to bB{\\mkern 1mu} \\left| \\varepsilon  \\right.\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,C \\to d \\cr} $$\n<p>($$\\varepsilon $$ denotes the null string). Transform the given grammar $$G$$ to an equivalent context- free grammar $${G^1}$$ that has no $$\\varepsilon $$ productions ($$A$$ unit production is of the from $$x \\to y,\\,x$$ and $$y$$ are non terminals). </p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$S \\to ABAC\\left| {BAC} \\right.\\left| {ABC} \\right.\\left| {BC} \\right.\\left| {AAC} \\right.\\left| {AC} \\right.\\left| d \\right.$$\n<br &=\"\" c=\"\" \\to=\"\" d=\"\" \\cr}=\"\" $$=\"\" <br=\"\">$$A \\to aA\\left| a \\right.$$\n<br>$$B \\to bB\\left| b \\right.$$\n<br>$$C \\to d$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-g-be-a-context-free-grammar-where-g-left-left-sabc-right-gate-cse-1996-marks-2-l5mk5vtyku7ovikz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1996",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1996"
+                }
+            ],
+            "title": "Theory of Computation"
+        }
+    ]
+}

@@ -1,0 +1,1961 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iqZ5D8bStYoSi3ja",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a manufacturing plant, the probability of making a defective bolts is $$0.1$$. The mean and standard deviation of defective bolts in a total of $$900$$ bolts are respectively",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$90$$ and $$9$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$9$$ and $$90$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$81$$ and $$9$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$9$$ and $$81$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-manufacturing-plant-the-probability-of-making-a-defecti-gate-me-2000-marks-2-iqz5d8bstyosi3ja.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3IJI8bGXyhhzGtXD",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Find the solution   of the differential equation $$\\,{{{d^2}u} \\over {d{t^2}}} + {\\lambda ^2}y = \\cos \\left( {wt + k} \\right)$$  with initial conditions $$\\,y\\left( 0 \\right) = 0,\\,\\,{{dy\\left( 0 \\right)} \\over {dt}} = 0.$$  Here $$\\lambda ,$$ $$w$$ and $$k$$ are constants. Use either the method of undetermined coefficients (or) the operator  $$\\left( {D = {\\raise0.5ex\\hbox{$\\scriptstyle d$}\n\\kern-0.1em/\\kern-0.15em\n\\lower0.25ex\\hbox{$\\scriptstyle {dt}$}}} \\right)$$ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$y = {{\\cos k} \\over {{w^2} - {\\lambda ^2}}}\\cos \\left( {\\lambda t} \\right) + {{w\\sin k} \\over {\\lambda \\left( {{\\lambda ^2} - {w^2}} \\right)}}\\sin \\left( {\\lambda t} \\right) + {\\lambda  \\over {\\left( {{\\lambda ^2} - {w^2}} \\right)}}\\cos \\left( {wt + k} \\right)$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "find-the-solution-of-the-differential-equation-d2u-over-dt2-gate-me-2000-marks-2-3iji8bgxyhhzgtxd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Engineering Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ybaKW5Z83LxGIuGx",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "engineering-mechanics-static-and-dynamics",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The ratio of tension on the tight side to that on the slack side in a flat belt drive is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "proportional to the product of coefficient of friction and lap angle."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "an exponential function of the product of coefficient of friction and lap angle."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "proportional to the lap angle "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "proportional to the coefficient of friction."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-ratio-of-tension-on-the-tight-side-to-that-on-the-slack-gate-me-2000-marks-1-ybakw5z83lxgiugx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fUdvyca7C9l6Xket",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "engineering-mechanics-static-and-dynamics",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A steel wheel of 600 mm diameter rolls on a horizontal steel rail. It carries a load of 500 N. The coefficient of rolling resistance is 0.3 mm. The force in N, necessary to roll the wheel along the rail is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0.5"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "5 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1.5 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "150"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-steel-wheel-of-600-mm-diameter-rolls-on-a-horizontal-steel-gate-me-2000-marks-1-fudvyca7c9l6xket.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                }
+            ],
+            "title": "Engineering Mechanics"
+        },
+        {
+            "_id": "Fluid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZT1JyyYbmMwSnJDQ",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-statics",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In given figure, if the pressure of gas in bulb $$A$$ is $$50$$ $$cm$$ $$Hg$$ vacuum and $${P_{atm}} = 76\\,cm\\,Hg,$$ then height of column $$H$$ is equal to \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/OPdNiOa7V5NMk3mXi/AgQMdKgvb4zpojC8sVh8UiOHndyXu/H8OpPXrJdLZkTHZL8zuxnt/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2000 Fluid Mechanics - Fluid Statics Question 17 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$26$$ $$cm$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$50$$ $$cm$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$76$$ $$cm$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$126$$ $$cm$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-given-figure-if-the-pressure-of-gas-in-bulb-a-is-50-cm-hg-gate-me-2000-marks-2-zt1jyyybmmwsnjdq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uiy0xZBszQuUtI8e",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-dynamics",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Navier Stoke's equation represents the conservation of ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Energy "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Mass "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Pressure "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Momentum"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "navier-stokes-equation-represents-the-conservation-of-gate-me-2000-marks-1-uiy0xzbszquuti8e.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                }
+            ],
+            "title": "Fluid Mechanics"
+        },
+        {
+            "_id": "Heat Transfer",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XUtkX1GdHl4CXDOI",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "radiation",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A thin metal plate is exposed to solar radiation. The air and the surroundings are at $${30^ \\circ }C\\,.$$ The heat transfer coefficient by free convection from the upper surface of the plate is $$17.4$$ $$\\,W/{m^2}K$$. The plate has an absorptivity of $$0.9$$ at solar wavelength and an emissivity of $$0.1$$ at the long wavelength. Neglecting any heat loss from the lower surface, determine the incident solar radiation intensity in $$kW/{m^2}$$ , if the measured equilibrium temperature of the plate is $${50^ \\circ }C\\,.$$ Stefan Boltzmannn constant is $$5.67 \\times {10^{ - 8}}\\,\\,W/{m^2}{K^4}$$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$0.4$$ $$kW/{m^2}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-thin-metal-plate-is-exposed-to-solar-radiation-the-air-and-gate-me-2000-marks-5-xutkx1gdhl4cxdoi.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "IrFknLQGNzit0ZJR",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "heat-exchangers",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Air enters a counter-flow heat exchanger at $${7^ \\circ }C$$ and leaves at $${40^ \\circ }C$$. Water enters at $${30^ \\circ }C$$ and leaves at $${50^ \\circ }C$$. The $$LMTD$$ in deg $$C$$ is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$5.65$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$14.43$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$19.52$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$20.17$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "air-enters-a-counter-flow-heat-exchanger-at-7-circ-c-and-lea-gate-me-2000-marks-2-irfknlqgnzit0zjr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                }
+            ],
+            "title": "Heat Transfer"
+        },
+        {
+            "_id": "Industrial Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OTxRpKRDcB0xqKt4",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "inventory-control",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A company places orders for supply of two items $$A$$ and $$B.$$ The order cost for each of the items is Rs.$$300$$ /order. The inventory carrying cost is $$18\\% $$ of the unit price per year per unit. The unit prices of the items are Rs.$$40$$ and Rs.$$50$$ respectively. The annual demands are $$10,000$$ and $$20,000$$ respectively. \n<p>(a) Find the economic order quantities and the minimum total cost \n<br>(b) A supplier is willing to give a $$1\\% $$ discount on price, if both the items are ordered from him and if the order quantities for each item are $$1000$$ units or more. Is it profitable to avail the discount? </p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-company-places-orders-for-supply-of-two-items-a-and-2000-marks-5-otxrpkrdcb0xqkt4.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uDYfEplskXTs12vd",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pert-and-cpm",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given below are the data for a project network.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/TSDfdevtEfF7rzY6I/incYNTjlezbtUh35lY21IFwKpaQw0/8qU6XL00q52GU9a6AYSiks/image.png\" loading=\"lazy\" alt=\"GATE ME 2000 Industrial Engineering - Pert and Cpm Question 4 English\"> \n<br>(a) Draw the network for the above project capturing the precedence relationships. \n<br>(b) Find the critical path and its duration.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-below-are-the-data-for-a-project-network-a-draw-t-2000-marks-5-udyfeplskxts12vd.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VRKOQ2re9YMNwP07",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "forecasting",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a time series forecasting model, the demand for five time periods was $$10, 13,$$ $$15,$$ $$18$$ and $$22.$$ A linear regression fit resulted in an equation $$F = 6.9 + 2.9$$ $$t$$ where $$F$$ is the forecast for period $$t$$. The sum of absolute deviations for the five data is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2.2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$-1.2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$24.3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-time-series-forecasting-model-the-demand-for-five-time-2000-marks-2-vrkoq2re9ymnwp07.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NzeOCdNPQnKxcWFJ",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "queuing",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a single server infinite population queuing model, arrivals follow a Poisson distribution with mean $$\\lambda  = 4$$ per hour. The service times are exponential with mean service time equal to $$12$$ minutes. The expected length of the queue will be ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$4$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3.2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.25$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$24.3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-single-server-infinite-population-queuing-model-arriva-2000-marks-2-nzeocdnpqnkxcwfj.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "h5VFonHSDP3JFyau",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-programming",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Solve the following linear programming problem by simplex method\n<p> $$\\eqalign{\n  &amp; Maximize\\,\\,\\,\\,\\,\\,4{x_1} + 6{x_2} + {x_3}  \\cr \n  &amp; Subject\\,\\,to\\,\\,\\,\\,\\,\\,2{x_1} - {x_2} + 3{x_3}\\, \\le 5  \\cr \n  &amp; \\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,{x_1},{x_2},{x_3} \\ge 0 \\cr} $$</p>\n<p>$$(a)$$$$\\,\\,\\,\\,\\,\\,\\,$$ What is the solution to the above problem?</p>\n<p>$$(b)$$$$\\,\\,\\,\\,\\,\\,\\,$$ Add the constant $${x_2} \\le 2$$ to the simplex table of part $$(a)$$ and find the solution.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$(a)$$$$\\,\\,\\,\\,\\,\\,\\,$$ $$ No solution \n<p>$$(b)$$$$\\,\\,\\,\\,\\,\\,\\,$$  $${x_1} = {7 \\over 2};\\,\\,\\,{x_2} = 2;\\,\\,\\,{x_3} = 0$$ </p>",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "solve-the-following-linear-programming-problem-by-simplex-me-2000-marks-5-h5vfonhsdp3jfyau.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8bglTBZcBv1QuHNa",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transportation",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given below is a basic feasible solution to a transportation problem with three supply points $$(A,B,C)$$ and three demand points $$(P, Q, R)$$ that minimizes cost of transportation in the standard tabular format.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/toyQsMK5ikMtq4x10/SuMeU37Sig2v4ykQkeiHFli90jGag/AfMcnCCooP7rJkYqpXEro3/image.png\" loading=\"lazy\" alt=\"GATE ME 2000 Industrial Engineering - Transportation Question 2 English\"> \n<p>$$(a)$$$$\\,\\,\\,\\,\\,\\,\\,\\,$$ Compute the cost corresponding to the present solution\n<br>$$(b)$$$$\\,\\,\\,\\,\\,\\,\\,\\,$$ It is optimal? \n<br>$$(c)$$$$\\,\\,\\,\\,\\,\\,\\,\\,$$ Does an alternate optimum exist ?</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$(a)$$ Cost $$=$$ Rs. $$3900$$\n<br>$$(b)$$ yes, it is optimal\n<br>$$(c)$$ yes, there is one alternate optimal possible.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-below-is-a-basic-feasible-solution-to-a-transportation-2000-marks-5-8bgltbzcbv1quhna.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Kh2xaCpYxWVKduBU",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "industrial-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "production-planning-and-control",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The forecasts for a product for the next three months are given as $$750,850$$ and $$1000$$ units. The number of regular time days and overtime days available are $$22,18,$$ $$22$$ and $$4,$$ $$4,5$$ respectively. With the existing number of employees, the company can produce $$38$$ units per day. To meet the high demand in the third month, the company decides to hire people to increase the daily production to $$45$$ units.\n<p>The following costs are given : \n<br>Cost of regular time production $$=$$ Rs. $$20$$ per unit\n<br>Cost of overtime production $$=$$ Rs. $$25$$ Per unit\n<br>Cost of hiring $$=$$ $$200{L^2}$$\n<br>where $$'L'$$ is the increase in daily capacity</p>\n<p>Inventory $$=$$ Rs. $$10$$ per unit per month (based on average inventory)\n<br>Shortage (back-ordering cost) $$=$$ Rs. $$20$$ per unit per month</p>\n<p>The beginning inventory is $$100$$ units. The company decides to produce $$800,$$ $$700$$ and $$900$$ units respectively in the three months. Compute the cost of the production plan.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Production cost $$=47,680$$  \n<br>Overtime Production cost $$=400$$\n<br>Shortage cost $$=2,000$$ \n<br>Hiring Cost $$=9,800$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-forecasts-for-a-product-for-the-next-three-months-are-gi-2000-marks-5-kh2xacpyxwvkdubu.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                }
+            ],
+            "title": "Industrial Engineering"
+        },
+        {
+            "_id": "Machine Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AVIn7Dg2nnmyLmyB",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "design-of-spur-gears",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$1.5$$ $$kW$$ motor is running at $$1440$$ rev/min. It is to be connected to a stirrer running at $$36$$ rev/min. the gearing arrangement suitable for this application is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "differential gear "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "helical gear "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "spur gear "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "worm gear"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-15-kw-motor-is-running-at-1440-revmin-it-is-to-be-connecte-gate-me-2000-marks-1-avin7dg2nnmylmyb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hNLrPeMsxAtV0VOv",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "design-of-bearings",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The life of a ball bearing at a load of $$10$$ $$kN$$ is $$8000$$ hours. Its life in hours, if the load is increased to $$20$$ $$kN,$$ keeping all other conditions same, is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$4000$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2000$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1000$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$500$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-life-of-a-ball-bearing-at-a-load-of-10-kn-is-8000-hours-gate-me-2000-marks-2-hnlrpemsxatv0vov.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                }
+            ],
+            "title": "Machine Design"
+        },
+        {
+            "_id": "Production Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "blq96X6kfiEu9JnX",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "advance-machine-tools",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In computer aided drafting practice, an arc is defined by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "two end points only "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "center and radius "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "radius and one end point  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "two end points and center"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-computer-aided-drafting-practice-an-arc-is-defined-by-2000-marks-1-blq96x6kfieu9jnx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Hkas9rjmdcZZDXbE",
+                    "exam": "gate-me",
+                    "marks": 4,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "casting",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two castings, a cube and a slab of the same material solidify under identical conditions. The volumes of the castings are equal but the slab dimensions are in the ratio of $$1:2:4$$, find the ratio of the solidification times of the cube to that of the slab. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$1.36$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-castings-a-cube-and-a-slab-of-the-same-material-solidify-gate-me-2000-marks-4-hkas9rjmdczzdxbe.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "irPLsBV2WEgATfdv",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A cylindrical billet of $$100$$ $$mm$$ diameter is forged from $$50$$ $$mm$$ height to $$40$$ $$mm$$ at $${1000^0}$$$$C$$. The material has constant flow stress of $$80$$ $$MPa.$$ Find the work of deformation. If a $$10$$ $$kN$$ drop hamper is used to complete the reduction in one blow. What will be the height of fall. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Work $$=7065$$ $$J$$ \n<br>Height $$=0.35$$ $$m$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-cylindrical-billet-of-100-mm-diameter-is-forged-from-50-mm-gate-me-2000-marks-5-irplsbv2wegatfdv.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bB2yDmdyCFOye6kP",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding-process",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two different pairs of sheets of same material are welded by resistance-spot welding. In one pair, the average radius $$(r)$$ of each spherical bridge is $$0.2$$ $$mm$$ and the number of bridges per $$c{m^2}\\,\\,\\left( n \\right)$$ is $$25.$$ In another pair, the number of bridges per $$c{m^2}$$ is $$50$$ with the same $$'r'$$ of bridge. The contact resistance $${R_c}$$ per unit area is given by $${R_c} = 0.85$$ $$\\left( {\\rho /n\\pi r} \\right)$$ where $$'\\,\\rho \\,'$$ is the resistivity of metal. If the voltage applied is $$5$$ volts and the resistivity of metal is $$2 \\times {10^{ - 5}}$$ ohm-cm. The rate of heat generated per $$c{m^2}$$ in each case ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Heat generation rate $$=4.6$$ $$MW$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-different-pairs-of-sheets-of-same-material-are-welded-by-gate-me-2000-marks-5-bb2ydmdycfoye6kp.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "stPv1xGhMnHQBaVU",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A built up edge is formed while machining ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "ductile materials at high speed"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "ductile materials at low speed"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "brittle materials at high speed"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "brittle materials at low speed"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-built-up-edge-is-formed-while-machining-gate-me-2000-marks-1-stpv1xghmnhqbavu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uQwNEAiMU9I9Yull",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A conventional lathe and a $$CNC$$ lathe are under consideration for machining a given part. The relevant data are shown below :\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/uPC45PYLGcl5J6ujP/fUJuUpAsP91AUNFzH3BUHf490zElw/qfsTBdBRY7ZvqSYUoi4lDZ/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2000 Production Engineering - Metal Cutting Question 74 English\"> \n<p>The machine preferred for producing $$100$$ pieces is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Conventional lathe "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$CNC$$ lathe "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Any of the above "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-conventional-lathe-and-a-cnc-lathe-are-under-consideration-gate-me-2000-marks-2-uqwneaimu9i9yull.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Yp0bGhFTFUnliOir",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "machining",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Deep hole drilling of small diameter, say $$0.2$$ $$mm$$ is done with $$EDM$$ by selecting the tool material as",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "copper wire "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "tungsten wire "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "brass wire "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "tungsten carbide"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "deep-hole-drilling-of-small-diameter-say-02-mm-is-2000-marks-1-yp0bghftfunlioir.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pxAMihQhzbS7kioy",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "machining",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Abrasive material used in grinding wheel selected for grinding ferrous alloys is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$SiC$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "diamond "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$A{l_2}{O_3}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "boron carbide"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "abrasive-material-used-in-grinding-wheel-selected-for-grindi-2000-marks-1-pxamihqhzbs7kioy.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SRM3U2OgeN4XXapa",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "machining",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The abrasive material used in grinding wheel selected for grinding of ferrous alloys is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Silicon carbide "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Diamond "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Aluminium oxide "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Boron carbide "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-abrasive-material-used-in-grinding-wheel-selected-for-gr-2000-marks-2-srm3u2ogen4xxapa.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oA6Mu99ORYIzemkg",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "advance-machine-tools",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Cellular manufacturing is suitable for",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a single product in large volumes "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "one-off production of several varieties "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "products with similar features made in batches "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "large variety of products in large volumes. "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "cellular-manufacturing-is-suitable-for-2000-marks-1-oa6mu99oryizemkg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "P1VScFKDe4gO0WEI",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "casting",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Disposable patterns are made of",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Wood"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Rubber "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Metal "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Polystyrene  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "disposable-patterns-are-made-of-gate-me-2000-marks-1-p1vscfkde4go0wei.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3daeuBe1rn2IBo3L",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "advance-machine-tools",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In finish machining of an island on a casting with $$CNC$$ milling machine, an end mill with $$10$$ $$mm$$ diameter is employed. The corner points of the island are represented by $$(0,0), (0,30), (50,30)$$ and $$(50,0)$$. By applying cutter radius right compensation, the trajectory of the cutter will be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$(-5,0), (-5,35), (55,35), (55,-5), (-5,-5)$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$(0,-5), (55,-5), (55,35), (-5,35), (-5,-5)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$(5,5), (5,25), (45,25), (45,5), (5,5)$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$(5,5), (45,5), (45,25), (5,25), (5,5)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-finish-machining-of-an-island-on-a-casting-with-cnc-m-2000-marks-2-3daeube1rn2ibo3l.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                }
+            ],
+            "title": "Production Engineering"
+        },
+        {
+            "_id": "Theory of Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wfEjSt6wQai9ZyIM",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "gears-and-gear-trains",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 1.5  kW motor is running at 1440 rev/min. Its is to be connected to a stirrer running at 36 rev/min. The gearing arrangement suitable for this application is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "differential gear "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "helical gear"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "spur gear "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "worm gear"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-15-kw-motor-is-running-at-1440-revmin-its-is-to-be-connect-gate-me-2000-marks-1-wfejst6wqai9zyim.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lddOQm6LbtlrrSkx",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vibrations",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "As shown in Figure,  a mass of 100 kg is held between two springs. The natural frequency of vibration of the system, in cycles/s, is\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/m1H12kCUEAwdfN4K9/uKWMBrZcNqaEF27d60k8rThtSt2hj/i5iuFFPXA2NsNzMmw6q0E0/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 2000 Theory of Machines - Vibrations Question 48 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over {2\\pi }}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${5 \\over {\\pi }}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${10 \\over {\\pi }}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${20 \\over {\\pi }}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "as-shown-in-figure-a-mass-of-100-kg-is-held-between-two-spri-gate-me-2000-marks-2-lddoqm6lbtlrrskx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                }
+            ],
+            "title": "Theory of Machines"
+        },
+        {
+            "_id": "Thermodynamics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "na0mcY4PKm6K4nUo",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "first-law-of-thermodynamics",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A steam turbine receives steam steadily at $$10$$ $$bar$$ with an enthalpy of $$3000$$ $$kJ/kg$$ and discharges at $$1$$ bar with an enthalpy of $$2700$$ $$kJ/kg.$$ The work output is $$250$$ $$kJ/kg.$$ The changes in kinetic and potential energies are negligible. The heat transfer from the turbine casing to the surroundings is equal to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ $$kJ$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$50$$ $$kJ$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$150$$ $$kJ$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$250$$ $$kJ$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-steam-turbine-receives-steam-steadily-at-10-bar-with-an-en-gate-me-2000-marks-1-na0mcy4pkm6k4nuo.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vSbPO6Nwmlb1J12P",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "first-law-of-thermodynamics",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "When an ideal gas with constant specific heats is throttled adiabatically, with negligible changes in kinetic and potential energies ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\Delta h = 0,\\,\\,\\Delta T = 0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\Delta h &gt; 0,\\,\\,\\Delta T = 0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\Delta h &gt; 0,\\,\\,\\Delta s &gt; 0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\Delta h = 0,\\,\\,\\Delta s &gt; 0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "when-an-ideal-gas-with-constant-specific-heats-is-throttled-gate-me-2000-marks-2-vsbpo6nwmlb1j12p.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Q0rbeSpzRUPFt7GC",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "first-law-of-thermodynamics",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A certain mass of a pure substance undergoes an irreversible process from state $$1$$ to state $$2,$$ the path of the process being a straight line on the $$T$$-$$s$$ diagram. Calculate heat transfer &amp; work done. Some of the properties at the initial and final states are:\n<br>$${T_1} = 330\\,K,\\,\\,{T_2} = 440\\,K;\\,\\,{U_1} = 170\\,kJ,\\,\\,$$ \n<br>$$\\,{U_2} = 190\\,kJ;\\,\\,{H_1} = 220{\\,_{}}kJ,\\,\\,{H_2} = 247\\,kJ,$$\n<br>and  $${S_1} = 0.23\\,kJ/K$$ and $${S_2} = 0.3\\,kJ/K$$ where $$T, U, H$$ and $$S$$ represent temperature, internal energy, enthalpy and entropy respectively.  ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Heart Transfer $$=26.95$$ $$kJ$$ \n<br>Word one $$=6.95$$ $$kJ$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-certain-mass-of-a-pure-substance-undergoes-an-irreversible-gate-me-2000-marks-5-q0rbespzrupft7gc.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HT8VsyYU8ThoSaUk",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "availability",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Availability of a system at any given state is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a property of the system "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the maximum work obtainable as the system goes to dead state "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the total energy of the system "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "the maximum useful work obtainable as the system goes to dead state "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "availability-of-a-system-at-any-given-state-is-gate-me-2000-marks-1-ht8vsyyu8thosauk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mucVsPmxMrepbPXF",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "rankine-cycle",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following is a pressure compounded turbine?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Parsons "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Curtis"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Rateau"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "all the three "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-is-a-pressure-compounded-turbine-gate-me-2000-marks-1-mucvspmxmrepbpxf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "luJJugA2IXuR46Dq",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "rankine-cycle",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a compressible fluid, sonic velocity is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a property of the fluid "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "always given by $${\\left( {\\gamma RT} \\right)^{{\\raise0.5ex\\hbox{$\\scriptstyle 1$}\n\\kern-0.1em/\\kern-0.15em\n\\lower0.25ex\\hbox{$\\scriptstyle 2$}}}}$$ where $$\\gamma $$, $$R$$ and $$T$$ are respectively the ratio of specific heats, gas constant and temperature in $$K$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "always given by $${\\left( {\\partial p/\\partial \\rho } \\right)_s}^{{\\raise0.5ex\\hbox{$\\scriptstyle 1$}\n\\kern-0.1em/\\kern-0.15em\n\\lower0.25ex\\hbox{$\\scriptstyle 2$}}}.$$ Where $$P,$$ $$\\rho $$ and $$s$$ are respectively pressure, density and entropy "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "always greater than the velocity of fluid at any location."
+                                }
+                            ],
+                            "correct_options": [
+                                "B",
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-compressible-fluid-sonic-velocity-is-gate-me-2000-marks-2-lujjuga2ixur46dq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pAnLdfXjJWZKFQ72",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "rankine-cycle",
+                    "year": 2000,
+                    "paperTitle": "GATE ME 2000",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A simple impulse turbine expands steam frictionlessly from $$12$$ bar, $${250^0}C$$ with an enthalpy of $$2935$$ $$kJ/kg$$ to an enthalpy of $$2584$$ $$kJ/kg$$ at $$0.1$$ bar. Assuming that the nozzle makes an angle of $${20^0}$$ with the blade motion, and that the blades are symmetrical, find the blade velocity that produces maximum efficiency for a turbine speed of $$3600$$ rev/min. assume that the steam enters the nozzle with negligible velocity. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Blade velocity $$=393.4$$ $$m/s$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-simple-impulse-turbine-expands-steam-frictionlessly-from-1-gate-me-2000-marks-5-panldfxjjwzkfq72.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-2000",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-2000"
+                }
+            ],
+            "title": "Thermodynamics"
+        }
+    ]
+}

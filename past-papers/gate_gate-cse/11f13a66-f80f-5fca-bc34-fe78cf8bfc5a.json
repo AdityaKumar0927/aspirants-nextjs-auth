@@ -1,0 +1,2718 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Algorithms",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4T55Sc6VujsyjM3u",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complexity-analysis-and-asymptotic-notations",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The maximum gate delay for any output to appear in an array multiplier for multiplying two n bit number is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "O (n<sup>2</sup>)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "O (n)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "O (log n)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "O (1)"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-maximum-gate-delay-for-any-output-to-appear-in-an-array-gate-cse-1999-marks-1-4t55sc6vujsyjm3u.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XWZHOPieRIykcVEb",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "searching-and-sorting",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose we want to arrange the n numbers stored in any array such that all\nnegative values occur before all positive ones. Minimum number of exchanges\nrequired in the worst case is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "n - 1"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "n"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "n + 1"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "Worst case happens when all the positive numbers occur before the negative numbers.\n<p>In this case, take a positive number from the left side and negative number from the right side and do exchange operation. Then after n/2 exchanges operation, you will reach middle of the array and all the negative value will be present before positive value.</p>\n<p>so in worst case n/2 exchanges required.</p>"
+                        }
+                    },
+                    "permalink": "suppose-we-want-to-arrange-the-n-numbers-stored-in-any-array-gate-cse-1999-marks-1-xwzhopieriykcveb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KW8nh7zuxNNKPjCk",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "searching-and-sorting",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of articulation points of the following graph is\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/o5Y4rxJ6EJwQjnUze/8bTigCXkIhu63VOoJ7bpvNUDXtgQu/2c1fv2Rd4jEQHACQpmhKM9/image.svg\" loading=\"lazy\" alt=\"GATE CSE 1999 Algorithms - Searching and Sorting Question 46 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "3"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "Articulation Point is a point in a graph if we remove that point from the graph then the graph gets disconnected.\n<p>2, 3 and 5 are articulation point in this graph.</p>\n<p>When we remove the vertex 2 from the graph, vertex 4 gets disconnected. See the below diagram.</p>\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/fSAye5oUVVkWuqK9U/hYXCI3cYU3l0QH2jJo9jqS9H1J80m/pB43HC4GVIHgO1Rz1JQZzh/image.svg\" loading=\"lazy\" alt=\"GATE CSE 1999 Algorithms - Searching and Sorting Question 46 English Explanation 1\">\n<p>When we remove the vertex 3 from the graph, two differnt subgraph created. See the below diagram.</p>\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/FL0s5aH0NNUK46Eim/S3a0sy438G6Oot0ykj2ZqQ6XcukDb/0G8lN9v6AQaEYTZurVPLrp/image.svg\" loading=\"lazy\" alt=\"GATE CSE 1999 Algorithms - Searching and Sorting Question 46 English Explanation 2\">\n<p>When we remove the vertex 5 from the graph, vertex 6 and 7 gets disconneted from the graph. See the below diagram.</p>\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/4djyjwtf23riJwwqI/hVtZiwzvKn1iCFCZXEneKKLgTD1Ha/33s9BmK7mbnaxoiS87demj/image.svg\" loading=\"lazy\" alt=\"GATE CSE 1999 Algorithms - Searching and Sorting Question 46 English Explanation 3\">"
+                        }
+                    },
+                    "permalink": "the-number-of-articulation-points-of-the-following-graph-is-gate-cse-1999-marks-1-kw8nh7zuxnnkpjck.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4vKcRKdkS7Nd1iqq",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "divide-and-conquer-method",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A sorting technique is called stable if:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "It takes O(nlog n)time"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "It maintains the relative order of occurrence of non-distinct elements"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "It uses divide and conquer paradigm"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "It takes O(n) space"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-sorting-technique-is-called-stable-if-gate-cse-1999-marks-1-4vkcrkdks7nd1iqq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yM7mr0KqQPgD1SU8",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "divide-and-conquer-method",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If one uses straight two-way merge sort algorithm to sort the following elements in ascending order 20, 47, 15, 8, 9, 4, 40, 30, 12, 17\nthen the order of these elements after the second pass of the algorithm is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "8, 9, 15, 20, 47, 4, 12, 17, 30, 40"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "8, 15, 20, 47, 4, 9, 30, 40, 12, 17"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "15, 20, 47, 4, 8, 9, 12, 30, 40, 17"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "4, 8, 9, 15, 20, 47, 12, 17, 30, 40"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-one-uses-straight-two-way-merge-sort-algorithm-to-sort-th-gate-cse-1999-marks-1-ym7mr0kqqpgd1su8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "51aVvBUT7kUpLBZH",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "searching-and-sorting",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If T<sub>1</sub> = O(1), give the correct matching for the following pairs:\n<p><b>List - I</b></p>\n(M) T<sub>n</sub> = T<sub>n - 1</sub> + n\n<br>(N) T<sub>n</sub> = T<sub>n/2</sub> + n\n<br>(O) T<sub>n</sub> = T<sub>n/2</sub> + nlog n\n<br>(P) T<sub>n</sub> = T<sub>n - 1</sub> + log n\n<p><b>List - II</b></p>\n(U) T<sub>n</sub>= O(n)\n<br>(V) T<sub>n</sub> = O(nlogn)\n<br>(W) T<sub>n</sub> = O(n<sup>2</sup>)\n<br>(X) T<sub>n</sub> = O(log<sup>2</sup>n)\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "M \u2013 W N \u2013 V O \u2013 U P \u2013 X"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "M \u2013 W N \u2013 U O \u2013 X P \u2013 V"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "M \u2013 V N \u2013 W O \u2013 X P \u2013 U"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "M \u2013 W N \u2013 U O \u2013 V P \u2013 X"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-t1-o1-give-the-correct-matching-for-the-following-pairsli-gate-cse-1999-marks-2-51avvbut7kuplbzh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                }
+            ],
+            "title": "Algorithms"
+        },
+        {
+            "_id": "Compiler Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WmZeDF3EekBgSvpi",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "lexical-analysis",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of tokens in the Fortran statement <b>DO 10 I = 1.25</b> is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "3"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "4"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "5"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": "Here in the statement,\n<br/><br/> DO 10 I = 1.25\n<br/><br/>Because of decimal point we can say DO is not a keyword, it is a part of the identifier DO10I.\n<br/><br/>So here 3 tokens present\n<br/><br/>\u201dDO10I\u201d $$ \\to $$ 1\n<br/><br/>\u201c=\u201c $$ \\to $$ 2\n<br/><br/>\u201c1.25\u201d $$ \\to $$ 3\n<br/><br/><b><i>Note :</i></b> In the statement\n<br/><br/> DO 10 I = 1,25\n<br/><br/>We have seven tokens\n<br/><br/>1. keyword DO\n<br/><br/>2. The statement label 10\n<br/><br/>3. The identifier I\n<br/><br/>4. The operator =\n<br/><br/>5. The constant 1\n<br/><br/>6. The comma\n<br/><br/>7. The constant 25\n<br/><br/>Here, DO is a keyword because of comma."
+                        }
+                    },
+                    "permalink": "the-number-of-tokens-in-the-fortran-statement-do-10-i-125-is-gate-cse-1999-marks-2-wmzedf3eekbgsvpi.htm",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                }
+            ],
+            "title": "Compiler Design"
+        },
+        {
+            "_id": "Computer Organization",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YmFmzW5pcmfslIio",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-interfacing",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The main memory of a computer has $$2$$ $$cm$$ blocks while the cache has $$2$$ $$c$$ blocks. If the cache uses the set associative mapping scheme with $$2$$ blocks per set, then block $$k$$ of the main memory maps to the set:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "($$k$$ mod $$m$$) of the cache"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "($$k$$ mod $$c$$) of the cache "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "($$k$$ mod $$2c$$) of the cache "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "($$k$$ mod $$2cm$$) of the cache"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-main-memory-of-a-computer-has-2-cm-blocks-while-the-cach-gate-cse-1999-marks-1-ymfmzw5pcmfsliio.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "V5wbaWWui7szoCue",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pipelining",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An instruction pipeline consists of $$4$$ stages: Fetch (F), Decode field (D), Execute (E), and Result-Write (W). The $$5$$ instructions in a certain instruction sequence need these stages for the different number of clock cycles as shown by the table\nbelow.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/MyxKASoNEPU4ONHCp/7d8oqzm6hwA0Xy2U6tPE4Ma2S0ccI/rvpSYSSMXg4Ki7HyIR2xux/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1999 Computer Organization - Pipelining Question 19 English\">\n<p>Find the number of clock cycles needed to perform the $$5$$ instructions</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$15$$ Clock cycle",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-instruction-pipeline-consists-of-4-stages-fetch-f-decode-gate-cse-1999-marks-5-v5wbawwui7szocue.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lwlytfVAvDfyG7qA",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "computer-arithmetic",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Booth\u2019s coding in $$8$$ bits for the decimal number \u2013$$57$$ is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0\\, - \\,1\\,0\\,0\\, + \\,1\\,0\\,0\\,0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0\\, - \\,1\\,0\\,0\\, + \\,1\\,0\\,0\\, - \\,1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0\\, - \\,1\\, + \\,1\\,0\\,0\\, - \\,1\\,0\\, + \\,1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0\\,0\\, - \\,1\\,0\\, + \\,1\\,0\\,0\\, - \\,1$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "booths-coding-in-8-bits-for-the-decimal-number-57-is-gate-cse-1999-marks-2-lwlytfvavdfyg7qa.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NYxM9SIeBdmXW4tL",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "alu-data-path-and-control-unit",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The main difference (s) between a $$CISC$$ and a $$RISC$$ processor is/are that a $$RISC$$ processor typically:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "has fewer instructions"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "has fewer addressing modes"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "has more registers"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "is easier to implement using hard-wired control logic"
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "B",
+                                "C",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-main-difference-s-between-a-cisc-and-a-risc-processor-is-gate-cse-1999-marks-2-nyxm9siebdmxw4tl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FWTDRqnuwsWVEQ72",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "io-interface",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "RAID configurations of disks are used to provide ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Fault-tolerance "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "High speed "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "High data density "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "raid-configurations-of-disks-are-used-to-provide-gate-cse-1999-marks-2-fwtdrqnuwswveq72.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TlWRP73qAUUDdgUp",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "computer-arithmetic",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of full and half-adders required to add 16-bit numbers is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "8 half-adders, 8 full-adders "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1 half-adder, 15 full-adders"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "16 half-adders, 0 full-adders "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "4 half-adders, 12 full-adders "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-full-and-half-adders-required-to-add-16-bit-nu-gate-cse-1999-marks-2-tlwrp73qauuddgup.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                }
+            ],
+            "title": "Computer Organization"
+        },
+        {
+            "_id": "Database Management System",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LlgCd6dV7NJJzGlT",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "functional-dependencies-and-normalization",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$R=(A,B,C,D,E,F)$$ be a relation scheme with the following dependencies: $$C \\to F,\\,E \\to A,\\,EC \\to D,\\,A \\to B.$$ Which of the following is a key for $$R?$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$CD$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$EC$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$AE$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$AC$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-rabcdef-be-a-relation-scheme-with-the-following-dependen-gate-cse-1999-marks-1-llgcd6dv7njjzglt.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KXa59VDNFtVaoQUC",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "functional-dependencies-and-normalization",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the schema $$R = \\left( {S\\,\\,T\\,\\,U\\,\\,V} \\right)$$ and the dependencies $$S \\to T,\\,\\,T \\to U,\\,\\,U \\to V$$ and $$V \\to S$$ let $$R =$$ $$(R1$$ and $$R2)$$ be a decomposition such that $$R1 \\cap R2 \\ne \\phi .$$ The decomposition is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Not in $$2NF$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "In $$2NF$$ but not $$3NF$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "In $$3NF$$ but not in $$2NF$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "In both $$2NF$$ and $$3NF$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-schema-r-left-stuv-right-and-the-dependencies-s-gate-cse-1999-marks-2-kxa59vdnftvaoquc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lwhQBzvqF2VqoLfX",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "structured-query-language",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following is/are correct?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "An SQL query automatically eliminates duplicates."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "An SQL query will not work if there are no indexes on the relations."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "SQL permits attribute names to be repeated in the same relation."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above."
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-isare-correct-gate-cse-1999-marks-2-lwhqbzvqf2vqolfx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CnyocaSKJJfp4VnO",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "structured-query-language",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the set of relations\n<p>EMP (Employee-no, Dept-no, Employee-name, Salary)\n<br>DEPT (Dept-no, Dept-name, Location)</p>\n<p>Write an SQL query to:</p>\n<p>(a) Find all employee names who work in departments located at \"Calcutta\" and whose salary is greater than Rs.50,000.</p>\n<p>(b) Calculate, for each department number, the number of employees with a   salary greater than Rs.1,00,000.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a) <pre><code class=\"sql\">SELECT Employee-name\nFROM EMP, DEPT\nWHERE EMP.Dept-no = DEPT.Dept-no\n      and EMP.Salary &gt; 50,000 and\n      DEPT.Location=\"Calcutta\";</code></pre>\n(b) <pre><code class=\"sql\">SELECT count(Employee-no)\nFROM EMP\nGROUP BY Dept-no\nHAVING Salary &gt; 1,00,000;</code></pre>",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-set-of-relationsemp-employee-no-dept-no-employe-gate-cse-1999-marks-2-cnyocaskjjfp4vno.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cD9FMgNSuIn9JLKt",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "relational-algebra",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the join of a relation R with a relation S. If R has m tuples and S has n tuples then the maximum and minimum sizes of the join respectively are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "m + n and 0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "mn and 0"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "m + n and |m \u2013 n|"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "mn and m + n"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-join-of-a-relation-r-with-a-relation-s-if-r-has-gate-cse-1999-marks-1-cd9fmgnsuin9jlkt.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jnybLxD2iuprtGhy",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "relational-algebra",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>The relational algebra expression equivalent to the following tuple calculus expression:</p>\n$$\\left\\{ {t|t \\in r \\wedge \\left( {t\\left[ A \\right] = 10 \\wedge t\\left[ B \\right] = 20} \\right)} \\right\\}$$ is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\sigma _{\\left( {A = 10 \\vee B = 20} \\right)}}\\left( r \\right)$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\sigma _{\\left( {A = 10} \\right)}}\\left( r \\right) \\cup {\\sigma _{\\left( {B = 20} \\right)}}\\left( r \\right)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\sigma _{\\left( {A = 10} \\right)}}\\left( r \\right) \\cap {\\sigma _{\\left( {B = 20} \\right)}}\\left( r \\right)$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\sigma _{\\left( {A = 10} \\right)}}\\left( r \\right) - {\\sigma _{\\left( {B = 20} \\right)}}\\left( r \\right)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-relational-algebra-expression-equivalent-to-the-followin-gate-cse-1999-marks-1-jnyblxd2iuprtghy.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "BTh2wTq8JsmTezdQ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transactions-and-concurrency",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the schedule given below, which of the following is correct:\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/QPtBqOPtKszl0pdN5/LCGVuvuVdXEGvWQQF4FbKsVCXL4YF/IZ1PtzkowSjPQt5xMDzPyg/image.svg\" loading=\"lazy\" alt=\"GATE CSE 1999 Database Management System - Transactions and Concurrency Question 29 English\">\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "This schedule is serialized and can occur in a scheme using 2PL protocol"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "This schedule is serializable but cannot occur in a scheme using 2PL protocol "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "This schedule is not serializable but can occur in a scheme using 2PL protocol"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "This schedule is not serializable and cannot occur in a scheme using 2PL protocol."
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-schedule-given-below-which-of-the-following-is-corre-gate-cse-1999-marks-2-bth2wtq8jsmtezdq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XEJYmtMSsH3gO25Z",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-structures-and-indexing",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following is correct?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "B-trees are for storing data on disk and B<sup>+</sup> trees are for main memory."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Range queries are faster on B<sup>+</sup> trees."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "B-trees are for primary indexes and B<sup>+</sup> trees are for secondary indexes."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The height of a B<sup>+</sup> tree is independent of the number of records."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-is-correct-gate-cse-1999-marks-1-xejymtmssh3go25z.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                }
+            ],
+            "title": "Database Management System"
+        },
+        {
+            "_id": "Digital Logic",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5EoP1WJf81EfQ1uz",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "number-systems",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Zero has two representations in:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Sign magnitude "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1's$$ complement"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2's$$ complement "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "zero-has-two-representations-in-gate-cse-1999-marks-2-5eop1wjf81efq1uz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fK34fmtX1Dn1TQb5",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following sets of component(s) is/are sufficient to implement any arbitrary Boolean function?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$XOR$$ gates, $$NOT$$ gates "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2$$ to $$1$$ multiplexers "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$AND$$ gates, $$XOR$$ gates "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Three-input gates that output $$(A.B) + C$$ for the inputs $$A. B$$ and $$C.$$   "
+                                }
+                            ],
+                            "correct_options": [
+                                "B",
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-sets-of-components-isare-sufficient-t-gate-cse-1999-marks-2-fk34fmtx1dn1tqb5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fCBlgm33MHBKVkiy",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "k-maps",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following functions implements the Karnaugh map shown below?\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/E1CrBMKxdjBg058YL/QTRa2Lb5OaxTnlshVl07AsCwzrDUY/LLoGvdgXi5aoFdh0FhrYOR/image.svg\" loading=\"lazy\" alt=\"GATE CSE 1999 Digital Logic - K Maps Question 3 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\overline A B + CD$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$D\\left( {C + A} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$AD + \\overline A B$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$(C + D)(\\overline C  + D)(A + B)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-functions-implements-the-karnaugh-map-gate-cse-1999-marks-1-fcblgm33mhbkvkiy.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                }
+            ],
+            "title": "Digital Logic"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CiAM1R8bgZB9QuCO",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose that the expectation of a random variable X is 5. Which of the following statements is true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "There is a sample point at which X has the value 5."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "There is a sample point at which X has the value greater than 5."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "There is a sample point at which X has a value greater than or equal to 5."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-that-the-expectation-of-a-random-variable-x-is-5-whi-gate-cse-1999-marks-1-ciam1r8bgzb9quco.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kCBhZXhTjdmq4KAQ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let X and Y be two exponentially distributed and independent random variables with mean $$\\alpha $$ and $$\\beta $$, respectively. If Z = min (X, Y), then the mean of Z is given by ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over {\\alpha  + \\beta }}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\min \\,(\\alpha ,\\,\\beta )$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{\\alpha \\,\\beta } \\over {\\alpha  + \\beta }}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\alpha  + \\beta }$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-x-and-y-be-two-exponentially-distributed-and-independent-gate-cse-1999-marks-2-kcbhzxhtjdmq4kaq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RfNNZY5pfLf9fsRb",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider two events $${{E_1}}$$ and $${{E_2}}$$ such that probability of $${{E_1}}$$, Pr [$${{E_1}}$$] = 1/2, probability of $${{E_2}}$$, Pr[$${{E_2}}$$ = 1/3, and probability of $${{E_1}}$$ and $${{E_2}}$$, $$\\left[ {{E_1}\\,\\,or\\,\\,{E_2}} \\right]$$ = 1/5. Which of the following statements is /are true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\Pr \\,\\left[ {{E_1}\\,\\,or\\,\\,{E_2}} \\right]$$ is 2/3"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Events $${{E_1}}$$ and $${{E_2}}$$ are independent"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Events $${{E_1}}$$ and $${{E_2}}$$ are not independent "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\Pr \\,\\left[ {{E_1}\\,/\\,{E_2}} \\right] = 4/5$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-two-events-e1-and-e2-such-that-probability-of-e1-pr-gate-cse-1999-marks-2-rfnnzy5pflf9fsrb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "C7NTmRVUhnEDp36N",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$\\left( {\\left\\{ {p,\\,q} \\right\\},\\, * } \\right)$$ be a semi group where $$p * p = q$$. \n<b>Show that:</b>    (a) $$p * q = q * p,$$, and (b)  $$q * q = q$$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-left-left-pq-right-right-be-a-semi-group-where-p-p-q-sho-gate-cse-1999-marks-5-c7ntmrvuhnedp36n.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "d8X3CfBrhKCuTg7Q",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "(a) Show that the formula $$\\left[ {\\left( { \\sim p \\vee Q} \\right) \\Rightarrow \\left( {q \\Rightarrow p} \\right)} \\right]$$ is not a tautology.\n<p>(b) Let $$A$$ be a tautology and $$B$$ be any other formula. Prove that $$\\left( {A \\vee B} \\right)$$ is a tautology.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-show-that-the-formula-left-left-sim-p-vee-q-right-rightarr-gate-cse-1999-marks-5-d8x3cfbrhkcutg7q.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bbKwiepPLt8ElDQw",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of binary relations on a set with $$n$$ elements is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${n^2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${2^n}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2{n^2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-binary-relations-on-a-set-with-n-elements-is-gate-cse-1999-marks-1-bbkwiepplt8eldqw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "i72G2miAd9DTMaNU",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinatorics",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of binary strings of $$n$$ zeros and $$k$$ ones such that no two ones are adjacent is: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${}^{n + 1}{C_k}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${}^n{C_k}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${}^n{C_{k + 1}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-binary-strings-of-n-zeros-and-k-ones-such-that-gate-cse-1999-marks-1-i72g2miad9dtmanu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SmMIYWmS9tJP6x1N",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<br> (a) Mr. X claims the following: \n<br> If a relation R is both symmetric and transitive, then R is reflexive. For this, Mr. X offers the following proof.\n<p> \"From xRy, using symmetry we get yRx. Now because R is transitive, xRy and yRx togethrer imply xRx. Therefore, R is reflextive.\" </p>\n<br> Briefly point out the flaw in Mr. X' proof.\n<p> (b) Give an example of a relation R which is symmetric and transitive but not reflexive. </p>\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "a) It R is an emply relation then Mr. X is wrong.\n<br> b) If A = {1, 2, 3} and \n<br> R = { (1, 1), (2, 2), (2, 3), (3, 2)}. In this example R is symmetric and transitive but not reflexive.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-a-mr-x-claims-the-following-if-a-relation-r-is-both-symmetr-gate-cse-1999-marks-2-smmiywms9tjp6x1n.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "V7opEzAwYMWfTD23",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinatorics",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two girls have picked 10 roses, 15 sunflowers and 14 daffodils. What is the number of ways they can divide the flowers among themselves?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1638 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2100"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2640"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-girls-have-picked-10-roses-15-sunflowers-and-14-daffodil-gate-cse-1999-marks-2-v7opezawymwftd23.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9T6wao44ThQ4xUnt",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$G$$ be a connected, undirected graph. A $$cut$$ in $$G$$ is a set of edges whose removal results in $$G$$ being broken into two or more components which are not connected with each other. The size of a cut is called its $$cardinality$$. A $$min-cut$$ of $$G$$ is a cut in $$G$$ of minimum cardinality. Consider the following graph.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/yNhSIkbhhAUCbEilk/WE62OnGFQZR8l3mFTWRVJDqhCqP5n/V79jKFJ8lhV4E9pmwCG087/image.svg\" loading=\"lazy\" alt=\"GATE CSE 1999 Discrete Mathematics - Graph Theory Question 31 English\"> \n<p>(a) Which of the following sets of edges is a cut?\n<br>$$\\,\\,\\,\\,$$(i)$$\\,\\,\\,\\,\\left\\{ {\\left( {A,\\,B} \\right),\\left( {E,\\,F} \\right),\\left( {B,\\,D} \\right),\\left( {A,\\,E} \\right),\\left( {A,\\,D} \\right)} \\right\\}$$\n<br>$$\\,\\,\\,\\,$$(ii)$$\\,\\,\\,\\,\\left\\{ {\\left( {B,\\,D} \\right),\\left( {C,\\,F} \\right),\\left( {A,\\,B} \\right)} \\right\\}$$</p>\n<p>(b) What is the cardinality of a min-cut in this graph?</p>\n<p>(c) Prove that if a connected undirected graph $$G$$ with $$n$$ vertices has a min-cut of cardinality $$k$$, then $$G$$ has at least $$(nk/2)$$ edges.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-g-be-a-connected-undirected-graph-a-cut-in-g-is-a-set-of-gate-cse-1999-marks-5-9t6wao44thq4xunt.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "x0NS2kmilbhSsaKh",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose that the expectation of a random variable X is 5. Which of the following statements is true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "There is a sample point at which X has the value 5."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "There is a sample point at which X has the value greater than 5."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "There is a sample point at which X has a value greater than or equal to 5."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-that-the-expectation-of-a-random-variable-x-is-5-whi-gate-cse-1999-marks-1-x0ns2kmilbhssakh.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XkmcTH6btlRdmSzZ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following disk scheduling strategies is likely to give the best throughput? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Farthest cylinder next"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Nearest cylinder next "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "First come first served "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Elevator algorithm"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-disk-scheduling-strategies-is-likely-gate-cse-1999-marks-1-xkmcth6btlrdmszz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "astnnuGnUjk5pe3d",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following is/are advantage of virtual memory?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Faster access to memory on an average. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Processes can be given protected address spaces. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Linker can assign addresses independent of where the program will be loaded in physical memory.\n"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Programs larger than the physical memory size can be run. "
+                                }
+                            ],
+                            "correct_options": [
+                                "B",
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-isare-advantage-of-virtual-memory-gate-cse-1999-marks-2-astnnugnujk5pe3d.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "t7aC6ul1P10s9sX6",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A certain computer system has the segmented paging architecture for virtual memory. The memory is byte addressable. Both virtual and physical address spaces contain $${2^{16}}$$ bytes each. The virtual address space is divided into $$8$$ non-overlapping equal size segments. The memory management unit $$(MMU)$$ has a hardware segment table, each entry of which contains the physical address of the page table for the segment. Page table are stored in the main memory and consists of $$2$$ byte page table entries.\n<p>(a)$$\\,\\,\\,\\,\\,$$ What is the minimum page size in bytes so that the page table for a segment requires at most one page to store it? Assume that the page size can only be a power of $$2.$$</p>\n<p>(b)$$\\,\\,\\,\\,\\,$$ Now suppose that the pages size is $$512$$ bytes. It is proposed to provide a $$TLB$$ (Translation look-aside buffer) for speeding up address translation. The proposed $$TLB$$ will be capable of storing page table entries for $$16$$ recently referenced virtual pages, in a fast cache that will use the direct mapping scheme. What is the number of tag bits that will need to be associated with each cache entry</p>\n<p>(c)$$\\,\\,\\,\\,\\,$$ Assume that each page table entry contains (besides other information) $$1$$ valid bit, $$3$$ bits for page protection and $$1$$ dirty bit. How many bits are available in page table entry for storing the aging information for the page? Assume that the page size is $$512$$ bytes. </p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a) $$\\,\\,\\,\\,\\,$$ Page size $$=128$$ Bytes\n<br>(b)$$\\,\\,\\,\\,\\,$$ Tag Bits $$=3$$\n<br>(c) $$\\,\\,\\,\\,\\,$$ $$7$$ bits",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-certain-computer-system-has-the-segmented-paging-architect-gate-cse-1999-marks-5-t7ac6ul1p10s9sx6.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "c9BkjXVrxhV9QuKr",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Listed below are some operating system abstractions (in the left column) and the hardware components. Which matching pairs is correct?\n<p>$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$<b>List-$${\\rm I}$$</b>\n<br>(a) Thread   $$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$(b) Virtual Address space \n<br>(c) File System  $$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$(d) Signal</p>\n<p>$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$<b>List-$${\\rm II}$$</b>\n<br>(1) Interrupt $$\\,\\,\\,\\,\\,\\,\\,$$$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$(2) Memory\n<br>(3) $$CPU$$ $$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$$$\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,$$(4) Disk</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$a - 3,\\,\\,b - 2,\\,\\,c - 4,\\,\\,d - 1$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "listed-below-are-some-operating-system-abstractions-in-the-l-gate-cse-1999-marks-1-c9bkjxvrxhv9qukr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aMLH4CvOb4H26sch",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A multi-user, multi-processing operating system cannot be implemented on hardware that does not support:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Address translation "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "DMA for disk transfer "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "At least two modes of CPU execution (privileged and non-privileged) "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Demand paging   "
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "B",
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-multi-user-multi-processing-operating-system-cannot-be-imp-gate-cse-1999-marks-2-amlh4cvob4h26sch.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LEa32i4eD8bPJV3f",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "System calls are usually invoked by using:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "A software interrupt "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Polling"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "An indirect jump "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "A privileged instruction  "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": "When a program in user mode requires access to RAM or a hardware resource, it must switch to kernel mode to provide access to that resource. This is done via something called a system call and switching between user mode to kernel mode is done through software interrupt."
+                        }
+                    },
+                    "permalink": "system-calls-are-usually-invoked-by-using-gate-cse-1999-marks-1-lea32i4ed8bpjv3f.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9hs2IhxDNMSFn09B",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following actions is/are typically not performed by the operating system when switching context from process $$A$$ to process $$B$$ ?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Saving current register values and restoring saved register values for process "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Changing address translation tables. "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Swapping out the memory image of process A to the disk. "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Invalidating the translation look-aside buffer.  "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-actions-isare-typically-not-performed-gate-cse-1999-marks-2-9hs2ihxdnmsfn09b.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                }
+            ],
+            "title": "Operating Systems"
+        },
+        {
+            "_id": "Programming Languages",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Il3jvStudtPl4Jt2",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "function-and-recursion",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following C function definition\n<pre><code class=\"c\">int Trial (int a, int b, int c)\n{\n       if ((a &gt; = b) &amp;&amp; (c &lt; b)) return b;\n       else if (a &gt; = b) return Trial (a,c,b);\n       else return Trial (b,a,c);\n}</code></pre>\nThe function Trial:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Finds the maximum of a, b and c"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Finds the minimum of a, b and c"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Finds the middle number of a, b, c"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-c-function-definitionint-trial-int-a-gate-cse-1999-marks-2-il3jvstudtpl4jt2.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YfHki2H564tRKJo7",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given the programming constructs: <br><br>(i) assignment <br>(ii) for loops where the loop\nparameter cannot be changed within the loop <br>(iii) if-then-else <br>(iv) forward go to\n<br>(v) arbitrary go to <br>(vi) non-recursive procedure call <br>(vii) recursive\nprocedure/function call <br>(viii) repeat loop, <p>which constructs will you not include in\na programming language such that it should be possible to program the\nterminates (i.e., halting) function in the same programming language.</p>  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "ii), (iii), (iv)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "(v), (vii), (viii)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "(vi), (vii), (viii)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "(iii), (vii), (viii)"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-the-programming-constructs-i-assignment-ii-for-loops-w-gate-cse-1999-marks-2-yfhki2h564trkjo7.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2xAG0ju44MyWCA9y",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following program in a language that has dynamic scooping:\n<pre><code class=\"pascal\">var x: real;\nprocedure show;\n         begin print(x); end;\nprocedure small;\n         var x: real;\n             begin x: = 0.125; show; end;\nbegin x:=0.25;\n         show; small\n         end;</code></pre>\nThen the output of the program is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0.125 0.125"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.25 0.25"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0.25 0.125"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0.125 0.25"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-program-in-a-language-that-has-dynami-gate-cse-1999-marks-2-2xag0ju44mywca9y.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DaToxDAB4Wr0fZEi",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A certain processor supports only the immediate and the direct addressing\nmodes. Which of the following programming language features cannot be\nimplemented on this processor?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Pointers"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Arrays"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Records"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Recursive procedures with local variable"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-certain-processor-supports-only-the-immediate-and-the-dire-gate-cse-1999-marks-2-datoxdab4wr0fzei.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                }
+            ],
+            "title": "Programming Languages"
+        },
+        {
+            "_id": "Theory of Computation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mCr9UipyAITOSt6s",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the regular expression $$(0+1)(0+1).......n$$ times. The minimum state finite automation that recognizes the language represented by this regular expression contains: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$n$$ states "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$n+1$$ states "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$n+2$$ states "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "<a href=\"https://www.gatequestions.com/images/59ac72bacc99a.jpg\"> <img src=\"https://www.gatequestions.com/images/59ac72bacc99a.jpg\" loading=\"lazy\" alt=\"GATE CSE 1999 Theory of Computation - Finite Automata and Regular Language Question 96 English Explanation\"></a>"
+                        }
+                    },
+                    "permalink": "consider-the-regular-expression-0101n-times-the-minimum-stat-gate-cse-1999-marks-1-mcr9uipyaitost6s.htm",
+                    "updated_time": 1564837149,
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "H39OJf1TkP7fY7Bc",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Context free languages are closed under: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Union, intersection "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Union, Kleene closure "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Intersection, complement "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Complement, Kleene Closure "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "context-free-languages-are-closed-under-gate-cse-1999-marks-1-h39ojf1tkp7fy7bc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "F9Bnc788p1MmrsqP",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $${L_D}$$ be the set of all languages accepted by a $$PDA$$ by final state and $${L_E}$$ the set of all languages accepted by empty stack. Which of the following is true? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${L_D}\\,\\, = \\,\\,{L_E}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${L_D}\\,\\, \\supset \\,\\,{L_E}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${L_D}\\,\\, \\subset \\,\\,{L_E}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-ld-be-the-set-of-all-languages-accepted-by-a-pda-by-fina-gate-cse-1999-marks-1-f9bnc788p1mmrsqp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rgohu1mJox5prnXO",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 1999,
+                    "paperTitle": "GATE CSE 1999",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcqm",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $${L_1}$$ is a context free language and $${L_2}$$ is a regular which of the following is/are false?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${L_1} - {L_2}$$ is not context free "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${L_1} \\cap {L_2}$$ is context free "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$ \\sim {L_1}$$ is context free "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ \\sim {L_2}$$ is regular "
+                                }
+                            ],
+                            "correct_options": [
+                                "A",
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-l1-is-a-context-free-language-and-l2-is-a-regular-which-o-gate-cse-1999-marks-2-rgohu1mjox5prnxo.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1999",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1999"
+                }
+            ],
+            "title": "Theory of Computation"
+        }
+    ]
+}

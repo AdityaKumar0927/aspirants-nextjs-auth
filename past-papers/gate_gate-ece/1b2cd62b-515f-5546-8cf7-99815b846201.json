@@ -1,0 +1,3319 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Analog Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3TVstf644bijyep5",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bipolar-junction-transistor",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit shown below, the silicon npn transistor Q has a very high value of $$\\beta $$. The required value of R<sub>2</sub> in k$$\\Omega $$  to produce I<sub>c</sub> = 1mA is \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/635ce1e62de9caafe3656e3c5238c0e4c2e2d6cba4cf216a07cc429b3c39c49c.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Analog Circuits - Bipolar Junction Transistor Question 24 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "20 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "3 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "40 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "50"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-below-the-silicon-npn-transistor-q-has-gate-ece-2013-marks-2-3tvstf644bijyep5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XErVTMhCcRkuap2M",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fet-and-mosfet",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The ac schematic of an NMOS common-source stage is shown in the figure below, where part of\nthe biasing circuits has been omitted for simplicity. For the n -channel MOSFET M, the\ntransconductance g<sub>m</sub> = 1 mA/V, and body effect and channel length modulation effect are to be\nneglected. The lower cutoff frequency in Hz of the circuit is approximately at \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/9a122ae3dc9a9fc2873a8fa63c17a5cebd7f9c2b110e5773d912b80fc1b589fa.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Analog Circuits - FET and MOSFET Question 13 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "8 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "32 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "50 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "200 "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-ac-schematic-of-an-nmos-common-source-stage-is-shown-in-gate-ece-2013-marks-2-xervtmhccrkuap2m.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mtYtOcxagp8eMRVn",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "feedback-amplifier",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a voltage-voltage feedback as shown below, which one of the following statements is TRUE, if the gain k is increased? <img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/8a03a4e27bae4ae7505b851a450d6174c4c0e9b10b494226d13d41ac8fbfebe8.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Analog Circuits - Feedback Amplifier Question 16 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "The input impedance increases and output impedance decreases."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "The input impedance increases and output impedance also increases."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The input impedance increases and output impedance also increases."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The input impedance increases and output impedance increases."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-voltage-voltage-feedback-as-shown-below-which-one-of-th-gate-ece-2013-marks-1-mtytocxagp8emrvn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "h4P1Gj46nGRmnbF0",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit shown below, what is the output voltage (v<sub>out</sub> ) if a silicon transistor Q and an ideal op-amp are used?<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/4952365cfda89a651ba7f3294023c26dde269533cf1306054df787d651b28b52.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Analog Circuits - Operational Amplifier Question 71 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "-15 V "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "-0.7 V "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "+0.7 V "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "+15 V "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-below-what-is-the-output-voltage-vout-i-gate-ece-2013-marks-1-h4p1gj46ngrmnbf0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uvmFHrmvT8frPLDk",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "analog-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "operational-amplifier",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit shown below the op-amps are ideal. Then V<sub>out</sub> in Volts is <img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/8b98cf2557c6ce3515461f77fe7eab4066e7948b02b2e40a493f7a2167c46e1e.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Analog Circuits - Operational Amplifier Question 32 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "4 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "6 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "8 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "10 "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-below-the-op-amps-are-ideal-then-vout-i-gate-ece-2013-marks-2-uvmfhrmvt8frpldk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                }
+            ],
+            "title": "Analog Circuits"
+        },
+        {
+            "_id": "Communications",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3X0XNpRS5jiVgxrT",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "digital-communication-systems",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The bit rate of a digital communication system is R kbits/s. The modulation used is 32-QAM. The minimum bandwidth required for ISI free transmission is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "R/10 Hz "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "R/10 kHz "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "R/5 Hz "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "R/5 kHz "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-bit-rate-of-a-digital-communication-system-is-r-kbitss-t-gate-ece-2013-marks-1-3x0xnprs5jivgxrt.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "grFXEF4bkOD2J5Am",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "random-signals-and-noise",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Bits 1 and 0 are transmitted with equal probability. At the receiver, the pdf of the respective received signals for both bits are as shown below.  \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/qi2KunidDnzgd51R3/DSboiJbKkuDptHlbiJfTkCCgcCGKD/saosmcy6I1wYG1uOPHF2Qb/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Communications - Random Signals and Noise Question 44 English\"> \n<p>If the detection threshold is 1, the BER will be </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over 4}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${1 \\over 8}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${1 \\over 16}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "bits-1-and-0-are-transmitted-with-equal-probability-at-the-r-gate-ece-2013-marks-2-grfxef4bkod2j5am.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "b1YXOM75Jmg9zhKB",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "random-signals-and-noise",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Bits 1 and 0 are transmitted with equal probability. At the receiver, the pdf of the respective received signals for both bits are as shown below.  \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/qi2KunidDnzgd51R3/DSboiJbKkuDptHlbiJfTkCCgcCGKD/saosmcy6I1wYG1uOPHF2Qb/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Communications - Random Signals and Noise Question 43 English\">  \n<p>The optimum threshold to achieve minimum bit error rate (BER) is </p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${4 \\over 5}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${3 \\over 2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "bits-1-and-0-are-transmitted-with-equal-probability-at-the-r-gate-ece-2013-marks-2-b1yxom75jmg9zhkb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bIigX4aNZkIheaUC",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "communications",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "noise-in-digital-communication",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let U and V be two independent zero mean Gaussian random variables of variances $${{1 \\over 4}}$$ and $${{1 \\over 9}}$$ respectively. The probability $$P(\\,3V\\, \\ge \\,\\,2U)$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "4/9"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1/2"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2/3"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "5/9"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-u-and-v-be-two-independent-zero-mean-gaussian-random-var-gate-ece-2013-marks-2-biigx4anzkiheauc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                }
+            ],
+            "title": "Communications"
+        },
+        {
+            "_id": "Control Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a846a3171bb8",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "time-response-analysis",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The open-loop transfer function of a dc motor is given as $$\\;\\frac{\\omega\\left(s\\right)}{V_a\\left(s\\right)}=\\frac{10}{1+10s}$$, when\nconnected in feedback as shown below, the approximate value of  K<sub>a</sub> that will\nreduce the time constant of the closed-loop system by one hundred times as\ncompared to that of the open-loop system is\n<img alt=\"GATE ECE 2013 Control Systems - Time Response Analysis Question 13 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/4a97ef26f3df7026037dcb98183fa7d169eca838e9ee4b0cfd56aea238f7a8dc.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "5"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "10"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "100"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-open-loop-transfer-function-of-a-dc-motor-is-given-as-fr-gate-ece-2013-marks-2-5a846a3171bb8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0968f36db92",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "signal-flow-graph-and-block-diagram",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The signal flow graph for a system is given below. The transfer function $$\\frac{Y(s)}{U(s)}$$ for this system is\n<img alt=\"GATE ECE 2013 Control Systems - Signal Flow Graph and Block Diagram Question 15 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/9050c6f8b5167e3414e1441b044bae4c10955362725516558b957c27fa91499c.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\frac{s+1}{5s^2+6s+2}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\frac{s+1}{s^2+6s+2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\frac{s+1}{s^2+4s+2}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\frac{1}{5s^2+6s+2}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-signal-flow-graph-for-a-system-is-given-below-the-transf-gate-ece-2013-marks-2-5a0968f36db92.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0cc58ec09b0",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stability",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following statements is NOT TRUE for a continuous time causal\nand stable LTI system?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "All the poles of the system must lie on the left side of the j\u03c9 axis"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Zeros of the system can lie anywhere in the s-plane"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "All the poles must lie within $$\\left|s\\right|\\;=\\;1$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "All the roots of the characteristic equation must be located on the left side of\n the j\u03c9 axis "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-statements-is-not-true-for-a-cont-gate-ece-2013-marks-1-5a0cc58ec09b0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0cc6daa83e0",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stability",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A polynomial $$f\\left(x\\right)\\;=\\;a_4x^4\\;+\\;a_3x^3\\;+\\;a_2x^2\\;+\\;a_1x\\;-\\;a_0$$ with all coefficients positive has  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "no real roots"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "no negative real root"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "odd number of real roots"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "at least one positive and one negative real root"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-polynomial-fleftxrighta4x4a3x3a2x2a1x-a0-with-all-coeffici-gate-ece-2013-marks-1-5a0cc6daa83e0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lntVxvkzYHoj7OLq",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "frequency-response-analysis",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The Bode plot of a transfer function G (s) is shown in the figure below.  \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/d2894f5ba748537c110e2d2289642e77eddfaa766cb83bb7d583f2f7aff1a58e.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Control Systems - Frequency Response Analysis Question 54 English\"> \nThe gain (20 log $$\\left| {G(s)} \\right|$$ ) is 32 dB and -8dB at 1rad/s and 10rad/s respectively. The phase is negative for all $$\\omega .$$ Then G(s) is \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${\\textstyle{{39.8} \\over s}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${\\textstyle{{39.8} \\over {{s^2}}}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${\\textstyle{{32} \\over {{s}}}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\textstyle{{32} \\over {{s^2}}}}$$  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-bode-plot-of-a-transfer-function-g-s-is-shown-in-the-fig-gate-ece-2013-marks-1-lntvxvkzyhoj7olq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "LcUjeb6wPnTxCfL7",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "state-space-analysis",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The state diagram of a system is shown below. A system is shown below. A system is described by the state variable equations \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/952fb7738c1d508bff52c54f259400fccc8b881986b4c88ff1ffee89d5c1ddba.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Control Systems - State Space Analysis Question 21 English\"> \n<p>The state-variable equations of the system shown in the figure above are</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\eqalign{\n  &amp; \\mathop X\\limits^ \\bullet   = \\left[ {\\matrix{\n   { - 1} &amp; 0  \\cr \n   1 &amp; { - 1}  \\cr \n\n } } \\right]X + \\left[ {\\matrix{\n   { - 1}  \\cr \n   1  \\cr \n\n } } \\right]u  \\cr \n  &amp; y = \\left[ {\\matrix{\n   1 &amp; { - 1}  \\cr \n\n } } \\right]X + u \\cr} $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\eqalign{\n  &amp; \\mathop X\\limits^ \\bullet   = \\left[ {\\matrix{\n   { - 1} &amp; 0  \\cr \n   { - 1} &amp; { - 1}  \\cr \n\n } } \\right]X + \\left[ {\\matrix{\n   { - 1}  \\cr \n   1  \\cr \n\n } } \\right]u  \\cr \n  &amp; y = \\left[ {\\matrix{\n   { - 1} &amp; { - 1}  \\cr \n\n } } \\right]X + u \\cr} $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\eqalign{\n  &amp; \\mathop X\\limits^ \\bullet   = \\left[ {\\matrix{\n   { - 1} &amp; 0  \\cr \n   { - 1} &amp; { - 1}  \\cr \n\n } } \\right]X + \\left[ {\\matrix{\n   { - 1}  \\cr \n   1  \\cr \n\n } } \\right]u  \\cr \n  &amp; y = \\left[ {\\matrix{\n   { - 1} &amp; { - 1}  \\cr \n\n } } \\right]X - u \\cr} $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\eqalign{\n  &amp; \\mathop X\\limits^ \\bullet   = \\left[ {\\matrix{\n   { - 1} &amp; { - 1}  \\cr \n   0 &amp; { - 1}  \\cr \n\n } } \\right]X + \\left[ {\\matrix{\n   { - 1}  \\cr \n   1  \\cr \n\n } } \\right]u  \\cr \n  &amp; y = \\left[ {\\matrix{\n   1 &amp; { - 1}  \\cr \n\n } } \\right]X - u \\cr} $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-state-diagram-of-a-system-is-shown-below-a-system-is-sho-gate-ece-2013-marks-2-lcujeb6wpntxcfl7.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yWHkEQdxFMHINWnQ",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "control-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "state-space-analysis",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The state diagram of a system is shown below. A system is shown below. A system is described by the state variable equations \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/952fb7738c1d508bff52c54f259400fccc8b881986b4c88ff1ffee89d5c1ddba.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Control Systems - State Space Analysis Question 20 English\"> \n<p>The state transition matrix e<sup>At</sup> of the system shown in the figure above is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left[ {\\matrix{\n   {{e^{ - t}}} &amp; 0  \\cr \n   {t{e^{ - t}}} &amp; {{e^{ - t}}}  \\cr \n\n } } \\right]$$ v"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left[ {\\matrix{\n   {{e^{ - t}}} &amp; 0  \\cr \n   { - t{e^{ - t}}} &amp; {{e^{ - t}}}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left[ {\\matrix{\n   {{e^{ - t}}} &amp; 0  \\cr \n   {{e^{ - t}}} &amp; {{e^{ - t}}}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left[ {\\matrix{\n   {{e^{ - t}}} &amp; { - t{e^{ - t}}}  \\cr \n   0 &amp; {{e^{ - t}}}  \\cr \n\n } } \\right]$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-state-diagram-of-a-system-is-shown-below-a-system-is-sho-gate-ece-2013-marks-2-ywhkeqdxfmhinwnq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                }
+            ],
+            "title": "Control Systems"
+        },
+        {
+            "_id": "Digital Circuits",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2piSO9Gr7p6sJxk8",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logic-families",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit shown below, Q<sub>1</sub> has negligible collector-to-emitter saturation voltage and the diode\ndrops negligible voltage across it under forward bias. If V<sub>CC</sub> is +5 V, X and Y are digital signals\nwith 0 V as logic 0 and V<sub>CC</sub> as logic 1, then the Boolean expression for Z is\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/c5eb5fb13999bcf37cc77ba59b2fa5b2eb768b4f8dbfdb3696faa96f60b8b77d.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Digital Circuits - Logic Families Question 11 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "XY"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\overline XY$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$X\\overline Y$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\overline{XY}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-below-q1-has-negligible-collector-to-em-gate-ece-2013-marks-2-2piso9gr7p6sjxk8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hYBDOwOykd7WXpNF",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the sum of products function f (x,y,z) = $$\\sum {} $$m (2,3,4,5), the prime implicants are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\overline X \\,Y,X\\overline Y $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\overline X \\,Y,X\\overline Y $$$$\\overline Z ,X\\overline Y Z$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\overline X Y\\overline Z $$,$$\\overline X YZ,X\\overline Y $$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\overline X Y\\overline Z $$ ,$$\\overline X YZ,X\\overline Y $$$$\\overline Z ,X\\overline Y Z$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-sum-of-products-function-f-xyz-sum-m-2345-the-prime-i-gate-ece-2013-marks-1-hybdowoykd7wxpnf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xlb1qeiJK9De231Z",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-circuits",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logic-gates",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A bulb in a staircase has two switches, one switch being at the ground floor and the other one at the\nfirst floor. The bulb can be turned ON and also can be turned OFF by any one of the switches\nirrespective of the state of the other switch. The logic of switching of the bulb resembles.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "an AND gate  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "an OR gate"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "an XOR gate "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a NAND gate"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-bulb-in-a-staircase-has-two-switches-one-switch-being-at-t-gate-ece-2013-marks-1-xlb1qeijk9de231z.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                }
+            ],
+            "title": "Digital Circuits"
+        },
+        {
+            "_id": "Electromagnetics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2JnXmmexbcMvXZc8",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transmission-lines",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The return loss of a device is found to be 20 dB. The voltage standing wave ratio (VSWR) and magnitude of reflection coefficient are respectively.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1.22 and 0.1"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.81 and 0.1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "- 1.22 and 0.1"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2.44 and 0.2"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-return-loss-of-a-device-is-found-to-be-20-db-the-voltage-gate-ece-2013-marks-1-2jnxmmexbcmvxzc8.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vaUYencz0VBI7Rfr",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "uniform-plane-waves",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A monochromatic plane wave of wavelength $$\\lambda  = 600$$ is propagating in the direction as shown in the\nfigure below. $${\\overrightarrow E _i},\\,{\\overrightarrow E _r}$$ and $${\\overrightarrow E _t}$$ denote incident, reflected, and transmitted electric field vectors associated with the wave.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/rU07BiFTd0cv0tzlq/HIIvGuokkZ0hOtyXWwSm0hZBDlHa4/2loitcLRZF9fhH3NhEWdwL/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Electromagnetics - Uniform Plane Waves Question 27 English\"> \n<p>The expression for $${\\overrightarrow E _r}$$ is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.23{{{E_0}} \\over {\\sqrt 2 }}\\left( {{{\\widehat a}_x} - {{\\widehat a}_z}} \\right){e^{ - j{{\\pi  \\times {{10}^4}\\left( {x - z} \\right)} \\over {3\\sqrt 2 }}}}\\,\\,\\,V/m$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$ - {{{E_0}} \\over {\\sqrt 2 }}\\left( {{{\\widehat a}_x} - {{\\widehat a}_z}} \\right){e^{ - j{{\\pi  \\times {{10}^4}z} \\over 3}}}\\,\\,\\,V/m$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.44{{{E_0}} \\over {\\sqrt 2 }}\\left( {{{\\widehat a}_x} - {{\\widehat a}_z}} \\right){e^{ - j{{\\pi  \\times {{10}^4}\\left( {x - z} \\right)} \\over {3\\sqrt 2 }}}}\\,\\,\\,V/m$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{{E_0}} \\over {\\sqrt 2 }}\\left( {{{\\widehat a}_x} - {{\\widehat a}_z}} \\right){e^{ - j{{\\pi  \\times {{10}^4}\\left( {x + z} \\right)} \\over 3}}}\\,\\,V/m$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-monochromatic-plane-wave-of-wavelength-lambda-600-is-propa-gate-ece-2013-marks-2-vauyencz0vbi7rfr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cxXmT1zqqZU7WEi6",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "uniform-plane-waves",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A monochromatic plane wave of wavelength $$\\lambda  = 600$$ is propagating in the direction as shown in the\nfigure below. $${\\overrightarrow E _i},\\,{\\overrightarrow E _r}$$ and $${\\overrightarrow E _t}$$ denote incident, reflected, and transmitted electric field vectors associated with the wave.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/rU07BiFTd0cv0tzlq/HIIvGuokkZ0hOtyXWwSm0hZBDlHa4/2loitcLRZF9fhH3NhEWdwL/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Electromagnetics - Uniform Plane Waves Question 28 English\"> \n<p>The angle of incidence $${\\theta _i}$$ and the expression for $${\\overrightarrow E _i}$$ are</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${60^ \\circ }\\,\\,\\,and\\,\\,{{{E_0}} \\over {\\sqrt 2 }}\\left( {{{\\widehat a}_x} - {{\\widehat a}_z}} \\right){e^{ - j{{\\pi  \\times {{10}^4}\\left( {x + z} \\right)} \\over {3\\sqrt 2 }}}}\\,\\,V/m$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${45^ \\circ }\\,\\,\\,and\\,\\,{{{E_0}} \\over {\\sqrt 2 }}\\left( {{{\\widehat a}_x} - {{\\widehat a}_z}} \\right){e^{ - j{{\\pi  \\times {{10}^4}z} \\over 3}}}\\,\\,V/m$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${45^ \\circ }\\,\\,\\,and\\,\\,{{{E_0}} \\over {\\sqrt 2 }}\\left( {{{\\widehat a}_x} - {{\\widehat a}_z}} \\right){e^{ - j{{\\pi  \\times {{10}^4}\\left( {x + z} \\right)} \\over {3\\sqrt 2 }}}}\\,\\,V/m$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${60^ \\circ }\\,\\,\\,and\\,\\,{{{E_0}} \\over {\\sqrt 2 }}\\left( {{{\\widehat a}_x} - {{\\widehat a}_z}} \\right){e^{ - j{{\\pi  \\times {{10}^4}z} \\over 3}}}\\,\\,V/m$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-monochromatic-plane-wave-of-wavelength-lambda-600-is-propa-gate-ece-2013-marks-2-cxxmt1zqqzu7wei6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1215f7a2418",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electromagnetics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "maxwell-equations",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The divergence of the vector field $$\\overrightarrow A\\;=\\;x{\\widehat a}_x\\;+\\;y{\\widehat a}_y\\;+\\;z{\\widehat a}_z$$ is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1/3"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "3"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-divergence-of-the-vector-field-overrightarrow-axwidehat-gate-ece-2013-marks-1-5a1215f7a2418.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                }
+            ],
+            "title": "Electromagnetics"
+        },
+        {
+            "_id": "Electronic Devices and Vlsi",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a16946e3d4a4",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pn-junction",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a forward biased P-N junction diode, the sequence of events that best describes\nthe mechanism of current flow is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "injection, and subsequent diffusion and recombination of minority carriers"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "injection, and subsequent drift and generation of minority carriers"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "extraction, and subsequent diffusion and generation of minority carriers"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "extraction, and subsequent drift and recombination of minority carriers"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-forward-biased-p-n-junction-diode-the-sequence-of-event-gate-ece-2013-marks-1-5a16946e3d4a4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a188c47805f8",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pn-junction",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit shown below, the knee current of the ideal Zener diode is 10 mA. To\nmaintain 5V across R<sub>L</sub>, the minimum value of R<sub>L</sub>\nin \u2126 and the minimum power\nrating of the Zener diode in mW, respectively, are \n<img alt=\"GATE ECE 2013 Electronic Devices and VLSI - PN Junction Question 9 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/7899917f9e919fc60058c44785820f498466eeda9b833dfa1659cdb40d0a4a78.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "125 and 125"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "125 and 250"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "250 and 125 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "250 and 250"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-below-the-knee-current-of-the-ideal-zen-gate-ece-2013-marks-2-5a188c47805f8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa7f55c86b6a",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "ic-basics-and-mosfet",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In IC technology, dry oxidation (using dry oxygen) as compared to wet oxidation\n(using steam or water vapor) produces ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "superior quality oxide with a higher growth rate"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "inferior quality oxide with a higher growth rate"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "inferior quality oxide with a lower growth rate"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "superior quality oxide with a lower growth rate"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-ic-technology-dry-oxidation-using-dry-oxygen-as-compared-gate-ece-2013-marks-1-5aa7f55c86b6a.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5aa7f62242145",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "ic-basics-and-mosfet",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a MOSFET operating in the saturation region, the channel length modulation\neffect causes",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "an increase in the gate-source capacitance"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a decrease in the Transconductance"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "a decrease in the unity-gain cutoff frequency"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a decrease in the output resistance"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-mosfet-operating-in-the-saturation-region-the-channel-l-gate-ece-2013-marks-1-5aa7f62242145.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4IA8hxmjlPko9DtI",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "electronic-devices-and-vlsi",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "ic-basics-and-mosfet",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The small-signal resistance (i.e., $${{d{V_B}} \\over {d{I_D}}}$$ ) in $$k\\Omega $$ offered by the n-channel MOSFET M shown in the figure below, at bias point of V<sub>B</sub> = 2V is (device data for M: device transconductance parameter \n<p>k<sub>N</sub> = $${\\mu _n}{C_{ox}^{'}}$$ (W/L)= 40$$\\mu {\\rm A}/{V^2},$$ threshold voltage V<sub>TN</sub>=1V, and neglect body effect and channel length modulation effects)</p>\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/4ee79ed1c6ead9df29b7455c7e83e03640aebea28e1fb8a22afbbd6dfbe2d028.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Electronic Devices and VLSI - IC Basics and MOSFET Question 25 English\"> \n\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "12.5 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "25 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "50 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "100"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-small-signal-resistance-ie-dvb-over-did-in-komega-offere-gate-ece-2013-marks-2-4ia8hxmjlpko9dti.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                }
+            ],
+            "title": "Electronic Devices and Vlsi"
+        },
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9BMiMFOuisiF5wok",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The minimum eigenvalue of the following matrix is $$\\left[ {\\matrix{\n   3 &amp; 5 &amp; 2  \\cr \n   5 &amp; {12} &amp; 7  \\cr \n   2 &amp; 7 &amp; 5  \\cr \n\n } } \\right]$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-minimum-eigenvalue-of-the-following-matrix-is-left-matri-gate-ece-2013-marks-1-9bmimfouisif5wok.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hqQSGj2zy7gOTtVi",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$A$$ be an $$m\\,\\, \\times \\,\\,n$$ matrix and $$B$$ an $$n\\,\\, \\times \\,\\,m$$ matrix. It is given that determinant $$\\left( {{{\\rm I}_m} + AB} \\right) = $$determinant $$\\left( {{{\\rm I}_n} + BA} \\right),$$ where $${{{\\rm I}_k}}$$ is the $$k \\times k$$ identity matrix. Using the above property, the determinant of the matrix given below is $$\\left[ {\\matrix{\n   2 &amp; 1 &amp; 1 &amp; 1  \\cr \n   1 &amp; 2 &amp; 1 &amp; 1  \\cr \n   1 &amp; 1 &amp; 2 &amp; 1  \\cr \n   1 &amp; 1 &amp; 1 &amp; 2  \\cr \n\n } } \\right]$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$5$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$8$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$16$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-a-be-an-m-times-n-matrix-and-b-an-n-times-m-matrix-it-is-gate-ece-2013-marks-1-hqqsgj2zy7gottvi.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xCdh1w0PgUyefgu8",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The divergence of the vector field $$\\,\\overrightarrow A  = x\\widehat a{}_x + y\\widehat a{}_y + z\\widehat a{}_z\\,\\,$$   is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1/3$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-divergence-of-the-vector-field-overrightarrow-a-xwidehat-gate-ece-2013-marks-2-xcdh1w0pguyefgu8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kEeCJyToZHSr5Ogx",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "vector-calculus",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a vector field $$\\overrightarrow A \\left( {\\overrightarrow r } \\right).$$ The closed loop line integral $$\\oint {\\overrightarrow A  \\bullet \\overrightarrow {dl} } $$ can be expressed as ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/tPiY4HB9KbU3IiHkX/0BsWdNfwX9qtRlhI0S7Nm4V0PgWv8/fvvpb3FCQvSRcS3I4VYBj1/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Engineering Mathematics - Vector Calculus Question 15 English Option 1\">\nover the closed surface bounded by the loop "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/4T3dz8Prlp6Kg17u2/bo2pSrd3rzZBLm5j6RcMpcOHUch8F/ZlL5KU42h1atODJ4nhPTOC/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Engineering Mathematics - Vector Calculus Question 15 English Option 2\">\nover the closed volume bounded by the loop "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/dSajOM1VcjNV2cVr5/Os7hjkCNoLaPkCwd4GPysVIQmT1rI/kp43JvGYwvwAUrSVAWP8GJ/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Engineering Mathematics - Vector Calculus Question 15 English Option 3\">\nover the open volume bounded by the loop "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/gAAliq4OTfSoSBHH0/3W1RZ234YLnkGlkyddb8MEBeA02g0/do3PgOLo2NthcE9t3Yjnhs/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Engineering Mathematics - Vector Calculus Question 15 English Option 4\"> over the open surface bounded by the loop"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-vector-field-overrightarrow-a-left-overrightarrow-gate-ece-2013-marks-1-keecjytozhsr5ogx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XdR5FuFDTEnGf7Db",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let   $$U$$ and $$V$$ be two independent zero mean Gaussian random variables of variances $${1 \\over 4}$$ and $${1 \\over 9}$$ respectively. The probability $$\\,P\\left( {3V \\ge 2U} \\right)\\,\\,$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$4/9$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1/2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2/3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$5/9$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-u-and-v-be-two-independent-zero-mean-gaussian-random-var-gate-ece-2013-marks-2-xdr5fufdtengf7db.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GzrAEYrej8XuisoU",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider two identically distributed zero - mean random variables $$U$$ and $$V.$$ Let the cumulative distribution functions of $$U$$ and $$2V$$ be $$F(x)$$ and $$G(x)$$ respectively. Then for all values of $$x$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$F\\left( x \\right) - G\\left( x \\right) \\le 0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$F\\left( x \\right) - G\\left( x \\right) \\ge 0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {F\\left( x \\right) - G\\left( x \\right)} \\right).x \\le 0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {F\\left( x \\right) - G\\left( x \\right)} \\right).x \\ge 0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-two-identically-distributed-zero-mean-random-variab-gate-ece-2013-marks-2-gzraeyrej8xuisou.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "General Aptitude",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8UvY4CL3RJqjr70M",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A car travels 8 km in the first quarter of an hour, 6 km in the second quarter and 16 km in the\nthird quarter. The average speed of the car in km per hour over the entire journey is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "30"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "36"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "40"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "24"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-car-travels-8-km-in-the-first-quarter-of-an-hour-6-km-in-t-gate-ece-2013-marks-2-8uvy4cl3rjqjr70m.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1hkHbq6aIczB34QX",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The set of values of p for which the roots of the equation 3x<sup>2</sup> + 2x + p(p - 1) = 0 are of\nopposite sign is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left( { - \\infty ,0} \\right)$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\left( {0,1} \\right)$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {1,\\infty } \\right)$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {0,\\infty } \\right)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-set-of-values-of-p-for-which-the-roots-of-the-equation-3-gate-ece-2013-marks-2-1hkhbq6aiczb34qx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fMrJdyQGCBKn0J5T",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Find the sum to n terms of the series 10 + 84 + 734 +.........",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{9\\left( {{9^n} + 1} \\right)} \\over {10}} + 1$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{9\\left( {{9^n} - 1} \\right)} \\over 8} + 1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{9\\left( {{9^n} - 1} \\right)} \\over 8} + n$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{9\\left( {{9^n} - 1} \\right)} \\over 8} + {n^2}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "find-the-sum-to-n-terms-of-the-series-10-84-734-gate-ece-2013-marks-2-fmrjdyqgcbkn0j5t.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zBwiCqxrhwN0XaUi",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the chance that a leap year, selected at random, will contain 53 Sundays?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2/7"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "3/7"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1/7"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "5/7"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-the-chance-that-a-leap-year-selected-at-random-will-gate-ece-2013-marks-2-zbwicqxrhwn0xaui.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZYcuxuRAcxEjwRqv",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the summer of 2012, in New Delhi, the mean temperature of Monday to Wednesday was\n41\u00baC and of Tuesday to Thursday was 43\u00baC. If the temperature on Thursday was 15% higher\nthan that of Monday, then the temperature in \u00baC on Thursday was",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "40"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "43"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "46"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "49"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-summer-of-2012-in-new-delhi-the-mean-temperature-of-m-gate-ece-2013-marks-1-zycuxuracxejwrqv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                }
+            ],
+            "title": "General Aptitude"
+        },
+        {
+            "_id": "Microprocessors",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EpvHPe3a4stKsHvr",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "microprocessors",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "instruction-set-and-programming-with-8085",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For 8085 microprocessor, the following program is executed. \n\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/b108a57aa3da465dfa59af0ff533b8822b8d0d037f1e02f6d452efeaca69f75a.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Microprocessors - Instruction Set and Programming with 8085 Question 25 English\">\nAt the end of program, accumulator contains",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "17 H"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "20 H"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "23 H"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "05 H"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-8085-microprocessor-the-following-program-is-executed-at-gate-ece-2013-marks-1-epvhpe3a4stkshvr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a104f3725be4",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "microprocessors",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pin-details-of-8085-and-interfacing-with-8085",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "There are four chips each of 1024 bytes connected to a 16 bit address bus as\nshown in the figure below. RAMs 1,2,3 and 4 respectively are mapped to\naddresses\n<img alt=\"GATE ECE 2013 Microprocessors - Pin Details of 8085 and Interfacing with 8085 Question 10 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/a90fbed27bcbdf3c457be379691636dbb63b16c190d560edd41933781518698f.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0C00H \u2212 0FFFH,1C00H \u2212 1FFFH, 2C00H \u2212 2FFFH,3C00H \u2212 3FFFH"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1800H \u2212 1FFFH,2800H \u2212 2FFFH, 3800H \u2212 3FFFH,4800H \u2212 4FFFH"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0500H \u2212 08FFH,1500H \u2212 18FFH, 3500H \u2212 38FFH,5500H \u2212 58FFH"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0800H \u2212 0BFFH,1800H \u2212 1BFFH, 2800H \u2212 2BFFH,3800H \u2212 3BFFH"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "there-are-four-chips-each-of-1024-bytes-connected-to-a-16-bi-gate-ece-2013-marks-2-5a104f3725be4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                }
+            ],
+            "title": "Microprocessors"
+        },
+        {
+            "_id": "Network Theory",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a037a17eca6d",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Two magnetically uncoupled inductive coils have Q factors q<sub>1</sub> and q<sub>2</sub> at the\nchosen operating frequency. Their respective resistances are R<sub>1</sub> and R<sub>2</sub>. When\nconnected in series, their effective Q factor at the same operating frequency is \n</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "q<sub>1</sub> + q<sub>2</sub>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "(1/q<sub>1</sub>) + (1/q<sub>2</sub>)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "(q<sub>1</sub>R<sub>1</sub> + q<sub>2</sub>R<sub>2</sub>)/(R<sub>1</sub> + R<sub>2</sub>)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "(q<sub>1</sub>R<sub>2</sub> + q<sub>2</sub>R<sub>1</sub>)/(R<sub>1</sub>R<sub>2</sub>)"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-magnetically-uncoupled-inductive-coils-have-q-factors-q1-gate-ece-2013-marks-2-5a037a17eca6d.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a037bc74be15",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Three capacitors C<sub>1</sub> ,C<sub>2</sub> and C<sub>3</sub> whose values are 10 \u00b5F, 5\u00b5F and 2\u00b5F respectively, have breakdown voltages of 10V, 5V, and 2V respectively. For the\ninterconnection shown below, the maximum safe voltage in Volts that can be\napplied across the combination, and the corresponding total charge in \u00b5C stored\nin the effective capacitance across the terminals are respectively.</p>\n<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l9eg0dhb/07098503-8d88-474f-932b-0b870d49c700/25f0c400-4f05-11ed-b840-37de3efd82d1/file-1l9eg0dhc.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l9eg0dhb/07098503-8d88-474f-932b-0b870d49c700/25f0c400-4f05-11ed-b840-37de3efd82d1/file-1l9eg0dhc.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2013 Network Theory - Network Elements Question 16 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2.8 and 36"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "7 and 119"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2.8 and 32"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "7 and 80"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "The charge across a capacitor is\n<br/><br/>$$\nQ=C V\n$$\n<br/><br/>The breakdown charge of capacitor $C_1$ is\n<br/><br/>$$\nQ_1=C_1 V_1=10 \\times 10^{-6} \\times 10=100 \\mu \\mathrm{C}\n$$\n<br/><br/>The breakdown charge of capacitor $C_2$ is\n<br/><br/>$$\nQ_2=C_2 V_2=5 \\times 10^{-6} \\times 5=25 \\mu \\mathrm{C}\n$$\n<br/><br/>The breakdown charge of capacitor $C_3$ is\n<br/><br/>$$\nQ_3=C_3 V_3=2 \\times 10^{-6} \\times 2=4 \\mu \\mathrm{C}\n$$\n<br/><br/>When the capacitors are in series, the charge is the same. So, the maximum charge on $C_2$ and $C_3$ will be minimum of $\\left(Q_2, Q_3\\right)=\\min \\left(25 \\mu C, 4 \\mu C\\right)=4 \\mu C=Q_{23}$\n<br/><br/>Equivalent capacitance of C<sub>2</sub> and C<sub>3</sub> is,<br/><br/>$${Q_{23}} = {{{C_2}{C_3}} \\over {{C_2} + {C_3}}} = {{5 \\times 2} \\over {5 + 2}} = {{10} \\over 7}\\mu F$$<br/><br/>Equivalent voltage is,<br/><br/>$${V_{eq}} = {V_{23}} = {{{Q_{23}}} \\over {{C_{23}}}} = {{4\\mu C} \\over {(10/7)\\mu F}} = 2.8\\,V$$<br/><br/>In parallel, voltage will be same, hence 2.8 V will appear across C<sub>1</sub> also.<br/><br/>Charge stored in C<sub>1</sub> is given by,<br/><br/>$${Q_1} = {C_1}{V_{eq}}$$<br/><br/>$${Q_1} = 10\\mu F \\times 2.8\\,V = 28\\mu C$$<br/><br/>In parallel, total charge is given by,<br/><br/>$${Q_T} = {Q_1} + {Q_{23}}$$<br/><br/>$${Q_T} = (28 + 4)\\mu C = 32\\mu C$$"
+                        }
+                    },
+                    "permalink": "three-capacitors-c1-c2-and-c3-whose-values-are-10-f-5f-and-2-gate-ece-2013-marks-2-5a037bc74be15.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a037fb132237",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Consider the following figure </p>\n<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l9ej97zc/edcaa9ed-a39f-4185-b122-2df44e7cbfb8/d75c9280-4f11-11ed-a71c-21a18c88d930/file-1l9ej97zd.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l9ej97zc/edcaa9ed-a39f-4185-b122-2df44e7cbfb8/d75c9280-4f11-11ed-a71c-21a18c88d930/file-1l9ej97zd.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2013 Network Theory - Network Elements Question 15 English\">\n<p>The current I<sub>S</sub> in Amps in the voltage source, and voltage V<sub>S</sub> in Volts across the\ncurrent source respectively, are</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "13, -20"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "8, -10"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "-8, 20"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "-13, 20"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": "Circuit Is redrawn as shown below,<br><br><img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l9ejr58n/314280d4-5bd2-41b5-ac72-a7fc2e1d2d36/c9cef570-4f13-11ed-a71c-21a18c88d930/file-1l9ejr58o.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l9ejr58n/314280d4-5bd2-41b5-ac72-a7fc2e1d2d36/c9cef570-4f13-11ed-a71c-21a18c88d930/file-1l9ejr58o.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2013 Network Theory - Network Elements Question 15 English Explanation\"><br><br>In parallel, voltage remains same, so the voltage across $1 \\Omega$ remains $10 \\mathrm{~V}$.\n<br><br>$$\nI_1=\\frac{10}{1}=10 \\mathrm{~A}\n$$<br><br>The voltage across $2 \\Omega$ resistance.\n$$\nV_2=10 \\mathrm{~V}\n$$\nThe current through $2 \\Omega$ resistance is\n<br><br>$$\nI_2=\\frac{10}{2}=5 \\mathrm{~A}\n$$<br><br>Applying Kirchhoff\u2019s current law at node a,<br><br>$${I_s} + {I_1} + {I_2} - 2 = 0$$<br><br>$${I_s} + 10 + 5 = 2$$<br><br>$${I_s} =  - 13A$$<br><br>Applying Kirchhoff\u2019s voltage law in loop (1),<br><br>$$ - {V_s} + 5 \\times 2 + 10 = 0$$<br><br>$${V_s} = 20V$$"
+                        }
+                    },
+                    "permalink": "consider-the-following-figure-the-current-is-in-amps-in-the-gate-ece-2013-marks-2-5a037fb132237.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a0381029d9ee",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Consider the following figure </p>\n<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l9ej97zc/edcaa9ed-a39f-4185-b122-2df44e7cbfb8/d75c9280-4f11-11ed-a71c-21a18c88d930/file-1l9ej97zd.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l9ej97zc/edcaa9ed-a39f-4185-b122-2df44e7cbfb8/d75c9280-4f11-11ed-a71c-21a18c88d930/file-1l9ej97zd.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2013 Network Theory - Network Elements Question 14 English\">\n<p>The current in the 1\u2126 resistor in Amps is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "3.33"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "10"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "12"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": "In parallel connection, voltage will be same. So, voltage across 2$$\\Omega$$ and 1$$\\Omega$$ is same.<br><br>Current in the 1$$\\Omega$$ resistor,<br><br>$${I_2} = {{10} \\over 1} = 10A$$<br><br>Hence, the correct option is (C)."
+                        }
+                    },
+                    "permalink": "consider-the-following-figure-the-current-in-the-1-resistor-gate-ece-2013-marks-2-5a0381029d9ee.htm",
+                    "timeAllotted": 216000,
+                    "topic": null,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a056b4bccc4a",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-theorems",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A source v<sub>s</sub>(t) = V cos 100 $$\\pi$$t has an internal impedance of (4 + j3) $$\\Omega$$. If a purely resistive load connected to this source has to extract the maximum power out of the source, its value in $$\\Omega$$ shoud be",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "3"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "4"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "5"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "7"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-source-vst-v-cos-100-pit-has-an-internal-impedance-of-4-j3-gate-ece-2013-marks-1-5a056b4bccc4a.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a06d96a58fb0",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-theorems",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the circuit shown below, if the source voltage V<sub>s</sub> =100$$\\angle$$53.13<sup>0</sup>V then the\nThevenin\u2019s equivalent voltage in Volts as seen by the load resistance R<sub>L</sub> is\n<img alt=\"GATE ECE 2013 Network Theory - Network Theorems Question 18 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/d8c27995c2433c7e07921bf19efc3c5742f31e18e42d85e12b9002ec40ce77b4.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$100\\angle90^0$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$800\\angle0^0$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$800\\angle90^0$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$100\\angle60^0$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-circuit-shown-below-if-the-source-voltage-vs-100angle-gate-ece-2013-marks-2-5a06d96a58fb0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a06db175c288",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-theorems",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following arrangement consists of an ideal transformer and an attenuator\nwhich attenuates by a factor of 0.8. An ac voltage V<sub>wx1</sub> = 100V is applied across\nWX to get an open circuit voltage YZ1 V across YZ. Next, an ac voltage\n V<sub>YZ2</sub> =100V is applied across YZ to get an open circuit voltage V<sub>WX2</sub> across WX.\nThen, V<sub>YZ1</sub> / V<sub>WX1</sub> , V<sub>WX2</sub> / V<sub>YZ2</sub> are respectively,\n<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l9efhdd3/09f4dfe0-9b6d-4fbd-a314-004bb04e9888/1579bf70-4f03-11ed-b840-37de3efd82d1/file-1l9efhdd4.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l9efhdd3/09f4dfe0-9b6d-4fbd-a314-004bb04e9888/1579bf70-4f03-11ed-b840-37de3efd82d1/file-1l9efhdd4.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2013 Network Theory - Network Theorems Question 17 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "125 / 100 and 80 / 100"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "100 / 100 and 80 / 100"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "100 / 100 and 100 / 100"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "80 / 100 and 80 / 100"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "$$\nV_{Y Z_1}=100 \\times 1.25 \\times 0.8=100 \\mathrm{~V}\n$$\n<br/><br/>When $100 \\mathrm{~V}$ is applied at $Y Z$, this will appear across secondary winding.\n<br/><br/>$$\n\\begin{aligned}\n&\\mathrm{V}_{W X_2}=100 / 1.25=80 \\mathrm{~V} \\\\\\\\\n&\\frac{V_{Y Z_1}}{V_{W X_1}}=\\frac{100}{100}, \\frac{V_{W X_2}}{V_{Y Z_2}}=\\frac{80}{100}\n\\end{aligned}\n$$"
+                        }
+                    },
+                    "permalink": "the-following-arrangement-consists-of-an-ideal-transformer-a-gate-ece-2013-marks-2-5a06db175c288.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "59ff4a5e434e3",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "network-theory",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-elements",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Consider a delta connection of resistors and its equivalent star connection as\nshown below. If all elements of the delta connection are scaled by a factor k, k &gt; 0,\nthe elements of the corresponding star equivalent will be scaled by a factor of </p>\n<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l9ef1k0f/a217b543-37bc-4b3e-9a25-0eb242f4f28c/5daa31f0-4f01-11ed-b840-37de3efd82d1/file-1l9ef1k0g.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l9ef1k0f/a217b543-37bc-4b3e-9a25-0eb242f4f28c/5daa31f0-4f01-11ed-b840-37de3efd82d1/file-1l9ef1k0g.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2013 Network Theory - Network Elements Question 32 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "k<sup>2</sup>"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "k"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1/k"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\sqrt{\\mathrm k}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "<img src=\"https://app-content.cdn.examgoal.net/fly/@width/image/1l9ef92t6/117ed12a-fb07-421b-99a2-913a0a492a2c/2ed9ada0-4f02-11ed-b840-37de3efd82d1/file-1l9ef92t7.png?format=png\" data-orsrc=\"https://app-content.cdn.examgoal.net/image/1l9ef92t6/117ed12a-fb07-421b-99a2-913a0a492a2c/2ed9ada0-4f02-11ed-b840-37de3efd82d1/file-1l9ef92t7.png\" loading=\"lazy\" style=\"max-width: 100%; height: auto; display: block; margin: 0px auto; max-height: 40vh;\" alt=\"GATE ECE 2013 Network Theory - Network Elements Question 32 English Explanation\">\n<br><br>Appling star \u2013delta conversion for the given circuit\n<br><br>Before scaling :<br><br>$${R_A} = {{{R_b}{R_c}} \\over {{R_a} + {R_b} + {R_c}}}$$<br><br>If $$R{'_a} = k{R_a}$$, $$R{'_b} = k{R_b}$$, $$R{'_c} = k{R_c}$$<br><br>After scaling :<br><br>$$R{'_A} = {{R{'_b}R{'_c}} \\over {R{'_a} + R{'_b} + R{'_c}}}$$<br><br>$$R{'_A} = {{(k{R_b})(k{R_c})} \\over {k{R_a} + k{R_b} + k{R_c}}} = {{{k^2}{R_b}{R_c}} \\over {k({R_a} + {R_b} + {R_c})}}$$<br><br>$$R{'_A} = k{R_A}$$"
+                        }
+                    },
+                    "permalink": "consider-a-delta-connection-of-resistors-and-its-equivalent-gate-ece-2013-marks-1-59ff4a5e434e3.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "topic": null,
+                    "isOutOfSyllabus": false,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                }
+            ],
+            "title": "Network Theory"
+        },
+        {
+            "_id": "Signals and Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "IXGVDbAfuOjooITO",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-signal-laplace-transform",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A system is described by the differential equation $$${{{d^2}y} \\over {d{t^2}}} + 5{{dy} \\over {dt}} + 6y\\left( t \\right) = x\\left( t \\right)$$$\n<br>Let x(t) be a rectangular pulse given by \n$$$x\\left( t \\right) = \\left\\{ {\\matrix{\n   {1\\,\\,\\,\\,\\,\\,\\,\\,\\,0 \\le \\,t\\, \\le 2}  \\cr \n   {0\\,\\,\\,\\,\\,otherwise}  \\cr \n\n } } \\right.$$$\n<p>Assuming that y(0) = 0 $${{dy} \\over {dt}} = 0$$ at t = 0, the Laplace transform of y(t) is </p>\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{{e^{ - 2s}}} \\over {s\\left( {s + 2} \\right)\\left( {s + 3} \\right)}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{1 - {e^{ - 2s}}} \\over {s\\left( {s + 2} \\right)\\left( {s + 3} \\right)}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{{e^{ - 2s}}} \\over {\\left( {s + 2} \\right)\\left( {s + 3} \\right)}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{1 - {e^{ - 2s}}} \\over {\\left( {s + 2} \\right)\\left( {s + 3} \\right)}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-system-is-described-by-the-differential-equation-d2y-over-gate-ece-2013-marks-2-ixgvdbafuojooito.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CssOZNWNBkNB0FK6",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "discrete-fourier-transform-and-fast-fourier-transform",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The DFT of a vector [a b c d] is the vector [\u03b1 \u03b2 \u03b3 \u03b4 ]. Consider the product \n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/ec241ebc50ad4d1948acf8340bdf4b58f464ee528f57f44f38bda34715db0c99.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Signals and Systems - Discrete Fourier Transform and Fast Fourier Transform Question 13 English\">\n\nThe DFT of the vector [ p q r s] is a scaled version of\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\left[ {{\\alpha ^2}{\\beta ^2}{\\Upsilon ^2}{\\delta ^2}} \\right]$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\sqrt {\\alpha \\,} \\,\\sqrt \\beta  \\,\\sqrt \\gamma  \\,\\sqrt \\delta  $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left[ {\\alpha  + \\beta \\,\\beta  + \\delta \\, + \\gamma \\,\\gamma \\, + \\alpha } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left[ {\\delta {\\rm{ }}\\beta \\,\\gamma \\,\\delta } \\right]$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-dft-of-a-vector-a-b-c-d-is-the-vector-consider-the-produ-gate-ece-2013-marks-2-cssoznwnbknb0fk6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6Spy4YH4qXCeP4r2",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-linear-invariant-system",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two system with impulse responses h<sub>1</sub>(t) and h<sub>2</sub>(t) are connected in cascade. Then the overall impulse response of the cascaded system is given by",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Product of h<sub>1</sub>(t) and h<sub>2</sub>(t). "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Sum of  h<sub>1</sub>(t) and h<sub>2</sub>(t)."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Convolution of h<sub>1</sub>(t) and h<sub>2</sub>(t)."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Subtraction of h<sub>1</sub>(t) and h<sub>2</sub>(t) "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-system-with-impulse-responses-h1t-and-h2t-are-connected-gate-ece-2013-marks-1-6spy4yh4qxcep4r2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RWGMtjPSZeLAnioq",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-linear-invariant-system",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The impulse response of a system is h(t) = t u(t). For an input u(t - 1), the output is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{{t^2}} \\over 2}u\\left( t \\right)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{t\\left( {t - 1} \\right)} \\over 2}u\\left( {t - 1} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{{{\\left( {t - 1} \\right)}^2}} \\over 2}u\\left( {t - 1} \\right)\\,$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{{t^2} - 1} \\over 2}u\\left( {t - 1} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-impulse-response-of-a-system-is-ht-t-ut-for-an-input-ut-gate-ece-2013-marks-1-rwgmtjpszelanioq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RrIIjqp0RoquDDks",
+                    "exam": "gate-ece",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "continuous-time-linear-invariant-system",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The impulse response of a continuous time system is given by $$h(t) = \\delta (t - 1) + \\delta (t - 3)$$. The value of the step response at t = 2 is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "3"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-impulse-response-of-a-continuous-time-system-is-given-by-gate-ece-2013-marks-2-rriijqp0roquddks.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GC8EaD76DnxHPhXr",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sampling",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A band-limited signal with a maximum frequency of 5 kHz is to be sampled. According to the sampling theorem, the sampling frequency which is not valid is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "5 kHz "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "12 kHz "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "15 kHz "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "20 kHz "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-band-limited-signal-with-a-maximum-frequency-of-5-khz-is-t-gate-ece-2013-marks-1-gc8ead76dnxhphxr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DqsJbdXTRmRVGFWr",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transmission-of-signal-through-continuous-time-lti-systems",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Assuming zero initial condition, the response y (t) of the system given below to a unit step input u(t) is\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/27bd3a3827cb68cfa87e8b27516fe478dc9af12822eea53d8ad75a31395c3c7b.jpg\" loading=\"lazy\" alt=\"GATE ECE 2013 Signals and Systems - Transmission of Signal Through Continuous Time LTI Systems Question 29 English\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "u (t)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "tu (t)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{{t^2}} \\over 2}(t)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${e^{ - t}}u(t)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-assuming-zero-initial-condition-the-response-y-t-of-the-sys-gate-ece-2013-marks-1-dqsjbdxtrmrvgfwr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qfH3kNK95sK7ritz",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transmission-of-signal-through-continuous-time-lti-systems",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let g(t) = $${e^{ - \\pi {t^2}}}$$, and h(t) is a filter  matched to g(t). If g(t) is applied as input to h(t), then the Fourier transform of the output is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${e^{ - \\pi {f^2}}}\\,$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${e^{ - \\pi {f^2}/2}}\\,$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${e^{ - \\pi \\left| f \\right|}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${e^{ - 2\\pi {f^2}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-gt-e-pi-t2-and-ht-is-a-filter-matched-to-gt-if-gt-is-app-gate-ece-2013-marks-1-qfh3knk95sk7ritz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "W3HmIeWGM7dDUO0w",
+                    "exam": "gate-ece",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "signals-and-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "miscellaneous",
+                    "year": 2013,
+                    "paperTitle": "GATE ECE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a periodic signal v(t) = 30 sin 100t + 10cos 300t + 6sin $${\\rm{(500t  + }}\\,\\pi /4)$$, the fundamental frequency in rad/s is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "100"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "300"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "500"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1500"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-periodic-signal-vt-30-sin-100t-10cos-300t-6sin-rm500t-gate-ece-2013-marks-1-w3hmiewgm7dduo0w.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ece-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ece-2013"
+                }
+            ],
+            "title": "Signals and Systems"
+        }
+    ]
+}

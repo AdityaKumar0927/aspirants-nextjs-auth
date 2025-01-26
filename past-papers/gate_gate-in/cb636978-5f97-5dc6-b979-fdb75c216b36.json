@@ -1,0 +1,123 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "mcRfNyYy5URiFPhw",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2001,
+                    "paperTitle": "GATE IN 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The necessary condition to diagonalize a matrix is that ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "all its eigen values should be distinct "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "its eigen vectors should be independent "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "its eigen values should be real "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "the matrix is non-singular "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-necessary-condition-to-diagonalize-a-matrix-is-that-gate-in-2001-marks-1-mcrfnyyy5urifphw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2001"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "wJmtIv6VopgKil7n",
+                    "exam": "gate-in",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2001,
+                    "paperTitle": "GATE IN 2001",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$\\mathop {Lim}\\limits_{x \\to {\\pi  \\over 4}} \\,\\,{{Sin\\,\\,2\\left( {x - {\\pi  \\over 4}} \\right)} \\over {x - {\\pi  \\over 4}}} = \\_\\_\\_\\_\\_\\_.$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "mathop-limlimitsx-to-pi-over-4-sin2left-x-pi-over-4-right-ov-gate-in-2001-marks-1-wjmtiv6vopgkil7n.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-in-2001",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-in-2001"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        }
+    ]
+}

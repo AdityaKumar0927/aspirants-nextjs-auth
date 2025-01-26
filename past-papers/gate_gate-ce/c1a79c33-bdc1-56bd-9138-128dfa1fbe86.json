@@ -1,0 +1,1405 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tqGQU4jT3ehtFJjH",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following second order linear differential equation $${{{d^2}y} \\over {d{x^2}}} =  - 12{x^2} + 24x - 20$$ \n<br>The boundary conditions are: at $$x=0, y=5$$ and at $$x=2, y=21$$\n<br>The value of $$y$$ at $$x=1$$ is ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "18",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-second-order-linear-differential-equa-gate-ce-2015-set-2-marks-2-tqgqu4jt3ehtfjjh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "m15FYGfSa0dw78Mc",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In Newton-Raphson iterative method, the initial guess value $$\\left( {{x_{ini}}} \\right)$$ is considered as zero while finding the roots of the equation: $$\\,f\\left( x \\right) =  - 2 + 6x - 4{x^2} + 0.5{x^3}.\\,\\,\\,$$ The correction, $$\\Delta x,$$ to be added to $${{x_{ini}}}$$  in the first iteration is __________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.33",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-newton-raphson-iterative-method-the-initial-guess-value-l-gate-ce-2015-set-2-marks-2-m15fygfsa0dw78mc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nDOdDDcTrkvW1WLv",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For step-size, $$\\Delta x = 0.4,$$ the value of following integral using Simpson's $$1/3$$ rule is ______",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.367",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-step-size-delta-x-04-the-value-of-following-integral-usi-gate-ce-2015-set-2-marks-2-ndodddctrkvw1wlv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gvMPDG9FFWGzZe0F",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Four cards are randomly selected from a pack of $$52$$ cards. If the first two cards are kings, what is the probability that the third card is a king?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$4/52$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2/50$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\left( {1/52} \\right) \\times \\left( {1/52} \\right)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\left( {1/52} \\right) \\times \\left( {1/51} \\right) \\times \\left( {1/50} \\right)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "four-cards-are-randomly-selected-from-a-pack-of-52-cards-if-gate-ce-2015-set-2-marks-2-gvmpdg9ffwgzze0f.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MbkiMhCEEJlU1GbZ",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The probability density function of a random variable, $$x$$ is \n$$$\\matrix{\n   {f\\left( x \\right) = {x \\over 4}\\left( {4 - {x^2}} \\right)} &amp; {for\\,\\,0 \\le x \\le 2 = 0}  \\cr \n   { = 0} &amp; {otherwise}  \\cr \n\n } $$$\n<br>The mean, $${\\mu _x}$$ of the random variable is __________.\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.07",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-probability-density-function-of-a-random-variable-x-is-m-gate-ce-2015-set-2-marks-2-mbkimhceejlu1gbz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oxiupEMZqg3vP6jK",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given $$i = \\sqrt { - 1} ,$$ the value of the definite integral, $$\\,{\\rm I} = \\int\\limits_0^{\\pi /2} {{{\\cos x + \\sin x} \\over {\\cos x - i\\,\\sin x}}dx\\,\\,} $$ is :",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$i$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$-i$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-i-sqrt-1-the-value-of-the-definite-integral-rm-i-intli-gate-ce-2015-set-2-marks-1-oxiupemzqg3vp6jk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cMBmGJzMSdzmlyR4",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$\\mathop {\\lim }\\limits_{x \\to \\infty } {\\left( {1 + {1 \\over x}} \\right)^{2x}}\\,\\,$$ is equal to ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${e^{ - 2}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$e$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${e^2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "mathop-lim-limitsx-to-infty-left-1-1-over-x-right2x-is-equal-gate-ce-2015-set-2-marks-1-cmbmgjzmsdzmlyr4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aBnZ5aP2s3ASF6XM",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The two Eigen Values of the matrix $$\\left[ {\\matrix{\n   2 &amp; 1  \\cr \n   1 &amp; p  \\cr \n\n } } \\right]$$ have a ratio of $$3:1$$ for $$p=2.$$ What is another value of $$'p'$$ for which the Eigen values have the same ratio of $$3:1$$? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$7/3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$14/3$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-two-eigen-values-of-the-matrix-left-matrix-2-1-cr-1-p-cr-gate-ce-2015-set-2-marks-2-abnz5ap2s3asf6xm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2F8N3mlLboOTWmC4",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$A = \\left[ {{a_{ij}}} \\right],\\,\\,1 \\le i,j \\le n$$ with $$n \\ge 3$$ and $${{a_{ij}} = i.j.}$$\n<br>The rank of $$A$$ is : ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$n-1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$n$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-a-left-aij-right1-le-ij-le-n-with-n-ge-3-and-aij-ijthe-r-gate-ce-2015-set-2-marks-1-2f8n3mllbootwmc4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Environmental Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2e3940de1ca",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "environmental-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "quality-control-of-water",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A groundwater sample was found to contain 500 mg/L total dissolved solids (TDS). TDS (in %)\npresent in the sample is ________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.05",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-groundwater-sample-was-found-to-contain-500-mgl-total-diss-gate-ce-2015-set-2-marks-1-5a2e3940de1ca.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                }
+            ],
+            "title": "Environmental Engineering"
+        },
+        {
+            "_id": "Fluid Mechanics and Hydraulic Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2a247fefa0c",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics-and-hydraulic-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-statics",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A triangular gate with a base width of 2 m and a height of 1.5 m lies in a vertical plane. The top\nvertex of the gate is 1.5 m below the surface of a tank which contains oil of specific gravity 0.8.\nConsidering the density of water and acceleration due to gravity to be 1000 $$kg/m^3$$ and 9.81 $$m/s^2$$,\nrespectively, the hydrostatic force (in kN) exerted by the oil on the gate is __________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "29.43",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-triangular-gate-with-a-base-width-of-2-m-and-a-height-of-1-gate-ce-2015-set-2-marks-2-5a2a247fefa0c.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                }
+            ],
+            "title": "Fluid Mechanics and Hydraulic Machines"
+        },
+        {
+            "_id": "Geotechnical Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2a15cca12e4",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "geotechnical-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "definitions-and-properties-of-soils",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 588 $$cm^3$$ volume of moist sand weighs 1010 gm. Its dry weight is 918 gm and specific gravity\nof solids, G is 2.67. Assuming density of water as 1 gm/$$cm^3$$, the void ratio is __________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.71",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-588-cm3-volume-of-moist-sand-weighs-1010-gm-its-dry-weight-gate-ce-2015-set-2-marks-2-5a2a15cca12e4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a29b66ec28a4",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "geotechnical-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "definitions-and-properties-of-soils",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If the water content of a fully saturated soil mass is 100%, the void ratio of the sample is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Less than specific gravity of soil"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "equal to specific gravity of soil"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "greater than specific gravity of soil "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "independent of specific gravity of soil"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-the-water-content-of-a-fully-saturated-soil-mass-is-100-t-gate-ce-2015-set-2-marks-1-5a29b66ec28a4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                }
+            ],
+            "title": "Geotechnical Engineering"
+        },
+        {
+            "_id": "Hydrology",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2c46343b0b1",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "hydrology",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "evaporation-and-transpiration",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The average surface area of a reservoir in the month of June is 20 km<sup>2</sup>. In the same month, the average rate of inflow is 10 m<sup>3</sup>/s, outflow rate is 15 m<sup>3</sup>/s, monthly rainfall is 10 cm, monthly seepage loss is 1.8 cm and the storage change is 16 million m<sup>3</sup>. The evaporation (in cm) in that month is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "46.8"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "136.0"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "13.6"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "23.4"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-average-surface-area-of-a-reservoir-in-the-month-of-june-gate-ce-2015-set-2-marks-2-5a2c46343b0b1.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                }
+            ],
+            "title": "Hydrology"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Ix9Z30hkVctQdns9",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "prestressed-concrete",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a pre-stressed concrete beam section shown in the figure, the net loss is $$10\\% $$ and the final prestressing force applied at $$X$$ is $$750$$ $$kN.$$ The initial fiber stresses (in $$N/m{m^2}$$ ) at the top and bottom of the beam were:\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/YkVD40Nz7zMDw8lP4/x4pJeNrBonFrHGXNMnu1vhBcI93jx/sJXIskh5fRjWVAsBAElmH9/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2015 Set 2 Reinforced Cement Concrete - Prestressed Concrete Question 9 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$4.166$$ and $$20.833$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-4.166$$ and $$-20.833$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$4.166$$ and $$-20.833$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$-4.166$$ and $$20.833$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-pre-stressed-concrete-beam-section-shown-in-the-figure-2015-set-2-marks-2-ix9z30hkvctqdns9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qxKvZX1czCOnKcjK",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "limit-state-of-collapse-compression",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A column of size $$450\\,mm \\times 600\\,mm$$ has unsupported length of $$3.0$$ $$m$$ and is braced against side sway in both directions. According to $$IS$$ $$456: 2000,$$ the minimum eccentricities (in $$mm$$) with respect to major and minor principal axes are: ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$20.0$$ and $$20.0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$26.0$$ and $$21.0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$26.0$$ and $$20.0$$  "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$21.0$$ and $$15.0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-column-of-size-450mm-times-600mm-has-unsupported-2015-set-2-marks-1-qxkvzx1czconkcjk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1c647b8cf54",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "According to the concept of Limit State Design as per IS 456: 2000, the probability of failure of a\nstructure is __________. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.097",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "according-to-the-concept-of-limit-state-design-as-per-is-456-gate-ce-2015-set-2-marks-2-5a1c647b8cf54.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Steel Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aXqFvb6TbrfWPQkZ",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "tension-members",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A steel member \u2018M\u2019 has reversal of stress due to live loads, whereas another member \u2018N\u2019 has reversal of stress due to wind load. As per $$IS$$ $$800: 2007,$$ the maximum slenderness ratio permitted is:\n<br>$$\\left( 1 \\right)\\,\\,\\,\\,\\,$$ Lesser for member $$\u2018M\u2019$$ than that of member $$\u2018N\u2019$$\n<br>$$\\left( 2 \\right)\\,\\,\\,\\,\\,$$ More for member $$\u2018M\u2019$$ than for member $$\u2018N\u2019$$\n<br>$$\\left( 3 \\right)\\,\\,\\,\\,\\,$$ Same for both the members \n<br>$$\\left( 4 \\right)\\,\\,\\,\\,\\,$$ Not specified in the Code <p></p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-steel-member-m-has-reversal-of-stress-due-to-live-lo-2015-set-2-marks-1-axqfvb6tbrfwpqkz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a21982f6e6b1",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "riveted-joints-and-bolted-joints",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Prying forces are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "shearing forces on the bolts because of the joints "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "tensile forces due to the flexibility of connected parts"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "bending forces on the bolts because of the joints"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "forces due the friction between connected parts"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "prying-forces-are-gate-ce-2015-set-2-marks-1-5a21982f6e6b1.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                }
+            ],
+            "title": "Steel Structures"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "y15jXCeYUD3ufYNL",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "propped-cantilever-beam",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A steel strip of length, $$L = 200$$ $$mm$$ is fixed at end $$A$$ and rests at $$B$$ on a vertical spring of stiffness, $$k = 2$$ $$N/mm.$$ The steel strip is $$5$$ $$mm$$ wide and $$10$$ $$mm$$ thick. $$A$$ vertical load, $$P = 50$$ $$N$$ is applied at $$B,$$ as shown in the figure. Considering $$E = 200$$ $$GPa,$$ the force (in $$N$$) developed in the spring is _______________\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/3E4bZ7gcHv071YNT8/acvtyc7jw24hplRQS8ng5qUG8sIFs/01JMeA065ezAeI3BeVayw7/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2015 Set 2 Strength of Materials Or Solid Mechanics - Propped Cantilever Beam Question 6 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3.0 to 3.3",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-steel-strip-of-length-l-200-mm-is-fixed-at-end-2015-set-2-marks-2-y15jxceyud3ufynl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RMt5WWGnDZ1Lkl79",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "propped-cantilever-beam",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a system, two connected rigid bars $$AC$$ and $$BC$$ are of identical length $$L$$ with pin supports at $$A$$ and $$B.$$ The bars are interconnected at $$C$$ by a frictionless hinge. The rotation of the hinge is restrained by a rotational spring of stiffness, $$k.$$ The system initially assumes a straight line configuration, $$ACB.$$ Assuming both the bars as weightless, the rotation at supports, $$A$$ and $$B,$$ due to a transverse load, $$P$$ applied at $$C$$ is:\n ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{PL} \\over {4k}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{PL} \\over {2k}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{P} \\over {4k}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{Pk} \\over {4L}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-system-two-connected-rigid-bars-ac-and-bc-are-2015-set-2-marks-2-rmt5wwgndz1lkl79.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lUYME1NCTmpKdD9m",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A simply supported reinforced concrete beam of length $$10$$ $$m$$ sags while undergoing shrinkage. Assuming a uniform curvature of $$0.004\\,\\,{m^{ - 1}}$$ along the span, the maximum deflection (in $$m$$) of the beam at mid-span is ________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.05",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-simply-supported-reinforced-concrete-beam-of-length-10-2015-set-2-marks-2-luyme1nctmpkdd9m.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "rcuRwX3c0iwkwh0z",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-stress",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the plane stress situation shown in the figure, the maximum shear stress and the plane on which it acts are:\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/80RqKWU9F3XlyW4Tq/4yRZrkwwcNwydBtVKbudfghujvgdN/JeyiwTnhPKycW7kuuALAWE/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2015 Set 2 Strength of Materials Or Solid Mechanics - Complex Stress Question 15 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$-50$$ $$MPa$$, on a plane $${45^ \\circ }$$ clockwise $$w.r.t.x$$-axis"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$-50$$ $$MPa$$, on a plane $${45^ \\circ }$$ anti-clockwise $$w.r.t.x$$-axis"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$50$$ $$MPa$$, at all orientations"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "zero, at all orientations "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-plane-stress-situation-shown-in-the-figure-the-maxi-2015-set-2-marks-1-rcurwx3c0iwkwh0z.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2TPmDrEYiYBzZVjN",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "matrix-method",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A guided support as shown in the figure below is represented by three springs (horizontal, vertical and rotational) with stiffness $${k_x},\\,\\,{k_y}$$ and  $${k_\\theta }$$ respectively. The limiting values of $${k_x},\\,\\,{k_y}$$ and $${k_\\theta }$$ are :\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/nQTuWbbNmVywZWq5D/tAkaEvtFM9hvA0JekeDWtouBcIydN/wCr9MQ6kEJI2diVrBzyE12/image.png\" loading=\"lazy\" alt=\"GATE CE 2015 Set 2 Structural Analysis - Matrix Method Question 1 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\infty ,0,\\infty $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\infty ,\\infty ,\\infty $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0,\\infty ,\\infty $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\infty ,\\infty ,0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-guided-support-as-shown-in-the-figure-below-is-represented-2015-set-2-marks-1-2tpmdreyiybzzvjn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ubZcy9a3wbctdXmi",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A fixed end beam is subjected to a load, W at $$1/3rd$$ span from the left support as shown in the figure. The collapse load of the beam is\n\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/EE8MViJPn4wlW5kzc/uRVknRUONzQsmsvfasynFL5yD8Ywr/7jz1tHw3xVuySBn5D9bL4v/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2015 Set 2 Structural Analysis - Plastic Analysis Question 19 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$16.5\\,\\,{M_P}/L$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$15.5\\,\\,{M_P}/L$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$15.0\\,\\,{M_P}/L$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$16.0\\,\\,{M_P}/L$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-fixed-end-beam-is-subjected-to-a-load-w-at-13rd-span-2015-set-2-marks-2-ubzcy9a3wbctdxmi.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FXAYnbNs50m2BWZz",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A horizontal beam $$ABC$$ is loaded as shown in the figure below. The distance of the point of contraflexure from end $$A$$ (in $$m$$) is \n  <img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/JchojDEQflpC0nyLN/UvZlECLLplDyRAFBNOIydiABgydJr/lMLSVliIOb53waQ8NrWGE5/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2015 Set 2 Structural Analysis - Moment Distribution Method Question 23 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.25",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-horizontal-beam-abc-is-loaded-as-shown-in-the-figure-b-2015-set-2-marks-1-fxaynbns50m2bwzz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ChIdxqHEX1I3ghqK",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "influence-line-diagram",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A simply supported beam $$AB$$ of span, $$L = 24$$ $$m$$ is subjected to two wheel loads acting at a distance, $$d = 5$$ $$m$$ apart as shown in the figure below. Each wheel transmits a load, $$P = 3$$ $$kN$$ and may occupy any position along the beam. If the beam is an $$I$$-section having section modulus, $$S = 16.2\\,c{m^3},$$  the maximum bending stress (in $$GPa$$) due to the wheel loads is __________________\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/OCR3KgJnVKexrJcNF/wqModGnb5dy63yaZiohxyGslkoEKw/eEK5eqRDjTqu6L70tAdpmx/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2015 Set 2 Structural Analysis - Influence Line Diagram Question 3 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1.78 to 1.79",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-simply-supported-beam-ab-of-span-l-24-m-is-2015-set-2-marks-2-chidxqhex1i3ghqk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                }
+            ],
+            "title": "Structural Analysis"
+        },
+        {
+            "_id": "Transportation Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a41aef5cd66e",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "transportation-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "highway-geometric-design",
+                    "year": 2015,
+                    "paperTitle": "GATE CE 2015 Set 2",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A superspeedway in New Delhi has among the highest super-elevation rates of any track on the\nIndian Grand Prix circuit. The track requires drivers to negotiate turns with a radius of 335 m and\n33\u00b0 banking. Given this information, the coefficient of side friction required in order to allow a\nvehicle to travel at 320 km/h along the curve is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1.761"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.176"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0.253"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2.530"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-superspeedway-in-new-delhi-has-among-the-highest-super-ele-gate-ce-2015-set-2-marks-1-5a41aef5cd66e.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2015-set-2",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2015-set-2"
+                }
+            ],
+            "title": "Transportation Engineering"
+        }
+    ]
+}

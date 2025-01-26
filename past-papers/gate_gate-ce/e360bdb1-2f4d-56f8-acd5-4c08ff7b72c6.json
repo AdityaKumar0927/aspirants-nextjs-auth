@@ -1,0 +1,1615 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cUs4NmTrnTVJxcNy",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The table below gives values of a function $$f(x)$$ obtained for values of $$x$$ at intervals of $$0.25$$ \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/Vp6W9kfiKrLkPP2Jj/B68MQt2uaIItPvmFihh3v7D5asSQ1/IepqHfPVvS6vrOqO3RnqY4/image.svg\" loading=\"lazy\" alt=\"GATE CE 2010 Engineering Mathematics - Numerical Methods Question 23 English\"> \n<p>The value of the integral of the function between the limits $$0$$ to $$1,$$ using Simpson's rule is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.7854$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2.3562$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3.1416$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$7.5000$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-table-below-gives-values-of-a-function-fx-obtained-for-v-gate-ce-2010-marks-2-cus4nmtrntvjxcny.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QqmThEnz9TH1F0yR",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-variable",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The modulus of the complex number $${{3 + 4\\,i} \\over {1 - 2\\,i}}$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\sqrt 5 $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${1 \\over {\\sqrt 5 }}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${1 \\over 5}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-modulus-of-the-complex-number-3-4i-over-1-2-2010-marks-1-qqmthenz9th1f0yr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DrYmObgfqzi1bdP5",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The partial  differential equation that can be formed from $$z=ax+by+ab$$ has the form $$\\,\\,\\left( {p = {{\\partial z} \\over {\\partial x}},q = {{\\partial z} \\over {\\partial y}}} \\right)\\,\\,$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$z=px+qy$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$z=px-qy$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$z=px+qy+pq$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$z=qy+pq$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-partial-differential-equation-that-can-be-formed-from-za-gate-ce-2010-marks-1-drymobgfqzi1bdp5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8mJTPAZbf76pbkQ9",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The solution to the ordinary differential equation $${{{d^2}y} \\over {d{x^2}}} + {{dy} \\over {dx}} - 6y = 0\\,\\,\\,$$  is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$y = {C_1}\\,{e^{3x}} + {C_2}\\,{e^{ - 2x}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$y = {C_1}\\,{e^{3x}} + {C_2}\\,{e^{2x}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$y = {C_1}\\,{e^{ - 3x}} + {C_2}\\,{e^{2x}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$y = {C_1}\\,{e^{ - 3x}} + {C_2}\\,{e^{ - 2x}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-solution-to-the-ordinary-differential-equation-d2y-over-gate-ce-2010-marks-2-8mjtpazbf76pbkq9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sPjUgNlAOQ6dUBKI",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The order and degree of a differential equation $${{{d^3}y} \\over {d{x^3}}} + 4\\sqrt {{{\\left( {{{dy} \\over {dx}}} \\right)}^3} + {y^2}}  = 0$$ are respectively ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$3$$  and $$2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2$$ and $$3$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$3$$ and $$3$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3$$ and $$1$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-order-and-degree-of-a-differential-equation-d3y-over-dx3-gate-ce-2010-marks-1-spjugnlaoq6dubki.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "f7IhmX1r9XBDsGwy",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two coins are simultaneously tossed. The probability of two heads simultaneously appearing ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1/8$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1/6$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1/4$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1/2$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-coins-are-simultaneously-tossed-the-probability-of-two-h-gate-ce-2010-marks-1-f7ihmx1r9xbdsgwy.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Xj6t3NwQiqxMjLcN",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given a function $$f\\left( {x,y} \\right) = 4{x^2} + 6{y^2} - 8x - 4y + 8,$$ the optimal values of $$f(x,y)$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "a minimum equal to $${{10} \\over 3}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "a maximum equal to $${{10} \\over 3}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "a minimum equal to $${{8} \\over 3}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a maximum equal to $${{8} \\over 3}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-a-function-fleft-xy-right-4x2-6y2-8x-4y-8-the-optimal-gate-ce-2010-marks-2-xj6t3nwqiqxmjlcn.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HMtrr1eWycI3rdpl",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The  $$\\mathop {Lim}\\limits_{x \\to 0} {{\\sin \\left( {{2 \\over 3}x} \\right)} \\over x}\\,\\,\\,$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{2 \\over 3}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{3 \\over 2}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$ \\propto $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-mathop-limlimitsx-to-0-sin-left-2-over-3x-right-over-x-i-gate-ce-2010-marks-1-hmtrr1ewyci3rdpl.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WkDzBdHEdE4NXdP0",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A parabolic cable is held between two supports at the same level. The horizontal span between the supports is $$L.$$ The sag at the mid-span is $$h.$$ The equation of the parabola is $$y = 4h{{{x^2}} \\over {{L^2}}},\\,\\,$$ where $$x$$ is the horizontal coordinate and $$y$$ is the vertical coordinate with the origin at the centre of the cable. The expanssion for the total length of the cable is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\int\\limits_0^L {\\sqrt {1 + 64{{{h^2}{x^2}} \\over {{L^4}}}} dx} $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$2\\int\\limits_0^{L/2} {\\sqrt {1 + 64{{{h^3}{x^2}} \\over {{L^4}}}} dx} $$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\int\\limits_0^{L/2} {\\sqrt {1 + 64{{{h^2}{x^2}} \\over {{L^4}}}} dx} $$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2\\int\\limits_0^{L/2} {\\sqrt {1 + 64{{{h^2}{x^2}} \\over {{L^4}}}} dx} $$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-parabolic-cable-is-held-between-two-supports-at-the-same-l-gate-ce-2010-marks-2-wkdzbdhede4nxdp0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "516JrtkC4nRiGCfE",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The inverse of the matrix $$\\left[ {\\matrix{\n   {3 + 2i} &amp; i  \\cr \n   { - i} &amp; {3 - 2i}  \\cr \n\n } } \\right]$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over 2}\\left[ {\\matrix{\n   {3 + 2i} &amp; i  \\cr \n   { - i} &amp; {3 - 2i}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over {12}}\\left[ {\\matrix{\n   {3 - 2i} &amp; { - i}  \\cr \n   i &amp; {3 + 2i}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${1 \\over {14}}\\left[ {\\matrix{\n   {3 + 2i} &amp; { - i}  \\cr \n   i &amp; {3 - 2i}  \\cr \n\n } } \\right]$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${1 \\over {14}}\\left[ {\\matrix{\n   {3 - 2i} &amp; { - i}  \\cr \n   i &amp; {3 + 2i}  \\cr \n\n } } \\right]$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-inverse-of-the-matrix-left-matrix-3-2i-i-cr-i-3-2i-cr-ri-gate-ce-2010-marks-2-516jrtkc4nrigcfe.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Environmental Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2e40508be7c",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "environmental-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "quality-control-of-water",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Ion concentrations obtained for a groundwater sample (having pH=8.1) are given\nbelow.\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;overflow:auto;display:inline-block;white-space: nowrap;\noverflow-x: scroll;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;word-break:normal;}\n.tg .tg-yw4l{vertical-align:top}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-031e\">Ion</th>\n    <th class=\"tg-031e\">$$Ca^{2+}$$</th>\n    <th class=\"tg-031e\">$$Mg^{2+}$$</th>\n    <th class=\"tg-yw4l\">$$Na^+$$</th>\n    <th class=\"tg-yw4l\">$$HCO_3^-$$</th>\n    <th class=\"tg-yw4l\">$$SO_4^{2-}$$</th>\n    <th class=\"tg-yw4l\">$$Cl^{-}$$</th>\n  </tr>\n  <tr>\n    <td class=\"tg-031e\">Ionconcentration(mg/L)</td>\n    <td class=\"tg-031e\">100</td>\n    <td class=\"tg-031e\">6</td>\n    <td class=\"tg-yw4l\">15</td>\n    <td class=\"tg-yw4l\">250</td>\n    <td class=\"tg-yw4l\">45</td>\n    <td class=\"tg-yw4l\">39</td>\n  </tr>\n  <tr>\n    <td class=\"tg-031e\">Atomic Weight</td>\n    <td class=\"tg-031e\">Ca=40</td>\n    <td class=\"tg-031e\">Mg=24</td>\n    <td class=\"tg-yw4l\">Na=23</td>\n    <td class=\"tg-yw4l\">H=1,C=12,O=16</td>\n    <td class=\"tg-yw4l\">S=32,O=16</td>\n    <td class=\"tg-yw4l\">Cl=35.5</td>\n  </tr>\n</tbody></table>\n\n<br>Carbonate hardness (mg/L as $$CaCO_3$$) present in the above water sample is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "205"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "250"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "275"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "289"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "ion-concentrations-obtained-for-a-groundwater-sample-having-gate-ce-2010-marks-2-5a2e40508be7c.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2e3c0448fa4",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "environmental-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "quality-control-of-water",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Ion concentrations obtained for a groundwater sample (having pH=8.1) are given\nbelow.\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;display:inline-block;white-space: nowrap;\noverflow-x: scroll;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;word-break:normal;}\n.tg .tg-yw4l{vertical-align:top}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-031e\">Ion</th>\n    <th class=\"tg-031e\">$$Ca^{2+}$$</th>\n    <th class=\"tg-031e\">$$Mg^{2+}$$</th>\n    <th class=\"tg-yw4l\">$$Na^+$$</th>\n    <th class=\"tg-yw4l\">$$HCO_3^-$$</th>\n    <th class=\"tg-yw4l\">$$SO_4^{2-}$$</th>\n    <th class=\"tg-yw4l\">$$Cl^{-}$$</th>\n  </tr>\n  <tr>\n    <td class=\"tg-031e\">Ionconcentration(mg/L)</td>\n    <td class=\"tg-031e\">100</td>\n    <td class=\"tg-031e\">6</td>\n    <td class=\"tg-yw4l\">15</td>\n    <td class=\"tg-yw4l\">250</td>\n    <td class=\"tg-yw4l\">45</td>\n    <td class=\"tg-yw4l\">39</td>\n  </tr>\n  <tr>\n    <td class=\"tg-031e\">Atomic Weight</td>\n    <td class=\"tg-031e\">Ca=40</td>\n    <td class=\"tg-031e\">Mg=24</td>\n    <td class=\"tg-yw4l\">Na=23</td>\n    <td class=\"tg-yw4l\">H=1,C=12,O=16</td>\n    <td class=\"tg-yw4l\">S=32,O=16</td>\n    <td class=\"tg-yw4l\">Cl=35.5</td>\n  </tr>\n</tbody></table>\n\n<br>Total hardness (mg/L as $$CaCO_3$$) present in the above water sample is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "205"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "250"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "275"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "308"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "ion-concentrations-obtained-for-a-groundwater-sample-having-gate-ce-2010-marks-2-5a2e3c0448fa4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                }
+            ],
+            "title": "Environmental Engineering"
+        },
+        {
+            "_id": "Irrigation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2d7bba9156c",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "irrigation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "water-requirement-of-crops",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The moisture holding capacity of the soil in a 100 hectare farm is 18 cm/m. the field is to\nbe irrigated when 50 percent of the available moisture in the root zone is depleted. The\nirrigation water is to be supplied by a pump working for 10hours a day, and water\napplication efficiency is 75%. Details of crops planned for cultivation are as follows:\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;margin:0 auto;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}\n.tg .tg-s6z2{text-align:center}\n.tg .tg-baqh{text-align:center;vertical-align:top}\n.tg .tg-e3zv{font-weight:bold}\n.tg .tg-hgcj{font-weight:bold;text-align:center}\n.tg .tg-9hbo{font-weight:bold;vertical-align:top}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-hgcj\">Crop</th>\n    <th class=\"tg-e3zv\">Root zone depth (m)</th>\n    <th class=\"tg-9hbo\">Peak rate of moisture use(mm/day)</th>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">X</td>\n    <td class=\"tg-s6z2\">1.0</td>\n    <td class=\"tg-baqh\">5.0</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">Y</td>\n    <td class=\"tg-baqh\">0.8</td>\n    <td class=\"tg-baqh\">4.0</td>\n  </tr>\n</tbody></table>\nThe area of crop Y that can be irrigated when the available capacity of irrigation\nsystem is 40 liters/sec is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "40 hectares"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "36 hectares"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "30 hectares"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "27 hectares"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-moisture-holding-capacity-of-the-soil-in-a-100-hectare-f-gate-ce-2010-marks-2-5a2d7bba9156c.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2d76bf10a64",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "irrigation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "water-requirement-of-crops",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The moisture holding capacity of the soil in a 100 hectare farm is 18cm/m. the field is to\nbe irrigated when 50 percent of the available moisture in the root zone is depleted. The\nirrigation water is to be supplied by a pump working for 10hours a day, and water\napplication efficiency is 75%. Details of crops planned for cultivation are as follows:\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;margin:0 auto;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}\n.tg .tg-s6z2{text-align:center}\n.tg .tg-baqh{text-align:center;vertical-align:top}\n.tg .tg-e3zv{font-weight:bold}\n.tg .tg-hgcj{font-weight:bold;text-align:center}\n.tg .tg-9hbo{font-weight:bold;vertical-align:top}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-hgcj\">Crop</th>\n    <th class=\"tg-e3zv\">Root zone depth (m)</th>\n    <th class=\"tg-9hbo\">Peak rate of moisture use(mm/day)</th>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">X</td>\n    <td class=\"tg-s6z2\">1.0</td>\n    <td class=\"tg-baqh\">5.0</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">Y</td>\n    <td class=\"tg-baqh\">0.8</td>\n    <td class=\"tg-baqh\">4.0</td>\n  </tr>\n</tbody></table>\nThe capacity of irrigation system required to irrigate crop X in 36 hectares is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "83litres/sec"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "67 liters/sec"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "57 liters/sec"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "53 liters/sec"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-moisture-holding-capacity-of-the-soil-in-a-100-hectare-f-gate-ce-2010-marks-2-5a2d76bf10a64.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                }
+            ],
+            "title": "Irrigation"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "olOdGXWVEkSeChzx",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "doubly-reinforced-sections",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A doubly reinforced rectangular concrete beam has a width of $$300$$ $$mm$$ and an effective depth of $$500$$ $$mm.$$ the beam is reinforced with $$2200\\,m{m^2}$$  of steel in tension and $$628\\,m{m^2}$$ of steel in compression. The effective cover for compression steel is $$50$$ $$mm$$. Assume that both tension and compression steel yield. The grades of concrete and steel used are $$M20$$ and $$Fe250$$ respectively. The stress lock parameters (rounded off to first two decimal places) for concrete shall be as per IS $$456:200.$$  \n<p>The moment of resistance of the section is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$206.00$$ $$kN$$-$$m$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$209.20$$ $$kN$$-$$m$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$237.80$$ $$kN$$-$$m$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$251.90$$ $$kN$$-$$m$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-doubly-reinforced-rectangular-concrete-beam-has-a-width-of-2010-marks-2-olodgxwveksechzx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XoetBkFkuAGlbXrU",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "doubly-reinforced-sections",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A doubly reinforced rectangular concrete beam has a width of $$300$$ $$mm$$ and an effective depth of $$500$$ $$mm.$$ the beam is reinforced with $$2200\\,m{m^2}$$  of steel in tension and $$628\\,m{m^2}$$ of steel in compression. The effective cover for compression steel is $$50$$ $$mm$$. Assume that both tension and compression steel yield. The grades of concrete and steel used are $$M20$$ and $$Fe250$$ respectively. The stress lock parameters (rounded off to first two decimal places) for concrete shall be as per IS $$456:200.$$ \n<p>The depth of neutral axis is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$205.30$$ $$mm$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$184.56$$ $$mm$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$160.91$$ $$mm$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$145.30$$ $$mm$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-doubly-reinforced-rectangular-concrete-beam-has-a-width-of-2010-marks-2-xoetbkfkuaglbxru.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Steel Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PNpCuvCI8uysmwFw",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welded-connections",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two plates, subjected to direct tension, each of $$10$$ $$mm$$ thickness and having widths of $$100$$ $$mm$$ and $$175$$ $$mm,$$ respectively are to be fillet welded with an overlap of $$200$$ $$mm.$$ Given that the permissible weld stress is $$110$$ $$MPa$$ and the permissible stress in steel is $$150$$ $$MPa,$$ then length of the weld required using the maximum permissible weld size as per $$IS:$$ $$800$$ -$$1984$$ is \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/cmbPTzWEZxlPjfCEQ/CLlPcb3RYmZCSn2m4WJJOuXc11cby/pidL4soai7tq89IblRvbI3/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2010 Steel Structures - Welded Connections Question 8 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$245.3$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$229.2$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$205.5$$ $$mm$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$194.8$$ $$mm$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-plates-subjected-to-direct-tension-each-of-10-mm-2010-marks-2-pnpcuvci8uysmwfw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a219a5ebd2b3",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "riveted-joints-and-bolted-joints",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A double cover butt riveted joint is used to connect two flat plates of 200 mm\nwidth and 14 mm thickness as show in the figure. There are twelve power driven\nrivets of 20 mm diameter at a pitch of 50 mm in both directions on either side of\nthe plate. Two cover plates of 10 mm thickness are used. The capacity of the joint\nin tension considering bearing and shear ONLY, with permissible bearing and\nshear stresses as 300MPa respectively is \n<img alt=\"GATE CE 2010 Steel Structures - Riveted Joints and Bolted Joints Question 2 English\" src=\"https://gateclass.cdn.examgoal.net/examside/questions/85d99bb62119803caa09e88d6a2604264576a75041d09baa17bc5aeb06d642df.jpg\" style=\"text-align:center;max-width:100%;height:auto;\" loading=\"lazy\">",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "1083.6 kN"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "871.32 kN"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "541.18 kN"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "433.70 kN"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-double-cover-butt-riveted-joint-is-used-to-connect-two-fla-gate-ce-2010-marks-2-5a219a5ebd2b3.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                }
+            ],
+            "title": "Steel Structures"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "exuRf8hF7HyCzBNO",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "columns-and-struts",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The effective length of a column of length $$L$$ fixed against rotation and translation at one end is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.5$$ $$L$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.7$$ $$L$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1.414$$ $$L$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2$$ $$L$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-effective-length-of-a-column-of-length-l-fixed-again-2010-marks-1-exurf8hf7hyczbno.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "V2mIJvTgeas8HmPD",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the cantilever beam $$PQR$$ shown in figure below, the segment $$PQ$$ has flexural $$EI$$ and the segment $$QR$$ has infinite flexural rigidity\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/bA1l1PIRbY4bnxnCC/oubdPPcMknSGJbr1zCNaJZvxsRsvx/qf19PRa7JWcbwtd6X4ZEv4/image.png\" loading=\"lazy\" alt=\"GATE CE 2010 Strength of Materials Or Solid Mechanics - Deflection of Beams Question 7 English\"> \n<p>The deflection of the beam at $$' R '$$ is </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{8W{L^3}} \\over {EI}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{5W{L^3}} \\over {6EI}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{7W{L^3}} \\over {3EI}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{8W{L^3}} \\over {6EI}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-cantilever-beam-pqr-shown-in-figure-below-the-se-2010-marks-2-v2mijvtgeas8hmpd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FynsEdu7lKZt6MMq",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deflection-of-beams",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the cantilever beam $$PQR$$ shown in figure below, the segment $$PQ$$ has flexural $$EI$$ and the segment $$QR$$ has infinite flexural rigidity\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/bA1l1PIRbY4bnxnCC/oubdPPcMknSGJbr1zCNaJZvxsRsvx/qf19PRa7JWcbwtd6X4ZEv4/image.png\" loading=\"lazy\" alt=\"GATE CE 2010 Strength of Materials Or Solid Mechanics - Deflection of Beams Question 8 English\"> \n<p>The deflection and slope of the beam at $$'Q'$$ are respectively</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{5W{L^3}} \\over {6EI}}$$ and $${{3W{L^2}} \\over {2EI}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{W{L^3}} \\over {6EI}}$$ and $${{W{L^2}} \\over {2EI}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{W{L^3}} \\over {2EI}}$$ and $${{W{L^2}} \\over {EI}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{W{L^3}} \\over {3EI}}$$ and $${{3W{L^2}} \\over {2EI}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-cantilever-beam-pqr-shown-in-figure-below-the-se-2010-marks-2-fynsedu7lkzt6mmq.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xxVxApTG3S0RiDZO",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "torsion",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A solid circular shaft of diameter d and length $$L$$ is fixed at one end and free at the other end. A torque t is applied at the free end. The shear modulus of the material is $$G.$$ The angle of twist at three free ends is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{16TL} \\over {\\pi {d^4}G}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{32TL} \\over {\\pi {d^4}G}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{64TL} \\over {\\pi {d^4}G}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{128TL} \\over {\\pi {d^4}G}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-solid-circular-shaft-of-diameter-d-and-length-l-is-fix-2010-marks-2-xxvxaptg3s0ridzo.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kerKkZI7HkOEVusl",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-force-and-bending-moment",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the simply supported beam of length $$L,$$ subjected to a uniformly distributed moment $$(M)$$ $$kN$$-$$m$$ per unit length as shown in the figure, the bending moment (in $$kN$$-$$m$$) at the mid-span of the beam is\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/dQCArq8F8mVlu6cnU/cEVxXPIAsuJobfmVYy5MEI1B5CkWG/aHYvF7a6cpKVUrRJmHE8VN/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2010 Strength of Materials Or Solid Mechanics - Shear Force and Bending Moment Question 16 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$M$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$ML$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$M/L$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-simply-supported-beam-of-length-l-subjected-to-2010-marks-2-kerkkzi7hkoevusl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "s7EHB933aPV0Scxc",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-force-and-bending-moment",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two people weighing W each are sitting on a plank of length $$L$$ floating on water at $$L/4$$ from either end. Neglecting the weight of the plank, the bending moment at the center of the plank is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{WL} \\over 8}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{WL} \\over {16}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{WL} \\over {32}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "zero "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-people-weighing-w-each-are-sitting-on-a-plank-of-length-2010-marks-2-s7ehb933apv0scxc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3M2xwHibun1S9LtR",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-stress",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The major and minor principal stresses at a point are $$3MPa$$ and $$-3MPa$$ respectively. The maximum shear stress at the point is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$3$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$6$$ $$MPa$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$9MPa$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-major-and-minor-principal-stresses-at-a-point-are-3mpa-2010-marks-1-3m2xwhibun1s9ltr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1734ab46265",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "simple-stresses",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of independent elastic constants for a linear elastic isotropic and\nhomogeneous material is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "4"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "3"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "1"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-independent-elastic-constants-for-a-linear-ela-gate-ce-2010-marks-1-5a1734ab46265.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Rl7tspde86rfhZV3",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "truss",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the truss shown in the figure, the force in the member QR is \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/2TRMFCErsHqJ0QUJV/IEFgNuQGMmIWvkBe623HLiBO8YL1P/dAapPRgGnee57EH3Z7pWoL/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2010 Structural Analysis - Truss Question 15 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "zero "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${P \\over {\\sqrt 2 }}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${\\sqrt 2 P}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-truss-shown-in-the-figure-the-force-in-the-member-q-2010-marks-1-rl7tspde86rfhzv3.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "z3VyRYQjTrnhVxdg",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "arches-and-cable",
+                    "year": 2010,
+                    "paperTitle": "GATE CE 2010",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A three hinged parabolic arch having a span of $$20$$ $$m$$ and a rise of $$5$$ $$m$$ carries a point load of $$10$$ $$kN$$ at quarter span from the left end as shown in the figure. The resultant reaction at the left support and its inclination with the horizontal are respectively \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/fNnDdpQFn5YLzk5bY/WlisWAW9gs6qp7yqCVqxF1Fd9dqkP/9LjEKpa5E1UmRGXAQh2MB6/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2010 Structural Analysis - Arches and Cable Question 4 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$9.01$$ $$kN$$ and $${56.31^ \\circ }$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$9.01$$ $$kN$$ and $${33.69^ \\circ }$$  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$7.50$$ $$kN$$ and $${56.31^ \\circ }$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2.50$$ $$kN$$ and $${33.69^ \\circ }$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-three-hinged-parabolic-arch-having-a-span-of-20-m-2010-marks-2-z3vyryqjtrnhvxdg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2010",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2010"
+                }
+            ],
+            "title": "Structural Analysis"
+        }
+    ]
+}

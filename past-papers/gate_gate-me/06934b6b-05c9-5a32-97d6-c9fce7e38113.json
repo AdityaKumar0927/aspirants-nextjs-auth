@@ -1,0 +1,2443 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KvuM8jO2IiQNRRXX",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "transform-theory",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$f(t)$$ is a finite and continuous Function for $$t \\ge 0$$ the laplace transformation is given by \n<br>$$F = \\int\\limits_0^\\infty  {{e^{ - st}}\\,\\,f\\left( t \\right)dt,} $$ then for $$f(t)=cos$$ $$h$$ $$mt,$$ the laplace transformation is ___________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${s \\over {{s^2} - {m^2}}}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-ft-is-a-finite-and-continuous-function-for-t-ge-0-the-lap-gate-me-1994-marks-1-kvum8jo2iiqnrrxx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xaLFn9eDzJpS6X9o",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Find out the eigen value of the matrix $$A = \\left[ {\\matrix{\n   1 &amp; 0 &amp; 0  \\cr \n   2 &amp; 3 &amp; 1  \\cr \n   0 &amp; 2 &amp; 4  \\cr \n\n } } \\right]$$ for any one of the eigen  values, find out the corresponding eigen vector?",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$\\lambda  = 1,2,5$$ are the eigen values $$K\\left[ {\\matrix{\n   1  \\cr \n   { - 3/2}  \\cr \n   1  \\cr \n\n } } \\right]$$ is an eigen vector of matrix $$A$$ corresponding to $$\\lambda  = 1$$ for $$K \\ne 0$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "find-out-the-eigen-value-of-the-matrix-a-left-matrix-1-0-0-c-gate-me-1994-marks-1-xalfn9edzjps6x9o.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iM6EGdxuBRxREuTD",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The value of $$\\int\\limits_0^\\infty  {{e^{ - {y^3}}}.{y^{1/2}}} $$ dy is _________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${{\\sqrt \\pi  } \\over 3}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-value-of-intlimits0infty-e-y3y12-dy-is-gate-me-1994-marks-1-im6egdxubrxreutd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ty2XSdHDFmo0FLwF",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$H(x, y)$$ is homogeneous function of degree $$n$$ then $$x{{\\partial H} \\over {\\partial x}} + y{{\\partial H} \\over {\\partial y}} = nH$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-hx-y-is-homogeneous-function-of-degree-n-then-xpartial-h-gate-me-1994-marks-1-ty2xsdhdfmo0flwf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9LDVRkJMl5LB1sZ3",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the differential equation $$\\,\\,{{dy} \\over {dt}} + 5y = 0\\,\\,$$  with $$y(0)=1,$$ the general solution is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${e^{5t}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${e^{ - 5t}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$5$$ $${e^{ - 5t}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${e^{\\sqrt { - 5t} }}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-differential-equation-dy-over-dt-5y-0-with-y01-the-g-gate-me-1994-marks-1-9ldvrkjml5lb1sz3.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zcgaid5R2mnAwdmh",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "differential-equations",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Solve for $$y$$ if $${{{d^2}y} \\over {d{t^2}}} + 2{{dy} \\over {dt}} + y = 0$$ with $$y(0)=1$$ and $${y^1}\\left( 0 \\right) = 2$$ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$y = \\left( {1 + 3t} \\right){e^{ - t}}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "solve-for-y-if-d2y-over-dt2-2dy-over-dt-y-0-with-y01-and-y1l-gate-me-1994-marks-2-zcgaid5r2mnawdmh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Engineering Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JkCqpeqL1vhwQ8wY",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "engineering-mechanics-static-and-dynamics",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A stone of mass m at the end of a string of length l is whirled in a vertical circle at a constant speed. The tension in the string will be maximum when the stone is \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "at the top of the circle"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "half-way down from the top"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "quarter was down from the top "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "at the bottom of the circle "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-a-stone-of-mass-m-at-the-end-of-a-string-of-length-l-is-whi-gate-me-1994-marks-1-jkcqpeql1vhwq8wy.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                }
+            ],
+            "title": "Engineering Mechanics"
+        },
+        {
+            "_id": "Fluid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DDRuJzRKhh9IXRDM",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-kinematics",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a fluid element in a two dimensional flow field ($$x-y$$ plane), it will undergo",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Translation only "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Translation and rotation "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Translation and deformation "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Deformation only "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-fluid-element-in-a-two-dimensional-flow-field-x-y-plan-gate-me-1994-marks-1-ddrujzrkhh9ixrdm.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "z3wEj8fW2ItHsKA6",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-kinematics",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Streamlines, path lines and streak lines are virtually identical for \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Uniform flow "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Flow of ideal fluids "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Steady flow "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Non uniform flow "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "streamlines-path-lines-and-streak-lines-are-virtually-identi-gate-me-1994-marks-1-z3wej8fw2ithska6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Gx7WTPKvH1PwmLL6",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-kinematics",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a flow field, the streamlines and equipotential lines",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Are parallel"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Cut at any angle "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Are orthogonal everywhere in the flow field "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Cut orthogonally except at the stagnation points "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-flow-field-the-streamlines-and-equipotential-lines-gate-me-1994-marks-1-gx7wtpkvh1pwmll6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "81d52t8edG8z1z5G",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-kinematics",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Circulation is defined as line integral of tangential component of velocity about a _________ (fill in the blank) ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "closed counter ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "circulation-is-defined-as-line-integral-of-tangential-compon-gate-me-1994-marks-1-81d52t8edg8z1z5g.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uO10uVF47I0QzdTH",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-kinematics",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Existence of velocity potential implies that ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Fluid is in continuum"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Fluid is irrotational"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Fluid is ideal "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Fluid is compressible "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "existence-of-velocity-potential-implies-that-gate-me-1994-marks-1-uo10uvf47i0qzdth.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "R5TP7QE2tKKfiQpL",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-statics",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Bodies in floatation to be in stable equilibrium the necessary and sufficient condition is that the center of gravity is located below the _____________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Meta Center ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "bodies-in-floatation-to-be-in-stable-equilibrium-the-necessa-gate-me-1994-marks-1-r5tp7qe2tkkfiqpl.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DFapBLLBoRxCPnmF",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-dynamics",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Bernoulli\u2019s equation can be applied between any two points on a stream line for a rotational flow field. \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "bernoullis-equation-can-be-applied-between-any-two-points-on-gate-me-1994-marks-1-dfapbllborxcpnmf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AEigrrUSD5vJl8UW",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fluid-dynamics",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a venturimeter, the angle of the diverging section is more than that of converging section. ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-venturimeter-the-angle-of-the-diverging-section-is-more-gate-me-1994-marks-1-aeigrrusd5vjl8uw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5R2mxhOPXKFKiNlZ",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "laminar-flow",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a fully developed laminar flow through a pipe, the ratio of the maximum velocity to the average velocity is ___________ (fill in the blank)",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Twice ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-fully-developed-laminar-flow-through-a-pipe-the-ratio-gate-me-1994-marks-1-5r2mxhopxkfkinlz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "K2FuJm1sKQA7RX4W",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "turbulent-flow",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Prandtl\u2019s mixing length is turbulent flow signifies",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "the average distance perpendicular to the mean flow covered by the mixing particles. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the ratio of mean free path to characteristic length of the flow field "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the wavelength corresponding to the lowest frequency present in the flow field"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "the magnitude of turbulent kinetic energy."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "prandtls-mixing-length-is-turbulent-flow-signifies-gate-me-1994-marks-1-k2fujm1skqa7rx4w.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VPLOVfWq5JaQwoSa",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "turbulent-flow",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Fluid is flowing with an average velocity of $$V$$ through a pipe of diameter $$d.$$ over a length of $$L,$$ the \u201chead\u201d loss is given by $${{fL{V^2}} \\over {2gD}}.$$ The friction factor, $$f,$$ for laminar flow in terms of Reynolds number ($$Re$$) is ______________ (fill the blank)",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${{64} \\over {{\\mathop{\\rm Re}\\nolimits} }}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "fluid-is-flowing-with-an-average-velocity-of-v-through-a-pip-gate-me-1994-marks-2-vplovfwq5jaqwosa.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "NM0okT6N3DO2UONI",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boundary-layer",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "As the transition from laminar to turbulent flow is induced in a cross flow past a circular cylinder the value of the drag coefficient drops. ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "as-the-transition-from-laminar-to-turbulent-flow-is-induced-gate-me-1994-marks-1-nm0okt6n3do2uoni.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TnYkZarPhvWcnKaC",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "fluid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boundary-layer",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The necessary and sufficient condition which brings about separation of boundary layer is \n<br>$${{dP} \\over {dx}} &gt; 0$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-necessary-and-sufficient-condition-which-brings-about-se-gate-me-1994-marks-1-tnykzarphvwcnkac.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                }
+            ],
+            "title": "Fluid Mechanics"
+        },
+        {
+            "_id": "Heat Transfer",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vcuh9lL2LWo19ljA",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "fin-design-and-transient-heat-conduction",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "When the fluid velocity is doubled the thermal time constant of a thermometer used for measuring the fluid temperature reduces by a factor of $$2$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "when-the-fluid-velocity-is-doubled-the-thermal-time-constant-gate-me-1994-marks-1-vcuh9ll2lwo19lja.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "f8hXBPrMKFAkNsyq",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "convection",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For air near atmospheric condition flowing over a flat plate the laminar thermal boundary layer is thicker than hydrodynamic boundary layer ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-air-near-atmospheric-condition-flowing-over-a-flat-plate-gate-me-1994-marks-1-f8hxbprmkfaknsyq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "q11u9K6IqH0XUsGD",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "radiation",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The shape factors with themselves of two infinitely long black body concentric cylinders with a dia ratio of $$3$$ are ....... For the inner and ..... for the outer",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$0,\\,\\,\\,\\,{2 \\over 3}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-shape-factors-with-themselves-of-two-infinitely-long-bla-gate-me-1994-marks-1-q11u9k6iqh0xusgd.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PHdUBZ6ZAjVBa7wF",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "heat-exchangers",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The practice to use steam on the shell side and cooling water on the tube side in condensers of steam power plant is because",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "to increase overall heat transfer coefficient water side velocity can be increased if water is on the tube side "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "condenser can act as a storage unit for condensed steam "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "rate of condensation of steam is invariably smaller than the mass flow rate of cooling water"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "it is easier to maintain vacuum on the shell side than on the tube side "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-practice-to-use-steam-on-the-shell-side-and-cooling-wate-gate-me-1994-marks-1-phdubz6zajvba7wf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zDoQlsVj1XDg272B",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "heat-exchangers",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two streams of fluid of unit constant specific heats and unit mass flow rate exchange thermal energy in an adiabatic heat exchanger. The inlet temps of hot and cold streams are $${300^ \\circ }C$$ and $${30^ \\circ }C$$ respectively. Calculate the $$LMTD$$ and effectiveness of the heat exchanger if the hot fluid is cooled to zero entropy condition.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$LMTD=$$ $${165^ \\circ }C$$\n<br>Effectiveness $$=0.5$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-streams-of-fluid-of-unit-constant-specific-heats-and-uni-gate-me-1994-marks-5-zdoqlsvj1xdg272b.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RPhPK6a1DYVDgfRR",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "heat-transfer",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "conduction",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two insulting materials of thermal conductivity $$K$$ and $$2K$$ are available for lagging a pipe carrying a hot fluid. If the radial thickness of each material is same ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Material with higher thermal conductivity should be used for inner layer and one with lower thermal conductivity for the outer. "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Material with lower thermal conductivity should be used for the inner layer and one with higher thermal conductivity for the outer."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "It is immaterial in which sequence the insulating materials are used "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "It is not possible to judge unless numerical values of dimensions are given "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-insulting-materials-of-thermal-conductivity-k-and-2k-are-gate-me-1994-marks-1-rphpk6a1dyvdgfrr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                }
+            ],
+            "title": "Heat Transfer"
+        },
+        {
+            "_id": "Machine Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "W6pXuKcDygRRb1UJ",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "machine-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "design-for-static-loading",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two shafts $$A$$ and $$B$$ are made of the same material. The diameter of shaft $$B$$ is twice that of shaft $$A.$$ The ratio of power which can be transmitted by shaft $$A$$ to that of shaft $$B$$ is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1/2$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1/4$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1/8$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1/16$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-shafts-a-and-b-are-made-of-the-same-material-the-diamete-gate-me-1994-marks-1-w6pxukcdygrrb1uj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                }
+            ],
+            "title": "Machine Design"
+        },
+        {
+            "_id": "Production Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zHt3AYvnrMZTsygw",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "casting",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Only $$4$$ pairs can be matched :\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/vEeCCkDh8kibzlhhZ/hcaNLbGJrQXIwGvjXYRNh4UyolwqQ/jSbZhmtQeZtxkZbp4N6E0l/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1994 Production Engineering - Casting Question 40 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$A - 2,\\,\\,B - 6,\\,\\,C - 5,\\,\\,D - 3$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "only-4-pairs-can-be-matched-gate-me-1994-marks-2-zht3ayvnrmztsygw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kbUtUZh3bRJ7sOny",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The process of hot extrusion is used to produce ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Curtain rods made of aluminium "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Steel pipes of domestic water supply "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Stainless steel tubes used in furniture "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Large size pipes used in city water mains."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-process-of-hot-extrusion-is-used-to-produce-gate-me-1994-marks-1-kbutuzh3brj7sony.htm",
+                    "timeAllotted": 108000,
+                    "updated_time": 1582394048,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DeoJp7H9XRHsBNsL",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-forming",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Calculate the bite angle when rolling plates $$12mm$$ thick using work rolls $$600mm$$ diameter and reducing the thickness by $$3mm$$ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${5.72^ \\circ }$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "calculate-the-bite-angle-when-rolling-plates-12mm-thick-usin-gate-me-1994-marks-2-deojp7h9xrhsbnsl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "YL563O6qTdZQp7mx",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding-process",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The electrodes used in $$arc$$ welding are coated. This coating is not expected to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Provide protective atmosphere to weld "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Stabilize the $$arc$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Add alloying elements "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Prevents electrode from contamination  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-electrodes-used-in-arc-welding-are-coated-this-coating-i-gate-me-1994-marks-1-yl563o6qtdzqp7mx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gNC0TzAz3vGSjHXP",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding-process",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Generally cylindrical parts produced by powder metallurgy should not have non uniform cross section and a length to diameter ratio exceeding . . . . . . . . . . . . . . .",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$2.5$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "generally-cylindrical-parts-produced-by-powder-metallurgy-sh-gate-me-1994-marks-1-gnc0tzaz3vgsjhxp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "QYQy2xiaaN7Y3CRS",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "welding-process",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The ratio of acetylene to oxygen is approximately ................ for neutral flame used in gas welding ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$1:1$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-ratio-of-acetylene-to-oxygen-is-approximately-for-neutra-gate-me-1994-marks-1-qyqy2xiaan7y3crs.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "brYvVICcyVd0L9lt",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A single point cutting tool made of $$HSS$$ has the value of constant $$'C'$$ $$80,$$ and $$n=0.2$$ in the basic tool life equation. If the tool cost per regrind is Rs $$2$$ and the vmachine hour rate is Rs. $$30,$$ determine the most economical cutting speed (tool cost includes the cost of time spent on changing.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$45.9$$ $$m/min$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-single-point-cutting-tool-made-of-hss-has-the-value-of-con-gate-me-1994-marks-5-bryvviccyvd0l9lt.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EKm8U6TPOHgzLM2b",
+                    "exam": "gate-me",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "metal-cutting",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A mild steel block of width $$40$$ $$mm$$ is being milled using a straight slab cutter $$70mm$$ diameter with $$30$$teeth. If the cutter rotates at $$40$$$$rpm$$ and the depth of cut is $$2mm,$$ determine the value of maximum uncut chip thickness when the table feed is $$20mm/min$$ ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$0.0056$$ $$mm$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-mild-steel-block-of-width-40-mm-is-being-milled-using-a-st-gate-me-1994-marks-5-ekm8u6tpohgzlm2b.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bCxdMSuNHQjTq7WU",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "machining",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "To get good surface finish on a turned job, one should use a sharp tool with a ......... Feed rate and ............... Speed of rotation of the job.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "small, high",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "to-get-good-surface-finish-on-a-turned-job-one-should-use-a-1994-marks-1-bcxdmsunhqjtq7wu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Y3aHItSPgo8U1Euw",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "machining",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A grinding wheel $$A$$ $$27$$ $$K7$$ $$V$$ is specified for finish grinding of a $$HSS$$ cutting tool. What do you understand about the wheel from the above code. Is this an appropriate choice? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "yes "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "no, because abrasive is not correct "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "no, grain size is not correct "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "no, because grade is not correct choice "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-grinding-wheel-a-27-k7-v-is-specified-for-1994-marks-2-y3ahitspgo8u1euw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MUIBinMxVyY0luOa",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sheet-metal-forming-processes",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In deep drawing of sheets, the values of limiting draw ratio depends on",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Percentage elongation of sheet metal"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Yield strength of sheet metal"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Type of press used "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Thickness of sheet  "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-deep-drawing-of-sheets-the-values-of-limiting-draw-ratio-1994-marks-1-muibinmxvyy0luoa.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uzn02kNDCGdaVlJK",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "advance-machine-tools",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$CNC$$ machines are more economical to use even for simple turning jobs.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "cnc-machines-are-more-economical-to-use-even-for-simple-1994-marks-1-uzn02kndcgdavljk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "SesNimqGuCqhfyhh",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "production-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "advance-machine-tools",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$CNC$$ machines are more accurate than conventional machines because they have a high resolution encoder and digital readouts for positioning",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "cnc-machines-are-more-accurate-than-conventional-machine-1994-marks-1-sesnimqgucqhfyhh.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                }
+            ],
+            "title": "Production Engineering"
+        },
+        {
+            "_id": "Strength of Materials",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5WuqMBb6U2z1oG2X",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "simple-stress-and-strain",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Below Fig. shows a rigid bar hinged at A and supported in a horizontal position by two vertical identical steel wires. Neglect the weight of the beam. The tension $${T_1}$$ and $${T_2}$$ induced in these wires by a vertical load P applied as shown are\n  <img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/dt3FnuKJJf08wGxwm/FnOnLm8tFcEgDsJ3UEhNE4HWrJ4W0/2kUBMFzjvq2Co7oTzBbdqF/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE ME 1994 Strength of Materials - Simple Stress and Strain Question 18 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${T_1} = {T_2} = {P \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${T_1} = {{Pal} \\over {\\left( {{a^2} + {b^2}} \\right)}},{T_2} = {{Pbl} \\over {\\left( {{a^2} + {b^2}} \\right)}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${T_1} = {{Pbl} \\over {\\left( {{a^2} + {b^2}} \\right)}},{T_2} = {{Pal} \\over {\\left( {{a^2} + {b^2}} \\right)}}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${T_1} = {{Pal} \\over {2\\left( {{a^2} + {b^2}} \\right)}},{T_2} = {{Pbl} \\over {2\\left( {{a^2} + {b^2}} \\right)}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "below-fig-shows-a-rigid-bar-hinged-at-a-and-supported-in-a-h-gate-me-1994-marks-2-5wuqmbb6u2z1og2x.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pxRDerJfLetLgQMc",
+                    "exam": "gate-me",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "torsion",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two shafts $$A$$ and $$B$$ are made of the same material. The diameter of shaft $$B$$ is twice that of shaft $$A$$.  the ratio of power which can be transmitted by shaft $$A$$ to that of shaft $$B$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${1 \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over 4}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${1 \\over 8}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${1 \\over 16}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-shafts-a-and-b-are-made-of-the-same-material-the-diamete-gate-me-1994-marks-2-pxrderjfletlgqmc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6fO48STn9MAigzKb",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "columns-and-struts",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For the case of a slender column of length $$l,$$ and flexural rigidity $$EI$$ built-in at its base and free at the top, the Euler\u2019s critical buckling load is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{4{\\pi ^2}EI} \\over {{l^2}}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{2{\\pi ^2}EI} \\over {{l^2}}}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{{\\pi ^2}EI} \\over {{l^2}}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{{\\pi ^2}EI} \\over {4{l^2}}}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-the-case-of-a-slender-column-of-length-l-and-flexural-ri-gate-me-1994-marks-1-6fo48stn9maigzkb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                }
+            ],
+            "title": "Strength of Materials"
+        },
+        {
+            "_id": "Theory of Machines",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "bhKyrvqII2ziP3Fk",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-machines",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "gears-and-gear-trains",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In spur gears having involute teeth, the product of circular pitch and diametral pitch is _________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$\\pi $$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-spur-gears-having-involute-teeth-the-product-of-circular-gate-me-1994-marks-1-bhkyrvqii2zip3fk.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                }
+            ],
+            "title": "Theory of Machines"
+        },
+        {
+            "_id": "Thermodynamics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RO3FgwWCjjlluTw5",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-concepts-and-zeroth-law",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The definition of 1 K as per the internationally accepted temperature scale is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$1/{100^{th}}$$ the difference between normal boiling point and normal freezing point of water.  "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1/{273.15^{th}}$$ the normal freezing point of water "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$100$$ times the difference between the triple point of water and the normal freezing point of water. \n "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$1/{273.16^{th}}$$ of the triple point of water.  "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-definition-of-1-k-as-per-the-internationally-accepted-te-gate-me-1994-marks-1-ro3fgwwcjjllutw5.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "L9irmuGnbFw1sRen",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "second-law-of-thermodynamics",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Any thermodynamic cycle operating between two temperature limits is reversible if the product of efficiency when operating as a heat engine and the coefficient of performance when operating as a refrigeration is equal to $$1.$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "any-thermodynamic-cycle-operating-between-two-temperature-li-gate-me-1994-marks-1-l9irmugnbfw1sren.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "srWBjpaCDhOOJetp",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "entropy-and-irreversibility",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A $$1500$$ $$W$$ electrical heater is used to heat $$20$$ $$kg$$ of water $$\\left( {{C_p} = 4186\\,\\,J/kg\\,\\,K} \\right)$$ in an insulated bucket, from a temperature of $${30^{^0}}C$$ to $${80^{^0}}C$$. If the heater temperature is only infinitesimally larger than the water temperature during the process, the change in entropy for the heater is ________$$J/K$$ and for water _______$$J/K.$$",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$0,$$ $$12.78$$ $$kJ/K$$",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-1500-w-electrical-heater-is-used-to-heat-20-kg-of-water-le-gate-me-1994-marks-1-srwbjpacdhoojetp.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4rekzkTJQ41PuNK4",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "entropy-and-irreversibility",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The slopes of constant volume and constant pressure lines in the $$T$$-$$s$$ diagram are ___________ and ___________respectively. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "higher, lower ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-slopes-of-constant-volume-and-constant-pressure-lines-in-gate-me-1994-marks-1-4rekzktjq41punk4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "1li0C8pWXRIdEVNE",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "rankine-cycle",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a single stage impulse turbine with rotor diameter of $$2$$ $$m$$ and a speed of $$3000$$ $$rpm$$ when the nozzle angle is $${20^0},$$ the optimum velocity of steam in $$m/s$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$334$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$356$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$668$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$711$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-single-stage-impulse-turbine-with-rotor-diameter-of-2-gate-me-1994-marks-1-1li0c8pwxridevne.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "2vVjOhoZicZLrCVr",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "thermodynamics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "rankine-cycle",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a given set of operating pressure limits of a Rankine cycle, the highest efficiency occurs for",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Saturated cycle "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Superheated cycle "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Reheat cycle "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Regenerative cycle "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-given-set-of-operating-pressure-limits-of-a-rankine-cy-gate-me-1994-marks-1-2vvjohoziczlrcvr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                }
+            ],
+            "title": "Thermodynamics"
+        },
+        {
+            "_id": "Turbo Machinery",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tbkY7Rro5iF0xMcS",
+                    "exam": "gate-me",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "turbo-machinery",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "turbo-machinery",
+                    "year": 1994,
+                    "paperTitle": "GATE ME 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In terms of speed of rotation of the impeller $$N$$, discharge $$Q$$ and a change in total head $$H$$, through the machine,the Specific Speed for a pump is ________________ (fill the blank) ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${{N\\sqrt Q } \\over {{{\\left( H \\right)}^{3/4}}}}$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-terms-of-speed-of-rotation-of-the-impeller-n-discharge-q-gate-me-1994-marks-1-tbky7rro5if0xmcs.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-me-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-me-1994"
+                }
+            ],
+            "title": "Turbo Machinery"
+        }
+    ]
+}

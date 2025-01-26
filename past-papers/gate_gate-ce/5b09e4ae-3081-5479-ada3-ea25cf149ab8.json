@@ -1,0 +1,1262 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Engineering Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "lcMg0ndtu4Jn6cbW",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-methods",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "There is no value of $$x$$ that can simultaneously satisfy both the given equations. Therefore, find the 'least squares error' solution to the two equations,    i.e., find the value of $$x$$ that minimizes the sum of squares of the errors in the two equations  \n<br>$$2x=3$$\n<br>$$4x=1$$\n",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.53",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "there-is-no-value-of-x-that-can-simultaneously-satisfy-both-gate-ce-2013-marks-2-lcmg0ndtu4jn6cbw.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zWmYKZxFay5xUEJx",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability-and-statistics",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Find the value of $$\\lambda $$ such that the function $$f(x)$$ is a valid probability density function ________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "6",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "find-the-value-of-lambda-such-that-the-function-fx-is-a-vali-gate-ce-2013-marks-2-zwmykzxfay5xuejx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "MD4AkNnNj5gIJfqS",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The solution $$\\int\\limits_0^{\\pi /4} {{{\\cos }^4}3\\theta {{\\sin }^3}\\,6\\theta d\\theta \\,\\,} $$ is : ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${1 \\over {15}}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${8 \\over 3}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-solution-intlimits0pi-4-cos-43theta-sin-36theta-dtheta-i-gate-ce-2013-marks-1-md4aknnnj5gijfqs.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ljnb3QlifxkGepxa",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "engineering-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the minimum number of multiplications involved in computing the matrix product $$PQR?$$ Matrix $$P$$ has $$4$$ rows and $$2$$ columns, matrix $$Q$$ has $$2$$ rows and $$4$$ columns and matrix $$R$$ has $$4$$ rows and $$1$$ column ______.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "16",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-the-minimum-number-of-multiplications-involved-in-co-gate-ce-2013-marks-2-ljnb3qlifxkgepxa.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                }
+            ],
+            "title": "Engineering Mathematics"
+        },
+        {
+            "_id": "Geotechnical Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a29b44b4b108",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "geotechnical-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "definitions-and-properties-of-soils",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In its natural condition, a soil sample has a mass of 1.980 kg and a volume of 0.001 m<sup>3</sup>. After being completely dried in an oven, the mass of the sample is\n1.800 kg. Specific gravity G is 2.7. Unit weight of water is 10 kN/m<sup>3</sup>. The degree of\nsaturation of soil is \n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0.65"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.70"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0.54"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0.61"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-its-natural-condition-a-soil-sample-has-a-mass-of-1980-kg-gate-ce-2013-marks-1-5a29b44b4b108.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                }
+            ],
+            "title": "Geotechnical Engineering"
+        },
+        {
+            "_id": "Hydrology",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2c3a229fe4d",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "hydrology",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "precipitation-and-frequency-of-rainfall-data",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An isohyet is a line joining points of",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Equal temperature"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Equal humidity"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Equal rainfall depth"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Equal evaporation"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-isohyet-is-a-line-joining-points-of-gate-ce-2013-marks-1-5a2c3a229fe4d.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2c38f682ec6",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "hydrology",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "precipitation-and-frequency-of-rainfall-data",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A 1-hour rainfall of 10 cm has a return period of 50 years. The probability that\n1 hour of rainfall 10 cm or more will occur in each of two successive years is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0.04"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.2"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0.02"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0.0004"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-1-hour-rainfall-of-10-cm-has-a-return-period-of-50-years-t-gate-ce-2013-marks-1-5a2c38f682ec6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                }
+            ],
+            "title": "Hydrology"
+        },
+        {
+            "_id": "Irrigation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a2d7d757fa4b",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "irrigation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "water-requirement-of-crops",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The transplantation of rice requires 10 days and total depth of water required\nduring transplantation is 48 cm. During transplantation, there is an effective\nrainfall (useful for irrigation) of 8 cm. The duty of irrigation water (in hectare/\ncumec) is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "612"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "216"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "300"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "108"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-transplantation-of-rice-requires-10-days-and-total-depth-gate-ce-2013-marks-2-5a2d7d757fa4b.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                }
+            ],
+            "title": "Irrigation"
+        },
+        {
+            "_id": "Reinforced Cement Concrete",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aJPjoubPvVcn2rvD",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "prestressed-concrete",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A rectangular concrete beam $$250$$ $$mm$$ wide and $$600$$ $$mm$$ deep is pre-stressed by means of $$16$$ high tensile wires, each of $$7$$ $$mm$$ diameter, located at $$200$$ $$mm$$ from the bottom face of the beam at a given section. If the effective pre-stress in the wires is $$700$$ $$MPa,$$ what is the maximum sagging bending moment (in $$kN$$-$$m$$) (correct to $$1$$-decimal place) due to live load that this section of the beam can with stand without causing tensile stress at the bottom face of the beam? Neglect the effect of dead load of beam.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "85.5 to 86.5",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-rectangular-concrete-beam-250-mm-wide-and-600-2013-marks-2-ajpjoubpvvcn2rvd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7jJ8mG3VZzirAYkU",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "prestressed-concrete",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The creep strains are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "caused due to dead loads only "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "caused due to live loads only "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "caused due to cyclic loads only "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "independent of loads  "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-creep-strains-are-2013-marks-1-7jj8mg3vzzirayku.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iEvxbI3oyifzzzXX",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "bond",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "As per $$IS$$ $$456:2000$$ for $$M20$$ grade concrete and plain barsin tension the design bond stress $${\\tau _{bd}} = 1.2\\,\\,MPa.$$ Further, $$IS$$ $$456:2000$$ permits this design bond stress value to be increased by $$60\\% $$ for $$HYSD$$ bars. The stress in the $$HYSD$$ reinforcing steel bars in tension $${\\sigma _s} = 360\\,MPa.$$ Find the required development length, $${L_d},$$ for $$HYSD$$ bars in terms of the bar diameter, $$\\phi $$ ______________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "46 to 47",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "as-per-is-4562000-for-m20-grade-concrete-and-pl-2013-marks-1-ievxbi3oyifzzzxx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5a1ad49d9857e",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "reinforced-cement-concrete",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "workmenship-and-fundamentals",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Maximum possible value of compaction factor for fresh (green) concrete is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0.5"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "1.0"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1.5"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2.0"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "maximum-possible-value-of-compaction-factor-for-fresh-green-gate-ce-2013-marks-1-5a1ad49d9857e.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                }
+            ],
+            "title": "Reinforced Cement Concrete"
+        },
+        {
+            "_id": "Steel Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UqOkQbmKOTS8DSbe",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "beams",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A symmetric $${\\rm I}$$-section (with width of each flange $$=50$$ $$mm$$, thickness of each flange $$=10$$ $$mm,$$\ndepth of web $$= 100$$ $$mm,$$ and thickness of web $$=10$$ $$mm$$ \u0749\u0749) of steel is subjected to a shear force of $$100$$ $$kN.$$ Find the magnitude of the shear stress (in \u0730$$N/m{m^2}$$) in the web at its junction with the top flange. ___________",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "70 to 72",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-symmetric-rm-i-section-with-width-of-each-flange-2013-marks-1-uqokqbmkots8dsbe.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Am7KRKbC4F1a5wUe",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "steel-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "compression-members",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two steel columns $$P$$ (Length $$L$$ and yield strength $${f_y} = 250\\,\\,MPa$$) and $$Q$$ (length $$2L$$ and yield strength $${f_y} = 500\\,\\,MPa$$) have the same cross-sections and end-conditions. The ratio of buckling load of column $$P$$ to that of column $$Q$$ is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2.0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4.0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-steel-columns-p-length-l-and-yield-strength-2013-marks-1-am7krkbc4f1a5wue.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                }
+            ],
+            "title": "Steel Structures"
+        },
+        {
+            "_id": "Strength of Materials Or Solid Mechanics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jF8WJeL2SRWPd6SA",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "columns-and-struts",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Two steel columns $$P$$ (Length $$L$$ and yield strength $${f_y} = 250\\,\\,MPa)$$ and $$Q$$ (length $$2L$$ and yield strength $${f_y} = 500\\,\\,MPa$$) have the same cross-sections and end-conditions. The ratio of buckling load of column $$P$$ to that of column $$Q$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.5$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1.0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2.0$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$4.0$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "two-steel-columns-p-length-l-and-yield-strength-2013-marks-1-jf8wjel2srwpd6sa.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RHrAwMPL5Zg72Wd2",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pure-bending",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The \u2018'plane section remains plane\u2019' assumption in bending theory implies:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Strain profile is linear "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Stress profile is linear "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Both strain and stress profiles are linear "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Shear deformations are neglected   "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-plane-section-remains-plane-assumption-in-bendin-2013-marks-1-rhrawmpl5zg72wd2.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9S5T3FKE006FrPcT",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-stress-in-beams",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A symmetric $${\\rm I}$$-section (with width of each flange $$=50mm$$, thickness of each flange $$=10mm,$$ depth of web $$=100mm,$$ and thickness of web $$=10mm$$)  of steel is subjected to a shear force of $$100$$ $$kN.$$ Find the magnitude of the shear stress (in $$N/m{m^2}$$) in the web at its junction with top flange __________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "71",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-symmetric-rm-i-section-with-width-of-each-flange-2013-marks-1-9s5t3fke006frpct.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ECjba8TrYkzdHCXx",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "shear-force-and-bending-moment",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A uniform beam weighing $$1800$$ $$N$$ is supported at $$E$$ and $$F$$ by cable $$ABCD$$. Determine the tension (in $$N$$) in segment $$AB$$ of this cable (correct to $$1$$-decimal place). Assume the cables $$ABCD$$, $$BE$$ and $$CF$$ to be weightless ________\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/fOoMP6dreCxvBbfDo/MJXGnXgoIaCZQyfBzO7hzQ2Cvbdnk/G9zV23tfqAJOGC659NYq3T/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2013 Strength of Materials Or Solid Mechanics - Shear Force and Bending Moment Question 15 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$$1310$$ to $$1313$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-uniform-beam-weighing-1800-n-is-supported-at-e-2013-marks-2-ecjba8trykzdhcxx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "K5jkVorKYh4piVCU",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "strength-of-materials-or-solid-mechanics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complex-stress",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The state of $$2D$$-stress at a point is given by the following matrix of stresses: \n$$$\\left[ {\\matrix{\n   {{\\sigma _{xx}}} &amp; {{\\sigma _{xy}}}  \\cr \n   {{\\sigma _{xy}}} &amp; {{\\sigma _{yy}}}  \\cr \n\n } } \\right] = \\left[ {\\matrix{\n   {100} &amp; {30}  \\cr \n   {30} &amp; {20}  \\cr \n\n } } \\right]MPa$$$\n<p>What is the magnitude of maximum shear stress in $$MPa$$ ? </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$50$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$75$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$100$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$110$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-state-of-2d-stress-at-a-point-is-given-by-the-follow-2013-marks-2-k5jkvorkyh4pivcu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                }
+            ],
+            "title": "Strength of Materials Or Solid Mechanics"
+        },
+        {
+            "_id": "Structural Analysis",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8mhbiyKExwLuogLT",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "truss",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/AYvG1LnAP9EEn9pJJ/WKU9Wag0qqXo07yV0OEcswPcyqp2p/q3sRiKpABtBccbetPv5PtA/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2013 Structural Analysis - Truss Question 14 English\"> \n<p>The pin-jointed $$2$$-$$D$$ truss is loaded with a horizontal force of $$15$$ \u0747\u0730 at joint S and another $$15$$ \u0747\u0730 vertical force at joint $$U,$$ as shown.Find the force in member $$RS$$ (in $$kN$$ \u0747\u0730) and report your answer taking tension as positive and compression as negative. _____________</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-the-pin-jointed-2-d-truss-is-loaded-with-a-horizon-2013-marks-1-8mhbiykexwluoglt.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "AWqTavpb7XBVsN0G",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A propped cantilever made of a prismatic steel beam is subjected to a concentrated load $$P$$ at mid span as shown. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/haIp4t9bD6Af3ViUl/YSCNkpZhOjJ5unWGQBhDFM3QFkT3a/Vb33fGUJl5egwx1yH3nXeV/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2013 Structural Analysis - Plastic Analysis Question 23 English\"> \n<p>If load  $$P=80$$ $$kN,$$ find the reaction \u0734$$R$$ (in $$kN$$)  (correct to $$1$$-decimal place)using elastic analysis ___________</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "25",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-propped-cantilever-made-of-a-prismatic-steel-beam-is-subje-2008-marks-2-awqtavpb7xbvsn0g.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "cVOZ1zeADwdsFjdR",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A propped cantilever made of a prismatic steel beam is subjected to a concentrated load $$P$$ at mid span as shown. \n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/haIp4t9bD6Af3ViUl/YSCNkpZhOjJ5unWGQBhDFM3QFkT3a/Vb33fGUJl5egwx1yH3nXeV/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2013 Structural Analysis - Plastic Analysis Question 22 English\"> \n<p>If the magnitude of load\u0732 is increased till collapse and the plastic moment carrying capacity of steel beam section is $$90$$ $$kN$$-$$m$$, \u0747\u0730\u0749determine reaction \u0734$$R$$(in \u0747\u0730$$kN$$)(correct to $$1$$-decimal place) using plastic analysis. ____________</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "60",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-propped-cantilever-made-of-a-prismatic-steel-beam-is-subje-2013-marks-2-cvoz1zeadwdsfjdr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KwPJ3rXuBM2obb5a",
+                    "exam": "gate-ce",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "plastic-analysis",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "As per $$IS$$ $$800:2007$$ the cross-section in which the extreme fiber can reach the yield stress, but cannot develop the plastic moment of resistance due to failure by local buckling is classified as",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Plastic section"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Compact section "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Semi compact section"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Shear section  "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "as-per-is-8002007-the-cross-section-in-which-the-ex-2013-marks-1-kwpj3rxubm2obb5a.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "453sfBPgWepz5pnR",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "moment-distribution-method",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "All members in the rigid-jointed frame shown are prismatic and have the same flexural stiffness $$EI$$. Find the magnitude of the bending moment at $$Q$$ (in \u0747\u0730\u0749$$kN$$-$$m$$) due to the given loading _______________\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/cZ4PoXNVsxjiKasuq/dHlqUKM2Lrevrqbdunt0MT0gQ3z00/N1YAuoBiTFiN876lOaAAW8/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2013 Structural Analysis - Moment Distribution Method Question 19 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "25",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "all-members-in-the-rigid-jointed-frame-shown-are-prismatic-a-2013-marks-2-453sfbpgwepz5pnr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GEgxCbZV45A9btEs",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "energy-principle",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A uniform beam ($$EI=$$ constant) $$PQ$$ in the form of a quarter-circle of radius $$R$$ is fixed at end $$P$$ and free at the end $$Q,$$ where a load $$W$$ is applied as shown. The vertical downward displacement,  $${\\delta _q},$$ at the loaded point $$Q$$ is given by : $${\\delta _q} = \\beta \\left( {{{W{R^3}} \\over {EI}}} \\right).$$ \n<p>Find the value of $$\\beta $$(correct to $$4-$$decimal places). _____________________</p>\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/pmpFq5ufRo3nvooro/4EQPE8e8mMD8IZ8PHgp3gBkALpfNW/uFabedUO1qUirFKQ4C7fwN/image.png\" loading=\"lazy\" alt=\"GATE CE 2013 Structural Analysis - Energy Principle Question 8 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.785 to 0.786",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-uniform-beam-ei-constant-pq-in-the-form-of-a-qu-2013-marks-2-gegxcbzv45a9btes.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ogTytOW4ehcA5EVp",
+                    "exam": "gate-ce",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "structural-analysis",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "influence-line-diagram",
+                    "year": 2013,
+                    "paperTitle": "GATE CE 2013",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Beam $$PQRS$$ has internal hinges in span $$PQ$$ and $$RS$$ as shown. The beam may be subjected to a moving distributed vertical load of maximum intensity $$4$$ $$kN/m$$ of any length anywhere on the beam. The maximum absolute value of the shear force (in $$kN$$) that can occur due to this loading just to the right of support $$Q$$ shall be:\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/nNzOmrr8AWYTb6boS/3wBaL17nmzVofk3Dw7wFUN2dzMTtx/wBW04QoYWP6mEeUy0BYIW8/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CE 2013 Structural Analysis - Influence Line Diagram Question 4 English\"> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$30$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$40$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$45$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$55$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "beam-pqrs-has-internal-hinges-in-span-pq-and-rs-2013-marks-2-ogtytow4ehca5evp.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-ce-2013",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-ce-2013"
+                }
+            ],
+            "title": "Structural Analysis"
+        }
+    ]
+}

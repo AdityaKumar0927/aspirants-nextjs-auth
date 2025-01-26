@@ -1,0 +1,1618 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Algorithms",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tgqzphCfEUmlBiWF",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "divide-and-conquer-method",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The recurrence relation that arises in relation with the complexity of binary search is:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$T(n) = 2T\\left(\\frac{n}{2}\\right)+k, \\text{ k is a constant }$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$T(n) = T\\left(\\frac{n}{2}\\right)+k, \\text{ k is a constant }$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$T(n) = T\\left(\\frac{n}{2}\\right)+\\log n$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$T(n) = T\\left(\\frac{n}{2}\\right)+n$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-recurrence-relation-that-arises-in-relation-with-the-com-gate-cse-1994-marks-2-tgqzphcfeumlbiwf.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "OFKqoJ1obi99ehBX",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "searching-and-sorting",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following statements is false?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Optimal binary search tree construction can be performed efficiently using\ndynamic programming."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Breadth-first search cannot be used to find connected components of a graph"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Given the prefix and postfix walks over a binary tree, the binary tree cannot\nbe uniquely constructed."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Depth-first search can be used to find connected components of a graph."
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-statements-is-false-gate-cse-1994-marks-2-ofkqoj1obi99ehbx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "W9XjdY92BniCP3Qc",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complexity-analysis-and-asymptotic-notations",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Conside the following two functions:<br>\n$${g_1}(n) = \\left\\{ {\\matrix{\n   {{n^3}\\,for\\,0 \\le n &lt; 10,000}  \\cr \n   {{n^2}\\,for\\,n \\ge 10,000}  \\cr \n\n } } \\right.$$\n<br>\n$${g_2}(n) = \\left\\{ {\\matrix{\n   {n\\,for\\,0 \\le n \\le 100}  \\cr \n   {{n^3}\\,for\\,n &gt; 100}  \\cr \n\n } } \\right.$$\nWhich of the following is true:",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${g_1}(n)\\,is\\,0\\,({g_2}(n))$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${g_1}(n)\\,is\\,0\\,({n^3})$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${g_2}(n)\\,is\\,0\\,({g_1}(n))$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${g_2}(n)\\,is\\,0\\,(n)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "conside-the-following-two-functionsg1n-left-matrix-n3for0-le-gate-cse-1994-marks-2-w9xjdy92bnicp3qc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                }
+            ],
+            "title": "Algorithms"
+        },
+        {
+            "_id": "Compiler Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "eA957ZqIuwUakkWt",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "syntax-directed-translation",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Generation of intermediate code based on an abstract machine model is useful in compilers because ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "it makes implementation of lexical analysis and syntax analysis easier"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "syntax-directed translations can be written for intermediate code generation"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "it enhances the portability of the front end of the compiler"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "it is not possible to generate code for real machines directly from high level language programs"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "generation-of-intermediate-code-based-on-an-abstract-machine-gate-cse-1994-marks-1-ea957zqiuwuakkwt.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                }
+            ],
+            "title": "Compiler Design"
+        },
+        {
+            "_id": "Data Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "5f33rtl5AH7JffYz",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linked-list",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Linked lists are not suitable data structures of which one of the following problems? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Insertion sort"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Binary search "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Radix sort "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Polynomial manipulation"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "linked-lists-are-not-suitable-data-structures-of-which-one-o-gate-cse-1994-marks-2-5f33rtl5ah7jffyz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UNZL7TXMzH4c5vqb",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "stacks-and-queues",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following permutations can be obtained in the output (in the same order) using a stack assuming that the input is the sequence 1, 2, 3, 4, 5 in that order? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "3, 4, 5, 1, 2 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "3, 4, 5, 2, 1 "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1, 5, 2, 3, 4 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "5, 4, 3, 1, 2"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-permutations-can-be-obtained-in-the-o-gate-cse-1994-marks-2-unzl7txmzh4c5vqb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VADCO9SZOMhaQlfu",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "arrays",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a compact single dimensional array representation for lower triangular matrices (i.e all the elements above the diagonal are zero) of size n $$\\times$$ n, non-zero elements (i.e., elements of the lower triangle) of each row are stored one after another, starting from the first row, the index of the (i, j)<sup>th</sup> element of the lower triangular matrix in this new representation is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "i + j"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "i + j - 1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$(j - 1) + i{{(i - 1)} \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$i + {{j(j - 1)} \\over 2}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-compact-single-dimensional-array-representation-for-low-gate-cse-1994-marks-2-vadco9szomhaqlfu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                }
+            ],
+            "title": "Data Structures"
+        },
+        {
+            "_id": "Database Management System",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "xENQaewaTyOJ6JIW",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "relational-algebra",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Give a relational algebra expression using only the minimum number of operators from $$\\left( { \\cup ,\\, - } \\right)$$ which is equivalent to $$R \\cap S$$.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "$$R \\cap S = R - \\left( {R - S} \\right)$$\n<p>Intersection can be expressed in terms of union and minus.</p>\n<p>But we don't need to use both of them as in the question says<b> use only the minimum number of operators from $$\\left( { \\cup ,\\, - } \\right)$$ </b> to create a relational algebra expression which is equivalent to $$R \\cap S$$. So we use only minus( - ) operator.</p> "
+                        }
+                    },
+                    "permalink": "give-a-relational-algebra-expression-using-only-the-minimum-gate-cse-1994-marks-1-xenqaewatyoj6jiw.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "6ktw81Wyiyvpb5bL",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "relational-algebra",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An instance of a relational scheme R(A, B, C) has distinct values for attribute A. Can you conclude that A is a candidate key for R?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-instance-of-a-relational-scheme-ra-b-c-has-distinct-value-gate-cse-1994-marks-1-6ktw81wyiyvpb5bl.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3JOVMybpJ41nMHsA",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "functional-dependencies-and-normalization",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "State True or False with reason. There is always a decomposition into Boyce-codd normal form $$(BCNF)$$  that is lossless and dependency preserving.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "state-true-or-false-with-reason-there-is-always-a-decomposit-gate-cse-1994-marks-1-3jovmybpj41nmhsa.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                }
+            ],
+            "title": "Database Management System"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "uMQE7bCdyinj5y5n",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "mathematical-logic",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $$p$$ and $$q$$ be propositions. Using only the truth table decide whether \n$$p \\Leftrightarrow q$$ does not imply $$p \\to  \\sim q$$ is true or false.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-p-and-q-be-propositions-using-only-the-truth-table-decid-gate-cse-1994-marks-2-umqe7bcdyinj5y5n.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "WkQdWllSlEpxBhHu",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The rank of the matrix $$\\left[ {\\matrix{\n   0 &amp; 0 &amp; { - 3}  \\cr \n   9 &amp; 3 &amp; 5  \\cr \n   3 &amp; 1 &amp; 1  \\cr \n\n } } \\right]$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$3$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-rank-of-the-matrix-left-matrix-0-0-3-cr-9-3-5-cr-3-1-1-c-gate-cse-1994-marks-1-wkqdwllslepxbhhu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vIhiMWAscv2DfZjn",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The inverse of the matrix $$\\left[ {\\matrix{\n   1 &amp; 0 &amp; 1  \\cr \n   { - 1} &amp; 1 &amp; 1  \\cr \n   0 &amp; 1 &amp; 0  \\cr \n\n } } \\right]$$ is ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${1 \\over 2}\\left[ {\\matrix{\n   1 &amp; { - 1} &amp; 1  \\cr \n   0 &amp; 0 &amp; 2  \\cr \n   1 &amp; 1 &amp; { - 1}  \\cr \n\n } } \\right]$$  ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-inverse-of-the-matrix-left-matrix-1-0-1-cr-1-1-1-cr-0-1-gate-cse-1994-marks-1-vihimwascv2dfzjn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jNUsBOQimz4zNLkL",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In a compact single dimensional array representation for lower triangular matrices (i.e., all the elements above the diagonal are zero) of size $$n$$ $$x$$ $$n$$, non-zero elements (i.e., elements of the lower triangle) of each row are stored one after another, starting from the first row, the index of the $${\\left( {i,\\,j} \\right)^{th}}$$ element of the lower triangular matrix in this new representation is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${i+\\,j}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${i + j - 1}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$j + {{i\\left( {i - 1} \\right)} \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$i + {{j\\left( {j - 1} \\right)} \\over 2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-a-compact-single-dimensional-array-representation-for-low-gate-cse-1994-marks-2-jnusboqimz4znlkl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "XxeLesu2Wb2CiJeG",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of distinct simple graph with upto three nodes is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "15 "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "10"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "7 "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "9 "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-distinct-simple-graph-with-upto-three-nodes-is-gate-cse-1994-marks-1-xxelesu2wb2cijeg.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HGKZ0QW7B8raLinR",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If A and B are real symmetric matrices of size n x n. Then, which one of the following is true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$A{A^t} = I$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$A = A - 1$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "AB = BA"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${(AB)^T} = {B^T}{A^T}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-a-and-b-are-real-symmetric-matrices-of-size-n-x-n-then-wh-gate-cse-1994-marks-2-hgkz0qw7b8ralinr.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DW9Jt4xT6VyrTVf7",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "combinatorics",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of substrings (of all length inclusive) that can be formed from a character string of length $$n$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$n$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${n^2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{n\\left( {n - 1} \\right)} \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{n\\left( {n + 1} \\right)} \\over 2}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-substrings-of-all-length-inclusive-that-can-be-gate-cse-1994-marks-2-dw9jt4xt6vyrtvf7.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Z3IztES58c64G2m5",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Some group (G, o) is known to be abelian. Then, which one of the following is true for G?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$g = {g^{ - 1}}\\,$$ for every $$g\\, \\in \\,G$$."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$g = {g^{ 2}}\\,$$ for every $$g\\, \\in \\,G$$.  "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${(goh)^2} = \\,{g^2}\\,o\\,\\,{h^2}$$ for every g, $$h\\, \\in \\,G$$."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "G is of finite order."
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "some-group-g-o-is-known-to-be-abelian-then-which-one-of-the-gate-cse-1994-marks-2-z3iztes58c64g2m5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "324NkkZHiOZA8nyq",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let A and B be any two arbitrary events, then, which one of the following is true?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$P\\,(A\\, \\cap \\,B)\\, = \\,P\\,(A)\\,P\\,(B)$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$P\\,(A\\, \\cup \\,B)\\, = \\,P\\,(A)\\, + \\,P\\,(B)$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$P\\,(A\\,\\left| {B) = \\,} \\right.P\\,(A\\, \\cap \\,B)\\,P\\,(B)$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$P\\,(A\\, \\cup \\,B)\\, &lt; \\,\\,P\\,(A)\\, + \\,P\\,(B)$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-a-and-b-be-any-two-arbitrary-events-then-which-one-of-th-gate-cse-1994-marks-1-324nkkzhioza8nyq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "z1H1fHiy8QxRZh51",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "deadlocks",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the resource allocation graph given in the figure.\n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/N0XOl7vCkklzHpi1K/at4rZsFJNd0DpcMBUXc6Bq3n2NMEC/2CPwtvBuLfoEkvILFliRy8/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1994 Operating Systems - Deadlocks Question 11 English\">\n<br>(a) Find if the system is in a deadlock state.\n<br>(b) Otherwise, find a safe sequence.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "(a) No, The system is not in the deadlock state. \n<br>(b) Safe sequence -&gt; P2 - P0 - P1 - P3",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-resource-allocation-graph-given-in-the-figurea-gate-cse-1994-marks-5-z1h1fhiy8qxrzh51.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ISdFW1IazKBHrj4H",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following heap (Figure) in which blank regions are not in use and hatched region are in use.  \n<p>The sequence of requests for blocks of size $$300, 25, 125, 50$$ can be satisfied if we use.</p> \n<img class=\"question-image\" src=\"https://gateclass.static.cdn.examgoal.net/iLauyehmYo7vcRnLi/p1z1y8M4frPAAjggG4dhOutBjtEnr/YjNkzgKpOffDEwC2AoBsKe/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1994 Operating Systems - Memory Management Question 23 English\">\n",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Either first fit or best fit policy (any one)"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "First fit but not best fit policy"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Best fit but first fit policy"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-heap-figure-in-which-blank-regions-ar-gate-cse-1994-marks-2-isdfw1iazkbhrj4h.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "L8YrIlDwpP9sZiVB",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A memory page containing a heavily used variable that was initialized very early and is in constant use is removed when",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "LRU page replacement algorithm is used\n "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FIFO page replacement algorithm is used "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "LFU page replacement algorithm is used "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "None of the above "
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-memory-page-containing-a-heavily-used-variable-that-was-in-gate-cse-1994-marks-2-l8yrildwpp9szivb.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                }
+            ],
+            "title": "Operating Systems"
+        },
+        {
+            "_id": "Programming Languages",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hsf6DxoPxdotiDPS",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In which one of the following cases is it possible to obtain different results for\ncall-by-reference and call-by-name parameter passing methods?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Passing a constant value as a parameter"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Passing the address of an array as a parameter"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Passing an array element as a parameter"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Passing an array following statements is true"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-which-one-of-the-following-cases-is-it-possible-to-obtain-gate-cse-1994-marks-2-hsf6dxopxdotidps.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4FIGjt6WXIu8tGnv",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An unrestricted use of the <b>\"goto\"</b> statement is harmful because ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "it makes it more difficult to verify programs"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "it increases the running time of the programs"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "it increases the memory required for the programs"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "it results in the compiler generating longer machine code"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>An unrestricted use of the <strong>goto</strong> statement is harmful primarily because:</p>\n<h3>It makes it more difficult to verify programs</h3>\n<p><strong>goto</strong> statements can create complex and tangled control flow, which is often referred to as \"spaghetti code.\" This kind of control flow can make it very hard to understand, maintain, and debug programs. When a program is difficult to follow, verifying its correctness becomes a daunting task. This can lead to subtle bugs that are difficult to detect and fix.</p>\n<p>Proper structured programming principles encourage the use of loops, conditionals, and function calls instead of <strong>goto</strong>. When these principles are followed, the code is typically easier to read and verify.</p>\n<p>In summary, avoiding the <strong>goto</strong> statement generally leads to:</p>\n\n<p><p><strong>Improved readability:</strong> Code that is easier to follow and understand.</p></p>\n<p><p><strong>Easier maintenance:</strong> Simpler control flow that is easier to modify and extend.</p></p>\n<p><p><strong>Reduced errors:</strong> Fewer chances of introducing hard-to-find bugs.</p></p>\n\n<p>Thus, the correct option is:</p>\n<p><strong>Option A: it makes it more difficult to verify programs</strong></p>"
+                        }
+                    },
+                    "permalink": "an-unrestricted-use-of-the-goto-statement-is-harmful-because-gate-cse-1994-marks-1-4figjt6wxiu8tgnv.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                }
+            ],
+            "title": "Programming Languages"
+        },
+        {
+            "_id": "Theory of Computation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7Mi5MxJmodVAPymg",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "push-down-automata-and-context-free-language",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following features cannot be captured by context-free grammars?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Syntax of if-then-else statements\n "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Syntax of recursive procedures "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Whether a variable has been declared before its use "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Variable names of arbitrary length  "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-features-cannot-be-captured-by-contex-gate-cse-1994-marks-2-7mi5mxjmodvapymg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3oDVM0OHGj0qbViU",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "recursively-enumerable-language-and-turing-machine",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following conversions is not possible (algorithmically)?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Regular grammar to context free grammar "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Non-deterministic $$FSA$$ to deterministic $$FSA$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Non-deterministic $$PDA$$ to deterministic $$PDA$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Non-deterministic Turing machine to deterministic Turing machine   "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-conversions-is-not-possible-algorithm-gate-cse-1994-marks-2-3odvm0ohgj0qbviu.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jaAxrLzd3VUh890k",
+                    "exam": "gate-cse",
+                    "marks": 5,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "subjective",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given that language $${L_1}$$ is regular and that the language $${L_1} \\cap {L_2}$$ is regular is the language $${L_2}$$ is always regular? ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "Solve it.",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-that-language-l1-is-regular-and-that-the-language-l1-c-gate-cse-1994-marks-5-jaaxrlzd3vuh890k.htm",
+                    "timeAllotted": 166154,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ouslHlrBMxeWElbs",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "fill-blanks",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The regular expression for the language recognized by the finite state automation of is _________.\n<img class=\"question-image\" src=\"https://gateclass.cdn.examgoal.net/5hd8LgYrJ6dLio66W/AOcth2GgVMQLWZlUr6gM3bJUyZFty/yf4GFbOuu2musnCZe1bMdI/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 1994 Theory of Computation - Finite Automata and Regular Language Question 75 English\"> ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "$${0^ * } + {0^ * }{11^ * }$$ ",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-regular-expression-for-the-language-recognized-by-the-fi-gate-cse-1994-marks-2-ouslhlrbmxewelbs.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "p5LxzFwfqRYTP1JH",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The number of sub-strings (of all lengths inclusive) that can be formed from a character string of length $$n$$ is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$n$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${n^2}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{n\\left( {n - 1} \\right)} \\over 2}$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${{n\\left( {n + 1} \\right)} \\over 2}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-sub-strings-of-all-lengths-inclusive-that-can-gate-cse-1994-marks-2-p5lxzfwfqrytp1jh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yXfQqPVWIMVTEiVh",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 1994,
+                    "paperTitle": "GATE CSE 1994",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "t/f",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "State True or False with one line explanation: <br><br>A FSM (Finite State Machine) can be designed to add two integers of any arbitrary length (arbitrary number of digits). ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "TRUE"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FALSE"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "As FSM has a finite memory then it can not store carry bit to add arbitary length strings."
+                        }
+                    },
+                    "permalink": "state-true-or-false-with-one-line-explanation-a-fsm-finite-s-gate-cse-1994-marks-1-yxfqqpvwimvteivh.htm",
+                    "updated_time": 1564854425,
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-1994",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-1994"
+                }
+            ],
+            "title": "Theory of Computation"
+        }
+    ]
+}

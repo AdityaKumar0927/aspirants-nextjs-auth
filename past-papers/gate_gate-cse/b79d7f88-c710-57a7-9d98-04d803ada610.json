@@ -1,0 +1,3461 @@
+{
+    "statusCode": 0,
+    "results": [
+        {
+            "_id": "Algorithms",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vj96KBjsfIyRfQUc",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "greedy-method",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The graph shown below has 8 edges with distinct integer edge weights. The minimum spanning tree (MST) is of weight 36 and contains the edges: {(A, C), (B, C), (B, E), (E, F), (D, F)}. The edge weights of only those edges which are in the MST are given in the figure shown below. The minimum possible sum of weights of all 8 edges of this graph is ___________.\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/NV4jiP3pSuGJlvuS7/dhBraD7o72I5xmK8ZuQCQYCbj1zSc/OHt0JzRzLgEL2A6kFuqAvy/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2015 Set 1 Algorithms - Greedy Method Question 13 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "69",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-graph-shown-below-has-8-edges-with-distinct-integer-edge-2015-set-1-marks-2-vj96kbjsfiyrfquc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "jBcliV1O8FzdfhgK",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complexity-analysis-and-asymptotic-notations",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following C function.\n<pre><code class=\"c\">int fun1 (int n) { \n     int i, j, k, p, q = 0; \n     for (i = 1; i &lt; n; ++i) \n     {\n        p = 0; \n       for (j = n; j &gt; 1; j = j/2) \n           ++p;  \n       for (k = 1; k &lt; p; k = k * 2) \n           ++q;\n     } \n     return q;\n}</code></pre>\nWhich one of the following most closely approximates the return value of the function <b>fun1</b>?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$n^3$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$n{\\left( {\\log n} \\right)^2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$n\\log n$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$n\\log \\left( {\\log n} \\right)$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-c-function-int-fun1-int-n-2015-set-1-marks-2-jbcliv1o8fzdfhgk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pk7bh1XyT5ahRPzl",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "complexity-analysis-and-asymptotic-notations",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "An algorithm performs $${\\left( {\\log N} \\right)^{1/2}}$$ find operations, N insert operations, $${\\left( {\\log N} \\right)^{1/2}}$$ delete operations, and $${\\left( {\\log N} \\right)^{1/2}}$$decrease-key operations on a set of data items with keys drawn from a linearly ordered set. For a delete operation, a pointer is provided to the record that must be deleted. For the decrease-key operation, a pointer is provided to the record that has its key decreased. Which one of the following data structures is the most suited for the algorithm to use, if the goal is to achieve the best total asymptotic complexity considering all the operations?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Unsorted array"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Min-heap"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Sorted array"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Sorted doubly linked list"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "an-algorithm-performs-left-log-n-right12-fi-2015-set-1-marks-2-pk7bh1xyt5ahrpzl.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "euN6lVN9ZIGVkTou",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "searching-and-sorting",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following is the recurrence equation for the worst case time complexity of the Quicksort algorithm for sorting n ( $$ \\ge 2$$ )  numbers? In the recurrence equations given in the options below, c is a constant.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "T(n) = 2T(n/2) + cn"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "T(n) = T(n - 1) + T(1) + cn"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "T(n) = 2T(n - 1) + cn"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "T(n) = T(n/2) + cn"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-is-the-recurrence-equation-for-th-2015-set-1-marks-1-eun6lvn9zigvktou.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RBR15jWTGOkPU8ZU",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "dynamic-programming",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Match the following:\n<p><b>List 1</b></p>\n(P) Prim\u2019s algorithm for minimum spanning tree\n<br>(Q) Floyd-Warshall algorithm for all pairs shortest paths\n<br>(R) Mergesort\n<br>(S) Hamiltonian circuit\n\n<p><b>List 2</b></p>\n(i) Backtracking\n<br>(ii) Greedy method\n<br>(iii) Dynamic programming\n<br>(iv) Divide and conquer",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "P - iii, Q - ii, R - iv, S - i"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "P - i, Q - ii, R - iv, S - iii"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "P - ii, Q - iii, R - iv, S - i"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "P - ii, Q - i, R - iii, S - iv"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-following-list-1-p-prims-algorithm-for-minim-2015-set-1-marks-1-rbr15jwtgokpu8zu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9vBgpM8DpwokIEmk",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "algorithms",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "searching-and-sorting",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a max heap, represented by the array: 40, 30, 20, 10, 15, 16, 17, 8, 4.\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-s6z2{text-align:center}\n.tg .tg-baqh{text-align:center;vertical-align:top}\n.tg .tg-0lax{text-align:left;vertical-align:top}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-s6z2\">Array Index</th>\n    <th class=\"tg-s6z2\">1</th>\n    <th class=\"tg-baqh\">2</th>\n    <th class=\"tg-baqh\">3</th>\n    <th class=\"tg-baqh\">4</th>\n    <th class=\"tg-baqh\">5</th>\n    <th class=\"tg-baqh\">6</th>\n    <th class=\"tg-baqh\">7</th>\n    <th class=\"tg-baqh\">8</th>\n    <th class=\"tg-baqh\">9</th>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">Value</td>\n    <td class=\"tg-s6z2\">40</td>\n    <td class=\"tg-0lax\">30</td>\n    <td class=\"tg-baqh\">20</td>\n    <td class=\"tg-baqh\">10</td>\n    <td class=\"tg-baqh\">15</td>\n    <td class=\"tg-baqh\">16</td>\n    <td class=\"tg-baqh\">17</td>\n    <td class=\"tg-baqh\">8</td>\n    <td class=\"tg-baqh\">4</td>\n  </tr>\n</tbody></table>\n<p>Now consider that a value 35 is inserted into this heap. After insertion, the new heap is</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "40, 30, 20, 10, 15, 16, 17, 8, 4, 35"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "40, 35, 20, 10, 30, 16, 17, 8, 4, 15"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "40, 30, 20, 10, 35, 16, 17, 8, 4, 15"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "40, 35, 20, 10, 15, 16, 17, 8, 4, 30"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-max-heap-represented-by-the-array-40-30-20-1-2015-set-1-marks-2-9vbgpm8dpwokiemk.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                }
+            ],
+            "title": "Algorithms"
+        },
+        {
+            "_id": "Compiler Design",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "812S7Zf20QrRUAlA",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "code-generation-and-optimization",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The least number of temporary variables required to create a three-address code in static single assignment form for the expression $$q  + r / 3 + s - t * 5 + u * v/w$$ is _______________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "8",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-least-number-of-temporary-variables-required-to-create-a-2015-set-1-marks-2-812s7zf20qrruala.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "7pPe6vRanG22iavt",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "code-generation-and-optimization",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A variable x is said to be live at a statement $${S_i}$$ in a programif the following three conditions hold simultaneously:\n<p>i. There exists a statement $${S_j}$$ that uses x\n<br>ii. There is a path from $${S_i}$$ to $${S_j}$$ in the flow graph corresponding to the program\n<br>iii. The path has no intervening assignment to x including at $${S_i}$$ and $${S_j}$$</p>\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/IttYl02R9AhbgzTaf/vW1DkxLbtOYhbKMZhAJBRPeqhIImr/D1jjkZ06AZVLzMte9bIMJS/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2015 Set 1 Compiler Design - Code Generation and Optimization Question 9 English\">\n<p>The variables which are live both at the statement in basic block 2 and at the statement in basic block 3 of the above control flow graph are</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "p, s, u"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "r, s, u"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "r, u"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "q, v"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-variable-x-is-said-to-be-live-at-a-statement-si-in-2015-set-1-marks-2-7ppe6vrang22iavt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CkMIWJEzD8wMSVgB",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "compiler-design",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "parsing",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following is TRUE at any valid state in shift-reduce parsing? ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Viable prefixes appear only at the bottom of the stack and not inside"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Viable prefixes appear only at the top of the stack and not inside"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "The stack contains only a set of viable prefixes"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "The stack never contains viable prefixes"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-is-true-at-any-valid-state-in-shi-2015-set-1-marks-1-ckmiwjezd8wmsvgb.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                }
+            ],
+            "title": "Compiler Design"
+        },
+        {
+            "_id": "Computer Networks",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kEWkgCGofGXSjLLc",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-layer",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which one of the following fields of an IP header is NOT modified by a typical IP router?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Checksum "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Source address"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Time to Live (TTL)"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Length"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>Option C: (TTL) is decremented by each visited router. When it reaches to Zero, then Packet will be discarded.</p> \n\n<p>Option A: (Checksum) needs to be updated by each visited Router since TTL Value is modified. \n</p>\n<p>Option D: (Length) also modified whenever there is a need of performing the fragmentation process.</p> \n\n<p>Option B: (Source Address) can't be modified by an IP router. Only Network Address Translation (NAT) can modify it.</p>"
+                        }
+                    },
+                    "permalink": "which-one-of-the-following-fields-of-an-ip-header-is-not-mod-gate-cse-2015-set-1-marks-1-kewkgcgofgxsjllc.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hQ1kd7mGE6lH0iL0",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "network-security",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose that everyone in a group of N people wants to communicate secretly with the N - 1 others using symmetric key cryptographic system. The communication between any two persons should not be decodable by the others in the group. The number of keys required in the system as a whole to satisfy the confidentiality requirement is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2N"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "N(N - 1)"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{N(N - 1)} \\over 2}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "(N - 1)<sup>2</sup>"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-that-everyone-in-a-group-of-n-people-wants-to-commun-gate-cse-2015-set-1-marks-1-hq1kd7mge6lh0il0.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "DdkN9rQzzbSZ3CRN",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "application-layer-protocol",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In one of the pairs of protocols given below, both the protocols can use multiple TCP connections between the same client and the server. Which one is that?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "HTTP, FTP "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "HTTP, TELNET"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "FTP, SMTP"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "HTTP, SMTP"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-one-of-the-pairs-of-protocols-given-below-both-the-protoc-gate-cse-2015-set-1-marks-1-ddkn9rqzzbsz3crn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "4W48eVUEos1gTCSZ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "tcp-udp-sockets-and-congestion-control",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose two hosts use a TCP connection to transfer a large file. Which of the following statements is/are FALSE with respect to the TCP connection? \n<p><b>I.</b> If the sequence number of a segment is m, then the sequence number of the subsequent segment is always m + 1. \n<br><b>II.</b> If the estimated round trip time at any given point of time is t sec, the value of the retransmission timeout is always set to greater than or equal to t sec. \n<br><b>III.</b> The size of the advertised window never changes during the course of the TCP connection. \n<br><b>IV.</b> The number of unacknowledged bytes at the sender is always less than or equal to the advertised window</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "III only "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "I and III only"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "I and IV only"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "II and IV only"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-two-hosts-use-a-tcp-connection-to-transfer-a-large-f-gate-cse-2015-set-1-marks-1-4w48evueos1gtcsz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8dCrdb9GqOhSmoyY",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "data-link-layer-and-switching",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose that the stop-and-wait protocol is used on a link with a bit rate of 64 kilobits per second and 20 milliseconds propagation delay. Assume that the transmission time for the acknowledgment and the processing time at nodes are negligible. Then the minimum frame size in bytes to achieve a link utilization of at least 50% is _________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "320",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-that-the-stop-and-wait-protocol-is-used-on-a-link-wi-gate-cse-2015-set-1-marks-2-8dcrdb9gqohsmoyy.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "dFQ5Cza3aN5VTAuR",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-networks",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "lan-technologies-and-wi-fi",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a LAN with four nodes S<sub>1</sub>, S<sub>2</sub>, S<sub>3</sub> and S<sub>4</sub>. Time is divided into fixed-size slots, and a node can begin its transmission only at the beginning of a slot. A collision is said to have occurred if more than one node transmit in the same slot. The probabilities of generation of a frame in a time slot by S<sub>1</sub>, S<sub>2</sub>, S<sub>3</sub> and S<sub>4</sub> are 0.1, 0.2, 0.3 and 0.4, respectively. The probability of sending a frame in the first slot without any collision by any of these four stations is _________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.40 to 0.46",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-lan-with-four-nodes-s1-s2-s3-and-s4-time-is-divid-gate-cse-2015-set-1-marks-2-dfq5cza3an5vtaur.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                }
+            ],
+            "title": "Computer Networks"
+        },
+        {
+            "_id": "Computer Organization",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JJeBAz1vNKV3Cp6P",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "secondary-memory",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a disk pack with a seek time of 4 milliseconds and rotational speed of 10000 rotations per minute (RPM). It has 600 sectors per track and each sector can store 512 bytes of data. Consider a file stored in the disk. The file contains 2000 sectors. Assume that every sector access necessitates a seek, and the average rotational latency for accessing each sector is half of the time for one complete rotation. The total time (in milliseconds) needed to read the entire file is ____________. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "14020",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-disk-pack-with-a-seek-time-of-4-milliseconds-and-2015-set-1-marks-2-jjebaz1vnkv3cp6p.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "nD05DHRhHHxonbsc",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pipelining",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a non-pipelined processor with a clock rate of 2.5 gigahertz and average cycles per instruction of four. The same processor is upgraded to a pipelined processor with five stages; but due to the internal pipeline delay, the clock speed is reduced to 2 gigahertz. Assume that there are no stalls in the pipeline. The speed up achieved in this pipelined processor is_________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3.2",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-non-pipelined-processor-with-a-clock-rate-of-25-2015-set-1-marks-2-nd05dhrhhhxonbsc.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZOWnOgd0kwZQO5Ht",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "computer-organization",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "machine-instructions-and-addressing-modes",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For computers based on three-address instruction formats, each address field can be used to specify which of the following:\n<p>(S1) A memory operand <br>(S2) A processor register <br>(S3) An implied accumulator register</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Either S1 or S2"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Either S2 or S3"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Only S2 and S3"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "All of S1, S2 and S3"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-computers-based-on-three-address-instruction-formats-ea-2015-set-1-marks-1-zownogd0kwzqo5ht.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                }
+            ],
+            "title": "Computer Organization"
+        },
+        {
+            "_id": "Data Structures",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sbwMNDQcE17eSTR3",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graphs",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let G = (V, E) be a simple undirected graph, and s be a particular vertex in it called the source. For $$x \\in V$$, let d(x) denote the shortest distance in G from s to x. A breadth first search (BFS) is performed starting at s. Let T be the resultant BFS tree. If (u, v) is an edge of G that is not in T, then which one of the following CANNOT be the value of $$d\\left( u \\right) - d\\left( v \\right)$$?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "-1"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "1"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-g-v-e-be-a-simple-undirected-graph-and-s-be-a-part-2015-set-1-marks-2-sbwmndqce17estr3.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "hkuP5e9G27utwWCj",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The height of a tree is the length of the longest root-to-leaf path in it. The maximum and minimum number of nodes in a binary tree of height 5 are",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "63 and 6, respectively "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "64 and 5, respectively"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "32 and 6, respectively"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "31 and 5, respectively"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-height-of-a-tree-is-the-length-of-the-longest-root-to-le-2015-set-1-marks-1-hkup5e9g27utwwcj.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "yallUGvlOJLkW4eS",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following is/are correct inorder traversal sequence(s) of binary search tree(s)?\n<p>I. 3, 5, 7, 8, 15, 19, 25\n<br>II. 5, 8, 9, 12, 10, 15, 25\n<br>III. 2, 7, 10, 8, 14, 16, 20\n<br>IV. 4, 6, 7, 9 18, 20, 25</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "I and IV only"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "II and III only"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "II and IV only"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "II only"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-isare-correct-inorder-traversal-sequ-2015-set-1-marks-1-yallugvlojlkw4es.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "vSLxizSKtAoC67SR",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "data-structures",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "trees",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What are the worst-case complexities of insertion and deletion of a key in a binary search tree?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\Theta \\left( {\\log n} \\right)$$ for both insertion and deletion"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\Theta \\left( n \\right)$$ for both insertion and deletion"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\Theta \\left( n \\right)$$ for insertion and $$\\Theta \\left( {\\log n} \\right)$$for deletion"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\Theta \\left( {\\log n} \\right)$$ for insertion and $$\\Theta \\left( n \\right)$$ for deletion"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-are-the-worst-case-complexities-of-insertion-and-deleti-2015-set-1-marks-1-vslxizsktaoc67sr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                }
+            ],
+            "title": "Data Structures"
+        },
+        {
+            "_id": "Database Management System",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "3qKqwiG0PcTp8ok0",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "structured-query-language",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Consider the following relation:\n</p>\n<p><b>Student</b></p>\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-s6z2{text-align:center}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-s6z2\">Roll_No</th>\n    <th class=\"tg-s6z2\">Student_Name</th>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">1</td>\n    <td class=\"tg-s6z2\">Raj</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">2</td>\n    <td class=\"tg-s6z2\">Rohit</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">3</td>\n    <td class=\"tg-s6z2\">Raj</td>\n  </tr>\n</tbody></table>\n<p><b>Performance</b></p>\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-s6z2{text-align:center}\n.tg .tg-baqh{text-align:center;vertical-align:top}\n.tg .tg-0lax{text-align:left;vertical-align:top}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-s6z2\">Roll_No</th>\n    <th class=\"tg-s6z2\">Course</th>\n    <th class=\"tg-baqh\">Marks</th>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">1</td>\n    <td class=\"tg-s6z2\">Math</td>\n    <td class=\"tg-baqh\">80</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">1</td>\n    <td class=\"tg-s6z2\">English</td>\n    <td class=\"tg-baqh\">70</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">2</td>\n    <td class=\"tg-s6z2\">Math</td>\n    <td class=\"tg-baqh\">75</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">3</td>\n    <td class=\"tg-0lax\">English</td>\n    <td class=\"tg-baqh\">80</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">2</td>\n    <td class=\"tg-baqh\">Physics</td>\n    <td class=\"tg-baqh\">65</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">3</td>\n    <td class=\"tg-baqh\">Math</td>\n    <td class=\"tg-baqh\">80</td>\n  </tr>\n</tbody></table>\n<p>Consider the following SQL query.</p>\n<pre><code class=\"sql\">SELECT S.Student_Name, Sum(P.Marks) \nFROM Student S, Performance P\nWHERE S.Roll_No= P.Roll_No\nGROUP BY S.STUDENT_Name</code></pre>\nThe numbers of rows that will be returned by the SQL query is___________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "2",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-relation-student-tg-border-coll-2015-set-1-marks-2-3qkqwig0pctp8ok0.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GZhmis0zJHeU3CSm",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "functional-dependencies-and-normalization",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Consider an Entity-Relationship (ER) model in which entity sets E<sub>1</sub> and E<sub>2</sub> are connected by an m : n relationship R<sub>12</sub>. E<sub>1</sub> and E<sub>3</sub> are connected by a 1 : n (1 on the side of E<sub>1</sub> and n on the side of E<sub>3</sub>) relationship R<sub>13</sub>.</p> \n<p>E<sub>1</sub> has two single-valued attributes a<sub>11</sub> and a<sub>12</sub> of which a<sub>11</sub> is the key attribute. E<sub>2</sub> has two single-valued attributes a<sub>21</sub> and a<sub>22</sub> of which a<sub>21</sub> is the key attribute. E<sub>3</sub> has two single-valued attributes a<sub>31</sub> and a<sub>32</sub> of which a<sub>31</sub> is the key attribute. The relationships do not have any attributes. </p>\n<p>If a relational model is derived from the above ER model, then the minimum number of relations that would be generated if all the relations are in 3NF is _______.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "4",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-an-entity-relationship-er-model-in-which-entity-s-2015-set-1-marks-2-gzhmis0zjheu3csm.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "FQsty6YhOQO6LOpu",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-structures-and-indexing",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A file is organized so that the ordering of data records is the same as or close to the ordering of data entries in some index. Then that index is called",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Dense"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Sparse"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Clustered"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Unclustered"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-file-is-organized-so-that-the-ordering-of-data-records-is-gate-cse-2015-set-1-marks-1-fqsty6yhoqo6lopu.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "fy1R0bqOvWcCgGPN",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "database-management-system",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "structured-query-language",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "SELECT operation in SQL is equivalent to",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "the selection operation in relational algebra"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "the selection operation in relational algebra, except that SELECT in SQL retains duplicates"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "the projection operation in relational algebra"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "the projection operation in relational algebra, except that SELECT in SQL retains duplicates"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "select-operation-in-sql-is-equivalent-to-2015-set-1-marks-1-fy1r0bqovwccggpn.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                }
+            ],
+            "title": "Database Management System"
+        },
+        {
+            "_id": "Digital Logic",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "UQCiwzRxBVdl9td4",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Consider the operations</p>\n $$f\\left( {x,y,z} \\right) = X'YZ + XY' + Y'Z'$$ and <br>$$g\\left( {x,y,z} \\right) = X'YZ + X'YZ' + XY$$.\n<p>Which one of the following is correct?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both $$\\left\\{ f \\right\\}$$ and  $$\\left\\{ g \\right\\}$$ are functionally complete"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Only  $$\\left\\{ f \\right\\}$$  is functionally complete"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Only  $$\\left\\{ g \\right\\}$$  is functionally complete"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Neither $$\\left\\{ f \\right\\}$$  nor  $$\\left\\{ g \\right\\}$$ is functionally complete"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-operations-fleft-xyz-right-xyz-2015-set-1-marks-2-uqciwzrxbvdl9td4.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aV7VBTzdg6DEBiAm",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A positive edge-triggered D flip-flop is connected to a positive edge-triggered JK flip-flop as follows. The Q output of the D flip-flop is connected to both the J and K inputs of the JK flip-flop, while the Q output of the JK flip-flop is connected to the input of the D flip-flop. Initially, the output of the D flip-flop is set to logic one and the output of the JK flip-flop is cleared. Which one of the following is the bit sequence (including the initial state) generated at the Q output of the JK flip-flop when the flip-flops are connected to a free-running common clock? Assume that J = K = 1 is the toggle mode and J = K = 0 is the state-holding mode of the JK flip-flop. Both the flip-flops have non-zero propagation delays.",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0110110..."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0100100..."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "011101110..."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "011001100..."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-positive-edge-triggered-d-flip-flop-is-connected-to-a-posi-2015-set-1-marks-2-av7vbtzdg6debiam.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "oiHU2ZnhvkUbN2aC",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "boolean-algebra",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>The binary operator $$ \\ne $$ is defined by the following truth table.</p>\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-s6z2{text-align:center}\n.tg .tg-baqh{text-align:center;vertical-align:top}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-s6z2\">p</th>\n    <th class=\"tg-s6z2\">q</th>\n    <th class=\"tg-s6z2\">p$$ \\ne $$q</th>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">0</td>\n    <td class=\"tg-s6z2\">0</td>\n    <td class=\"tg-s6z2\">0</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">0</td>\n    <td class=\"tg-baqh\">1</td>\n    <td class=\"tg-baqh\">1</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">1</td>\n    <td class=\"tg-baqh\">0</td>\n    <td class=\"tg-baqh\">1</td>\n  </tr>\n  <tr>\n    <td class=\"tg-baqh\">1</td>\n    <td class=\"tg-baqh\">1</td>\n    <td class=\"tg-baqh\">0</td>\n  </tr>\n</tbody></table>\n<p>Which one of the following is true about the binary operator $$ \\ne $$?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both commutative and associative"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Commutative but not associative"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Not commutative but associative"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Neither commutative nor associative"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-binary-operator-ne-is-defined-by-the-following-tr-2015-set-1-marks-2-oihu2znhvkubn2ac.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kdb4sETicLn2zT64",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "digital-logic",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "sequential-circuits",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a 4-bit Johnson counter with an initial value of 0000. The counting sequence of this counter is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0, 1, 3, 7, 15, 14, 12, 8, 0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0, 1, 3, 5, 7, 9, 11, 13, 15, 0"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0, 2, 4, 6, 8, 10, 12, 14, 0"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0, 8, 12, 14, 15, 7, 3, 1, 0"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-4-bit-johnson-counter-with-an-initial-value-of-00-2015-set-1-marks-1-kdb4seticln2zt64.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                }
+            ],
+            "title": "Digital Logic"
+        },
+        {
+            "_id": "Discrete Mathematics",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PKqVtRp0GobBoISx",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let $${a_n}$$ represent the number of bit strings of length n containing two consecutive 1s. What is the recurrence relation for $${a_n}$$?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$a_{n - 2} + a_{n - 1} + 2^{n - 2}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$a_{n - 2} + 2a_{n - 1} + 2^{n - 2}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$2a_{n - 2} + a_{n - 1} + 2^{n - 2}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$2a_{n - 2} + 2a_{n - 1} + 2^{n - 2}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-an-represent-the-number-of-bit-strings-of-length-2015-set-1-marks-2-pkqvtrp0gobboisx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PckvoC65j5V6eOO9",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Let G be a connected planar graph with 10 vertices. If the number of edges on each face is three, then the number of edges in G is ___________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "24",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "let-g-be-a-connected-planar-graph-with-10-vertices-if-the-n-2015-set-1-marks-2-pckvoc65j5v6eoo9.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "o3spNgMusMLOTIgT",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$\\sum\\limits_{x = 1}^{99} {{1 \\over {x\\left( {x + 1} \\right)}}} $$ = _____________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "0.99",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "sumlimitsx-199-1-over-xleft-x-1-right-2015-set-1-marks-2-o3spngmusmlotigt.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "9XmmQKeKvUDBEW82",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "graph-theory",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose L = { p, q, r, s, t } is a lattice represented by the following Hasse diagram:\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/JQBTbjfVyxeZMb29a/VKBvUxomrekcxGiW48s27pr2XjviV/1dAhWA5fCRqAiDWr34Ch66/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2015 Set 1 Discrete Mathematics - Graph Theory Question 28 English\">\nFor any $$x, y \u2208 L$$, not necessarily distinct, $$x \u2228 y$$ and x \u2227 y are join and meet of x, y, respectively. Let $$L^3 = \\left\\{\\left(x, y, z\\right): x, y, z \u2208 L\\right\\}$$ be the set of all ordered triplets of the elements of L. Let p<sub>r</sub> be the probability that an element $$\\left(x, y,z\\right) \u2208 L^3$$ chosen equiprobably satisfies $$x \u2228 (y \u2227 z) = (x \u2228 y) \u2227 (x \u2228 z)$$. Then",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "p<sub>r</sub> = 0"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "p<sub>r</sub> = 1"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0 &lt; p_r \u2264 \\frac{1}{5}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\frac{1}{5} &lt; p_r &lt; 1$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-l-p-q-r-s-t-is-a-lattice-represented-by-th-2015-set-1-marks-2-9xmmqkekvudbew82.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "GESJtHvrBKNoL7ZV",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The probabilities that a student passes in Mathematics, Physics and Chemistry are $$m, p$$ and $$c$$ respectively. Of these subjects, the student has $$75$$% chance of passing in at least one, a $$50$$% chance of passing in at least two and a $$40$$% chance of passing in exactly two. Following relations are drawn in $$m, p, c:$$ \n<br>$${\\rm I}.$$ $$\\,\\,\\,\\,\\,\\,$$ $$p+m+c=27/20$$ \n<br>$${\\rm I}{\\rm I}.$$ $$\\,\\,\\,\\,\\,\\,$$ $$p+m+c=13/20$$ \n<br>$${\\rm I}{\\rm I}{\\rm I}.$$ $$\\,\\,\\,\\,\\,\\,$$ $$\\left( p \\right) \\times \\left( m \\right) \\times \\left( c \\right) = 1/10$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Only relation $${\\rm I}$$ is true "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Only relation $${\\rm I}$$$${\\rm I}$$ is true "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Relations $${\\rm I}$$$${\\rm I}$$ and $${\\rm I}$$$${\\rm I}$$$${\\rm I}$$ are true "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Relations $${\\rm I}$$ and $${\\rm I}$$$${\\rm I}$$$${\\rm I}$$ are true "
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-probabilities-that-a-student-passes-in-mathematics-physi-gate-cse-2015-set-1-marks-2-gesjthvrbknol7zv.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "RiyhnxIgREj6oE0d",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "probability",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given Set $$\\,\\,\\,A = \\left\\{ {2,3,4,5} \\right\\}\\,\\,\\,$$ and Set $$\\,\\,\\,B = \\left\\{ {11,12,13,14,15} \\right\\},\\,\\,\\,$$ two numbers are randomly selected, one from each set. What is the probability that the sum of the two numbers equal $$16?$$  ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$0.20$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0.25$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$0.30$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$0.33$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "given-set-a-left-2345-right-and-set-b-left-1112131415-right-gate-cse-2015-set-1-marks-2-riyhnxigrej6oe0d.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "8CHGNWEJJjlZNoRt",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "If $$g(x)=1-x$$ &amp; $$h\\left( x \\right) = {x \\over {x - 1}}\\,\\,$$  then $$\\,\\,{{g\\left( {h\\left( x \\right)} \\right)} \\over {h\\left( {g\\left( x \\right)} \\right)}}\\,\\,\\,$$  is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$${{h\\left( x \\right)} \\over {g\\left( x \\right)}}$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$${{ - 1} \\over x}$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$${{g\\left( x \\right)} \\over {h\\left( x \\right)}}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$${x \\over {{{\\left( {1 - x} \\right)}^2}}}$$ "
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "if-gx1-x-hleft-x-right-x-over-x-1-then-gleft-hleft-x-right-r-gate-cse-2015-set-1-marks-1-8chgnwejjjlznort.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "EeQT6CfCKOAZkfzg",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$\\,\\int\\limits_{1/\\pi }^{2/\\pi } {{{\\cos \\left( {1/x} \\right)} \\over {{x^2}}}dx = } $$ __________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "-1",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "intlimits1pi-2pi-cos-left-1x-right-over-x2dx-gate-cse-2015-set-1-marks-2-eeqt6cfckoazkfzg.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Xvd5fxTxf8eRROIE",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "calculus",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "$$\\,\\,\\mathop {\\lim }\\limits_{x \\to \\infty } \\,{x^{1/x}}\\,\\,$$  is ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\infty $$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$0$$ "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$1$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Not defined "
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "mathop-lim-limitsx-to-infty-x1x-is-gate-cse-2015-set-1-marks-1-xvd5fxtxf8erroie.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "zBGD51Nh3a5U8Dq5",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following $$2 \\times 2$$ matrix $$A$$ where two elements are unknown and are marked by $$a$$ and $$b.$$ The  eigenvalues of this matrix ar $$-1$$ and $$7.$$ What are the values of $$a$$ and $$b$$? \n<br>$$A = \\left( {\\matrix{\n   1 &amp; 4  \\cr \n   b &amp; a  \\cr \n\n } } \\right)$$ ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$a=6, b=4$$ "
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$a=4, b=6$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$a=3, b=5$$ "
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$a=5,b=3$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-2-times-2-matrix-a-where-two-elements-gate-cse-2015-set-1-marks-2-zbgd51nh3a5u8dq5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "gj0TIGCoczwnb3nY",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "set-theory-and-algebra",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "For a set A, the power set of A is denoted by 2<sup>A</sup>. If A = {5, {6}, {7}}, which of the following options are TRUE?\n<p>I. $$\\phi  \\in {2^A}$$\n<br>II. $$\\phi  \\subseteq {2^A}$$\n<br>III. $$\\left\\{ {5,\\left\\{ 6 \\right\\}} \\right\\} \\in {2^A}$$\n<br>IV. $$\\left\\{ {5,\\left\\{ 6 \\right\\}} \\right\\} \\subseteq {2^A}$$</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "I and III only"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "II and III only"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "I, II and III only"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "I, II and IV only"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-a-set-a-the-power-set-of-a-is-denoted-by-2a-if-a-5-2015-set-1-marks-1-gj0tigcoczwnb3ny.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "0WvQ0wMfQMFXsS1H",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "discrete-mathematics",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "linear-algebra",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "In the LU decomposition of the matrix $$\\left[ {\\matrix{\n   2 &amp; 2  \\cr \n   4 &amp; 9  \\cr \n\n } } \\right]$$, if the diagonal elements of U are both 1, then the lower diagonal entry $${l_{22}}$$ of L is \n ________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "5",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "in-the-lu-decomposition-of-the-matrix-left-matrix-2015-set-1-marks-1-0wvq0wmfqmfxss1h.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                }
+            ],
+            "title": "Discrete Mathematics"
+        },
+        {
+            "_id": "General Aptitude",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "HkCoGtA0R3tgxhmF",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "verbal-ability",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following combinations is incorrect?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Acquiescence \u2013 Submission"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Wheedle \u2013 Roundabout"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Flippancy \u2013 Lightness"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Profligate \u2013 Extravagant"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-combinations-is-incorrect-2015-set-1-marks-1-hkcogta0r3tgxhmf.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "tiVLvFNCf9AXukNX",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>The number of students in a class who have answered correctly, wrongly, or not attempted each\nquestion in an exam, are listed in the table below. The marks for each question are also listed.\nThere is no negative or partial marking.</p>\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-s6z2{text-align:center}\n.tg .tg-baqh{text-align:center;vertical-align:top}\n</style>\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">Q No</span></th>\n    <th class=\"tg-s6z2\"><span style=\"font-weight:bold\">Marks</span></th>\n    <th class=\"tg-baqh\"><span style=\"font-weight:bold\">Answered</span><br><span style=\"font-weight:bold\">Correctly</span></th>\n    <th class=\"tg-baqh\"><span style=\"font-weight:bold\">Answered</span><br><span style=\"font-weight:bold\">Wrongly</span></th>\n    <th class=\"tg-baqh\"><span style=\"font-weight:bold\">Not</span><br><span style=\"font-weight:bold\">Attempted</span></th>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">1</td>\n    <td class=\"tg-s6z2\">2</td>\n    <td class=\"tg-baqh\">21</td>\n    <td class=\"tg-baqh\">17</td>\n    <td class=\"tg-baqh\">6</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">2</td>\n    <td class=\"tg-s6z2\">3</td>\n    <td class=\"tg-baqh\">15</td>\n    <td class=\"tg-baqh\">27</td>\n    <td class=\"tg-baqh\">2</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">3</td>\n    <td class=\"tg-s6z2\">1</td>\n    <td class=\"tg-baqh\">11</td>\n    <td class=\"tg-baqh\">29</td>\n    <td class=\"tg-baqh\">4</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">4</td>\n    <td class=\"tg-s6z2\">2</td>\n    <td class=\"tg-baqh\">23</td>\n    <td class=\"tg-baqh\">18</td>\n    <td class=\"tg-baqh\">3</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">5</td>\n    <td class=\"tg-s6z2\">5</td>\n    <td class=\"tg-baqh\">31</td>\n    <td class=\"tg-baqh\">12</td>\n    <td class=\"tg-baqh\">1</td>\n  </tr>\n</tbody></table>\n<p>What is the average of the marks obtained by the class in the examination?</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2.290"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2.970"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "6.795"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "8.795"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-number-of-students-in-a-class-who-have-answered-correctl-2015-set-1-marks-2-tivlvfncf9axuknx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Q5evL6sbixkzUaXZ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logical-reasoning",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The given statement is followed by some courses of action. Assuming the statement to be true,\ndecide the correct option.\n<p>Statement:\n<br>There has been a significant drop in the water level in the lakes supplying water to the city.</p>\n<p>Course of action:\n<br>(I) The water supply authority should impose a partial cut in supply to tackle the situation.\n<br>(II) The government should appeal to all the residents through mass media for minimal\nuse of water.\n<br>(III) The government should ban the water supply in lower areas. </p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Statements I and II follow."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Statements I and III follow."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Statements II and III follow."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "All statements follow."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>The given statement indicates that there has been a significant drop in the water level in the lakes that supply water to the city. This situation suggests that water conservation measures need to be implemented to manage the limited water resources.</p>\n\n<p>Let's analyze each course of action:</p>\n\n<p><strong>(I) The water supply authority should impose a partial cut in supply to tackle the situation.</strong>\n\n<br>Imposing a partial cut in water supply can help reduce water consumption and preserve the remaining water in the lakes. This is a practical measure to address the immediate issue of water scarcity.</p>\n\n<p><strong>(II) The government should appeal to all the residents through mass media for minimal use of water.</strong>\n\n<br>Appealing to the residents to minimize water usage is an effective way to create awareness about the water shortage and encourage conservation efforts on a broader scale.</p>\n\n<p><strong>(III) The government should ban the water supply in lower areas.</strong>\n\n<br>Banning water supply in lower areas may not be a fair or practical solution as it would cause significant inconvenience and might not effectively address the overall issue of water scarcity.</p>\n\n<p>Based on the analysis, the most appropriate actions seem to be:</p>\n\n<p>Option A<br>\n\n<p>Statements I and II follow.</p></p>\n\n<p></p>"
+                        }
+                    },
+                    "permalink": "the-given-statement-is-followed-by-some-courses-of-action-a-2015-set-1-marks-2-q5evl6sbixkzuaxz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "iUm2d9Lykt9qnMqd",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "verbal-ability",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Select the alternative meaning of the underlined part of the sentence.\n<p>The chain snatchers <u>took to their heels</u> when the police party arrived.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "took shelter in a thick jungle"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "open indiscriminate fire"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "took to flight"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "unconditionally surrendered"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "select-the-alternative-meaning-of-the-underlined-part-of-the-2015-set-1-marks-2-ium2d9lykt9qnmqd.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "K3AhhZk1DdxHu4M6",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The probabilities that a student passes in Mathematics, Physics and Chemistry are m, p, and c\nrespectively. Of these subjects, the student has 75% chance of passing in at least one, a 50%\nchance of passing in at least two and a 40% chance of passing in exactly two. Following relations\nare drawn in m, p, c :\n<br><br/>$$\\left( I \\right)\\,p + m + c = {{27} \\over {20}}$$\n<br><br/>$$\\left( {II} \\right)\\,p + m + c = {{13} \\over {20}}$$\n<br><br/>$$\\left( {III} \\right)\\,\\left( p \\right) \\times \\left( m \\right) \\times \\left( c \\right) = {1 \\over {10}}$$",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Only relation $$I$$ is true"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Only relation $$II$$ is true"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Relations $$II$$ and $$III$$ are true."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Relations $$I$$ and $$III$$ are true."
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>Let's analyze the given probabilities and the relations to determine which ones are valid.</p>\n\n<p>Given:\n\n</p>\n\n<p>The probability of passing at least one subject is 75%, which implies:\n\n<p>$$P(A \\cup B \\cup C) = 0.75$$</p>\n\n</p>\n\n<p>The probability of passing at least two subjects is 50%, which implies:\n\n<p>$$P(\\text{at least two subjects}) = 0.50$$</p>\n\n</p>\n\n<p>The probability of passing exactly two subjects is 40%, which implies:\n\n<p>$$P(\\text{exactly two subjects}) = 0.40$$</p>\n\n</p>\n\n<p>We need to express these probabilities using the inclusion-exclusion principle.</p>\n\n<p>For passing at least one subject:\n\n<p>$$P(A \\cup B \\cup C) = P(A) + P(B) + P(C) - P(A \\cap B) - P(B \\cap C) - P(C \\cap A) + P(A \\cap B \\cap C)$$</p>\n\n<p>Given:</p>\n\n<p>$$P(A \\cup B \\cup C) = 0.75$$</p>\n\n<p>$$m + p + c - (P(A \\cap B) + P(B \\cap C) + P(C \\cap A)) + P(A \\cap B \\cap C) = 0.75$$</p>\n\n</p>\n\n<p>For passing at least two subjects:\n\n<p>$$P(\\text{at least two subjects}) = P(A \\cap B) + P(B \\cap C) + P(C \\cap A) - 2 \\cdot P(A \\cap B \\cap C)$$</p>\n\n<p>Given:</p>\n\n<p>$$P(\\text{at least two subjects}) = 0.50$$</p>\n\n</p>\n\n<p>For passing exactly two subjects:\n\n<p>$$P(\\text{exactly two subjects}) = P(\\text{at least two subjects}) - P(A \\cap B \\cap C)$$</p>\n\n<p>Given:</p>\n\n<p>$$P(\\text{exactly two subjects}) = 0.40$$</p>\n\n</p>\n\n<p>From the above relations, we can write:\n\n</p>\n\n<p>1. $$m + p + c - (P(A \\cap B) + P(B \\cap C) + P(C \\cap A)) + P(A \\cap B \\cap C) = 0.75$$\n\n<ol>\n\n<li>$$P(A \\cap B) + P(B \\cap C) + P(C \\cap A) - 2 \\cdot P(A \\cap B \\cap C) = 0.50$$</li><br>\n\n<li>$$P(\\text{exactly two subjects}) = 0.40 = 0.50 - P(A \\cap B \\cap C) \\implies P(A \\cap B \\cap C ) = 0.10$$</li>\n\n</ol>\n\n</p>\n\n<p>Substituting in the second equation:\n\n<p>$$P(A \\cap B) + P(B \\cap C) + P(C \\cap A) = 0.50 + 2 \\times 0.10 = 0.70$$</p>\n\n</p>\n\n<p>Substituting in the first equation:\n\n<p>$$m + p + c - 0.70 + 0.10 = 0.75 \\implies m + p + c = 0.75 + 0.60 = 1.35 = {{27} \\over {20}}$$</p>\n\n</p>\n\n<p>So, relation $$I$$ is true. However we can resolve upto:\n\n<p>$$m + c + p - 0.7 +0.1 = 0.75$$</p>\n\n</p>\n\n<p>Finally, the correct options are:\n\n<p>Options: A. Only relation $$I$$ is true.</p>\n\n</p>"
+                        }
+                    },
+                    "permalink": "the-probabilities-that-a-student-passes-in-mathematics-phys-2015-set-1-marks-2-k3ahhzk1ddxhu4m6.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "PKiW1VnIEbA8l5F7",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "logical-reasoning",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Based on the given statements, select the most appropriate option to solve the given question.\n<p>If two floors in a certain building are 9 feet apart, how many steps are there in a set of stairs that\nextends from the first floor to the second floor of the building?</p>\nStatements:\n<br>(I) Each step is $${3 \\over 4}$$ foot high.\n<br>(II) Each step is 1 foot wide. ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Statement I alone is sufficient, but statement II alone is not sufficient."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Statement II alone is sufficient, but statement I alone is not sufficient."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Both statements together are sufficient, but neither statement alone is sufficient."
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Statement I and II together are not sufficient."
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "based-on-the-given-statements-select-the-most-appropriate-o-2015-set-1-marks-1-pkiw1vnieba8l5f7.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ZFLWkCpEybgVarb6",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "verbal-ability",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following options is the closest in meaning to the sentence below?\n<p>She enjoyed herself immensely at the party.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "She had a terrible time at the party."
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "She had a horrible time at the party."
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "She had a terrific time at the party"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "She had a terrifying time at the party"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-options-is-the-closest-in-meaning-to-2015-set-1-marks-1-zflwkcpeybgvarb6.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "sr9dfIqMD98uzOVA",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Given set A = {2, 3, 4, 5} and Set B = {11, 12, 13, 14, 15}, two numbers are randomly selected, one\nfrom each set. What is probability that the sum of the two numbers equals 16?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "0.20"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "0.25"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "0.30"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "0.33"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": "<p>To solve this problem, we need to determine the number of favorable outcomes and the total number of possible outcomes when selecting one number from each set.</p>\n\n<p>Given:\n\n<p>Set A = {2, 3, 4, 5}</p>\n\n<p>Set B = {11, 12, 13, 14, 15}</p></p>\n\n<p>We are asked to find the probability that the sum of the two numbers selected from each set equals 16.</p>\n\n<p>First, let's identify how many pairs from Set A and Set B yield a sum of 16:</p>\n\n<ul>\n\n<li>2 (from A) + 14 (from B) = 16</li>\n\n<li>3 (from A) + 13 (from B) = 16</li>\n\n<li>4 (from A) + 12 (from B) = 16</li>\n\n<li>5 (from A) + 11 (from B) = 16</li>\n\n</ul>\n\n<p>Thus, there are 4 favorable pairs.</p>\n\n<p>The total number of possible outcomes is the product of the number of elements in Set A and Set B:</p>\n\n<p>\n\n<p>$$ |A| \\times |B| = 4 \\times 5 = 20 $$</p>\n\n</p>\n\n<p>The probability (P) that the sum of the two numbers equals 16 is given by the ratio of the number of favorable outcomes to the total number of possible outcomes:</p>\n\n<p>\n\n<p>$$ P = \\frac{\\text{Number of favorable outcomes}}{\\text{Total number of possible outcomes}} = \\frac{4}{20} = \\frac{1}{5} = 0.20 $$</p>\n\n</p>\n\n<p>Therefore, the correct answer is Option A: 0.20.</p>"
+                        }
+                    },
+                    "permalink": "given-set-a-2-3-4-5-and-set-b-11-12-13-14-15-2015-set-1-marks-1-sr9dfiqmd98uzova.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Osnqm2peeaMF3nY1",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "numerical-ability",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The pie chart below has the breakup of the number of students from different departments in an\nengineering college for the year 2012. The proportion of male to female students in each\ndepartment is 5:4. There are 40 males in Electrical Engineering. What is the difference between\nnumbers of female students in the Civil department and the female students in the Mechanical\ndepartment?\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/5WSswbRGUePlzcfVH/0mWOEjPyyjon4PqjbEAgEGIg0MpgO/Sh3btiiZFpyaALvlZGf8b2/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2015 Set 1 General Aptitude - Numerical Ability Question 52 English\">",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "32",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-pie-chart-below-has-the-breakup-of-the-number-of-student-2015-set-1-marks-2-osnqm2peeamf3ny1.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "KdZwce5QyWwltERR",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "general-aptitude",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "verbal-ability",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Didn't you buy _________ when you went shopping?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "any paper"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "much paper "
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "no paper"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "a few paper"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "didnt-you-buy-when-you-went-shopping-2015-set-1-marks-1-kdzwce5qywwlterr.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                }
+            ],
+            "title": "General Aptitude"
+        },
+        {
+            "_id": "Operating Systems",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "i4EnAGOjwHZPUGK5",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "process-concepts-and-cpu-scheduling",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a uniprocessor system executing three tasks T<sub>1</sub>, T<sub>2</sub> and T<sub>3</sub>, each of which is composed of an infinite sequence of jobs (or instances) which arrive periodically at intervals of 3, 7 and 20 milliseconds, respectively. The priority of each task is the inverse of its period, and the available tasks are scheduled in order of priority, with the highest priority task scheduled first. Each instance of T<sub>1</sub>, T<sub>2</sub> and T<sub>3</sub> requires an execution time of 1, 2 and 4 milliseconds, respectively. Given that all tasks initially arrive at the beginning of the 1<sup>st</sup> millisecond and task preemptions are allowed, the first instance of T<sub>3</sub> completes its execution at the end of _____________ milliseconds.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "12",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-uniprocessor-system-executing-three-tasks-t1-t2-2015-set-1-marks-2-i4enagojwhzpugk5.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "ReNFWYh9Ta9vcJt8",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Suppose the following disk request sequence (track numbers) for a disk with 100 tracks is given: <p>45, 20, 90, 10, 50, 60, 80, 25, 70.</p> Assume that the initial position of the R/W head is on track 50. The additional distance that will be traversed by the R/W head when the Shortest Seek Time First (SSTF) algorithm is used compared to the SCAN (Elevator) algorithm (assuming that SCAN algorithm moves towards 100 when it starts execution) is____________ tracks. ",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "10",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "suppose-the-following-disk-request-sequence-track-numbers-2015-set-1-marks-2-renfwyh9ta9vcjt8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "kdvA3aIUbZlwHWGo",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "file-system-io-and-protection",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a main memory with five page frames and the following sequence of page references: 3, 8, 2, 3, 9, 1, 6, 3, 8, 9, 3, 6, 2, 1, 3. Which one of the following is true with respect to page replacement policies First In First Out (FIFO) and Least Recently Used (LRU)?",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Both incur the same number of page faults"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "FIFO incurs 2 more page faults than LRU"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "LRU incurs 2 more page faults than FIFO"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "FIFO incurs 1 more page faults than LRU"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-main-memory-with-five-page-frames-and-the-followi-2015-set-1-marks-2-kdva3aiubzlwhwgo.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "Tjo6e4UOwisiWjVX",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "memory-management",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider a system with byte-addressable memory, 32-bit logical addresses, 4 kilobyte page size and page table entries of 4 bytes each. The size of the page table in the system in megabytes is ________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "4",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-a-system-with-byte-addressable-memory-32-bit-logic-2015-set-1-marks-1-tjo6e4uowisiwjvx.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "b0fQsodefY8zfBjq",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronization-and-concurrency",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "A file is organized so that the ordering of data records is the same as or close to the ordering of data entries in some index. Then that index is called",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "Dense"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "Sparse"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "Clustered"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "Unclustered"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "a-file-is-organized-so-that-the-ordering-of-data-records-is-2015-set-1-marks-1-b0fqsodefy8zfbjq.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "92BQsdxbrzITeOec",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "operating-systems",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "synchronization-and-concurrency",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The following two functions P1 and P2 that share a variable B with an initial value of 2 execute concurrently.\n<pre><code class=\"c\">P1( ) {\n  C = B \u2013 1;\n  B = 2 * C;\n}\n\n\nP2( ) {\n  D = 2 * B;\n  B = D - 1;\n}\n</code></pre>\nThe number of distinct values that B can possibly take after the execution is___________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "3",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-following-two-functions-p1-and-p2-that-share-a-variable-2015-set-1-marks-1-92bqsdxbrziteoec.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                }
+            ],
+            "title": "Operating Systems"
+        },
+        {
+            "_id": "Programming Languages",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "a7FSomJtC9unMfDZ",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pointer-and-structure-in-c",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "What is the output of the following C code? Assume that the address of x is 2000 (in decimal) and an integer requires four bytes of memory.\n<pre><code class=\"c\">int main () { \nunsigned int x[4][3] = \n          {{1,2,3},{4,5,6},{7,8,9},{10,11,12}}; \n          printf(\u201c%u, %u, %u\u201d, x+3, *(x+3), *(x+2)+3); \n}</code></pre>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "2036, 2036, 2036"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "2012, 4, 2204"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "2036, 10, 10"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "2012, 4, 6"
+                                }
+                            ],
+                            "correct_options": [
+                                "A"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "what-is-the-output-of-the-following-c-code-assume-that-the-2015-set-1-marks-2-a7fsomjtc9unmfdz.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "TG9YP5eAUUy2LGHX",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "basic-of-programming-language",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following pseudo code, where x and y are positive integers.\n<pre><code class=\"c\">begin \n    q := 0 \n    r := x \n   while r \u2265 y do \n      begin \n      r := r - y \n      q := q + 1 \n    end \nend</code></pre>\nThe post condition that needs to be satisfied after the program terminates is",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "$$\\{ r = qx + y \\wedge r &lt; y\\}$$"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "$$\\{ x = qy  + r \\wedge r &lt; y\\}$$"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "$$\\{ y = qx + r \\wedge 0 &lt; r &lt; y\\}$$"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "$$\\{ q + 1 &lt; r - y \\wedge y &gt; 0\\}$$"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-pseudo-code-where-x-and-y-are-positi-2015-set-1-marks-2-tg9yp5eauuy2lghx.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "CSWzgtHHI3ScErvZ",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "programming-languages",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "pointer-and-structure-in-c",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "The output of the following C program is__________. <pre><code class=\"c\">\nvoid f1(int a, int b) { \nint c; \nc=a; a=b; b=c; \n}\n\nvoid f2(int *a, int *b) { \nint c; \nc=*a; *a=*b; *b=c; \n}\n\nint main(){ \nint a=4, b=5, c=6; \nf1(a,b); \nf2(&amp;b, &amp;c); \nprintf(\u201c%d\u201d,c-a-b); \n}</code></pre>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "-5",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "the-output-of-the-following-c-program-is-void-f1-2015-set-1-marks-1-cswzgthhi3scervz.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                }
+            ],
+            "title": "Programming Languages"
+        },
+        {
+            "_id": "Software Engineering",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aPbySh0ozBL7zCpL",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "software-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "software-engineering",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>Match the following:</p>\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spacing:0;}\n.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}\n.tg .tg-s6z2{text-align:center}\n</style>\n<div style=\"overflow-x:auto;\">\n<table class=\"tg\">\n  <tbody><tr>\n    <th class=\"tg-031e\"><span style=\"font-weight:bold\">List I</span></th>\n    <th class=\"tg-031e\"><span style=\"font-weight:bold\">List II</span></th>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">(P) Condition coverage</td>\n    <td class=\"tg-s6z2\">(i) Black-box testing</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">(Q) Equivalence class partitioning</td>\n    <td class=\"tg-s6z2\">(ii) System testing</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">(R) Volume testing</td>\n    <td class=\"tg-s6z2\">(iii) White-box testing</td>\n  </tr>\n  <tr>\n    <td class=\"tg-s6z2\">(S) Alpha testing</td>\n    <td class=\"tg-s6z2\">(iv) Performance testing</td>\n  </tr>\n</tbody></table>\n</div>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "P - ii, Q - iii, R - i, S - iv"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "P - iii, Q - iv, R - ii, S - i"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "P - iii, Q - i, R - iv, S - ii"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "P - iii, Q - i, R - ii, S - iv"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "match-the-following-tg-border-collapsecollapseborder-2015-set-1-marks-1-apbysh0ozbl7zcpl.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "VraHBKAzj7w6bFwI",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "software-engineering",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "software-engineering",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the following C program segment. <pre><code class=\"c\">while(first &lt;= last) \n{ \n    if (array[middle] &lt; search) \n        first = middle + 1; \n    else if (array[middle] == search) \n              found = TRUE; \n          else last = middle - 1; \n    middle = (first + last)/2; \n}\n if (first &gt; last) notPresent = TRUE; </code></pre>\nThe cyclomatic complexity of the program segment is ________.",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "5",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-following-c-program-segment-whilefirst-last-2015-set-1-marks-2-vrahbkazj7w6bfwi.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                }
+            ],
+            "title": "Software Engineering"
+        },
+        {
+            "_id": "Theory of Computation",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "aY4rta3TipT2rZhh",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "integer",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/NFARklqwJkxQqBCeC/hwc9XAVr4zDmUElbbXMBblPjpfY5M/GxENBuBIu8j6byTDezbRQ6/uploadfile.jpg\" loading=\"lazy\" alt=\"GATE CSE 2015 Set 1 Theory of Computation - Finite Automata and Regular Language Question 37 English\">\n<p>Consider the DFAs M and N given above. The number of states in a minimal DFA that accepts the language L(M) \u2229 L(N) is___________.</p>",
+                            "options": [],
+                            "correct_options": [],
+                            "answer": "1",
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "-consider-the-dfas-m-and-n-given-above-the-number-of-states-2015-set-1-marks-2-ay4rta3tipt2rzhh.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "pETIEHiNAh9ybpW8",
+                    "exam": "gate-cse",
+                    "marks": 2,
+                    "negMarks": 0.6,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "finite-automata-and-regular-language",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Consider the NPDA $$\\left\\langle {Q = \\left\\{ {{q_0},{q_1},{q_2}} \\right\\}} \\right.,$$ $$\\Sigma = \\left \\{ 0, 1 \\right \\},$$ $$\\Gamma = \\left \\{ 0, 1, \\perp  \\right \\},$$ $$\\delta, q_{0}, \\perp,$$ $$\\left. {F = \\left\\{ {{q_2}} \\right\\}} \\right\\rangle $$ , where (as per usual convention) $$Q$$ is the set of states, $$\\Sigma$$ is the input alphabet, $$\\Gamma$$ is the stack alphabet, $$\\delta $$ is the state transition function q<sub>0</sub> is the initial state, $$\\perp$$ is the initial stack symbol, and F is the set of accepting states. The state transition is as follows:\n<img class=\"question-image\" src=\"https://imagex.cdn.examgoal.net/7uMw3oZdHu8QfiICT/YWg3dk91cqIrPG1NCoVBcBhi8ipYj/z5lPYbZIKe0z1tIPTwHP4r/image.svg\" loading=\"lazy\" alt=\"GATE CSE 2015 Set 1 Theory of Computation - Finite Automata and Regular Language Question 36 English\">\n<p>Which one of the following sequences must follow the string 101100 so that the overall string is accepted by the automaton?</p> ",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "10110"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "10010"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "01010"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "01001"
+                                }
+                            ],
+                            "correct_options": [
+                                "B"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "consider-the-npda-leftlangle-q-left-q0q1-2015-set-1-marks-2-petiehinah9ybpw8.htm",
+                    "timeAllotted": 216000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                },
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "JRmzzOdcyVw4cRdI",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "theory-of-computation",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "recursively-enumerable-language-and-turing-machine",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "<p>For any two languages L<sub>1</sub> and L<sub>2</sub> such that L<sub>1</sub> is context-free and L<sub>2</sub> is recursively enumerable but not recursive, which of the following is/are necessarily true?</p>\nI. $${\\overline L _1}$$ (complement of L<sub>1</sub>) is recursive\n<br>II. $${\\overline L _2}$$ (complement of L<sub>2</sub>) is recursive\n<br>III. $${\\overline L _1}$$ is context-free\n<br>IV. $${\\overline L _1} \\cup {L_2}$$ is recursively enumerable",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "I only"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "III only"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "III and IV only"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "I and IV only"
+                                }
+                            ],
+                            "correct_options": [
+                                "D"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "for-any-two-languages-l1-and-l2-such-that-l1-is-context-free-2015-set-1-marks-1-jrmzzodcyvw4crdi.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                }
+            ],
+            "title": "Theory of Computation"
+        },
+        {
+            "_id": "Web Technologies",
+            "questions": [
+                {
+                    "country": "in",
+                    "examGroup": "gate",
+                    "question_id": "qFMbl9sVqSZBYCo4",
+                    "exam": "gate-cse",
+                    "marks": 1,
+                    "negMarks": 0.3,
+                    "subjectGroup": null,
+                    "subject": "web-technologies",
+                    "chapterGroup": null,
+                    "languages": [
+                        "en"
+                    ],
+                    "chapter": "web-technologies",
+                    "year": 2015,
+                    "paperTitle": "GATE CSE 2015 Set 1",
+                    "difficulty": null,
+                    "topicName": null,
+                    "type": "mcq",
+                    "examDate": null,
+                    "question": {
+                        "en": {
+                            "content": "Which of the following statements is/are FALSE?\n<p>I. XML overcomes the limitations in HTML to support a structured way of organizing content.</p>\n<p>II. XML specification is not case sensitive while HTML specification is case sensitive.</p>\n<p>III. XML supports user defined tags while HTML uses pre-defined tags.</p>\n<p>IV. XML tags need not be closed while HTML tags must be closed.</p>",
+                            "options": [
+                                {
+                                    "identifier": "A",
+                                    "content": "\u2161 only"
+                                },
+                                {
+                                    "identifier": "B",
+                                    "content": "\u2160 only"
+                                },
+                                {
+                                    "identifier": "C",
+                                    "content": "II and IV only"
+                                },
+                                {
+                                    "identifier": "D",
+                                    "content": "III and IV only"
+                                }
+                            ],
+                            "correct_options": [
+                                "C"
+                            ],
+                            "answer": null,
+                            "explanation": null
+                        }
+                    },
+                    "permalink": "which-of-the-following-statements-isare-false-i-xml-overc-2015-set-1-marks-1-qfmbl9svqszbyco4.htm",
+                    "timeAllotted": 108000,
+                    "paperId": "gate-cse-2015-set-1",
+                    "isOutOfSyllabus": false,
+                    "topic": null,
+                    "isBonus": false,
+                    "yearKey": "gate-cse-2015-set-1"
+                }
+            ],
+            "title": "Web Technologies"
+        }
+    ]
+}
