@@ -44,10 +44,6 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Progress } from "@/components/ui/progress"
 import { motion, AnimatePresence } from "framer-motion"
 
-// --------------------------------------------------
-//          Type Declarations, Enums, Etc.
-// --------------------------------------------------
-
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
@@ -125,7 +121,6 @@ interface QuestionType {
   updatedAt?: string
 }
 
-// Filter keys for your drop-down filters
 type FilterKey =
   | "exams"
   | "subjects"
@@ -135,14 +130,12 @@ type FilterKey =
   | "years"
   | "types"
 
-// Filters shape
 type FiltersType = {
   [K in FilterKey]: string[]
 } & {
-  status: string // "all" | "review" | "complete" | "review" | "incomplete"
+  status: string
 }
 
-// The shape of "dropdowns"
 type DropdownsType = {
   [K in FilterKey]: boolean
 }
@@ -152,10 +145,10 @@ type StateType = {
   filters: FiltersType
   searchQuery: string
   dropdowns: DropdownsType
-  feedback: Record<string, string>
-  numericalAnswers: Record<string, string>
+  feedback: Record<string, string | undefined>
+  numericalAnswers: Record<string, string | undefined>
   showMarkscheme: Record<string, boolean>
-  selectedOptions: Record<string, string>
+  selectedOptions: Record<string, string | undefined>
   notes: Record<string, string>
   loading: boolean
   currentPage: number
@@ -166,10 +159,10 @@ type ActionType =
   | { type: "SET_FILTERS"; payload: FiltersType }
   | { type: "SET_SEARCH_QUERY"; payload: string }
   | { type: "SET_DROPDOWN"; payload: { tag: FilterKey; value: boolean } }
-  | { type: "SET_FEEDBACK"; payload: Record<string, string> }
-  | { type: "SET_NUMERICAL_ANSWERS"; payload: Record<string, string> }
+  | { type: "SET_FEEDBACK"; payload: Record<string, string | undefined> }
+  | { type: "SET_NUMERICAL_ANSWERS"; payload: Record<string, string | undefined> }
   | { type: "SET_SHOW_MARKSCHEME"; payload: Record<string, boolean> }
-  | { type: "SET_SELECTED_OPTIONS"; payload: Record<string, string> }
+  | { type: "SET_SELECTED_OPTIONS"; payload: Record<string, string | undefined> }
   | { type: "SET_NOTES"; payload: Record<string, string> }
   | { type: "SET_LOADING"; payload: boolean }
   | { type: "SET_CURRENT_PAGE"; payload: number }
@@ -179,7 +172,6 @@ function fuzzyContains(haystack: string, needle: string): boolean {
   return haystack.toLowerCase().includes(needle.toLowerCase())
 }
 
-// The initial state
 const initialState: StateType = {
   questions: [],
   filters: {
@@ -350,11 +342,32 @@ export default function QuestionBankContent() {
   const [singleIndex, setSingleIndex] = useState<number>(0)
   const [filtersOpenMobile, setFiltersOpenMobile] = useState(false)
 
-  // On mount, if screen is small, use single question view
+  // Example: dynamic difficulties from an API
+  const [difficultyOptions, setDifficultyOptions] = useState<string[]>([])
+
+  // On mount, if screen is small, use single-question view
   useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       setViewMode(ViewMode.SINGLE)
     }
+  }, [])
+
+  // Fetch difficulties from an endpoint if you have one:
+  useEffect(() => {
+    ;(async () => {
+      try {
+        const res = await fetch("/api/difficulties") // or /api/whatever
+        if (!res.ok) {
+          throw new Error("Failed to fetch difficulties")
+        }
+        const data = await res.json()
+        if (Array.isArray(data)) {
+          setDifficultyOptions(data)
+        }
+      } catch (error) {
+        console.error("Error fetching difficulties:", error)
+      }
+    })()
   }, [])
 
   // typed fetch helper
@@ -415,7 +428,7 @@ export default function QuestionBankContent() {
           [questionId]: option,
         },
       })
-      // optional: mark question as completed
+      // mark question as completed
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
@@ -443,7 +456,7 @@ export default function QuestionBankContent() {
           [questionId]: userAnswer,
         },
       })
-      // optional: mark question complete
+      // mark question as completed
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
@@ -454,6 +467,104 @@ export default function QuestionBankContent() {
     [state.feedback, state.numericalAnswers, state.questions]
   )
   // -------------------------------------------
+
+  // New: Reset question logic
+  const handleResetQuestion = useCallback(
+    async (questionId: string) => {
+      // Clear feedback, selected option, numerical answer
+      dispatch({
+        type: "SET_FEEDBACK",
+        payload: { ...state.feedback, [questionId]: undefined },
+      })
+      dispatch({
+        type: "SET_SELECTED_OPTIONS",
+        payload: { ...state.selectedOptions, [questionId]: undefined },
+      })
+      dispatch({
+        type: "SET_NUMERICAL_ANSWERS",
+        payload: { ...state.numericalAnswers, [questionId]: undefined },
+      })
+
+      // Mark question un-complete & un-flagged locally
+      dispatch({
+        type: "SET_QUESTIONS",
+        payload: state.questions.map((q) =>
+          q.questionId === questionId
+            ? { ...q, completed: false, reviewed: false }
+            : q
+        ),
+      })
+
+      // Optionally patch server to remove these flags
+      try {
+        await fetch("/api/questions", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            questionId,
+            completed: false,
+            reviewed: false,
+          }),
+        })
+      } catch (err) {
+        console.error("Error resetting question:", err)
+      }
+    },
+    [state.feedback, state.selectedOptions, state.numericalAnswers, state.questions]
+  )
+
+  // Mark complete / Mark review
+  const handleMarkComplete = useCallback(
+    async (questionId: string, newVal?: boolean) => {
+      const completedVal = newVal === undefined ? true : newVal
+      try {
+        await fetch("/api/questions", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            questionId,
+            completed: completedVal,
+          }),
+        })
+        // update local
+        dispatch({
+          type: "SET_QUESTIONS",
+          payload: state.questions.map((q) =>
+            q.questionId === questionId ? { ...q, completed: completedVal } : q
+          ),
+        })
+      } catch (err) {
+        console.error("Error marking complete:", err)
+      }
+    },
+    [state.questions]
+  )
+
+  const handleMarkForReview = useCallback(
+    async (questionId: string, newVal?: boolean) => {
+      const reviewedVal = newVal === undefined ? true : newVal
+      try {
+        await fetch("/api/questions", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            questionId,
+            reviewed: reviewedVal,
+          }),
+        })
+        // update local
+        dispatch({
+          type: "SET_QUESTIONS",
+          payload: state.questions.map((q) =>
+            q.questionId === questionId ? { ...q, reviewed: reviewedVal } : q
+          ),
+        })
+      } catch (err) {
+        console.error("Error marking review:", err)
+      }
+    },
+    [state.questions]
+  )
 
   // filtering
   const filteredQuestions = useMemo(() => {
@@ -491,7 +602,11 @@ export default function QuestionBankContent() {
       if (state.filters.types.length && q.type && !state.filters.types.includes(q.type)) {
         matchesFilters = false
       }
-      if (state.filters.years.length && q.year && !state.filters.years.includes(q.year.toString())) {
+      if (
+        state.filters.years.length &&
+        q.year &&
+        !state.filters.years.includes(q.year.toString())
+      ) {
         matchesFilters = false
       }
 
@@ -555,59 +670,6 @@ export default function QuestionBankContent() {
     [state.filters]
   )
 
-  // Mark complete / Mark review
-  const handleMarkComplete = useCallback(
-    async (questionId: string, newVal?: boolean) => {
-      const completedVal = newVal === undefined ? true : newVal
-      try {
-        await fetch("/api/questions", {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            questionId,
-            completed: completedVal,
-          }),
-        })
-        // update local
-        dispatch({
-          type: "SET_QUESTIONS",
-          payload: state.questions.map((q) =>
-            q.questionId === questionId ? { ...q, completed: completedVal } : q
-          ),
-        })
-      } catch (err) {
-        console.error("Error marking complete:", err)
-      }
-    },
-    [state.questions]
-  )
-
-  const handleMarkForReview = useCallback(
-    async (questionId: string, newVal?: boolean) => {
-      const reviewedVal = newVal === undefined ? true : newVal
-      try {
-        await fetch("/api/questions", {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            questionId,
-            reviewed: reviewedVal,
-          }),
-        })
-        // update local
-        dispatch({
-          type: "SET_QUESTIONS",
-          payload: state.questions.map((q) =>
-            q.questionId === questionId ? { ...q, reviewed: reviewedVal } : q
-          ),
-        })
-      } catch (err) {
-        console.error("Error marking review:", err)
-      }
-    },
-    [state.questions]
-  )
-
   // For question navigator
   function handleNavigatorClick(index: number) {
     const newPage = Math.floor(index / PAGE_SIZE) + 1
@@ -621,8 +683,6 @@ export default function QuestionBankContent() {
       }
     }, 100)
   }
-
-  // -------------- Render --------------
 
   // Loading skeleton
   if (state.loading) {
@@ -724,7 +784,6 @@ export default function QuestionBankContent() {
                 selectedOption={state.selectedOptions[currentQ.questionId]}
                 numericalAnswer={state.numericalAnswers[currentQ.questionId]}
                 showMarkscheme={state.showMarkscheme[currentQ.questionId]}
-                // HERE: pass real handlers
                 handleOptionClick={handleOptionClick}
                 handleNumericalSubmit={handleNumericalSubmit}
                 handleNumericalChange={(qId, val) => {
@@ -744,6 +803,7 @@ export default function QuestionBankContent() {
                 }
                 handleMarkForReview={handleMarkForReview}
                 handleMarkComplete={handleMarkComplete}
+                handleResetQuestion={handleResetQuestion}
                 isMarkedForReview={currentQ.reviewed || false}
                 isMarkedComplete={currentQ.completed || false}
                 markschemesDisabled={false}
@@ -759,12 +819,12 @@ export default function QuestionBankContent() {
           </AnimatePresence>
 
           <div className="flex justify-between">
-            <Button onClick={() => setSingleIndex((prev) => Math.max(prev - 1, 0))} disabled={singleIndex === 0}>
+            <Button onClick={handleSinglePrev} disabled={singleIndex === 0}>
               <ChevronLeft className="mr-1 h-4 w-4" />
               Prev
             </Button>
             <Button
-              onClick={() => setSingleIndex((prev) => Math.min(prev + 1, filteredCount - 1))}
+              onClick={handleSingleNext}
               disabled={singleIndex === filteredCount - 1}
             >
               Next
@@ -907,8 +967,51 @@ export default function QuestionBankContent() {
 
           {/* Desktop filter popovers */}
           <div className="hidden sm:flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-            {["exams", "subjects", "topics", "subtopics", "difficulties", "years", "types"].map(
-              (filterType) => (
+            {([
+              "exams",
+              "subjects",
+              "topics",
+              "subtopics",
+              "difficulties",
+              "years",
+              "types",
+            ] as FilterKey[]).map((filterType) => {
+              // If you're fetching difficulties from your API, you can special-case "difficulties" to use difficultyOptions
+              let filterValues: string[]
+              if (filterType === "difficulties" && difficultyOptions.length > 0) {
+                // Use the dynamic difficulty list
+                filterValues = difficultyOptions
+              } else {
+                // Default: gather from the question list
+                filterValues = Array.from(
+                  new Set(
+                    state.questions
+                      .map((q) => {
+                        switch (filterType) {
+                          case "exams":
+                            return q.exam
+                          case "subjects":
+                            return q.subject
+                          case "topics":
+                            return q.topic
+                          case "subtopics":
+                            return q.subtopic
+                          case "difficulties":
+                            return q.difficulty
+                          case "years":
+                            return q.year?.toString()
+                          case "types":
+                            return q.type
+                          default:
+                            return ""
+                        }
+                      })
+                      .filter(Boolean) as string[]
+                  )
+                )
+              }
+
+              return (
                 <Popover
                   key={filterType}
                   content={
@@ -919,40 +1022,15 @@ export default function QuestionBankContent() {
                         className="mb-2 dark:text-gray-100 dark:bg-gray-700 dark:placeholder-gray-400"
                       />
                       <div className="max-h-60 overflow-y-auto">
-                        {Array.from(
-                          new Set(
-                            state.questions
-                              .map((q) => {
-                                switch (filterType) {
-                                  case "exams":
-                                    return q.exam
-                                  case "subjects":
-                                    return q.subject
-                                  case "topics":
-                                    return q.topic
-                                  case "subtopics":
-                                    return q.subtopic
-                                  case "difficulties":
-                                    return q.difficulty
-                                  case "years":
-                                    return q.year?.toString()
-                                  case "types":
-                                    return q.type
-                                  default:
-                                    return ""
-                                }
-                              })
-                              .filter(Boolean) as string[]
-                          )
-                        ).map((value) => (
+                        {filterValues.map((value) => (
                           <div key={value} className="flex items-center">
                             <input
                               type="checkbox"
                               className="mr-2"
                               checked={(
-                                state.filters[filterType as FilterKey] as string[]
+                                state.filters[filterType] as string[]
                               ).includes(value)}
-                              onChange={() => handleFilterChange(filterType as FilterKey, value)}
+                              onChange={() => handleFilterChange(filterType, value)}
                             />
                             <label className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-700">
                               {value}
@@ -963,23 +1041,23 @@ export default function QuestionBankContent() {
                     </div>
                   }
                   align="start"
-                  openPopover={state.dropdowns[filterType as FilterKey]}
+                  openPopover={state.dropdowns[filterType]}
                   setOpenPopover={(open) => {
                     dispatch({
                       type: "SET_DROPDOWN",
-                      payload: { tag: filterType as FilterKey, value: !!open },
+                      payload: { tag: filterType, value: !!open },
                     })
                   }}
                 >
                   <button
-                    onClick={() => toggleFilterDropdown(filterType as FilterKey)}
+                    onClick={() => toggleFilterDropdown(filterType)}
                     className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 dark:border-gray-700 px-4 py-2 bg-white dark:bg-gray-800 transition-all duration-75 hover:border-gray-800 dark:hover:border-gray-500 focus:outline-none active:bg-gray-100 dark:active:bg-gray-700"
                   >
                     <p className="text-gray-600 dark:text-gray-300">
-                      {Array.isArray(state.filters[filterType as FilterKey]) &&
-                      (state.filters[filterType as FilterKey] as string[]).length
+                      {Array.isArray(state.filters[filterType]) &&
+                      (state.filters[filterType] as string[]).length
                         ? `${
-                            (state.filters[filterType as FilterKey] as string[]).length
+                            (state.filters[filterType] as string[]).length
                           } selected`
                         : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
                     </p>
@@ -987,7 +1065,7 @@ export default function QuestionBankContent() {
                   </button>
                 </Popover>
               )
-            )}
+            })}
           </div>
 
           <Card className="bg-gradient-to-br from-gray-200 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-gray-100 border-gray-200 dark:border-gray-700 mb-6">
@@ -1088,8 +1166,6 @@ export default function QuestionBankContent() {
                   selectedOption={state.selectedOptions[question.questionId]}
                   numericalAnswer={state.numericalAnswers[question.questionId]}
                   showMarkscheme={state.showMarkscheme[question.questionId]}
-
-                  // Pass real handlers for MCQ and numeric
                   handleOptionClick={handleOptionClick}
                   handleNumericalSubmit={handleNumericalSubmit}
                   handleNumericalChange={(qId, val) => {
@@ -1109,6 +1185,7 @@ export default function QuestionBankContent() {
                   }
                   handleMarkForReview={handleMarkForReview}
                   handleMarkComplete={handleMarkComplete}
+                  handleResetQuestion={handleResetQuestion}
                   isMarkedForReview={question.reviewed || false}
                   isMarkedComplete={question.completed || false}
                   markschemesDisabled={false}
@@ -1138,10 +1215,6 @@ export default function QuestionBankContent() {
   )
 }
 
-/**
- * FilterPanelMobile - a dedicated panel for mobile that allows the user
- * to select status, plus each exam/subject/etc. in a single place.
- */
 function FilterPanelMobile({
   state,
   dispatch,
