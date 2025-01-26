@@ -137,7 +137,7 @@ type FilterKey =
 type FiltersType = {
   [K in FilterKey]: string[]
 } & {
-  status: string // "all" | "review" | "complete" | "incomplete" or custom
+  status: string // "all" | "review" | "complete" | "review" | "incomplete" etc.
 }
 
 // The shape of "dropdowns"
@@ -403,7 +403,7 @@ export default function QuestionBankContent() {
   const filteredQuestions = useMemo(() => {
     const search = state.searchQuery.toLowerCase()
     return state.questions.filter((q) => {
-      // naive fuzzy match on text, topic, subject, exam
+      // naive fuzzy match on text, topic, subject, exam, title
       const textFields = [q.text, q.topic, q.subtopic, q.subject, q.exam, q.title]
       const matchesSearch = textFields.some(
         (field) => field && fuzzyContains(field, search)
@@ -412,7 +412,6 @@ export default function QuestionBankContent() {
       // check filters
       let matchesFilters = true
 
-      // for each array-based filter
       if (state.filters.exams.length && q.exam && !state.filters.exams.includes(q.exam)) {
         matchesFilters = false
       }
@@ -439,11 +438,7 @@ export default function QuestionBankContent() {
       if (state.filters.types.length && q.type && !state.filters.types.includes(q.type)) {
         matchesFilters = false
       }
-      if (
-        state.filters.years.length &&
-        q.year &&
-        !state.filters.years.includes(q.year.toString())
-      ) {
+      if (state.filters.years.length && q.year && !state.filters.years.includes(q.year.toString())) {
         matchesFilters = false
       }
 
@@ -606,7 +601,7 @@ export default function QuestionBankContent() {
     )
   }
 
-  // SINGLE layout
+  // SINGLE layout for small screens or user choice
   if (viewMode === ViewMode.SINGLE) {
     if (filteredQuestions.length === 0) {
       return (
@@ -651,7 +646,7 @@ export default function QuestionBankContent() {
               </DialogContent>
             </Dialog>
 
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-gray-500 dark:text-gray-400">
               {singleIndex + 1} / {filteredQuestions.length}
             </span>
           </div>
@@ -717,7 +712,7 @@ export default function QuestionBankContent() {
     )
   }
 
-  // LIST layout
+  // LIST layout for desktop or user choice
   return (
     <TooltipProvider>
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -750,7 +745,10 @@ export default function QuestionBankContent() {
             <div className="block sm:hidden">
               <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
                 <DialogTrigger asChild>
-                  <Button variant="outline" className="dark:border-gray-700 dark:hover:border-gray-500 dark:text-gray-100 flex items-center">
+                  <Button
+                    variant="outline"
+                    className="dark:border-gray-700 dark:hover:border-gray-500 dark:text-gray-100 flex items-center"
+                  >
                     <Filter className="mr-2 h-4 w-4" />
                     Filters
                   </Button>
@@ -768,6 +766,7 @@ export default function QuestionBankContent() {
               </Dialog>
             </div>
 
+            {/* Desktop question navigator */}
             <Dialog>
               <DialogTrigger asChild>
                 <Button
