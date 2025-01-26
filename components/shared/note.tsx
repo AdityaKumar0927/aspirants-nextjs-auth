@@ -10,7 +10,6 @@ import React, {
   TouchEvent,
 } from "react"
 import { useForm, Controller } from "react-hook-form"
-import { motion, AnimatePresence } from "framer-motion"
 import { toast } from "sonner"
 import {
   BoldIcon,
@@ -18,64 +17,55 @@ import {
   UnderlineIcon,
   ListIcon,
   ListOrderedIcon,
+  Heading1Icon,
+  Heading2Icon,
+  Heading3Icon,
+  MoreHorizontalIcon,
   PencilIcon,
-  ImageIcon,
-  Mic,
-  MicOff,
-  Loader2Icon,
-  Edit2Icon,
-  EraserIcon,
   Square,
   Circle,
-  Trash2Icon,
+  EraserIcon,
+  Mic,
+  MicOff,
 } from "lucide-react"
 
+// shadcn/ui (or your UI library) components
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Toggle } from "@/components/ui/toggle"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import {
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
 } from "@/components/ui/tabs"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import { Skeleton } from "@/components/ui/skeleton"
 
 // Tiptap
 import { useEditor, EditorContent } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import Underline from "@tiptap/extension-underline"
+import Image from "@tiptap/extension-image"
+import Heading from "@tiptap/extension-heading"
 
 // TYPES
-type NoteType = "TEXT" | "IMAGE" | "STYLUS" | "VOICE"
-
-type Note = {
-  id: string
+interface DocFormValues {
   title: string
   content: string
-  type: NoteType
-  createdAt: string
-  updatedAt: string
-  userId: string
-  questionId: string | null
-  audio?: string
+  stylusData?: string
+  voiceTranscript?: string
+  voiceAudio?: string
 }
 
-// CONSTANTS
-const CACHE_KEY = "notes_cache"
-const API_RATE_LIMIT = 5000 // 5 seconds
-
 /* ------------------------------------------------------------------
-   SPEECH RECOGNITION (TRANSCRIPTION)
+   SPEECH RECOGNITION
 ------------------------------------------------------------------ */
 const useSpeechRecognition = () => {
   const [transcript, setTranscript] = useState("")
@@ -102,7 +92,7 @@ const useSpeechRecognition = () => {
 
       recognitionRef.current.start()
     } else {
-      toast.error("Speech recognition not supported by this browser.")
+      toast.error("Browser does not support speech recognition.")
     }
   }, [])
 
@@ -126,7 +116,7 @@ const useSpeechRecognition = () => {
 }
 
 /* ------------------------------------------------------------------
-   AUDIO RECORDER (For Voice Notes)
+   AUDIO RECORDER
 ------------------------------------------------------------------ */
 const useAudioRecorder = () => {
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null)
@@ -167,7 +157,7 @@ const useAudioRecorder = () => {
       recorder.start()
       setMediaRecorder(recorder)
     } catch (error) {
-      toast.error("Error accessing mic for recording.")
+      toast.error("Unable to access microphone.")
     }
   }
 
@@ -191,98 +181,145 @@ const useAudioRecorder = () => {
 }
 
 /* ------------------------------------------------------------------
-   TIPTAP MENUBAR (For text formatting)
+   STYLUS DRAWING
 ------------------------------------------------------------------ */
-const MenuBar = ({ editor }: { editor: any }) => {
-  if (!editor) return null
+type ShapeTool = "pen" | "square" | "circle"
 
-  return (
-    <div className="mb-3 flex items-center space-x-2">
-      <Toggle
-        pressed={editor.isActive("bold")}
-        onPressedChange={() => editor.chain().focus().toggleBold().run()}
-      >
-        <BoldIcon className="h-4 w-4" />
-      </Toggle>
-      <Toggle
-        pressed={editor.isActive("italic")}
-        onPressedChange={() => editor.chain().focus().toggleItalic().run()}
-      >
-        <ItalicIcon className="h-4 w-4" />
-      </Toggle>
-      <Toggle
-        pressed={editor.isActive("underline")}
-        onPressedChange={() => editor.chain().focus().toggleUnderline().run()}
-      >
-        <UnderlineIcon className="h-4 w-4" />
-      </Toggle>
-      <Toggle
-        pressed={editor.isActive("bulletList")}
-        onPressedChange={() => editor.chain().focus().toggleBulletList().run()}
-      >
-        <ListIcon className="h-4 w-4" />
-      </Toggle>
-      <Toggle
-        pressed={editor.isActive("orderedList")}
-        onPressedChange={() =>
-          editor.chain().focus().toggleOrderedList().run()
-        }
-      >
-        <ListOrderedIcon className="h-4 w-4" />
-      </Toggle>
-    </div>
+const useCanvasDrawing = () => {
+  const [isDrawing, setIsDrawing] = useState(false)
+  const [penColor, setPenColor] = useState("#000000")
+  const [penSize, setPenSize] = useState(3)
+  const [shape, setShape] = useState<ShapeTool>("pen")
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  const startDrawing = useCallback(
+    (e: MouseEvent<HTMLCanvasElement> | TouchEvent<HTMLCanvasElement>) => {
+      setIsDrawing(true)
+      draw(e)
+    },
+    []
   )
+
+  const stopDrawing = useCallback(() => {
+    setIsDrawing(false)
+    if (canvasRef.current) {
+      const ctx = canvasRef.current.getContext("2d")
+      ctx?.beginPath()
+    }
+  }, [])
+
+  const clearCanvas = useCallback(() => {
+    if (canvasRef.current) {
+      const ctx = canvasRef.current.getContext("2d")
+      ctx?.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height)
+    }
+  }, [])
+
+  // The actual drawing function
+  const draw = useCallback(
+    (e: MouseEvent<HTMLCanvasElement> | TouchEvent<HTMLCanvasElement>) => {
+      if (!isDrawing || !canvasRef.current) return
+      const ctx = canvasRef.current.getContext("2d")
+      if (!ctx) return
+
+      const rect = canvasRef.current.getBoundingClientRect()
+      const scaleX = canvasRef.current.width / rect.width
+      const scaleY = canvasRef.current.height / rect.height
+
+      let x: number
+      let y: number
+      if ("touches" in e) {
+        x = (e.touches[0].clientX - rect.left) * scaleX
+        y = (e.touches[0].clientY - rect.top) * scaleY
+      } else {
+        x = ((e as MouseEvent).clientX - rect.left) * scaleX
+        y = ((e as MouseEvent).clientY - rect.top) * scaleY
+      }
+
+      ctx.strokeStyle = penColor
+      ctx.lineWidth = penSize
+      ctx.lineCap = "round"
+
+      if (shape === "pen") {
+        ctx.lineTo(x, y)
+        ctx.stroke()
+        ctx.beginPath()
+        ctx.moveTo(x, y)
+      } else if (shape === "square") {
+        ctx.strokeRect(x - penSize / 2, y - penSize / 2, penSize, penSize)
+      } else if (shape === "circle") {
+        ctx.beginPath()
+        ctx.arc(x, y, penSize / 2, 0, Math.PI * 2)
+        ctx.stroke()
+      }
+    },
+    [isDrawing, penColor, penSize, shape]
+  )
+
+  return {
+    canvasRef,
+    penColor,
+    setPenColor,
+    penSize,
+    setPenSize,
+    shape,
+    setShape,
+    startDrawing,
+    stopDrawing,
+    draw,
+    clearCanvas,
+  }
 }
 
 /* ------------------------------------------------------------------
-   MAIN COMPONENT (Vercel-like Minimal Style)
+   MAIN COMPONENT (WITHOUT TEXT ALIGN EXTENSION)
 ------------------------------------------------------------------ */
-export default function VercelStyleNoteApp({ questionId }: { questionId?: string }) {
-  const [notes, setNotes] = useState<Note[]>([])
-  const [editingNote, setEditingNote] = useState<Note | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const [searchTerm, setSearchTerm] = useState("")
-  const [isDrawing, setIsDrawing] = useState(false)
-  const [penColor, setPenColor] = useState("#000")
-  const [penSize, setPenSize] = useState(2)
-  const [currentShape, setCurrentShape] = useState<"pen" | "square" | "circle">("pen")
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
-  const [noteToDelete, setNoteToDelete] = useState<Note | null>(null)
-  const [lastApiCall, setLastApiCall] = useState(0)
+export default function WordLikeEditorNoTextAlign() {
+  const [darkMode, setDarkMode] = useState(false)
 
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-
-  // FORM
-  const {
-    control,
-    handleSubmit,
-    reset,
-    watch,
-    setValue,
-  } = useForm<{
-    title: string
-    content: string
-    type: NoteType
-    audio?: string
-  }>({
+  // React Hook Form
+  const { control, handleSubmit, reset, setValue, watch } = useForm<DocFormValues>({
     defaultValues: {
-      title: "",
+      title: "Untitled Document",
       content: "",
-      type: "TEXT",
-      audio: "",
+      stylusData: "",
+      voiceTranscript: "",
+      voiceAudio: "",
     },
   })
+  const docTitle = watch("title")
 
-  const noteType = watch("type")
-
-  // TIPTAP
+  // TIPTAP Editor
   const editor = useEditor({
-    extensions: [StarterKit, Underline],
+    extensions: [
+      StarterKit,
+      Underline,
+      Image.configure({ inline: false }),
+      Heading.configure({ levels: [1, 2, 3] }),
+      // No text alignment extension used here
+    ],
     content: "",
     onUpdate: ({ editor }) => {
       setValue("content", editor.getHTML())
     },
   })
+
+  // HEADINGS
+  const toggleHeading = (level: 1 | 2 | 3) => {
+    if (!editor) return
+    editor.chain().focus().toggleHeading({ level }).run()
+  }
+
+  // Insert image
+  const handleInsertImage = (file: File) => {
+    if (!editor || !file) return
+    const reader = new FileReader()
+    reader.onload = () => {
+      const url = reader.result as string
+      editor.chain().focus().setImage({ src: url }).run()
+    }
+    reader.readAsDataURL(file)
+  }
 
   // SPEECH RECOGNITION
   const {
@@ -303,627 +340,376 @@ export default function VercelStyleNoteApp({ questionId }: { questionId?: string
     resetRecording,
   } = useAudioRecorder()
 
-  // Fetch
-  const fetchNotes = useCallback(async () => {
-    const now = Date.now()
-    if (now - lastApiCall < API_RATE_LIMIT) {
-      const cached = localStorage.getItem(CACHE_KEY)
-      if (cached) setNotes(JSON.parse(cached))
-      return
-    }
-
-    setIsLoading(true)
-    try {
-      let url = "/api/notes"
-      if (questionId) url += `/question?questionId=${questionId}`
-      const resp = await fetch(url)
-      if (!resp.ok) throw new Error("Failed to fetch.")
-      const data = await resp.json()
-      setNotes(Array.isArray(data) ? data : [])
-      localStorage.setItem(CACHE_KEY, JSON.stringify(data))
-      setLastApiCall(now)
-    } catch (error) {
-      toast.error("Could not load notes.")
-    } finally {
-      setIsLoading(false)
-    }
-  }, [questionId, lastApiCall])
-
+  // Keep transcript in form if needed
   useEffect(() => {
-    const cache = localStorage.getItem(CACHE_KEY)
-    if (cache) setNotes(JSON.parse(cache))
-    fetchNotes()
-  }, [fetchNotes])
+    setValue("voiceTranscript", transcript)
+  }, [transcript, setValue])
 
-  useEffect(() => {
-    if (noteType === "VOICE") {
-      setValue("content", transcript)
-    }
-  }, [transcript, noteType, setValue])
+  // STYLUS DRAWING
+  const {
+    canvasRef,
+    penColor,
+    setPenColor,
+    penSize,
+    setPenSize,
+    shape,
+    setShape,
+    startDrawing,
+    stopDrawing,
+    draw,
+    clearCanvas,
+  } = useCanvasDrawing()
 
-  // SUBMIT
-  const onSubmit = async (data: {
-    title: string
-    content: string
-    type: NoteType
-    audio?: string
-  }) => {
-    const now = Date.now()
-    if (now - lastApiCall < API_RATE_LIMIT) {
-      toast.error("Please wait before submitting again.")
-      return
-    }
-
-    setIsLoading(true)
-    try {
-      let noteContent = data.content
-      let noteAudio = data.audio || ""
-
-      if (data.type === "STYLUS" && canvasRef.current) {
-        noteContent = canvasRef.current.toDataURL()
-      } else if (data.type === "TEXT") {
-        noteContent = editor?.getHTML() || ""
-      } else if (data.type === "VOICE") {
-        noteAudio = audioURL
-      }
-
-      // Basic validation for text/voice
-      if ((data.type === "TEXT" || data.type === "VOICE") && !noteContent.trim()) {
-        throw new Error("Cannot be empty.")
-      }
-
-      const noteData = {
-        title: data.title.trim() || "Untitled",
-        content: noteContent,
-        type: data.type,
-        questionId: questionId || null,
-        audio: noteAudio,
-      }
-
-      const url = editingNote ? `/api/notes/${editingNote.id}` : "/api/notes"
-      const method = editingNote ? "PUT" : "POST"
-
-      const resp = await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(noteData),
-      })
-      if (!resp.ok) {
-        const errData = await resp.json()
-        throw new Error(errData.error || "Error saving note.")
-      }
-
-      const savedNote = await resp.json()
-      setNotes((prev) => {
-        const updated = editingNote
-          ? prev.map((n) => (n.id === savedNote.id ? savedNote : n))
-          : [savedNote, ...prev]
-        localStorage.setItem(CACHE_KEY, JSON.stringify(updated))
-        return updated
-      })
-
-      setLastApiCall(now)
-      toast.success(editingNote ? "Note updated" : "Note added")
-      reset({ title: "", content: "", type: "TEXT", audio: "" })
-      editor?.commands.setContent("")
-      resetTranscript()
-      resetRecording()
-      clearCanvas()
-      setEditingNote(null)
-    } catch (error: any) {
-      toast.error(error.message || "Failed to save note.")
-    } finally {
-      setIsLoading(false)
-    }
+  const handleInsertDrawing = () => {
+    const dataURL = canvasRef.current?.toDataURL()
+    if (!dataURL || !editor) return
+    editor.chain().focus().setImage({ src: dataURL }).run()
+    toast("Drawing inserted!")
   }
 
-  // DELETE
-  const deleteNote = async (note: Note) => {
-    const now = Date.now()
-    if (now - lastApiCall < API_RATE_LIMIT) {
-      toast.error("Please wait before deleting again.")
-      return
-    }
-    setIsLoading(true)
-    try {
-      const resp = await fetch(`/api/notes/${note.id}`, { method: "DELETE" })
-      if (!resp.ok) throw new Error("Delete failed.")
-      setNotes((prev) => {
-        const updated = prev.filter((n) => n.id !== note.id)
-        localStorage.setItem(CACHE_KEY, JSON.stringify(updated))
-        return updated
-      })
-      setLastApiCall(now)
-      toast("Note deleted.")
-    } catch (error) {
-      toast.error("Failed to delete.")
-    } finally {
-      setIsLoading(false)
-      setIsDeleteModalOpen(false)
-      setNoteToDelete(null)
-    }
-  }
-
-  // EDIT
-  const handleEdit = (note: Note) => {
-    setEditingNote(note)
-    reset({
-      title: note.title,
-      content: note.content,
-      type: note.type,
-      audio: note.audio || "",
-    })
-    if (note.type === "STYLUS" && canvasRef.current) {
-      clearCanvas()
-      const ctx = canvasRef.current.getContext("2d")
-      if (!ctx) return
-      const img = new Image()
-      img.onload = () => ctx.drawImage(img, 0, 0)
-      img.src = note.content
-    } else if (note.type === "TEXT") {
-      editor?.commands.setContent(note.content)
-    }
-  }
-
-  // FILTER
-  const filteredNotes = notes.filter((n) => {
-    const t = searchTerm.toLowerCase()
-    return n.title.toLowerCase().includes(t) || n.content.toLowerCase().includes(t)
+  // SAVE / LOAD (localStorage)
+  const onSaveDoc = handleSubmit((vals) => {
+    localStorage.setItem("my_doc", JSON.stringify(vals))
+    toast.success("Document saved!")
   })
-
-  // STYLUS
-  const startDrawing = (
-    e: MouseEvent<HTMLCanvasElement> | TouchEvent<HTMLCanvasElement>
-  ) => {
-    setIsDrawing(true)
-    draw(e)
-  }
-  const stopDrawing = () => {
-    setIsDrawing(false)
-    canvasRef.current?.getContext("2d")?.beginPath()
-  }
-  const draw = (
-    e: MouseEvent<HTMLCanvasElement> | TouchEvent<HTMLCanvasElement>
-  ) => {
-    if (!isDrawing || !canvasRef.current) return
-    const ctx = canvasRef.current.getContext("2d")
-    if (!ctx) return
-    const rect = canvasRef.current.getBoundingClientRect()
-    const scaleX = canvasRef.current.width / rect.width
-    const scaleY = canvasRef.current.height / rect.height
-
-    let x: number
-    let y: number
-    if ("touches" in e) {
-      x = (e.touches[0].clientX - rect.left) * scaleX
-      y = (e.touches[0].clientY - rect.top) * scaleY
+  const onLoadDoc = () => {
+    const data = localStorage.getItem("my_doc")
+    if (data) {
+      const doc = JSON.parse(data) as DocFormValues
+      reset(doc)
+      editor?.commands.setContent(doc.content)
+      toast("Loaded saved doc.")
     } else {
-      x = ((e as MouseEvent).clientX - rect.left) * scaleX
-      y = ((e as MouseEvent).clientY - rect.top) * scaleY
-    }
-
-    ctx.strokeStyle = penColor
-    ctx.lineWidth = penSize
-    ctx.lineCap = "round"
-
-    if (currentShape === "pen") {
-      ctx.lineTo(x, y)
-      ctx.stroke()
-      ctx.beginPath()
-      ctx.moveTo(x, y)
-    } else if (currentShape === "square") {
-      ctx.strokeRect(x - penSize / 2, y - penSize / 2, penSize, penSize)
-    } else if (currentShape === "circle") {
-      ctx.beginPath()
-      ctx.arc(x, y, penSize / 2, 0, Math.PI * 2)
-      ctx.stroke()
-    }
-  }
-  const clearCanvas = () => {
-    if (canvasRef.current) {
-      const ctx = canvasRef.current.getContext("2d")
-      ctx?.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height)
+      toast.error("No saved document found.")
     }
   }
 
-  // RENDER
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white">
-      {/* HEADER */}
-      <header className="border-b border-neutral-800 px-6 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <h1 className="text-xl font-bold">Notes</h1>
-          {questionId && (
-            <span className="text-sm text-neutral-400">Q#{questionId}</span>
-          )}
-        </div>
-        <Input
-          placeholder="Search..."
-          className="bg-neutral-900 text-sm text-white placeholder:text-neutral-500 border-0 focus:outline-none px-3 py-1.5"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </header>
-
-      {/* BODY */}
-      <div className="flex flex-1 overflow-hidden">
-        {/* SIDEBAR - LIST OF NOTES */}
-        <aside className="border-r border-neutral-800 hidden md:block w-64 p-4 overflow-auto">
-          <h2 className="font-semibold mb-3">Your Notes</h2>
-          <div className="space-y-2">
-            <AnimatePresence>
-              {isLoading
-                ? Array.from({ length: 3 }).map((_, i) => (
-                    <motion.div
-                      key={`skel-${i}`}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                    >
-                      <Skeleton className="h-8 w-full bg-neutral-800 rounded" />
-                    </motion.div>
-                  ))
-                : filteredNotes.length === 0
-                ? (
-                  <motion.div
-                    key="no-notes"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="text-sm text-neutral-500"
-                  >
-                    No notes found.
-                  </motion.div>
-                ) : (
-                  filteredNotes.map((note) => (
-                    <motion.div
-                      key={note.id}
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 8 }}
-                      className="p-2 border border-neutral-800 rounded hover:border-neutral-600 transition-colors cursor-pointer"
-                      onClick={() => handleEdit(note)}
-                    >
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="truncate">{note.title || "Untitled"}</span>
-                        {note.type === "TEXT" && (
-                          <Edit2Icon className="h-4 w-4 text-neutral-400" />
-                        )}
-                        {note.type === "IMAGE" && (
-                          <ImageIcon className="h-4 w-4 text-neutral-400" />
-                        )}
-                        {note.type === "STYLUS" && (
-                          <PencilIcon className="h-4 w-4 text-neutral-400" />
-                        )}
-                        {note.type === "VOICE" && (
-                          <Mic className="h-4 w-4 text-neutral-400" />
-                        )}
-                      </div>
-                      <div className="text-xs text-neutral-500">
-                        {new Date(note.updatedAt).toLocaleString()}
-                      </div>
-                    </motion.div>
-                  ))
-                )}
-            </AnimatePresence>
+    <div className={darkMode ? "dark" : ""}>
+      <div className="min-h-screen bg-gray-100 text-gray-900 dark:bg-neutral-900 dark:text-gray-100 flex flex-col">
+        
+        {/* HEADER: Title + Save/Load + Dark mode toggle */}
+        <div className="flex items-center justify-between bg-white dark:bg-neutral-800 border-b border-gray-300 dark:border-neutral-700 p-3">
+          <div className="flex items-center gap-2">
+            <Controller
+              name="title"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  className="text-lg font-semibold border-0 focus:ring-0 bg-transparent p-0"
+                />
+              )}
+            />
           </div>
-        </aside>
+          <div className="flex items-center gap-2">
+            <Button variant="outline" onClick={() => setDarkMode(!darkMode)}>
+              {darkMode ? "Light Mode" : "Dark Mode"}
+            </Button>
+            <Button variant="secondary" onClick={onLoadDoc}>
+              Load
+            </Button>
+            <Button variant="default" onClick={onSaveDoc}>
+              Save
+            </Button>
+          </div>
+        </div>
 
-        {/* MAIN EDITOR */}
-        <main className="flex-1 overflow-auto p-4 md:p-6 lg:p-8">
-          <motion.div
-            layout
-            className="max-w-2xl mx-auto w-full border border-neutral-800 rounded p-4"
-          >
-            <h2 className="text-lg font-semibold mb-1">
-              {editingNote ? "Edit Note" : "Create Note"}
-            </h2>
-            <p className="text-sm text-neutral-500 mb-4">
-              {questionId ? `Question #${questionId}` : "Write or draw something."}
-            </p>
-
-            <form
-              onSubmit={handleSubmit((data) => {
-                if (data.type !== "STYLUS" && !data.content.trim()) {
-                  toast.error("Content cannot be empty.")
-                  return
-                }
-                onSubmit(data)
-              })}
+        {/* RIBBON with headings, bold, italic, underline, lists, insert menu */}
+        <div className="bg-white dark:bg-neutral-800 border-b border-gray-300 dark:border-neutral-700 px-3 py-2 flex flex-wrap items-center gap-2">
+          
+          {/* HEADINGS */}
+          <div className="flex items-center gap-1">
+            <Toggle
+              pressed={editor?.isActive("heading", { level: 1 })}
+              onPressedChange={() => toggleHeading(1)}
             >
-              {/* TITLE */}
-              <Label className="block mb-1">Title</Label>
-              <Controller
-                name="title"
-                control={control}
-                rules={{ required: "Title is required." }}
-                render={({ field, fieldState }) => (
-                  <>
-                    <Input
-                      {...field}
-                      className="w-full bg-neutral-900 text-white mb-3"
-                      placeholder="Note title"
-                    />
-                    {fieldState.error && (
-                      <span className="text-red-400 text-sm">
-                        {fieldState.error.message}
-                      </span>
-                    )}
-                  </>
-                )}
-              />
+              <Heading1Icon className="h-5 w-5" />
+            </Toggle>
+            <Toggle
+              pressed={editor?.isActive("heading", { level: 2 })}
+              onPressedChange={() => toggleHeading(2)}
+            >
+              <Heading2Icon className="h-5 w-5" />
+            </Toggle>
+            <Toggle
+              pressed={editor?.isActive("heading", { level: 3 })}
+              onPressedChange={() => toggleHeading(3)}
+            >
+              <Heading3Icon className="h-5 w-5" />
+            </Toggle>
+          </div>
 
-              {/* TABS */}
-              <Tabs value={noteType} onValueChange={(val) => setValue("type", val as NoteType)}>
-                <TabsList className="bg-neutral-900 text-white mb-3">
-                  <TabsTrigger value="TEXT">Text</TabsTrigger>
-                  <TabsTrigger value="IMAGE">Image</TabsTrigger>
-                  <TabsTrigger value="STYLUS">Stylus</TabsTrigger>
-                  <TabsTrigger value="VOICE">Voice</TabsTrigger>
-                </TabsList>
+          {/* BASIC STYLES: B, I, U */}
+          <div className="flex items-center gap-1">
+            <Toggle
+              pressed={editor?.isActive("bold")}
+              onPressedChange={() => editor?.chain().focus().toggleBold().run()}
+            >
+              <BoldIcon className="h-4 w-4" />
+            </Toggle>
+            <Toggle
+              pressed={editor?.isActive("italic")}
+              onPressedChange={() =>
+                editor?.chain().focus().toggleItalic().run()
+              }
+            >
+              <ItalicIcon className="h-4 w-4" />
+            </Toggle>
+            <Toggle
+              pressed={editor?.isActive("underline")}
+              onPressedChange={() =>
+                editor?.chain().focus().toggleUnderline().run()
+              }
+            >
+              <UnderlineIcon className="h-4 w-4" />
+            </Toggle>
+          </div>
 
-                {/* TEXT */}
-                <TabsContent value="TEXT">
-                  <MenuBar editor={editor} />
-                  <div className="border border-neutral-800 rounded p-2">
-                    <EditorContent editor={editor} />
-                  </div>
-                </TabsContent>
+          {/* LISTS */}
+          <div className="flex items-center gap-1">
+            <Toggle
+              pressed={editor?.isActive("bulletList")}
+              onPressedChange={() =>
+                editor?.chain().focus().toggleBulletList().run()
+              }
+            >
+              <ListIcon className="h-4 w-4" />
+            </Toggle>
+            <Toggle
+              pressed={editor?.isActive("orderedList")}
+              onPressedChange={() =>
+                editor?.chain().focus().toggleOrderedList().run()
+              }
+            >
+              <ListOrderedIcon className="h-4 w-4" />
+            </Toggle>
+          </div>
 
-                {/* IMAGE */}
-                <TabsContent value="IMAGE">
-                  <Input
-                    type="file"
-                    accept="image/*"
-                    className="bg-neutral-900 text-white mt-2"
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                      const file = e.target.files?.[0]
-                      if (file) {
-                        const reader = new FileReader()
-                        reader.onloadend = () => {
-                          setValue("content", reader.result as string)
-                        }
-                        reader.readAsDataURL(file)
-                      }
-                    }}
-                  />
-                </TabsContent>
+          {/* INSERT MENU */}
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="outline" className="flex items-center gap-1 text-sm">
+                <MoreHorizontalIcon className="h-4 w-4" />
+                Insert
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-xl bg-white dark:bg-neutral-800 dark:text-gray-100">
+              <DialogHeader>
+                <DialogTitle>Insert Options</DialogTitle>
+                <DialogDescription>Add images, drawings, or voice</DialogDescription>
+              </DialogHeader>
 
-                {/* STYLUS */}
-                <TabsContent value="STYLUS">
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button variant="outline" className="mt-2 text-sm">
-                        Open Canvas
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="border border-neutral-700 bg-neutral-900 text-white max-w-3xl w-full">
-                      <DialogHeader>
-                        <DialogTitle>Draw</DialogTitle>
-                        <DialogDescription>Use your mouse or stylus.</DialogDescription>
-                      </DialogHeader>
-                      <div className="mt-4 space-y-4">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <Toggle
-                            pressed={currentShape === "pen"}
-                            onPressedChange={() => setCurrentShape("pen")}
-                          >
-                            <PencilIcon className="h-4 w-4" />
-                          </Toggle>
-                          <Toggle
-                            pressed={currentShape === "square"}
-                            onPressedChange={() => setCurrentShape("square")}
-                          >
-                            <Square className="h-4 w-4" />
-                          </Toggle>
-                          <Toggle
-                            pressed={currentShape === "circle"}
-                            onPressedChange={() => setCurrentShape("circle")}
-                          >
-                            <Circle className="h-4 w-4" />
-                          </Toggle>
-                          <Input
-                            type="color"
-                            value={penColor}
-                            onChange={(e) => setPenColor(e.target.value)}
-                            className="w-8 h-8 p-0"
-                          />
-                          <Input
-                            type="range"
-                            min={1}
-                            max={20}
-                            value={penSize}
-                            onChange={(e) => setPenSize(parseInt(e.target.value))}
-                            className="w-28"
-                          />
-                          <Button
-                            variant="outline"
-                            className="text-sm"
-                            onClick={clearCanvas}
-                          >
-                            <EraserIcon className="h-4 w-4 mr-2" />
-                            Clear
-                          </Button>
-                        </div>
-                        <canvas
-                          ref={canvasRef}
-                          width={800}
-                          height={400}
-                          className="border border-neutral-700 w-full"
-                          onMouseDown={startDrawing}
-                          onMouseUp={stopDrawing}
-                          onMouseOut={stopDrawing}
-                          onMouseMove={draw}
-                          onTouchStart={startDrawing}
-                          onTouchEnd={stopDrawing}
-                          onTouchMove={draw}
+              {/* Insert Image */}
+              <div className="border-b border-gray-300 dark:border-neutral-600 py-3">
+                <label className="block text-sm font-semibold mb-2">Image</label>
+                <Input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    const file = e.target.files?.[0]
+                    if (file) {
+                      handleInsertImage(file)
+                      toast.success("Image inserted!")
+                    }
+                  }}
+                />
+              </div>
+
+              {/* Stylus Drawing */}
+              <div className="border-b border-gray-300 dark:border-neutral-600 py-3">
+                <label className="block text-sm font-semibold mb-2">
+                  Stylus Drawing
+                </label>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="outline" size="sm">
+                      Open Drawing Canvas
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-3xl bg-white dark:bg-neutral-800 dark:text-gray-100">
+                    <DialogHeader>
+                      <DialogTitle>Drawing Canvas</DialogTitle>
+                    </DialogHeader>
+                    <div className="p-2 space-y-4">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <Toggle
+                          pressed={shape === "pen"}
+                          onPressedChange={() => setShape("pen")}
+                        >
+                          <PencilIcon className="h-4 w-4" />
+                        </Toggle>
+                        <Toggle
+                          pressed={shape === "square"}
+                          onPressedChange={() => setShape("square")}
+                        >
+                          <Square className="h-4 w-4" />
+                        </Toggle>
+                        <Toggle
+                          pressed={shape === "circle"}
+                          onPressedChange={() => setShape("circle")}
+                        >
+                          <Circle className="h-4 w-4" />
+                        </Toggle>
+                        <Input
+                          type="color"
+                          value={penColor}
+                          onChange={(e) => setPenColor(e.target.value)}
+                          className="w-10 h-10 p-0"
                         />
+                        <Input
+                          type="range"
+                          min={1}
+                          max={20}
+                          value={penSize}
+                          onChange={(e) => setPenSize(parseInt(e.target.value))}
+                          className="w-32"
+                        />
+                        <Button variant="outline" size="sm" onClick={clearCanvas}>
+                          <EraserIcon className="h-4 w-4 mr-1" />
+                          Clear
+                        </Button>
                       </div>
-                    </DialogContent>
-                  </Dialog>
-                </TabsContent>
-
-                {/* VOICE */}
-                <TabsContent value="VOICE">
-                  {/* Transcription */}
-                  <div className="mt-2">
-                    <Label className="mb-1">Transcription</Label>
-                    <div className="flex gap-2 mb-2">
+                      <canvas
+                        ref={canvasRef}
+                        className="border w-full h-[400px]"
+                        width={800}
+                        height={400}
+                        onMouseDown={startDrawing}
+                        onMouseUp={stopDrawing}
+                        onMouseOut={stopDrawing}
+                        onMouseMove={(e) => e.buttons === 1 && draw(e)}
+                        onTouchStart={startDrawing}
+                        onTouchEnd={stopDrawing}
+                        onTouchMove={draw}
+                      />
                       <Button
-                        onClick={startListening}
-                        disabled={listening}
-                        className="text-sm"
+                        variant="default"
+                        size="sm"
+                        onClick={() => {
+                          handleInsertDrawing()
+                          toast("Drawing inserted!")
+                        }}
                       >
-                        <Mic className="mr-2 h-4 w-4" />
+                        Insert Drawing
+                      </Button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </div>
+
+              {/* Voice */}
+              <div className="py-3">
+                <label className="block text-sm font-semibold mb-2">Voice Note</label>
+                <Tabs defaultValue="transcription">
+                  <TabsList className="mb-2">
+                    <TabsTrigger value="transcription">Transcription</TabsTrigger>
+                    <TabsTrigger value="audio">Audio</TabsTrigger>
+                  </TabsList>
+                  <TabsContent value="transcription">
+                    {!browserSupportsSpeechRecognition && (
+                      <p className="text-sm text-red-500">
+                        This browser does not support speech recognition.
+                      </p>
+                    )}
+                    <div className="flex gap-2 mb-2">
+                      <Button onClick={startListening} disabled={listening} size="sm">
+                        <Mic className="h-4 w-4 mr-1" />
                         {listening ? "Listening..." : "Start"}
                       </Button>
                       <Button
                         onClick={stopListening}
                         disabled={!listening}
                         variant="outline"
-                        className="text-sm"
+                        size="sm"
                       >
-                        <MicOff className="mr-2 h-4 w-4" />
+                        <MicOff className="h-4 w-4 mr-1" />
                         Stop
                       </Button>
-                      <Button
-                        onClick={resetTranscript}
-                        variant="outline"
-                        className="text-sm"
-                      >
+                      <Button onClick={resetTranscript} variant="outline" size="sm">
                         Reset
                       </Button>
                     </div>
-                    <div className="min-h-[60px] border border-neutral-800 rounded p-2 text-sm text-neutral-200">
-                      {transcript || "Your transcription here..."}
-                    </div>
-                    {!browserSupportsSpeechRecognition && (
-                      <p className="text-red-400 text-sm mt-2">
-                        Browser not supported.
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Audio Recording */}
-                  <div className="mt-4">
-                    <Label className="mb-1">Audio Recording</Label>
+                    <textarea
+                      className="w-full h-24 p-2 border rounded text-sm"
+                      value={transcript}
+                      onChange={(e) => setValue("voiceTranscript", e.target.value)}
+                    />
+                    <Button
+                      variant="default"
+                      size="sm"
+                      className="mt-2"
+                      onClick={() => {
+                        if (!transcript) {
+                          toast.error("No transcription to insert.")
+                          return
+                        }
+                        // Insert transcript into Tiptap
+                        editor?.chain().focus().insertContent(transcript).run()
+                        toast.success("Transcript inserted!")
+                      }}
+                    >
+                      Insert Transcript
+                    </Button>
+                  </TabsContent>
+                  <TabsContent value="audio">
                     <div className="flex gap-2 mb-2">
                       {!isRecording ? (
-                        <Button onClick={startRecording} className="text-sm">
-                          <Mic className="mr-2 h-4 w-4" />
-                          Record Audio
+                        <Button onClick={startRecording} size="sm">
+                          <Mic className="h-4 w-4 mr-1" />
+                          Record
                         </Button>
                       ) : (
-                        <Button
-                          variant="destructive"
-                          onClick={stopRecording}
-                          className="text-sm"
-                        >
-                          <MicOff className="mr-2 h-4 w-4" />
+                        <Button variant="destructive" onClick={stopRecording} size="sm">
+                          <MicOff className="h-4 w-4 mr-1" />
                           Stop
                         </Button>
                       )}
-                      <Button onClick={resetRecording} variant="outline" className="text-sm">
+                      <Button onClick={resetRecording} variant="outline" size="sm">
                         Reset
                       </Button>
                     </div>
                     {audioURL && (
                       <audio controls src={audioURL} className="mt-2 w-full">
-                        Audio not supported.
+                        Your browser does not support HTML audio.
                       </audio>
                     )}
-                  </div>
-                </TabsContent>
-              </Tabs>
-
-              {/* ACTION BUTTONS */}
-              <div className="mt-4 flex items-center gap-3">
-                <Button
-                  type="submit"
-                  disabled={isLoading}
-                  className="text-sm bg-[#0070F3] hover:bg-[#0059bf]"
-                >
-                  {isLoading ? (
-                    <>
-                      <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                      Please wait
-                    </>
-                  ) : editingNote ? (
-                    "Update Note"
-                  ) : (
-                    "Add Note"
-                  )}
-                </Button>
-                {editingNote && (
-                  <Button
-                    variant="outline"
-                    className="text-sm"
-                    onClick={() => {
-                      setEditingNote(null)
-                      reset({ title: "", content: "", type: "TEXT", audio: "" })
-                      editor?.commands.setContent("")
-                      resetTranscript()
-                      resetRecording()
-                      clearCanvas()
-                    }}
-                  >
-                    Cancel
-                  </Button>
-                )}
+                    <Button
+                      variant="default"
+                      size="sm"
+                      className="mt-2"
+                      onClick={() => {
+                        if (!audioURL) {
+                          toast.error("No audio to insert.")
+                          return
+                        }
+                        // Insert an <audio> tag into Tiptap
+                        editor
+                          ?.chain()
+                          .focus()
+                          .insertContent(
+                            `<p><audio controls src="${audioURL}"></audio></p>`
+                          )
+                          .run()
+                        toast.success("Audio inserted!")
+                      }}
+                    >
+                      Insert Audio
+                    </Button>
+                  </TabsContent>
+                </Tabs>
               </div>
-            </form>
-          </motion.div>
-        </main>
+            </DialogContent>
+          </Dialog>
+        </div>
+
+        {/* MAIN EDITOR AREA */}
+        <div className="flex-1 p-4 overflow-auto">
+          <div className="max-w-4xl mx-auto bg-white dark:bg-neutral-800 border border-gray-300 dark:border-neutral-700 rounded p-4 shadow-sm">
+            <EditorContent editor={editor} />
+          </div>
+        </div>
       </div>
-
-      {/* DELETE MODAL */}
-      <AnimatePresence>
-        {isDeleteModalOpen && noteToDelete && (
-          <motion.div
-            className="fixed inset-0 flex items-center justify-center bg-black/60"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              className="bg-neutral-900 border border-neutral-700 p-6 rounded text-white max-w-sm w-full"
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
-            >
-              <h2 className="text-xl font-bold mb-4">Delete Note</h2>
-              <p className="mb-4 text-sm text-neutral-400">
-                This action cannot be undone.
-              </p>
-              <div className="flex justify-end gap-3">
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    setIsDeleteModalOpen(false)
-                    setNoteToDelete(null)
-                  }}
-                  className="text-sm"
-                >
-                  Cancel
-                </Button>
-                <Button
-                  variant="destructive"
-                  onClick={() => deleteNote(noteToDelete)}
-                  className="text-sm"
-                >
-                  {isLoading ? (
-                    <>
-                      <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                      Deleting...
-                    </>
-                  ) : (
-                    "Delete"
-                  )}
-                </Button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   )
 }
