@@ -77,7 +77,6 @@ interface QuestionType {
   examGroup?: string
 }
 
-// The filter keys
 type FilterKey =
   | "exams"
   | "subjects"
@@ -90,14 +89,13 @@ type FilterKey =
 type FiltersType = {
   [K in FilterKey]: string[]
 } & {
-  status: string // "all"|"complete"|"review"|"incomplete"
+  status: string
 }
 
 type DropdownsType = {
   [K in FilterKey]: boolean
 }
 
-// Distinct filter sets
 interface FilterOptionsType {
   exams: string[]
   subjects: string[]
@@ -108,7 +106,6 @@ interface FilterOptionsType {
   types: string[]
 }
 
-// DB stats
 interface GlobalStats {
   total: number
   completed: number
@@ -116,7 +113,6 @@ interface GlobalStats {
   notAnswered: number
 }
 
-// Main state
 type StateType = {
   questions: QuestionType[]
   filters: FiltersType
@@ -313,7 +309,6 @@ export default function QuestionBankContent() {
       if (!res.ok) throw new Error("Failed to fetch distinct filter fields.")
       const raw = await res.json()
 
-      // ensure each array is present
       const data: FilterOptionsType = {
         exams: raw.exams ?? [],
         subjects: raw.subjects ?? [],
@@ -397,7 +392,7 @@ export default function QuestionBankContent() {
       }
 
       // sort ascending by numeric portion
-      data = data.sort((a, b) => {
+      data = data.sort((a,b) => {
         const aId = a.questionId?.match(/\d+/)?.[0] || "0"
         const bId = b.questionId?.match(/\d+/)?.[0] || "0"
         return parseInt(aId,10) - parseInt(bId,10)
@@ -568,7 +563,7 @@ export default function QuestionBankContent() {
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full text-gray-900 dark:text-gray-100">
           <h1 className="mb-2 text-left text-3xl sm:text-4xl">Question Bank</h1>
-          <div className="flex space-x-4 mb-6">
+          <div className="flex space-x-4 mb=6">
             <Skeleton height={40} width={120}/>
             <Skeleton height={40} width={120}/>
             <Skeleton height={40} width={120}/>
@@ -614,7 +609,7 @@ export default function QuestionBankContent() {
       <div className="bg-white dark:bg-gray-900 w-full min-h-screen p-4 sm:p-4 text-gray-900 dark:text-gray-100 flex justify-center">
         <div className="max-w-xl w-full">
           <div className="flex items-center justify-between mb-4">
-            <Button variant="outline" onClick={()=> setViewMode(ViewMode.LIST)}>
+            <Button variant="outline" onClick={()=>setViewMode(ViewMode.LIST)}>
               List View
             </Button>
 
@@ -657,22 +652,18 @@ export default function QuestionBankContent() {
               transition={{ duration:0.3 }}
               className="rounded-md border dark:border-gray-700 bg-white dark:bg-gray-800 shadow p-3 sm:p-4 mb-6"
             >
-              {/* 
-                We'll pass a "displayNumber" so the card can show "Question #1" 
-                ignoring the random DB "id"
-              */}
               <Question
                 question={currentQ}
                 feedback={state.feedback[currentQ.questionId]}
                 selectedOption={state.selectedOptions[currentQ.questionId]}
                 numericalAnswer={state.numericalAnswers[currentQ.questionId]}
-                showMarkscheme={state.showMarkscheme[currentQ.questionId]||false}
+                showMarkscheme={state.showMarkscheme[currentQ.questionId] || false}
                 handleOptionClick={handleOptionClick}
                 handleNumericalSubmit={handleNumericalSubmit}
                 handleNumericalChange={(qId, val)=>{
                   dispatch({
                     type:"SET_NUMERICAL_ANSWERS",
-                    payload:{ ...state.numericalAnswers, [qId]:val },
+                    payload:{ ...state.numericalAnswers, [qId]: val },
                   })
                 }}
                 handleMarkschemeToggle={(qId)=>{
@@ -693,9 +684,10 @@ export default function QuestionBankContent() {
                 note=""
                 handleNoteChange={()=>{}}
                 handleDeleteNote={()=>Promise.resolve()}
-                userId={"guest"}
+                userId="guest"
 
-                // The question numbering is just "singleIndex+1"
+                // For single view, the question index = singleIndex
+                // so question is labeled # (singleIndex+1)
                 totalQuestions={filteredQuestions.length}
                 currentQuestionIndex={singleIndex}
                 handleQuestionChange={()=>{}}
@@ -793,7 +785,7 @@ export default function QuestionBankContent() {
                 <ScrollArea className="h-[60vh]">
                   <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 p-4">
                     {filteredQuestions.map((q, index) => {
-                      // continuous numbering across pages
+                      // continuous numbering from 1..N across pages
                       const absoluteIndex = (state.currentPage - 1)*state.pageSize + index
                       const displayNum = absoluteIndex + 1
                       return (
@@ -870,13 +862,13 @@ export default function QuestionBankContent() {
                               className="mr-2"
                               checked={state.filters[filterType].includes(val)}
                               onChange={() => {
-                                const oldArr = state.filters[filterType]
-                                const isSelected = oldArr.includes(val)
+                                const arr = state.filters[filterType]
+                                const isSelected = arr.includes(val)
                                 let newArr
                                 if (isSelected) {
-                                  newArr = oldArr.filter(x=> x!==val)
+                                  newArr = arr.filter(x=> x!==val)
                                 } else {
-                                  newArr = [...oldArr,val]
+                                  newArr = [...arr,val]
                                 }
                                 dispatch({
                                   type:"SET_FILTERS",
@@ -926,7 +918,7 @@ export default function QuestionBankContent() {
 
           {/* The question progress card */}
           <Card className="
-            bg-gradient-to-br from-gray-200 to-gray-100 
+            bg-gradient-to-br from-gray-200 to-gray-100
             dark:from-gray-900 dark:to-gray-800
             text-gray-900 dark:text-gray-100
             border-gray-200 dark:border-gray-700
@@ -957,7 +949,8 @@ export default function QuestionBankContent() {
                   }
                   className="w-full h-1.5 bg-gray-300 dark:bg-gray-700"
                 />
-                {/* We'll show 4 columns: total, answered, forReview, notAnswered */}
+
+                {/* 4 tiles: total, answered, for review, not answered */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   {/* total questions */}
                   <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
@@ -973,6 +966,7 @@ export default function QuestionBankContent() {
                       </p>
                     </div>
                   </div>
+
                   {/* answered */}
                   <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
                     <div className="text-green-400 p-2 rounded-full bg-green-400/10">
@@ -995,6 +989,7 @@ export default function QuestionBankContent() {
                       </p>
                     </div>
                   </div>
+
                   {/* For Review */}
                   <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
                     <div className="text-yellow-400 p-2 rounded-full bg-yellow-400/10">
@@ -1009,11 +1004,11 @@ export default function QuestionBankContent() {
                       </p>
                     </div>
                   </div>
+
                   {/* Not Answered */}
                   <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
                     <div className="text-red-400 p-2 rounded-full bg-red-400/10">
-                      {/* You can use a "help" icon or something else */}
-                      <HelpCircle className="h-5 w-5" />
+                      <HelpCircle className="h-5 w-5"/>
                     </div>
                     <div>
                       <p className="text-2xl font-light tracking-tighter text-red-600 dark:text-red-300">
@@ -1032,7 +1027,7 @@ export default function QuestionBankContent() {
           {state.questions.length>0 ? (
             <>
               {filteredQuestions.map((q, index) => {
-                // continuous numbering from 1..N across pages
+                // numbering from 1..N across pages
                 const absoluteIndex = (state.currentPage - 1)*state.pageSize + index
                 const displayNum = absoluteIndex + 1
 
@@ -1043,7 +1038,7 @@ export default function QuestionBankContent() {
                     feedback={state.feedback[q.questionId]}
                     selectedOption={state.selectedOptions[q.questionId]}
                     numericalAnswer={state.numericalAnswers[q.questionId]}
-                    showMarkscheme={state.showMarkscheme[q.questionId]||false}
+                    showMarkscheme={state.showMarkscheme[q.questionId] || false}
                     handleOptionClick={handleOptionClick}
                     handleNumericalSubmit={handleNumericalSubmit}
                     handleNumericalChange={(qId, val)=>{
@@ -1055,32 +1050,32 @@ export default function QuestionBankContent() {
                     handleMarkschemeToggle={(qId)=>{
                       dispatch({
                         type:"SET_SHOW_MARKSCHEME",
-                        payload:{ 
+                        payload:{
                           ...state.showMarkscheme,
-                          [qId]:!state.showMarkscheme[qId],
+                          [qId]: !state.showMarkscheme[qId],
                         },
                       })
                     }}
                     handleMarkForReview={handleMarkForReview}
                     handleMarkComplete={handleMarkComplete}
-                    handleResetQuestion={async (qId)=>{
+                    handleResetQuestion={async (qid)=>{
                       // local reset
                       dispatch({
                         type:"SET_FEEDBACK",
-                        payload:{ ...state.feedback, [qId]:undefined },
+                        payload:{ ...state.feedback, [qid]: undefined },
                       })
                       dispatch({
                         type:"SET_SELECTED_OPTIONS",
-                        payload:{ ...state.selectedOptions, [qId]:undefined },
+                        payload:{ ...state.selectedOptions, [qid]: undefined },
                       })
                       dispatch({
                         type:"SET_NUMERICAL_ANSWERS",
-                        payload:{ ...state.numericalAnswers, [qId]:undefined },
+                        payload:{ ...state.numericalAnswers, [qid]: undefined },
                       })
                       dispatch({
                         type:"SET_QUESTIONS",
                         payload: state.questions.map(qq=>
-                          qq.questionId===qId? { ...qq, completed:false, reviewed:false }:qq
+                          qq.questionId===qid ? { ...qq, completed:false, reviewed:false } : qq
                         ),
                       })
                       // server
@@ -1089,7 +1084,7 @@ export default function QuestionBankContent() {
                           method:"PATCH",
                           headers:{ "Content-Type":"application/json" },
                           body: JSON.stringify({
-                            questionId: qId,
+                            questionId: qid,
                             completed:false,
                             reviewed:false,
                           }),
@@ -1106,14 +1101,15 @@ export default function QuestionBankContent() {
                     handleDeleteNote={()=>Promise.resolve()}
                     userId="guest"
 
-                    // Show "Question #displayNum" in the Card title 
-                    // instead of question.id
+                    // We pass the "1..N" numbering as currentQuestionIndex = displayNum - 1
+                    // So inside <Question>, it can do displayNumber = currentQuestionIndex+1
                     totalQuestions={state.totalCount}
-                    currentQuestionIndex={displayNum - 1} // zero-based
+                    currentQuestionIndex={displayNum - 1}
                     handleQuestionChange={()=>{}}
                   />
                 )
               })}
+
               <Pagination
                 currentPage={state.currentPage}
                 totalCount={state.totalCount}
@@ -1132,10 +1128,7 @@ export default function QuestionBankContent() {
   )
 }
 
-/** 
- * The custom mobile filter dialog 
- * NOTE: we add an "Exams" section at the top so it's visible 
- */
+/** MOBILE FILTERS DIALOG **/
 function FiltersDialogMobile({
   open,
   onOpenChange,
@@ -1147,7 +1140,7 @@ function FiltersDialogMobile({
   state: StateType
   dispatch: React.Dispatch<ActionType>
 }) {
-  // note the arrays
+  // We'll define local arrays, default to [] if missing
   const exams = state.filterOptions.exams || []
   const subjects = state.filterOptions.subjects || []
   const topics = state.filterOptions.topics || []
@@ -1173,9 +1166,6 @@ function FiltersDialogMobile({
 
   return (
     <div className="p-4 flex flex-col h-full">
-      {/* The top bar (X, Submit) can be done by parent 
-          We'll do scroll in the body. 
-      */}
       <ScrollArea className="flex-grow">
         <div className="space-y-6 py-2">
           {/* Exams */}
