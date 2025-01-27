@@ -22,7 +22,6 @@ import {
   HelpCircle,
   Filter,
 } from "lucide-react"
-import Link from "next/link"
 import {
   Tooltip,
   TooltipTrigger,
@@ -80,10 +79,8 @@ interface QuestionType {
   diagramUrl?: string
   status?: QuestionStatus
 
-  // Additional if needed
   exam?: string
   examGroup?: string
-  // ...
 }
 
 type FilterKey =
@@ -116,7 +113,6 @@ interface FilterOptionsType {
   types: string[]
 }
 
-// For global DB stats
 interface GlobalStats {
   total: number
   completed: number
@@ -124,7 +120,6 @@ interface GlobalStats {
   notAnswered: number
 }
 
-// Our main state
 type StateType = {
   questions: QuestionType[]
   filters: FiltersType
@@ -212,6 +207,8 @@ const initialState: StateType = {
   pageSize: 10,
 
   globalStats: {
+    // We'll rename "notAnswered" to "ignored", but
+    // we'll display 'total' in the card instead
     total: 0,
     completed: 0,
     reviewed: 0,
@@ -219,7 +216,7 @@ const initialState: StateType = {
   },
 }
 
-// The main reducer
+// Reducer
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
     case "SET_QUESTIONS":
@@ -263,7 +260,7 @@ function reducer(state: StateType, action: ActionType): StateType {
   }
 }
 
-// Pagination UI
+// Simple Pagination UI
 function Pagination({
   currentPage,
   totalCount,
@@ -285,7 +282,6 @@ function Pagination({
         onClick={() => onPageChange(Math.max(1, currentPage - 1))}
         disabled={currentPage === 1}
       >
-        <span className="sr-only">Previous page</span>
         <ChevronLeft className="h-4 w-4" />
       </Button>
       <span className="px-4 text-sm">
@@ -297,7 +293,6 @@ function Pagination({
         onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
         disabled={currentPage === totalPages}
       >
-        <span className="sr-only">Next page</span>
         <ChevronRight className="h-4 w-4" />
       </Button>
     </nav>
@@ -312,15 +307,15 @@ export default function QuestionBankContent() {
   const [singleIndex, setSingleIndex] = React.useState(0)
   const [filtersOpenMobile, setFiltersOpenMobile] = React.useState(false)
 
-  // If window < 768 => use single view
+  // Mobile => single view
   React.useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       setViewMode(ViewMode.SINGLE)
     }
   }, [])
 
-  // (A) Fetch distinct filter fields from /api/filters
-  const fetchFilterOptions = React.useCallback(async () => {
+  // (A) Distinct filters
+  const fetchFilterOptions = useCallback(async () => {
     try {
       const res = await fetch("/api/filters", { cache: "no-store" })
       if (!res.ok) throw new Error("Failed to fetch distinct filter fields.")
@@ -340,9 +335,8 @@ export default function QuestionBankContent() {
     fetchFilterOptions()
   }, [fetchFilterOptions])
 
-  // (B) Fetch global stats from entire DB
-  const fetchGlobalStats = React.useCallback(async () => {
-    // If you do NOT have a /api/questions/stats route, comment out or remove this:
+  // (B) Global stats
+  const fetchGlobalStats = useCallback(async () => {
     try {
       const res = await fetch("/api/questions/stats", { cache: "no-store" })
       if (!res.ok) {
@@ -361,14 +355,12 @@ export default function QuestionBankContent() {
     fetchGlobalStats()
   }, [fetchGlobalStats])
 
-  // (C) Fetch questions with pagination + filters
-  const fetchQuestions = React.useCallback(async () => {
+  // (C) Fetch questions
+  const fetchQuestions = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true })
-
     try {
-      const page = state.currentPage
-      const pageSize = state.pageSize
-      const { exams, subjects, topics, subtopics, difficulties, years, types } = state.filters
+      const { currentPage, pageSize, filters } = state
+      const { exams, subjects, topics, subtopics, difficulties, years, types, status } = filters
 
       function arrToComma(arr: string[]): string {
         return arr.join(",")
@@ -382,11 +374,14 @@ export default function QuestionBankContent() {
       if (years.length) params.set("year", arrToComma(years))
       if (types.length) params.set("type", arrToComma(types))
 
-      params.set("page", String(page))
+      // Pagination
+      params.set("page", String(currentPage))
       params.set("pageSize", String(pageSize))
 
-      const url = `/api/questions?${params.toString()}`
+      // (Optional) We don't pass "status" to the server if status is for local usage
+      // But if your server handles "completed"/"reviewed" on the DB, you might pass it
 
+      const url = `/api/questions?${params.toString()}`
       console.log("Fetching questions =>", url)
       const res = await fetch(url, { cache: "no-store" })
       if (!res.ok) {
@@ -397,17 +392,16 @@ export default function QuestionBankContent() {
 
       let data: QuestionType[] = []
       let totalCount = 0
+
       if (Array.isArray(result)) {
-        // If the API returned an array with no pagination metadata
         data = result
         totalCount = data.length
       } else if (result.data) {
-        // If the API returned { data, totalCount, etc. }
         data = result.data
         totalCount = result.totalCount
       }
 
-      // -- FIX #1: Sort client-side ascending by questionId numeric part
+      // Sort ascending by numeric portion of questionId
       data = data.sort((a, b) => {
         const aId = a.questionId?.match(/\d+/)?.[0] || "0"
         const bId = b.questionId?.match(/\d+/)?.[0] || "0"
@@ -432,155 +426,124 @@ export default function QuestionBankContent() {
     fetchQuestions()
   }, [fetchQuestions])
 
-  // handle page change
+  // Page change
   function handlePageChange(page: number) {
     dispatch({ type: "SET_CURRENT_PAGE", payload: page })
   }
 
   // Mark complete / review
-  const handleMarkComplete = React.useCallback(
-    async (questionId: string, newVal?: boolean) => {
-      const val = newVal === undefined ? true : newVal
-      try {
-        await fetch("/api/questions", {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, completed: val }),
-        })
-        dispatch({
-          type: "SET_QUESTIONS",
-          payload: state.questions.map((q) =>
-            q.questionId === questionId ? { ...q, completed: val } : q
-          ),
-        })
-      } catch (err) {
-        console.error("Error marking complete:", err)
-      }
-    },
-    [state.questions]
-  )
+  const handleMarkComplete = useCallback(async (questionId: string, newVal?: boolean) => {
+    const val = newVal ?? true
+    try {
+      await fetch("/api/questions", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId, completed: val }),
+      })
+      dispatch({
+        type: "SET_QUESTIONS",
+        payload: state.questions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: val } : q
+        ),
+      })
+    } catch (err) {
+      console.error("Error marking complete:", err)
+    }
+  }, [state.questions])
 
-  const handleMarkForReview = React.useCallback(
-    async (questionId: string, newVal?: boolean) => {
-      const val = newVal === undefined ? true : newVal
-      try {
-        await fetch("/api/questions", {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, reviewed: val }),
-        })
-        dispatch({
-          type: "SET_QUESTIONS",
-          payload: state.questions.map((q) =>
-            q.questionId === questionId ? { ...q, reviewed: val } : q
-          ),
-        })
-      } catch (err) {
-        console.error("Error marking review:", err)
-      }
-    },
-    [state.questions]
-  )
+  const handleMarkForReview = useCallback(async (questionId: string, newVal?: boolean) => {
+    const val = newVal ?? true
+    try {
+      await fetch("/api/questions", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId, reviewed: val }),
+      })
+      dispatch({
+        type: "SET_QUESTIONS",
+        payload: state.questions.map((q) =>
+          q.questionId === questionId ? { ...q, reviewed: val } : q
+        ),
+      })
+    } catch (err) {
+      console.error("Error marking review:", err)
+    }
+  }, [state.questions])
 
   // MCQ
-  const handleOptionClick = React.useCallback(
-    (questionId: string, option: string, correctOption: string) => {
-      const isCorrect = option === correctOption
-      dispatch({
-        type: "SET_FEEDBACK",
-        payload: {
-          ...state.feedback,
-          [questionId]: isCorrect ? "correct" : "incorrect",
-        },
-      })
-      dispatch({
-        type: "SET_SELECTED_OPTIONS",
-        payload: {
-          ...state.selectedOptions,
-          [questionId]: option,
-        },
-      })
-      // Mark completed local
-      dispatch({
-        type: "SET_QUESTIONS",
-        payload: state.questions.map((q) =>
-          q.questionId === questionId ? { ...q, completed: true } : q
-        ),
-      })
-    },
-    [state.feedback, state.selectedOptions, state.questions]
-  )
+  const handleOptionClick = useCallback((questionId: string, option: string, correctOption: string) => {
+    const isCorrect = option === correctOption
+    dispatch({
+      type: "SET_FEEDBACK",
+      payload: { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" },
+    })
+    dispatch({
+      type: "SET_SELECTED_OPTIONS",
+      payload: { ...state.selectedOptions, [questionId]: option },
+    })
+    // Mark completed locally
+    dispatch({
+      type: "SET_QUESTIONS",
+      payload: state.questions.map((q) =>
+        q.questionId === questionId ? { ...q, completed: true } : q
+      ),
+    })
+  }, [state.feedback, state.selectedOptions, state.questions])
 
   // Numeric
-  const handleNumericalSubmit = React.useCallback(
-    (questionId: string, userAnswer: string, correctAnswer: string) => {
-      const isCorrect = userAnswer === correctAnswer
-      dispatch({
-        type: "SET_FEEDBACK",
-        payload: {
-          ...state.feedback,
-          [questionId]: isCorrect ? "correct" : "incorrect",
-        },
-      })
-      dispatch({
-        type: "SET_NUMERICAL_ANSWERS",
-        payload: {
-          ...state.numericalAnswers,
-          [questionId]: userAnswer,
-        },
-      })
-      // Mark complete
-      dispatch({
-        type: "SET_QUESTIONS",
-        payload: state.questions.map((q) =>
-          q.questionId === questionId ? { ...q, completed: true } : q
-        ),
-      })
-    },
-    [state.feedback, state.numericalAnswers, state.questions]
-  )
+  const handleNumericalSubmit = useCallback((questionId: string, userAnswer: string, correctAnswer: string) => {
+    const isCorrect = userAnswer === correctAnswer
+    dispatch({
+      type: "SET_FEEDBACK",
+      payload: { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" },
+    })
+    dispatch({
+      type: "SET_NUMERICAL_ANSWERS",
+      payload: { ...state.numericalAnswers, [questionId]: userAnswer },
+    })
+    // Mark complete
+    dispatch({
+      type: "SET_QUESTIONS",
+      payload: state.questions.map((q) =>
+        q.questionId === questionId ? { ...q, completed: true } : q
+      ),
+    })
+  }, [state.feedback, state.numericalAnswers, state.questions])
 
-  // Reset question
-  const handleResetQuestion = React.useCallback(
-    async (questionId: string) => {
-      dispatch({
-        type: "SET_FEEDBACK",
-        payload: { ...state.feedback, [questionId]: undefined },
+  // Reset
+  const handleResetQuestion = useCallback(async (questionId: string) => {
+    dispatch({
+      type: "SET_FEEDBACK",
+      payload: { ...state.feedback, [questionId]: undefined },
+    })
+    dispatch({
+      type: "SET_SELECTED_OPTIONS",
+      payload: { ...state.selectedOptions, [questionId]: undefined },
+    })
+    dispatch({
+      type: "SET_NUMERICAL_ANSWERS",
+      payload: { ...state.numericalAnswers, [questionId]: undefined },
+    })
+    // Mark uncomplete + unreview
+    dispatch({
+      type: "SET_QUESTIONS",
+      payload: state.questions.map((q) =>
+        q.questionId === questionId ? { ...q, completed: false, reviewed: false } : q
+      ),
+    })
+    try {
+      await fetch("/api/questions", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId, completed: false, reviewed: false }),
       })
-      dispatch({
-        type: "SET_SELECTED_OPTIONS",
-        payload: { ...state.selectedOptions, [questionId]: undefined },
-      })
-      dispatch({
-        type: "SET_NUMERICAL_ANSWERS",
-        payload: { ...state.numericalAnswers, [questionId]: undefined },
-      })
-      // uncomplete + unreview
-      dispatch({
-        type: "SET_QUESTIONS",
-        payload: state.questions.map((q) =>
-          q.questionId === questionId ? { ...q, completed: false, reviewed: false } : q
-        ),
-      })
-      try {
-        await fetch("/api/questions", {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            questionId,
-            completed: false,
-            reviewed: false,
-          }),
-        })
-      } catch (err) {
-        console.error("Error resetting question:", err)
-      }
-    },
-    [state.feedback, state.selectedOptions, state.numericalAnswers, state.questions]
-  )
+    } catch (err) {
+      console.error("Error resetting question:", err)
+    }
+  }, [state.feedback, state.selectedOptions, state.numericalAnswers, state.questions])
 
-  // local filter for search & status
-  const filteredQuestions = React.useMemo(() => {
+  // Searching + local status
+  const filteredQuestions = useMemo(() => {
     const s = state.searchQuery.toLowerCase()
     return state.questions.filter((q) => {
       const textFields = [q.text, q.exam, q.subject, q.topic, q.subtopic]
@@ -598,7 +561,7 @@ export default function QuestionBankContent() {
     })
   }, [state.questions, state.filters.status, state.searchQuery])
 
-  // LOADING SKELETON
+  // Loading skeleton
   if (state.loading) {
     return (
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -630,7 +593,7 @@ export default function QuestionBankContent() {
     )
   }
 
-  // SINGLE VIEW
+  // SINGLE MODE
   if (viewMode === ViewMode.SINGLE) {
     if (!filteredQuestions.length) {
       return (
@@ -674,6 +637,7 @@ export default function QuestionBankContent() {
             </Dialog>
 
             <span className="text-sm text-gray-500 dark:text-gray-400">
+              {/* Single View numbering = index+1 of filteredQuestions */}
               {singleIndex + 1} / {filteredQuestions.length}
             </span>
           </div>
@@ -721,7 +685,7 @@ export default function QuestionBankContent() {
                 handleDeleteNote={() => Promise.resolve()}
                 userId={"guest"}
                 totalQuestions={filteredQuestions.length}
-                currentQuestionIndex={singleIndex}
+                currentQuestionIndex={singleIndex} // singleIndex
                 handleQuestionChange={() => {}}
               />
             </motion.div>
@@ -759,10 +723,9 @@ export default function QuestionBankContent() {
             </Button>
           </div>
 
-          <h1 className="mb-2 text-left text-3xl sm:text-4xl">
-            Question Bank
-          </h1>
+          <h1 className="mb-2 text-left text-3xl sm:text-4xl">Question Bank</h1>
 
+          {/* Search + mobile filters + question navigator */}
           <div className="mb-6 flex items-center space-x-4">
             <div className="relative flex-grow">
               <Input
@@ -774,10 +737,9 @@ export default function QuestionBankContent() {
                 }
                 className="pl-10 dark:text-gray-100 dark:bg-gray-800 dark:placeholder-gray-400"
               />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300"/>
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300" />
             </div>
 
-            {/* For mobile: single filters button */}
             <div className="block sm:hidden">
               <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
                 <DialogTrigger asChild>
@@ -802,7 +764,6 @@ export default function QuestionBankContent() {
               </Dialog>
             </div>
 
-            {/* Desktop question navigator */}
             <Dialog>
               <DialogTrigger asChild>
                 <Button
@@ -819,28 +780,34 @@ export default function QuestionBankContent() {
                 </DialogHeader>
                 <ScrollArea className="h-[60vh]">
                   <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 p-4">
-                    {filteredQuestions.map((question, index) => (
-                      <Button
-                        key={question.questionId}
-                        variant={question.completed ? "default" : "outline"}
-                        size="sm"
-                        onClick={() => {
-                          const el = document.getElementById(`question-${question.questionId}`)
-                          if (el) {
-                            el.scrollIntoView({ behavior: "smooth", block: "start" })
-                          }
-                        }}
-                        className={`w-10 h-10 dark:border-gray-700 ${
-                          question.completed
-                            ? "bg-green-100 border-green-500 text-green-700 dark:bg-green-900 dark:border-green-500 dark:text-green-300"
-                            : question.reviewed
-                            ? "bg-yellow-100 border-yellow-500 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300"
-                            : ""
-                        }`}
-                      >
-                        {index + 1}
-                      </Button>
-                    ))}
+                    {filteredQuestions.map((question, index) => {
+                      // #2 => absolute question index in entire DB
+                      const absoluteIndex = (state.currentPage - 1) * state.pageSize + index
+                      const displayNum = absoluteIndex + 1
+
+                      return (
+                        <Button
+                          key={question.questionId}
+                          variant={question.completed ? "default" : "outline"}
+                          size="sm"
+                          onClick={() => {
+                            const el = document.getElementById(`question-${question.questionId}`)
+                            if (el) {
+                              el.scrollIntoView({ behavior: "smooth", block: "start" })
+                            }
+                          }}
+                          className={`w-10 h-10 dark:border-gray-700 ${
+                            question.completed
+                              ? "bg-green-100 border-green-500 text-green-700 dark:bg-green-900 dark:border-green-500 dark:text-green-300"
+                              : question.reviewed
+                              ? "bg-yellow-100 border-yellow-500 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300"
+                              : ""
+                          }`}
+                        >
+                          {displayNum}
+                        </Button>
+                      )
+                    })}
                   </div>
                 </ScrollArea>
               </DialogContent>
@@ -849,23 +816,23 @@ export default function QuestionBankContent() {
 
           {/* Desktop filter row for status */}
           <div className="hidden sm:flex space-x-4 mb-2">
-            {["all","complete","review","incomplete"].map((filterStatus) => (
+            {["all","complete","review","incomplete"].map((status) => (
               <button
-                key={filterStatus}
+                key={status}
                 onClick={() =>
                   dispatch({
                     type: "SET_FILTERS",
-                    payload: { ...state.filters, status: filterStatus },
+                    payload: { ...state.filters, status },
                   })
                 }
                 className={`px-4 py-2 rounded-md transition-colors
                   ${
-                    state.filters.status === filterStatus
+                    state.filters.status === status
                       ? "bg-white dark:bg-gray-700 border dark:border-gray-600 hover:border-gray-500 dark:hover:border-gray-400 text-gray-500 dark:text-gray-100"
                       : "bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:border-gray-700 dark:hover:border-gray-500 text-gray-500 dark:text-gray-100"
                   }`}
               >
-                {filterStatus.charAt(0).toUpperCase() + filterStatus.slice(1)}
+                {status.charAt(0).toUpperCase() + status.slice(1)}
               </button>
             ))}
           </div>
@@ -874,7 +841,6 @@ export default function QuestionBankContent() {
           <div className="hidden sm:flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
             {(["exams","subjects","topics","subtopics","difficulties","years","types"] as FilterKey[]).map((filterType) => {
               const filterValues = state.filterOptions[filterType] || []
-
               return (
                 <Popover
                   key={filterType}
@@ -897,7 +863,7 @@ export default function QuestionBankContent() {
                                 const isSelected = oldArr.includes(value)
                                 let newArr: string[]
                                 if (isSelected) {
-                                  newArr = oldArr.filter((v)=> v!==value)
+                                  newArr = oldArr.filter((v) => v !== value)
                                 } else {
                                   newArr = [...oldArr, value]
                                 }
@@ -919,8 +885,8 @@ export default function QuestionBankContent() {
                   openPopover={state.dropdowns[filterType]}
                   setOpenPopover={(open) => {
                     dispatch({
-                      type:"SET_DROPDOWN",
-                      payload:{ tag: filterType, value:!!open }
+                      type: "SET_DROPDOWN",
+                      payload: { tag: filterType, value: !!open },
                     })
                   }}
                 >
@@ -928,8 +894,8 @@ export default function QuestionBankContent() {
                     onClick={() => {
                       const isOpen = state.dropdowns[filterType]
                       dispatch({
-                        type:"SET_DROPDOWN",
-                        payload:{ tag: filterType, value:!isOpen }
+                        type: "SET_DROPDOWN",
+                        payload: { tag: filterType, value: !isOpen },
                       })
                     }}
                     className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 dark:border-gray-700 px-4 py-2 bg-white dark:bg-gray-800 transition-all duration-75 hover:border-gray-800 dark:hover:border-gray-500 focus:outline-none active:bg-gray-100 dark:active:bg-gray-700"
@@ -937,7 +903,7 @@ export default function QuestionBankContent() {
                     <p className="text-gray-600 dark:text-gray-300">
                       {state.filters[filterType].length
                         ? `${state.filters[filterType].length} selected`
-                        : filterType.charAt(0).toUpperCase()+filterType.slice(1)
+                        : filterType.charAt(0).toUpperCase() + filterType.slice(1)
                       }
                     </p>
                     <ChevronDown className="h-4 w-4 text-gray-600 dark:text-gray-300 transition-all" />
@@ -947,45 +913,46 @@ export default function QuestionBankContent() {
             })}
           </div>
 
-          {/* The global question progress from the entire DB */}
+          {/* Global question progress card */}
           <Card className="bg-gradient-to-br from-gray-200 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-gray-100 border-gray-200 dark:border-gray-700 mb-6">
             <CardContent className="p-6">
               <h2 className="text-2xl font-light tracking-tight text-gray-800 dark:text-gray-200 mb-6">
                 Question Progress
               </h2>
               <div className="space-y-6">
-                {/* Overall progress = (globalStats.completed / globalStats.total)*100 */}
+                {/* Overall progress = completed / total * 100 */}
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
                     Overall Progress
                   </span>
                   <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
                     {state.globalStats.total > 0
-                      ? Math.round( (state.globalStats.completed / state.globalStats.total)*100 )
+                      ? Math.round((state.globalStats.completed / state.globalStats.total) * 100)
                       : 0
                     }%
                   </span>
                 </div>
                 <Progress
                   value={
-                    state.globalStats.total>0
-                      ? (state.globalStats.completed/state.globalStats.total)*100
+                    state.globalStats.total > 0
+                      ? (state.globalStats.completed / state.globalStats.total) * 100
                       : 0
                   }
                   className="w-full h-1.5 bg-gray-300 dark:bg-gray-700"
                 />
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {/* Not Answered */}
+                  {/* Show total questions instead of "Not Answered" */}
                   <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
                     <div className="text-blue-400 p-2 rounded-full bg-blue-400/10">
                       <HelpCircle className="h-5 w-5" />
                     </div>
                     <div>
                       <p className="text-2xl font-light tracking-tighter text-blue-600 dark:text-blue-300">
-                        {state.globalStats.notAnswered}
+                        {state.globalStats.total}
                       </p>
                       <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
-                        Not Answered
+                        Total Questions
                       </p>
                     </div>
                   </div>
@@ -1030,84 +997,89 @@ export default function QuestionBankContent() {
             </CardContent>
           </Card>
 
+          {/* QUESTIONS */}
           {state.questions.length > 0 ? (
             <>
-              {filteredQuestions.map((question, index) => (
-                <Question
-                  key={question.questionId}
-                  question={question}
-                  feedback={state.feedback[question.questionId]}
-                  selectedOption={state.selectedOptions[question.questionId]}
-                  numericalAnswer={state.numericalAnswers[question.questionId]}
-                  showMarkscheme={state.showMarkscheme[question.questionId] || false}
-                  handleOptionClick={handleOptionClick}
-                  handleNumericalSubmit={handleNumericalSubmit}
-                  handleNumericalChange={(qId, val) => {
-                    dispatch({
-                      type: "SET_NUMERICAL_ANSWERS",
-                      payload: { ...state.numericalAnswers, [qId]: val },
-                    })
-                  }}
-                  handleMarkschemeToggle={(qId) => {
-                    dispatch({
-                      type: "SET_SHOW_MARKSCHEME",
-                      payload: {
-                        ...state.showMarkscheme,
-                        [qId]: !state.showMarkscheme[qId],
-                      },
-                    })
-                  }}
-                  handleMarkForReview={handleMarkForReview}
-                  handleMarkComplete={handleMarkComplete}
-                  handleResetQuestion={async (qId) => {
-                    // local reset
-                    dispatch({
-                      type: "SET_FEEDBACK",
-                      payload: { ...state.feedback, [qId]: undefined },
-                    })
-                    dispatch({
-                      type: "SET_SELECTED_OPTIONS",
-                      payload: { ...state.selectedOptions, [qId]: undefined },
-                    })
-                    dispatch({
-                      type: "SET_NUMERICAL_ANSWERS",
-                      payload: { ...state.numericalAnswers, [qId]: undefined },
-                    })
-                    dispatch({
-                      type: "SET_QUESTIONS",
-                      payload: state.questions.map((qq) =>
-                        qq.questionId === qId
-                          ? { ...qq, completed: false, reviewed: false }
-                          : qq
-                      ),
-                    })
-                    // server
-                    try {
-                      await fetch("/api/questions", {
-                        method: "PATCH",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                          questionId: qId,
-                          completed: false,
-                          reviewed: false,
-                        }),
+              {filteredQuestions.map((question, index) => {
+                // #2 => absolute index for entire DB numbering
+                const absoluteIndex = (state.currentPage - 1) * state.pageSize + index
+                return (
+                  <Question
+                    key={question.questionId}
+                    question={question}
+                    feedback={state.feedback[question.questionId]}
+                    selectedOption={state.selectedOptions[question.questionId]}
+                    numericalAnswer={state.numericalAnswers[question.questionId]}
+                    showMarkscheme={state.showMarkscheme[question.questionId] || false}
+                    handleOptionClick={handleOptionClick}
+                    handleNumericalSubmit={handleNumericalSubmit}
+                    handleNumericalChange={(qId, val) => {
+                      dispatch({
+                        type: "SET_NUMERICAL_ANSWERS",
+                        payload: { ...state.numericalAnswers, [qId]: val },
                       })
-                    } catch (e) {
-                      console.error("Error resetting question:", e)
-                    }
-                  }}
-                  isMarkedForReview={question.reviewed || false}
-                  isMarkedComplete={question.completed || false}
-                  markschemesDisabled={false}
-                  note=""
-                  handleNoteChange={() => {}}
-                  handleDeleteNote={() => Promise.resolve()}
-                  userId={"guest"}
-                  totalQuestions={filteredQuestions.length}
-                  currentQuestionIndex={index}
-                  handleQuestionChange={() => {}}
-                />
-              ))}
+                    }}
+                    handleMarkschemeToggle={(qId) => {
+                      dispatch({
+                        type: "SET_SHOW_MARKSCHEME",
+                        payload: {
+                          ...state.showMarkscheme,
+                          [qId]: !state.showMarkscheme[qId],
+                        },
+                      })
+                    }}
+                    handleMarkForReview={handleMarkForReview}
+                    handleMarkComplete={handleMarkComplete}
+                    handleResetQuestion={async (qId) => {
+                      // local reset
+                      dispatch({
+                        type: "SET_FEEDBACK",
+                        payload: { ...state.feedback, [qId]: undefined },
+                      })
+                      dispatch({
+                        type: "SET_SELECTED_OPTIONS",
+                        payload: { ...state.selectedOptions, [qId]: undefined },
+                      })
+                      dispatch({
+                        type: "SET_NUMERICAL_ANSWERS",
+                        payload: { ...state.numericalAnswers, [qId]: undefined },
+                      })
+                      dispatch({
+                        type: "SET_QUESTIONS",
+                        payload: state.questions.map((qq) =>
+                          qq.questionId === qId ? { ...qq, completed: false, reviewed: false } : qq
+                        ),
+                      })
+                      // server
+                      try {
+                        await fetch("/api/questions", {
+                          method: "PATCH",
+                          headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify({
+                            questionId: qId,
+                            completed: false,
+                            reviewed: false,
+                          }),
+                        })
+                      } catch (e) {
+                        console.error("Error resetting question:", e)
+                      }
+                    }}
+                    isMarkedForReview={question.reviewed || false}
+                    isMarkedComplete={question.completed || false}
+                    markschemesDisabled={false}
+                    note=""
+                    handleNoteChange={() => {}}
+                    handleDeleteNote={() => Promise.resolve()}
+                    userId={"guest"}
+                    totalQuestions={state.totalCount}  // entire DB
+                    currentQuestionIndex={absoluteIndex} // zero-based
+                    handleQuestionChange={() => {}}
+                  />
+                )
+              })}
+
+              {/* Pagination */}
               <Pagination
                 currentPage={state.currentPage}
                 totalCount={state.totalCount}
