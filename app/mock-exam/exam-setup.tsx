@@ -1,254 +1,314 @@
 "use client";
 
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { ChevronDown } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import {
+  ChevronDown,
+  BookOpen,
+  AlertTriangle,
+  Loader2,
+  ArrowRight,
+} from "lucide-react";
 
-/** Define the exact props this component expects, 
- *  matching what's passed from the parent in mock-exam.tsx */
-interface ExamSetupProps {
-  exams: string[];
-  years: number[];
-  shifts: string[];
-  selectedExam: string;
-  selectedYear: number | null;
-  selectedShift: string;
-  examTime: number;
-  onExamChange: Dispatch<SetStateAction<string>>;
-  /** or: onYearChange: (val: string) => void; */
-  onYearChange: (val: string) => void;
-  onShiftChange: Dispatch<SetStateAction<string>>;
-  onExamTimeChange: Dispatch<SetStateAction<number>>;
-  onStartExam: () => Promise<void>;
+/**
+ * The parent can pass this callback to receive final (exam, year, shift, time).
+ */
+interface ProductionExamSetupProps {
+  onStartExam: (
+    selectedExam: string,
+    selectedYear: number,
+    selectedShift: string,
+    examTime: number
+  ) => void;
 }
 
-/** 
- * Default export must match the import name used in mock-exam.tsx
- * so that <ExamSetup ... /> works correctly.
+/**
+ * A production-ready, step-by-step Past Paper / Mock Exam setup wizard.
+ * 1) Fetch exams on mount => user picks an exam
+ * 2) Then fetch years => user picks a year
+ * 3) Then fetch shifts => user picks a shift
+ * 4) Enter exam time => press Start
+ *
+ * Each step is disabled until the previous selection is made.
  */
-export default function ExamSetup({
-  exams,
-  years,
-  shifts,
-  selectedExam,
-  selectedYear,
-  selectedShift,
-  examTime,
-  onExamChange,
-  onYearChange,
-  onShiftChange,
-  onExamTimeChange,
+export default function ProductionExamSetup({
   onStartExam,
-}: ExamSetupProps) {
-  // Example local state if you want to show "units" or subtopics, 
-  // but this is purely optional and can be removed.
-  const [expandedUnit, setExpandedUnit] = useState<number | null>(null);
+}: ProductionExamSetupProps) {
+  // Data arrays
+  const [exams, setExams] = useState<string[]>([]);
+  const [years, setYears] = useState<number[]>([]);
+  const [shifts, setShifts] = useState<string[]>([]);
 
-  // Example local data for demonstration (can be removed if not needed).
-  const units = [
-    {
-      id: 0,
-      title: "Unit 1: Introduction to Business Management",
-      questions: 39,
-    },
-    {
-      id: 1,
-      title: "Unit 2: HR Management",
-      questions: 34,
-    },
-    {
-      id: 2,
-      title: "Unit 3: Financial Management",
-      questions: 47,
-      subtopics: [
-        { title: "3.1 Introduction to finance", questions: 3 },
-        { title: "3.2 Sources of finance", questions: 8 },
-        // ...
-      ],
-    },
-    // ...
-  ];
+  // Selections
+  const [selectedExam, setSelectedExam] = useState("");
+  const [selectedYear, setSelectedYear] = useState<number | null>(null);
+  const [selectedShift, setSelectedShift] = useState("");
+
+  // Exam time in minutes (default 60)
+  const [examTime, setExamTime] = useState<number>(60);
+
+  // Loading states
+  const [loadingExams, setLoadingExams] = useState(false);
+  const [loadingYears, setLoadingYears] = useState(false);
+  const [loadingShifts, setLoadingShifts] = useState(false);
+
+  // Error
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  /**
+   * Fetch initial exam list on mount.
+   */
+  useEffect(() => {
+    async function fetchExams() {
+      try {
+        setLoadingExams(true);
+        setErrorMsg(null);
+        // Example endpoint that returns {exams: string[], years: number[], shifts: string[]}
+        // We only need .exams initially
+        const res = await fetch("/api/exams-and-years");
+        if (!res.ok) {
+          throw new Error("Failed to fetch exams.");
+        }
+        const data = await res.json();
+        setExams(data.exams || []);
+      } catch (err: any) {
+        setErrorMsg(err.message);
+      } finally {
+        setLoadingExams(false);
+      }
+    }
+    fetchExams();
+  }, []);
+
+  /**
+   * Whenever the user selects an exam, fetch the years for that exam.
+   */
+  useEffect(() => {
+    async function fetchYearsForExam(exam: string) {
+      try {
+        setLoadingYears(true);
+        setErrorMsg(null);
+        setYears([]);
+        setSelectedYear(null);
+        setShifts([]);
+        setSelectedShift("");
+
+        // e.g. /api/exams-and-years?exam=EXAM_NAME
+        const res = await fetch(`/api/exams-and-years?exam=${exam}`);
+        if (!res.ok) {
+          throw new Error("Failed to fetch years for exam: " + exam);
+        }
+        const data = await res.json();
+        setYears(data.years || []);
+      } catch (err: any) {
+        setErrorMsg(err.message);
+      } finally {
+        setLoadingYears(false);
+      }
+    }
+    if (selectedExam) {
+      fetchYearsForExam(selectedExam);
+    } else {
+      // if user clears exam
+      setYears([]);
+      setSelectedYear(null);
+      setShifts([]);
+      setSelectedShift("");
+    }
+  }, [selectedExam]);
+
+  /**
+   * Whenever the user selects a year, fetch shifts for (exam, year).
+   */
+  useEffect(() => {
+    async function fetchShiftsForExamYear(exam: string, year: number) {
+      try {
+        setLoadingShifts(true);
+        setErrorMsg(null);
+        setShifts([]);
+        setSelectedShift("");
+
+        // e.g. /api/exams-and-years?exam=EXAM_NAME&year=YEAR_NUM
+        const res = await fetch(`/api/exams-and-years?exam=${exam}&year=${year}`);
+        if (!res.ok) {
+          throw new Error("Failed to fetch shifts for exam/year.");
+        }
+        const data = await res.json();
+        setShifts(data.shifts || []);
+      } catch (err: any) {
+        setErrorMsg(err.message);
+      } finally {
+        setLoadingShifts(false);
+      }
+    }
+    if (selectedExam && selectedYear !== null) {
+      fetchShiftsForExamYear(selectedExam, selectedYear);
+    } else {
+      setShifts([]);
+      setSelectedShift("");
+    }
+  }, [selectedExam, selectedYear]);
+
+  /**
+   * Final step: Validate selections and pass them up.
+   */
+  const handleStartExam = () => {
+    if (!selectedExam) {
+      alert("Please select an exam.");
+      return;
+    }
+    if (!selectedYear) {
+      alert("Please select a year.");
+      return;
+    }
+    if (shifts.length > 0 && !selectedShift) {
+      alert("Please select a shift (paper).");
+      return;
+    }
+    onStartExam(selectedExam, selectedYear, selectedShift, examTime);
+  };
+
+  /**
+   * Helper to show a spinner or a dropdown arrow
+   */
+  const renderDropdownIcon = (loading: boolean) => {
+    if (loading) {
+      return (
+        <Loader2 className="w-4 h-4 text-gray-400 animate-spin absolute right-3 top-3" />
+      );
+    }
+    return (
+      <ChevronDown className="w-4 h-4 text-gray-400 absolute right-3 top-3 pointer-events-none" />
+    );
+  };
 
   return (
-    <div className="max-w-[1200px] mx-auto p-4">
-      <div className="flex flex-col md:flex-row gap-6">
-        {/* Sidebar with your form controls */}
-        <div className="w-full md:w-72 space-y-6">
-          <div className="flex items-center gap-3">
-            <div className="bg-blue-100 p-2 rounded">
-              {/* You can place an icon here */}
-            </div>
-            <h1 className="text-2xl font-bold">Test Builder</h1>
+    <div className="max-w-xl mx-auto p-4">
+      <div className="bg-white shadow-md rounded-md p-6">
+        {/* Header */}
+        <div className="flex items-center gap-3 mb-6">
+          <div className="p-2 bg-blue-100 text-blue-600 rounded-md">
+            <BookOpen className="h-6 w-6" />
           </div>
+          <h1 className="text-2xl font-semibold leading-none">
+            Start a Practice Exam
+          </h1>
+        </div>
 
-          <div className="space-y-4">
-            {/* 1) Exam */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">Exam</label>
-              <div className="relative">
-                <select
-                  className="w-full p-2 bg-gray-100 border-none rounded-md text-gray-700 appearance-none pr-8"
-                  value={selectedExam}
-                  onChange={(e) => onExamChange(e.target.value)}
-                >
-                  <option value="">-- Select an exam --</option>
-                  {exams.map((exam) => (
-                    <option key={exam} value={exam}>
-                      {exam}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown
-                  className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400"
-                  size={20}
-                />
-              </div>
-            </div>
+        {/* Error message (if any) */}
+        {errorMsg && (
+          <div className="flex items-center gap-2 bg-red-50 border border-red-200 text-red-700 text-sm p-2 rounded-md mb-4">
+            <AlertTriangle className="w-4 h-4" />
+            <span>{errorMsg}</span>
+          </div>
+        )}
 
-            {/* 2) Year */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">Year</label>
-              <div className="relative">
-                <select
-                  className="w-full p-2 bg-gray-100 border-none rounded-md text-gray-700 appearance-none pr-8"
-                  value={selectedYear ?? ""}
-                  onChange={(e) => onYearChange(e.target.value)}
-                >
-                  <option value="">-- Select a year --</option>
-                  {years.map((yr) => (
-                    <option key={yr} value={yr}>
-                      {yr}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown
-                  className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400"
-                  size={20}
-                />
-              </div>
-            </div>
+        {/* Step 1: Exam */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            1. Select Exam
+          </label>
+          <div className="relative">
+            <select
+              className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 pr-8 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+              value={selectedExam}
+              onChange={(e) => setSelectedExam(e.target.value)}
+            >
+              <option value="">-- Choose an exam --</option>
+              {exams.map((exam) => (
+                <option key={exam} value={exam}>
+                  {exam}
+                </option>
+              ))}
+            </select>
+            {renderDropdownIcon(loadingExams)}
+          </div>
+        </div>
 
-            {/* 3) Shift (if any) */}
-            {shifts.length > 0 && (
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">Shift</label>
-                <div className="space-y-2">
-                  {shifts.map((shiftVal) => (
-                    <div key={shiftVal} className="flex items-center">
-                      <input
-                        type="radio"
-                        id={`shift-${shiftVal}`}
-                        name="shifts"
-                        value={shiftVal}
-                        checked={selectedShift === shiftVal}
-                        onChange={(e) => onShiftChange(e.target.value)}
-                        className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                      />
-                      <label
-                        htmlFor={`shift-${shiftVal}`}
-                        className="ml-2 text-sm text-gray-700"
-                      >
-                        {shiftVal}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-            {shifts.length === 0 && (
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">Shift</label>
-                <div className="text-gray-500 text-sm italic">
+        {/* Step 2: Year */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            2. Select Year
+          </label>
+          <div className="relative">
+            <select
+              className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 pr-8 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:opacity-50"
+              value={selectedYear ?? ""}
+              onChange={(e) => setSelectedYear(Number(e.target.value))}
+              disabled={!selectedExam}
+            >
+              <option value="">-- Choose a year --</option>
+              {years.map((yr) => (
+                <option key={yr} value={yr}>
+                  {yr}
+                </option>
+              ))}
+            </select>
+            {renderDropdownIcon(loadingYears)}
+          </div>
+        </div>
+
+        {/* Step 3: Shift */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            3. Select Shift
+          </label>
+          {shifts.length === 0 ? (
+            <>
+              {loadingShifts ? (
+                <p className="text-sm text-gray-500 italic">Loading shifts...</p>
+              ) : (
+                <p className="text-sm text-gray-500 italic">
                   No shifts available. You can still proceed.
-                </div>
-              </div>
-            )}
-
-            {/* 4) Exam time (in minutes) */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">
-                Exam Time (minutes)
-              </label>
-              <input
-                type="number"
-                className="w-full p-2 bg-gray-100 border-none rounded-md text-gray-700"
-                value={examTime}
-                onChange={(e) => onExamTimeChange(Number(e.target.value))}
-              />
+                </p>
+              )}
+            </>
+          ) : (
+            <div className="relative">
+              <select
+                className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 pr-8 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:opacity-50"
+                value={selectedShift}
+                onChange={(e) => setSelectedShift(e.target.value)}
+                disabled={!selectedYear}
+              >
+                <option value="">-- Choose a shift --</option>
+                {shifts.map((shiftVal) => (
+                  <option key={shiftVal} value={shiftVal}>
+                    {shiftVal}
+                  </option>
+                ))}
+              </select>
+              {renderDropdownIcon(loadingShifts)}
             </div>
-          </div>
-
-          {/* Start exam button */}
-          <button
-            onClick={onStartExam}
-            className="w-full py-2 px-4 bg-purple-600 hover:bg-purple-700 text-white rounded-md font-medium text-sm mt-2"
-          >
-            Start Exam
-          </button>
+          )}
         </div>
 
-        {/* Main Content (Optional) */}
-        <div className="flex-1 border rounded-lg p-4 bg-white">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold text-gray-800">All topics</h2>
-          </div>
-
-          {/* Example of local “units” with optional subtopics */}
-          <div className="space-y-2">
-            {units.map((unit) => (
-              <div key={unit.id} className="border rounded-lg">
-                <button
-                  className="w-full flex justify-between items-center p-4 hover:bg-gray-50 focus:outline-none"
-                  onClick={() =>
-                    setExpandedUnit(expandedUnit === unit.id ? null : unit.id)
-                  }
-                >
-                  <div className="flex items-start gap-4">
-                    <input
-                      type="checkbox"
-                      className="mt-1 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                      defaultChecked={false}
-                    />
-                    <span className="text-left text-sm">{unit.title}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-gray-500 text-sm">
-                      {unit.questions} questions
-                    </span>
-                    <ChevronDown
-                      className={`w-5 h-5 transition-transform text-gray-400 ${
-                        expandedUnit === unit.id ? "rotate-180" : ""
-                      }`}
-                    />
-                  </div>
-                </button>
-
-                {/* Show subtopics if expanded */}
-                {expandedUnit === unit.id && unit.subtopics && (
-                  <div className="px-4 py-2 border-t">
-                    {unit.subtopics.map((subtopic, idx) => (
-                      <div
-                        key={idx}
-                        className="flex justify-between items-center py-2 px-4 hover:bg-gray-50 rounded-lg"
-                      >
-                        <div className="flex items-center gap-4">
-                          <input
-                            type="checkbox"
-                            className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                            defaultChecked={false}
-                          />
-                          <span className="text-sm">{subtopic.title}</span>
-                        </div>
-                        <span className="text-gray-500 text-sm">
-                          {subtopic.questions} questions
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+        {/* Step 4: Exam Time */}
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            4. Exam Time (minutes)
+          </label>
+          <input
+            type="number"
+            min={1}
+            className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:opacity-50"
+            value={examTime}
+            onChange={(e) => setExamTime(Number(e.target.value))}
+          />
         </div>
+
+        {/* Button: Start Exam */}
+        <button
+          onClick={handleStartExam}
+          className="w-full flex items-center justify-center gap-2 rounded-md bg-blue-600 py-2 px-4 text-white text-sm font-medium hover:bg-blue-700 disabled:opacity-50"
+          disabled={
+            !selectedExam ||
+            !selectedYear ||
+            (shifts.length > 0 && !selectedShift)
+          }
+        >
+          Start Exam
+          <ArrowRight className="w-4 h-4" />
+        </button>
       </div>
     </div>
   );

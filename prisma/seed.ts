@@ -141,8 +141,8 @@ interface QuestionJson {
 // Main seeding function
 ///////////////////////////////
 async function main() {
-  const metaFilePath = "./!metaid/jee_wb-jee.json";
-  const questionFolder = "./past-papers/jee_wb-jee";
+  const metaFilePath = "./!metaid/jee_bitsat.json";
+  const questionFolder = "./past-papers/jee_bitsat";
 
   logInfo(`Reading meta file: ${metaFilePath}`);
   logInfo(`Reading question files from: ${questionFolder}`);

@@ -1,143 +1,125 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react"
-import { useSession } from "next-auth/react"
-import { useToast } from "@/components/ui/use-toast"
-import { useRouter } from "next/navigation"
-import { AnimatePresence, motion } from "framer-motion"
-import Skeleton from "react-loading-skeleton"
-import "react-loading-skeleton/dist/skeleton.css"
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useSession } from "next-auth/react";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-import ExamSetup from "./exam-setup"  // <-- Import the typed ExamSetup
-import Exam from "./exam"
-import AdvancedExamResults from "./exam-results"
+// IMPORTANT: This child now fetches its own exam/year/shift data step by step.
+import ProductionExamSetup from "./exam-setup"; 
+import Exam from "./exam";
+import AdvancedExamResults from "./exam-results";
 
 // Single source of truth for types
 import {
   QuestionType,
   ExamResultsType,
   TopicPerformance,
-} from "@/lib/exam-helpers"
-import { Button } from "@/components/ui/button"
+} from "@/lib/exam-helpers";
 
-const HOUR_IN_SECONDS = 3600
+const HOUR_IN_SECONDS = 3600;
 
 export default function MockExam() {
-  const router = useRouter()
-  const { toast } = useToast()
-  const { data: session } = useSession()
+  const router = useRouter();
+  const { toast } = useToast();
+  const { data: session } = useSession();
 
-  // ------------------------------------------------------------------
-  // State for exam, year, shift
-  // ------------------------------------------------------------------
-  const [exams, setExams] = useState<string[]>([])
-  const [years, setYears] = useState<number[]>([])
-  const [shifts, setShifts] = useState<string[]>([])
-
-  const [selectedExam, setSelectedExam] = useState("")
-  const [selectedYear, setSelectedYear] = useState<number | null>(null)
-  const [selectedShift, setSelectedShift] = useState("") // shift from key if present
-
-  // Timer settings
-  const [examTime, setExamTime] = useState<number>(60)
+  // The parent's states for exam, year, shift, time
+  // We will set these when child calls `onStartExam(...)`.
+  const [selectedExam, setSelectedExam] = useState("");
+  const [selectedYear, setSelectedYear] = useState<number | null>(null);
+  const [selectedShift, setSelectedShift] = useState("");
+  const [examTime, setExamTime] = useState<number>(60);
 
   // Questions once chosen
-  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([])
+  const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
 
   // UI states
-  const [isLoading, setIsLoading] = useState(false)
-  const [isExamStarted, setIsExamStarted] = useState(false)
-  const [isExamFinished, setIsExamFinished] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const [isExamStarted, setIsExamStarted] = useState(false);
+  const [isExamFinished, setIsExamFinished] = useState(false);
 
   // For answering and results
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answers, setAnswers] = useState<(string | null)[]>([])
-  const [questionStatuses, setQuestionStatuses] = useState<{ [index: number]: string }>({})
-  const [timeSpentPerQuestion, setTimeSpentPerQuestion] = useState<number[]>([])
-  const [examTimeLeft, setExamTimeLeft] = useState(HOUR_IN_SECONDS)
-  const [examResults, setExamResults] = useState<ExamResultsType | null>(null)
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState<(string | null)[]>([]);
+  const [questionStatuses, setQuestionStatuses] = useState<{
+    [index: number]: string;
+  }>({});
+  const [timeSpentPerQuestion, setTimeSpentPerQuestion] = useState<number[]>([]);
+  const [examTimeLeft, setExamTimeLeft] = useState(HOUR_IN_SECONDS);
+  const [examResults, setExamResults] = useState<ExamResultsType | null>(null);
 
-  const questionStartTimeRef = useRef<number>(0)
+  const questionStartTimeRef = useRef<number>(0);
 
   // ------------------------------------------------------------------
-  // 1) Fetch the list of exams, years, shifts on mount
+  // Step A) The child calls this once the user has final selections:
+  //   onStartExam(selectedExam, selectedYear, selectedShift, examTime)
+  // We store them, then call startExam() to fetch questions, etc.
   // ------------------------------------------------------------------
-  useEffect(() => {
-    fetchExamsAndYears()
-  }, [])
-
-  async function fetchExamsAndYears() {
-    try {
-      setIsLoading(true)
-      const response = await fetch("/api/exams-and-years")
-      if (!response.ok) {
-        throw new Error("Failed to fetch exams/years/shifts.")
-      }
-      const data = await response.json()
-
-      setExams(data.exams || [])
-      setYears(data.years || [])
-      setShifts(data.shifts || [])
-    } catch (error) {
-      console.error("Error fetching exam data:", error)
-      toast({
-        title: "Error",
-        description: "Failed to load exam/year/shift data.",
-        variant: "destructive",
-      })
-    } finally {
-      setIsLoading(false)
-    }
+  async function handleStartExam(
+    exam: string,
+    year: number,
+    shift: string,
+    time: number
+  ) {
+    setSelectedExam(exam);
+    setSelectedYear(year);
+    setSelectedShift(shift);
+    setExamTime(time);
+    await startExam(exam, year, shift, time);
   }
 
   // ------------------------------------------------------------------
-  // 2) Start the exam => fetch questions
+  // B) startExam => fetch the questions for the chosen exam/year/shift
   // ------------------------------------------------------------------
-  async function startExam() {
-    if (!selectedExam) {
-      toast({
-        title: "Validation Error",
-        description: "Please select an exam before starting.",
-        variant: "destructive",
-      })
-      return
-    }
-    if (!selectedYear) {
-      toast({
-        title: "Validation Error",
-        description: "Please select a year before starting.",
-        variant: "destructive",
-      })
-      return
-    }
-    if (shifts.length > 0 && !selectedShift) {
-      toast({
-        title: "Validation Error",
-        description: "Please select a shift (paper) before starting.",
-        variant: "destructive",
-      })
-      return
-    }
-
+  async function startExam(
+    exam: string,
+    year: number,
+    shift: string,
+    time: number
+  ) {
     try {
-      setIsLoading(true)
+      if (!exam) {
+        toast({
+          title: "Validation Error",
+          description: "Please select an exam before starting.",
+          variant: "destructive",
+        });
+        return;
+      }
+      if (!year) {
+        toast({
+          title: "Validation Error",
+          description: "Please select a year before starting.",
+          variant: "destructive",
+        });
+        return;
+      }
+      // If shifts exist, we might require shift:
+      // But the child already ensures that if shifts exist, user picks one.
+
+      setIsLoading(true);
 
       // Build query
       const queryParams = new URLSearchParams({
-        exam: selectedExam,
-        year: String(selectedYear),
-      })
-      if (selectedShift) {
-        queryParams.append("shift", selectedShift)
+        exam,
+        year: String(year),
+      });
+      if (shift) {
+        queryParams.append("shift", shift);
       }
 
-      const response = await fetch(`/api/questions?${queryParams.toString()}`)
+      const response = await fetch(`/api/questions?${queryParams.toString()}`);
       if (!response.ok) {
-        throw new Error("Failed to fetch questions for the selected exam/year/shift.")
+        throw new Error("Failed to fetch questions for the selected exam/year/shift.");
       }
 
-      const data = await response.json()
-      const matching = data.data ?? data
+      const data = await response.json();
+      // If paginated => data.data, else => data
+      const matching = data.data ?? data;
 
       if (!matching || matching.length === 0) {
         toast({
@@ -145,40 +127,40 @@ export default function MockExam() {
           description:
             "No questions matched your selection. Please try different options.",
           variant: "destructive",
-        })
-        setIsLoading(false)
-        return
+        });
+        setIsLoading(false);
+        return;
       }
 
-      setFilteredQuestions(matching)
+      setFilteredQuestions(matching);
 
       // Initialize question statuses, answers, time
-      const initialStatuses: { [index: number]: string } = {}
+      const initialStatuses: { [index: number]: string } = {};
       matching.forEach((_: any, i: number) => {
-        initialStatuses[i] = "notVisited"
-      })
-      setQuestionStatuses(initialStatuses)
-      setAnswers(new Array(matching.length).fill(null))
-      setTimeSpentPerQuestion(new Array(matching.length).fill(0))
+        initialStatuses[i] = "notVisited";
+      });
+      setQuestionStatuses(initialStatuses);
+      setAnswers(new Array(matching.length).fill(null));
+      setTimeSpentPerQuestion(new Array(matching.length).fill(0));
 
       // Convert minutes to seconds
-      setExamTimeLeft(examTime * 60)
+      setExamTimeLeft(time * 60);
 
-      setIsExamStarted(true)
-      setIsExamFinished(false)
-      setExamResults(null)
-      setCurrentQuestion(0)
+      setIsExamStarted(true);
+      setIsExamFinished(false);
+      setExamResults(null);
+      setCurrentQuestion(0);
 
-      questionStartTimeRef.current = Date.now()
+      questionStartTimeRef.current = Date.now();
     } catch (error) {
-      console.error("Error loading exam questions:", error)
+      console.error("Error loading exam questions:", error);
       toast({
         title: "Error",
         description: "Failed to load questions. Please try again.",
         variant: "destructive",
-      })
+      });
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   }
 
@@ -188,89 +170,89 @@ export default function MockExam() {
   const handleAnswer = useCallback(
     (answerId: string) => {
       setAnswers((prev) => {
-        const newArr = [...prev]
-        newArr[currentQuestion] = answerId
-        return newArr
-      })
+        const newArr = [...prev];
+        newArr[currentQuestion] = answerId;
+        return newArr;
+      });
       setQuestionStatuses((prev) => {
-        const oldStatus = prev[currentQuestion]
+        const oldStatus = prev[currentQuestion];
         return {
           ...prev,
           [currentQuestion]:
             oldStatus === "markedForReview" ? "markedForReview" : "answered",
-        }
-      })
+        };
+      });
     },
     [currentQuestion]
-  )
+  );
 
   const handleClear = useCallback(() => {
     setAnswers((prev) => {
-      const newArr = [...prev]
-      newArr[currentQuestion] = null
-      return newArr
-    })
+      const newArr = [...prev];
+      newArr[currentQuestion] = null;
+      return newArr;
+    });
     setQuestionStatuses((prev) => ({
       ...prev,
       [currentQuestion]:
         prev[currentQuestion] === "markedForReview"
           ? "markedForReview"
           : "notAnswered",
-    }))
-  }, [currentQuestion])
+    }));
+  }, [currentQuestion]);
 
   const handleReviewAndNext = useCallback(() => {
     setQuestionStatuses((prev) => ({
       ...prev,
       [currentQuestion]: "markedForReview",
-    }))
+    }));
     if (currentQuestion < filteredQuestions.length - 1) {
-      handleNavigate(currentQuestion + 1)
+      handleNavigate(currentQuestion + 1);
     }
-  }, [currentQuestion, filteredQuestions.length])
+  }, [currentQuestion, filteredQuestions.length]);
 
   const handleSaveAndNext = useCallback(() => {
     if (currentQuestion < filteredQuestions.length - 1) {
-      handleNavigate(currentQuestion + 1)
+      handleNavigate(currentQuestion + 1);
     }
-  }, [currentQuestion, filteredQuestions.length])
+  }, [currentQuestion, filteredQuestions.length]);
 
   // ------------------------------------------------------------------
   // 4) Navigation with time tracking
   // ------------------------------------------------------------------
   function updateTimeSpent() {
-    const timeSpent = Math.floor((Date.now() - questionStartTimeRef.current) / 1000)
+    const timeSpent = Math.floor((Date.now() - questionStartTimeRef.current) / 1000);
     setTimeSpentPerQuestion((prev) => {
-      const newTimeSpent = [...prev]
+      const newTimeSpent = [...prev];
       newTimeSpent[currentQuestion] =
-        (newTimeSpent[currentQuestion] || 0) + timeSpent
-      return newTimeSpent
-    })
-    questionStartTimeRef.current = Date.now()
+        (newTimeSpent[currentQuestion] || 0) + timeSpent;
+      return newTimeSpent;
+    });
+    questionStartTimeRef.current = Date.now();
   }
 
   function handleNavigate(index: number) {
-    if (index < 0 || index >= filteredQuestions.length) return
-    updateTimeSpent()
-    setCurrentQuestion(index)
+    if (index < 0 || index >= filteredQuestions.length) return;
+    updateTimeSpent();
+    setCurrentQuestion(index);
     setQuestionStatuses((prev) => {
-      const st = prev[index]
+      const st = prev[index];
       if (st === "notVisited") {
-        return { ...prev, [index]: "notAnswered" }
+        return { ...prev, [index]: "notAnswered" };
       }
-      return prev
-    })
+      return prev;
+    });
   }
 
   function handleNext() {
     if (currentQuestion < filteredQuestions.length - 1) {
-      handleNavigate(currentQuestion + 1)
+      handleNavigate(currentQuestion + 1);
     }
   }
 
   function handlePrevious() {
     if (currentQuestion > 0) {
-      handleNavigate(currentQuestion - 1)
+      handleNavigate(currentQuestion - 1);
     }
   }
 
@@ -278,56 +260,56 @@ export default function MockExam() {
   // 5) Submitting the exam
   // ------------------------------------------------------------------
   function handleSubmit() {
-    if (!filteredQuestions.length) return
-    updateTimeSpent()
+    if (!filteredQuestions.length) return;
+    updateTimeSpent();
 
-    const totalQuestions = filteredQuestions.length
+    const totalQuestions = filteredQuestions.length;
     const correctCount = filteredQuestions.reduce((acc, q, i) => {
-      return acc + (answers[i] === q.correctOption ? 1 : 0)
-    }, 0)
-    const incorrectAnswers = totalQuestions - correctCount
-    const score = (correctCount / totalQuestions) * 100
+      return acc + (answers[i] === q.correctOption ? 1 : 0);
+    }, 0);
+    const incorrectAnswers = totalQuestions - correctCount;
+    const score = (correctCount / totalQuestions) * 100;
 
     // Example topic performance logic
-    const topicPerformance: Record<string, TopicPerformance> = {}
-    const subtopicPerformance: Record<string, TopicPerformance> = {}
-    const topicWiseIncorrectAnswers: Record<string, number> = {}
+    const topicPerformance: Record<string, TopicPerformance> = {};
+    const subtopicPerformance: Record<string, TopicPerformance> = {};
+    const topicWiseIncorrectAnswers: Record<string, number> = {};
 
     filteredQuestions.forEach((q, i) => {
-      const isCorrect = answers[i] === q.correctOption
-      const top = q.topic || "Unknown Topic"
+      const isCorrect = answers[i] === q.correctOption;
+      const top = q.topic || "Unknown Topic";
       if (!topicPerformance[top]) {
-        topicPerformance[top] = { correct: 0, total: 0 }
+        topicPerformance[top] = { correct: 0, total: 0 };
       }
-      topicPerformance[top].total++
+      topicPerformance[top].total++;
       if (isCorrect) {
-        topicPerformance[top].correct++
+        topicPerformance[top].correct++;
       } else {
         topicWiseIncorrectAnswers[top] =
-          (topicWiseIncorrectAnswers[top] || 0) + 1
+          (topicWiseIncorrectAnswers[top] || 0) + 1;
       }
 
-      const sub = q.subtopic || "No Subtopic"
+      const sub = q.subtopic || "No Subtopic";
       if (!subtopicPerformance[sub]) {
-        subtopicPerformance[sub] = { correct: 0, total: 0 }
+        subtopicPerformance[sub] = { correct: 0, total: 0 };
       }
-      subtopicPerformance[sub].total++
+      subtopicPerformance[sub].total++;
       if (isCorrect) {
-        subtopicPerformance[sub].correct++
+        subtopicPerformance[sub].correct++;
       }
-    })
+    });
 
     const topStrengths = Object.entries(topicPerformance)
       .sort((a, b) => b[1].correct / b[1].total - a[1].correct / a[1].total)
-      .slice(0, 3)
+      .slice(0, 3);
 
     const topWeaknesses = Object.entries(topicPerformance)
       .sort((a, b) => a[1].correct / a[1].total - b[1].correct / b[1].total)
-      .slice(0, 3)
+      .slice(0, 3);
 
     const avgTimePerQ =
       timeSpentPerQuestion.reduce((a, b) => a + b, 0) /
-      timeSpentPerQuestion.length
+      timeSpentPerQuestion.length;
 
     // Example: random skill levels
     const skillLevels: Record<string, number> = {
@@ -336,7 +318,7 @@ export default function MockExam() {
       "Data Analysis": Math.random() * 100,
       "Conceptual Understanding": Math.random() * 100,
       "Application of Knowledge": Math.random() * 100,
-    }
+    };
 
     setExamResults({
       totalQuestions,
@@ -354,39 +336,39 @@ export default function MockExam() {
       topicWiseIncorrectAnswers,
       questions: filteredQuestions,
       skillLevels,
-    })
+    });
 
-    setIsExamFinished(true)
+    setIsExamFinished(true);
   }
 
   // ------------------------------------------------------------------
   // 6) Exam timer
   // ------------------------------------------------------------------
   useEffect(() => {
-    let examTimer: NodeJS.Timeout
+    let examTimer: NodeJS.Timeout;
     if (isExamStarted && !isExamFinished) {
       examTimer = setInterval(() => {
         setExamTimeLeft((prev) => {
           if (prev <= 1) {
-            clearInterval(examTimer)
-            updateTimeSpent()
-            handleSubmit() // automatically submit
-            return 0
+            clearInterval(examTimer);
+            updateTimeSpent();
+            handleSubmit(); // automatically submit
+            return 0;
           }
-          return prev - 1
-        })
-      }, 1000)
+          return prev - 1;
+        });
+      }, 1000);
     }
     return () => {
-      if (examTimer) clearInterval(examTimer)
-    }
-  }, [isExamStarted, isExamFinished])
+      if (examTimer) clearInterval(examTimer);
+    };
+  }, [isExamStarted, isExamFinished]);
 
   useEffect(() => {
     if (isExamStarted && !isExamFinished) {
-      questionStartTimeRef.current = Date.now()
+      questionStartTimeRef.current = Date.now();
     }
-  }, [currentQuestion, isExamStarted, isExamFinished])
+  }, [currentQuestion, isExamStarted, isExamFinished]);
 
   // ------------------------------------------------------------------
   // 7) Early exit exam
@@ -397,21 +379,28 @@ export default function MockExam() {
         "Are you sure you want to exit the exam? Your progress will be lost."
       )
     ) {
-      setIsExamStarted(false)
-      setIsExamFinished(false)
-      setExamResults(null)
-      router.push("/mock-exam")
+      setIsExamStarted(false);
+      setIsExamFinished(false);
+      setExamResults(null);
+      router.push("/mock-exam");
     }
   }
 
   function onStartNewExam() {
-    setIsExamStarted(false)
-    setIsExamFinished(false)
-    setExamResults(null)
+    setIsExamStarted(false);
+    setIsExamFinished(false);
+    setExamResults(null);
+    // Optionally reset selectedExam, selectedYear, etc. if you want
+    setSelectedExam("");
+    setSelectedYear(null);
+    setSelectedShift("");
+    setExamTime(60);
   }
 
   // ------------------------------------------------------------------
-  // 8) Loading skeleton (only for initial load)
+  // 8) Loading skeleton (only for the moment user is picking the exam?
+  // In this approach, we don't fetch exams in the parent, so you can remove
+  // this or keep it for other loading states.
   // ------------------------------------------------------------------
   if (isLoading && !isExamStarted && !isExamFinished) {
     return (
@@ -435,7 +424,7 @@ export default function MockExam() {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   // ------------------------------------------------------------------
@@ -452,21 +441,7 @@ export default function MockExam() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <ExamSetup
-            exams={exams}
-            years={years}
-            shifts={shifts}
-            selectedExam={selectedExam}
-            selectedYear={selectedYear}
-            selectedShift={selectedShift}
-            examTime={examTime}
-            onExamChange={setSelectedExam}
-            // We typed onYearChange as (val: string) => void, so pass a string
-            onYearChange={(val: string) => setSelectedYear(Number(val))}
-            onShiftChange={setSelectedShift}
-            onExamTimeChange={setExamTime}
-            onStartExam={startExam}
-          />
+          <ProductionExamSetup onStartExam={handleStartExam} />
         </motion.div>
       )}
 
@@ -495,7 +470,7 @@ export default function MockExam() {
             onSaveAndNext={handleSaveAndNext}
             onSubmit={() => {
               if (window.confirm("Are you sure you want to submit the exam?")) {
-                handleSubmit()
+                handleSubmit();
               }
             }}
             onExit={exitExam}
@@ -525,7 +500,7 @@ export default function MockExam() {
         </motion.div>
       )}
     </AnimatePresence>
-  )
+  );
 }
 
 // Helper to count statuses
@@ -535,11 +510,11 @@ function calcStatusCounts(obj: { [index: number]: string }) {
     notAnswered: 0,
     answered: 0,
     markedForReview: 0,
-  }
+  };
   for (const status of Object.values(obj)) {
     if (counts[status as keyof typeof counts] !== undefined) {
-      counts[status as keyof typeof counts]++
+      counts[status as keyof typeof counts]++;
     }
   }
-  return counts
+  return counts;
 }

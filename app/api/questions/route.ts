@@ -48,7 +48,7 @@ export async function GET(request: Request) {
     const difficultyFilter = searchParams.get("difficulty") || undefined
     const yearFilter = searchParams.get("year") || undefined
     // NEW: shift = "key" in your schema
-    const shiftFilter = searchParams.get("shift") || undefined
+    const shiftFilter = searchParams.get("key") || undefined
 
     // 3) Build the 'where' object for Prisma
     const where: any = {}
