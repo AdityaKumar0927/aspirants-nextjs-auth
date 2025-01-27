@@ -36,7 +36,7 @@ import {
   ChevronDown,
 } from "lucide-react"
 
-// Reuse your shared Question component
+// Your shared Question component
 import Question from "@/components/shared/Question"
 import Popover from "@/components/shared/popover"
 
@@ -63,6 +63,7 @@ interface QuestionType {
   correctOption?: string
 }
 
+// Distinct filter values from /api/filters
 interface FilterOptionsType {
   exams: string[]
   subjects: string[]
@@ -73,6 +74,7 @@ interface FilterOptionsType {
   types: string[]
 }
 
+// Our filters
 interface FiltersType {
   exams: string[]
   subjects: string[]
@@ -99,10 +101,10 @@ interface StateType {
   loading: boolean
   viewMode: ViewMode
 
-  // Paginated subset of questions
+  // Subset of questions (paginated) from /api/questions
   questions: QuestionType[]
 
-  // Distinct filter values from /api/filters
+  // Distinct filters from /api/filters
   filterOptions: FilterOptionsType
 
   // The user’s chosen filters
@@ -111,21 +113,21 @@ interface StateType {
   // Popover open states
   dropdowns: DropdownsType
 
-  // Local search text
+  // The user’s search text
   searchQuery: string
 
-  // Local progress
-  feedback: Record<string, string>        // qId => "correct"/"incorrect"
-  selectedOptions: Record<string, string> // qId => chosen MCQ
-  reviewed: Record<string, boolean>       // qId => flagged
-  completed: Record<string, boolean>      // qId => done
-  notes: Record<string, string>           // qId => note
-  showMarkscheme: Record<string, boolean> // qId => markscheme visible
+  // Local progress data
+  feedback: Record<string, string>        // questionId => "correct"|"incorrect"
+  selectedOptions: Record<string, string> // questionId => chosen MCQ option
+  reviewed: Record<string, boolean>       // questionId => flagged
+  completed: Record<string, boolean>      // questionId => done
+  notes: Record<string, string>           // questionId => user note
+  showMarkscheme: Record<string, boolean> // questionId => show solution
 
-  // Pagination
+  // Pagination info
   currentPage: number
   pageSize: number
-  totalCount: number
+  totalCount: number  // total # of questions in the entire database
 }
 
 type ActionType =
@@ -187,7 +189,7 @@ const initialState: StateType = {
 
   currentPage: 1,
   pageSize: 10,
-  totalCount: 0,
+  totalCount: 0, // total # of questions in DB
 }
 
 // Fuzzy local search
@@ -196,7 +198,7 @@ function fuzzyContains(haystack: string, needle: string): boolean {
   return haystack.toLowerCase().includes(needle.toLowerCase())
 }
 
-// Reducer
+// The main reducer
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
     case "SET_LOADING":
@@ -247,7 +249,7 @@ export default function GuestQuestionBank() {
   const [filtersOpenMobile, setFiltersOpenMobile] = React.useState(false)
   const { toast } = useToast()
 
-  // If screen < 768 => single
+  // If window < 768 => single view
   React.useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.SINGLE })
@@ -259,7 +261,7 @@ export default function GuestQuestionBank() {
     try {
       const res = await fetch("/api/filters", { cache: "no-store" })
       if (!res.ok) throw new Error("Failed to fetch filter options.")
-      const data = await res.json() as FilterOptionsType
+      const data = (await res.json()) as FilterOptionsType
       dispatch({ type: "SET_FILTER_OPTIONS", payload: data })
     } catch (err) {
       console.error("Error fetching filter options:", err)
@@ -322,7 +324,7 @@ export default function GuestQuestionBank() {
         return parseInt(aId, 10) - parseInt(bId, 10)
       })
 
-      // add local ID if needed
+      // Add local ID if needed
       data = data.map((q, idx) => ({ ...q, id: idx + 1 }))
 
       dispatch({ type: "SET_QUESTIONS", payload: data })
@@ -398,19 +400,56 @@ export default function GuestQuestionBank() {
   }, [state.questions, state.completed, state.reviewed, state.filters.status, state.searchQuery])
 
   // (F) local question progress
+  // Instead of showing "not answered" for just this page, let's do a progress card that references
+  // the entire DB totalCount. We do local counts for "answered" & "for review," then show totalCount,
+  // so "not answered" logic is replaced by simply "totalCount".
   const localStats = React.useMemo(() => {
-    const total = state.questions.length
+    // totalCount from entire DB
+    const totalDB = state.totalCount
+
+    // answered => # of local "completed" or "feedback===correct"
     let answered = 0
     let forReview = 0
-    state.questions.forEach((q) => {
-      const qid = q.questionId ?? ""
-      if (state.reviewed[qid]) forReview++
-      if (state.feedback[qid] === "correct" || state.completed[qid]) answered++
+    Object.keys(state.completed).forEach((qid) => {
+      if (state.completed[qid]) answered++
     })
-    const notAnswered = total - answered - forReview
-    const progress = total > 0 ? (answered / total) * 100 : 0
-    return { total, answered, forReview, notAnswered, progress }
-  }, [state.questions, state.reviewed, state.completed, state.feedback])
+    Object.keys(state.feedback).forEach((qid) => {
+      if (state.feedback[qid] === "correct") answered++
+    })
+    // remove duplicates if a question is both completed & correct in feedback
+    // or we keep it simpler: each question gets "counted" once if it's either completed or correct in feedback
+    // We'll do a set to avoid double counting
+    const answeredSet = new Set<string>()
+    // from completed
+    Object.entries(state.completed).forEach(([qid, val]) => {
+      if (val) answeredSet.add(qid)
+    })
+    // from feedback
+    Object.entries(state.feedback).forEach(([qid, fb]) => {
+      if (fb === "correct") answeredSet.add(qid)
+    })
+    answered = answeredSet.size
+
+    // forReview => # of flagged
+    const reviewSet = new Set<string>()
+    Object.entries(state.reviewed).forEach(([qid, val]) => {
+      if (val) reviewSet.add(qid)
+    })
+    forReview = reviewSet.size
+
+    // The progress bar => answered / totalDB * 100
+    let progress = 0
+    if (totalDB > 0) {
+      progress = (answered / totalDB) * 100
+    }
+
+    return {
+      total: totalDB,
+      answered,
+      forReview,
+      progress,
+    }
+  }, [state.totalCount, state.completed, state.feedback, state.reviewed])
 
   // pagination
   const totalPages = Math.ceil(state.totalCount / state.pageSize)
@@ -424,33 +463,13 @@ export default function GuestQuestionBank() {
   // single or list
   const [singleQuestionIndex, setSingleQuestionIndex] = useState(0)
 
-  // Loading skeleton
+  // If loading => skeleton
   if (state.loading) {
     return (
-      <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
-        <div className="max-w-6xl w-full text-gray-900 dark:text-gray-100">
-          <h1 className="mb-2 text-left text-3xl sm:text-4xl">Guest Question Bank</h1>
-          <div className="flex space-x-4 mb-6">
-            <Skeleton height={40} width={120} />
-            <Skeleton height={40} width={120} />
-            <Skeleton height={40} width={120} />
-          </div>
-          <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-            {[...Array(7)].map((_, i) => (
-              <div key={i} className="flex items-center space-x-2">
-                <Skeleton height={40} width={120} />
-              </div>
-            ))}
-          </div>
-          <div>
-            {[...Array(10)].map((_, i) => (
-              <div key={i} className="mb-4 p-4 border rounded-md dark:border-gray-700">
-                <Skeleton height={20} width={"80%"} />
-                <Skeleton height={20} width={"90%"} />
-                <Skeleton height={20} width={"60%"} />
-              </div>
-            ))}
-          </div>
+      <div className="bg-white w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
+        <div className="max-w-6xl w-full">
+          <h1 className="text-3xl mb-4">Guest Question Bank</h1>
+          <Skeleton count={5} height={60} />
         </div>
       </div>
     )
@@ -460,13 +479,11 @@ export default function GuestQuestionBank() {
   if (state.viewMode === ViewMode.SINGLE) {
     if (!displayQuestions.length) {
       return (
-        <div className="bg-white dark:bg-gray-900 w-full min-h-screen p-4 sm:p-8 text-gray-900 dark:text-gray-100">
-          <div className="max-w-6xl mx-auto">
-            <Button variant="outline" onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.LIST })}>
-              Switch to List View
-            </Button>
-            <p className="mt-6 text-red-300">No questions found with these filters.</p>
-          </div>
+        <div className="p-4 min-h-screen">
+          <Button variant="outline" onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.LIST })}>
+            Switch to List View
+          </Button>
+          <p className="mt-4 text-red-400">No questions found for these filters.</p>
         </div>
       )
     }
@@ -474,21 +491,21 @@ export default function GuestQuestionBank() {
     const qid = q.questionId ?? ""
 
     return (
-      <div className="bg-white dark:bg-gray-900 w-full min-h-screen p-4 sm:p-4 text-gray-900 dark:text-gray-100 flex justify-center">
+      <div className="p-4 min-h-screen w-full flex justify-center">
         <div className="max-w-xl w-full">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex justify-between mb-4">
             <Button variant="outline" onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.LIST })}>
               List View
             </Button>
 
             <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
               <DialogTrigger asChild>
-                <Button variant="outline" className="ml-2 inline-flex items-center">
+                <Button variant="outline" className="flex items-center">
                   <Filter className="mr-2 h-4 w-4" />
                   Filters
                 </Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[90vw] dark:bg-gray-800 dark:text-gray-100">
+              <DialogContent>
                 <DialogHeader>
                   <DialogTitle>Filters</DialogTitle>
                 </DialogHeader>
@@ -498,9 +515,7 @@ export default function GuestQuestionBank() {
               </DialogContent>
             </Dialog>
 
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              {singleQuestionIndex + 1} / {displayQuestions.length}
-            </span>
+            <span>{singleQuestionIndex + 1} / {displayQuestions.length}</span>
           </div>
 
           <Question
@@ -513,7 +528,7 @@ export default function GuestQuestionBank() {
               const isCorrect = option === correctOption
               dispatch({
                 type: "SET_FEEDBACK",
-                payload: { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" },
+                payload: { ...state.feedback, [questionId]: isCorrect?"correct":"incorrect" },
               })
               dispatch({
                 type: "SET_SELECTED_OPTIONS",
@@ -521,53 +536,53 @@ export default function GuestQuestionBank() {
               })
             }}
             handleNumericalSubmit={(questionId, userAns, correctAns) => {
-              const isCorrect = userAns === correctAns
+              const isCorrect = userAns===correctAns
               dispatch({
                 type: "SET_FEEDBACK",
-                payload: { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" },
+                payload: { ...state.feedback, [questionId]: isCorrect?"correct":"incorrect" },
               })
             }}
             handleNumericalChange={() => {}}
             handleMarkForReview={(questionId) => {
               const old = { ...state.reviewed }
               old[questionId] = !old[questionId]
-              dispatch({ type: "SET_REVIEWED", payload: old })
+              dispatch({ type:"SET_REVIEWED", payload:old })
             }}
             handleMarkComplete={(questionId) => {
               const old = { ...state.completed }
               old[questionId] = !old[questionId]
-              dispatch({ type: "SET_COMPLETED", payload: old })
+              dispatch({ type:"SET_COMPLETED", payload:old })
             }}
             isMarkedForReview={!!state.reviewed[qid]}
             isMarkedComplete={!!state.completed[qid]}
             showMarkscheme={!!state.showMarkscheme[qid]}
-            handleMarkschemeToggle={(questionId) => {
+            handleMarkschemeToggle={(questionId)=>{
               const cp = { ...state.showMarkscheme }
               cp[questionId] = !cp[questionId]
-              dispatch({ type: "SET_SHOW_MARKSCHEME", payload: cp })
+              dispatch({ type:"SET_SHOW_MARKSCHEME", payload:cp })
             }}
             markschemesDisabled={false}
-            handleResetQuestion={(questionId) => {
+            handleResetQuestion={(questionId)=>{
               const newFb = { ...state.feedback }
               delete newFb[questionId]
               const newSel = { ...state.selectedOptions }
               delete newSel[questionId]
               const newRev = { ...state.reviewed, [questionId]: false }
               const newComp = { ...state.completed, [questionId]: false }
-              dispatch({ type: "SET_FEEDBACK", payload: newFb })
-              dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSel })
-              dispatch({ type: "SET_REVIEWED", payload: newRev })
-              dispatch({ type: "SET_COMPLETED", payload: newComp })
+              dispatch({ type:"SET_FEEDBACK", payload:newFb })
+              dispatch({ type:"SET_SELECTED_OPTIONS", payload:newSel })
+              dispatch({ type:"SET_REVIEWED", payload:newRev })
+              dispatch({ type:"SET_COMPLETED", payload:newComp })
             }}
             note={state.notes[qid] || ""}
-            handleNoteChange={(nid, val) => {
-              const cp = { ...state.notes, [nid]: val }
-              dispatch({ type: "SET_NOTES", payload: cp })
+            handleNoteChange={(nid,val)=>{
+              const cp = { ...state.notes, [nid]:val }
+              dispatch({ type:"SET_NOTES", payload:cp })
             }}
-            handleDeleteNote={async (nid) => {
+            handleDeleteNote={async (nid)=>{
               const cp = { ...state.notes }
               delete cp[nid]
-              dispatch({ type: "SET_NOTES", payload: cp })
+              dispatch({ type:"SET_NOTES", payload:cp })
             }}
             userId="guest"
             totalQuestions={displayQuestions.length}
@@ -577,18 +592,18 @@ export default function GuestQuestionBank() {
 
           <div className="flex justify-between mt-4">
             <Button
-              onClick={() => setSingleIndex(Math.max(0, singleQuestionIndex - 1))}
-              disabled={singleQuestionIndex === 0}
+              onClick={()=> setSingleIndex(Math.max(0,singleQuestionIndex-1))}
+              disabled={singleQuestionIndex===0}
             >
-              <ChevronLeft className="mr-2 h-4 w-4" />
+              <ChevronLeft className="mr-2 h-4 w-4"/>
               Prev
             </Button>
             <Button
-              onClick={() => setSingleIndex(Math.min(displayQuestions.length - 1, singleQuestionIndex + 1))}
-              disabled={singleQuestionIndex === displayQuestions.length - 1}
+              onClick={()=> setSingleIndex(Math.min(displayQuestions.length-1, singleQuestionIndex+1))}
+              disabled={singleQuestionIndex===displayQuestions.length-1}
             >
               Next
-              <ChevronRight className="ml-2 h-4 w-4" />
+              <ChevronRight className="ml-2 h-4 w-4"/>
             </Button>
           </div>
         </div>
@@ -599,91 +614,87 @@ export default function GuestQuestionBank() {
   // LIST VIEW
   return (
     <TooltipProvider>
-      <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
-        <div className="max-w-6xl w-full text-gray-900 dark:text-gray-100">
-          {/* Switch to Single View button */}
-          <div className="flex justify-end mb-4">
-            <Button variant="outline" onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.SINGLE })}>
-              Switch to Single View
-            </Button>
-          </div>
+      <div className="p-4 min-h-screen w-full">
+        <div className="max-w-6xl mx-auto">
+          <h1 className="text-3xl mb-2">Guest Question Bank</h1>
 
-          <h1 className="mb-2 text-left text-3xl sm:text-4xl">
-            Guest Question Bank
-          </h1>
+          <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50">
+            <CardContent className="p-4">
+              <h3 className="font-medium text-blue-900 mb-4">Guest Access</h3>
+              <p className="text-sm text-blue-700">
+                Explore questions as a guest. Progress is stored locally only.
+              </p>
+            </CardContent>
+          </Card>
 
-          {/* The search + mobile filter + navigator row */}
           <div className="mb-6 flex items-center space-x-4">
             <div className="relative flex-grow">
               <Input
                 type="text"
                 placeholder="Search questions..."
                 value={state.searchQuery}
-                onChange={(e) => dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })}
-                className="pl-10 dark:text-gray-100 dark:bg-gray-800 dark:placeholder-gray-400"
+                onChange={(e) => dispatch({ type:"SET_SEARCH_QUERY", payload:e.target.value })}
+                className="pl-10"
               />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"/>
             </div>
 
-            {/* Mobile filters */}
-            <div className="block sm:hidden">
-              <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
-                <DialogTrigger asChild>
-                  <Button variant="outline" className="dark:border-gray-700 dark:hover:border-gray-500 dark:text-gray-100 flex items-center">
-                    <Filter className="mr-2 h-4 w-4" />
-                    Filters
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[90vw] dark:bg-gray-800 dark:text-gray-100">
-                  <DialogHeader>
-                    <DialogTitle>Filters</DialogTitle>
-                  </DialogHeader>
-                  <ScrollArea className="h-[70vh]">
-                    <div className="space-y-4 p-2">
-                      <FilterPanelMobile state={state} dispatch={dispatch} />
-                    </div>
-                  </ScrollArea>
-                </DialogContent>
-              </Dialog>
-            </div>
+            <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
+              <DialogTrigger asChild>
+                <Button variant="outline" className="block sm:hidden">
+                  <Filter className="mr-2 h-4 w-4"/>
+                  Filters
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Filters</DialogTitle>
+                </DialogHeader>
+                <ScrollArea className="h-[70vh]">
+                  <FilterPanelMobile state={state} dispatch={dispatch}/>
+                </ScrollArea>
+              </DialogContent>
+            </Dialog>
 
-            {/* Navigator */}
             <Dialog open={navigatorOpen} onOpenChange={setNavigatorOpen}>
               <DialogTrigger asChild>
-                <Button variant="outline" className="dark:border-gray-700 dark:hover:border-gray-500 dark:text-gray-100 hidden sm:flex">
-                  <List className="mr-2 h-4 w-4" />
+                <Button variant="outline" className="hidden sm:flex">
+                  <List className="mr-2 h-4 w-4"/>
                   Question Navigator
                 </Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[80vw] sm:max-h-[80vh] dark:bg-gray-800 dark:text-gray-100">
+              <DialogContent className="sm:max-w-[80vw] sm:max-h-[80vh]">
                 <DialogHeader>
                   <DialogTitle>Question Navigator</DialogTitle>
                 </DialogHeader>
                 <ScrollArea className="h-[60vh]">
                   <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 p-4">
-                    {filteredQuestions.map((question, index) => {
-                      const qid = question.questionId ?? ""
-                      const isCorrect = state.feedback[qid] === "correct"
+                    {filteredQuestions.map((q, idx) => {
+                      const qid = q.questionId ?? ""
+                      const isCorrect = state.feedback[qid]==="correct"
                       return (
                         <Button
                           key={qid}
-                          variant={isCorrect ? "default" : "outline"}
+                          variant={isCorrect?"default":"outline"}
                           size="sm"
-                          onClick={() => {
+                          onClick={()=>{
                             const el = document.getElementById(`question-${qid}`)
+                            setNavigatorOpen(false)
                             if (el) {
-                              el.scrollIntoView({ behavior: "smooth", block: "start" })
+                              setTimeout(()=>{
+                                el.scrollIntoView({ behavior:"smooth", block:"start" })
+                              }, 200)
                             }
                           }}
-                          className={`w-10 h-10 dark:border-gray-700 ${
+                          className={`w-10 h-10 ${
                             isCorrect
-                              ? "bg-green-100 border-green-500 text-green-700 dark:bg-green-900 dark:border-green-500 dark:text-green-300"
+                              ? "bg-green-100 border-green-500 text-green-700"
                               : state.reviewed[qid]
-                              ? "bg-yellow-100 border-yellow-500 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300"
+                              ? "bg-yellow-100 border-yellow-500 text-yellow-700"
                               : ""
                           }`}
                         >
-                          {index + 1}
+                          {idx+1}
                         </Button>
                       )
                     })}
@@ -693,183 +704,163 @@ export default function GuestQuestionBank() {
             </Dialog>
           </div>
 
-          {/* Desktop filter row for status */}
+          {/* status row for desktop */}
           <div className="hidden sm:flex space-x-4 mb-2">
-            {["all","complete","review","incomplete"].map((filterStatus) => (
-              <button
-                key={filterStatus}
-                onClick={() =>
+            {["all","complete","review","incomplete"].map((st) => (
+              <Button
+                key={st}
+                variant={state.filters.status===st ? "default":"outline"}
+                onClick={()=> {
                   dispatch({
-                    type: "SET_FILTERS",
-                    payload: { ...state.filters, status: filterStatus },
+                    type:"SET_FILTERS",
+                    payload:{ ...state.filters, status:st }
                   })
-                }
-                className={`px-4 py-2 rounded-md transition-colors
-                  ${
-                    state.filters.status === filterStatus
-                      ? "bg-white dark:bg-gray-700 border dark:border-gray-600 hover:border-gray-500 dark:hover:border-gray-400 text-gray-500 dark:text-gray-100"
-                      : "bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:border-gray-700 dark:hover:border-gray-500 text-gray-500 dark:text-gray-100"
-                  }`}
+                }}
               >
-                {filterStatus.charAt(0).toUpperCase() + filterStatus.slice(1)}
-              </button>
+                {st.charAt(0).toUpperCase()+st.slice(1)}
+              </Button>
             ))}
           </div>
 
-          {/* Desktop filter popovers */}
           <div className="hidden sm:flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
             {(["exams","subjects","topics","subtopics","difficulties","years","types"] as (keyof FilterOptionsType)[]).map((filterKey) => {
-              const filterValues = state.filterOptions[filterKey] || []
+              const distinctVals = state.filterOptions[filterKey] || []
               return (
                 <Popover
                   key={filterKey}
                   content={
-                    <div className="w-full bg-white dark:bg-gray-800 rounded-md p-2 sm:w-80">
-                      <Input
-                        type="text"
-                        placeholder={`Search ${filterKey}...`}
-                        className="mb-2 dark:text-gray-100 dark:bg-gray-700 dark:placeholder-gray-400"
-                      />
+                    <div className="w-full bg-white border rounded-md p-2 sm:w-80">
+                      <Input placeholder={`Search ${filterKey}...`} className="mb-2"/>
                       <div className="max-h-60 overflow-y-auto">
-                        {filterValues.map((value) => (
-                          <div key={value} className="flex items-center">
+                        {distinctVals.map((val) => (
+                          <div key={val} className="flex items-center px-2 py-1">
                             <input
                               type="checkbox"
                               className="mr-2"
-                              checked={state.filters[filterKey].includes(value)}
-                              onChange={() => {
+                              checked={state.filters[filterKey].includes(val)}
+                              onChange={()=>{
                                 const arr = state.filters[filterKey]
-                                const isSelected = arr.includes(value)
-                                let newArr: string[]
-                                if (isSelected) {
-                                  newArr = arr.filter((v) => v !== value)
+                                const isIn = arr.includes(val)
+                                let newArr
+                                if (isIn) {
+                                  newArr = arr.filter((x)=> x!==val)
                                 } else {
-                                  newArr = [...arr, value]
+                                  newArr = [...arr,val]
                                 }
                                 dispatch({
-                                  type: "SET_FILTERS",
-                                  payload: { ...state.filters, [filterKey]: newArr },
+                                  type:"SET_FILTERS",
+                                  payload:{ ...state.filters, [filterKey]:newArr },
                                 })
                               }}
                             />
-                            <label className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-700">
-                              {value}
-                            </label>
+                            <label>{val}</label>
                           </div>
                         ))}
                       </div>
                     </div>
                   }
-                  align="start"
                   openPopover={state.dropdowns[filterKey]}
-                  setOpenPopover={(open) => {
+                  setOpenPopover={(open)=>{
                     dispatch({
-                      type: "SET_DROPDOWNS",
-                      payload: { key: filterKey, value: !!open },
+                      type:"SET_DROPDOWNS",
+                      payload:{ key: filterKey, value:!!open }
                     })
                   }}
                 >
-                  <button
-                    onClick={() => {
-                      const isOpen = state.dropdowns[filterKey]
+                  <Button
+                    variant="outline"
+                    className="flex items-center justify-between w-36"
+                    onClick={()=>{
+                      const was = state.dropdowns[filterKey]
                       dispatch({
-                        type: "SET_DROPDOWNS",
-                        payload: { key: filterKey, value: !isOpen },
+                        type:"SET_DROPDOWNS",
+                        payload:{ key: filterKey, value:!was }
                       })
                     }}
-                    className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 dark:border-gray-700 px-4 py-2 bg-white dark:bg-gray-800 transition-all duration-75 hover:border-gray-800 dark:hover:border-gray-500 focus:outline-none active:bg-gray-100 dark:active:bg-gray-700"
                   >
-                    <p className="text-gray-600 dark:text-gray-300">
-                      {state.filters[filterKey].length
-                        ? `${state.filters[filterKey].length} selected`
-                        : filterKey.charAt(0).toUpperCase() + filterKey.slice(1)
-                      }
-                    </p>
-                    <ChevronDown className="h-4 w-4 text-gray-600 dark:text-gray-300 transition-all" />
-                  </button>
+                    {filterKey.charAt(0).toUpperCase()+filterKey.slice(1)}
+                    <ChevronDown className="ml-2 h-4 w-4"/>
+                  </Button>
                 </Popover>
               )
             })}
           </div>
 
-          {/* Question progress card (matching QBC style) */}
-          <Card className="bg-gradient-to-br from-gray-200 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-gray-100 border-gray-200 dark:border-gray-700 mb-6">
-            <CardContent className="p-6">
-              <h2 className="text-2xl font-light tracking-tight text-gray-800 dark:text-gray-200 mb-6">
-                Question Progress
-              </h2>
-              <div className="space-y-6">
-                {/* overall progress */}
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
-                    Overall Progress
-                  </span>
-                  <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
-                    {localStats.total > 0
-                      ? Math.round((localStats.answered / localStats.total) * 100)
-                      : 0
-                    }%
-                  </span>
-                </div>
-                <Progress
-                  value={localStats.total > 0
-                    ? (localStats.answered / localStats.total) * 100
-                    : 0
-                  }
-                  className="w-full h-1.5 bg-gray-300 dark:bg-gray-700"
-                />
+          {/* The new question progress card */}
+          <Card className="mb-6 border-none bg-gradient-to-r from-blue-50 to-indigo-50">
+            <CardContent className="p-4">
+              <h3 className="font-medium text-blue-900 mb-4">Guest Question Progress</h3>
+              {(()=>{
+                const totalDB = state.totalCount // from entire DB
+                // localStats => answered, forReview
+                // We'll compute them again here or reuse the localStats from earlier
+                let answered = 0
+                let forReview = 0
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {/* Not Answered */}
-                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
-                    <div className="text-blue-400 p-2 rounded-full bg-blue-400/10">
-                      <HelpCircle className="h-5 w-5" />
+                // Marked correct or completed
+                const answeredSet = new Set<string>()
+                Object.entries(state.completed).forEach(([qid, val]) => {
+                  if (val) answeredSet.add(qid)
+                })
+                Object.entries(state.feedback).forEach(([qid, fb]) => {
+                  if (fb==="correct") answeredSet.add(qid)
+                })
+                answered = answeredSet.size
+
+                // flagged
+                const reviewSet = new Set<string>()
+                Object.entries(state.reviewed).forEach(([qid, val]) => {
+                  if (val) reviewSet.add(qid)
+                })
+                forReview = reviewSet.size
+
+                const progressPct = totalDB>0 ? (answered/totalDB)*100 : 0
+
+                return (
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-blue-700">Overall Progress</span>
+                      <span className="text-sm text-blue-700">
+                        {Math.round(progressPct)}%
+                      </span>
                     </div>
-                    <div>
-                      <p className="text-2xl font-light tracking-tighter text-blue-600 dark:text-blue-300">
-                        {localStats.notAnswered}
-                      </p>
-                      <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
-                        Not Answered
-                      </p>
+                    <Progress value={progressPct}/>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+                      {/* total # in DB */}
+                      <div className="flex items-center p-2 bg-blue-100 rounded-md">
+                        <HelpCircle className="mr-2 text-blue-600"/>
+                        <div>
+                          <p className="text-lg text-blue-800">{totalDB}</p>
+                          <p className="text-sm text-blue-600">Total Questions</p>
+                        </div>
+                      </div>
+                      {/* answered */}
+                      <div className="flex items-center p-2 bg-green-100 rounded-md">
+                        <CheckCircle2 className="mr-2 text-green-600"/>
+                        <div>
+                          <p className="text-lg text-green-800">{answered}</p>
+                          <p className="text-sm text-green-600">Answered</p>
+                        </div>
+                      </div>
+                      {/* flagged */}
+                      <div className="flex items-center p-2 bg-yellow-100 rounded-md">
+                        <Flag className="mr-2 text-yellow-600"/>
+                        <div>
+                          <p className="text-lg text-yellow-800">{forReview}</p>
+                          <p className="text-sm text-yellow-600">For Review</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  {/* Answered */}
-                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
-                    <div className="text-green-400 p-2 rounded-full bg-green-400/10">
-                      <CheckCircle2 className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-2xl font-light tracking-tighter text-green-600 dark:text-green-300">
-                        {localStats.answered}
-                      </p>
-                      <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
-                        Answered
-                      </p>
-                    </div>
-                  </div>
-                  {/* For Review */}
-                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
-                    <div className="text-yellow-400 p-2 rounded-full bg-yellow-400/10">
-                      <Flag className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-2xl font-light tracking-tighter text-yellow-600 dark:text-yellow-300">
-                        {localStats.forReview}
-                      </p>
-                      <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
-                        For Review
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                )
+              })()}
             </CardContent>
           </Card>
 
-          {filteredQuestions.length > 0 ? (
+          {displayQuestions.length>0 ? (
             <>
-              {filteredQuestions.map((question, i) => {
+              {displayQuestions.map((question, i) => {
                 const qid = question.questionId ?? ""
                 return (
                   <Question
@@ -879,82 +870,77 @@ export default function GuestQuestionBank() {
                     selectedOption={state.selectedOptions[qid] || ""}
                     numericalAnswer=""
                     handleOptionClick={(qId, option, correct) => {
-                      const isCorrect = option === correct
-                      dispatch({
-                        type: "SET_FEEDBACK",
-                        payload: { ...state.feedback, [qId]: isCorrect ? "correct" : "incorrect" },
-                      })
-                      dispatch({
-                        type: "SET_SELECTED_OPTIONS",
-                        payload: { ...state.selectedOptions, [qId]: option },
-                      })
+                      const isCorrect = (option===correct)
+                      const newFb = { ...state.feedback, [qId]: isCorrect?"correct":"incorrect" }
+                      dispatch({ type:"SET_FEEDBACK", payload:newFb })
+
+                      const newSel = { ...state.selectedOptions, [qId]:option }
+                      dispatch({ type:"SET_SELECTED_OPTIONS", payload:newSel })
                     }}
                     handleNumericalSubmit={(qId, userAns, correctAns) => {
-                      const isCorrect = userAns === correctAns
-                      dispatch({
-                        type: "SET_FEEDBACK",
-                        payload: { ...state.feedback, [qId]: isCorrect ? "correct" : "incorrect" },
-                      })
+                      const isCorrect = (userAns===correctAns)
+                      const newFb = { ...state.feedback, [qId]: isCorrect?"correct":"incorrect" }
+                      dispatch({ type:"SET_FEEDBACK", payload:newFb })
                     }}
-                    handleNumericalChange={() => {}}
+                    handleNumericalChange={()=>{}}
                     handleMarkForReview={(qId) => {
-                      const old = { ...state.reviewed }
-                      old[qId] = !old[qId]
-                      dispatch({ type: "SET_REVIEWED", payload: old })
+                      const copy = { ...state.reviewed }
+                      copy[qId] = !copy[qId]
+                      dispatch({ type:"SET_REVIEWED", payload:copy })
                     }}
                     handleMarkComplete={(qId) => {
-                      const old = { ...state.completed }
-                      old[qId] = !old[qId]
-                      dispatch({ type: "SET_COMPLETED", payload: old })
+                      const copy = { ...state.completed }
+                      copy[qId] = !copy[qId]
+                      dispatch({ type:"SET_COMPLETED", payload:copy })
                     }}
                     isMarkedForReview={!!state.reviewed[qid]}
                     isMarkedComplete={!!state.completed[qid]}
                     showMarkscheme={!!state.showMarkscheme[qid]}
-                    handleMarkschemeToggle={(qId) => {
+                    handleMarkschemeToggle={(qId)=>{
                       const cp = { ...state.showMarkscheme }
                       cp[qId] = !cp[qId]
-                      dispatch({ type: "SET_SHOW_MARKSCHEME", payload: cp })
+                      dispatch({ type:"SET_SHOW_MARKSCHEME", payload:cp })
                     }}
                     markschemesDisabled={false}
-                    handleResetQuestion={(qId) => {
+                    handleResetQuestion={(qId)=>{
                       const newFb = { ...state.feedback }
                       delete newFb[qId]
                       const newSel = { ...state.selectedOptions }
                       delete newSel[qId]
                       const newRev = { ...state.reviewed, [qId]: false }
                       const newComp = { ...state.completed, [qId]: false }
-                      dispatch({ type: "SET_FEEDBACK", payload: newFb })
-                      dispatch({ type: "SET_SELECTED_OPTIONS", payload: newSel })
-                      dispatch({ type: "SET_REVIEWED", payload: newRev })
-                      dispatch({ type: "SET_COMPLETED", payload: newComp })
+                      dispatch({ type:"SET_FEEDBACK", payload:newFb })
+                      dispatch({ type:"SET_SELECTED_OPTIONS", payload:newSel })
+                      dispatch({ type:"SET_REVIEWED", payload:newRev })
+                      dispatch({ type:"SET_COMPLETED", payload:newComp })
                     }}
                     note={state.notes[qid] || ""}
-                    handleNoteChange={(nid, val) => {
-                      const cp = { ...state.notes, [nid]: val }
-                      dispatch({ type: "SET_NOTES", payload: cp })
+                    handleNoteChange={(nid,val)=>{
+                      const cp = { ...state.notes, [nid]:val }
+                      dispatch({ type:"SET_NOTES", payload:cp })
                     }}
-                    handleDeleteNote={async (nid) => {
+                    handleDeleteNote={async (nid)=>{
                       const cp = { ...state.notes }
                       delete cp[nid]
-                      dispatch({ type: "SET_NOTES", payload: cp })
+                      dispatch({ type:"SET_NOTES", payload:cp })
                     }}
                     userId="guest"
-                    totalQuestions={filteredQuestions.length}
+                    totalQuestions={displayQuestions.length}
                     currentQuestionIndex={i}
-                    handleQuestionChange={() => {}}
+                    handleQuestionChange={()=>{}}
                   />
                 )
               })}
 
-              {/* Pagination UI (like QBC) */}
-              {totalPages > 1 && (
+              {/* pagination controls */}
+              {totalPages>1 && (
                 <div className="mt-6 flex justify-center space-x-4 items-center">
                   <Button
                     variant="outline"
-                    onClick={() => dispatch({ type: "SET_CURRENT_PAGE", payload: Math.max(1, state.currentPage - 1) })}
-                    disabled={state.currentPage === 1}
+                    onClick={()=> dispatch({ type:"SET_CURRENT_PAGE", payload: Math.max(1, state.currentPage-1) })}
+                    disabled={state.currentPage===1}
                   >
-                    <ChevronLeft className="mr-2 h-4 w-4" />
+                    <ChevronLeft className="mr-2 h-4 w-4"/>
                     Prev Page
                   </Button>
                   <p className="text-sm">
@@ -962,17 +948,17 @@ export default function GuestQuestionBank() {
                   </p>
                   <Button
                     variant="outline"
-                    onClick={() => dispatch({ type: "SET_CURRENT_PAGE", payload: Math.min(totalPages, state.currentPage + 1) })}
-                    disabled={state.currentPage === totalPages}
+                    onClick={()=> dispatch({ type:"SET_CURRENT_PAGE", payload: Math.min(totalPages, state.currentPage+1) })}
+                    disabled={state.currentPage===totalPages}
                   >
                     Next Page
-                    <ChevronRight className="ml-2 h-4 w-4" />
+                    <ChevronRight className="ml-2 h-4 w-4"/>
                   </Button>
                 </div>
               )}
             </>
           ) : (
-            <p className="text-red-400 dark:text-red-300">No questions found with these filters.</p>
+            <p className="text-red-400">No questions found for these filters.</p>
           )}
         </div>
       </div>
@@ -989,20 +975,12 @@ function FilterPanelMobile({
   dispatch: React.Dispatch<ActionType>
 }) {
   const statuses = ["all","complete","review","incomplete"]
-  const filterKeys = [
-    "exams",
-    "subjects",
-    "topics",
-    "subtopics",
-    "difficulties",
-    "years",
-    "types",
-  ] as (keyof FilterOptionsType)[]
+  const filterKeys = ["exams","subjects","topics","subtopics","difficulties","years","types"] as (keyof FilterOptionsType)[]
 
   function handleStatusChange(st: string) {
     dispatch({
-      type: "SET_FILTERS",
-      payload: { ...state.filters, status: st },
+      type:"SET_FILTERS",
+      payload:{ ...state.filters, status:st }
     })
   }
 
@@ -1011,13 +989,13 @@ function FilterPanelMobile({
     const isIn = arr.includes(val)
     let newArr
     if (isIn) {
-      newArr = arr.filter((x) => x !== val)
+      newArr = arr.filter((x)=> x!==val)
     } else {
-      newArr = [...arr, val]
+      newArr = [...arr,val]
     }
     dispatch({
-      type: "SET_FILTERS",
-      payload: { ...state.filters, [fk]: newArr },
+      type:"SET_FILTERS",
+      payload:{ ...state.filters, [fk]:newArr },
     })
   }
 
@@ -1029,10 +1007,10 @@ function FilterPanelMobile({
           {statuses.map((st) => (
             <Button
               key={st}
-              variant={state.filters.status === st ? "default" : "outline"}
-              onClick={() => handleStatusChange(st)}
+              variant={state.filters.status===st ? "default":"outline"}
+              onClick={()=> handleStatusChange(st)}
             >
-              {st.charAt(0).toUpperCase() + st.slice(1)}
+              {st.charAt(0).toUpperCase()+st.slice(1)}
             </Button>
           ))}
         </div>
@@ -1043,16 +1021,16 @@ function FilterPanelMobile({
         return (
           <div key={fk}>
             <p className="font-semibold mb-2">
-              {fk.charAt(0).toUpperCase() + fk.slice(1)}
+              {fk.charAt(0).toUpperCase()+fk.slice(1)}
             </p>
-            <div className="space-y-1 max-h-40 overflow-y-auto border p-2 rounded-md dark:border-gray-700">
+            <div className="border p-2 rounded-md max-h-40 overflow-y-auto">
               {distinctVals.map((val) => (
                 <label key={val} className="flex items-center space-x-2">
                   <input
                     type="checkbox"
                     className="form-checkbox"
                     checked={state.filters[fk].includes(val)}
-                    onChange={() => toggleFilterValue(fk, val)}
+                    onChange={()=> toggleFilterValue(fk,val)}
                   />
                   <span>{val}</span>
                 </label>
