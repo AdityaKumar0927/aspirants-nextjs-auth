@@ -1,117 +1,110 @@
-"use client"
-
 import React from "react"
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card"
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
 
-/**
- * A simplified setup component where the user only picks
- * - Exam (e.g. "jee-main", "jee-advanced", etc.)
- * - Year (e.g. "2023", "2022", etc.)
- * We then auto-assign examTime (in minutes) based on the exam.
- */
 interface ExamSetupProps {
   exams: string[]
-  years: string[]
+  years: number[]
+  shifts: string[]
   selectedExam: string
-  selectedYear: string
+  selectedYear: number | null
+  selectedShift: string
   examTime: number
-  onExamChange: (exam: string) => void
-  onYearChange: (year: string) => void
-  onExamTimeChange: (time: number) => void
+  onExamChange: (val: string) => void
+  onYearChange: (val: number) => void
+  onShiftChange: (val: string) => void
+  onExamTimeChange: (val: number) => void
   onStartExam: () => void
 }
 
 export default function ExamSetup({
   exams,
   years,
+  shifts,
   selectedExam,
   selectedYear,
+  selectedShift,
   examTime,
   onExamChange,
   onYearChange,
+  onShiftChange,
   onExamTimeChange,
   onStartExam,
 }: ExamSetupProps) {
-  // Whenever the user picks a new exam, automatically change examTime
-  function handleExamSelection(exam: string) {
-    onExamChange(exam)
-
-    // Default exam time
-    let newTime = 60 // fallback = 60 minutes
-
-    // Example logic: if user picks "jee-main", we do 180 min, "jee-advanced" = 360 min, etc.
-    if (exam === "jee-main") {
-      newTime = 180
-    } else if (exam === "jee-advanced") {
-      newTime = 360
-    }
-
-    onExamTimeChange(newTime)
-  }
-
   return (
-    <Card className="max-w-3xl mx-auto mt-10">
-      <CardHeader>
-        <CardTitle>Mock Exam Setup</CardTitle>
-      </CardHeader>
+    <div className="max-w-xl mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Mock Exam Setup</h1>
 
-      <CardContent className="space-y-6">
-        {/* Exam Select */}
+      <div className="flex flex-col space-y-4">
+        {/* 1) Exam Dropdown */}
         <div>
-          <Label>Select Exam</Label>
-          <Select value={selectedExam} onValueChange={handleExamSelection}>
-            <SelectTrigger className="w-full mt-1">
-              <SelectValue placeholder="Pick an exam" />
-            </SelectTrigger>
-            <SelectContent>
-              {exams.map((exam) => (
-                <SelectItem key={exam} value={exam}>
-                  {exam}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <label className="block mb-1 text-sm font-medium">Select Exam:</label>
+          <select
+            className="border p-2 w-full"
+            value={selectedExam}
+            onChange={(e) => onExamChange(e.target.value)}
+          >
+            <option value="">-- Choose an exam --</option>
+            {exams.map((exam) => (
+              <option key={exam} value={exam}>
+                {exam}
+              </option>
+            ))}
+          </select>
         </div>
 
-        {/* Year Select */}
+        {/* 2) Year Dropdown */}
         <div>
-          <Label>Select Year</Label>
-          <Select value={selectedYear} onValueChange={onYearChange}>
-            <SelectTrigger className="w-full mt-1">
-              <SelectValue placeholder="Pick a year" />
-            </SelectTrigger>
-            <SelectContent>
-              {years.map((yr) => (
-                <SelectItem key={yr} value={yr}>
-                  {yr}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <label className="block mb-1 text-sm font-medium">Select Year:</label>
+          <select
+            className="border p-2 w-full"
+            value={selectedYear ?? ""}
+            onChange={(e) => onYearChange(Number(e.target.value))}
+          >
+            <option value="">-- Choose a year --</option>
+            {years.map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
         </div>
 
-        {/* Exam Duration (optional override) */}
+        {/* 3) Shift Dropdown */}
         <div>
-          <Label>Exam Duration (minutes)</Label>
-          <p className="text-sm text-muted-foreground">
-            Automatically chosen from exam type, but you can override it if needed.
-          </p>
+          <label className="block mb-1 text-sm font-medium">Select Shift:</label>
+          <select
+            className="border p-2 w-full"
+            value={selectedShift}
+            onChange={(e) => onShiftChange(e.target.value)}
+          >
+            <option value="">-- Choose a shift --</option>
+            {shifts.map((shift) => (
+              <option key={shift} value={shift}>
+                {shift}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* 4) Time in minutes */}
+        <div>
+          <label className="block mb-1 text-sm font-medium">Exam Duration (minutes):</label>
           <input
             type="number"
             min={1}
-            className="border border-gray-300 mt-1 rounded-md p-2 w-full"
+            className="border p-2 w-full"
             value={examTime}
-            onChange={(e) => onExamTimeChange(parseInt(e.target.value) || 60)}
+            onChange={(e) => onExamTimeChange(Number(e.target.value))}
           />
         </div>
-      </CardContent>
 
-      <CardFooter>
-        <Button onClick={onStartExam}>Start Exam</Button>
-      </CardFooter>
-    </Card>
+        {/* Start Button */}
+        <button
+          onClick={onStartExam}
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          Start Exam
+        </button>
+      </div>
+    </div>
   )
 }

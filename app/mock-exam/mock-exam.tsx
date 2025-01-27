@@ -27,22 +27,27 @@ export default function MockExam() {
   const { toast } = useToast()
   const { data: session } = useSession()
 
-  // Exam/Year data (fetched from new API)
+  // ------------------------------------------------------------------
+  // State for exam, year, shift
+  // ------------------------------------------------------------------
   const [exams, setExams] = useState<string[]>([])
-  const [years, setYears] = useState<string[]>([])
+  const [years, setYears] = useState<number[]>([])
+  const [shifts, setShifts] = useState<string[]>([])
 
-  // We only store the filtered questions once exam+year is selected
+  const [selectedExam, setSelectedExam] = useState("")
+  const [selectedYear, setSelectedYear] = useState<number | null>(null)
+  const [selectedShift, setSelectedShift] = useState("") // or paperId
+
+  // Timer settings
+  const [examTime, setExamTime] = useState<number>(60)
+
+  // Questions once chosen
   const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([])
 
   // UI states
   const [isLoading, setIsLoading] = useState(false)
   const [isExamStarted, setIsExamStarted] = useState(false)
   const [isExamFinished, setIsExamFinished] = useState(false)
-
-  // The user’s picks from the dropdowns
-  const [selectedExam, setSelectedExam] = useState("")
-  const [selectedYear, setSelectedYear] = useState("")
-  const [examTime, setExamTime] = useState<number>(60) // default 60 min => 1 hour
 
   // For answering and results
   const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -55,7 +60,7 @@ export default function MockExam() {
   const questionStartTimeRef = useRef<number>(0)
 
   // ------------------------------------------------------------------
-  // 1) Fetch the list of exams (and possibly years) on mount
+  // 1) Fetch the list of exams, years, shifts on mount
   // ------------------------------------------------------------------
   useEffect(() => {
     fetchExamsAndYears()
@@ -64,23 +69,20 @@ export default function MockExam() {
   async function fetchExamsAndYears() {
     try {
       setIsLoading(true)
-      const response = await fetch("/api/exams-and-years") // adjust your route name
+      const response = await fetch("/api/exams-and-years")
       if (!response.ok) {
-        throw new Error("Failed to fetch exams and years.")
+        throw new Error("Failed to fetch exams/years/shifts.")
       }
       const data = await response.json()
 
-      // Example shape: { exams: ["JEE", "NEET"], years: [2020, 2021] }
       setExams(data.exams || [])
-      // If your API also returns a global set of years, you can load them here
-      // or you can wait until the user chooses an exam and then fetch that exam’s years.
-      // For simplicity, assume we get *all* possible years:
       setYears(data.years || [])
+      setShifts(data.shifts || [])
     } catch (error) {
-      console.error("Error fetching exams and years:", error)
+      console.error("Error fetching exam data:", error)
       toast({
         title: "Error",
-        description: "Failed to load exam/year data.",
+        description: "Failed to load exam/year/shift data.",
         variant: "destructive",
       })
     } finally {
@@ -89,13 +91,13 @@ export default function MockExam() {
   }
 
   // ------------------------------------------------------------------
-  // 2) Start the exam => fetch questions for the selected exam + year
+  // 2) Start the exam => fetch questions for selected exam, year, shift
   // ------------------------------------------------------------------
   async function startExam() {
-    if (!selectedExam || !selectedYear) {
+    if (!selectedExam || !selectedYear || !selectedShift) {
       toast({
         title: "Validation Error",
-        description: "Please select an exam and year before starting.",
+        description: "Please select an exam, year, and shift before starting.",
         variant: "destructive",
       })
       return
@@ -104,19 +106,20 @@ export default function MockExam() {
     try {
       setIsLoading(true)
 
-      // Fetch only the relevant questions for that exam + year
-      const response = await fetch(
-        `/api/questions?exam=${encodeURIComponent(selectedExam)}&year=${encodeURIComponent(
-          selectedYear
-        )}`
-      )
+      const queryParams = new URLSearchParams({
+        exam: selectedExam,
+        year: String(selectedYear),
+        shift: selectedShift, // or "paperId" if you prefer
+      })
+
+      // e.g. /api/questions?exam=JEE-Main&year=2022&shift=Shift-1
+      const response = await fetch(`/api/questions?${queryParams.toString()}`)
       if (!response.ok) {
-        throw new Error("Failed to fetch questions for the selected exam/year.")
+        throw new Error("Failed to fetch questions for the selected exam/year/shift.")
       }
 
-      // If your API returns paginated data => data.data
-      // If it returns a raw array => data
       const data = await response.json()
+      // If paginated => data.data, else just data
       const matching = data.data ?? data
 
       setFilteredQuestions(matching)
@@ -380,7 +383,7 @@ export default function MockExam() {
   }
 
   // ------------------------------------------------------------------
-  // 8) Loading skeleton
+  // 8) Loading skeleton (only for initial load)
   // ------------------------------------------------------------------
   if (isLoading && !isExamStarted && !isExamFinished) {
     return (
@@ -424,11 +427,14 @@ export default function MockExam() {
           <ExamSetup
             exams={exams}
             years={years}
+            shifts={shifts}
             selectedExam={selectedExam}
             selectedYear={selectedYear}
+            selectedShift={selectedShift}
             examTime={examTime}
             onExamChange={setSelectedExam}
-            onYearChange={setSelectedYear}
+            onYearChange={(val) => setSelectedYear(Number(val))}
+            onShiftChange={setSelectedShift}
             onExamTimeChange={setExamTime}
             onStartExam={startExam}
           />
@@ -466,9 +472,9 @@ export default function MockExam() {
             onExit={exitExam}
             onNavigate={handleNavigate}
             userName={session?.user?.name || "Guest User"}
-            selectedSubject=""
-            selectedYear={selectedYear}
-            selectedLevel=""
+            selectedSubject={""}
+            selectedYear={String(selectedYear)}
+            selectedLevel={""}
           />
         </motion.div>
       )}
