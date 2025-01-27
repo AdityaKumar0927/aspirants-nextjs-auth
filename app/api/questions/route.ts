@@ -5,18 +5,18 @@ const prisma = new PrismaClient()
 
 /**
  * GET /api/questions
- * 
+ *
  * Example usage:
- *  /api/questions?exam=JEE&subject=Physics&difficulty=Medium&year=2021&page=1&pageSize=20
- * 
- * Returns:
+ *  /api/questions?exam=JEE&subject=Physics&difficulty=Medium&year=2021&page=1&pageSize=20&shift=Shift-1
+ *
+ * Returns (if paginated):
  * {
  *   data: [...some subset of questions...],
  *   currentPage: 1,
  *   pageSize: 20,
  *   totalCount: 123
  * }
- * 
+ *
  * If no page or pageSize, returns the entire array (non-paginated).
  */
 export async function GET(request: Request) {
@@ -37,7 +37,9 @@ export async function GET(request: Request) {
       const pageSize = parseInt(pageSizeParam || "10", 10) || 10
       skip = (page - 1) * pageSize
       take = pageSize
-      console.log(`Pagination => page=${page}, pageSize=${pageSize}, skip=${skip}, take=${take}`)
+      console.log(
+        `Pagination => page=${page}, pageSize=${pageSize}, skip=${skip}, take=${take}`
+      )
     }
 
     // 2) Extract filter fields from query (adjust to your schema)
@@ -45,6 +47,8 @@ export async function GET(request: Request) {
     const subjectFilter = searchParams.get("subject") || undefined
     const difficultyFilter = searchParams.get("difficulty") || undefined
     const yearFilter = searchParams.get("year") || undefined
+    // NEW: shift = "key" in your schema
+    const shiftFilter = searchParams.get("shift") || undefined
 
     // 3) Build the 'where' object for Prisma
     const where: any = {}
@@ -59,6 +63,10 @@ export async function GET(request: Request) {
     }
     if (yearFilter) {
       where.year = parseInt(yearFilter, 10)
+    }
+    // If "shift" is provided, filter by the "key" field
+    if (shiftFilter) {
+      where.key = shiftFilter
     }
 
     // 4) Fetch questions with optional skip/take
@@ -93,8 +101,8 @@ export async function GET(request: Request) {
 
 /**
  * POST /api/questions
- * Creates a new question. 
- * 
+ * Creates a new question.
+ *
  * Expect the request body (JSON) to have fields for exam, subject, text, etc.
  * Example:
  * {
@@ -127,9 +135,9 @@ export async function POST(request: Request) {
 
 /**
  * PATCH /api/questions
- * Updates an existing question by questionId. 
+ * Updates an existing question by questionId.
  * Expect JSON body: { questionId, ...fieldsToUpdate }
- * 
+ *
  * Example:
  * {
  *   "questionId": "someUniqueId",
@@ -147,7 +155,7 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ error: "questionId is required" }, { status: 400 })
     }
 
-    // update the question
+    // Update the question
     const updated = await prisma.question.update({
       where: { questionId },
       data: { ...rest },

@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
 
-import ExamSetup from "./exam-setup"
+import ExamSetup from "./exam-setup"  // <-- Import the typed ExamSetup
 import Exam from "./exam"
 import AdvancedExamResults from "./exam-results"
 
@@ -36,7 +36,7 @@ export default function MockExam() {
 
   const [selectedExam, setSelectedExam] = useState("")
   const [selectedYear, setSelectedYear] = useState<number | null>(null)
-  const [selectedShift, setSelectedShift] = useState("") // or paperId
+  const [selectedShift, setSelectedShift] = useState("") // shift from key if present
 
   // Timer settings
   const [examTime, setExamTime] = useState<number>(60)
@@ -91,13 +91,29 @@ export default function MockExam() {
   }
 
   // ------------------------------------------------------------------
-  // 2) Start the exam => fetch questions for selected exam, year, shift
+  // 2) Start the exam => fetch questions
   // ------------------------------------------------------------------
   async function startExam() {
-    if (!selectedExam || !selectedYear || !selectedShift) {
+    if (!selectedExam) {
       toast({
         title: "Validation Error",
-        description: "Please select an exam, year, and shift before starting.",
+        description: "Please select an exam before starting.",
+        variant: "destructive",
+      })
+      return
+    }
+    if (!selectedYear) {
+      toast({
+        title: "Validation Error",
+        description: "Please select a year before starting.",
+        variant: "destructive",
+      })
+      return
+    }
+    if (shifts.length > 0 && !selectedShift) {
+      toast({
+        title: "Validation Error",
+        description: "Please select a shift (paper) before starting.",
         variant: "destructive",
       })
       return
@@ -106,25 +122,37 @@ export default function MockExam() {
     try {
       setIsLoading(true)
 
+      // Build query
       const queryParams = new URLSearchParams({
         exam: selectedExam,
         year: String(selectedYear),
-        shift: selectedShift, // or "paperId" if you prefer
       })
+      if (selectedShift) {
+        queryParams.append("shift", selectedShift)
+      }
 
-      // e.g. /api/questions?exam=JEE-Main&year=2022&shift=Shift-1
       const response = await fetch(`/api/questions?${queryParams.toString()}`)
       if (!response.ok) {
         throw new Error("Failed to fetch questions for the selected exam/year/shift.")
       }
 
       const data = await response.json()
-      // If paginated => data.data, else just data
       const matching = data.data ?? data
+
+      if (!matching || matching.length === 0) {
+        toast({
+          title: "No Questions Found",
+          description:
+            "No questions matched your selection. Please try different options.",
+          variant: "destructive",
+        })
+        setIsLoading(false)
+        return
+      }
 
       setFilteredQuestions(matching)
 
-      // Initialize statuses, answers, time
+      // Initialize question statuses, answers, time
       const initialStatuses: { [index: number]: string } = {}
       matching.forEach((_: any, i: number) => {
         initialStatuses[i] = "notVisited"
@@ -433,7 +461,8 @@ export default function MockExam() {
             selectedShift={selectedShift}
             examTime={examTime}
             onExamChange={setSelectedExam}
-            onYearChange={(val) => setSelectedYear(Number(val))}
+            // We typed onYearChange as (val: string) => void, so pass a string
+            onYearChange={(val: string) => setSelectedYear(Number(val))}
             onShiftChange={setSelectedShift}
             onExamTimeChange={setExamTime}
             onStartExam={startExam}
@@ -473,7 +502,7 @@ export default function MockExam() {
             onNavigate={handleNavigate}
             userName={session?.user?.name || "Guest User"}
             selectedSubject={""}
-            selectedYear={String(selectedYear)}
+            selectedYear={String(selectedYear || "")}
             selectedLevel={""}
           />
         </motion.div>

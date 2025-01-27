@@ -1,3 +1,4 @@
+// /app/api/exams-and-years/route.ts
 import { NextResponse } from "next/server"
 import { PrismaClient } from "@prisma/client"
 
@@ -5,19 +6,13 @@ const prisma = new PrismaClient()
 
 /**
  * GET /api/exams-and-years
- * Returns an object with all unique exams, years, and shifts (paperId).
- *
- * Shape:
- * {
- *   exams: ["JEE-Main", "NEET", ...],
- *   years: [2020, 2021, ...],
- *   shifts: ["Shift-1", "Shift-2", ...]
- * }
+ * Returns { exams: string[], years: number[], shifts: string[] }.
+ * The "shifts" array is actually the distinct "key" values from Question.
  */
 export async function GET() {
   try {
-    // Fetch unique exam, year, and paperId from "Question"
-    const [examsRaw, yearsRaw, shiftsRaw] = await Promise.all([
+    // Distinct "exam", "year", and "key"
+    const [examRows, yearRows, keyRows] = await Promise.all([
       prisma.question.findMany({
         distinct: ["exam"],
         where: { exam: { not: null } },
@@ -29,19 +24,19 @@ export async function GET() {
         select: { year: true },
       }),
       prisma.question.findMany({
-        distinct: ["paperId"],
-        where: { paperId: { not: null } },
-        select: { paperId: true },
+        distinct: ["key"],
+        where: { key: { not: null } },
+        select: { key: true },
       }),
     ])
 
-    const exams = examsRaw.map((x) => x.exam).filter(Boolean)
-    const years = yearsRaw.map((x) => x.year).filter(Boolean)
-    const shifts = shiftsRaw.map((x) => x.paperId).filter(Boolean)
+    const exams = examRows.map((row) => row.exam).filter(Boolean) as string[]
+    const years = yearRows.map((row) => row.year).filter(Boolean) as number[]
+    const shifts = keyRows.map((row) => row.key).filter(Boolean) as string[]
 
     return NextResponse.json({ exams, years, shifts })
   } catch (error) {
-    console.error("Error fetching exams, years, shifts:", error)
+    console.error("Error fetching exam/year/shift data:", error)
     return NextResponse.json({ error: "Failed to fetch data" }, { status: 500 })
   }
 }

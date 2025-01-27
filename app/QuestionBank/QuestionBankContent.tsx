@@ -56,7 +56,7 @@ type QuestionTypeString = "Multiple Choice" | "Numerical" | string
 
 interface QuestionType {
   id: number
-  questionId: string
+  questionId: string            // from DB
   text: string
   subject?: string
   topic?: string
@@ -77,7 +77,6 @@ interface QuestionType {
   examGroup?: string
 }
 
-// filter keys
 type FilterKey =
   | "exams"
   | "subjects"
@@ -90,7 +89,7 @@ type FilterKey =
 type FiltersType = {
   [K in FilterKey]: string[]
 } & {
-  status: string // "all"|"complete"|"review"|"incomplete"
+  status: string
 }
 
 type DropdownsType = {
@@ -114,7 +113,6 @@ interface GlobalStats {
   notAnswered: number
 }
 
-// main state
 type StateType = {
   questions: QuestionType[]
   filters: FiltersType
@@ -131,11 +129,9 @@ type StateType = {
   currentPage: number
   totalCount: number
   pageSize: number
-
   globalStats: GlobalStats
 }
 
-// actions
 type ActionType =
   | { type: "SET_QUESTIONS"; payload: QuestionType[] }
   | { type: "SET_FILTERS"; payload: FiltersType }
@@ -153,13 +149,13 @@ type ActionType =
   | { type: "SET_PAGE_SIZE"; payload: number }
   | { type: "SET_GLOBAL_STATS"; payload: GlobalStats }
 
-// fuzzy includes helper
+// Fuzzy includes
 function fuzzyContains(haystack: string, needle: string): boolean {
   if (!needle) return true
   return haystack.toLowerCase().includes(needle.toLowerCase())
 }
 
-// initial state
+// The initial state
 const initialState: StateType = {
   questions: [],
   filters: {
@@ -210,7 +206,7 @@ const initialState: StateType = {
   },
 }
 
-// reducer
+// The reducer
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
     case "SET_QUESTIONS":
@@ -254,7 +250,7 @@ function reducer(state: StateType, action: ActionType): StateType {
   }
 }
 
-// A simple pagination UI
+// Simple pagination
 function Pagination({
   currentPage,
   totalCount,
@@ -292,7 +288,7 @@ function Pagination({
   )
 }
 
-// main component
+// The main component
 export default function QuestionBankContent() {
   const [state, dispatch] = React.useReducer(reducer, initialState)
   const [viewMode, setViewMode] = React.useState<ViewMode>(ViewMode.LIST)
@@ -300,7 +296,7 @@ export default function QuestionBankContent() {
   const [filtersOpenMobile, setFiltersOpenMobile] = React.useState(false)
   const { toast } = useToast()
 
-  // Mobile => single
+  // If < 768 => single
   React.useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       setViewMode(ViewMode.SINGLE)
@@ -312,8 +308,18 @@ export default function QuestionBankContent() {
     try {
       const res = await fetch("/api/filters", { cache:"no-store" })
       if (!res.ok) throw new Error("Failed to fetch distinct filter fields.")
-      const data: FilterOptionsType = await res.json()
-      dispatch({ type:"SET_FILTER_OPTIONS", payload:data })
+      // Safely parse, ensure all fields exist
+      const raw = await res.json()
+      const data: FilterOptionsType = {
+        exams: raw.exams ?? [],
+        subjects: raw.subjects ?? [],
+        topics: raw.topics ?? [],
+        subtopics: raw.subtopics ?? [],
+        difficulties: raw.difficulties ?? [],
+        years: raw.years ?? [],
+        types: raw.types ?? [],
+      }
+      dispatch({ type: "SET_FILTER_OPTIONS", payload: data })
     } catch (err) {
       console.error("Error fetching filter options:", err)
       toast({
@@ -336,11 +342,10 @@ export default function QuestionBankContent() {
         const txt = await res.text()
         throw new Error(`Failed to fetch stats: ${txt}`)
       }
-      const data: GlobalStats = await res.json()
-      dispatch({ type:"SET_GLOBAL_STATS", payload:data })
-    } catch (err) {
+      const data = await res.json() as GlobalStats
+      dispatch({ type:"SET_GLOBAL_STATS", payload: data })
+    } catch(err) {
       console.error("Error fetching global stats:", err)
-      // fallback
     }
   }, [])
 
@@ -387,7 +392,7 @@ export default function QuestionBankContent() {
         totalCount = result.totalCount
       }
 
-      // sort ascending by questionId numeric portion
+      // Sort ascending by questionId numeric portion
       data = data.sort((a,b) => {
         const aId = a.questionId?.match(/\d+/)?.[0] || "0"
         const bId = b.questionId?.match(/\d+/)?.[0] || "0"
@@ -412,13 +417,13 @@ export default function QuestionBankContent() {
     fetchQuestions()
   }, [fetchQuestions])
 
-  // (D) handle page
-  function handlePageChange(newPage: number) {
-    dispatch({ type:"SET_CURRENT_PAGE", payload:newPage })
+  // handle page change
+  function handlePageChange(page: number) {
+    dispatch({ type:"SET_CURRENT_PAGE", payload: page })
   }
 
-  // Mark complete / review
-  const handleMarkComplete = React.useCallback(async (questionId: string, newVal?: boolean) => {
+  // mark complete / review
+  const handleMarkComplete = React.useCallback(async (questionId: string, newVal?: boolean)=>{
     const val = newVal??true
     try {
       await fetch("/api/questions", {
@@ -429,7 +434,7 @@ export default function QuestionBankContent() {
       dispatch({
         type:"SET_QUESTIONS",
         payload: state.questions.map((q)=>
-          q.questionId===questionId? { ...q, completed:val }: q
+          q.questionId===questionId ? { ...q, completed:val }: q
         ),
       })
     } catch(err) {
@@ -437,18 +442,18 @@ export default function QuestionBankContent() {
     }
   }, [state.questions])
 
-  const handleMarkForReview = React.useCallback(async (questionId:string, newVal?:boolean) => {
+  const handleMarkForReview = React.useCallback(async (questionId: string, newVal?: boolean)=>{
     const val = newVal??true
     try {
       await fetch("/api/questions", {
         method:"PATCH",
         headers:{ "Content-Type":"application/json" },
-        body: JSON.stringify({ questionId, reviewed:val }),
+        body: JSON.stringify({ questionId, reviewed: val }),
       })
       dispatch({
         type:"SET_QUESTIONS",
         payload: state.questions.map((q)=>
-          q.questionId===questionId? { ...q, reviewed:val } : q
+          q.questionId===questionId ? { ...q, reviewed:val } : q
         ),
       })
     } catch(err) {
@@ -461,37 +466,48 @@ export default function QuestionBankContent() {
     const isCorrect = option===correctOption
     dispatch({
       type:"SET_FEEDBACK",
-      payload:{ ...state.feedback, [questionId]: isCorrect?"correct":"incorrect" },
+      payload:{
+        ...state.feedback,
+        [questionId]: isCorrect?"correct":"incorrect",
+      },
     })
     dispatch({
       type:"SET_SELECTED_OPTIONS",
-      payload:{ ...state.selectedOptions, [questionId]:option },
+      payload:{
+        ...state.selectedOptions,
+        [questionId]:option,
+      },
     })
     // Mark completed
     dispatch({
       type:"SET_QUESTIONS",
       payload: state.questions.map((q)=>
-        q.questionId===questionId? { ...q, completed:true } : q
+        q.questionId===questionId ? { ...q, completed:true } : q
       ),
     })
   }, [state.feedback, state.selectedOptions, state.questions])
 
-  // Numeric
-  const handleNumericalSubmit = React.useCallback((questionId:string, userAnswer:string, correctAnswer:string)=>{
-    const isCorrect = userAnswer===correctAnswer
+  // numeric
+  const handleNumericalSubmit = React.useCallback((questionId:string, userAns:string, correctAns:string)=>{
+    const isCorrect = userAns===correctAns
     dispatch({
       type:"SET_FEEDBACK",
-      payload:{ ...state.feedback, [questionId]: isCorrect?"correct":"incorrect" },
+      payload:{
+        ...state.feedback,
+        [questionId]: isCorrect?"correct":"incorrect",
+      },
     })
     dispatch({
       type:"SET_NUMERICAL_ANSWERS",
-      payload:{ ...state.numericalAnswers, [questionId]: userAnswer },
+      payload:{
+        ...state.numericalAnswers,
+        [questionId]: userAns,
+      },
     })
-    // Mark completed
     dispatch({
       type:"SET_QUESTIONS",
       payload: state.questions.map((q)=>
-        q.questionId===questionId? { ...q, completed:true }: q
+        q.questionId===questionId? { ...q, completed:true } : q
       ),
     })
   }, [state.feedback, state.numericalAnswers, state.questions])
@@ -532,14 +548,14 @@ export default function QuestionBankContent() {
     }
   }, [state.feedback, state.selectedOptions, state.numericalAnswers, state.questions])
 
-  // local filter for search & "status"
+  // local filter
   const filteredQuestions = React.useMemo(()=>{
     const s = state.searchQuery.toLowerCase()
     return state.questions.filter((q)=>{
       const textFields = [q.text, q.exam, q.subject, q.topic, q.subtopic]
-      const matchesSearch = textFields.some((f)=>f && fuzzyContains(f, s))
+      const matchesSearch = textFields.some((f)=> f && fuzzyContains(f, s))
 
-      let matchesStatus = true
+      let matchesStatus=true
       if (state.filters.status==="review" && !q.reviewed) {
         matchesStatus=false
       } else if (state.filters.status==="complete" && !q.completed) {
@@ -657,15 +673,15 @@ export default function QuestionBankContent() {
                 handleNumericalChange={(qId, val)=>{
                   dispatch({
                     type:"SET_NUMERICAL_ANSWERS",
-                    payload:{ ...state.numericalAnswers, [qId]:val },
+                    payload:{ ...state.numericalAnswers, [qId]: val },
                   })
                 }}
                 handleMarkschemeToggle={(qId)=>{
                   dispatch({
                     type:"SET_SHOW_MARKSCHEME",
-                    payload:{ 
+                    payload:{
                       ...state.showMarkscheme,
-                      [qId]:!state.showMarkscheme[qId],
+                      [qId]: !state.showMarkscheme[qId],
                     },
                   })
                 }}
@@ -712,7 +728,6 @@ export default function QuestionBankContent() {
     <TooltipProvider>
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full text-gray-900 dark:text-gray-100">
-          {/* Switch to Single View */}
           <div className="flex justify-end mb-4">
             <Button variant="outline" onClick={()=> setViewMode(ViewMode.SINGLE)}>
               Switch to Single View
@@ -721,7 +736,7 @@ export default function QuestionBankContent() {
 
           <h1 className="mb-2 text-left text-3xl sm:text-4xl">Question Bank</h1>
 
-          {/* Search + mobile filter + question navigator */}
+          {/* Search + mobile filters + question navigator */}
           <div className="mb-6 flex items-center space-x-4">
             <div className="relative flex-grow">
               <Input
@@ -734,7 +749,6 @@ export default function QuestionBankContent() {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300"/>
             </div>
 
-            {/* mobile filters */}
             <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
               <DialogTrigger asChild>
                 <Button
@@ -762,7 +776,7 @@ export default function QuestionBankContent() {
               </DialogContent>
             </Dialog>
 
-            {/* question navigator (desktop) */}
+            {/* question navigator desktop */}
             <Dialog>
               <DialogTrigger asChild>
                 <Button
@@ -777,14 +791,12 @@ export default function QuestionBankContent() {
                 <ScrollArea className="h-[60vh]">
                   <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 p-4">
                     {filteredQuestions.map((q, index) => {
-                      // absolute index => continuous numbering 1..N
                       const absoluteIndex = (state.currentPage - 1)*state.pageSize + index
                       const displayNum = absoluteIndex + 1
-
                       return (
                         <Button
                           key={q.questionId}
-                          variant={q.completed?"default":"outline"}
+                          variant={q.completed ? "default":"outline"}
                           size="sm"
                           onClick={()=>{
                             const el = document.getElementById(`question-${q.questionId}`)
@@ -836,12 +848,15 @@ export default function QuestionBankContent() {
           {/* Desktop filter popovers */}
           <div className="hidden sm:flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
             {(["exams","subjects","topics","subtopics","difficulties","years","types"] as FilterKey[]).map((filterType) => {
-              const filterValues = state.filterOptions[filterType]||[]
+              // fallback to empty array
+              const filterValues = state.filterOptions[filterType] ?? []
+
               return (
                 <Popover
                   key={filterType}
                   content={
                     <div className="w-full bg-white dark:bg-gray-800 rounded-md p-2 sm:w-80">
+                      {/* optional search here */}
                       <Input
                         type="text"
                         placeholder={`Search ${filterType}...`}
@@ -854,14 +869,14 @@ export default function QuestionBankContent() {
                               type="checkbox"
                               className="mr-2"
                               checked={state.filters[filterType].includes(val)}
-                              onChange={()=>{
-                                const oldArr = state.filters[filterType]
-                                const isSelected = oldArr.includes(val)
+                              onChange={() => {
+                                const arr = state.filters[filterType]
+                                const isSel = arr.includes(val)
                                 let newArr
-                                if (isSelected) {
-                                  newArr = oldArr.filter((x)=>x!==val)
+                                if (isSel) {
+                                  newArr = arr.filter(x=> x!==val)
                                 } else {
-                                  newArr = [...oldArr,val]
+                                  newArr = [...arr,val]
                                 }
                                 dispatch({
                                   type:"SET_FILTERS",
@@ -888,10 +903,10 @@ export default function QuestionBankContent() {
                 >
                   <button
                     onClick={()=>{
-                      const was = state.dropdowns[filterType]
+                      const old = state.dropdowns[filterType]
                       dispatch({
                         type:"SET_DROPDOWN",
-                        payload:{ tag: filterType, value:!was }
+                        payload:{ tag: filterType, value:!old }
                       })
                     }}
                     className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 dark:border-gray-700 px-4 py-2 bg-white dark:bg-gray-800 transition-all duration-75 hover:border-gray-800 dark:hover:border-gray-500 focus:outline-none active:bg-gray-100 dark:active:bg-gray-700"
@@ -909,7 +924,7 @@ export default function QuestionBankContent() {
             })}
           </div>
 
-          {/* The global question progress card */}
+          {/* The question progress card */}
           <Card className="
             bg-gradient-to-br from-gray-200 to-gray-100 
             dark:from-gray-900 dark:to-gray-800
@@ -1001,9 +1016,10 @@ export default function QuestionBankContent() {
           {state.questions.length>0 ? (
             <>
               {filteredQuestions.map((q, index) => {
-                // absolute index => continuous numbering 1..N
+                // we do continuous numbering from 1..N across pages
                 const absoluteIndex = (state.currentPage - 1)*state.pageSize + index
                 const displayNum = absoluteIndex + 1
+
                 return (
                   <Question
                     key={q.questionId}
@@ -1025,7 +1041,7 @@ export default function QuestionBankContent() {
                         type:"SET_SHOW_MARKSCHEME",
                         payload:{ 
                           ...state.showMarkscheme,
-                          [qId]:!state.showMarkscheme[qId]
+                          [qId]:!state.showMarkscheme[qId],
                         },
                       })
                     }}
@@ -1057,10 +1073,10 @@ export default function QuestionBankContent() {
                           method:"PATCH",
                           headers:{ "Content-Type":"application/json" },
                           body: JSON.stringify({
-                            questionId:qId,
+                            questionId: qId,
                             completed:false,
                             reviewed:false,
-                          })
+                          }),
                         })
                       } catch(e) {
                         console.error("Error resetting question:", e)
@@ -1073,9 +1089,9 @@ export default function QuestionBankContent() {
                     handleNoteChange={()=>{}}
                     handleDeleteNote={()=>Promise.resolve()}
                     userId="guest"
-                    // Now we display the continuous numbering for the user:
+                    // total = all DB
                     totalQuestions={state.totalCount}
-                    currentQuestionIndex={displayNum - 1} // zero-based, but we pass displayNum-1
+                    currentQuestionIndex={displayNum - 1} // zero-based
                     handleQuestionChange={()=>{}}
                   />
                 )
@@ -1098,7 +1114,7 @@ export default function QuestionBankContent() {
   )
 }
 
-// 2) A custom mobile filter "dialog" approach
+// The custom mobile filter dialog 
 function FiltersDialogMobile({
   open,
   onOpenChange,
@@ -1110,22 +1126,22 @@ function FiltersDialogMobile({
   state: StateType
   dispatch: React.Dispatch<ActionType>
 }) {
-  // We'll replicate the design snippet
-  // with top bar done by the parent <DialogContent> container
-  // so here's the body with subject/difficulties/years etc
-  // We'll integrate the actual data from state.filterOptions
-
-  // You can rename or rearrange the logic as needed
-  const { exams, subjects, topics, subtopics, difficulties, years, types } = state.filterOptions
+  // We'll define local arrays, default to [] if missing
+  const subjects = state.filterOptions.subjects || []
+  const topics = state.filterOptions.topics || []
+  const subtopics = state.filterOptions.subtopics || []
+  const difficulties = state.filterOptions.difficulties || []
+  const years = state.filterOptions.years || []
+  const types = state.filterOptions.types || []
 
   function toggleFilter(key: FilterKey, val: string) {
-    const oldArr = state.filters[key]
-    const isSel = oldArr.includes(val)
+    const old = state.filters[key]
+    const isSel = old.includes(val)
     let newArr
     if (isSel) {
-      newArr = oldArr.filter(x=> x!==val)
+      newArr = old.filter(x=> x!==val)
     } else {
-      newArr = [...oldArr,val]
+      newArr = [...old, val]
     }
     dispatch({
       type:"SET_FILTERS",
@@ -1134,171 +1150,143 @@ function FiltersDialogMobile({
   }
 
   return (
-    <div className="p-4 space-y-6">
-      {/* For "exams" or "subjects" etc, you can do vertical scroll */}
-      <div className="space-y-4">
-        <h3 className="font-medium">Subjects</h3>
-        <ScrollArea className="h-[150px] pr-2">
-          <div className="space-y-3">
-            {subjects.map((subj) => (
-              <div key={subj} className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  checked={state.filters.subjects.includes(subj)}
-                  onChange={()=> toggleFilter("subjects", subj)}
-                  className="form-checkbox w-4 h-4 text-blue-600"
-                  id={`subj-${subj}`}
-                />
-                <label
-                  htmlFor={`subj-${subj}`}
-                  className="text-sm leading-none"
-                >
-                  {subj}
-                </label>
+    <div className="p-4 flex flex-col h-full">
+      {/* The top bar (X, Submit) is handled by parent <DialogContent> wrapper. 
+         We'll just build the content scroll area. 
+      */}
+      <ScrollArea className="flex-grow">
+        <div className="space-y-6 py-2">
+          {/* Subjects */}
+          <div className="space-y-2">
+            <h3 className="font-medium">Subjects</h3>
+            <ScrollArea className="h-[120px] pr-2">
+              <div className="space-y-3">
+                {subjects.map((subj) => (
+                  <div key={subj} className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      checked={state.filters.subjects.includes(subj)}
+                      onChange={()=> toggleFilter("subjects", subj)}
+                      className="form-checkbox w-4 h-4 text-blue-600"
+                      id={`subject-${subj}`}
+                    />
+                    <label className="text-sm" htmlFor={`subject-${subj}`}>{subj}</label>
+                  </div>
+                ))}
               </div>
-            ))}
+            </ScrollArea>
           </div>
-        </ScrollArea>
-      </div>
 
-      <div className="space-y-4">
-        <h3 className="font-medium">Topics</h3>
-        {/* If you have actual topics array from 'state.filterOptions.topics' */}
-        <ScrollArea className="h-[150px] pr-2">
-          <div className="space-y-3">
-            {topics.map((tp) => (
-              <div key={tp} className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  checked={state.filters.topics.includes(tp)}
-                  onChange={()=> toggleFilter("topics", tp)}
-                  className="form-checkbox w-4 h-4 text-blue-600"
-                  id={`topic-${tp}`}
-                />
-                <label
-                  htmlFor={`topic-${tp}`}
-                  className="text-sm leading-none"
-                >
-                  {tp}
-                </label>
+          {/* Topics */}
+          <div className="space-y-2">
+            <h3 className="font-medium">Topics</h3>
+            <ScrollArea className="h-[120px] pr-2">
+              <div className="space-y-3">
+                {topics.map((tp) => (
+                  <div key={tp} className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      checked={state.filters.topics.includes(tp)}
+                      onChange={()=> toggleFilter("topics", tp)}
+                      className="form-checkbox w-4 h-4 text-blue-600"
+                      id={`topic-${tp}`}
+                    />
+                    <label className="text-sm" htmlFor={`topic-${tp}`}>{tp}</label>
+                  </div>
+                ))}
               </div>
-            ))}
+            </ScrollArea>
           </div>
-        </ScrollArea>
-      </div>
 
-      <div className="space-y-4">
-        <h3 className="font-medium">Subtopics</h3>
-        <ScrollArea className="h-[150px] pr-2">
-          <div className="space-y-3">
-            {subtopics.map((stp) => (
-              <div key={stp} className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  checked={state.filters.subtopics.includes(stp)}
-                  onChange={()=> toggleFilter("subtopics", stp)}
-                  className="form-checkbox w-4 h-4 text-blue-600"
-                  id={`subtopic-${stp}`}
-                />
-                <label
-                  htmlFor={`subtopic-${stp}`}
-                  className="text-sm leading-none"
-                >
-                  {stp}
-                </label>
+          {/* Subtopics */}
+          <div className="space-y-2">
+            <h3 className="font-medium">Subtopics</h3>
+            <ScrollArea className="h-[120px] pr-2">
+              <div className="space-y-3">
+                {subtopics.map((stp) => (
+                  <div key={stp} className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      checked={state.filters.subtopics.includes(stp)}
+                      onChange={()=> toggleFilter("subtopics", stp)}
+                      className="form-checkbox w-4 h-4 text-blue-600"
+                      id={`subtopic-${stp}`}
+                    />
+                    <label className="text-sm" htmlFor={`subtopic-${stp}`}>{stp}</label>
+                  </div>
+                ))}
               </div>
-            ))}
+            </ScrollArea>
           </div>
-        </ScrollArea>
-      </div>
 
-      <div className="space-y-4">
-        <h3 className="font-medium">Difficulties</h3>
-        <ScrollArea className="h-[120px] pr-2">
-          <div className="space-y-3">
-            {difficulties.map((diff) => (
-              <div key={diff} className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  checked={state.filters.difficulties.includes(diff)}
-                  onChange={()=> toggleFilter("difficulties", diff)}
-                  className="form-checkbox w-4 h-4 text-blue-600"
-                  id={`diff-${diff}`}
-                />
-                <label
-                  htmlFor={`diff-${diff}`}
-                  className="text-sm leading-none"
-                >
-                  {diff}
-                </label>
+          {/* Difficulties */}
+          <div className="space-y-2">
+            <h3 className="font-medium">Difficulties</h3>
+            <ScrollArea className="h-[100px] pr-2">
+              <div className="space-y-3">
+                {difficulties.map((diff) => (
+                  <div key={diff} className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      checked={state.filters.difficulties.includes(diff)}
+                      onChange={()=> toggleFilter("difficulties", diff)}
+                      className="form-checkbox w-4 h-4 text-blue-600"
+                      id={`diff-${diff}`}
+                    />
+                    <label className="text-sm" htmlFor={`diff-${diff}`}>{diff}</label>
+                  </div>
+                ))}
               </div>
-            ))}
+            </ScrollArea>
           </div>
-        </ScrollArea>
-      </div>
 
-      <div className="space-y-4">
-        <h3 className="font-medium">Years</h3>
-        <ScrollArea className="h-[150px] pr-2">
-          <div className="space-y-3">
-            {years.map((yr) => (
-              <div key={yr} className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  checked={state.filters.years.includes(yr)}
-                  onChange={()=> toggleFilter("years", yr)}
-                  className="form-checkbox w-4 h-4 text-blue-600"
-                  id={`yr-${yr}`}
-                />
-                <label
-                  htmlFor={`yr-${yr}`}
-                  className="text-sm leading-none"
-                >
-                  {yr}
-                </label>
+          {/* Years */}
+          <div className="space-y-2">
+            <h3 className="font-medium">Years</h3>
+            <ScrollArea className="h-[120px] pr-2">
+              <div className="space-y-3">
+                {years.map((yr) => (
+                  <div key={yr} className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      checked={state.filters.years.includes(yr)}
+                      onChange={()=> toggleFilter("years", yr)}
+                      className="form-checkbox w-4 h-4 text-blue-600"
+                      id={`year-${yr}`}
+                    />
+                    <label className="text-sm" htmlFor={`year-${yr}`}>{yr}</label>
+                  </div>
+                ))}
               </div>
-            ))}
+            </ScrollArea>
           </div>
-        </ScrollArea>
-      </div>
 
-      <div className="space-y-4">
-        <h3 className="font-medium">Types</h3>
-        <ScrollArea className="h-[120px] pr-2">
-          <div className="space-y-3">
-            {types.map((ty) => (
-              <div key={ty} className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  checked={state.filters.types.includes(ty)}
-                  onChange={()=> toggleFilter("types", ty)}
-                  className="form-checkbox w-4 h-4 text-blue-600"
-                  id={`ty-${ty}`}
-                />
-                <label
-                  htmlFor={`ty-${ty}`}
-                  className="text-sm leading-none"
-                >
-                  {ty}
-                </label>
+          {/* Types */}
+          <div className="space-y-2">
+            <h3 className="font-medium">Types</h3>
+            <ScrollArea className="h-[100px] pr-2">
+              <div className="space-y-3">
+                {types.map((ty) => (
+                  <div key={ty} className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      checked={state.filters.types.includes(ty)}
+                      onChange={()=> toggleFilter("types", ty)}
+                      className="form-checkbox w-4 h-4 text-blue-600"
+                      id={`type-${ty}`}
+                    />
+                    <label className="text-sm" htmlFor={`type-${ty}`}>{ty}</label>
+                  </div>
+                ))}
               </div>
-            ))}
+            </ScrollArea>
           </div>
-        </ScrollArea>
-      </div>
+        </div>
+      </ScrollArea>
+
+      {/* The bottom row for 'Submit' or 'Close' is handled by the parent or 
+         we can add another row here if we like. But your snippet had it in the top bar. 
+      */}
     </div>
   )
-}
-
-// Minimal version for the single
-function FilterPanelMobile({
-  state,
-  dispatch,
-}: {
-  state: StateType
-  dispatch: React.Dispatch<ActionType>
-}) {
-  // We won't use this for the main code anymore if we replaced it with "FiltersDialogMobile",
-  // but if you want to keep it, you can. Or remove it.
-  return null
 }
