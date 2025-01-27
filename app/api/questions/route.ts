@@ -7,7 +7,7 @@ const prisma = new PrismaClient()
  * GET /api/questions
  *
  * Example usage:
- *  /api/questions?exam=JEE&subject=Physics&difficulty=Medium&year=2021&page=1&pageSize=20&shift=Shift-1
+ *  /api/questions?exam=jee-main&subject=Physics&difficulty=Medium&year=2021&page=1&pageSize=20&shift=Shift-1
  *
  * Returns (if paginated):
  * {
@@ -42,17 +42,22 @@ export async function GET(request: Request) {
       )
     }
 
-    // 2) Extract filter fields from query (adjust to your schema)
+    // 2) Extract filter fields from query
+    // Adjust to match your Question schema fields:
     const examFilter = searchParams.get("exam") || undefined
     const subjectFilter = searchParams.get("subject") || undefined
     const difficultyFilter = searchParams.get("difficulty") || undefined
     const yearFilter = searchParams.get("year") || undefined
-    // NEW: shift = "key" in your schema
-    const shiftFilter = searchParams.get("key") || undefined
+
+    // For the "shift," your DB column is "key", so read "shift" from the URL
+    // e.g. ?shift=Shift-1 => where.key = "Shift-1"
+    const shiftFilter = searchParams.get("shift") || undefined
 
     // 3) Build the 'where' object for Prisma
     const where: any = {}
+
     if (examFilter) {
+      // The 'exam' column in your schema is `exam?: String`
       where.exam = examFilter
     }
     if (subjectFilter) {
@@ -64,10 +69,13 @@ export async function GET(request: Request) {
     if (yearFilter) {
       where.year = parseInt(yearFilter, 10)
     }
-    // If "shift" is provided, filter by the "key" field
     if (shiftFilter) {
+      // DB column is "key"
       where.key = shiftFilter
     }
+
+    // Example: if you only want active questions, you might do:
+    // where.status = QuestionStatus.ACTIVE
 
     // 4) Fetch questions with optional skip/take
     const questions = await prisma.question.findMany({
@@ -75,10 +83,10 @@ export async function GET(request: Request) {
       take,
       where,
       // If you only want certain columns, do:
-      // select: { questionId: true, text: true, exam: true, ... },
+      // select: { id: true, questionId: true, exam: true, ... },
     })
 
-    // 5) If we used pagination, return the totalCount as well
+    // 5) If we used pagination, return totalCount as well
     if (skip !== undefined && take !== undefined) {
       const totalCount = await prisma.question.count({ where })
       const currentPage = skip / take + 1
@@ -90,7 +98,7 @@ export async function GET(request: Request) {
         totalCount,
       })
     } else {
-      // If no skip/take, return entire array of questions
+      // If no skip/take, return entire array
       return NextResponse.json(questions)
     }
   } catch (error) {
@@ -107,9 +115,8 @@ export async function GET(request: Request) {
  * Example:
  * {
  *   "questionId": "someUniqueId",
- *   "text": "A sample question text",
- *   "exam": "JEE",
- *   "subject": "Physics",
+ *   "text": "Sample question text",
+ *   "exam": "jee-main",
  *   ...
  * }
  */
@@ -119,6 +126,7 @@ export async function POST(request: Request) {
     console.log("POST /api/questions => creating question", data)
 
     // If needed, parse arrays or do validation here
+    // e.g. ensure data.questionId, data.text, data.options, etc. exist
     const created = await prisma.question.create({
       data: {
         ...data,
