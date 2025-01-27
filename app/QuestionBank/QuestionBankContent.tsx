@@ -38,9 +38,9 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Progress } from "@/components/ui/progress"
 import { motion, AnimatePresence } from "framer-motion"
 
-// ----------------------------------------------------------------------
+// -----------------------------------------------------------------------
 // 1) Enums & Types
-// ----------------------------------------------------------------------
+// -----------------------------------------------------------------------
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
@@ -56,7 +56,7 @@ type QuestionTypeString = "Multiple Choice" | "Numerical" | string
 
 interface QuestionType {
   id: number
-  questionId: string       // from DB
+  questionId: string
   text: string
   subject?: string
   topic?: string
@@ -89,13 +89,14 @@ type FilterKey =
 type FiltersType = {
   [K in FilterKey]: string[]
 } & {
-  status: string
+  status: string // "all"|"complete"|"review"|"incomplete"
 }
 
 type DropdownsType = {
   [K in FilterKey]: boolean
 }
 
+// Distinct filter options
 interface FilterOptionsType {
   exams: string[]
   subjects: string[]
@@ -106,6 +107,7 @@ interface FilterOptionsType {
   types: string[]
 }
 
+// For the progress card
 interface GlobalStats {
   total: number
   completed: number
@@ -129,6 +131,7 @@ type StateType = {
   currentPage: number
   totalCount: number
   pageSize: number
+
   globalStats: GlobalStats
 }
 
@@ -149,7 +152,7 @@ type ActionType =
   | { type: "SET_PAGE_SIZE"; payload: number }
   | { type: "SET_GLOBAL_STATS"; payload: GlobalStats }
 
-// fuzzy includes
+// For fuzzy text search
 function fuzzyContains(haystack: string, needle: string): boolean {
   if (!needle) return true
   return haystack.toLowerCase().includes(needle.toLowerCase())
@@ -206,7 +209,7 @@ const initialState: StateType = {
   },
 }
 
-// reducer
+// Reducer
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
     case "SET_QUESTIONS":
@@ -288,6 +291,7 @@ function Pagination({
   )
 }
 
+// MAIN
 export default function QuestionBankContent() {
   const [state, dispatch] = React.useReducer(reducer, initialState)
   const [viewMode, setViewMode] = React.useState<ViewMode>(ViewMode.LIST)
@@ -295,7 +299,7 @@ export default function QuestionBankContent() {
   const [filtersOpenMobile, setFiltersOpenMobile] = React.useState(false)
   const { toast } = useToast()
 
-  // If window < 768 => single
+  // If small => single
   React.useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       setViewMode(ViewMode.SINGLE)
@@ -333,7 +337,7 @@ export default function QuestionBankContent() {
     fetchFilterOptions()
   }, [fetchFilterOptions])
 
-  // (B) global stats
+  // (B) fetch global stats
   const fetchGlobalStats = React.useCallback(async () => {
     try {
       const res = await fetch("/api/questions/stats", { cache: "no-store" })
@@ -341,8 +345,18 @@ export default function QuestionBankContent() {
         const txt = await res.text()
         throw new Error(`Failed to fetch stats: ${txt}`)
       }
-      const data = await res.json() as GlobalStats
-      dispatch({ type: "SET_GLOBAL_STATS", payload: data })
+      const raw = await res.json()
+
+      // *** TRANSFORM *** to the shape your card expects
+      // We'll assume raw.totalQuestions is returned from your route
+      // and we set completed/reviewed/notAnswered to 0 or a real logic
+      const stats: GlobalStats = {
+        total: raw.totalQuestions || 0,
+        completed: 0,
+        reviewed: 0,
+        notAnswered: 0,
+      }
+      dispatch({ type: "SET_GLOBAL_STATS", payload: stats })
     } catch (err) {
       console.error("Error fetching global stats:", err)
     }
@@ -374,7 +388,7 @@ export default function QuestionBankContent() {
 
       const url = `/api/questions?${params.toString()}`
       console.log("Fetching questions =>", url)
-      const res = await fetch(url, { cache:"no-store" })
+      const res = await fetch(url, { cache: "no-store" })
       if (!res.ok) {
         const txt = await res.text()
         throw new Error(`Failed to fetch questions. ${txt}`)
@@ -441,7 +455,7 @@ export default function QuestionBankContent() {
     }
   }, [state.questions])
 
-  // mark review
+  // mark for review
   const handleMarkForReview = React.useCallback(async (questionId: string, newVal?: boolean)=>{
     const val = newVal ?? true
     try {
@@ -472,7 +486,6 @@ export default function QuestionBankContent() {
       type:"SET_SELECTED_OPTIONS",
       payload:{ ...state.selectedOptions, [questionId]: option },
     })
-    // Mark completed
     dispatch({
       type:"SET_QUESTIONS",
       payload: state.questions.map(q=>
@@ -482,21 +495,15 @@ export default function QuestionBankContent() {
   }, [state.feedback, state.selectedOptions, state.questions])
 
   // numeric
-  const handleNumericalSubmit = React.useCallback((questionId:string, userAns:string, correctAns:string)=>{
+  const handleNumericalSubmit = React.useCallback((questionId: string, userAns: string, correctAns: string)=>{
     const isCorrect = userAns===correctAns
     dispatch({
       type:"SET_FEEDBACK",
-      payload:{
-        ...state.feedback,
-        [questionId]: isCorrect?"correct":"incorrect",
-      },
+      payload:{ ...state.feedback, [questionId]: isCorrect?"correct":"incorrect" },
     })
     dispatch({
       type:"SET_NUMERICAL_ANSWERS",
-      payload:{
-        ...state.numericalAnswers,
-        [questionId]: userAns,
-      },
+      payload:{ ...state.numericalAnswers, [questionId]: userAns },
     })
     dispatch({
       type:"SET_QUESTIONS",
@@ -507,7 +514,7 @@ export default function QuestionBankContent() {
   }, [state.feedback, state.numericalAnswers, state.questions])
 
   // reset
-  const handleResetQuestion = React.useCallback(async (questionId:string)=>{
+  const handleResetQuestion = React.useCallback(async (questionId: string)=>{
     dispatch({
       type:"SET_FEEDBACK",
       payload:{ ...state.feedback, [questionId]: undefined },
@@ -520,11 +527,10 @@ export default function QuestionBankContent() {
       type:"SET_NUMERICAL_ANSWERS",
       payload:{ ...state.numericalAnswers, [questionId]: undefined },
     })
-    // uncomplete + unreview
     dispatch({
       type:"SET_QUESTIONS",
-      payload: state.questions.map(q=>
-        q.questionId===questionId? { ...q, completed:false, reviewed:false } : q
+      payload: state.questions.map((q)=>
+        q.questionId===questionId ? { ...q, completed:false, reviewed:false } : q
       ),
     })
     try {
@@ -538,7 +544,7 @@ export default function QuestionBankContent() {
     }
   }, [state.feedback, state.selectedOptions, state.numericalAnswers, state.questions])
 
-  // local filter + status
+  // local filter
   const filteredQuestions = React.useMemo(()=>{
     const s = state.searchQuery.toLowerCase()
     return state.questions.filter(q=>{
@@ -557,30 +563,30 @@ export default function QuestionBankContent() {
     })
   }, [state.questions, state.filters.status, state.searchQuery])
 
-  // loading skeleton
+  // if loading => skeleton
   if (state.loading) {
     return (
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full text-gray-900 dark:text-gray-100">
           <h1 className="mb-2 text-left text-3xl sm:text-4xl">Question Bank</h1>
-          <div className="flex space-x-4 mb=6">
-            <Skeleton height={40} width={120}/>
-            <Skeleton height={40} width={120}/>
-            <Skeleton height={40} width={120}/>
+          <div className="flex space-x-4 mb-6">
+            <Skeleton height={40} width={120} />
+            <Skeleton height={40} width={120} />
+            <Skeleton height={40} width={120} />
           </div>
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-            {[...Array(7)].map((_, i)=>(
+            {[...Array(7)].map((_, i) => (
               <div key={i} className="flex items-center space-x-2">
-                <Skeleton height={40} width={120}/>
+                <Skeleton height={40} width={120} />
               </div>
             ))}
           </div>
           <div>
-            {[...Array(10)].map((_, i)=>(
+            {[...Array(10)].map((_, i) => (
               <div key={i} className="mb-4 p-4 border rounded-md dark:border-gray-700">
-                <Skeleton height={20} width="80%"/>
-                <Skeleton height={20} width="90%"/>
-                <Skeleton height={20} width="60%"/>
+                <Skeleton height={20} width={"80%"} />
+                <Skeleton height={20} width={"90%"} />
+                <Skeleton height={20} width={"60%"} />
               </div>
             ))}
           </div>
@@ -589,13 +595,13 @@ export default function QuestionBankContent() {
     )
   }
 
-  // SINGLE
+  // SINGLE VIEW
   if (viewMode===ViewMode.SINGLE) {
     if (!filteredQuestions.length) {
       return (
         <div className="bg-white dark:bg-gray-900 w-full min-h-screen p-4 sm:p-8 text-gray-900 dark:text-gray-100">
           <div className="max-w-6xl mx-auto">
-            <Button variant="outline" onClick={()=>setViewMode(ViewMode.LIST)}>
+            <Button variant="outline" onClick={()=> setViewMode(ViewMode.LIST)}>
               List View
             </Button>
             <p className="mt-6 text-red-300">No questions found with these filters.</p>
@@ -609,11 +615,10 @@ export default function QuestionBankContent() {
       <div className="bg-white dark:bg-gray-900 w-full min-h-screen p-4 sm:p-4 text-gray-900 dark:text-gray-100 flex justify-center">
         <div className="max-w-xl w-full">
           <div className="flex items-center justify-between mb-4">
-            <Button variant="outline" onClick={()=>setViewMode(ViewMode.LIST)}>
+            <Button variant="outline" onClick={()=> setViewMode(ViewMode.LIST)}>
               List View
             </Button>
 
-            {/* Full-screen mobile filter approach */}
             <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
               <DialogTrigger asChild>
                 <Button variant="outline" className="ml-2 inline-flex items-center">
@@ -685,9 +690,6 @@ export default function QuestionBankContent() {
                 handleNoteChange={()=>{}}
                 handleDeleteNote={()=>Promise.resolve()}
                 userId="guest"
-
-                // For single view, the question index = singleIndex
-                // so question is labeled # (singleIndex+1)
                 totalQuestions={filteredQuestions.length}
                 currentQuestionIndex={singleIndex}
                 handleQuestionChange={()=>{}}
@@ -716,7 +718,7 @@ export default function QuestionBankContent() {
     )
   }
 
-  // LIST
+  // LIST VIEW
   return (
     <TooltipProvider>
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -727,22 +729,25 @@ export default function QuestionBankContent() {
             </Button>
           </div>
 
-          <h1 className="mb-2 text-left text-3xl sm:text-4xl">Question Bank</h1>
+          <h1 className="mb-2 text-left text-3xl sm:text-4xl">
+            Question Bank
+          </h1>
 
-          {/* Search + mobile filters + question navigator */}
+          {/* Search + mobile filters + question nav */}
           <div className="mb-6 flex items-center space-x-4">
             <div className="relative flex-grow">
               <Input
                 type="text"
                 placeholder="Search questions..."
                 value={state.searchQuery}
-                onChange={(e)=> dispatch({ type:"SET_SEARCH_QUERY", payload:e.target.value })}
+                onChange={(e)=>
+                  dispatch({ type:"SET_SEARCH_QUERY", payload:e.target.value })
+                }
                 className="pl-10 dark:text-gray-100 dark:bg-gray-800 dark:placeholder-gray-400"
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300"/>
             </div>
 
-            {/* Mobile filters */}
             <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
               <DialogTrigger asChild>
                 <Button
@@ -770,7 +775,7 @@ export default function QuestionBankContent() {
               </DialogContent>
             </Dialog>
 
-            {/* Desktop question navigator */}
+            {/* question navigator desktop */}
             <Dialog>
               <DialogTrigger asChild>
                 <Button
@@ -785,7 +790,6 @@ export default function QuestionBankContent() {
                 <ScrollArea className="h-[60vh]">
                   <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 p-4">
                     {filteredQuestions.map((q, index) => {
-                      // continuous numbering from 1..N across pages
                       const absoluteIndex = (state.currentPage - 1)*state.pageSize + index
                       const displayNum = absoluteIndex + 1
                       return (
@@ -817,17 +821,14 @@ export default function QuestionBankContent() {
             </Dialog>
           </div>
 
-          {/* Desktop filter row for status */}
+          {/* Desktop status row */}
           <div className="hidden sm:flex space-x-4 mb-2">
             {["all","complete","review","incomplete"].map((st) => (
               <button
                 key={st}
-                onClick={()=>{
-                  dispatch({
-                    type:"SET_FILTERS",
-                    payload:{ ...state.filters, status:st },
-                  })
-                }}
+                onClick={()=>
+                  dispatch({ type:"SET_FILTERS", payload:{ ...state.filters, status: st } })
+                }
                 className={`px-4 py-2 rounded-md transition-colors
                   ${
                     state.filters.status===st
@@ -835,7 +836,7 @@ export default function QuestionBankContent() {
                       : "bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:border-gray-700 dark:hover:border-gray-500 text-gray-500 dark:text-gray-100"
                   }`}
               >
-                {st.charAt(0).toUpperCase()+st.slice(1)}
+                {st.charAt(0).toUpperCase() + st.slice(1)}
               </button>
             ))}
           </div>
@@ -861,14 +862,14 @@ export default function QuestionBankContent() {
                               type="checkbox"
                               className="mr-2"
                               checked={state.filters[filterType].includes(val)}
-                              onChange={() => {
-                                const arr = state.filters[filterType]
-                                const isSelected = arr.includes(val)
+                              onChange={()=>{
+                                const old = state.filters[filterType]
+                                const isSelected = old.includes(val)
                                 let newArr
                                 if (isSelected) {
-                                  newArr = arr.filter(x=> x!==val)
+                                  newArr = old.filter(x=> x!==val)
                                 } else {
-                                  newArr = [...arr,val]
+                                  newArr = [...old, val]
                                 }
                                 dispatch({
                                   type:"SET_FILTERS",
@@ -916,7 +917,7 @@ export default function QuestionBankContent() {
             })}
           </div>
 
-          {/* The question progress card */}
+          {/* The question progress card (with total, etc.) */}
           <Card className="
             bg-gradient-to-br from-gray-200 to-gray-100
             dark:from-gray-900 dark:to-gray-800
@@ -929,14 +930,14 @@ export default function QuestionBankContent() {
                 Question Progress
               </h2>
               <div className="space-y-6">
-                {/* overall progress */}
+                {/* overall progress = (completed / total)*100 */}
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
                     Overall Progress
                   </span>
                   <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
-                    {state.globalStats.total>0
-                      ? Math.round( (state.globalStats.completed/state.globalStats.total)*100 )
+                    {state.globalStats.total > 0
+                      ? Math.round((state.globalStats.completed / state.globalStats.total) * 100)
                       : 0
                     }%
                   </span>
@@ -944,15 +945,15 @@ export default function QuestionBankContent() {
                 <Progress
                   value={
                     state.globalStats.total>0
-                      ? (state.globalStats.completed/state.globalStats.total)*100
+                      ? (state.globalStats.completed / state.globalStats.total)*100
                       : 0
                   }
                   className="w-full h-1.5 bg-gray-300 dark:bg-gray-700"
                 />
 
-                {/* 4 tiles: total, answered, for review, not answered */}
+                {/* 4 tiles: total, answered, review, not answered */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {/* total questions */}
+                  {/* total */}
                   <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
                     <div className="text-blue-400 p-2 rounded-full bg-blue-400/10">
                       <HelpCircle className="h-5 w-5"/>
@@ -967,7 +968,7 @@ export default function QuestionBankContent() {
                     </div>
                   </div>
 
-                  {/* answered */}
+                  {/* answered (completed) */}
                   <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
                     <div className="text-green-400 p-2 rounded-full bg-green-400/10">
                       <svg
@@ -1027,7 +1028,6 @@ export default function QuestionBankContent() {
           {state.questions.length>0 ? (
             <>
               {filteredQuestions.map((q, index) => {
-                // numbering from 1..N across pages
                 const absoluteIndex = (state.currentPage - 1)*state.pageSize + index
                 const displayNum = absoluteIndex + 1
 
@@ -1100,16 +1100,12 @@ export default function QuestionBankContent() {
                     handleNoteChange={()=>{}}
                     handleDeleteNote={()=>Promise.resolve()}
                     userId="guest"
-
-                    // We pass the "1..N" numbering as currentQuestionIndex = displayNum - 1
-                    // So inside <Question>, it can do displayNumber = currentQuestionIndex+1
                     totalQuestions={state.totalCount}
                     currentQuestionIndex={displayNum - 1}
                     handleQuestionChange={()=>{}}
                   />
                 )
               })}
-
               <Pagination
                 currentPage={state.currentPage}
                 totalCount={state.totalCount}
@@ -1128,7 +1124,7 @@ export default function QuestionBankContent() {
   )
 }
 
-/** MOBILE FILTERS DIALOG **/
+/** MOBILE FILTERS DIALOG */
 function FiltersDialogMobile({
   open,
   onOpenChange,
@@ -1136,11 +1132,10 @@ function FiltersDialogMobile({
   dispatch,
 }: {
   open: boolean
-  onOpenChange: (val:boolean)=>void
+  onOpenChange: (val: boolean) => void
   state: StateType
   dispatch: React.Dispatch<ActionType>
 }) {
-  // We'll define local arrays, default to [] if missing
   const exams = state.filterOptions.exams || []
   const subjects = state.filterOptions.subjects || []
   const topics = state.filterOptions.topics || []
@@ -1158,10 +1153,7 @@ function FiltersDialogMobile({
     } else {
       newArr = [...old, val]
     }
-    dispatch({
-      type:"SET_FILTERS",
-      payload:{ ...state.filters, [key]: newArr },
-    })
+    dispatch({ type:"SET_FILTERS", payload:{ ...state.filters, [key]: newArr } })
   }
 
   return (
