@@ -64,6 +64,7 @@ enum QuestionStatus {
 type QuestionTypeString = "Multiple Choice" | "mcq" | "Numerical" | "integer" | string
 
 interface QuestionType {
+  // The DB might have a random "id" or "questionId," but we won't show that in the UI
   id: number
   questionId?: string
   text?: string
@@ -147,8 +148,11 @@ interface QuestionProps {
 
   onNextQuestion?: () => void
   onPreviousQuestion?: () => void
+
+  // We want to ignore "question.id" from the DB
+  // Instead, use these for proper numbering
   totalQuestions: number
-  currentQuestionIndex: number
+  currentQuestionIndex: number // zero-based
   handleQuestionChange: (index: number) => void
 }
 
@@ -179,6 +183,10 @@ export default function Question({
   currentQuestionIndex,
   handleQuestionChange,
 }: QuestionProps) {
+  // We'll display "Question #(currentQuestionIndex+1)" in the UI
+  // ignoring question.id from DB
+  const displayNumber = currentQuestionIndex + 1
+
   const [pendingOption, setPendingOption] = useState<string | null>(null)
   const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(
     selectedOption || null
@@ -237,7 +245,8 @@ export default function Question({
     if (checked) {
       toast({
         title: "Question Completed",
-        description: `You have completed question #${question.id}.`,
+        // use displayNumber for toast
+        description: `You have completed question #${displayNumber}.`,
         action: (
           <ToastAction onClick={() => toggleComplete(false)} altText="Undo">
             Undo
@@ -247,7 +256,7 @@ export default function Question({
     } else {
       toast({
         title: "Unmarked Complete",
-        description: `Question #${question.id} is no longer marked complete.`,
+        description: `Question #${displayNumber} is no longer marked complete.`,
       })
     }
   }
@@ -260,7 +269,7 @@ export default function Question({
     if (newVal) {
       toast({
         title: "Question Flagged",
-        description: `Flagged question #${question.id} for review.`,
+        description: `Flagged question #${displayNumber} for review.`,
         action: (
           <ToastAction onClick={() => toggleReview()} altText="Undo">
             Undo
@@ -270,7 +279,7 @@ export default function Question({
     } else {
       toast({
         title: "Question Unflagged",
-        description: `Removed review flag for question #${question.id}.`,
+        description: `Removed review flag for question #${displayNumber}.`,
       })
     }
   }
@@ -323,7 +332,7 @@ export default function Question({
       })
       toast({
         title: "Difficulty Updated",
-        description: `Set question #${question.id} difficulty to ${newDifficulty}.`,
+        description: `Set question #${displayNumber} difficulty to ${newDifficulty}.`,
       })
     } catch (err) {
       console.error(err)
@@ -347,7 +356,7 @@ export default function Question({
         body: JSON.stringify({
           questionId: question.questionId,
           content: localNote,
-          title: `Note for Question #${question.id}`,
+          title: `Note for Question #${displayNumber}`,
           type: "TEXT",
         }),
       })
@@ -376,7 +385,7 @@ export default function Question({
       if (!response.ok) throw new Error("Failed to delete note")
       toast({
         title: "Note Deleted",
-        description: "Your note has been deleted successfully.",
+        description: `Deleted note for question #${displayNumber}.`,
       })
       setLocalNote("")
       setNoteId(null)
@@ -426,10 +435,12 @@ export default function Question({
           {/* HEADER */}
           <CardHeader className="relative">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
-              {/* Title & Tags */}
+              {/* 
+                Title: "Question #(displayNumber)" ignoring the DB question.id 
+              */}
               <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
                 <CardTitle className="font-normal text-2xl sm:text-3xl">
-                  Question #{question.id}
+                  Question #{displayNumber}
                 </CardTitle>
 
                 {question.subject && (
@@ -458,6 +469,7 @@ export default function Question({
                   </div>
                 )}
 
+                {/* Custom tags */}
                 {localCustomTags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="px-2 py-1">
                     {tag}
@@ -471,6 +483,7 @@ export default function Question({
                     </Button>
                   </Badge>
                 ))}
+                {/* Add new tag */}
                 <div className="flex items-center space-x-2">
                   <Input
                     type="text"
@@ -491,13 +504,13 @@ export default function Question({
                 </div>
               </div>
 
-              {/* Right Actions */}
+              {/* Right side: Mark Complete, Flag, Settings */}
               <div className="flex items-center space-x-4">
-                {/* Mark Complete (Checkbox) */}
+                {/* Mark Complete (checkbox) */}
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Checkbox
-                      id={`complete-${question.id}`}
+                      id={`complete-${question.questionId}`}
                       checked={isMarkedComplete}
                       onCheckedChange={(checked: boolean) => toggleComplete(!!checked)}
                       className="dark:bg-gray-800 dark:border-gray-500"
@@ -508,7 +521,7 @@ export default function Question({
                   </TooltipContent>
                 </Tooltip>
 
-                {/* Flag */}
+                {/* Flag for Review */}
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button variant="ghost" size="icon" onClick={toggleReview}>
@@ -526,7 +539,7 @@ export default function Question({
                   </TooltipContent>
                 </Tooltip>
 
-                {/* Settings & Feedback */}
+                {/* Additional: Settings/Feedback */}
                 <SettingsPopover
                   markschemeEnabled={markschemeEnabled}
                   setMarkschemeEnabled={() => setMarkschemeEnabled(!markschemeEnabled)}
@@ -542,12 +555,13 @@ export default function Question({
 
           {/* CONTENT */}
           <CardContent>
+            {/* Diagram + Text */}
             <div className="mb-6">
               {question.diagramUrl && question.diagramUrl !== "" && (
                 <div className="relative w-full max-w-xl mx-auto mb-4">
                   <Image
                     src={question.diagramUrl}
-                    alt={`Diagram for question #${question.id}`}
+                    alt={`Diagram for question #${displayNumber}`}
                     width={800}
                     height={600}
                     className="rounded-md w-full h-auto object-contain"
@@ -612,7 +626,7 @@ export default function Question({
                     <TooltipContent>Submit your numeric answer</TooltipContent>
                   </Tooltip>
 
-                  {/* Reset button */}
+                  {/* Reset */}
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Button
@@ -636,8 +650,8 @@ export default function Question({
               question.options.length > 0 && (
                 <div className="mb-4">
                   <div className="space-y-2">
-                    {question.options.map((rawOption, index) => {
-                      const letter = String.fromCharCode(65 + index)
+                    {question.options.map((rawOption, idx) => {
+                      const letter = String.fromCharCode(65 + idx)
                       const optionText = cleanOptionText(rawOption)
                       const isPending = pendingOption === letter
                       const directSelected = localSelectedOption === letter
@@ -645,7 +659,7 @@ export default function Question({
 
                       return (
                         <Button
-                          key={index}
+                          key={idx}
                           variant="outline"
                           onClick={() => handleOptionSelect(letter)}
                           className={`
@@ -717,7 +731,7 @@ export default function Question({
                       <TooltipContent>Submit your MCQ answer</TooltipContent>
                     </Tooltip>
 
-                    {/* Reset button */}
+                    {/* Reset */}
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <Button
@@ -1154,7 +1168,9 @@ function CommentItem({
               <AvatarImage
                 src={`https://api.dicebear.com/6.x/initials/svg?seed=${comment.username}`}
               />
-              <AvatarFallback>{comment.username.slice(0, 2).toUpperCase()}</AvatarFallback>
+              <AvatarFallback>
+                {comment.username.slice(0, 2).toUpperCase()}
+              </AvatarFallback>
             </Avatar>
             <div>
               <p className="font-semibold">{comment.username}</p>
