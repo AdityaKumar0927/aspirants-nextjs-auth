@@ -8,8 +8,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-// IMPORTANT: This child now fetches its own exam/year/shift data step by step.
-import ProductionExamSetup from "./exam-setup"; 
+// IMPORTANT: Now, the child expects onStartExam(...) to receive ONE object
+import ExamSetup from "./exam-setup";
 import Exam from "./exam";
 import AdvancedExamResults from "./exam-results";
 
@@ -27,12 +27,16 @@ export default function MockExam() {
   const { toast } = useToast();
   const { data: session } = useSession();
 
-  // The parent's states for exam, year, shift, time
-  // We will set these when child calls `onStartExam(...)`.
+  // ------------------------------------------------------------------
+  // State for selected exam, year, shift (plus optional fields)
+  // We'll fill these once the child calls onStartExam({ ...params })
+  // ------------------------------------------------------------------
   const [selectedExam, setSelectedExam] = useState("");
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [selectedShift, setSelectedShift] = useState("");
+  // Optional fields
   const [examTime, setExamTime] = useState<number>(60);
+  // If you want skipCompleted, difficulty, etc. in the parent, store them here as well.
 
   // Questions once chosen
   const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
@@ -55,33 +59,56 @@ export default function MockExam() {
   const questionStartTimeRef = useRef<number>(0);
 
   // ------------------------------------------------------------------
-  // Step A) The child calls this once the user has final selections:
-  //   onStartExam(selectedExam, selectedYear, selectedShift, examTime)
-  // We store them, then call startExam() to fetch questions, etc.
+  // The child calls this once user picks exam/year (and optional fields)
+  // We store them, then fetch questions, set up the exam, etc.
   // ------------------------------------------------------------------
-  async function handleStartExam(
-    exam: string,
-    year: number,
-    shift: string,
-    time: number
-  ) {
+  async function handleStartExam(params: {
+    exam: string;
+    year: number;
+    shift?: string;
+    examTime?: number;
+    skipCompleted?: boolean;
+    difficulty?: string;
+    numQuestions?: number;
+    // ...any additional optional fields
+  }) {
+    // Destructure
+    const {
+      exam,
+      year,
+      shift,
+      examTime = 60,
+      skipCompleted,
+      difficulty,
+      numQuestions,
+    } = params;
+
+    // Store them locally if needed
     setSelectedExam(exam);
     setSelectedYear(year);
-    setSelectedShift(shift);
-    setExamTime(time);
-    await startExam(exam, year, shift, time);
+    setSelectedShift(shift || "");
+    setExamTime(examTime);
+
+    // Then start the exam (fetch questions, etc.)
+    await startExam({ exam, year, shift, time: examTime });
   }
 
   // ------------------------------------------------------------------
-  // B) startExam => fetch the questions for the chosen exam/year/shift
+  // Actually do the question fetch logic
   // ------------------------------------------------------------------
-  async function startExam(
-    exam: string,
-    year: number,
-    shift: string,
-    time: number
-  ) {
+  async function startExam({
+    exam,
+    year,
+    shift,
+    time,
+  }: {
+    exam: string;
+    year: number;
+    shift?: string;
+    time: number;
+  }) {
     try {
+      // Basic validation
       if (!exam) {
         toast({
           title: "Validation Error",
@@ -98,8 +125,6 @@ export default function MockExam() {
         });
         return;
       }
-      // If shifts exist, we might require shift:
-      // But the child already ensures that if shifts exist, user picks one.
 
       setIsLoading(true);
 
@@ -114,11 +139,12 @@ export default function MockExam() {
 
       const response = await fetch(`/api/questions?${queryParams.toString()}`);
       if (!response.ok) {
-        throw new Error("Failed to fetch questions for the selected exam/year/shift.");
+        throw new Error(
+          "Failed to fetch questions for the selected exam/year/shift."
+        );
       }
 
       const data = await response.json();
-      // If paginated => data.data, else => data
       const matching = data.data ?? data;
 
       if (!matching || matching.length === 0) {
@@ -221,7 +247,9 @@ export default function MockExam() {
   // 4) Navigation with time tracking
   // ------------------------------------------------------------------
   function updateTimeSpent() {
-    const timeSpent = Math.floor((Date.now() - questionStartTimeRef.current) / 1000);
+    const timeSpent = Math.floor(
+      (Date.now() - questionStartTimeRef.current) / 1000
+    );
     setTimeSpentPerQuestion((prev) => {
       const newTimeSpent = [...prev];
       newTimeSpent[currentQuestion] =
@@ -342,7 +370,7 @@ export default function MockExam() {
   }
 
   // ------------------------------------------------------------------
-  // 6) Exam timer
+  // 6) Exam timer effect
   // ------------------------------------------------------------------
   useEffect(() => {
     let examTimer: NodeJS.Timeout;
@@ -371,7 +399,7 @@ export default function MockExam() {
   }, [currentQuestion, isExamStarted, isExamFinished]);
 
   // ------------------------------------------------------------------
-  // 7) Early exit exam
+  // 7) Early exit
   // ------------------------------------------------------------------
   function exitExam() {
     if (
@@ -390,7 +418,8 @@ export default function MockExam() {
     setIsExamStarted(false);
     setIsExamFinished(false);
     setExamResults(null);
-    // Optionally reset selectedExam, selectedYear, etc. if you want
+
+    // Optional: reset selections
     setSelectedExam("");
     setSelectedYear(null);
     setSelectedShift("");
@@ -398,9 +427,7 @@ export default function MockExam() {
   }
 
   // ------------------------------------------------------------------
-  // 8) Loading skeleton (only for the moment user is picking the exam?
-  // In this approach, we don't fetch exams in the parent, so you can remove
-  // this or keep it for other loading states.
+  // 8) Loading skeleton (only for initial load or if you want a spinner)
   // ------------------------------------------------------------------
   if (isLoading && !isExamStarted && !isExamFinished) {
     return (
@@ -428,7 +455,7 @@ export default function MockExam() {
   }
 
   // ------------------------------------------------------------------
-  // 9) Render the 3 states (Setup -> Exam -> Results)
+  // 9) Render states (Setup -> Exam -> Results)
   // ------------------------------------------------------------------
   return (
     <AnimatePresence mode="wait">
@@ -441,7 +468,7 @@ export default function MockExam() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <ProductionExamSetup onStartExam={handleStartExam} />
+          <ExamSetup onStartExam={handleStartExam} />
         </motion.div>
       )}
 

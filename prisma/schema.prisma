@@ -8,6 +8,9 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
+// ======================================================
+// 1) Auth & User Models
+// ======================================================
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -39,30 +42,29 @@ model Session {
 }
 
 model User {
-  id                     String                  @id @default(cuid())
-  name                   String?
-  email                  String?                 @unique
-  emailVerified          DateTime?
-  image                  String?
-  subscribed             Boolean                 @default(false)
-  accounts               Account[]
-  sessions               Session[]
-  progresses             UserProgress[]
-  notes                  Note[]
-  performances           UserPerformance[]
-  answers                UserAnswer[]
-  settings               UserSettings?
-  questionBanks          CustomQuestionBank[]
-  customNotes            CustomNote[]
-  customUserProgresses   CustomUserProgress[]
-  customUserAnswers      CustomUserAnswer[]
-  customUserPerformances CustomUserPerformance[]
-  issues                 Issue[]                 @relation("UserIssues")
-  policyAgreements       UserPolicyAgreement[]
-  role                   UserRole                @relation(fields: [roleId], references: [id], onDelete: Cascade)
-  roleId                 String                  @default("member")
-  applications           Application[]
-  feedback               Feedback[]
+  id            String                  @id @default(cuid())
+  name          String?
+  email         String?                 @unique
+  emailVerified DateTime?
+  image         String?
+  subscribed    Boolean                 @default(false)
+
+  // Auth & user-related
+  accounts      Account[]
+  sessions      Session[]
+
+  // Existing relations
+  progresses    UserProgress[]
+  notes         Note[]
+  performances  UserPerformance[]
+  answers       UserAnswer[]
+  settings      UserSettings?
+  issues        Issue[]                 @relation("UserIssues")
+  policyAgreements UserPolicyAgreement[]
+  role          UserRole                @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  roleId        String                  @default("member")
+  applications  Application[]
+  feedback      Feedback[]
 }
 
 model UserRole {
@@ -92,109 +94,107 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-model UserProgress {
-  id            String    @id @default(cuid())
-  userId        String
-  questionId    String
-  completed     Boolean   @default(false)
-  reviewed      Boolean   @default(false)
-  lastAttempted DateTime?
-  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question      Question  @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+model UserSettings {
+  id       String @id @default(cuid())
+  userId   String @unique
+  username String
+  email    String
+  bio      String
+  urls     Json
+  name     String
+  language String
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
 
-  @@unique([userId, questionId])
+// ======================================================
+// 2) Enums & Models for Questions
+// ======================================================
+enum QuestionStatus {
+  ACTIVE
+  DRAFT
+  ARCHIVED
 }
 
 model Question {
   id                   Int               @id @default(autoincrement())
   questionId           String            @unique
-  examGroup            String?           // e.g., "jee", "medical"
-  country              String?           // Country code, e.g., "in"
-  exam                 String?           // Exam identifier, e.g., "jee-main"
-  key                  String?           // Unique key for the question
-  date                 DateTime?         // Exam date
-  description          String?           // Description of the question or exam
-  isMemoryBased        Boolean?          // Indicates if the question is memory-based
-  isOnline             Boolean?          // Indicates if the question is from an online exam
-  languages            String[]          // Supported languages (required list)
-  title                String?           // Title of the exam or question
-  year                 Int?              // Year of the exam
-  pyqOutOfSyllabus     Int?              // Out-of-syllabus question count
-  pyqTotal             Int?              // Total questions in the exam
-  pyqPrivate           Int?              // Private questions count
-  pyqPublic            Int?              // Public questions count
+  examGroup            String?
+  country              String?
+  exam                 String?
+  key                  String?
+  date                 DateTime?
+  description          String?
+  isMemoryBased        Boolean?
+  isOnline             Boolean?
+  languages            String[]
+  title                String?
+  year                 Int?
+  pyqOutOfSyllabus     Int?
+  pyqTotal             Int?
+  pyqPrivate           Int?
+  pyqPublic            Int?
 
-  // Additional fields inferred from user logs/data
-  examId               Int?              // Foreign key referencing the Exam model
+  examId               Int?
   subjectGroup         String?
   chapterGroup         String?
   chapter              String?
   topicName            String?
-  examDate             DateTime?         // If distinct from `date`
-  content              Json?             // Complex question content (HTML, structured data)
+  examDate             DateTime?
+  content              Json?
   permalink            String?
   paperId              String?
   isOutOfSyllabus      Boolean?
   isBonus              Boolean?
 
-  // Question-specific fields
-  text                 String            // Question text (required)
-  subject              String?           // Subject of the question
-  topic                String?           // Topic name
-  subtopic             String?           // Subtopic for additional granularity
-  difficulty           String?           // Difficulty level
-  type                 String?           // Question type, e.g., "mcq", "integer"
-  marks                Float?            // Marks assigned
-  negMarks             Float?            // Negative marks for incorrect answers
-  options              String[]          // List of options (required list)
-  correctOption        String?           // Correct option
-  markscheme           String?           // Marking scheme details
-  correctAttempts      String?           // Number of correct attempts
-  wrongAttempts        String?           // Number of wrong attempts
-  averageTimeTaken     String?           // Average time taken to solve
-  lastAttempted        DateTime?         // Last attempted date
-  diagramUrl           String?           // URL for diagrams, if any
-  customTag            String?           // Custom tag for user-defined grouping
-  explanation          Json?             // JSON object for explanation details
-  reviewed             Boolean?          // Whether the question has been reviewed
-  completed            Boolean?          // Whether the question is marked as completed
+  text                 String
+  subject              String?
+  topic                String?
+  subtopic             String?
+  difficulty           String?
+  type                 String?
+  marks                Float?
+  negMarks             Float?
+  options              String[]
+  correctOption        String?
+  markscheme           String?
+  correctAttempts      String?
+  wrongAttempts        String?
+  averageTimeTaken     String?
+  lastAttempted        DateTime?
+  diagramUrl           String?
+  customTag            String?
+  explanation          Json?
+  reviewed             Boolean?
+  completed            Boolean?
 
-  // Additional metadata
-  paperTitle           String?           // Title of the paper the question belongs to
-  timeAllotted         Int?              // Time allotted for the question
-  updatedTime          Int?              // Timestamp for last update
-  updatedBy            String?           // ID or name of the user/admin who last updated the question
-  source               String?           // Source of the question, e.g., "official paper", "mock test"
-  peerSolvedPercentage Float?            // Percentage of peers who solved the question correctly
-  linkedResources      Json?             // Links to additional resources for understanding the concept
-  commonMistakes       Json?             // JSON object for common mistakes and explanations
-  discussionLink       String?           // URL for discussion forum or thread
-  parentQuestionId     Int?              // If part of a composite question, reference parent question
-  difficultyRating     Float?            // Difficulty rating: Easy, Medium, Hard, Very Hard
+  paperTitle           String?
+  timeAllotted         Int?
+  updatedTime          Int?
+  updatedBy            String?
+  source               String?
+  peerSolvedPercentage Float?
+  linkedResources      Json?
+  commonMistakes       Json?
+  discussionLink       String?
+  parentQuestionId     Int?
+  difficultyRating     Float?
+  yearKey              String?
 
-  // Additional fields
-  yearKey              String?           // Unique key for the year of the question
-  status               QuestionStatus    @default(ACTIVE) // Status of the question
+  status               QuestionStatus    @default(ACTIVE)
   createdAt            DateTime          @default(now())
   updatedAt            DateTime          @updatedAt
 
-  // Relations
+  // Self-relation (for multi-part Qs)
+  parentQuestion       Question?         @relation("ParentChild", fields: [parentQuestionId], references: [id])
+  children             Question[]        @relation("ParentChild")
+
+  // Relations to other models
   notes                Note[]            @relation("QuestionNotes")
   progresses           UserProgress[]
   answers              UserAnswer[]
   userPerformances     UserPerformance[]
   issues               Issue[]
-
-  // Relation to Exam model
   examModel            Exam?             @relation(fields: [examId], references: [id], onDelete: Cascade)
-
-  @@index([status])
-}
-
-enum QuestionStatus {
-  ACTIVE
-  DRAFT
-  ARCHIVED
 }
 
 model Note {
@@ -220,35 +220,29 @@ enum NoteType {
   VOICE
 }
 
-model Exam {
-  id            Int      @id @default(autoincrement())
-  key           String   @unique
-  examGroup     String?
-  country       String?
-  exam          String?
-  date          DateTime?
-  description   String?
-  isMemoryBased Boolean?
-  isOnline      Boolean?
-  languages     String[]
-  title         String
-  year          Int?
+model UserProgress {
+  id            String    @id @default(cuid())
+  userId        String
+  questionId    String
+  completed     Boolean   @default(false)
+  reviewed      Boolean   @default(false)
+  lastAttempted DateTime?
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question      Question  @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
 
-  pyq           Pyq[]
-
-  questions     Question[]
-  @@index([key])
+  @@unique([userId, questionId])
 }
 
-model Pyq {
-  id              Int    @id @default(autoincrement())
-  out_of_syllabus Int?
-  total           Int?
-  private         Int?
-  public          Int?
-  examId          Int
+model UserAnswer {
+  id             String   @id @default(cuid())
+  questionId     String
+  userId         String
+  selectedOption String
+  isCorrect      Boolean
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question       Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
 
-  exam            Exam   @relation(fields: [examId], references: [id], onDelete: Cascade)
+  @@unique([userId, questionId])
 }
 
 model UserPerformance {
@@ -274,140 +268,50 @@ model UserPerformance {
   lastAttempted           DateTime
   createdAt               DateTime @default(now())
   updatedAt               DateTime @updatedAt
+
   user                    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   question                Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
 
   @@unique([userId, questionId])
 }
 
-model UserAnswer {
-  id             String   @id @default(cuid())
-  questionId     String
-  userId         String
-  selectedOption String
-  isCorrect      Boolean
-  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question       Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+// ======================================================
+// 3) Exam & Pyq
+// ======================================================
+model Exam {
+  id            Int      @id @default(autoincrement())
+  key           String   @unique
+  examGroup     String?
+  country       String?
+  exam          String?
+  date          DateTime?
+  description   String?
+  isMemoryBased Boolean?
+  isOnline      Boolean?
+  languages     String[]
+  title         String
+  year          Int?
 
-  @@unique([userId, questionId])
+  pyq           Pyq[]
+  questions     Question[]
+
+  @@index([key])
 }
 
-model UserSettings {
-  id       String @id @default(cuid())
-  userId   String @unique
-  username String
-  email    String
-  bio      String
-  urls     Json
-  name     String
-  language String
-  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+model Pyq {
+  id              Int    @id @default(autoincrement())
+  out_of_syllabus Int?
+  total           Int?
+  private         Int?
+  public          Int?
+  examId          Int
+
+  exam            Exam   @relation(fields: [examId], references: [id], onDelete: Cascade)
 }
 
-model CustomQuestionBank {
-  id              String           @id @default(uuid())
-  name            String
-  description     String
-  userId          String
-  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
-  customQuestions CustomQuestion[] @relation("CustomQuestionBankQuestions")
-}
-
-model CustomNote {
-  id         String         @id @default(cuid())
-  content    String?
-  userId     String
-  questionId String
-  user       User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question   CustomQuestion @relation(fields: [questionId], references: [questionId], onDelete: Cascade, name: "CustomQuestionNotes")
-
-  @@unique([userId, questionId])
-}
-
-model CustomUserProgress {
-  id            String         @id @default(cuid())
-  userId        String
-  questionId    String
-  completed     Boolean        @default(false)
-  reviewed      Boolean        @default(false)
-  lastAttempted DateTime?
-  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question      CustomQuestion @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
-
-  @@unique([userId, questionId])
-}
-
-model CustomUserAnswer {
-  id             String         @id @default(cuid())
-  questionId     String
-  userId         String
-  selectedOption String
-  isCorrect      Boolean
-  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question       CustomQuestion @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
-
-  @@unique([userId, questionId])
-}
-
-model CustomUserPerformance {
-  id                      Int            @id @default(autoincrement())
-  userId                  String
-  questionId              String
-  correctAnswers          Int
-  incorrectAnswers        Int
-  uniqueQuestions         Int
-  questionsAttempted      Int
-  timeSpent               Int
-  accuracy                Float
-  weaknessBySubtopic      Json
-  improvementOverTime     Json
-  attemptRate             Float
-  firstAttemptSuccessRate Float
-  reattemptAccuracy       Float
-  topicPerformance        Json
-  consistency             Float
-  engagementLevel         Float
-  completed               Boolean
-  reviewed                Boolean
-  lastAttempted           DateTime
-  createdAt               DateTime       @default(now())
-  updatedAt               DateTime       @updatedAt
-  user                    User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question                CustomQuestion @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
-
-  @@unique([userId, questionId])
-}
-
-model CustomQuestion {
-  id                   Int                     @id @default(autoincrement())
-  exam                 String
-  questionId           String                  @unique
-  text                 String
-  subject              String
-  topic                String
-  subtopic             String
-  difficulty           String
-  type                 String
-  year                 Int
-  reviewed             Boolean
-  completed            Boolean
-  options              String[]
-  correctOption        String
-  markscheme           String
-  marks                String?
-  correctAttempts      String?
-  wrongAttempts        String?
-  averageTimeTaken     String?
-  lastAttempted        DateTime?
-  diagramUrl           String?
-  notes                CustomNote[]            @relation("CustomQuestionNotes")
-  progresses           CustomUserProgress[]
-  answers              CustomUserAnswer[]
-  userPerformances     CustomUserPerformance[]
-  customQuestionBankId String?
-  customQuestionBank   CustomQuestionBank?     @relation(fields: [customQuestionBankId], references: [id], onDelete: Cascade, name: "CustomQuestionBankQuestions")
-}
-
+// ======================================================
+// 4) Issue, Application, Feedback
+// ======================================================
 model Issue {
   id          String       @id @default(cuid())
   title       String
@@ -456,6 +360,7 @@ model Application {
   status     ApplicationStatus @default(PENDING)
   createdAt  DateTime          @default(now())
   updatedAt  DateTime          @updatedAt
+
   user       User              @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([id, userId])
@@ -484,3 +389,79 @@ model Feedback {
   @@index([userId])
 }
 
+// ======================================================
+// 5) NEW: CustomQuestionBank (identical to `Question`)
+// ======================================================
+model CustomQuestionBank {
+  id                   Int               @id @default(autoincrement())
+  questionId           String            @unique
+  examGroup            String?
+  country              String?
+  exam                 String?
+  key                  String?
+  date                 DateTime?
+  description          String?
+  isMemoryBased        Boolean?
+  isOnline             Boolean?
+  languages            String[]
+  title                String?
+  year                 Int?
+  pyqOutOfSyllabus     Int?
+  pyqTotal             Int?
+  pyqPrivate           Int?
+  pyqPublic            Int?
+
+  examId               Int?
+  subjectGroup         String?
+  chapterGroup         String?
+  chapter              String?
+  topicName            String?
+  examDate             DateTime?
+  content              Json?
+  permalink            String?
+  paperId              String?
+  isOutOfSyllabus      Boolean?
+  isBonus              Boolean?
+
+  text                 String
+  subject              String?
+  topic                String?
+  subtopic             String?
+  difficulty           String?
+  type                 String?
+  marks                Float?
+  negMarks             Float?
+  options              String[]
+  correctOption        String?
+  markscheme           String?
+  correctAttempts      String?
+  wrongAttempts        String?
+  averageTimeTaken     String?
+  lastAttempted        DateTime?
+  diagramUrl           String?
+  customTag            String?
+  explanation          Json?
+  reviewed             Boolean?
+  completed            Boolean?
+
+  paperTitle           String?
+  timeAllotted         Int?
+  updatedTime          Int?
+  updatedBy            String?
+  source               String?
+  peerSolvedPercentage Float?
+  linkedResources      Json?
+  commonMistakes       Json?
+  discussionLink       String?
+  parentQuestionId     Int?
+  difficultyRating     Float?
+  yearKey              String?
+
+  status               QuestionStatus    @default(ACTIVE)
+  createdAt            DateTime          @default(now())
+  updatedAt            DateTime          @updatedAt
+
+  // Self-relation (multi-part custom Qs)
+  parentQuestion       CustomQuestionBank?  @relation("ParentChild", fields: [parentQuestionId], references: [id])
+  children             CustomQuestionBank[] @relation("ParentChild")
+}
