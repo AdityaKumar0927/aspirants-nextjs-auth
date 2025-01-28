@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { ArrowRight, AlertTriangle, ChevronDown } from "lucide-react";
+import { AlertTriangle, ChevronDown } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select,
@@ -13,9 +12,19 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
+/** If you want typed topics: */
+interface Topic {
+  id: number;
+  name: string;
+  questions: number;
+}
 
 /**
- * The parent calls onStartExam(...) with final picks.
+ * The parent (mock-exam) calls onStartExam(...) with final picks
  */
 interface ExamSetupProps {
   onStartExam: (params: {
@@ -26,58 +35,87 @@ interface ExamSetupProps {
     skipCompleted?: boolean;
     difficulty?: string;
     numQuestions?: number;
-    // ...any other optional fields you like
+    selectedTopicIds?: number[];
   }) => void;
 }
 
 export default function ExamSetup({ onStartExam }: ExamSetupProps) {
-  // ----------------------------------------------------------------
-  // 1) States for dynamic fetching
-  // ----------------------------------------------------------------
+  // -----------------------------------------------
+  // 1) Left sidebar states
+  // -----------------------------------------------
   const [exams, setExams] = useState<string[]>([]);
   const [years, setYears] = useState<number[]>([]);
   const [shifts, setShifts] = useState<string[]>([]);
 
-  const [selectedExam, setSelectedExam] = useState("");
-  const [selectedYear, setSelectedYear] = useState<number | null>(null);
-  const [selectedShift, setSelectedShift] = useState("none"); // for "no shift"
+  // "none" means no selection
+  const [selectedExam, setSelectedExam] = useState("none");
+  const [selectedYear, setSelectedYear] = useState("none");
+  const [selectedShift, setSelectedShift] = useState("none");
 
   // Optional fields
   const [examTime, setExamTime] = useState<number>(60);
   const [skipCompleted, setSkipCompleted] = useState<boolean>(false);
-  const [difficulty, setDifficulty] = useState<string>("");
+  const [difficulty, setDifficulty] = useState("none");
+
+  // We'll auto-set numQuestions to the total count of matching questions
   const [numQuestions, setNumQuestions] = useState<number>(10);
 
-  // States for loading & error
+  // Loading & error states
   const [loadingExams, setLoadingExams] = useState(false);
   const [loadingYears, setLoadingYears] = useState(false);
   const [loadingShifts, setLoadingShifts] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  // If you want to show example topics in the right column, you can do so,
-  // but we'll just demonstrate the two-column layout.
+  // Additional loading state for the question count
+  const [loadingQuestionCount, setLoadingQuestionCount] = useState(false);
 
-  // ----------------------------------------------------------------
-  // 2) Helper for fetch
-  // ----------------------------------------------------------------
+  // -----------------------------------------------
+  // 2) Right column: Topics
+  // -----------------------------------------------
+  const [topics, setTopics] = useState<Topic[]>([]);
+  const [selectedTopicIds, setSelectedTopicIds] = useState<number[]>([]);
+  const [loadingTopics, setLoadingTopics] = useState(false);
+
+  /** Toggle a single topic check */
+  function toggleTopic(topicId: number) {
+    setSelectedTopicIds((prev) =>
+      prev.includes(topicId)
+        ? prev.filter((id) => id !== topicId)
+        : [...prev, topicId]
+    );
+  }
+
+  /** Select all or deselect all */
+  function handleSelectAllTopics() {
+    if (selectedTopicIds.length === topics.length) {
+      setSelectedTopicIds([]);
+    } else {
+      setSelectedTopicIds(topics.map((t) => t.id));
+    }
+  }
+
+  // -----------------------------------------------
+  // 3) Helper for fetch
+  // -----------------------------------------------
   async function fetchJson(url: string) {
     const res = await fetch(url);
     if (!res.ok) {
-      throw new Error(`Failed to fetch: ${url}`);
+      throw new Error(`Failed to fetch ${url}`);
     }
     return res.json();
   }
 
-  // ----------------------------------------------------------------
-  // 3) On mount => fetch distinct "exams" (no query)
-  // ----------------------------------------------------------------
+  // -----------------------------------------------
+  // 4) On mount => fetch distinct exams
+  // -----------------------------------------------
   useEffect(() => {
     async function loadExams() {
       try {
         setLoadingExams(true);
         setErrorMsg(null);
+
+        // No exam param => { exams: [...] }
         const data = await fetchJson("/api/exams-and-years");
-        // data => { exams: ["ExamA","ExamB"] }
         setExams(data.exams || []);
       } catch (err: any) {
         setErrorMsg(err.message);
@@ -88,23 +126,34 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
     loadExams();
   }, []);
 
-  // ----------------------------------------------------------------
-  // 4) If user picks exam => fetch years
-  // ----------------------------------------------------------------
+  // -----------------------------------------------
+  // 5) If user picks exam => fetch years
+  // -----------------------------------------------
   useEffect(() => {
+    if (selectedExam === "none") {
+      // reset
+      setYears([]);
+      setSelectedYear("none");
+      setShifts([]);
+      setSelectedShift("none");
+      setTopics([]);
+      setSelectedTopicIds([]);
+      return;
+    }
+
     async function loadYears(exam: string) {
       try {
         setLoadingYears(true);
         setErrorMsg(null);
 
-        // reset older data
         setYears([]);
-        setSelectedYear(null);
+        setSelectedYear("none");
         setShifts([]);
         setSelectedShift("none");
+        setTopics([]);
+        setSelectedTopicIds([]);
 
         const data = await fetchJson(`/api/exams-and-years?exam=${exam}`);
-        // data => { years: [2020,2021,...] }
         setYears(data.years || []);
       } catch (err: any) {
         setErrorMsg(err.message);
@@ -113,80 +162,145 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
       }
     }
 
-    if (selectedExam) {
-      loadYears(selectedExam);
-    } else {
-      // reset if exam cleared
-      setYears([]);
-      setSelectedYear(null);
-      setShifts([]);
-      setSelectedShift("none");
-    }
+    loadYears(selectedExam);
   }, [selectedExam]);
 
-  // ----------------------------------------------------------------
-  // 5) If user picks exam + year => fetch shifts
-  // ----------------------------------------------------------------
+  // -----------------------------------------------
+  // 6) If exam+year => fetch shifts & topics
+  // -----------------------------------------------
   useEffect(() => {
-    async function loadShifts(exam: string, year: number) {
+    if (selectedExam === "none" || selectedYear === "none") {
+      setShifts([]);
+      setSelectedShift("none");
+      setTopics([]);
+      setSelectedTopicIds([]);
+      return;
+    }
+
+    async function loadShiftsAndTopics() {
       try {
         setLoadingShifts(true);
+        setLoadingTopics(true);
         setErrorMsg(null);
+
         setShifts([]);
         setSelectedShift("none");
+        setTopics([]);
+        setSelectedTopicIds([]);
 
-        const data = await fetchJson(
-          `/api/exams-and-years?exam=${exam}&year=${year}`
+        // A) shifts => from /api/exams-and-years?exam=XYZ&year=YYYY => { shifts: [...] }
+        const shiftRes = await fetchJson(
+          `/api/exams-and-years?exam=${selectedExam}&year=${selectedYear}`
         );
-        // data => { shifts: [...] }
-        setShifts(data.shifts || []);
+        setShifts(shiftRes.shifts || []);
+        setLoadingShifts(false);
+
+        // B) topics => e.g. /api/topics?exam=XYZ&year=YYYY
+        const topicRes = await fetchJson(
+          `/api/topics?exam=${selectedExam}&year=${selectedYear}`
+        );
+        setTopics(topicRes.topics || []);
+        setLoadingTopics(false);
       } catch (err: any) {
         setErrorMsg(err.message);
-      } finally {
         setLoadingShifts(false);
+        setLoadingTopics(false);
       }
     }
 
-    if (selectedExam && selectedYear !== null) {
-      loadShifts(selectedExam, selectedYear);
-    } else {
-      setShifts([]);
-      setSelectedShift("none");
-    }
+    loadShiftsAndTopics();
   }, [selectedExam, selectedYear]);
 
-  // ----------------------------------------------------------------
-  // 6) “Start Exam”
-  // ----------------------------------------------------------------
+  // -----------------------------------------------
+  // 7) Auto-fetch question count => set default numQuestions
+  // -----------------------------------------------
+  useEffect(() => {
+    if (selectedExam === "none" || selectedYear === "none") {
+      setNumQuestions(10);
+      return;
+    }
+
+    async function loadQuestionCount() {
+      try {
+        setLoadingQuestionCount(true);
+
+        let url = `/api/questions?exam=${selectedExam}&year=${selectedYear}&page=1&pageSize=1`;
+        if (selectedShift !== "none") {
+          url += `&shift=${selectedShift}`;
+        }
+
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`Failed to fetch question count`);
+        const data = await res.json();
+
+        // Our /api/questions route:
+        // If skip/take => returns { data: [...], totalCount, currentPage, pageSize }
+        let total = 0;
+        if (data.totalCount !== undefined) {
+          total = data.totalCount;
+        } else if (Array.isArray(data)) {
+          // fallback if it's just an array
+          total = data.length;
+        } else if (Array.isArray(data.data)) {
+          total = data.data.length;
+        }
+        setNumQuestions(total > 0 ? total : 10);
+      } catch (err) {
+        console.error("Error fetching question count:", err);
+        setNumQuestions(10);
+      } finally {
+        setLoadingQuestionCount(false);
+      }
+    }
+    loadQuestionCount();
+  }, [selectedExam, selectedYear, selectedShift]);
+
+  // -----------------------------------------------
+  // 8) “Generate ⚡12” => calls parent's onStartExam
+  // -----------------------------------------------
   function handleStartExam() {
-    if (!selectedExam) {
+    if (selectedExam === "none") {
       alert("Please pick an exam first.");
       return;
     }
-    if (!selectedYear) {
+    if (selectedYear === "none") {
       alert("Please pick a year first.");
       return;
     }
-    // SHIFT is optional, so "none" => undefined
+
+    // SHIFT optional
+    const shiftVal = selectedShift === "none" ? undefined : selectedShift;
+    // difficulty => if "none", interpret as undefined
+    const diffVal = difficulty === "none" ? undefined : difficulty;
+    // if no topics => all
+    const finalTopics =
+      selectedTopicIds.length > 0 ? selectedTopicIds : undefined;
+
     onStartExam({
       exam: selectedExam,
-      year: selectedYear,
-      shift: selectedShift === "none" ? undefined : selectedShift,
+      year: Number(selectedYear),
+      shift: shiftVal,
       examTime,
       skipCompleted,
-      difficulty: difficulty || undefined,
+      difficulty: diffVal,
       numQuestions,
+      selectedTopicIds: finalTopics,
     });
   }
 
-  // ----------------------------------------------------------------
-  // 7) Render two columns (like the sample)
-  // ----------------------------------------------------------------
+  // For anchor "Generate" button
+  const isDisabled = selectedExam === "none" || selectedYear === "none";
+
+  // -----------------------------------------------
+  // RENDER
+  // -----------------------------------------------
   return (
     <div className="flex min-h-screen bg-white">
-      {/* Left Sidebar */}
+      {/* LEFT SIDEBAR */}
       <div className="w-[280px] p-4 border-r border-gray-100 space-y-6">
-        {/* Possibly show an error banner if needed */}
+        {/* The new heading at the top */}
+        <h1 className="text-5xl font-medium tracking-tight mb-4">Mock Exam</h1>
+
         {errorMsg && (
           <div className="flex items-center gap-2 bg-red-50 border border-red-200 text-red-700 text-sm p-2 rounded-md">
             <AlertTriangle className="w-4 h-4" />
@@ -197,77 +311,93 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
         {/* 1) Exam */}
         <div className="space-y-2">
           <h3 className="text-sm">Exam (required)</h3>
-          <Select
-            onValueChange={(val) => setSelectedExam(val)}
-            value={selectedExam}
-          >
-            <SelectTrigger className="w-full bg-gray-50 border-0">
-              <SelectValue placeholder="Select an exam" />
-            </SelectTrigger>
-            <SelectContent>
-              {exams.map((exam) => (
-                <SelectItem key={exam} value={exam}>
-                  {exam}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          {loadingExams ? (
+            <Skeleton height={40} />
+          ) : (
+            <Select
+              onValueChange={(val) => setSelectedExam(val)}
+              value={selectedExam}
+            >
+              <SelectTrigger className="w-full bg-gray-50 border-0">
+                <SelectValue placeholder="Select an exam" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="none">-- No exam selected --</SelectItem>
+                {exams.map((exam) => (
+                  <SelectItem key={exam} value={exam}>
+                    {exam}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
         </div>
 
         {/* 2) Year */}
         <div className="space-y-2">
           <h3 className="text-sm">Year (required)</h3>
-          <Select
-            onValueChange={(val) => setSelectedYear(Number(val))}
-            value={selectedYear ? String(selectedYear) : ""}
-            disabled={!selectedExam}
-          >
-            <SelectTrigger className="w-full bg-gray-50 border-0 disabled:opacity-50">
-              <SelectValue placeholder="Select year" />
-            </SelectTrigger>
-            <SelectContent>
-              {years.map((yr) => (
-                <SelectItem key={yr} value={String(yr)}>
-                  {yr}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          {loadingYears ? (
+            <Skeleton height={40} />
+          ) : (
+            <Select
+              disabled={selectedExam === "none"}
+              onValueChange={(val) => setSelectedYear(val)}
+              value={selectedYear}
+            >
+              <SelectTrigger className="w-full bg-gray-50 border-0 disabled:opacity-50">
+                <SelectValue placeholder="Select year" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="none">-- No year selected --</SelectItem>
+                {years.map((yr) => (
+                  <SelectItem key={yr} value={String(yr)}>
+                    {yr}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
         </div>
 
         {/* 3) Shift */}
         <div className="space-y-2">
           <h3 className="text-sm">Shift (optional)</h3>
-          <Select
-            onValueChange={(val) => setSelectedShift(val)}
-            value={selectedShift}
-            disabled={!selectedYear}
-          >
-            <SelectTrigger className="w-full bg-gray-50 border-0 disabled:opacity-50">
-              <SelectValue placeholder="No shift" />
-            </SelectTrigger>
-            <SelectContent>
-              {/* "none" means no shift */}
-              <SelectItem value="none">No shift</SelectItem>
-
-              {shifts.map((sh) => (
-                <SelectItem key={sh} value={sh}>
-                  {sh}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          {loadingShifts ? (
+            <Skeleton height={40} />
+          ) : (
+            <Select
+              disabled={selectedYear === "none"}
+              onValueChange={(val) => setSelectedShift(val)}
+              value={selectedShift}
+            >
+              <SelectTrigger className="w-full bg-gray-50 border-0 disabled:opacity-50">
+                <SelectValue placeholder="No shift" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="none">No shift</SelectItem>
+                {shifts.map((sh) => (
+                  <SelectItem key={sh} value={sh}>
+                    {sh}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
         </div>
 
-        {/* 4) Number of questions */}
+        {/* 4) Number of Questions (auto from question count) */}
         <div className="space-y-2">
-          <h3 className="text-sm">Number of Questions (optional)</h3>
-          <Input
-            type="number"
-            className="bg-gray-50 border-0"
-            value={numQuestions}
-            onChange={(e) => setNumQuestions(Number(e.target.value) || 10)}
-          />
+          <h3 className="text-sm">Number of Questions</h3>
+          {loadingQuestionCount ? (
+            <Skeleton height={40} />
+          ) : (
+            <Input
+              type="number"
+              className="bg-gray-50 border-0"
+              value={numQuestions}
+              onChange={(e) => setNumQuestions(Number(e.target.value) || 1)}
+            />
+          )}
         </div>
 
         {/* 5) Difficulty */}
@@ -281,7 +411,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
               <SelectValue placeholder="Any difficulty" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Any</SelectItem>
+              <SelectItem value="none">Any</SelectItem>
               <SelectItem value="Easy">Easy</SelectItem>
               <SelectItem value="Medium">Medium</SelectItem>
               <SelectItem value="Hard">Hard</SelectItem>
@@ -325,23 +455,87 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
           />
         </div>
 
-        <Button
-          onClick={handleStartExam}
-          className="w-full bg-[#9333EA] hover:bg-[#7E22CE] text-white font-normal mt-3"
-          disabled={!selectedExam || !selectedYear}
+        {/* 8) The anchor “Generate ⚡12” button => user snippet */}
+        <a
+          href="#_"
+          onClick={(e) => {
+            e.preventDefault();
+            if (isDisabled) return;
+            handleStartExam();
+          }}
+          className={
+            "inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-gray-600 whitespace-no-wrap bg-white border border-gray-200 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:shadow-none" +
+            (isDisabled ? " opacity-50 pointer-events-none" : "")
+          }
         >
-          Generate ⚡ 12
-          <ArrowRight className="h-4 w-4 ml-2" />
-        </Button>
+          Generate ⚡12
+        </a>
       </div>
 
-      {/* Right Content - Example or Topics */}
+      {/* RIGHT COLUMN => topics */}
       <div className="flex-1 px-6 py-5">
-        {/* If you want to display other data or a "topics" list, do so here. */}
-        <h2 className="text-lg font-medium">All topics</h2>
-        <p className="text-sm text-gray-500 mt-2">
-          (Optional content area. Add your own logic or UI here.)
-        </p>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-medium">All Topics</h2>
+          <a
+            href="#_"
+            onClick={(e) => {
+              e.preventDefault();
+              handleSelectAllTopics();
+            }}
+            className="text-[#6B7280] hover:text-[#374151] hover:bg-transparent font-normal"
+          >
+            {selectedTopicIds.length === topics.length
+              ? "Deselect all"
+              : "Select all"}
+          </a>
+        </div>
+
+        {loadingTopics && (
+          <div className="space-y-2">
+            <Skeleton height={24} />
+            <Skeleton height={24} />
+            <Skeleton height={24} />
+            <Skeleton height={24} />
+          </div>
+        )}
+
+        {!loadingTopics && topics.length === 0 && (
+          <p className="text-sm text-gray-500 italic">
+            No topics found for the selected exam/year.
+          </p>
+        )}
+
+        {!loadingTopics && topics.length > 0 && (
+          <div className="space-y-1">
+            {topics.map((topic) => {
+              const checked = selectedTopicIds.includes(topic.id);
+              return (
+                <div
+                  key={topic.id}
+                  className="flex items-center justify-between py-2.5 hover:bg-gray-50 px-2 -mx-2 rounded-md"
+                >
+                  <div className="flex items-center space-x-3">
+                    <Checkbox
+                      id={`topic-${topic.id}`}
+                      className="rounded-sm"
+                      checked={checked}
+                      onCheckedChange={() => toggleTopic(topic.id)}
+                    />
+                    <label htmlFor={`topic-${topic.id}`} className="text-sm">
+                      {topic.name}
+                    </label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-sm text-gray-500">
+                      {topic.questions} questions
+                    </span>
+                    <ChevronDown className="h-4 w-4 text-gray-400" />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
