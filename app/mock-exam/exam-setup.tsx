@@ -16,7 +16,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-/** If you want typed topics: */
 interface Topic {
   id: number;
   name: string;
@@ -24,7 +23,7 @@ interface Topic {
 }
 
 /**
- * The parent (mock-exam) calls onStartExam(...) with final picks
+ * The parent calls onStartExam(...) with the final user picks.
  */
 interface ExamSetupProps {
   onStartExam: (params: {
@@ -40,43 +39,37 @@ interface ExamSetupProps {
 }
 
 export default function ExamSetup({ onStartExam }: ExamSetupProps) {
-  // -----------------------------------------------
-  // 1) Left sidebar states
-  // -----------------------------------------------
+  // LEFT SIDEBAR states
   const [exams, setExams] = useState<string[]>([]);
   const [years, setYears] = useState<number[]>([]);
   const [shifts, setShifts] = useState<string[]>([]);
 
-  // "none" means no selection
+  // "none" => not chosen yet
   const [selectedExam, setSelectedExam] = useState("none");
   const [selectedYear, setSelectedYear] = useState("none");
   const [selectedShift, setSelectedShift] = useState("none");
 
-  // Optional fields
+  // Extra fields
   const [examTime, setExamTime] = useState<number>(60);
   const [skipCompleted, setSkipCompleted] = useState<boolean>(false);
   const [difficulty, setDifficulty] = useState("none");
-
-  // We'll auto-set numQuestions to the total count of matching questions
   const [numQuestions, setNumQuestions] = useState<number>(10);
 
-  // Loading & error states
+  // Loading & error
   const [loadingExams, setLoadingExams] = useState(false);
   const [loadingYears, setLoadingYears] = useState(false);
   const [loadingShifts, setLoadingShifts] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  // Additional loading state for the question count
+  // For question count
   const [loadingQuestionCount, setLoadingQuestionCount] = useState(false);
 
-  // -----------------------------------------------
-  // 2) Right column: Topics
-  // -----------------------------------------------
+  // RIGHT: topics
   const [topics, setTopics] = useState<Topic[]>([]);
   const [selectedTopicIds, setSelectedTopicIds] = useState<number[]>([]);
   const [loadingTopics, setLoadingTopics] = useState(false);
 
-  /** Toggle a single topic check */
+  // Toggle topic selection
   function toggleTopic(topicId: number) {
     setSelectedTopicIds((prev) =>
       prev.includes(topicId)
@@ -85,7 +78,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
     );
   }
 
-  /** Select all or deselect all */
+  // “Select all” or “deselect all”
   function handleSelectAllTopics() {
     if (selectedTopicIds.length === topics.length) {
       setSelectedTopicIds([]);
@@ -94,27 +87,23 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
     }
   }
 
-  // -----------------------------------------------
-  // 3) Helper for fetch
-  // -----------------------------------------------
+  // Helper fetch
   async function fetchJson(url: string) {
     const res = await fetch(url);
     if (!res.ok) {
-      throw new Error(`Failed to fetch ${url}`);
+      throw new Error(`Failed to fetch: ${url}`);
     }
     return res.json();
   }
 
-  // -----------------------------------------------
-  // 4) On mount => fetch distinct exams
-  // -----------------------------------------------
+  // 1) On mount => load exams
   useEffect(() => {
     async function loadExams() {
       try {
         setLoadingExams(true);
         setErrorMsg(null);
 
-        // No exam param => { exams: [...] }
+        // no exam => returns { exams: [...] }
         const data = await fetchJson("/api/exams-and-years");
         setExams(data.exams || []);
       } catch (err: any) {
@@ -126,9 +115,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
     loadExams();
   }, []);
 
-  // -----------------------------------------------
-  // 5) If user picks exam => fetch years
-  // -----------------------------------------------
+  // 2) If exam => load years
   useEffect(() => {
     if (selectedExam === "none") {
       // reset
@@ -161,13 +148,10 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
         setLoadingYears(false);
       }
     }
-
     loadYears(selectedExam);
   }, [selectedExam]);
 
-  // -----------------------------------------------
-  // 6) If exam+year => fetch shifts & topics
-  // -----------------------------------------------
+  // 3) If exam+year => load SHIFT (key) + topics
   useEffect(() => {
     if (selectedExam === "none" || selectedYear === "none") {
       setShifts([]);
@@ -188,18 +172,19 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
         setTopics([]);
         setSelectedTopicIds([]);
 
-        // A) shifts => from /api/exams-and-years?exam=XYZ&year=YYYY => { shifts: [...] }
-        const shiftRes = await fetchJson(
+        // A) shifts => /api/exams-and-years?exam=xxx&year=yyy => { shifts: [...] }
+        const shiftData = await fetchJson(
           `/api/exams-and-years?exam=${selectedExam}&year=${selectedYear}`
         );
-        setShifts(shiftRes.shifts || []);
+        setShifts(shiftData.shifts || []);
         setLoadingShifts(false);
 
-        // B) topics => e.g. /api/topics?exam=XYZ&year=YYYY
-        const topicRes = await fetchJson(
+        // B) topics => e.g. /api/topics?exam=xxx&year=yyy
+        // (You can group by topic in /api/questions if you want)
+        const topicData = await fetchJson(
           `/api/topics?exam=${selectedExam}&year=${selectedYear}`
         );
-        setTopics(topicRes.topics || []);
+        setTopics(topicData.topics || []);
         setLoadingTopics(false);
       } catch (err: any) {
         setErrorMsg(err.message);
@@ -207,13 +192,10 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
         setLoadingTopics(false);
       }
     }
-
     loadShiftsAndTopics();
   }, [selectedExam, selectedYear]);
 
-  // -----------------------------------------------
-  // 7) Auto-fetch question count => set default numQuestions
-  // -----------------------------------------------
+  // 4) auto fetch question count => set default numQuestions
   useEffect(() => {
     if (selectedExam === "none" || selectedYear === "none") {
       setNumQuestions(10);
@@ -230,16 +212,14 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
         }
 
         const res = await fetch(url);
-        if (!res.ok) throw new Error(`Failed to fetch question count`);
+        if (!res.ok) throw new Error("Failed to fetch question count");
         const data = await res.json();
 
-        // Our /api/questions route:
         // If skip/take => returns { data: [...], totalCount, currentPage, pageSize }
         let total = 0;
         if (data.totalCount !== undefined) {
           total = data.totalCount;
         } else if (Array.isArray(data)) {
-          // fallback if it's just an array
           total = data.length;
         } else if (Array.isArray(data.data)) {
           total = data.data.length;
@@ -255,9 +235,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
     loadQuestionCount();
   }, [selectedExam, selectedYear, selectedShift]);
 
-  // -----------------------------------------------
-  // 8) “Generate ⚡12” => calls parent's onStartExam
-  // -----------------------------------------------
+  // 5) “Generate⚡12”
   function handleStartExam() {
     if (selectedExam === "none") {
       alert("Please pick an exam first.");
@@ -268,11 +246,9 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
       return;
     }
 
-    // SHIFT optional
+    // SHIFT => optional
     const shiftVal = selectedShift === "none" ? undefined : selectedShift;
-    // difficulty => if "none", interpret as undefined
     const diffVal = difficulty === "none" ? undefined : difficulty;
-    // if no topics => all
     const finalTopics =
       selectedTopicIds.length > 0 ? selectedTopicIds : undefined;
 
@@ -288,17 +264,13 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
     });
   }
 
-  // For anchor "Generate" button
   const isDisabled = selectedExam === "none" || selectedYear === "none";
 
-  // -----------------------------------------------
-  // RENDER
-  // -----------------------------------------------
   return (
     <div className="flex min-h-screen bg-white">
       {/* LEFT SIDEBAR */}
       <div className="w-[280px] p-4 border-r border-gray-100 space-y-6">
-        {/* The new heading at the top */}
+        {/* Heading */}
         <h1 className="text-5xl font-medium tracking-tight mb-4">Mock Exam</h1>
 
         {errorMsg && (
@@ -359,7 +331,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
           )}
         </div>
 
-        {/* 3) Shift */}
+        {/* 3) Shift => KEY in DB */}
         <div className="space-y-2">
           <h3 className="text-sm">Shift (optional)</h3>
           {loadingShifts ? (
@@ -403,10 +375,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
         {/* 5) Difficulty */}
         <div className="space-y-2">
           <h3 className="text-sm">Difficulty (optional)</h3>
-          <Select
-            onValueChange={setDifficulty}
-            value={difficulty}
-          >
+          <Select onValueChange={setDifficulty} value={difficulty}>
             <SelectTrigger className="w-full bg-gray-50 border-0">
               <SelectValue placeholder="Any difficulty" />
             </SelectTrigger>
@@ -455,7 +424,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
           />
         </div>
 
-        {/* 8) The anchor “Generate ⚡12” button => user snippet */}
+        {/* 8) “Generate⚡12” anchor button */}
         <a
           href="#_"
           onClick={(e) => {
@@ -472,7 +441,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
         </a>
       </div>
 
-      {/* RIGHT COLUMN => topics */}
+      {/* RIGHT => topics */}
       <div className="flex-1 px-6 py-5">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-medium">All Topics</h2>

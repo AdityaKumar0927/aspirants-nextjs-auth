@@ -1,31 +1,26 @@
-import { NextResponse } from "next/server"
-import { PrismaClient } from "@prisma/client"
+import { NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 export async function GET(request: Request) {
   try {
-    const { searchParams } = new URL(request.url)
-    const examParam = searchParams.get("exam") // e.g. "jee-main"
-    const yearParam = searchParams.get("year") // e.g. "2024"
+    const { searchParams } = new URL(request.url);
+    const examParam = searchParams.get("exam");
+    const yearParam = searchParams.get("year");
 
-    // 1) If no exam => return distinct exams
+    // 1) No exam => distinct exam
     if (!examParam) {
       const rows = await prisma.question.findMany({
         distinct: ["exam"],
-        where: {
-          exam: { not: null },
-        },
+        where: { exam: { not: null } },
         select: { exam: true },
-      })
-      const exams = rows
-        .map((r) => r.exam!)
-        .filter(Boolean)
-        .sort()
-      return NextResponse.json({ exams })
+      });
+      const exams = rows.map((r) => r.exam!).filter(Boolean).sort();
+      return NextResponse.json({ exams });
     }
 
-    // 2) If exam but no year => return distinct years for that exam
+    // 2) exam but no year => distinct years
     if (examParam && !yearParam) {
       const rows = await prisma.question.findMany({
         distinct: ["year"],
@@ -34,25 +29,18 @@ export async function GET(request: Request) {
           year: { not: null },
         },
         select: { year: true },
-      })
-      const years = rows
-        .map((r) => r.year!)
-        .filter(Boolean)
-        .sort((a, b) => a - b)
-      return NextResponse.json({ years })
+      });
+      const years = rows.map((r) => r.year!).filter(Boolean).sort((a, b) => a - b);
+      return NextResponse.json({ years });
     }
 
-    // 3) If exam + year => return distinct keys as shifts
+    // 3) exam + year => distinct key => shifts
     if (examParam && yearParam) {
-      const parsedYear = parseInt(yearParam, 10)
+      const parsedYear = parseInt(yearParam, 10);
       if (isNaN(parsedYear)) {
-        return NextResponse.json(
-          { error: "Invalid year parameter" },
-          { status: 400 }
-        )
+        return NextResponse.json({ shifts: [] });
       }
 
-      // Distinct "key" => SHIFT
       const rows = await prisma.question.findMany({
         distinct: ["key"],
         where: {
@@ -61,18 +49,14 @@ export async function GET(request: Request) {
           key: { not: null },
         },
         select: { key: true },
-      })
-      const shifts = rows
-        .map((r) => r.key!)
-        .filter(Boolean)
-        .sort()
-      return NextResponse.json({ shifts })
+      });
+      const shifts = rows.map((r) => r.key!).filter(Boolean).sort();
+      return NextResponse.json({ shifts });
     }
 
-    // If somehow we get here:
-    return NextResponse.json({ error: "Invalid query" }, { status: 400 })
+    return NextResponse.json({ error: "Invalid query" }, { status: 400 });
   } catch (err: any) {
-    console.error("GET /api/exams-and-years =>", err)
-    return NextResponse.json({ error: "Failed" }, { status: 500 })
+    console.error("GET /api/exams-and-years =>", err);
+    return NextResponse.json({ error: "Failed" }, { status: 500 });
   }
 }
