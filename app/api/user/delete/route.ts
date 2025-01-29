@@ -20,11 +20,6 @@ export async function DELETE(req: Request) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
 
-    // Manually delete related records if needed (for more control)
-    await prisma.customQuestionBank.deleteMany({
-      where: { userId: user.id },
-    });
-
     // Delete the user (cascading deletes should handle the rest)
     await prisma.user.delete({
       where: { id: user.id },
