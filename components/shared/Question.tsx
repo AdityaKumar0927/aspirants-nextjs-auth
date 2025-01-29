@@ -412,13 +412,13 @@ export default function Question({
    **/
   function getBorderColorClass() {
     if (isMarkedForReview) {
-      return "border-yellow-500"
+      return "border-yellow-500 border-2"
     } else if (feedback === "correct") {
-      return "border-green-500"
+      return "border-green-500 border-2"
     } else if (feedback === "incorrect") {
-      return "border-red-500"
+      return "border-red-500 border-2"
     } else {
-      return "border-gray-300 dark:border-gray-600"
+      return "border-gray-300 dark:border-gray-600 border-2"
     }
   }
 
