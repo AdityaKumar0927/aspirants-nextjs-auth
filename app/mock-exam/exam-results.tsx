@@ -3,17 +3,31 @@
 import React, { useState, useMemo } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { ArrowLeft, Download, Target, Award, TrendingUp, AlertCircle, CheckCircle, PieChart, LineChart, Lightbulb, BookOpen, Clock } from "lucide-react"
+import {
+  ArrowLeft,
+  Download,
+  Target,
+  Award,
+  TrendingUp,
+  AlertCircle,
+  CheckCircle,
+  PieChart,
+  LineChart,
+  Lightbulb,
+  BookOpen,
+  Clock,
+  ArrowRight,
+} from "lucide-react"
 import { Pie, Bar, Radar } from "react-chartjs-2"
 import html2pdf from "html2pdf.js"
 import "chart.js/auto"
-import { ExamResultsType } from "@/lib/exam-helpers"
+import type { ExamResultsType } from "@/lib/exam-helpers"
 
 const formatTime = (seconds: number) => {
   const minutes = Math.floor(seconds / 60)
@@ -32,7 +46,6 @@ function AdvancedExamResults({
 }) {
   const [difficultyFilter, setDifficultyFilter] = useState<"Easy" | "Medium" | "Hard" | "All">("All")
 
-  // Filter the displayed questions by difficulty
   const filteredQuestions = useMemo(() => {
     if (difficultyFilter === "All") {
       return examResults.questions
@@ -40,7 +53,6 @@ function AdvancedExamResults({
     return examResults.questions.filter((q) => (q.difficulty || "") === difficultyFilter)
   }, [examResults.questions, difficultyFilter])
 
-  // Generate PDF content
   const generatePdfContent = () => {
     const content = document.createElement("div")
     content.innerHTML = `
@@ -93,7 +105,6 @@ function AdvancedExamResults({
     return content
   }
 
-  // PDF download
   const handleDownloadPdf = () => {
     const content = generatePdfContent()
     const opt = {
@@ -106,8 +117,7 @@ function AdvancedExamResults({
     html2pdf().from(content).set(opt).save()
   }
 
-  // Renders a "Summary" card
-  const renderSummaryCard = (
+  const SummaryCard = () => (
     <Card className="overflow-hidden bg-gradient-to-br from-primary/10 to-primary/5">
       <CardHeader className="border-b border-primary/10">
         <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-primary">
@@ -119,152 +129,34 @@ function AdvancedExamResults({
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
             <p className="text-sm font-medium">
-              Total Questions:{" "}
-              <span className="font-bold text-primary">{examResults.totalQuestions}</span>
+              Total Questions: <span className="font-bold text-primary">{examResults.totalQuestions}</span>
             </p>
             <p className="text-sm font-medium">
-              Correct Answers:{" "}
-              <span className="font-bold text-green-600">
-                {examResults.correctAnswersCount}
-              </span>
+              Correct Answers: <span className="font-bold text-green-600">{examResults.correctAnswersCount}</span>
             </p>
             <p className="text-sm font-medium">
-              Incorrect Answers:{" "}
-              <span className="font-bold text-red-600">
-                {examResults.incorrectAnswers}
-              </span>
+              Incorrect Answers: <span className="font-bold text-red-600">{examResults.incorrectAnswers}</span>
             </p>
           </div>
           <div className="space-y-2">
             <p className="text-sm font-medium">
-              Score:{" "}
-              <span className="font-bold text-primary">
-                {examResults.score.toFixed(2)}%
-              </span>
+              Score: <span className="font-bold text-primary">{examResults.score.toFixed(2)}%</span>
             </p>
             <p className="text-sm font-medium">
               Average Time per Question:{" "}
-              <span className="font-bold">
-                {formatTime(Math.round(examResults.averageTimePerQuestion))}
-              </span>
+              <span className="font-bold">{formatTime(Math.round(examResults.averageTimePerQuestion))}</span>
             </p>
           </div>
         </div>
         <div className="mt-6">
           <Progress value={examResults.score} className="h-2 w-full" />
-          <p className="text-xs text-muted-foreground mt-2 text-center">
-            Your performance
-          </p>
+          <p className="text-xs text-muted-foreground mt-2 text-center">Your performance</p>
         </div>
       </CardContent>
     </Card>
   )
 
-  // Renders a chart + list of topic performance
-  const renderTopicPerformance = (
-    <Card>
-      <CardHeader className="border-b">
-        <CardTitle className="text-2xl font-semibold tracking-tight flex items-center">
-          <PieChart className="w-6 h-6 mr-2 text-primary" />
-          Topic Performance
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="p-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <Pie
-              data={{
-                labels: Object.keys(examResults.topicPerformance),
-                datasets: [
-                  {
-                    data: Object.values(examResults.topicPerformance).map((p) => p.correct),
-                    backgroundColor: [
-                      "rgba(255, 99, 132, 0.8)",
-                      "rgba(54, 162, 235, 0.8)",
-                      "rgba(255, 206, 86, 0.8)",
-                      "rgba(75, 192, 192, 0.8)",
-                      "rgba(153, 102, 255, 0.8)",
-                    ],
-                  },
-                ],
-              }}
-              options={{
-                responsive: true,
-                plugins: {
-                  legend: {
-                    position: "bottom",
-                  },
-                  title: {
-                    display: true,
-                    text: "Correct Answers by Topic",
-                  },
-                },
-              }}
-            />
-          </div>
-          <ScrollArea className="h-[300px] pr-4">
-            <div className="space-y-6">
-              {Object.entries(examResults.topicPerformance).map(([topic, performance]) => (
-                <div key={topic}>
-                  <div className="flex justify-between text-sm mb-2">
-                    <span className="font-medium">{topic}</span>
-                    <span className="font-bold">
-                      {((performance.correct / performance.total) * 100).toFixed(2)}%
-                    </span>
-                  </div>
-                  <Progress
-                    value={(performance.correct / performance.total) * 100}
-                    className="h-2"
-                  />
-                </div>
-              ))}
-            </div>
-          </ScrollArea>
-        </div>
-      </CardContent>
-    </Card>
-  )
-
-  // Renders a bar chart for topics with the most incorrect answers
-  const renderIncorrectAnswers = (
-    <Card className="bg-gradient-to-br from-red-100 to-red-50 dark:from-red-900/20 dark:to-red-800/20">
-      <CardHeader>
-        <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-red-800 dark:text-red-100">
-          <AlertCircle className="w-6 h-6 mr-2" />
-          Topics with Most Incorrect Answers
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="p-6">
-        <Bar
-          data={{
-            labels: Object.keys(examResults.topicWiseIncorrectAnswers),
-            datasets: [
-              {
-                label: "Incorrect Answers",
-                data: Object.values(examResults.topicWiseIncorrectAnswers),
-                backgroundColor: "rgba(255, 99, 132, 0.8)",
-              },
-            ],
-          }}
-          options={{
-            responsive: true,
-            plugins: {
-              legend: {
-                position: "top" as const,
-              },
-              title: {
-                display: true,
-                text: "Incorrect Answers by Topic",
-              },
-            },
-          }}
-        />
-      </CardContent>
-    </Card>
-  )
-
-  // Strengths/weaknesses cards
-  const renderStrengthsAndWeaknesses = (
+  const StrengthsAndWeaknesses = () => (
     <div className="grid gap-6 md:grid-cols-2">
       <Card className="bg-gradient-to-br from-green-100 to-green-50 dark:from-green-900/20 dark:to-green-800/20">
         <CardHeader>
@@ -319,52 +211,103 @@ function AdvancedExamResults({
     </div>
   )
 
-  // Radar for skill assessment
-  const renderSkillAssessment = (
+  const TopicPerformance = () => (
     <Card>
-      <CardHeader>
+      <CardHeader className="border-b">
         <CardTitle className="text-2xl font-semibold tracking-tight flex items-center">
-          <LineChart className="w-6 h-6 mr-2 text-primary" />
-          Skill Assessment
+          <PieChart className="w-6 h-6 mr-2 text-primary" />
+          Topic Performance
         </CardTitle>
       </CardHeader>
       <CardContent className="p-6">
-        <div className="w-full max-w-md mx-auto">
-          <Radar
-            data={{
-              labels: Object.keys(examResults.skillLevels),
-              datasets: [
-                {
-                  label: "Skill Level",
-                  data: Object.values(examResults.skillLevels),
-                  backgroundColor: "rgba(54, 162, 235, 0.2)",
-                  borderColor: "rgb(54, 162, 235)",
-                  pointBackgroundColor: "rgb(54, 162, 235)",
-                  pointBorderColor: "#fff",
-                  pointHoverBackgroundColor: "#fff",
-                  pointHoverBorderColor: "rgb(54, 162, 235)",
-                },
-              ],
-            }}
-            options={{
-              scales: {
-                r: {
-                  angleLines: {
-                    display: false,
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <Pie
+              data={{
+                labels: Object.keys(examResults.topicPerformance),
+                datasets: [
+                  {
+                    data: Object.values(examResults.topicPerformance).map((p) => p.correct),
+                    backgroundColor: [
+                      "rgba(255, 99, 132, 0.8)",
+                      "rgba(54, 162, 235, 0.8)",
+                      "rgba(255, 206, 86, 0.8)",
+                      "rgba(75, 192, 192, 0.8)",
+                      "rgba(153, 102, 255, 0.8)",
+                    ],
                   },
-                  suggestedMin: 0,
-                  suggestedMax: 100,
+                ],
+              }}
+              options={{
+                responsive: true,
+                plugins: {
+                  legend: {
+                    position: "bottom",
+                  },
+                  title: {
+                    display: true,
+                    text: "Correct Answers by Topic",
+                  },
                 },
-              },
-            }}
-          />
+              }}
+            />
+          </div>
+          <ScrollArea className="h-[300px] pr-4">
+            <div className="space-y-6">
+              {Object.entries(examResults.topicPerformance).map(([topic, performance]) => (
+                <div key={topic}>
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="font-medium">{topic}</span>
+                    <span className="font-bold">{((performance.correct / performance.total) * 100).toFixed(2)}%</span>
+                  </div>
+                  <Progress value={(performance.correct / performance.total) * 100} className="h-2" />
+                </div>
+              ))}
+            </div>
+          </ScrollArea>
         </div>
       </CardContent>
     </Card>
   )
 
-  // Answer Review accordion
-  const renderAnswerReview = (
+  const IncorrectAnswers = () => (
+    <Card className="bg-gradient-to-br from-red-100 to-red-50 dark:from-red-900/20 dark:to-red-800/20">
+      <CardHeader>
+        <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-red-800 dark:text-red-100">
+          <AlertCircle className="w-6 h-6 mr-2" />
+          Topics with Most Incorrect Answers
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="p-6">
+        <Bar
+          data={{
+            labels: Object.keys(examResults.topicWiseIncorrectAnswers),
+            datasets: [
+              {
+                label: "Incorrect Answers",
+                data: Object.values(examResults.topicWiseIncorrectAnswers),
+                backgroundColor: "rgba(255, 99, 132, 0.8)",
+              },
+            ],
+          }}
+          options={{
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "top" as const,
+              },
+              title: {
+                display: true,
+                text: "Incorrect Answers by Topic",
+              },
+            },
+          }}
+        />
+      </CardContent>
+    </Card>
+  )
+
+  const AnswerReview = () => (
     <Card>
       <CardHeader className="border-b">
         <CardTitle className="text-2xl font-semibold tracking-tight flex items-center">
@@ -421,27 +364,16 @@ function AdvancedExamResults({
                       <p className="font-medium">{question.text}</p>
                       <p>
                         Your Answer:{" "}
-                        <span
-                          className={
-                            isCorrect
-                              ? "text-green-600 font-semibold"
-                              : "text-red-600 font-semibold"
-                          }
-                        >
+                        <span className={isCorrect ? "text-green-600 font-semibold" : "text-red-600 font-semibold"}>
                           {examResults.userAnswers[index] || "Not answered"}
                         </span>
                       </p>
                       <p>
-                        Correct Answer:{" "}
-                        <span className="text-green-600 font-semibold">
-                          {question.correctOption}
-                        </span>
+                        Correct Answer: <span className="text-green-600 font-semibold">{question.correctOption}</span>
                       </p>
                       <p>
                         Time Spent:{" "}
-                        <span className="font-semibold">
-                          {formatTime(examResults.timeSpentPerQuestion[index])}
-                        </span>
+                        <span className="font-semibold">{formatTime(examResults.timeSpentPerQuestion[index])}</span>
                       </p>
                       {question.explanation ? (
                         <p className="text-sm text-muted-foreground">{question.explanation}</p>
@@ -457,8 +389,50 @@ function AdvancedExamResults({
     </Card>
   )
 
-  // Basic Recommendations
-  const renderRecommendations = (
+  const SkillAssessment = () => (
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-2xl font-semibold tracking-tight flex items-center">
+          <LineChart className="w-6 h-6 mr-2 text-primary" />
+          Skill Assessment
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="p-6">
+        <div className="w-full max-w-md mx-auto">
+          <Radar
+            data={{
+              labels: Object.keys(examResults.skillLevels),
+              datasets: [
+                {
+                  label: "Skill Level",
+                  data: Object.values(examResults.skillLevels),
+                  backgroundColor: "rgba(54, 162, 235, 0.2)",
+                  borderColor: "rgb(54, 162, 235)",
+                  pointBackgroundColor: "rgb(54, 162, 235)",
+                  pointBorderColor: "#fff",
+                  pointHoverBackgroundColor: "#fff",
+                  pointHoverBorderColor: "rgb(54, 162, 235)",
+                },
+              ],
+            }}
+            options={{
+              scales: {
+                r: {
+                  angleLines: {
+                    display: false,
+                  },
+                  suggestedMin: 0,
+                  suggestedMax: 100,
+                },
+              },
+            }}
+          />
+        </div>
+      </CardContent>
+    </Card>
+  )
+
+  const Recommendations = () => (
     <Card>
       <CardHeader>
         <CardTitle className="text-2xl font-semibold tracking-tight flex items-center">
@@ -474,8 +448,8 @@ function AdvancedExamResults({
               <div>
                 <p className="font-semibold">Improve your {topic} skills</p>
                 <p className="text-sm text-muted-foreground">
-                  We recommend reviewing chapters related to {topic}, practicing more problems, and
-                  revisiting fundamental concepts.
+                  We recommend reviewing chapters related to {topic}, practicing more problems, and revisiting
+                  fundamental concepts.
                 </p>
               </div>
             </li>
@@ -485,9 +459,8 @@ function AdvancedExamResults({
             <div>
               <p className="font-semibold">Time Management</p>
               <p className="text-sm text-muted-foreground">
-                Your average time per question is{" "}
-                {formatTime(Math.round(examResults.averageTimePerQuestion))}. Try to improve your
-                speed without sacrificing accuracy.
+                Your average time per question is {formatTime(Math.round(examResults.averageTimePerQuestion))}. Try to
+                improve your speed without sacrificing accuracy.
               </p>
             </div>
           </li>
@@ -502,11 +475,11 @@ function AdvancedExamResults({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="container mx-auto py-12 space-y-8 px-4 sm:px-6 lg:px-8"
+      className="container mx-auto py-8 space-y-8 px-4 sm:px-6 lg:px-8"
     >
       <div className="text-center space-y-2">
         <motion.h1
-          className="font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]"
+          className="text-3xl font-normal tracking-tight text-center mb-2"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
@@ -514,7 +487,7 @@ function AdvancedExamResults({
           Exam Results
         </motion.h1>
         <motion.p
-          className="text-xl text-muted-foreground"
+          className="text-xl font-normal tracking-tight text-center text-muted-foreground mb-8"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
@@ -523,13 +496,34 @@ function AdvancedExamResults({
         </motion.p>
       </div>
 
+      <div className="sticky top-0 bg-background z-10 p-4 mb-8 border-b">
+        <div className="flex justify-between items-center">
+          <span className="text-2xl font-semibold">Score: {examResults.score.toFixed(2)}%</span>
+          <Button variant="outline" size="sm" onClick={handleDownloadPdf}>
+            <Download className="w-4 h-4 mr-2" />
+            Download Results PDF
+          </Button>
+        </div>
+        <Progress value={examResults.score} className="mt-2" />
+      </div>
+
       <Tabs defaultValue="summary" className="w-full">
-        <TabsList className="grid w-full grid-cols-5 mb-8">
-          <TabsTrigger value="summary">Summary</TabsTrigger>
-          <TabsTrigger value="performance">Performance</TabsTrigger>
-          <TabsTrigger value="review">Review</TabsTrigger>
-          <TabsTrigger value="skills">Skills</TabsTrigger>
-          <TabsTrigger value="recommendations">Recommendations</TabsTrigger>
+        <TabsList className="w-full justify-start mb-8">
+          <TabsTrigger value="summary" className="font-normal">
+            Summary
+          </TabsTrigger>
+          <TabsTrigger value="performance" className="font-normal text-muted-foreground">
+            Performance
+          </TabsTrigger>
+          <TabsTrigger value="review" className="font-normal text-muted-foreground">
+            Review
+          </TabsTrigger>
+          <TabsTrigger value="skills" className="font-normal text-muted-foreground">
+            Skills
+          </TabsTrigger>
+          <TabsTrigger value="recommendations" className="font-normal text-muted-foreground">
+            Recommendations
+          </TabsTrigger>
         </TabsList>
         <motion.div
           key="results-content"
@@ -539,42 +533,38 @@ function AdvancedExamResults({
           transition={{ duration: 0.5 }}
         >
           <TabsContent value="summary" className="space-y-8">
-            {renderSummaryCard}
-            {renderStrengthsAndWeaknesses}
+            <SummaryCard />
+            <StrengthsAndWeaknesses />
           </TabsContent>
           <TabsContent value="performance" className="space-y-8">
-            {renderTopicPerformance}
-            {renderIncorrectAnswers}
+            <TopicPerformance />
+            <IncorrectAnswers />
           </TabsContent>
           <TabsContent value="review">
-            {renderAnswerReview}
+            <AnswerReview />
           </TabsContent>
           <TabsContent value="skills">
-            {renderSkillAssessment}
+            <SkillAssessment />
           </TabsContent>
           <TabsContent value="recommendations">
-            {renderRecommendations}
+            <Recommendations />
           </TabsContent>
         </motion.div>
       </Tabs>
 
       <motion.div
-        className="flex justify-between mt-12"
+        className="flex flex-col sm:flex-row gap-4 justify-between mt-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.5 }}
       >
-        <Button size="lg" className="font-semibold tracking-wide" onClick={onExit}>
-          <ArrowLeft className="mr-2 h-4 w-4" />
+        <Button variant="outline" className="flex items-center gap-2" onClick={onExit}>
+          <ArrowLeft className="w-4 h-4" />
           Exit to Mock Exam
         </Button>
-        <Button size="lg" className="font-semibold tracking-wide" onClick={handleDownloadPdf}>
-          <Download className="mr-2 h-4 w-4" />
-          Download Results PDF
-        </Button>
-        <Button size="lg" className="font-semibold tracking-wide" onClick={onStartNewExam}>
+        <Button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700" onClick={onStartNewExam}>
           Start New Exam
-          <ArrowLeft className="ml-2 h-4 w-4" />
+          <ArrowRight className="w-4 h-4" />
         </Button>
       </motion.div>
     </motion.div>
@@ -582,3 +572,4 @@ function AdvancedExamResults({
 }
 
 export default AdvancedExamResults
+

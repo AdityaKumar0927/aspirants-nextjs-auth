@@ -55,7 +55,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
 
-/** Enums & Types **/
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
@@ -64,7 +63,6 @@ enum QuestionStatus {
 type QuestionTypeString = "Multiple Choice" | "mcq" | "Numerical" | "integer" | string
 
 interface QuestionType {
-  // The DB might have a random "id" or "questionId," but we won't show that in the UI
   id: number
   questionId?: string
   text?: string
@@ -116,7 +114,7 @@ interface CommentType {
 
 interface QuestionProps {
   question: QuestionType
-  feedback: string | undefined        // "correct" | "incorrect" | undefined
+  feedback: string | undefined
   selectedOption: string | undefined
   numericalAnswer: string | undefined
   showMarkscheme: boolean | undefined
@@ -149,14 +147,11 @@ interface QuestionProps {
   onNextQuestion?: () => void
   onPreviousQuestion?: () => void
 
-  // We want to ignore "question.id" from the DB
-  // Instead, use these for proper numbering
   totalQuestions: number
-  currentQuestionIndex: number // zero-based
+  currentQuestionIndex: number
   handleQuestionChange: (index: number) => void
 }
 
-/** MAIN COMPONENT **/
 export default function Question({
   question,
   feedback,
@@ -183,10 +178,7 @@ export default function Question({
   currentQuestionIndex,
   handleQuestionChange,
 }: QuestionProps) {
-  // We'll display "Question #(currentQuestionIndex+1)" in the UI
-  // ignoring question.id from DB
   const displayNumber = currentQuestionIndex + 1
-
   const [pendingOption, setPendingOption] = useState<string | null>(null)
   const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(
     selectedOption || null
@@ -216,7 +208,6 @@ export default function Question({
 
   const { toast } = useToast()
 
-  // For swiping between questions (if you want left/right swipes)
   const handlers = useSwipeable({
     onSwipedLeft: () => onNextQuestion && onNextQuestion(),
     onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
@@ -227,7 +218,6 @@ export default function Question({
     setLocalSelectedOption(selectedOption || null)
   }, [selectedOption])
 
-  /** TAGS **/
   function handleAddTag() {
     if (newTag && !localCustomTags.includes(newTag)) {
       setLocalCustomTags([...localCustomTags, newTag])
@@ -238,14 +228,12 @@ export default function Question({
     setLocalCustomTags(localCustomTags.filter((t) => t !== tag))
   }
 
-  /** MARK/UNMARK COMPLETE **/
   async function toggleComplete(checked: boolean) {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId, checked)
     if (checked) {
       toast({
         title: "Question Completed",
-        // use displayNumber for toast
         description: `You have completed question #${displayNumber}.`,
         action: (
           <ToastAction onClick={() => toggleComplete(false)} altText="Undo">
@@ -261,7 +249,6 @@ export default function Question({
     }
   }
 
-  /** FLAG/UNFLAG **/
   async function toggleReview() {
     if (!question.questionId) return
     const newVal = !isMarkedForReview
@@ -284,35 +271,28 @@ export default function Question({
     }
   }
 
-  /** MCQ **/
   function handleOptionSelect(letter: string) {
     setPendingOption(letter)
   }
   async function handleMcqSubmit() {
     if (!pendingOption || !question.questionId) return
-    // Mark the question as completed automatically
+    // Mark as complete
     await handleMarkComplete(question.questionId, true)
-
-    // Then call the MCQ logic => sets "feedback" to "correct" or "incorrect"
+    // Then set local feedback
     handleOptionClick(question.questionId, pendingOption, question.correctOption ?? "N/A")
     setLocalSelectedOption(pendingOption)
   }
 
-  /** NUMERIC **/
   async function handleNumericalSubmitLocal() {
     if (!question.questionId) return
-    // Mark question as completed
-    await handleMarkComplete(question.questionId, true)
-
-    // Then set feedback
-    handleNumericalSubmit(
+    // This calls the parent's handleNumericalSubmit, which also does a patch to mark complete.
+    await handleNumericalSubmit(
       question.questionId,
       numericalAnswer ?? "",
       question.correctOption ?? "N/A"
     )
   }
 
-  /** DIFFICULTY RATING **/
   async function handleDifficultyChange(newRating: number) {
     if (!question.questionId) return
     setLocalDifficultyRating(newRating)
@@ -344,7 +324,6 @@ export default function Question({
     }
   }
 
-  /** NOTES **/
   async function saveNote() {
     if (!question.questionId) return
     try {
@@ -404,12 +383,6 @@ export default function Question({
     return option.replace(/^[A-D]:\s?/i, "").trim()
   }
 
-  /** Determine Card Border Color Priority:
-   *   1) isMarkedForReview => Yellow
-   *   2) feedback === "correct" => Green
-   *   3) feedback === "incorrect" => Red
-   *   4) else => default (gray)
-   **/
   function getBorderColorClass() {
     if (isMarkedForReview) {
       return "border-yellow-500 border-2"
@@ -428,16 +401,11 @@ export default function Question({
         <Card
           className={`
             w-full overflow-hidden mb-6 dark:bg-gray-800 dark:text-gray-100
-            border
             ${getBorderColorClass()}
           `}
         >
-          {/* HEADER */}
           <CardHeader className="relative">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
-              {/* 
-                Title: "Question #(displayNumber)" ignoring the DB question.id 
-              */}
               <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
                 <CardTitle className="font-normal text-2xl sm:text-3xl">
                   Question #{displayNumber}
@@ -469,7 +437,6 @@ export default function Question({
                   </div>
                 )}
 
-                {/* Custom tags */}
                 {localCustomTags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="px-2 py-1">
                     {tag}
@@ -483,7 +450,6 @@ export default function Question({
                     </Button>
                   </Badge>
                 ))}
-                {/* Add new tag */}
                 <div className="flex items-center space-x-2">
                   <Input
                     type="text"
@@ -504,15 +470,13 @@ export default function Question({
                 </div>
               </div>
 
-              {/* Right side: Mark Complete, Flag, Settings */}
               <div className="flex items-center space-x-4">
-                {/* Mark Complete (checkbox) */}
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Checkbox
                       id={`complete-${question.questionId}`}
                       checked={isMarkedComplete}
-                      onCheckedChange={(checked: boolean) => toggleComplete(!!checked)}
+                      onCheckedChange={(checked) => toggleComplete(!!checked)}
                       className="dark:bg-gray-800 dark:border-gray-500"
                     />
                   </TooltipTrigger>
@@ -521,7 +485,6 @@ export default function Question({
                   </TooltipContent>
                 </Tooltip>
 
-                {/* Flag for Review */}
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button variant="ghost" size="icon" onClick={toggleReview}>
@@ -539,7 +502,6 @@ export default function Question({
                   </TooltipContent>
                 </Tooltip>
 
-                {/* Additional: Settings/Feedback */}
                 <SettingsPopover
                   markschemeEnabled={markschemeEnabled}
                   setMarkschemeEnabled={() => setMarkschemeEnabled(!markschemeEnabled)}
@@ -553,9 +515,7 @@ export default function Question({
             </div>
           </CardHeader>
 
-          {/* CONTENT */}
           <CardContent>
-            {/* Diagram + Text */}
             <div className="mb-6">
               {question.diagramUrl && question.diagramUrl !== "" && (
                 <div className="relative w-full max-w-xl mx-auto mb-4">
@@ -575,7 +535,6 @@ export default function Question({
               )}
             </div>
 
-            {/* Numerical */}
             {(question.type === "Numerical" || question.type === "integer") && (
               <div className="mb-4">
                 <Input
@@ -596,10 +555,11 @@ export default function Question({
                   "
                   placeholder="Type your answer..."
                   value={numericalAnswer ?? ""}
-                  onChange={(e) =>
-                    question.questionId &&
-                    handleNumericalChange(question.questionId, e.target.value)
-                  }
+                  onChange={(e) => {
+                    if (question.questionId) {
+                      handleNumericalChange(question.questionId, e.target.value)
+                    }
+                  }}
                 />
                 <div className="mt-2 flex gap-2">
                   <Tooltip>
@@ -626,14 +586,11 @@ export default function Question({
                     <TooltipContent>Submit your numeric answer</TooltipContent>
                   </Tooltip>
 
-                  {/* Reset */}
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Button
                         variant="outline"
-                        onClick={() =>
-                          question.questionId && handleResetQuestion(question.questionId)
-                        }
+                        onClick={() => question.questionId && handleResetQuestion(question.questionId)}
                       >
                         Reset
                       </Button>
@@ -644,7 +601,6 @@ export default function Question({
               </div>
             )}
 
-            {/* MCQ */}
             {(question.type === "Multiple Choice" || question.type === "mcq") &&
               question.options &&
               question.options.length > 0 && (
@@ -663,16 +619,8 @@ export default function Question({
                           variant="outline"
                           onClick={() => handleOptionSelect(letter)}
                           className={`
-                            w-full
-                            text-left
-                            text-base
-                            sm:text-lg
-                            p-4
-                            leading-7
-                            flex flex-col items-start
-                            space-y-2
-                            whitespace-normal
-                            border
+                            w-full text-left text-base sm:text-lg p-4 leading-7
+                            flex flex-col items-start space-y-2 whitespace-normal
                             ${
                               isFeedbackActive
                                 ? feedback === "correct"
@@ -731,7 +679,6 @@ export default function Question({
                       <TooltipContent>Submit your MCQ answer</TooltipContent>
                     </Tooltip>
 
-                    {/* Reset */}
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <Button
@@ -749,7 +696,6 @@ export default function Question({
                 </div>
               )}
 
-            {/* Feedback Banner */}
             {feedback && (
               <div
                 className={`mt-4 p-2 rounded ${
@@ -762,13 +708,10 @@ export default function Question({
               </div>
             )}
 
-            {/* Markscheme Button */}
-            {(
-              (localSelectedOption && markschemeEnabled) ||
+            {((localSelectedOption && markschemeEnabled) ||
               ((question.type === "Numerical" || question.type === "integer") &&
                 numericalAnswer &&
-                markschemeEnabled)
-            ) && (
+                markschemeEnabled)) && (
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
@@ -786,7 +729,6 @@ export default function Question({
               </Tooltip>
             )}
 
-            {/* Difficulty dropdown */}
             <div className="flex items-center space-x-2 mt-4">
               <Label className="text-sm text-gray-600 dark:text-gray-300">Difficulty:</Label>
               <Select
@@ -818,7 +760,6 @@ export default function Question({
             </div>
           </CardContent>
 
-          {/* FOOTER */}
           <CardFooter className="flex justify-end space-x-2">
             <Tooltip>
               <TooltipTrigger asChild>
@@ -839,9 +780,7 @@ export default function Question({
                   {showAI ? "Hide AI" : "AI Assistance"}
                 </Button>
               </TooltipTrigger>
-              <TooltipContent>
-                {showAI ? "Hide AI assistant" : "Get AI help"}
-              </TooltipContent>
+              <TooltipContent>{showAI ? "Hide AI assistant" : "Get AI help"}</TooltipContent>
             </Tooltip>
 
             <Tooltip>
@@ -858,7 +797,6 @@ export default function Question({
           </CardFooter>
         </Card>
 
-        {/* NOTES SECTION */}
         {showNotes && (
           <Card className="mb-6 dark:bg-gray-800 dark:text-gray-100">
             <CardHeader>
@@ -885,14 +823,11 @@ export default function Question({
           </Card>
         )}
 
-        {/* AI SECTION */}
         {showAI && (
           <Card className="mb-6 dark:bg-gray-800 dark:text-gray-100">
             <CardHeader>
               <CardTitle>AI Assistant</CardTitle>
-              <CardDescription>
-                Ask for help or clarification on this question.
-              </CardDescription>
+              <CardDescription>Ask for help or clarification on this question.</CardDescription>
             </CardHeader>
             <CardContent>
               {question.questionId && (
@@ -907,7 +842,6 @@ export default function Question({
           </Card>
         )}
 
-        {/* COMMENTS SECTION */}
         {showComments && (
           <Card className="mb-6 dark:bg-gray-800 dark:text-gray-100">
             <CardHeader>
@@ -1037,8 +971,7 @@ export default function Question({
                             return {
                               ...com,
                               upvotes: type === "upvote" ? com.upvotes + 1 : com.upvotes,
-                              downvotes:
-                                type === "downvote" ? com.downvotes + 1 : com.downvotes,
+                              downvotes: type === "downvote" ? com.downvotes + 1 : com.downvotes,
                             }
                           }
                           com.replies = com.replies.map((rep) =>
@@ -1064,7 +997,6 @@ export default function Question({
           </Card>
         )}
 
-        {/* MARKSCHEME MODAL */}
         <AnimatePresence>
           {showMarkschemeModal && (
             <motion.div
@@ -1083,7 +1015,6 @@ export default function Question({
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="relative"
                           onClick={() => setShowMarkschemeModal(false)}
                         >
                           <X className="h-4 w-4" />
@@ -1124,7 +1055,7 @@ export default function Question({
   )
 }
 
-/** Nested Comments **/
+// Nested comment item
 function CommentItem({
   comment,
   userId,
@@ -1168,9 +1099,7 @@ function CommentItem({
               <AvatarImage
                 src={`https://api.dicebear.com/6.x/initials/svg?seed=${comment.username}`}
               />
-              <AvatarFallback>
-                {comment.username.slice(0, 2).toUpperCase()}
-              </AvatarFallback>
+              <AvatarFallback>{comment.username.slice(0, 2).toUpperCase()}</AvatarFallback>
             </Avatar>
             <div>
               <p className="font-semibold">{comment.username}</p>
@@ -1290,7 +1219,6 @@ function CommentItem({
         </div>
       </div>
 
-      {/* Nested replies */}
       {comment.replies.map((r) => (
         <CommentItem
           key={r.id}

@@ -8,111 +8,150 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
-// ======================================================
-// 1) Auth & User Models
-// ======================================================
 model Account {
-  id                String  @id @default(cuid())
+  id                String  @id
   userId            String
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  User              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@index([userId])
 }
 
-model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
+model AiUsageLog {
+  id          String    @id
+  userId      String?
+  usedService AiService
+  textInput   String?
+  pdfName     String?
+  tokensUsed  Int       @default(0)
+  cost        Float     @default(0)
+  createdAt   DateTime  @default(now())
+  User        User?     @relation(fields: [userId], references: [id])
 }
 
-model User {
-  id            String                  @id @default(cuid())
-  name          String?
-  email         String?                 @unique
-  emailVerified DateTime?
-  image         String?
-  subscribed    Boolean                 @default(false)
-
-  // Auth & user-related
-  accounts      Account[]
-  sessions      Session[]
-
-  // Existing relations
-  progresses    UserProgress[]
-  notes         Note[]
-  performances  UserPerformance[]
-  answers       UserAnswer[]
-  settings      UserSettings?
-  issues        Issue[]                 @relation("UserIssues")
-  policyAgreements UserPolicyAgreement[]
-  role          UserRole                @relation(fields: [roleId], references: [id], onDelete: Cascade)
-  roleId        String                  @default("member")
-  applications  Application[]
-  feedback      Feedback[]
-}
-
-model UserRole {
-  id          String   @id @default(cuid())
-  name        String   @unique
-  permissions Json
-  users       User[]
-}
-
-model UserPolicyAgreement {
-  id         String    @id @default(cuid())
+model Application {
+  id         String            @id
   userId     String
-  policyName String
-  accepted   Boolean   @default(false)
-  acceptedAt DateTime?
-  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name       String
+  email      String
+  role       ApplicationRole
+  experience String
+  motivation String
+  status     ApplicationStatus @default(PENDING)
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime
+  User       User              @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([id, userId])
+}
+
+model Exam {
+  id            Int        @id @default(autoincrement())
+  key           String     @unique
+  examGroup     String?
+  country       String?
+  exam          String?
+  date          DateTime?
+  description   String?
+  isMemoryBased Boolean?
+  isOnline      Boolean?
+  languages     String[]
+  title         String
+  year          Int?
+  Pyq           Pyq[]
+  Question      Question[]
+}
+
+model Feedback {
+  id           String       @id
+  content      String
+  emoji        String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime
+  userId       String
+  feedbackType FeedbackType @default(GENERAL)
+  questionId   String?
+  resolved     Boolean      @default(false)
+  resolvedBy   String?
+  Question     Question?    @relation(fields: [questionId], references: [questionId])
+  User         User         @relation(fields: [userId], references: [id])
+}
+
+model Issue {
+  id                            String          @id
+  title                         String
+  description                   String
+  status                        IssueStatus     @default(OPEN)
+  priority                      IssuePriority
+  area                          IssueArea
+  createdAt                     DateTime        @default(now())
+  updatedAt                     DateTime
+  createdById                   String
+  questionId                    String?
+  resolvedById                  String?
+  userNotified                  Boolean         @default(false)
+  User_Issue_createdByIdToUser  User            @relation("Issue_createdByIdToUser", fields: [createdById], references: [id], onDelete: Cascade)
+  Question                      Question?       @relation(fields: [questionId], references: [questionId])
+  User_Issue_resolvedByIdToUser User?           @relation("Issue_resolvedByIdToUser", fields: [resolvedById], references: [id])
+  VolunteerTask                 VolunteerTask[]
+}
+
+model ModeratorLimit {
+  id              String    @id
+  userId          String    @unique
+  changesThisHour Int       @default(0)
+  lastChangeHour  DateTime?
+  User            User      @relation(fields: [userId], references: [id])
+}
+
+model Note {
+  id         String    @id
+  title      String
+  content    String
+  type       NoteType
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime
+  userId     String
+  questionId String?
+  Question   Question? @relation(fields: [questionId], references: [questionId])
+  User       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([questionId])
   @@index([userId])
-  @@unique([userId, policyName])
 }
 
-model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
-
-  @@unique([identifier, token])
+model Notification {
+  id                String           @id
+  userId            String?
+  title             String
+  message           String
+  type              NotificationType @default(INFO)
+  read              Boolean          @default(false)
+  createdAt         DateTime         @default(now())
+  relatedIssueId    String?
+  relatedFeedbackId String?
+  relatedQuestionId String?
+  User              User?            @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model UserSettings {
-  id       String @id @default(cuid())
-  userId   String @unique
-  username String
-  email    String
-  bio      String
-  urls     Json
-  name     String
-  language String
-  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-// ======================================================
-// 2) Enums & Models for Questions
-// ======================================================
-enum QuestionStatus {
-  ACTIVE
-  DRAFT
-  ARCHIVED
+model Pyq {
+  id              Int  @id @default(autoincrement())
+  out_of_syllabus Int?
+  total           Int?
+  private         Int?
+  public          Int?
+  examId          Int
+  Exam            Exam @relation(fields: [examId], references: [id], onDelete: Cascade)
 }
 
 model Question {
@@ -133,19 +172,6 @@ model Question {
   pyqTotal             Int?
   pyqPrivate           Int?
   pyqPublic            Int?
-
-  examId               Int?
-  subjectGroup         String?
-  chapterGroup         String?
-  chapter              String?
-  topicName            String?
-  examDate             DateTime?
-  content              Json?
-  permalink            String?
-  paperId              String?
-  isOutOfSyllabus      Boolean?
-  isBonus              Boolean?
-
   text                 String
   subject              String?
   topic                String?
@@ -166,7 +192,6 @@ model Question {
   explanation          Json?
   reviewed             Boolean?
   completed            Boolean?
-
   paperTitle           String?
   timeAllotted         Int?
   updatedTime          Int?
@@ -179,68 +204,81 @@ model Question {
   parentQuestionId     Int?
   difficultyRating     Float?
   yearKey              String?
-
   status               QuestionStatus    @default(ACTIVE)
   createdAt            DateTime          @default(now())
-  updatedAt            DateTime          @updatedAt
-
-  // Self-relation (for multi-part Qs)
-  parentQuestion       Question?         @relation("ParentChild", fields: [parentQuestionId], references: [id])
-  children             Question[]        @relation("ParentChild")
-
-  // Relations to other models
-  notes                Note[]            @relation("QuestionNotes")
-  progresses           UserProgress[]
-  answers              UserAnswer[]
-  userPerformances     UserPerformance[]
-  issues               Issue[]
-  examModel            Exam?             @relation(fields: [examId], references: [id], onDelete: Cascade)
+  updatedAt            DateTime
+  chapter              String?
+  chapterGroup         String?
+  content              Json?
+  examDate             DateTime?
+  examId               Int?
+  isBonus              Boolean?
+  isOutOfSyllabus      Boolean?
+  paperId              String?
+  permalink            String?
+  subjectGroup         String?
+  topicName            String?
+  Feedback             Feedback[]
+  Issue                Issue[]
+  Note                 Note[]
+  Exam                 Exam?             @relation(fields: [examId], references: [id], onDelete: Cascade)
+  Question             Question?         @relation("QuestionToQuestion", fields: [parentQuestionId], references: [id])
+  other_Question       Question[]        @relation("QuestionToQuestion")
+  UserAnswer           UserAnswer[]
+  UserPerformance      UserPerformance[]
+  UserProgress         UserProgress[]
 }
 
-model Note {
-  id         String    @id @default(cuid())
-  title      String
-  content    String    @db.Text
-  type       NoteType
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  userId     String
-  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  questionId String?
-  question   Question? @relation("QuestionNotes", fields: [questionId], references: [questionId], onDelete: SetNull)
+model Session {
+  id           String   @id
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  User         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
-  @@index([questionId])
 }
 
-enum NoteType {
-  TEXT
-  IMAGE
-  STYLUS
-  VOICE
-}
-
-model UserProgress {
-  id            String    @id @default(cuid())
-  userId        String
-  questionId    String
-  completed     Boolean   @default(false)
-  reviewed      Boolean   @default(false)
-  lastAttempted DateTime?
-  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question      Question  @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
-
-  @@unique([userId, questionId])
+model User {
+  id                             String                @id
+  name                           String?
+  email                          String?               @unique
+  emailVerified                  DateTime?
+  image                          String?
+  subscribed                     Boolean               @default(false)
+  roleId                         String                @default("member")
+  changesMade                    Int                   @default(0)
+  createdAt                      DateTime              @default(now())
+  subscriptionTier               SubscriptionTier?     @default(MEMBER)
+  updatedAt                      DateTime              @default(now())
+  verifiedTeacher                Boolean               @default(false)
+  Account                        Account[]
+  AiUsageLog                     AiUsageLog[]
+  Application                    Application[]
+  Feedback                       Feedback[]
+  Issue_Issue_createdByIdToUser  Issue[]               @relation("Issue_createdByIdToUser")
+  Issue_Issue_resolvedByIdToUser Issue[]               @relation("Issue_resolvedByIdToUser")
+  ModeratorLimit                 ModeratorLimit?
+  Note                           Note[]
+  Notification                   Notification[]
+  Session                        Session[]
+  UserRole                       UserRole              @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  UserAnswer                     UserAnswer[]
+  UserPerformance                UserPerformance[]
+  UserPolicyAgreement            UserPolicyAgreement[]
+  UserProgress                   UserProgress[]
+  UserSettings                   UserSettings?
+  VolunteerTask                  VolunteerTask[]
 }
 
 model UserAnswer {
-  id             String   @id @default(cuid())
+  id             String   @id
   questionId     String
   userId         String
   selectedOption String
   isCorrect      Boolean
-  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question       Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+  Question       Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+  User           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, questionId])
 }
@@ -267,64 +305,96 @@ model UserPerformance {
   reviewed                Boolean
   lastAttempted           DateTime
   createdAt               DateTime @default(now())
-  updatedAt               DateTime @updatedAt
-
-  user                    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question                Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+  updatedAt               DateTime
+  Question                Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+  User                    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, questionId])
 }
 
-// ======================================================
-// 3) Exam & Pyq
-// ======================================================
-model Exam {
-  id            Int      @id @default(autoincrement())
-  key           String   @unique
-  examGroup     String?
-  country       String?
-  exam          String?
-  date          DateTime?
-  description   String?
-  isMemoryBased Boolean?
-  isOnline      Boolean?
-  languages     String[]
-  title         String
-  year          Int?
+model UserPolicyAgreement {
+  id         String    @id
+  userId     String
+  policyName String
+  accepted   Boolean   @default(false)
+  acceptedAt DateTime?
+  User       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  pyq           Pyq[]
-  questions     Question[]
-
-  @@index([key])
+  @@unique([userId, policyName])
+  @@index([userId])
 }
 
-model Pyq {
-  id              Int    @id @default(autoincrement())
-  out_of_syllabus Int?
-  total           Int?
-  private         Int?
-  public          Int?
-  examId          Int
+model UserProgress {
+  id            String    @id
+  userId        String
+  questionId    String
+  completed     Boolean   @default(false)
+  reviewed      Boolean   @default(false)
+  lastAttempted DateTime?
+  Question      Question  @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+  User          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  exam            Exam   @relation(fields: [examId], references: [id], onDelete: Cascade)
+  @@unique([userId, questionId])
 }
 
-// ======================================================
-// 4) Issue, Application, Feedback
-// ======================================================
-model Issue {
-  id          String       @id @default(cuid())
-  title       String
-  description String
-  status      IssueStatus  @default(OPEN)
-  priority    IssuePriority
-  area        IssueArea
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  createdById String
-  createdBy   User         @relation(fields: [createdById], references: [id], onDelete: Cascade, name: "UserIssues")
-  questionId  String?
-  question    Question?    @relation(fields: [questionId], references: [questionId], onDelete: SetNull)
+model UserRole {
+  id          String @id
+  name        String @unique
+  permissions Json
+  User        User[]
+}
+
+model UserSettings {
+  id       String @id
+  userId   String @unique
+  username String
+  email    String
+  bio      String
+  urls     Json
+  name     String
+  language String
+  User     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model VolunteerTask {
+  id          String   @id
+  volunteerId String
+  issueId     String?
+  status      String   @default("PENDING")
+  createdAt   DateTime @default(now())
+  Issue       Issue?   @relation(fields: [issueId], references: [id])
+  User        User     @relation(fields: [volunteerId], references: [id])
+}
+
+enum AiService {
+  GOOGLE_OCR
+  GPT_COMPLETION
+  GPT_EDIT
+  OTHER
+}
+
+enum ApplicationRole {
+  VOLUNTEER
+  MODERATOR
+}
+
+enum ApplicationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum FeedbackType {
+  GENERAL
+  QUESTION_ISSUE
 }
 
 enum IssueArea {
@@ -349,119 +419,33 @@ enum IssueStatus {
   CLOSED
 }
 
-model Application {
-  id         String            @id @default(cuid())
-  userId     String
-  name       String
-  email      String
-  role       ApplicationRole
-  experience String
-  motivation String
-  status     ApplicationStatus @default(PENDING)
-  createdAt  DateTime          @default(now())
-  updatedAt  DateTime          @updatedAt
-
-  user       User              @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([id, userId])
+enum NoteType {
+  TEXT
+  IMAGE
+  STYLUS
+  VOICE
 }
 
-enum ApplicationRole {
+enum NotificationType {
+  INFO
+  ISSUE_RESOLVED
+  ADMIN_ANNOUNCEMENT
+  FEEDBACK_RESPONSE
+  SYSTEM
+}
+
+enum QuestionStatus {
+  ACTIVE
+  DRAFT
+  ARCHIVED
+}
+
+enum SubscriptionTier {
+  FREE
+  MEMBER
+  PREMIUM
   VOLUNTEER
   MODERATOR
-}
-
-enum ApplicationStatus {
-  PENDING
-  APPROVED
-  REJECTED
-}
-
-model Feedback {
-  id        String   @id @default(cuid())
-  content   String
-  emoji     String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-
-  @@index([userId])
-}
-
-// ======================================================
-// 5) NEW: CustomQuestionBank (identical to `Question`)
-// ======================================================
-model CustomQuestionBank {
-  id                   Int               @id @default(autoincrement())
-  questionId           String            @unique
-  examGroup            String?
-  country              String?
-  exam                 String?
-  key                  String?
-  date                 DateTime?
-  description          String?
-  isMemoryBased        Boolean?
-  isOnline             Boolean?
-  languages            String[]
-  title                String?
-  year                 Int?
-  pyqOutOfSyllabus     Int?
-  pyqTotal             Int?
-  pyqPrivate           Int?
-  pyqPublic            Int?
-
-  examId               Int?
-  subjectGroup         String?
-  chapterGroup         String?
-  chapter              String?
-  topicName            String?
-  examDate             DateTime?
-  content              Json?
-  permalink            String?
-  paperId              String?
-  isOutOfSyllabus      Boolean?
-  isBonus              Boolean?
-
-  text                 String
-  subject              String?
-  topic                String?
-  subtopic             String?
-  difficulty           String?
-  type                 String?
-  marks                Float?
-  negMarks             Float?
-  options              String[]
-  correctOption        String?
-  markscheme           String?
-  correctAttempts      String?
-  wrongAttempts        String?
-  averageTimeTaken     String?
-  lastAttempted        DateTime?
-  diagramUrl           String?
-  customTag            String?
-  explanation          Json?
-  reviewed             Boolean?
-  completed            Boolean?
-
-  paperTitle           String?
-  timeAllotted         Int?
-  updatedTime          Int?
-  updatedBy            String?
-  source               String?
-  peerSolvedPercentage Float?
-  linkedResources      Json?
-  commonMistakes       Json?
-  discussionLink       String?
-  parentQuestionId     Int?
-  difficultyRating     Float?
-  yearKey              String?
-
-  status               QuestionStatus    @default(ACTIVE)
-  createdAt            DateTime          @default(now())
-  updatedAt            DateTime          @updatedAt
-
-  // Self-relation (multi-part custom Qs)
-  parentQuestion       CustomQuestionBank?  @relation("ParentChild", fields: [parentQuestionId], references: [id])
-  children             CustomQuestionBank[] @relation("ParentChild")
+  ADMIN
+  INSTITUTION
 }

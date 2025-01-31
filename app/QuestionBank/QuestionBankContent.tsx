@@ -9,9 +9,9 @@ import React, {
 } from "react"
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
-import Question from "@/components/shared/Question"
-import Popover from "@/components/shared/popover"
+import { motion, AnimatePresence } from "framer-motion"
 import {
+  Check,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -36,11 +36,12 @@ import {
 } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Progress } from "@/components/ui/progress"
-import { motion, AnimatePresence } from "framer-motion"
+import Popover from "@/components/shared/popover"
+import Question from "@/components/shared/Question"
 
-// -----------------------------------------------------------------------
-// 1) Enums & Types
-// -----------------------------------------------------------------------
+// ======================================================
+// Enums & Types
+// ======================================================
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
@@ -72,7 +73,6 @@ interface QuestionType {
   notes?: string
   diagramUrl?: string
   exam?: string
-  // ...
 }
 
 type FilterKey =
@@ -94,7 +94,6 @@ type DropdownsType = {
   [K in FilterKey]: boolean
 }
 
-// Distinct filter options
 interface FilterOptionsType {
   exams: string[]
   subjects: string[]
@@ -123,6 +122,7 @@ type StateType = {
   showMarkscheme: Record<string, boolean>
   selectedOptions: Record<string, string | undefined>
   loading: boolean
+  actionLoading: boolean // skeleton when performing an action
 
   viewMode: ViewMode
   currentPage: number
@@ -143,18 +143,36 @@ type ActionType =
   | { type: "SET_SHOW_MARKSCHEME"; payload: Record<string, boolean> }
   | { type: "SET_SELECTED_OPTIONS"; payload: Record<string, string | undefined> }
   | { type: "SET_LOADING"; payload: boolean }
+  | { type: "SET_ACTION_LOADING"; payload: boolean }
   | { type: "SET_VIEW_MODE"; payload: ViewMode }
   | { type: "SET_CURRENT_PAGE"; payload: number }
   | { type: "SET_TOTAL_COUNT"; payload: number }
   | { type: "SET_PAGE_SIZE"; payload: number }
   | { type: "SET_GLOBAL_STATS"; payload: GlobalStats }
 
-// simple fuzzy search
+// ======================================================
+// Utility
+// ======================================================
 function fuzzyContains(haystack: string, needle: string): boolean {
   if (!needle) return true
   return haystack.toLowerCase().includes(needle.toLowerCase())
 }
 
+function transformFilterText(value: string): string {
+  // remove hyphens & uppercase
+  return value.replace(/-/g, "").toUpperCase()
+}
+
+const transitionProps = {
+  type: "spring",
+  stiffness: 500,
+  damping: 30,
+  mass: 0.5,
+}
+
+// ======================================================
+// Reducer
+// ======================================================
 const initialState: StateType = {
   questions: [],
   filters: {
@@ -191,6 +209,7 @@ const initialState: StateType = {
   showMarkscheme: {},
   selectedOptions: {},
   loading: true,
+  actionLoading: false,
 
   viewMode: ViewMode.LIST,
   currentPage: 1,
@@ -209,16 +228,12 @@ function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
     case "SET_QUESTIONS":
       return { ...state, questions: action.payload }
-
     case "SET_FILTERS":
       return { ...state, filters: action.payload }
-
     case "SET_FILTER_OPTIONS":
       return { ...state, filterOptions: action.payload }
-
     case "SET_SEARCH_QUERY":
       return { ...state, searchQuery: action.payload }
-
     case "SET_DROPDOWN":
       return {
         ...state,
@@ -227,42 +242,36 @@ function reducer(state: StateType, action: ActionType): StateType {
           [action.payload.tag]: action.payload.value,
         },
       }
-
     case "SET_FEEDBACK":
       return { ...state, feedback: action.payload }
-
     case "SET_NUMERICAL_ANSWERS":
       return { ...state, numericalAnswers: action.payload }
-
     case "SET_SHOW_MARKSCHEME":
       return { ...state, showMarkscheme: action.payload }
-
     case "SET_SELECTED_OPTIONS":
       return { ...state, selectedOptions: action.payload }
-
     case "SET_LOADING":
       return { ...state, loading: action.payload }
-
+    case "SET_ACTION_LOADING":
+      return { ...state, actionLoading: action.payload }
     case "SET_VIEW_MODE":
       return { ...state, viewMode: action.payload }
-
     case "SET_CURRENT_PAGE":
       return { ...state, currentPage: action.payload }
-
     case "SET_TOTAL_COUNT":
       return { ...state, totalCount: action.payload }
-
     case "SET_PAGE_SIZE":
       return { ...state, pageSize: action.payload }
-
     case "SET_GLOBAL_STATS":
       return { ...state, globalStats: action.payload }
-
     default:
       return state
   }
 }
 
+// ======================================================
+// Pagination Component
+// ======================================================
 function Pagination({
   currentPage,
   totalCount,
@@ -300,37 +309,30 @@ function Pagination({
   )
 }
 
+// ======================================================
+// MAIN: QuestionBankContent
+// ======================================================
 export default function QuestionBankContent() {
-  const [state, dispatch] = React.useReducer(reducer, initialState)
+  const [state, dispatch] = useReducer(reducer, initialState)
   const { toast } = useToast()
 
-  const [viewMode, setViewMode] = React.useState<ViewMode>(ViewMode.LIST)
-  const [singleIndex, setSingleIndex] = React.useState(0)
-  const [filtersOpenMobile, setFiltersOpenMobile] = React.useState(false)
-  const [navigatorOpen, setNavigatorOpen] = React.useState(false) // track open state for navigator
+  const [viewMode, setViewMode] = useState<ViewMode>(ViewMode.LIST)
+  const [singleIndex, setSingleIndex] = useState(0)
+  const [filtersOpenMobile, setFiltersOpenMobile] = useState(false)
+  const [navigatorOpen, setNavigatorOpen] = useState(false)
 
-  // If small => single
-  React.useEffect(() => {
+  // Force single view on small screens
+  useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       setViewMode(ViewMode.SINGLE)
     }
   }, [])
 
-  /**
-   * fetchSmartFilters: fetch updated sub-filter options
-   * from your server based on the current state.filters.
-   * The server returns only those subjects / topics / years
-   * that are valid under the chosen exam(s).
-   */
-  const fetchSmartFilters = React.useCallback(async () => {
+  // ====================== FETCH LOGIC ======================
+  const fetchSmartFilters = useCallback(async () => {
     try {
-      // e.g. /api/filters/smart?exam=SSC,UPSC&subject=English
       const { exams, subjects, topics, subtopics, difficulties, years, types } = state.filters
-
-      function arrToComma(arr: string[]) {
-        return arr.join(",")
-      }
-
+      const arrToComma = (arr: string[]) => arr.join(",")
       const params = new URLSearchParams()
       if (exams.length) params.set("exam", arrToComma(exams))
       if (subjects.length) params.set("subject", arrToComma(subjects))
@@ -341,28 +343,20 @@ export default function QuestionBankContent() {
       if (types.length) params.set("type", arrToComma(types))
 
       const url = `/api/filters/smart?${params.toString()}`
-      console.log("Fetching smart filters =>", url)
-
       const resp = await fetch(url)
-      if (!resp.ok) {
-        throw new Error(`Smart filters fetch failed: ${resp.status}`)
-      }
-      const newOpts = await resp.json() as FilterOptionsType
-      // newOpts.exams, newOpts.subjects, ...
+      if (!resp.ok) throw new Error(`Smart filters fetch failed: ${resp.status}`)
+      const newOpts = (await resp.json()) as FilterOptionsType
       dispatch({ type: "SET_FILTER_OPTIONS", payload: newOpts })
     } catch (err) {
       console.error("Error fetchSmartFilters:", err)
-      // fallback or keep existing
     }
   }, [state.filters])
 
-  // (A) fetch initial (non-slim) filter options
-  const fetchFilterOptions = React.useCallback(async () => {
+  const fetchFilterOptions = useCallback(async () => {
     try {
       const res = await fetch("/api/filters", { cache: "no-store" })
       if (!res.ok) throw new Error("Failed to fetch distinct filter fields.")
       const raw = await res.json()
-
       const data: FilterOptionsType = {
         exams: raw.exams ?? [],
         subjects: raw.subjects ?? [],
@@ -383,44 +377,10 @@ export default function QuestionBankContent() {
     }
   }, [toast])
 
-  // (B) fetch global stats
-  const fetchGlobalStats = React.useCallback(async () => {
+  const fetchGlobalStats = useCallback(async () => {
     try {
-      // If you want the stats to reflect the *current filters*, you can pass them
-      // e.g. /api/questions/stats?exam=..., subject=...
-      // That way, you get a relevant count of total, completed, etc. under the current filter.
-      // Or just fetch stats for entire DB if you prefer:
-      const res = await fetch("/api/questions/stats", { cache: "no-store" })
-      if (!res.ok) {
-        const txt = await res.text()
-        throw new Error(`Failed to fetch stats: ${txt}`)
-      }
-      const raw = await res.json() as any
-
-      // We'll assume raw => { totalQuestions, completed, reviewed, notAnswered }
-      // If you only have totalQuestions, you can do:
-      const stats: GlobalStats = {
-        total: raw.totalQuestions || 0,
-        completed: raw.completed || 0,
-        reviewed: raw.reviewed || 0,
-        notAnswered: raw.notAnswered || 0,
-      }
-      dispatch({ type: "SET_GLOBAL_STATS", payload: stats })
-    } catch (err) {
-      console.error("Error fetching global stats:", err)
-    }
-  }, [])
-
-  // (C) fetch questions
-  const fetchQuestions = React.useCallback(async () => {
-    dispatch({ type: "SET_LOADING", payload: true })
-    try {
-      const { currentPage, pageSize, filters } = state
-      const { exams, subjects, topics, subtopics, difficulties, years, types } = filters
-
-      function arrToComma(arr: string[]) {
-        return arr.join(",")
-      }
+      const { exams, subjects, topics, subtopics, difficulties, years, types } = state.filters
+      const arrToComma = (arr: string[]) => arr.join(",")
       const params = new URLSearchParams()
       if (exams.length) params.set("exam", arrToComma(exams))
       if (subjects.length) params.set("subject", arrToComma(subjects))
@@ -430,15 +390,43 @@ export default function QuestionBankContent() {
       if (years.length) params.set("year", arrToComma(years))
       if (types.length) params.set("type", arrToComma(types))
 
-      // Also pass status if your server supports it, or keep it local
-      // e.g. if (filters.status !== "all") ...
-      // We'll skip that here.
+      const resp = await fetch(`/api/questions/stats?${params.toString()}`, { cache: "no-store" })
+      if (!resp.ok) {
+        const txt = await resp.text()
+        throw new Error(`Failed to fetch stats: ${txt}`)
+      }
+      const raw = await resp.json()
+      const stats: GlobalStats = {
+        total: raw.total || raw.totalQuestions || 0,
+        completed: raw.completed || 0,
+        reviewed: raw.reviewed || 0,
+        notAnswered: raw.notAnswered || 0,
+      }
+      dispatch({ type: "SET_GLOBAL_STATS", payload: stats })
+    } catch (err) {
+      console.error("Error fetching global stats:", err)
+    }
+  }, [state.filters])
+
+  const fetchQuestions = useCallback(async () => {
+    dispatch({ type: "SET_LOADING", payload: true })
+    try {
+      const { currentPage, pageSize, filters } = state
+      const { exams, subjects, topics, subtopics, difficulties, years, types } = filters
+      const arrToComma = (arr: string[]) => arr.join(",")
+      const params = new URLSearchParams()
+      if (exams.length) params.set("exam", arrToComma(exams))
+      if (subjects.length) params.set("subject", arrToComma(subjects))
+      if (topics.length) params.set("topic", arrToComma(topics))
+      if (subtopics.length) params.set("subtopic", arrToComma(subtopics))
+      if (difficulties.length) params.set("difficulty", arrToComma(difficulties))
+      if (years.length) params.set("year", arrToComma(years))
+      if (types.length) params.set("type", arrToComma(types))
 
       params.set("page", String(currentPage))
       params.set("pageSize", String(pageSize))
 
       const url = `/api/questions?${params.toString()}`
-      console.log("Fetching questions =>", url)
       const res = await fetch(url, { cache: "no-store" })
       if (!res.ok) {
         const txt = await res.text()
@@ -456,11 +444,11 @@ export default function QuestionBankContent() {
         totalCount = result.totalCount
       }
 
-      // sort ascending by numeric portion
-      data = data.sort((a,b) => {
+      // Sort by numeric portion of questionId
+      data = data.sort((a, b) => {
         const aId = a.questionId?.match(/\d+/)?.[0] || "0"
         const bId = b.questionId?.match(/\d+/)?.[0] || "0"
-        return parseInt(aId,10) - parseInt(bId,10)
+        return parseInt(aId, 10) - parseInt(bId, 10)
       })
 
       dispatch({ type: "SET_QUESTIONS", payload: data })
@@ -477,155 +465,168 @@ export default function QuestionBankContent() {
     }
   }, [state.filters, state.currentPage, state.pageSize, toast])
 
-  // Initial load
-  React.useEffect(() => {
+  // ====================== Initial & Effects ======================
+  useEffect(() => {
     fetchFilterOptions()
     fetchGlobalStats()
   }, [fetchFilterOptions, fetchGlobalStats])
 
-  // Each time filters change, we want to:
-  //   1) fetch updated "smart" subfilters
-  //   2) fetch updated questions
-  //   3) fetch updated stats
-  React.useEffect(() => {
+  useEffect(() => {
     fetchSmartFilters()
     fetchQuestions()
     fetchGlobalStats()
   }, [state.filters, state.currentPage, fetchSmartFilters, fetchQuestions, fetchGlobalStats])
 
-  // handle page
+  // Pagination
   function handlePageChange(page: number) {
     dispatch({ type: "SET_CURRENT_PAGE", payload: page })
   }
 
-  // mark complete
-  const handleMarkComplete = React.useCallback(async (questionId: string, newVal?: boolean)=>{
-    const val = newVal ?? true
+  // ====================== ACTION HANDLERS (Complete, Review, etc.) ======================
+  const handleMarkComplete = useCallback(async (questionId: string, newVal?: boolean) => {
+    dispatch({ type: "SET_ACTION_LOADING", payload: true })
     try {
+      const val = newVal ?? true
       await fetch("/api/questions", {
-        method:"PATCH",
-        headers:{ "Content-Type":"application/json" },
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ questionId, completed: val }),
       })
       dispatch({
-        type:"SET_QUESTIONS",
-        payload: state.questions.map(q=>
-          q.questionId===questionId ? { ...q, completed:val } : q
+        type: "SET_QUESTIONS",
+        payload: state.questions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: val } : q
         ),
       })
-    } catch(err) {
+    } catch (err) {
       console.error("Error marking complete:", err)
+    } finally {
+      dispatch({ type: "SET_ACTION_LOADING", payload: false })
     }
   }, [state.questions])
 
-  // mark for review
-  const handleMarkForReview = React.useCallback(async (questionId: string, newVal?: boolean)=>{
-    const val = newVal ?? true
+  const handleMarkForReview = useCallback(async (questionId: string, newVal?: boolean) => {
+    dispatch({ type: "SET_ACTION_LOADING", payload: true })
     try {
+      const val = newVal ?? true
       await fetch("/api/questions", {
-        method:"PATCH",
-        headers:{ "Content-Type":"application/json" },
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ questionId, reviewed: val }),
       })
       dispatch({
-        type:"SET_QUESTIONS",
-        payload: state.questions.map(q=>
-          q.questionId===questionId ? { ...q, reviewed:val } : q
+        type: "SET_QUESTIONS",
+        payload: state.questions.map((q) =>
+          q.questionId === questionId ? { ...q, reviewed: val } : q
         ),
       })
-    } catch(err) {
+    } catch (err) {
       console.error("Error marking review:", err)
+    } finally {
+      dispatch({ type: "SET_ACTION_LOADING", payload: false })
     }
   }, [state.questions])
 
-  // MCQ
-  const handleOptionClick = React.useCallback((questionId: string, option: string, correctOption: string)=>{
-    const isCorrect = option===correctOption
+  const handleOptionClick = useCallback((questionId: string, option: string, correct: string) => {
+    const isCorrect = option === correct
     dispatch({
-      type:"SET_FEEDBACK",
-      payload:{ ...state.feedback, [questionId]: isCorrect?"correct":"incorrect" },
+      type: "SET_FEEDBACK",
+      payload: { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" },
     })
     dispatch({
-      type:"SET_SELECTED_OPTIONS",
-      payload:{ ...state.selectedOptions, [questionId]: option },
+      type: "SET_SELECTED_OPTIONS",
+      payload: { ...state.selectedOptions, [questionId]: option },
     })
     dispatch({
-      type:"SET_QUESTIONS",
-      payload: state.questions.map(q=>
-        q.questionId===questionId ? { ...q, completed:true } : q
+      type: "SET_QUESTIONS",
+      payload: state.questions.map((q) =>
+        q.questionId === questionId ? { ...q, completed: true } : q
       ),
     })
   }, [state.feedback, state.selectedOptions, state.questions])
 
-  // numeric
-  const handleNumericalSubmit = React.useCallback((questionId: string, userAns: string, correctAns: string)=>{
-    const isCorrect = userAns===correctAns
-    dispatch({
-      type:"SET_FEEDBACK",
-      payload:{ ...state.feedback, [questionId]: isCorrect?"correct":"incorrect" },
-    })
-    dispatch({
-      type:"SET_NUMERICAL_ANSWERS",
-      payload:{ ...state.numericalAnswers, [questionId]: userAns },
-    })
-    dispatch({
-      type:"SET_QUESTIONS",
-      payload: state.questions.map(q=>
-        q.questionId===questionId ? { ...q, completed:true } : q
-      ),
-    })
+  const handleNumericalSubmit = useCallback(async (questionId: string, userAns: string, correctAns: string) => {
+    dispatch({ type: "SET_ACTION_LOADING", payload: true })
+    try {
+      const isCorrect = userAns === correctAns
+      dispatch({
+        type: "SET_FEEDBACK",
+        payload: { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" },
+      })
+      dispatch({
+        type: "SET_NUMERICAL_ANSWERS",
+        payload: { ...state.numericalAnswers, [questionId]: userAns },
+      })
+      await fetch("/api/questions", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId, completed: true }),
+      })
+      dispatch({
+        type: "SET_QUESTIONS",
+        payload: state.questions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: true } : q
+        ),
+      })
+    } catch (err) {
+      console.error("Error marking numeric answer:", err)
+    } finally {
+      dispatch({ type: "SET_ACTION_LOADING", payload: false })
+    }
   }, [state.feedback, state.numericalAnswers, state.questions])
 
-  // reset
-  const handleResetQuestion = React.useCallback(async (questionId: string)=>{
-    dispatch({
-      type:"SET_FEEDBACK",
-      payload:{ ...state.feedback, [questionId]: undefined },
-    })
-    dispatch({
-      type:"SET_SELECTED_OPTIONS",
-      payload:{ ...state.selectedOptions, [questionId]: undefined },
-    })
-    dispatch({
-      type:"SET_NUMERICAL_ANSWERS",
-      payload:{ ...state.numericalAnswers, [questionId]: undefined },
-    })
-    dispatch({
-      type:"SET_QUESTIONS",
-      payload: state.questions.map((q)=>
-        q.questionId===questionId ? { ...q, completed:false, reviewed:false } : q
-      ),
-    })
+  const handleResetQuestion = useCallback(async (questionId: string) => {
+    dispatch({ type: "SET_ACTION_LOADING", payload: true })
     try {
-      await fetch("/api/questions", {
-        method:"PATCH",
-        headers:{ "Content-Type":"application/json" },
-        body: JSON.stringify({ questionId, completed:false, reviewed:false }),
+      dispatch({
+        type: "SET_FEEDBACK",
+        payload: { ...state.feedback, [questionId]: undefined },
       })
-    } catch(err) {
+      dispatch({
+        type: "SET_SELECTED_OPTIONS",
+        payload: { ...state.selectedOptions, [questionId]: undefined },
+      })
+      dispatch({
+        type: "SET_NUMERICAL_ANSWERS",
+        payload: { ...state.numericalAnswers, [questionId]: undefined },
+      })
+      dispatch({
+        type: "SET_QUESTIONS",
+        payload: state.questions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: false, reviewed: false } : q
+        ),
+      })
+      await fetch("/api/questions", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId, completed: false, reviewed: false }),
+      })
+    } catch (err) {
       console.error("Error resetting question:", err)
+    } finally {
+      dispatch({ type: "SET_ACTION_LOADING", payload: false })
     }
   }, [state.feedback, state.selectedOptions, state.numericalAnswers, state.questions])
 
-  // local search + local status
-  const filteredQuestions = useMemo(()=>{
+  // ====================== Derived filteredQuestions ======================
+  const filteredQuestions = useMemo(() => {
     const s = state.searchQuery.toLowerCase()
-    return state.questions.filter(q=>{
-      const textFields = [q.text, q.exam, q.subject, q.topic, q.subtopic]
-      const matchesSearch = textFields.some(f=> f && fuzzyContains(f, s))
+    return state.questions.filter((q) => {
+      const textFields = [q.text, q.exam, q.subject, q.topic, q.subtopic].filter(Boolean)
+      const matchesSearch = textFields.some((f) => f && fuzzyContains(f, s))
 
       let matchesStatus = true
       const st = state.filters.status
-      if (st==="review" && !q.reviewed) matchesStatus=false
-      else if (st==="complete" && !q.completed) matchesStatus=false
-      else if (st==="incomplete" && q.completed) matchesStatus=false
+      if (st === "review" && !q.reviewed) matchesStatus = false
+      else if (st === "complete" && !q.completed) matchesStatus = false
+      else if (st === "incomplete" && q.completed) matchesStatus = false
 
       return matchesSearch && matchesStatus
     })
   }, [state.questions, state.filters.status, state.searchQuery])
 
-  // LOADING SKELETON
-  if (state.loading) {
+  // ====================== Render: Loading or ActionLoading => Skeleton ======================
+  if (state.loading || state.actionLoading) {
     return (
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full text-gray-900 dark:text-gray-100">
@@ -656,13 +657,13 @@ export default function QuestionBankContent() {
     )
   }
 
-  // SINGLE VIEW
+  // ====================== Single View ======================
   if (viewMode === ViewMode.SINGLE) {
     if (!filteredQuestions.length) {
       return (
         <div className="bg-white dark:bg-gray-900 w-full min-h-screen p-4 sm:p-8 text-gray-900 dark:text-gray-100">
           <div className="max-w-6xl mx-auto">
-            <Button variant="outline" onClick={()=> setViewMode(ViewMode.LIST)}>
+            <Button variant="outline" onClick={() => setViewMode(ViewMode.LIST)}>
               List View
             </Button>
             <p className="mt-6 text-red-300">No questions found with these filters.</p>
@@ -672,13 +673,12 @@ export default function QuestionBankContent() {
     }
 
     const currentQ = filteredQuestions[singleIndex]
-
     return (
       <div className="bg-white dark:bg-gray-900 w-full min-h-screen p-4 sm:p-4 text-gray-900 dark:text-gray-100 flex justify-center">
         <div className="max-w-xl w-full">
           {/* top row */}
           <div className="flex items-center justify-between mb-4">
-            <Button variant="outline" onClick={()=> setViewMode(ViewMode.LIST)}>
+            <Button variant="outline" onClick={() => setViewMode(ViewMode.LIST)}>
               List View
             </Button>
 
@@ -686,7 +686,7 @@ export default function QuestionBankContent() {
             <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
               <DialogTrigger asChild>
                 <Button variant="outline" className="ml-2 inline-flex items-center">
-                  <Filter className="mr-2 h-4 w-4"/>
+                  <Filter className="mr-2 h-4 w-4" />
                   Filters
                 </Button>
               </DialogTrigger>
@@ -715,10 +715,10 @@ export default function QuestionBankContent() {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentQ.questionId}
-              initial={{ x:80, opacity:0 }}
-              animate={{ x:0, opacity:1 }}
-              exit={{ x:-80, opacity:0 }}
-              transition={{ duration:0.3 }}
+              initial={{ x: 80, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -80, opacity: 0 }}
+              transition={{ duration: 0.3 }}
               className="rounded-md border dark:border-gray-700 bg-white dark:bg-gray-800 shadow p-3 sm:p-4 mb-6"
             >
               <Question
@@ -729,16 +729,16 @@ export default function QuestionBankContent() {
                 showMarkscheme={state.showMarkscheme[currentQ.questionId] || false}
                 handleOptionClick={handleOptionClick}
                 handleNumericalSubmit={handleNumericalSubmit}
-                handleNumericalChange={(qId, val)=>{
+                handleNumericalChange={(qId, val) => {
                   dispatch({
-                    type:"SET_NUMERICAL_ANSWERS",
-                    payload:{ ...state.numericalAnswers, [qId]: val },
+                    type: "SET_NUMERICAL_ANSWERS",
+                    payload: { ...state.numericalAnswers, [qId]: val },
                   })
                 }}
-                handleMarkschemeToggle={(qId)=>{
+                handleMarkschemeToggle={(qId) => {
                   dispatch({
-                    type:"SET_SHOW_MARKSCHEME",
-                    payload:{
+                    type: "SET_SHOW_MARKSCHEME",
+                    payload: {
                       ...state.showMarkscheme,
                       [qId]: !state.showMarkscheme[qId],
                     },
@@ -751,12 +751,12 @@ export default function QuestionBankContent() {
                 isMarkedComplete={!!currentQ.completed}
                 markschemesDisabled={false}
                 note=""
-                handleNoteChange={()=>{}}
-                handleDeleteNote={()=>Promise.resolve()}
+                handleNoteChange={() => {}}
+                handleDeleteNote={() => Promise.resolve()}
                 userId="guest"
                 totalQuestions={filteredQuestions.length}
                 currentQuestionIndex={singleIndex}
-                handleQuestionChange={()=>{}}
+                handleQuestionChange={() => {}}
               />
             </motion.div>
           </AnimatePresence>
@@ -764,18 +764,18 @@ export default function QuestionBankContent() {
           {/* nav buttons */}
           <div className="flex justify-between">
             <Button
-              onClick={()=> setSingleIndex(Math.max(0,singleIndex-1))}
-              disabled={singleIndex===0}
+              onClick={() => setSingleIndex(Math.max(0, singleIndex - 1))}
+              disabled={singleIndex === 0}
             >
-              <ChevronLeft className="mr-1 h-4 w-4"/>
+              <ChevronLeft className="mr-1 h-4 w-4" />
               Prev
             </Button>
             <Button
-              onClick={()=> setSingleIndex(Math.min(filteredQuestions.length-1, singleIndex+1))}
-              disabled={singleIndex===filteredQuestions.length-1}
+              onClick={() => setSingleIndex(Math.min(filteredQuestions.length - 1, singleIndex + 1))}
+              disabled={singleIndex === filteredQuestions.length - 1}
             >
               Next
-              <ChevronRight className="ml-1 h-4 w-4"/>
+              <ChevronRight className="ml-1 h-4 w-4" />
             </Button>
           </div>
         </div>
@@ -783,21 +783,19 @@ export default function QuestionBankContent() {
     )
   }
 
-  // LIST VIEW
+  // ====================== LIST VIEW ======================
   return (
     <TooltipProvider>
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full text-gray-900 dark:text-gray-100">
           {/* Switch to single */}
           <div className="flex justify-end mb-4">
-            <Button variant="outline" onClick={()=> setViewMode(ViewMode.SINGLE)}>
+            <Button variant="outline" onClick={() => setViewMode(ViewMode.SINGLE)}>
               Switch to Single View
             </Button>
           </div>
 
-          <h1 className="mb-2 text-left text-3xl sm:text-4xl">
-            Question Bank
-          </h1>
+          <h1 className="mb-2 text-left text-3xl sm:text-4xl">Question Bank</h1>
 
           {/* Search + mobile filters + navigator */}
           <div className="mb-6 flex items-center space-x-4">
@@ -806,12 +804,10 @@ export default function QuestionBankContent() {
                 type="text"
                 placeholder="Search questions..."
                 value={state.searchQuery}
-                onChange={(e)=>
-                  dispatch({ type:"SET_SEARCH_QUERY", payload:e.target.value })
-                }
+                onChange={(e) => dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })}
                 className="pl-10 dark:text-gray-100 dark:bg-gray-800 dark:placeholder-gray-400"
               />
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-300"/>
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-300" />
             </div>
 
             {/* mobile filters */}
@@ -821,7 +817,7 @@ export default function QuestionBankContent() {
                   variant="outline"
                   className="dark:border-gray-700 dark:hover:border-gray-500 dark:text-gray-100 sm:hidden flex items-center"
                 >
-                  <Filter className="mr-2 h-4 w-4"/>
+                  <Filter className="mr-2 h-4 w-4" />
                   Filters
                 </Button>
               </DialogTrigger>
@@ -843,7 +839,7 @@ export default function QuestionBankContent() {
             </Dialog>
 
             {/* question navigator (desktop) */}
-            <Dialog open={navigatorOpen} onOpenChange={setNavigatorOpen} /* disableFocusLock etc. */>
+            <Dialog open={navigatorOpen} onOpenChange={setNavigatorOpen}>
               <DialogTrigger asChild>
                 <Button
                   variant="outline"
@@ -854,34 +850,33 @@ export default function QuestionBankContent() {
                 </Button>
               </DialogTrigger>
               <DialogContent
+                onCloseAutoFocus={(e) => e.preventDefault()}
                 className="sm:max-w-[80vw] sm:max-h-[80vh] dark:bg-gray-800 dark:text-gray-100"
-                // We can disableFocusLock to avoid jumping scroll
-                // or just avoid forcibly focusing the first input
-                // portal = ...
               >
                 <ScrollArea className="h-[60vh]">
                   <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 p-4">
                     {filteredQuestions.map((q, index) => {
-                      const absoluteIndex = (state.currentPage - 1)*state.pageSize + index
+                      const absoluteIndex = (state.currentPage - 1) * state.pageSize + index
                       const displayNum = absoluteIndex + 1
                       return (
                         <Button
                           key={q.questionId}
-                          variant={q.completed ? "default":"outline"}
+                          variant={q.completed ? "default" : "outline"}
                           size="sm"
-                          onClick={()=>{
+                          onClick={() => {
                             const el = document.getElementById(`question-${q.questionId}`)
                             if (el) {
-                              el.scrollIntoView({ behavior:"smooth", block:"start" })
+                              el.scrollIntoView({ behavior: "smooth", block: "start" })
                             }
                           }}
                           className={`
                             w-10 h-10 dark:border-gray-700
-                            ${q.completed
-                              ? "bg-green-100 border-green-500 text-green-700 dark:bg-green-900 dark:border-green-500 dark:text-green-300"
-                              : q.reviewed
-                              ? "bg-yellow-100 border-yellow-500 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300"
-                              : ""
+                            ${
+                              q.completed
+                                ? "bg-green-100 border-green-500 text-green-700 dark:bg-green-900 dark:border-green-500 dark:text-green-300"
+                                : q.reviewed
+                                ? "bg-yellow-100 border-yellow-500 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300"
+                                : ""
                             }
                           `}
                         >
@@ -895,29 +890,22 @@ export default function QuestionBankContent() {
             </Dialog>
           </div>
 
-          {/* Desktop row for (all/complete/review/incomplete) with distinct styling */}
+          {/* Status filter row */}
           <div className="hidden sm:flex space-x-4 mb-2">
             {["all","complete","review","incomplete"].map((st) => {
-              const isActive = (state.filters.status === st)
+              const isActive = state.filters.status === st
               return (
                 <button
                   key={st}
-                  onClick={()=>{
-                    dispatch({ type:"SET_FILTERS", payload:{ ...state.filters, status: st } })
-                  }}
+                  onClick={() =>
+                    dispatch({ type: "SET_FILTERS", payload: { ...state.filters, status: st } })
+                  }
                   className={`
                     px-4 py-2 rounded-md transition-colors
-                    ${isActive
-                      ? `
-                        border border-green-500 
-                        bg-green-50 text-green-700
-                      `
-                      : `
-                        bg-white dark:bg-gray-800
-                        border border-gray-300 dark:border-gray-600
-                        hover:border-gray-700 dark:hover:border-gray-500
-                        text-gray-500 dark:text-gray-100
-                      `
+                    ${
+                      isActive
+                        ? "border border-green-500 bg-green-50 text-green-700"
+                        : "bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:border-gray-700 dark:hover:border-gray-500 text-gray-500 dark:text-gray-100"
                     }
                   `}
                 >
@@ -927,125 +915,184 @@ export default function QuestionBankContent() {
             })}
           </div>
 
-          {/* Desktop filter popovers */}
+          {/* Desktop filter popovers with animated chips */}
           <div className="hidden sm:flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
             {(["exams","subjects","topics","subtopics","difficulties","years","types"] as FilterKey[]).map((filterType) => {
               const filterValues = state.filterOptions[filterType] || []
               const isOpen = state.dropdowns[filterType]
+
               return (
                 <Popover
                   key={filterType}
+                  align="start"
+                  openPopover={isOpen}
+                  setOpenPopover={(open) => {
+                    dispatch({ type: "SET_DROPDOWN", payload: { tag: filterType, value: !!open } })
+                  }}
                   content={
-                    <div className="w-full bg-white dark:bg-gray-800 rounded-md p-2 sm:w-80">
+                    <div className="p-2 w-full sm:w-80 bg-white dark:bg-gray-800 rounded-md">
+                      {/* optional search input */}
                       <Input
                         type="text"
                         placeholder={`Search ${filterType}...`}
                         className="mb-2 dark:text-gray-100 dark:bg-gray-700 dark:placeholder-gray-400"
                       />
-                      <div className="max-h-60 overflow-y-auto">
-                        {filterValues.map((val) => {
-                          const isSelected = state.filters[filterType].includes(val)
-                          return (
-                            <div key={val} className="flex items-center">
-                              <input
-                                type="checkbox"
-                                className="mr-2"
-                                checked={isSelected}
-                                onChange={()=>{
-                                  let newArr
+                      <ScrollArea className="max-h-60">
+                        <motion.div className="flex flex-wrap gap-2" layout transition={transitionProps}>
+                          {filterValues.map((val) => {
+                            const isSelected = state.filters[filterType].includes(val)
+                            const displayText = transformFilterText(val)
+                            return (
+                              <motion.button
+                                key={val}
+                                layout
+                                initial={false}
+                                onClick={() => {
+                                  let newArr: string[]
                                   if (isSelected) {
-                                    newArr = state.filters[filterType].filter(x=> x!==val)
+                                    newArr = state.filters[filterType].filter((x) => x !== val)
                                   } else {
                                     newArr = [...state.filters[filterType], val]
                                   }
                                   dispatch({
-                                    type:"SET_FILTERS",
-                                    payload:{ ...state.filters, [filterType]: newArr },
+                                    type: "SET_FILTERS",
+                                    payload: { ...state.filters, [filterType]: newArr },
                                   })
                                 }}
-                              />
-                              <label
-                                className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-700"
+                                animate={{
+                                  backgroundColor: isSelected
+                                    ? "#E6F7FF"
+                                    : "rgba(229, 231, 235, 0.5)",
+                                }}
+                                whileHover={{
+                                  backgroundColor: isSelected
+                                    ? "#CCEEFF"
+                                    : "rgba(229, 231, 235, 0.8)",
+                                }}
+                                whileTap={{
+                                  backgroundColor: isSelected
+                                    ? "#B3E6FF"
+                                    : "rgba(229, 231, 235, 0.9)",
+                                }}
+                                transition={{
+                                  ...transitionProps,
+                                  backgroundColor: { duration: 0.1 },
+                                }}
+                                className={`
+                                  inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
+                                  whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
+                                  ${
+                                    isSelected
+                                      ? "text-blue-600 ring-blue-200"
+                                      : "text-gray-600 ring-gray-200"
+                                  }
+                                `}
                               >
-                                {val}
-                              </label>
-                            </div>
-                          )
-                        })}
-                      </div>
+                                <motion.div
+                                  className="relative flex items-center"
+                                  animate={{
+                                    width: isSelected ? "auto" : "100%",
+                                    paddingRight: isSelected ? "1.25rem" : "0",
+                                  }}
+                                  transition={{
+                                    ease: [0.175, 0.885, 0.32, 1.275],
+                                    duration: 0.3,
+                                  }}
+                                >
+                                  <span>{displayText}</span>
+                                  <AnimatePresence>
+                                    {isSelected && (
+                                      <motion.span
+                                        initial={{ scale: 0, opacity: 0 }}
+                                        animate={{ scale: 1, opacity: 1 }}
+                                        exit={{ scale: 0, opacity: 0 }}
+                                        transition={transitionProps}
+                                        className="absolute right-0"
+                                      >
+                                        <div className="w-3.5 h-3.5 rounded-full bg-blue-500 flex items-center justify-center">
+                                          <Check className="w-2.5 h-2.5 text-white" strokeWidth={2} />
+                                        </div>
+                                      </motion.span>
+                                    )}
+                                  </AnimatePresence>
+                                </motion.div>
+                              </motion.button>
+                            )
+                          })}
+                        </motion.div>
+                      </ScrollArea>
                     </div>
                   }
-                  align="start"
-                  openPopover={isOpen}
-                  setOpenPopover={(open)=>{
-                    dispatch({
-                      type:"SET_DROPDOWN",
-                      payload:{ tag: filterType, value:!!open }
-                    })
-                  }}
                 >
                   <button
-                    onClick={()=>{
+                    onClick={() => {
                       dispatch({
-                        type:"SET_DROPDOWN",
-                        payload:{ tag: filterType, value: !isOpen }
+                        type: "SET_DROPDOWN",
+                        payload: { tag: filterType, value: !isOpen },
                       })
                     }}
-                    className="flex w-full sm:w-36 items-center justify-between rounded-md border border-gray-300 dark:border-gray-700 px-4 py-2 bg-white dark:bg-gray-800 transition-all duration-75 hover:border-gray-800 dark:hover:border-gray-500 focus:outline-none active:bg-gray-100 dark:active:bg-gray-700"
+                    className="
+                      flex w-full sm:w-36 items-center justify-between
+                      rounded-md border border-gray-300 dark:border-gray-700 px-4 py-2
+                      bg-white dark:bg-gray-800
+                      transition-all duration-75
+                      hover:border-gray-800 dark:hover:border-gray-500
+                      focus:outline-none active:bg-gray-100 dark:active:bg-gray-700
+                    "
                   >
                     <p className="text-gray-600 dark:text-gray-300">
                       {state.filters[filterType].length
                         ? `${state.filters[filterType].length} selected`
-                        : filterType.charAt(0).toUpperCase()+filterType.slice(1)
-                      }
+                        : transformFilterText(filterType)}
                     </p>
-                    <ChevronDown className="h-4 w-4 text-gray-600 dark:text-gray-300 transition-all"/>
+                    <ChevronDown className="h-4 w-4 text-gray-600 dark:text-gray-300 transition-all" />
                   </button>
                 </Popover>
               )
             })}
           </div>
 
-          {/* The question progress card (with total, etc.) */}
-          <Card className="
-            bg-gradient-to-br from-gray-200 to-gray-100
-            dark:from-gray-900 dark:to-gray-800
-            text-gray-900 dark:text-gray-100
-            border-gray-200 dark:border-gray-700
-            mb-6
-          ">
+          {/* Progress Card */}
+          <Card
+            className="
+              bg-gradient-to-br from-gray-200 to-gray-100
+              dark:from-gray-900 dark:to-gray-800
+              text-gray-900 dark:text-gray-100
+              border-gray-200 dark:border-gray-700
+              mb-6
+            "
+          >
             <CardContent className="p-6">
               <h2 className="text-2xl font-light tracking-tight text-gray-800 dark:text-gray-200 mb-6">
                 Question Progress
               </h2>
               <div className="space-y-6">
-                {/* overall progress = (completed / total)*100 */}
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
                     Overall Progress
                   </span>
                   <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
                     {state.globalStats.total > 0
-                      ? Math.round((state.globalStats.completed / state.globalStats.total) * 100)
-                      : 0
-                    }%
+                      ? Math.round(
+                          (state.globalStats.completed / state.globalStats.total) * 100
+                        )
+                      : 0}
+                    %
                   </span>
                 </div>
                 <Progress
                   value={
-                    state.globalStats.total>0
-                      ? (state.globalStats.completed / state.globalStats.total)*100
+                    state.globalStats.total > 0
+                      ? (state.globalStats.completed / state.globalStats.total) * 100
                       : 0
                   }
                   className="w-full h-1.5 bg-gray-300 dark:bg-gray-700"
                 />
 
-                {/* 4 tiles: total, answered, review, not answered */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {/* total */}
                   <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
                     <div className="text-blue-400 p-2 rounded-full bg-blue-400/10">
-                      <HelpCircle className="h-5 w-5"/>
+                      <HelpCircle className="h-5 w-5" />
                     </div>
                     <div>
                       <p className="text-2xl font-light tracking-tighter text-blue-600 dark:text-blue-300">
@@ -1057,7 +1104,6 @@ export default function QuestionBankContent() {
                     </div>
                   </div>
 
-                  {/* answered (completed) */}
                   <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
                     <div className="text-green-400 p-2 rounded-full bg-green-400/10">
                       <svg
@@ -1080,10 +1126,9 @@ export default function QuestionBankContent() {
                     </div>
                   </div>
 
-                  {/* For Review */}
                   <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
                     <div className="text-yellow-400 p-2 rounded-full bg-yellow-400/10">
-                      <Flag className="h-5 w-5"/>
+                      <Flag className="h-5 w-5" />
                     </div>
                     <div>
                       <p className="text-2xl font-light tracking-tighter text-yellow-600 dark:text-yellow-300">
@@ -1095,10 +1140,9 @@ export default function QuestionBankContent() {
                     </div>
                   </div>
 
-                  {/* Not Answered */}
                   <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
                     <div className="text-red-400 p-2 rounded-full bg-red-400/10">
-                      <HelpCircle className="h-5 w-5"/>
+                      <HelpCircle className="h-5 w-5" />
                     </div>
                     <div>
                       <p className="text-2xl font-light tracking-tighter text-red-600 dark:text-red-300">
@@ -1114,12 +1158,11 @@ export default function QuestionBankContent() {
             </CardContent>
           </Card>
 
-          {state.questions.length>0 ? (
+          {state.questions.length > 0 ? (
             <>
               {filteredQuestions.map((q, index) => {
-                const absoluteIndex = (state.currentPage - 1)*state.pageSize + index
+                const absoluteIndex = (state.currentPage - 1) * state.pageSize + index
                 const displayNum = absoluteIndex + 1
-
                 return (
                   <Question
                     key={q.questionId}
@@ -1130,16 +1173,16 @@ export default function QuestionBankContent() {
                     showMarkscheme={state.showMarkscheme[q.questionId] || false}
                     handleOptionClick={handleOptionClick}
                     handleNumericalSubmit={handleNumericalSubmit}
-                    handleNumericalChange={(qId, val)=>{
+                    handleNumericalChange={(qId, val) => {
                       dispatch({
-                        type:"SET_NUMERICAL_ANSWERS",
-                        payload:{ ...state.numericalAnswers, [qId]:val },
+                        type: "SET_NUMERICAL_ANSWERS",
+                        payload: { ...state.numericalAnswers, [qId]: val },
                       })
                     }}
-                    handleMarkschemeToggle={(qId)=>{
+                    handleMarkschemeToggle={(qId) => {
                       dispatch({
-                        type:"SET_SHOW_MARKSCHEME",
-                        payload:{
+                        type: "SET_SHOW_MARKSCHEME",
+                        payload: {
                           ...state.showMarkscheme,
                           [qId]: !state.showMarkscheme[qId],
                         },
@@ -1147,51 +1190,17 @@ export default function QuestionBankContent() {
                     }}
                     handleMarkForReview={handleMarkForReview}
                     handleMarkComplete={handleMarkComplete}
-                    handleResetQuestion={async (qid)=>{
-                      // local reset
-                      dispatch({
-                        type:"SET_FEEDBACK",
-                        payload:{ ...state.feedback, [qid]: undefined },
-                      })
-                      dispatch({
-                        type:"SET_SELECTED_OPTIONS",
-                        payload:{ ...state.selectedOptions, [qid]: undefined },
-                      })
-                      dispatch({
-                        type:"SET_NUMERICAL_ANSWERS",
-                        payload:{ ...state.numericalAnswers, [qid]: undefined },
-                      })
-                      dispatch({
-                        type:"SET_QUESTIONS",
-                        payload: state.questions.map(qq=>
-                          qq.questionId===qid ? { ...qq, completed:false, reviewed:false } : qq
-                        ),
-                      })
-                      // server
-                      try {
-                        await fetch("/api/questions", {
-                          method:"PATCH",
-                          headers:{ "Content-Type":"application/json" },
-                          body: JSON.stringify({
-                            questionId: qid,
-                            completed:false,
-                            reviewed:false,
-                          }),
-                        })
-                      } catch(e) {
-                        console.error("Error resetting question:", e)
-                      }
-                    }}
-                    isMarkedForReview={q.reviewed||false}
-                    isMarkedComplete={q.completed||false}
+                    handleResetQuestion={handleResetQuestion}
+                    isMarkedForReview={!!q.reviewed}
+                    isMarkedComplete={!!q.completed}
                     markschemesDisabled={false}
                     note=""
-                    handleNoteChange={()=>{}}
-                    handleDeleteNote={()=>Promise.resolve()}
+                    handleNoteChange={() => {}}
+                    handleDeleteNote={() => Promise.resolve()}
                     userId="guest"
                     totalQuestions={state.totalCount}
                     currentQuestionIndex={displayNum - 1}
-                    handleQuestionChange={()=>{}}
+                    handleQuestionChange={() => {}}
                   />
                 )
               })}
@@ -1203,9 +1212,7 @@ export default function QuestionBankContent() {
               />
             </>
           ) : (
-            <p className="text-red-400 dark:text-red-300">
-              No questions found with these filters.
-            </p>
+            <p className="text-red-400 dark:text-red-300">No questions found with these filters.</p>
           )}
         </div>
       </div>
@@ -1213,10 +1220,12 @@ export default function QuestionBankContent() {
   )
 }
 
-/** MOBILE FILTERS DIALOG
- * Each time we toggle filters, we dispatch "SET_FILTERS".
- * Then the effect in the parent calls fetchSmartFilters + fetchQuestions + fetchGlobalStats.
- */
+// ======================================================
+// MOBILE FILTERS DIALOG
+// (Using your new “FilterSection” snippet-based design)
+// ======================================================
+
+/** The top-level mobile modal. */
 function FiltersDialogMobile({
   open,
   onOpenChange,
@@ -1228,206 +1237,252 @@ function FiltersDialogMobile({
   state: StateType
   dispatch: React.Dispatch<ActionType>
 }) {
-  const exams = state.filterOptions.exams || []
-  const subjects = state.filterOptions.subjects || []
-  const topics = state.filterOptions.topics || []
-  const subtopics = state.filterOptions.subtopics || []
-  const difficulties = state.filterOptions.difficulties || []
-  const years = state.filterOptions.years || []
-  const types = state.filterOptions.types || []
+  return (
+    <FiltersDialog
+      open={open}
+      onOpenChange={onOpenChange}
+      state={state}
+      dispatch={dispatch}
+    />
+  )
+}
 
-  function toggleFilter(key: FilterKey, val: string) {
-    const old = state.filters[key]
-    const isSel = old.includes(val)
-    let newArr
+// -------------------------------------
+// The new “FiltersDialog” UI
+// -------------------------------------
+interface CustomFiltersDialogProps {
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  state: StateType
+  dispatch: React.Dispatch<ActionType>
+}
+
+function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDialogProps) {
+  // We store the "search" text for each category locally
+  const [searches, setSearches] = useState<Record<string, string>>({
+    exams: "",
+    subjects: "",
+    topics: "",
+    subtopics: "",
+    difficulties: "",
+    years: "",
+    types: "",
+  })
+
+  // For each category, we get the relevant arrays from `state.filterOptions`.
+  // We'll maintain the "selected" in the global store (state.filters).
+
+  const handleSearchChange = (category: string, value: string) => {
+    setSearches((prev) => ({ ...prev, [category]: value }))
+  }
+
+  // Use the local search text to filter items
+  const filterItems = (items: string[], category: string) => {
+    const searchVal = searches[category]?.toLowerCase() || ""
+    return items.filter((item) => item.toLowerCase().includes(searchVal))
+  }
+
+  // Toggle an item => dispatch to global store
+  const toggleItem = (category: FilterKey, item: string) => {
+    const oldArr = state.filters[category]
+    const isSel = oldArr.includes(item)
+    let newArr: string[]
     if (isSel) {
-      newArr = old.filter(x=> x!==val)
+      newArr = oldArr.filter((i) => i !== item)
     } else {
-      newArr = [...old, val]
+      newArr = [...oldArr, item]
     }
-    dispatch({ type:"SET_FILTERS", payload:{ ...state.filters, [key]: newArr } })
+    dispatch({
+      type: "SET_FILTERS",
+      payload: { ...state.filters, [category]: newArr },
+    })
+  }
+
+  // We'll define each category as a "FilterSection" with a search, etc.
+  // We'll gather them in the body of the dialog.
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-full w-screen h-screen m-0 p-0 flex flex-col bg-white dark:bg-gray-900">
+        {/* Header */}
+        <div className="flex items-center justify-between sticky top-0 z-10 px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+          <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">Filters</h2>
+          <div className="flex items-center gap-4">
+            {/* Apply changes => simply close the modal. The parent's useEffect logic triggers new fetch */}
+            <Button
+              variant="default"
+              className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-2 flex items-center gap-2 transition-all duration-200 ease-in-out"
+              onClick={() => {
+                onOpenChange(false)
+              }}
+            >
+              <Check className="w-4 h-4" />
+              Apply Changes
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-10 w-10 rounded-full text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 ease-in-out"
+              onClick={() => onOpenChange(false)}
+            >
+              <span className="sr-only">Close</span>
+              <Flag className="h-5 w-5 rotate-45" /> 
+              {/* Or <X /> if you want a normal X. 
+                  The snippet had X, but I'm showing an example. 
+                  You can revert to <X className="..." /> 
+              */}
+            </Button>
+          </div>
+        </div>
+
+        {/* Body */}
+        <div className="flex-1 overflow-y-auto px-6 py-8 custom-scrollbar">
+          <div className="max-w-3xl mx-auto space-y-10">
+            {/* We add a FilterSection for each category we want in mobile */}
+            <FilterSection
+              title="Exams"
+              items={state.filterOptions.exams}
+              searchValue={searches.exams}
+              onSearchChange={(val) => handleSearchChange("exams", val)}
+              filterItems={(arr) => filterItems(arr, "exams")}
+              selectedItems={state.filters.exams}
+              toggleItem={(item) => toggleItem("exams", item)}
+            />
+
+            <FilterSection
+              title="Subjects"
+              items={state.filterOptions.subjects}
+              searchValue={searches.subjects}
+              onSearchChange={(val) => handleSearchChange("subjects", val)}
+              filterItems={(arr) => filterItems(arr, "subjects")}
+              selectedItems={state.filters.subjects}
+              toggleItem={(item) => toggleItem("subjects", item)}
+            />
+
+            <FilterSection
+              title="Topics"
+              items={state.filterOptions.topics}
+              searchValue={searches.topics}
+              onSearchChange={(val) => handleSearchChange("topics", val)}
+              filterItems={(arr) => filterItems(arr, "topics")}
+              selectedItems={state.filters.topics}
+              toggleItem={(item) => toggleItem("topics", item)}
+            />
+
+            <FilterSection
+              title="Subtopics"
+              items={state.filterOptions.subtopics}
+              searchValue={searches.subtopics}
+              onSearchChange={(val) => handleSearchChange("subtopics", val)}
+              filterItems={(arr) => filterItems(arr, "subtopics")}
+              selectedItems={state.filters.subtopics}
+              toggleItem={(item) => toggleItem("subtopics", item)}
+            />
+
+            <FilterSection
+              title="Difficulties"
+              items={state.filterOptions.difficulties}
+              searchValue={searches.difficulties}
+              onSearchChange={(val) => handleSearchChange("difficulties", val)}
+              filterItems={(arr) => filterItems(arr, "difficulties")}
+              selectedItems={state.filters.difficulties}
+              toggleItem={(item) => toggleItem("difficulties", item)}
+            />
+
+            <FilterSection
+              title="Years"
+              items={state.filterOptions.years}
+              searchValue={searches.years}
+              onSearchChange={(val) => handleSearchChange("years", val)}
+              filterItems={(arr) => filterItems(arr, "years")}
+              selectedItems={state.filters.years}
+              toggleItem={(item) => toggleItem("years", item)}
+            />
+
+            <FilterSection
+              title="Types"
+              items={state.filterOptions.types}
+              searchValue={searches.types}
+              onSearchChange={(val) => handleSearchChange("types", val)}
+              filterItems={(arr) => filterItems(arr, "types")}
+              selectedItems={state.filters.types}
+              toggleItem={(item) => toggleItem("types", item)}
+            />
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  )
+}
+
+// -------------------------------------
+// FilterSection subcomponent
+// -------------------------------------
+interface FilterSectionProps {
+  title: string
+  items: string[]
+  searchValue: string
+  onSearchChange: (value: string) => void
+  filterItems: (items: string[]) => string[]
+  selectedItems: string[]
+  toggleItem: (item: string) => void
+}
+
+function FilterSection({
+  title,
+  items,
+  searchValue,
+  onSearchChange,
+  filterItems,
+  selectedItems,
+  toggleItem,
+}: FilterSectionProps) {
+  const handleClickItem = (item: string) => {
+    toggleItem(item)
   }
 
   return (
-    <div className="p-4 flex flex-col h-full">
-      <DialogHeader className="mb-2">
-        <DialogTitle>Filters</DialogTitle>
-      </DialogHeader>
-
-      <ScrollArea className="flex-grow">
-        <div className="space-y-4 py-2 text-sm">
-          {/* status row (all/complete/review/incomplete) on mobile */}
-          <div>
-            <p className="font-medium mb-2">Status</p>
-            <div className="flex gap-2 flex-wrap">
-              {["all","complete","review","incomplete"].map(st => {
-                const active = (state.filters.status===st)
-                return (
-                  <Button
-                    key={st}
-                    size="sm"
-                    onClick={()=>{
-                      dispatch({
-                        type:"SET_FILTERS",
-                        payload:{ ...state.filters, status:st }
-                      })
-                    }}
-                    className={`
-                      ${active
-                        ? "border border-green-500 bg-green-50 text-green-700"
-                        : "border border-gray-300 dark:border-gray-700"
-                      }
-                    `}
-                  >
-                    {st.charAt(0).toUpperCase()+st.slice(1)}
-                  </Button>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Exams */}
-          <div>
-            <p className="font-medium mb-2">Exams</p>
-            <ScrollArea className="max-h-40 border p-2 rounded-md dark:border-gray-700">
-              {exams.map(ex=> {
-                const checked = state.filters.exams.includes(ex)
-                return (
-                  <label key={ex} className="flex items-center space-x-2 py-1">
-                    <input
-                      type="checkbox"
-                      checked={checked}
-                      onChange={()=> toggleFilter("exams", ex)}
-                    />
-                    <span>{ex}</span>
-                  </label>
-                )
-              })}
-            </ScrollArea>
-          </div>
-
-          {/* Subjects */}
-          <div>
-            <p className="font-medium mb-2">Subjects</p>
-            <ScrollArea className="max-h-40 border p-2 rounded-md dark:border-gray-700">
-              {subjects.map(subj=> {
-                const checked = state.filters.subjects.includes(subj)
-                return (
-                  <label key={subj} className="flex items-center space-x-2 py-1">
-                    <input
-                      type="checkbox"
-                      checked={checked}
-                      onChange={()=> toggleFilter("subjects", subj)}
-                    />
-                    <span>{subj}</span>
-                  </label>
-                )
-              })}
-            </ScrollArea>
-          </div>
-
-          {/* Topics */}
-          <div>
-            <p className="font-medium mb-2">Topics</p>
-            <ScrollArea className="max-h-40 border p-2 rounded-md dark:border-gray-700">
-              {topics.map(t=> {
-                const checked = state.filters.topics.includes(t)
-                return (
-                  <label key={t} className="flex items-center space-x-2 py-1">
-                    <input
-                      type="checkbox"
-                      checked={checked}
-                      onChange={()=> toggleFilter("topics", t)}
-                    />
-                    <span>{t}</span>
-                  </label>
-                )
-              })}
-            </ScrollArea>
-          </div>
-
-          {/* Subtopics */}
-          <div>
-            <p className="font-medium mb-2">Subtopics</p>
-            <ScrollArea className="max-h-40 border p-2 rounded-md dark:border-gray-700">
-              {subtopics.map(s=> {
-                const checked = state.filters.subtopics.includes(s)
-                return (
-                  <label key={s} className="flex items-center space-x-2 py-1">
-                    <input
-                      type="checkbox"
-                      checked={checked}
-                      onChange={()=> toggleFilter("subtopics", s)}
-                    />
-                    <span>{s}</span>
-                  </label>
-                )
-              })}
-            </ScrollArea>
-          </div>
-
-          {/* Difficulties */}
-          <div>
-            <p className="font-medium mb-2">Difficulties</p>
-            <ScrollArea className="max-h-40 border p-2 rounded-md dark:border-gray-700">
-              {difficulties.map(d=> {
-                const checked = state.filters.difficulties.includes(d)
-                return (
-                  <label key={d} className="flex items-center space-x-2 py-1">
-                    <input
-                      type="checkbox"
-                      checked={checked}
-                      onChange={()=> toggleFilter("difficulties", d)}
-                    />
-                    <span>{d}</span>
-                  </label>
-                )
-              })}
-            </ScrollArea>
-          </div>
-
-          {/* Years */}
-          <div>
-            <p className="font-medium mb-2">Years</p>
-            <ScrollArea className="max-h-40 border p-2 rounded-md dark:border-gray-700">
-              {years.map(y=> {
-                const checked = state.filters.years.includes(y)
-                return (
-                  <label key={y} className="flex items-center space-x-2 py-1">
-                    <input
-                      type="checkbox"
-                      checked={checked}
-                      onChange={()=> toggleFilter("years", y)}
-                    />
-                    <span>{y}</span>
-                  </label>
-                )
-              })}
-            </ScrollArea>
-          </div>
-
-          {/* Types */}
-          <div>
-            <p className="font-medium mb-2">Types</p>
-            <ScrollArea className="max-h-40 border p-2 rounded-md dark:border-gray-700">
-              {types.map(tp=> {
-                const checked = state.filters.types.includes(tp)
-                return (
-                  <label key={tp} className="flex items-center space-x-2 py-1">
-                    <input
-                      type="checkbox"
-                      checked={checked}
-                      onChange={()=> toggleFilter("types", tp)}
-                    />
-                    <span>{tp}</span>
-                  </label>
-                )
-              })}
-            </ScrollArea>
-          </div>
-
-        </div>
-      </ScrollArea>
+    <div className="space-y-4">
+      <h3 className="text-xl font-medium text-gray-800 dark:text-gray-100">{title}</h3>
+      <div className="relative">
+        <Input
+          placeholder={`Search ${title.toLowerCase()}...`}
+          value={searchValue}
+          onChange={(e) => onSearchChange(e.target.value)}
+          className="bg-white dark:bg-gray-900 border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:ring-blue-500 pl-10 py-2 text-gray-800 dark:text-gray-100"
+        />
+        <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {filterItems(items).map((item) => {
+          const isSelected = selectedItems.includes(item)
+          return (
+            <button
+              key={item}
+              onClick={() => handleClickItem(item)}
+              className={`
+                inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
+                whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
+                transition-all duration-200 ease-in-out
+                ${
+                  isSelected
+                    ? "bg-blue-50 text-blue-600 ring-blue-200 hover:bg-blue-100"
+                    : "bg-gray-50 text-gray-600 ring-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:ring-gray-700 dark:text-gray-200"
+                }
+              `}
+            >
+              <span className="mr-1.5">{transformFilterText(item)}</span>
+              {isSelected && (
+                <span className="flex-shrink-0">
+                  <div className="w-3.5 h-3.5 rounded-full bg-blue-500 flex items-center justify-center">
+                    <Check className="w-2.5 h-2.5 text-white" strokeWidth={3} />
+                  </div>
+                </span>
+              )}
+            </button>
+          )
+        })}
+      </div>
     </div>
   )
 }

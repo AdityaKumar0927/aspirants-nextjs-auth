@@ -3,104 +3,97 @@ import { PrismaClient, QuestionStatus } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
+/** 
+ * Utility to parse comma-separated query params: 
+ *   "JEE,NEET" => ["JEE","NEET"] 
+ */
+function parseCommaParam(value: string | null): string[] | undefined {
+  if (!value) return undefined
+  return value
+    .split(",")
+    .map((s) => s.trim())
+    .filter((s) => s.length > 0)
+}
+
 /**
  * GET /api/questions
- *
- * Example usage:
- *  /api/questions?exam=jee-main&subject=Physics&difficulty=Medium&year=2021&page=1&pageSize=20&shift=Shift-1
- *
- * Returns (if paginated):
- * {
- *   data: [...some subset of questions...],
- *   currentPage: 1,
- *   pageSize: 20,
- *   totalCount: 123
- * }
- *
- * If no page or pageSize, returns the entire array (non-paginated).
+ *  ?exam=JEE,NEET
+ *  &subject=Physics,Chemistry
+ *  &difficulty=Easy,Medium
+ *  &year=2021,2022
+ *  &page=1
+ *  &pageSize=20
  */
 export async function GET(request: Request) {
   try {
-    console.log("GET /api/questions => paginated + filters")
-
     const { searchParams } = new URL(request.url)
 
-    // 1) Extract page & pageSize from query
-    const pageParam = searchParams.get("page")
-    const pageSizeParam = searchParams.get("pageSize")
+    // 1) Pagination
+    const pageParam = searchParams.get("page") || "1"
+    const pageSizeParam = searchParams.get("pageSize") || "10"
+    const page = parseInt(pageParam, 10) || 1
+    const pageSize = parseInt(pageSizeParam, 10) || 10
+    const skip = (page - 1) * pageSize
+    const take = pageSize
 
-    let skip: number | undefined
-    let take: number | undefined
+    // 2) Parse multi-value filters
+    const examArr       = parseCommaParam(searchParams.get("exam"))
+    const subjectArr    = parseCommaParam(searchParams.get("subject"))
+    const topicArr      = parseCommaParam(searchParams.get("topic"))
+    const subtopicArr   = parseCommaParam(searchParams.get("subtopic"))
+    const difficultyArr = parseCommaParam(searchParams.get("difficulty"))
+    const yearStrArr    = parseCommaParam(searchParams.get("year"))
+    const typeArr       = parseCommaParam(searchParams.get("type"))
 
-    if (pageParam || pageSizeParam) {
-      const page = parseInt(pageParam || "1", 10) || 1
-      const pageSize = parseInt(pageSizeParam || "10", 10) || 10
-      skip = (page - 1) * pageSize
-      take = pageSize
-      console.log(
-        `Pagination => page=${page}, pageSize=${pageSize}, skip=${skip}, take=${take}`
-      )
+    // 3) Build Prisma WHERE object
+    const where: any = {
+      // If you only want active questions, for example:
+      // status: QuestionStatus.ACTIVE
     }
 
-    // 2) Extract filter fields from query
-    // Adjust to match your Question schema fields:
-    const examFilter = searchParams.get("exam") || undefined
-    const subjectFilter = searchParams.get("subject") || undefined
-    const difficultyFilter = searchParams.get("difficulty") || undefined
-    const yearFilter = searchParams.get("year") || undefined
-
-    // For the "shift," your DB column is "key", so read "shift" from the URL
-    // e.g. ?shift=Shift-1 => where.key = "Shift-1"
-    const shiftFilter = searchParams.get("shift") || undefined
-
-    // 3) Build the 'where' object for Prisma
-    const where: any = {}
-
-    if (examFilter) {
-      // The 'exam' column in your schema is `exam?: String`
-      where.exam = examFilter
+    // exam in [...]
+    if (examArr) {
+      where.exam = { in: examArr }
     }
-    if (subjectFilter) {
-      where.subject = subjectFilter
+    if (subjectArr) {
+      where.subject = { in: subjectArr }
     }
-    if (difficultyFilter) {
-      where.difficulty = difficultyFilter
+    if (topicArr) {
+      where.topic = { in: topicArr }
     }
-    if (yearFilter) {
-      where.year = parseInt(yearFilter, 10)
+    if (subtopicArr) {
+      where.subtopic = { in: subtopicArr }
     }
-    if (shiftFilter) {
-      // DB column is "key"
-      where.key = shiftFilter
+    if (difficultyArr) {
+      where.difficulty = { in: difficultyArr }
+    }
+    if (typeArr) {
+      where.type = { in: typeArr }
+    }
+    if (yearStrArr) {
+      const years = yearStrArr.map((y) => parseInt(y, 10)).filter(Boolean)
+      if (years.length) {
+        where.year = { in: years }
+      }
     }
 
-    // Example: if you only want active questions, you might do:
-    // where.status = QuestionStatus.ACTIVE
+    // 4) Fetch questions
+    const [questions, totalCount] = await Promise.all([
+      prisma.question.findMany({
+        skip,
+        take,
+        where,
+        // e.g. orderBy: { id: "asc" }
+      }),
+      prisma.question.count({ where }),
+    ])
 
-    // 4) Fetch questions with optional skip/take
-    const questions = await prisma.question.findMany({
-      skip,
-      take,
-      where,
-      // If you only want certain columns, do:
-      // select: { id: true, questionId: true, exam: true, ... },
+    return NextResponse.json({
+      data: questions,
+      currentPage: page,
+      pageSize,
+      totalCount,
     })
-
-    // 5) If we used pagination, return totalCount as well
-    if (skip !== undefined && take !== undefined) {
-      const totalCount = await prisma.question.count({ where })
-      const currentPage = skip / take + 1
-
-      return NextResponse.json({
-        data: questions,
-        currentPage,
-        pageSize: take,
-        totalCount,
-      })
-    } else {
-      // If no skip/take, return entire array
-      return NextResponse.json(questions)
-    }
   } catch (error) {
     console.error("Error in GET /api/questions:", error)
     return NextResponse.json({ error: "Failed to fetch questions" }, { status: 500 })
@@ -109,14 +102,15 @@ export async function GET(request: Request) {
 
 /**
  * POST /api/questions
- * Creates a new question.
- *
- * Expect the request body (JSON) to have fields for exam, subject, text, etc.
- * Example:
+ * Creates a new question
+ * Body example:
  * {
- *   "questionId": "someUniqueId",
- *   "text": "Sample question text",
- *   "exam": "jee-main",
+ *   "questionId": "Q123",
+ *   "text": "Which of the following is correct?",
+ *   "options": ["A) ...", "B) ...", ...],
+ *   "correctOption": "A",
+ *   "exam": "JEE",
+ *   "subject": "Physics",
  *   ...
  * }
  */
@@ -125,8 +119,7 @@ export async function POST(request: Request) {
     const data = await request.json()
     console.log("POST /api/questions => creating question", data)
 
-    // If needed, parse arrays or do validation here
-    // e.g. ensure data.questionId, data.text, data.options, etc. exist
+    // Adjust as needed
     const created = await prisma.question.create({
       data: {
         ...data,
@@ -144,11 +137,9 @@ export async function POST(request: Request) {
 /**
  * PATCH /api/questions
  * Updates an existing question by questionId.
- * Expect JSON body: { questionId, ...fieldsToUpdate }
- *
- * Example:
+ * Body example:
  * {
- *   "questionId": "someUniqueId",
+ *   "questionId": "Q123",
  *   "completed": true,
  *   "reviewed": false
  * }
@@ -163,10 +154,9 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ error: "questionId is required" }, { status: 400 })
     }
 
-    // Update the question
     const updated = await prisma.question.update({
       where: { questionId },
-      data: { ...rest },
+      data: rest,
     })
 
     return NextResponse.json(updated)
@@ -178,7 +168,10 @@ export async function PATCH(request: Request) {
 
 /**
  * DELETE /api/questions
- * Expects JSON body { questionId: "someId" }
+ * Body example:
+ * {
+ *   "questionId": "Q123"
+ * }
  */
 export async function DELETE(request: Request) {
   try {
@@ -191,7 +184,6 @@ export async function DELETE(request: Request) {
     }
 
     await prisma.question.delete({ where: { questionId } })
-
     return NextResponse.json({ message: "Question deleted successfully" })
   } catch (error) {
     console.error("Error deleting question:", error)

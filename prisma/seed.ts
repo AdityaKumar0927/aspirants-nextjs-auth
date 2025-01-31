@@ -1,26 +1,25 @@
 /**
- * seed.ts (CommonJS + TypeScript)
+ * seed.ts (TypeScript)
  *
- * - Reads an array of exam metadata from:  ./!metaid/jee_jee-main.json
- * - Reads question JSON files from:        ./past-papers/jee_jee-main
- *   Each question file is named by the metaId (e.g., <metaId>.json).
- * - Upserts each Exam outside any transaction (just a normal upsert).
- * - Inserts all questions in chunks (createMany, skipDuplicates: true).
- * - No large transactions => avoids "Transaction already closed" timeouts.
- * - Includes all recognized fields from your question JSON to store them
- *   in the Prisma "Question" table, plus the entire question object in `content`.
+ * 1) Reads all meta JSON files in `!metaid/`.
+ * 2) For each <basename>.json, finds `past-papers/<basename>/`.
+ * 3) Reads all question JSON in that folder, flattening `results[].questions`.
+ * 4) Upserts exam by `exam.key`.
+ * 5) Upserts each question individually by `questionId`, linking to `exam.id`.
+ * 6) Sets `updatedAt = new Date()` to satisfy your schema's requirement.
  */
 
 ///////////////////////////////
-// CommonJS + TS imports
+// 1) Imports & Setup
 ///////////////////////////////
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 import { PrismaClient, Prisma as PrismaNS, QuestionStatus } from "@prisma/client";
 
-///////////////////////////////
+// Instantiate the Prisma client
+const prisma = new PrismaClient();
+
 // Logger helpers
-///////////////////////////////
 function logInfo(msg: string) {
   console.log(`[INFO ] ${new Date().toISOString()} - ${msg}`);
 }
@@ -32,35 +31,14 @@ function logError(msg: string) {
 }
 
 ///////////////////////////////
-// Utility: chunk an array
-///////////////////////////////
-function chunkArray<T>(arr: T[], size: number): T[][] {
-  const chunks: T[][] = [];
-  for (let i = 0; i < arr.length; i += size) {
-    chunks.push(arr.slice(i, i + size));
-  }
-  return chunks;
-}
-
-///////////////////////////////
-// Prisma
-///////////////////////////////
-const prisma = new PrismaClient();
-
-///////////////////////////////
-// Convert Helpers
+// 2) Helper Functions
 ///////////////////////////////
 
-/**
- * Return `undefined` if the value is nullish (so the JSON field is omitted).
- * Otherwise, cast to InputJsonValue for Prisma.
- */
+/** Return `undefined` so the JSON column is omitted => DB ends up NULL (for `Json?`). */
 function toNullableJson(value: unknown): PrismaNS.InputJsonValue | undefined {
   if (value === null || value === undefined) {
-    // omit the field => DB column becomes NULL if it's "Json?" in the schema
     return undefined;
   }
-  // otherwise, assume it's valid JSON
   return value as PrismaNS.InputJsonValue;
 }
 
@@ -82,15 +60,25 @@ function toDateOrNull(value: any): Date | null {
   return isNaN(d.getTime()) ? null : d;
 }
 
+/** Chunk an array to avoid huge single queries or timeouts. */
+function chunkArray<T>(arr: T[], size: number): T[][] {
+  const chunks: T[][] = [];
+  for (let i = 0; i < arr.length; i += size) {
+    chunks.push(arr.slice(i, i + size));
+  }
+  return chunks;
+}
+
 ///////////////////////////////
-// Interfaces for your data (optional)
+// 3) Types for your data (Optional)
 ///////////////////////////////
+
 interface ExamMeta {
   metaId: string;
   country?: string;
   exam?: string;
   examGroup?: string;
-  key: string;
+  key: string;          // used for upsert in `Exam`
   date?: string;
   description?: string | null;
   isOnline?: boolean;
@@ -98,18 +86,11 @@ interface ExamMeta {
   languages?: string[];
   title: string;
   year?: number;
-  pyq?: {
-    count: {
-      out_of_syllabus: number;
-      total: number;
-      private: number;
-      public: number;
-    };
-  };
+  // If you have a "Pyq" relation, you'd do it here. But your schema indicated type issues, so we skip it.
 }
 
 interface QuestionJson {
-  question_id: string;
+  question_id: string;  // used for upsert in `Question`
   examGroup?: string | null;
   exam?: string | null;
   country?: string | null;
@@ -127,7 +108,7 @@ interface QuestionJson {
   topicName?: string | null;
   type?: string | null;
   examDate?: string | null;
-  question?: any; // We'll store entire 'question' block in 'content' field
+  question?: any;
   updated_time?: number | null;
   permalink?: string | null;
   paperId?: string | null;
@@ -135,102 +116,99 @@ interface QuestionJson {
   isOutOfSyllabus?: boolean | null;
   isBonus?: boolean | null;
   yearKey?: string | null;
+  // Possibly more fields (e.g., 'bookmark', 'section')
+}
+
+interface QuestionFileBlock {
+  _id?: string;
+  questions: QuestionJson[];
 }
 
 ///////////////////////////////
-// Main seeding function
+// 4) Main Seeding Function
 ///////////////////////////////
 async function main() {
-  const metaFilePath = "./!metaid/gate_gate-pi.json";
-  const questionFolder = "./past-papers/gate_gate-pi";
+  const metaDir = "./!metaid";
+  const pastPapersDir = "./past-papers";
 
-  logInfo(`Reading meta file: ${metaFilePath}`);
-  logInfo(`Reading question files from: ${questionFolder}`);
-
-  // 1) Parse meta file
-  let metaArray: ExamMeta[];
-  try {
-    const rawMeta = fs.readFileSync(metaFilePath, "utf-8");
-    metaArray = JSON.parse(rawMeta);
-    if (!Array.isArray(metaArray)) {
-      throw new Error("Meta file is not an array of objects");
-    }
-  } catch (err) {
-    logError(`Failed to parse meta file: ${err}`);
+  // (A) Read all meta JSON files in `!metaid`
+  if (!fs.existsSync(metaDir)) {
+    logError(`Meta folder does not exist: ${metaDir}`);
+    return;
+  }
+  const metaFiles = fs.readdirSync(metaDir).filter((f) => f.endsWith(".json"));
+  if (metaFiles.length === 0) {
+    logWarn(`No meta JSON files in: ${metaDir}`);
     return;
   }
 
-  // 2) Build a map from metaId => exam info
-  const metaMap: Record<string, ExamMeta> = {};
-  for (const m of metaArray) {
-    if (!m.metaId) {
-      logWarn(`Skipping meta with no metaId: ${JSON.stringify(m)}`);
-      continue;
-    }
-    metaMap[m.metaId] = m;
-  }
+  // (B) For each meta file
+  for (const metaFile of metaFiles) {
+    const metaFilePath = path.join(metaDir, metaFile);
 
-  // 3) Read question folder
-  const qFolderAbsolute = path.resolve(questionFolder);
-  if (!fs.existsSync(qFolderAbsolute)) {
-    logError(`Question folder does not exist: ${qFolderAbsolute}`);
-    return;
-  }
-
-  const questionFiles = fs
-    .readdirSync(qFolderAbsolute)
-    .filter((f: string) => f.endsWith(".json"));
-
-  // 4) Build questionMap: metaId => array of question objects
-  const questionMap: Record<string, QuestionJson[]> = {};
-
-  for (const qFile of questionFiles) {
-    const metaId = qFile.replace(".json", "");
-    if (!metaMap[metaId]) {
-      logWarn(`No meta found for question file: ${qFile}`);
-      continue;
-    }
-
-    const questionFilePath = path.join(qFolderAbsolute, qFile);
-    let rawData: any;
+    // Parse the array of exam metadata
+    let metaArray: ExamMeta[];
     try {
-      rawData = JSON.parse(fs.readFileSync(questionFilePath, "utf-8"));
+      const raw = fs.readFileSync(metaFilePath, "utf-8");
+      metaArray = JSON.parse(raw);
+      if (!Array.isArray(metaArray)) {
+        logWarn(`Meta file ${metaFile} is not an array; skipping`);
+        continue;
+      }
     } catch (err) {
-      logError(`Failed to parse question file: ${qFile}, err=${err}`);
+      logError(`Failed to parse meta file ${metaFile}: ${err}`);
       continue;
     }
 
-    if (!rawData || !rawData.results || !Array.isArray(rawData.results)) {
-      logWarn(`No valid "results" array in file: ${qFile}`);
+    // baseName => e.g. "jee_jee-main.json" -> "jee_jee-main"
+    const baseName = metaFile.replace(".json", "");
+    // matching folder => e.g. ./past-papers/jee_jee-main
+    const questionFolder = path.join(pastPapersDir, baseName);
+
+    if (!fs.existsSync(questionFolder)) {
+      logWarn(`No question folder found for ${baseName}: ${questionFolder}`);
       continue;
     }
+
+    // (C) Read all .json in that subfolder => gather questions
+    const questionFiles = fs
+      .readdirSync(questionFolder)
+      .filter((f) => f.endsWith(".json"));
 
     let allQuestions: QuestionJson[] = [];
-    for (const block of rawData.results) {
-      if (block.questions && Array.isArray(block.questions)) {
-        allQuestions = allQuestions.concat(block.questions);
+    for (const qFile of questionFiles) {
+      const qFilePath = path.join(questionFolder, qFile);
+      try {
+        const rawQ = fs.readFileSync(qFilePath, "utf-8");
+        const parsedQ = JSON.parse(rawQ);
+        if (parsedQ && Array.isArray(parsedQ.results)) {
+          for (const block of parsedQ.results as QuestionFileBlock[]) {
+            if (block.questions && Array.isArray(block.questions)) {
+              allQuestions = allQuestions.concat(block.questions);
+            }
+          }
+        }
+      } catch (err) {
+        logError(`Failed to parse question file ${qFile}: ${err}`);
       }
     }
-    if (allQuestions.length === 0) {
-      logWarn(`Found 0 questions in file: ${qFile}`);
+
+    // If no questions found, skip
+    if (!allQuestions.length) {
+      logWarn(`No questions found in folder: ${questionFolder}`);
       continue;
     }
 
-    questionMap[metaId] = allQuestions;
-  }
+    // (D) For each examMeta in metaArray => upsert exam => upsert questions
+    for (const examMeta of metaArray) {
+      if (!examMeta.metaId) {
+        logWarn(`Skipping examMeta with no metaId: ${JSON.stringify(examMeta)}`);
+        continue;
+      }
 
-  // 5) For each metaId => upsert exam => chunked createMany (no transaction)
-  for (const [metaId, examMeta] of Object.entries(metaMap)) {
-    const matchedQuestions = questionMap[metaId];
-    if (!matchedQuestions || matchedQuestions.length === 0) {
-      logWarn(`No question file matched metaId: ${metaId}`);
-      continue;
-    }
+      logInfo(`\n=== Processing metaId=${examMeta.metaId} => ${examMeta.title} ===`);
 
-    logInfo(`\n=== Processing metaId: ${metaId} => ${examMeta.title} ===`);
-
-    try {
-      // (A) Upsert exam (simple upsert, no transaction)
+      // 1) Upsert the exam with an inline typed variable
       const exam = await prisma.exam.upsert({
         where: { key: examMeta.key },
         update: {},
@@ -246,39 +224,29 @@ async function main() {
           languages: examMeta.languages || [],
           title: examMeta.title,
           year: examMeta.year ?? null,
-          pyq: examMeta.pyq
-            ? {
-                create: {
-                  out_of_syllabus: examMeta.pyq.count.out_of_syllabus,
-                  total: examMeta.pyq.count.total,
-                  private: examMeta.pyq.count.private,
-                  public: examMeta.pyq.count.public,
-                },
-              }
-            : undefined,
+          // If you want to handle Pyq, add here if your schema matches
         },
       });
       logInfo(`Upserted exam => ${exam.title} (id: ${exam.id})`);
 
-      // (B) Transform questions
-      const validQuestions = matchedQuestions.filter(
+      // 2) Filter out invalid question IDs
+      const validQuestions = allQuestions.filter(
         (q) => q.question_id && q.question_id.trim() !== ""
       );
       if (!validQuestions.length) {
-        logWarn(`No valid 'question_id' found for metaId: ${metaId}`);
+        logWarn(`No valid question_id found in folder for metaId=${examMeta.metaId}`);
         continue;
       }
 
+      // 3) Build the data array
       const questionCreateData = validQuestions.map((q) => {
         const questionId = q.question_id.trim();
-
-        // Extract text from question.en.content or question.content
         const textFromJson =
           q.question?.en?.content?.trim() ||
           q.question?.content?.trim() ||
           "No text available";
 
-        // Because 'options' is String[] in your schema, flatten each object into a string:
+        // Flatten options => string[] if needed
         let optionsArray: string[] = [];
         if (q.question?.en?.options && Array.isArray(q.question.en.options)) {
           optionsArray = q.question.en.options.map((opt: any) => {
@@ -310,7 +278,6 @@ async function main() {
           examGroup: q.examGroup || null,
           country: q.country || null,
           exam: q.exam || null,
-
           subjectGroup: q.subjectGroup || null,
           subject: q.subject || null,
           chapterGroup: q.chapterGroup || null,
@@ -335,56 +302,61 @@ async function main() {
           permalink: q.permalink || null,
           languages: q.languages || [],
 
-          // required question text
           text: textFromJson,
-
-          // Flattened string array of options
           options: optionsArray,
-
-          // Single correct option
           correctOption,
 
-          // store entire question block in 'content' (JSON? column)
-          // => undefined if nullish, otherwise cast to JSON
+          // The entire question object, if you want, in `content`
           content: toNullableJson(q.question),
 
-          // default to ACTIVE
+          // Our schema requires updatedAt
+          updatedAt: new Date(),
           status: QuestionStatus.ACTIVE,
+
+          // If your schema has e.g. paperId, add it:
+          paperId: q.paperId ?? null,
+          // etc. ...
         };
       });
 
-      // (C) Insert in chunks, no transaction
+      // 4) Upsert each question in chunks
       const CHUNK_SIZE = 100;
       const chunks = chunkArray(questionCreateData, CHUNK_SIZE);
-      let totalInserted = 0;
 
+      let totalUpserted = 0;
       for (const chunk of chunks) {
-        try {
-          const res = await prisma.question.createMany({
-            data: chunk,
-            skipDuplicates: true,
-          });
-          totalInserted += res.count;
-        } catch (err) {
-          logError(`Insert chunk failed for metaId: ${metaId}. Error: ${err}`);
-          // continue or break depending on your preference
+        for (const data of chunk) {
+          try {
+            await prisma.question.upsert({
+              where: { questionId: data.questionId },
+              create: {
+                ...data,
+                updatedAt: new Date(), // must set in create
+              },
+              update: {
+                ...data,
+                updatedAt: new Date(), // must set in update
+              },
+            });
+            totalUpserted++;
+          } catch (err) {
+            logError(`Upsert failed for questionId=${data.questionId}: ${err}`);
+          }
         }
       }
 
-      logInfo(`Inserted ${totalInserted} questions for exam: ${exam.title}`);
-    } catch (err) {
-      logError(`Error seeding data for metaId: ${metaId}: ${err}`);
-    }
-  }
+      logInfo(`Upserted ${totalUpserted} questions for exam: ${exam.title}`);
+    } // end for examMeta
+  } // end for metaFiles
 
   logInfo("All done. Closing Prisma.");
   await prisma.$disconnect();
 }
 
-// Execute
+// Execute the script
 main()
   .then(() => process.exit(0))
-  .catch((err: any) => {
+  .catch((err) => {
     logError(`Seeding script crashed unexpectedly: ${err}`);
     process.exit(1);
   });
