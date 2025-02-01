@@ -3,12 +3,24 @@
 import React, { useState, useMemo } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+
 import {
   ArrowLeft,
   Download,
@@ -18,15 +30,14 @@ import {
   AlertCircle,
   CheckCircle,
   PieChart,
-  LineChart,
-  Lightbulb,
-  BookOpen,
-  Clock,
   ArrowRight,
 } from "lucide-react"
-import { Pie, Bar, Radar } from "react-chartjs-2"
+
+import { Pie, Bar } from "react-chartjs-2"
 import html2pdf from "html2pdf.js"
 import "chart.js/auto"
+import MathRenderer from "@/components/layout/MathRenderer"
+
 import type { ExamResultsType } from "@/lib/exam-helpers"
 
 const formatTime = (seconds: number) => {
@@ -35,7 +46,7 @@ const formatTime = (seconds: number) => {
   return `${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
 }
 
-function AdvancedExamResults({
+export default function AdvancedExamResults({
   examResults,
   onStartNewExam,
   onExit,
@@ -46,58 +57,76 @@ function AdvancedExamResults({
 }) {
   const [difficultyFilter, setDifficultyFilter] = useState<"Easy" | "Medium" | "Hard" | "All">("All")
 
+  // Filtered questions => if difficulty != "All", filter by that
   const filteredQuestions = useMemo(() => {
-    if (difficultyFilter === "All") {
-      return examResults.questions
-    }
+    if (difficultyFilter === "All") return examResults.questions
     return examResults.questions.filter((q) => (q.difficulty || "") === difficultyFilter)
   }, [examResults.questions, difficultyFilter])
 
+  // Sort topicPerformance alphabetically
+  const sortedTopicPerformance = useMemo(() => {
+    return Object.entries(examResults.topicPerformance).sort(([a], [b]) => a.localeCompare(b))
+  }, [examResults.topicPerformance])
+
+  // Sort topicWiseIncorrectAnswers alphabetically
+  const sortedTopicWiseIncorrect = useMemo(() => {
+    return Object.entries(examResults.topicWiseIncorrectAnswers).sort(([a], [b]) => a.localeCompare(b))
+  }, [examResults.topicWiseIncorrectAnswers])
+
+  // PDF generation
   const generatePdfContent = () => {
     const content = document.createElement("div")
     content.innerHTML = `
-      <h1>Exam Results</h1>
-      <h2>Summary</h2>
+      <h1 style="font-size: 1.25rem; margin-bottom: 1rem;">Exam Results</h1>
+      <h2 style="font-size: 1rem; margin-bottom: 0.5rem;">Summary</h2>
       <p>Total Questions: ${examResults.totalQuestions}</p>
       <p>Correct Answers: ${examResults.correctAnswersCount}</p>
       <p>Incorrect Answers: ${examResults.incorrectAnswers}</p>
       <p>Score: ${examResults.score.toFixed(2)}%</p>
       <p>Average Time per Question: ${formatTime(Math.round(examResults.averageTimePerQuestion))}</p>
       
-      <h2>Topic Performance</h2>
-      ${Object.entries(examResults.topicPerformance)
+      <h2 style="font-size: 1rem; margin: 1rem 0 0.5rem;">Topic Performance (A→Z)</h2>
+      ${sortedTopicPerformance
         .map(([topic, performance]) => {
           const pct = (performance.correct / performance.total) * 100
-          return `<p>${topic}: ${pct.toFixed(2)}%</p>`
+          return `<p>${topic}: ${pct.toFixed(2)}% correct</p>`
         })
         .join("")}
       
-      <h2>Strengths</h2>
+      <h2 style="font-size: 1rem; margin: 1rem 0 0.5rem;">Strengths</h2>
       ${examResults.topStrengths
         .map(([topic, performance]) => {
           const pct = (performance.correct / performance.total) * 100
-          return `<p>${topic}: ${pct.toFixed(2)}%</p>`
+          return `<p>${topic}: ${pct.toFixed(2)}% correct</p>`
         })
         .join("")}
       
-      <h2>Areas for Improvement</h2>
+      <h2 style="font-size: 1rem; margin: 1rem 0 0.5rem;">Areas for Improvement</h2>
       ${examResults.topWeaknesses
         .map(([topic, performance]) => {
           const pct = (performance.correct / performance.total) * 100
-          return `<p>${topic}: ${pct.toFixed(2)}%</p>`
+          return `<p>${topic}: ${pct.toFixed(2)}% correct</p>`
         })
         .join("")}
       
-      <h2>Question Review</h2>
+      <h2 style="font-size: 1rem; margin: 1rem 0 0.5rem;">Question Review</h2>
       ${examResults.questions
-        .map((question, index) => {
+        .map((q, i) => {
+          const time = formatTime(examResults.timeSpentPerQuestion[i])
+          const userA = examResults.userAnswers[i] || "Not answered"
           return `
-            <h3>Question ${index + 1}</h3>
-            <p>${question.text}</p>
-            <p>Your Answer: ${examResults.userAnswers[index] || "Not answered"}</p>
-            <p>Correct Answer: ${question.correctOption}</p>
-            <p>Time Spent: ${formatTime(examResults.timeSpentPerQuestion[index])}</p>
-            <p>Explanation: ${question.explanation || ""}</p>
+            <h3>Question ${i + 1}</h3>
+            <p>${q.text}</p>
+            <p>Your Answer: ${userA}</p>
+            <p>Correct Answer: ${q.correctOption}</p>
+            <p>Time Spent: ${time}</p>
+            <p>Explanation: ${
+              q.explanation
+                ? typeof q.explanation === "string"
+                  ? q.explanation
+                  : JSON.stringify(q.explanation)
+                : ""
+            }</p>
           `
         })
         .join("")}
@@ -117,6 +146,10 @@ function AdvancedExamResults({
     html2pdf().from(content).set(opt).save()
   }
 
+  // UI Components
+  // ----------------------------------------------------------------------------
+  // 1) Summary
+  // ----------------------------------------------------------------------------
   const SummaryCard = () => (
     <Card className="overflow-hidden bg-gradient-to-br from-primary/10 to-primary/5">
       <CardHeader className="border-b border-primary/10">
@@ -129,33 +162,51 @@ function AdvancedExamResults({
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
             <p className="text-sm font-medium">
-              Total Questions: <span className="font-bold text-primary">{examResults.totalQuestions}</span>
+              Total Questions:{" "}
+              <span className="font-bold text-primary">
+                {examResults.totalQuestions}
+              </span>
             </p>
             <p className="text-sm font-medium">
-              Correct Answers: <span className="font-bold text-green-600">{examResults.correctAnswersCount}</span>
+              Correct Answers:{" "}
+              <span className="font-bold text-green-600">
+                {examResults.correctAnswersCount}
+              </span>
             </p>
             <p className="text-sm font-medium">
-              Incorrect Answers: <span className="font-bold text-red-600">{examResults.incorrectAnswers}</span>
+              Incorrect Answers:{" "}
+              <span className="font-bold text-red-600">
+                {examResults.incorrectAnswers}
+              </span>
             </p>
           </div>
           <div className="space-y-2">
             <p className="text-sm font-medium">
-              Score: <span className="font-bold text-primary">{examResults.score.toFixed(2)}%</span>
+              Score:{" "}
+              <span className="font-bold text-primary">
+                {examResults.score.toFixed(2)}%
+              </span>
             </p>
             <p className="text-sm font-medium">
-              Average Time per Question:{" "}
-              <span className="font-bold">{formatTime(Math.round(examResults.averageTimePerQuestion))}</span>
+              Avg Time per Q:{" "}
+              <span className="font-bold">
+                {formatTime(Math.round(examResults.averageTimePerQuestion))}
+              </span>
             </p>
           </div>
         </div>
         <div className="mt-6">
           <Progress value={examResults.score} className="h-2 w-full" />
-          <p className="text-xs text-muted-foreground mt-2 text-center">Your performance</p>
+          <p className="text-xs text-muted-foreground mt-2 text-center">
+            Your performance
+          </p>
         </div>
       </CardContent>
     </Card>
   )
 
+  // 2) Strengths / Weaknesses
+  // ----------------------------------------------------------------------------
   const StrengthsAndWeaknesses = () => (
     <div className="grid gap-6 md:grid-cols-2">
       <Card className="bg-gradient-to-br from-green-100 to-green-50 dark:from-green-900/20 dark:to-green-800/20">
@@ -175,7 +226,8 @@ function AdvancedExamResults({
                 <div>
                   <p className="font-semibold">{topic}</p>
                   <p className="text-sm text-green-600">
-                    {((performance.correct / performance.total) * 100).toFixed(2)}% correct
+                    {((performance.correct / performance.total) * 100).toFixed(2)}
+                    % correct
                   </p>
                 </div>
               </li>
@@ -183,6 +235,7 @@ function AdvancedExamResults({
           </ul>
         </CardContent>
       </Card>
+
       <Card className="bg-gradient-to-br from-yellow-100 to-yellow-50 dark:from-yellow-900/20 dark:to-yellow-800/20">
         <CardHeader>
           <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-yellow-800 dark:text-yellow-100">
@@ -200,7 +253,8 @@ function AdvancedExamResults({
                 <div>
                   <p className="font-semibold">{topic}</p>
                   <p className="text-sm text-yellow-600">
-                    {((performance.correct / performance.total) * 100).toFixed(2)}% correct
+                    {((performance.correct / performance.total) * 100).toFixed(2)}
+                    % correct
                   </p>
                 </div>
               </li>
@@ -211,12 +265,14 @@ function AdvancedExamResults({
     </div>
   )
 
+  // 3) TopicPerformance => alphabetical
+  // ----------------------------------------------------------------------------
   const TopicPerformance = () => (
     <Card>
       <CardHeader className="border-b">
         <CardTitle className="text-2xl font-semibold tracking-tight flex items-center">
           <PieChart className="w-6 h-6 mr-2 text-primary" />
-          Topic Performance
+          Topic Performance (A→Z)
         </CardTitle>
       </CardHeader>
       <CardContent className="p-6">
@@ -224,10 +280,10 @@ function AdvancedExamResults({
           <div>
             <Pie
               data={{
-                labels: Object.keys(examResults.topicPerformance),
+                labels: sortedTopicPerformance.map(([topic]) => topic),
                 datasets: [
                   {
-                    data: Object.values(examResults.topicPerformance).map((p) => p.correct),
+                    data: sortedTopicPerformance.map(([_, p]) => p.correct),
                     backgroundColor: [
                       "rgba(255, 99, 132, 0.8)",
                       "rgba(54, 162, 235, 0.8)",
@@ -254,11 +310,13 @@ function AdvancedExamResults({
           </div>
           <ScrollArea className="h-[300px] pr-4">
             <div className="space-y-6">
-              {Object.entries(examResults.topicPerformance).map(([topic, performance]) => (
+              {sortedTopicPerformance.map(([topic, performance]) => (
                 <div key={topic}>
                   <div className="flex justify-between text-sm mb-2">
                     <span className="font-medium">{topic}</span>
-                    <span className="font-bold">{((performance.correct / performance.total) * 100).toFixed(2)}%</span>
+                    <span className="font-bold">
+                      {((performance.correct / performance.total) * 100).toFixed(2)}%
+                    </span>
                   </div>
                   <Progress value={(performance.correct / performance.total) * 100} className="h-2" />
                 </div>
@@ -270,6 +328,8 @@ function AdvancedExamResults({
     </Card>
   )
 
+  // 4) IncorrectAnswers => alphabetical
+  // ----------------------------------------------------------------------------
   const IncorrectAnswers = () => (
     <Card className="bg-gradient-to-br from-red-100 to-red-50 dark:from-red-900/20 dark:to-red-800/20">
       <CardHeader>
@@ -281,11 +341,11 @@ function AdvancedExamResults({
       <CardContent className="p-6">
         <Bar
           data={{
-            labels: Object.keys(examResults.topicWiseIncorrectAnswers),
+            labels: sortedTopicWiseIncorrect.map(([topic]) => topic),
             datasets: [
               {
                 label: "Incorrect Answers",
-                data: Object.values(examResults.topicWiseIncorrectAnswers),
+                data: sortedTopicWiseIncorrect.map(([_, val]) => val),
                 backgroundColor: "rgba(255, 99, 132, 0.8)",
               },
             ],
@@ -298,7 +358,7 @@ function AdvancedExamResults({
               },
               title: {
                 display: true,
-                text: "Incorrect Answers by Topic",
+                text: "Incorrect Answers by Topic (A→Z)",
               },
             },
           }}
@@ -307,6 +367,9 @@ function AdvancedExamResults({
     </Card>
   )
 
+  // 5) The "Answer Review" => we show the "question bank" style block
+  // but minimal features: question text, user’s selected option, feedback, explanation
+  // ----------------------------------------------------------------------------
   const AnswerReview = () => (
     <Card>
       <CardHeader className="border-b">
@@ -332,143 +395,120 @@ function AdvancedExamResults({
       </CardHeader>
       <CardContent className="p-6">
         <ScrollArea className="h-[400px]">
-          <Accordion type="single" collapsible className="w-full">
+          <div className="space-y-6">
             {filteredQuestions.map((question, index) => {
-              const isCorrect = examResults.userAnswers[index] === question.correctOption
+              const userAns = examResults.userAnswers[index] || ""
+              const correctAns = question.correctOption || ""
+              const isCorrect = userAns === correctAns
+
               return (
-                <AccordionItem value={`question-${index}`} key={question.id}>
-                  <AccordionTrigger>
-                    <div className="flex items-center">
-                      <span
-                        className={`w-6 h-6 rounded-full mr-2 flex items-center justify-center text-white ${
-                          isCorrect ? "bg-green-500" : "bg-red-500"
-                        }`}
-                      >
-                        {isCorrect ? "✓" : "✗"}
+                <Card
+                  key={question.id || index}
+                  className="
+                    border-2
+                    p-4
+                    mb-4
+                    last:mb-0
+                    space-y-3
+                    dark:bg-slate-800
+                    dark:text-slate-100
+                    relative
+                    shadow-sm
+                  "
+                  style={{
+                    borderColor: isCorrect ? "#10b981" : "#ef4444",
+                  }}
+                >
+                  <div className="text-sm text-gray-500 dark:text-slate-400">
+                    Question {index + 1}
+                    {question.difficulty && (
+                      <Badge variant="outline" className="ml-2">
+                        {question.difficulty}
+                      </Badge>
+                    )}
+                    {question.topic && (
+                      <Badge variant="outline" className="ml-2">
+                        {question.topic}
+                      </Badge>
+                    )}
+                  </div>
+                  {question.text && (
+                    <div className="text-base sm:text-lg leading-6 latex-font">
+                      <MathRenderer text={question.text} />
+                    </div>
+                  )}
+                  {/* If MCQ => highlight user selection in color */}
+                  {Array.isArray(question.options) && question.options.length > 0 && (
+                    <div className="space-y-2 pt-2">
+                      {question.options.map((optionText, idxOpt) => {
+                        const letter = String.fromCharCode(65 + idxOpt)
+                        const isUserChoice = userAns === letter
+                        const isCorrectChoice = letter === correctAns
+
+                        const background =
+                          isUserChoice && isCorrect
+                            ? "bg-green-100 text-green-700 border-green-400"
+                            : isUserChoice && !isCorrect
+                            ? "bg-red-100 text-red-700 border-red-400"
+                            : "border-gray-300"
+
+                        return (
+                          <div
+                            key={idxOpt}
+                            className={`
+                              px-3 py-2 rounded-md border
+                              ${background}
+                              flex items-start space-x-2
+                            `}
+                          >
+                            <span className="font-semibold">{letter}.</span>
+                            <div className="latex-font w-full">
+                              <MathRenderer text={optionText} />
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  )}
+                  {/* If user is incorrect => show correct answer explicitly */}
+                  {!isCorrect && correctAns && (
+                    <div className="mt-1 text-sm">
+                      Correct Answer:
+                      <span className="text-green-700 font-semibold ml-1">
+                        {correctAns}
                       </span>
-                      <span>Question {index + 1}</span>
-                      {question.difficulty ? (
-                        <Badge variant="outline" className="ml-2">
-                          {question.difficulty}
-                        </Badge>
-                      ) : null}
-                      {question.topic ? (
-                        <Badge variant="outline" className="ml-2">
-                          {question.topic}
-                        </Badge>
-                      ) : null}
                     </div>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <div className="space-y-2">
-                      <p className="font-medium">{question.text}</p>
-                      <p>
-                        Your Answer:{" "}
-                        <span className={isCorrect ? "text-green-600 font-semibold" : "text-red-600 font-semibold"}>
-                          {examResults.userAnswers[index] || "Not answered"}
-                        </span>
-                      </p>
-                      <p>
-                        Correct Answer: <span className="text-green-600 font-semibold">{question.correctOption}</span>
-                      </p>
-                      <p>
-                        Time Spent:{" "}
-                        <span className="font-semibold">{formatTime(examResults.timeSpentPerQuestion[index])}</span>
-                      </p>
-                      {question.explanation ? (
-                        <p className="text-sm text-muted-foreground">{question.explanation}</p>
-                      ) : null}
+                  )}
+                  {/* Show time spent */}
+                  <div className="text-sm text-gray-500 dark:text-slate-400">
+                    Time Spent:{" "}
+                    {formatTime(examResults.timeSpentPerQuestion[index] || 0)}
+                  </div>
+                  {/* Explanation if any */}
+                  {question.explanation && (
+                    <div className="mt-2 p-2 rounded bg-gray-50 dark:bg-slate-700 text-sm text-gray-700 dark:text-gray-100">
+                      <span className="font-semibold">Explanation:</span>
+                      <div className="latex-font mt-1">
+                        {typeof question.explanation === "string" ? (
+                          <MathRenderer text={question.explanation} />
+                        ) : (
+                          JSON.stringify(question.explanation)
+                        )}
+                      </div>
                     </div>
-                  </AccordionContent>
-                </AccordionItem>
+                  )}
+                </Card>
               )
             })}
-          </Accordion>
+          </div>
         </ScrollArea>
       </CardContent>
     </Card>
   )
 
-  const SkillAssessment = () => (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-2xl font-semibold tracking-tight flex items-center">
-          <LineChart className="w-6 h-6 mr-2 text-primary" />
-          Skill Assessment
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="p-6">
-        <div className="w-full max-w-md mx-auto">
-          <Radar
-            data={{
-              labels: Object.keys(examResults.skillLevels),
-              datasets: [
-                {
-                  label: "Skill Level",
-                  data: Object.values(examResults.skillLevels),
-                  backgroundColor: "rgba(54, 162, 235, 0.2)",
-                  borderColor: "rgb(54, 162, 235)",
-                  pointBackgroundColor: "rgb(54, 162, 235)",
-                  pointBorderColor: "#fff",
-                  pointHoverBackgroundColor: "#fff",
-                  pointHoverBorderColor: "rgb(54, 162, 235)",
-                },
-              ],
-            }}
-            options={{
-              scales: {
-                r: {
-                  angleLines: {
-                    display: false,
-                  },
-                  suggestedMin: 0,
-                  suggestedMax: 100,
-                },
-              },
-            }}
-          />
-        </div>
-      </CardContent>
-    </Card>
-  )
-
-  const Recommendations = () => (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-2xl font-semibold tracking-tight flex items-center">
-          <Lightbulb className="w-6 h-6 mr-2 text-primary" />
-          Personalized Recommendations
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="p-6">
-        <ul className="space-y-4">
-          {examResults.topWeaknesses.map(([topic]) => (
-            <li key={topic} className="flex items-start">
-              <BookOpen className="w-5 h-5 mr-2 mt-1 text-primary" />
-              <div>
-                <p className="font-semibold">Improve your {topic} skills</p>
-                <p className="text-sm text-muted-foreground">
-                  We recommend reviewing chapters related to {topic}, practicing more problems, and revisiting
-                  fundamental concepts.
-                </p>
-              </div>
-            </li>
-          ))}
-          <li className="flex items-start">
-            <Clock className="w-5 h-5 mr-2 mt-1 text-primary" />
-            <div>
-              <p className="font-semibold">Time Management</p>
-              <p className="text-sm text-muted-foreground">
-                Your average time per question is {formatTime(Math.round(examResults.averageTimePerQuestion))}. Try to
-                improve your speed without sacrificing accuracy.
-              </p>
-            </div>
-          </li>
-        </ul>
-      </CardContent>
-    </Card>
-  )
-
+  // ----------------------------------------------------------------
+  // Return top-level layout
+  // ----------------------------------------------------------------
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -496,35 +536,41 @@ function AdvancedExamResults({
         </motion.p>
       </div>
 
-      <div className="sticky top-0 bg-background z-10 p-4 mb-8 border-b">
-        <div className="flex justify-between items-center">
-          <span className="text-2xl font-semibold">Score: {examResults.score.toFixed(2)}%</span>
-          <Button variant="outline" size="sm" onClick={handleDownloadPdf}>
-            <Download className="w-4 h-4 mr-2" />
-            Download Results PDF
-          </Button>
-        </div>
-        <Progress value={examResults.score} className="mt-2" />
+      {/* Sticky top bar => PDF download */}
+      <div className="sticky top-0 bg-background z-10 p-4 mb-8 border-b flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <span className="text-2xl font-semibold">
+          Score: {examResults.score.toFixed(2)}%
+        </span>
+        <Button variant="outline" size="sm" onClick={handleDownloadPdf}>
+          <Download className="w-4 h-4 mr-2" />
+          Download Results PDF
+        </Button>
+        <Progress
+          value={examResults.score}
+          className="mt-2 sm:mt-0 w-full sm:w-1/3"
+        />
       </div>
 
+      {/* Tabs => summary / performance / review */}
       <Tabs defaultValue="summary" className="w-full">
-        <TabsList className="w-full justify-start mb-8">
+        <TabsList className="w-full justify-start mb-8 space-x-2 overflow-x-auto">
           <TabsTrigger value="summary" className="font-normal">
             Summary
           </TabsTrigger>
-          <TabsTrigger value="performance" className="font-normal text-muted-foreground">
+          <TabsTrigger
+            value="performance"
+            className="font-normal text-muted-foreground"
+          >
             Performance
           </TabsTrigger>
-          <TabsTrigger value="review" className="font-normal text-muted-foreground">
+          <TabsTrigger
+            value="review"
+            className="font-normal text-muted-foreground"
+          >
             Review
           </TabsTrigger>
-          <TabsTrigger value="skills" className="font-normal text-muted-foreground">
-            Skills
-          </TabsTrigger>
-          <TabsTrigger value="recommendations" className="font-normal text-muted-foreground">
-            Recommendations
-          </TabsTrigger>
         </TabsList>
+
         <motion.div
           key="results-content"
           initial={{ opacity: 0, y: 20 }}
@@ -532,26 +578,26 @@ function AdvancedExamResults({
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.5 }}
         >
+          {/* 1) summary tab */}
           <TabsContent value="summary" className="space-y-8">
             <SummaryCard />
             <StrengthsAndWeaknesses />
           </TabsContent>
+
+          {/* 2) performance tab */}
           <TabsContent value="performance" className="space-y-8">
             <TopicPerformance />
             <IncorrectAnswers />
           </TabsContent>
+
+          {/* 3) review tab => the new question-block style review */}
           <TabsContent value="review">
             <AnswerReview />
-          </TabsContent>
-          <TabsContent value="skills">
-            <SkillAssessment />
-          </TabsContent>
-          <TabsContent value="recommendations">
-            <Recommendations />
           </TabsContent>
         </motion.div>
       </Tabs>
 
+      {/* Bottom CTA buttons => exit / new exam */}
       <motion.div
         className="flex flex-col sm:flex-row gap-4 justify-between mt-12"
         initial={{ opacity: 0, y: 20 }}
@@ -562,7 +608,10 @@ function AdvancedExamResults({
           <ArrowLeft className="w-4 h-4" />
           Exit to Mock Exam
         </Button>
-        <Button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700" onClick={onStartNewExam}>
+        <Button
+          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white"
+          onClick={onStartNewExam}
+        >
           Start New Exam
           <ArrowRight className="w-4 h-4" />
         </Button>
@@ -570,6 +619,3 @@ function AdvancedExamResults({
     </motion.div>
   )
 }
-
-export default AdvancedExamResults
-
