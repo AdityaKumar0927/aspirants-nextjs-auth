@@ -1,52 +1,72 @@
-"use client"
+"use client";
 
-import React from "react"
-import Image from "next/image"
-import { User, Clock, AlertCircle, CheckCircle, Flag, LogOut, ChevronLeft, ChevronRight } from "lucide-react"
+import React from "react";
+import Image from "next/image";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip"
-import { Input } from "@/components/ui/input"
+import {
+  User,
+  Clock,
+  AlertCircle,
+  CheckCircle,
+  Flag,
+  LogOut,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
-import MathRenderer from "@/components/layout/MathRenderer"
-import { QuestionType } from "@/lib/exam-helpers"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+
+import MathRenderer from "@/components/layout/MathRenderer";
+import { QuestionType } from "@/lib/exam-helpers";
 
 interface ExamProps {
-  currentQuestion: number
-  filteredQuestions: QuestionType[]
-  answers: (string | null)[]
-  questionStatuses: { [index: number]: string }
+  currentQuestion: number;
+  filteredQuestions: QuestionType[];
+  answers: (string | null)[];
+  questionStatuses: { [index: number]: string };
   questionStatusCounts: {
-    notVisited: number
-    notAnswered: number
-    answered: number
-    markedForReview: number
-  }
-  examTimeLeft: number
-  onAnswer: (answer: string) => void
-  onNext: () => void
-  onPrevious: () => void
-  onClear: () => void
-  onReviewAndNext: () => void
-  onSaveAndNext: () => void
-  onSubmit: () => void
-  onExit: () => void
-  onNavigate: (index: number) => void
+    notVisited: number;
+    notAnswered: number;
+    answered: number;
+    markedForReview: number;
+  };
+  examTimeLeft: number;
+  onAnswer: (answer: string) => void;
+  onNext: () => void;
+  onPrevious: () => void;
+  onClear: () => void;
+  onReviewAndNext: () => void;
+  onSaveAndNext: () => void;
+  onSubmit: () => void;
+  onExit: () => void;
+  onNavigate: (index: number) => void;
 
-  userName: string
-  selectedSubject: string
-  selectedYear: string
-  selectedLevel: string
+  userName: string;
+  selectedSubject: string;
+  selectedYear: string;
+  selectedLevel: string;
+
+  /**
+   * Optional prop indicating whether the exam UI is still loading.
+   * If true, we show a skeleton layout.
+   */
+  isLoading?: boolean;
 }
 
 /**
- * Redesigned layout:
- * - Sticky header for user/timer/exit
- * - Main content is a grid:
- *    On mobile => 1 column (Question card → Status card → Navigator card)
- *    On md+    => 2 columns (Question card in left col, status+nav in right col).
+ * Renders the exam screen. If `isLoading` is set, displays a skeleton placeholder.
  */
 export default function Exam({
   currentQuestion,
@@ -68,30 +88,107 @@ export default function Exam({
   selectedSubject,
   selectedYear,
   selectedLevel,
+  isLoading = false,
 }: ExamProps) {
-  // ----------------------------------
   // Format the countdown timer
-  // ----------------------------------
   function formatTime(seconds: number) {
-    const minutes = Math.floor(seconds / 60)
-    const secs = seconds % 60
-    return `${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
+    const minutes = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${String(minutes).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
   }
 
-  // Current question (if any)
-  const question = filteredQuestions[currentQuestion]
+  // ----------------------------------
+  // 1) If loading => show skeleton
+  // ----------------------------------
+  if (isLoading) {
+    return (
+      <div className="w-full min-h-screen flex flex-col bg-background">
+        {/* Sticky header skeleton */}
+        <header className="sticky top-0 z-50 bg-background border-b shadow-sm">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <Skeleton circle width={40} height={40} />
+              <div>
+                <Skeleton width={80} height={12} />
+                <Skeleton width={120} height={10} className="mt-1" />
+              </div>
+            </div>
+            <Skeleton width={80} height={30} />
+          </div>
+        </header>
+
+        {/* Main content skeleton */}
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 grid grid-cols-1 md:grid-cols-[2fr,1fr] gap-4">
+          {/* Left column (Question) */}
+          <div className="flex flex-col">
+            <Card className="mb-4">
+              <CardHeader>
+                <CardTitle>
+                  <Skeleton width={200} height={20} />
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Skeleton height={150} className="mb-4" />
+                <Skeleton count={3} height={24} className="mb-2" />
+              </CardContent>
+              <CardFooter>
+                <Skeleton width="100%" height={40} />
+              </CardFooter>
+            </Card>
+            <Skeleton width="50%" height={40} />
+          </div>
+
+          {/* Right column (Navigator) */}
+          <div className="flex flex-col gap-4">
+            <Card>
+              <CardHeader>
+                <CardTitle>
+                  <Skeleton width={120} height={20} />
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Skeleton count={4} height={20} className="mb-2" />
+              </CardContent>
+            </Card>
+            <Card className="flex-1">
+              <CardHeader>
+                <CardTitle>
+                  <Skeleton width={150} height={20} />
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-5 gap-2">
+                  {Array.from({ length: 15 }).map((_, i) => (
+                    <Skeleton key={i} width={40} height={40} />
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  // ----------------------------------
+  // 2) If not loading, show normal exam UI
+  // ----------------------------------
+  const question = filteredQuestions[currentQuestion];
   if (!question) {
+    // If for some reason there's no question after loading
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-4">
-        <p className="text-gray-500 mb-4">No question is available. Please restart the exam.</p>
+        <p className="text-gray-500 mb-4">
+          No question is available. Please restart the exam.
+        </p>
         <Button onClick={onExit}>Exit</Button>
       </div>
-    )
+    );
   }
 
   // If question has a diagram => show
   function renderDiagram(diagramUrl?: string) {
-    if (!diagramUrl) return null
+    if (!diagramUrl) return null;
     return (
       <div className="relative w-full h-64 mb-4">
         <Image
@@ -102,19 +199,19 @@ export default function Exam({
           className="rounded-md"
         />
       </div>
-    )
+    );
   }
 
   // Renders either MCQ or numeric
   function renderQuestionBody(q: QuestionType) {
-    const lower = (q.type || "").toLowerCase()
+    const lower = (q.type || "").toLowerCase();
 
     // MCQ
     if (lower.includes("mcq") || lower === "multiple choice") {
       return (
         <div className="space-y-3 mt-4">
           {Object.entries(q.options).map(([key, text]) => {
-            const isSelected = answers[currentQuestion] === key
+            const isSelected = answers[currentQuestion] === key;
             return (
               <Button
                 key={key}
@@ -125,14 +222,14 @@ export default function Exam({
                 <span className="font-semibold mr-2">{key}.</span>
                 <MathRenderer text={text} />
               </Button>
-            )
+            );
           })}
         </div>
-      )
+      );
     }
     // Numeric
     else if (lower.includes("num") || lower.includes("int")) {
-      const val = answers[currentQuestion] || ""
+      const val = answers[currentQuestion] || "";
       return (
         <div className="mt-4 flex gap-2 items-center">
           <Input
@@ -142,19 +239,16 @@ export default function Exam({
             placeholder="Enter numeric answer..."
           />
         </div>
-      )
+      );
     }
     // Fallback
     return (
       <p className="text-red-500">
         Unsupported question type: <strong>{q.type}</strong>
       </p>
-    )
+    );
   }
 
-  // ----------------------------------
-  // The main component
-  // ----------------------------------
   return (
     <div className="w-full min-h-screen flex flex-col">
       {/* Sticky top bar: user info, timer, exit */}
@@ -258,8 +352,8 @@ export default function Exam({
             <Button
               variant="outline"
               className="w-full md:w-auto py-2 text-lg font-light"
-              onClick={()=>{
-                if(window.confirm("Are you sure you want to submit?")){
+              onClick={() => {
+                if (window.confirm("Are you sure you want to submit?")) {
                   onSubmit();
                 }
               }}
@@ -316,21 +410,21 @@ export default function Exam({
             <CardContent>
               <div className="grid grid-cols-5 gap-2">
                 {filteredQuestions.map((_, idx) => {
-                  const status = questionStatuses[idx] || "notVisited"
-                  const isCurrent = currentQuestion === idx
+                  const status = questionStatuses[idx] || "notVisited";
+                  const isCurrent = currentQuestion === idx;
 
-                  let buttonClasses = "w-10 h-10 p-0 font-medium"
+                  let buttonClasses = "w-10 h-10 p-0 font-medium";
                   if (isCurrent) {
                     // current question style
-                    buttonClasses += " border-blue-800 bg-blue-100 text-blue-600"
+                    buttonClasses += " border-blue-800 bg-blue-100 text-blue-600";
                   } else if (status === "markedForReview") {
-                    buttonClasses += " border-blue-600 bg-blue-100 text-blue-600"
+                    buttonClasses += " border-blue-600 bg-blue-100 text-blue-600";
                   } else if (status === "notAnswered") {
-                    buttonClasses += " border-yellow-600 bg-yellow-100 text-yellow-600"
+                    buttonClasses += " border-yellow-600 bg-yellow-100 text-yellow-600";
                   } else if (status === "answered") {
-                    buttonClasses += " border-green-600 bg-green-100 text-green-600"
+                    buttonClasses += " border-green-600 bg-green-100 text-green-600";
                   } else {
-                    buttonClasses += " border-gray-300 bg-white text-gray-600"
+                    buttonClasses += " border-gray-300 bg-white text-gray-600";
                   }
 
                   return (
@@ -351,7 +445,7 @@ export default function Exam({
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
-                  )
+                  );
                 })}
               </div>
             </CardContent>
@@ -359,5 +453,5 @@ export default function Exam({
         </div>
       </main>
     </div>
-  )
+  );
 }

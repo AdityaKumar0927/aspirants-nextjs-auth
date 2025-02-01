@@ -57,7 +57,7 @@ interface QuestionType {
   completed?: boolean;
   options?: string[];
   correctOption?: string;
-  markscheme?: string;
+  markscheme?: string;      // A short field
   notes?: string;
   diagramUrl?: string;
   exam?: string;
@@ -77,7 +77,7 @@ type FilterKey =
 type FiltersType = {
   [K in FilterKey]: string[];
 } & {
-  status: string; // "all"|"complete"|"review"|"incomplete"
+  status: string; // "all" | "complete" | "review" | "incomplete"
 };
 
 type DropdownsType = {
@@ -357,7 +357,9 @@ export default function QuestionBankContent() {
       if (difficulties.length) params.set("difficulty", arrToComma(difficulties));
       if (years.length) params.set("year", arrToComma(years));
       if (types.length) params.set("type", arrToComma(types));
-      const resp = await fetch(`/api/questions/stats?${params.toString()}`, { cache: "no-store" });
+
+      const statsUrl = `/api/questions/stats?${params.toString()}`;
+      const resp = await fetch(statsUrl, { cache: "no-store" });
       if (!resp.ok) {
         const txt = await resp.text();
         throw new Error(`Failed to fetch stats: ${txt}`);
@@ -399,13 +401,16 @@ export default function QuestionBankContent() {
         throw new Error(`Failed to fetch questions. ${txt}`);
       }
       const result = await res.json();
+
       let data: QuestionType[] = [];
       let totalCount = 0;
 
       if (Array.isArray(result)) {
+        // If the API returns a plain array
         data = result;
         totalCount = data.length;
       } else if (result.data) {
+        // If the API returns { data, totalCount }
         data = result.data;
         totalCount = result.totalCount;
       }
@@ -416,6 +421,7 @@ export default function QuestionBankContent() {
         const bId = b.questionId?.match(/\d+/)?.[0] || "0";
         return parseInt(aId, 10) - parseInt(bId, 10);
       });
+
       dispatch({ type: "SET_QUESTIONS", payload: data });
       dispatch({ type: "SET_TOTAL_COUNT", payload: totalCount });
     } catch (err) {
@@ -436,7 +442,7 @@ export default function QuestionBankContent() {
     fetchGlobalStats();
   }, [fetchFilterOptions, fetchGlobalStats]);
 
-  // Refresh when filters/page changes
+  // Refresh whenever filters/page changes
   useEffect(() => {
     fetchQuestions();
     fetchGlobalStats();
@@ -529,11 +535,13 @@ export default function QuestionBankContent() {
           type: "SET_NUMERICAL_ANSWERS",
           payload: { ...state.numericalAnswers, [questionId]: userAns },
         });
+
         await fetch("/api/questions", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ questionId, completed: true }),
         });
+
         dispatch({
           type: "SET_QUESTIONS",
           payload: state.questions.map((q) =>
@@ -571,6 +579,7 @@ export default function QuestionBankContent() {
             q.questionId === questionId ? { ...q, completed: false, reviewed: false } : q
           ),
         });
+
         await fetch("/api/questions", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -593,11 +602,13 @@ export default function QuestionBankContent() {
     return state.questions.filter((q) => {
       const textFields = [q.text, q.exam, q.subject, q.topic, q.subtopic].filter(Boolean);
       const matchesSearch = textFields.some((f) => f && fuzzyContains(f, s));
+
       let matchesStatus = true;
       const st = state.filters.status;
       if (st === "review" && !q.reviewed) matchesStatus = false;
       else if (st === "complete" && !q.completed) matchesStatus = false;
       else if (st === "incomplete" && q.completed) matchesStatus = false;
+
       return matchesSearch && matchesStatus;
     });
   }, [state.questions, state.filters.status, state.searchQuery]);
@@ -796,13 +807,15 @@ export default function QuestionBankContent() {
                   </Button>
                 </DialogTrigger>
                 <DialogContent
-                  className="
+                  className={`
                     fixed top-0 left-0 w-screen h-screen
                     bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                     flex flex-col custom-scrollbar
                     pt-10
-                    sm:w-[500px] sm:h-auto sm:max-h-[90vh] sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
-                  "
+                    sm:w-[500px] sm:h-auto sm:max-h-[90vh]
+                    sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2
+                    sm:rounded-md
+                  `}
                 >
                   <FiltersDialogMobile
                     open={filtersOpenMobile}
@@ -832,13 +845,16 @@ export default function QuestionBankContent() {
           {/* Mobile progress dialog */}
           <Dialog open={progressOpen} onOpenChange={setProgressOpen}>
             <DialogContent
-              className="
+              className={`
                 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                 flex flex-col custom-scrollbar
                 pt-10
                 w-screen h-screen
-                sm:w-[500px] sm:h-auto sm:max-h-[90vh] sm:left-1/2 sm:top-1/2 sm:fixed sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
-              "
+                sm:w-[500px] sm:h-auto sm:max-h-[90vh]
+                sm:left-1/2 sm:top-1/2 sm:fixed
+                sm:-translate-x-1/2 sm:-translate-y-1/2
+                sm:rounded-md
+              `}
             >
               {/* top bar */}
               <div className="flex items-center justify-between mb-4 px-4">
@@ -1108,14 +1124,14 @@ export default function QuestionBankContent() {
                         payload: { tag: filterType, value: !isOpen },
                       });
                     }}
-                    className="
+                    className={`
                       flex w-full sm:w-36 items-center justify-between
                       rounded-md border border-gray-300 dark:border-gray-700 px-4 py-2
                       bg-white dark:bg-gray-800
                       transition-all duration-75
                       hover:border-gray-800 dark:hover:border-gray-500
                       focus:outline-none active:bg-gray-100 dark:active:bg-gray-700
-                    "
+                    `}
                   >
                     <p className="text-gray-600 dark:text-gray-300">
                       {state.filters[filterType].length
@@ -1421,12 +1437,12 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="
+        className={`
           w-screen h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
           custom-scrollbar pt-10
           sm:w-[500px] sm:h-auto sm:max-h-[90vh]
           sm:left-1/2 sm:top-1/2 sm:fixed sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
-        "
+        `}
         style={{ overflowY: "auto" }}
       >
         {/* top bar */}

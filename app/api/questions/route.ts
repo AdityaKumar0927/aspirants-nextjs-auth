@@ -3,9 +3,9 @@ import { PrismaClient, QuestionStatus } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-/** 
+/**
  * Utility to parse comma-separated query params:
- * e.g. "JEE,NEET" => ["JEE","NEET"]
+ * e.g. "JEE,NEET" => ["JEE", "NEET"]
  */
 function parseCommaParam(value: string | null): string[] | undefined {
   if (!value) return undefined;
@@ -24,8 +24,12 @@ function parseCommaParam(value: string | null): string[] | undefined {
  *   &difficulty=Easy,Medium
  *   &year=2021,2022
  *   &type=Multiple Choice,Numerical
+ *   &yearKey=JEE-2023-Shift1 (for example)
  *   &page=1
  *   &pageSize=20
+ *
+ * Example:
+ *   /api/questions?exam=JEE&year=2023&yearKey=JEE-2023-Shift1&topic=Thermodynamics
  */
 export async function GET(request: Request) {
   try {
@@ -48,10 +52,13 @@ export async function GET(request: Request) {
     const yearStrArr    = parseCommaParam(searchParams.get("year"));
     const typeArr       = parseCommaParam(searchParams.get("type"));
 
+    // NEW: parse yearKey (similar to how you'd parse shift)
+    // e.g. ?yearKey=JEE-2023-Shift1
+    const yearKeyArr    = parseCommaParam(searchParams.get("yearKey"));
+
     // 3) Build Prisma WHERE object
     const where: any = {
-      // If you only want active questions, you could do:
-      // status: QuestionStatus.ACTIVE
+      // status: QuestionStatus.ACTIVE, // If you only want active questions
     };
 
     if (examArr)        where.exam       = { in: examArr };
@@ -61,6 +68,12 @@ export async function GET(request: Request) {
     if (difficultyArr)  where.difficulty = { in: difficultyArr };
     if (typeArr)        where.type       = { in: typeArr };
 
+    // Filter by yearKey if provided
+    if (yearKeyArr) {
+      where.yearKey = { in: yearKeyArr };
+    }
+
+    // Filter by numeric year if provided
     if (yearStrArr) {
       const years = yearStrArr
         .map((y) => parseInt(y, 10))
@@ -70,8 +83,10 @@ export async function GET(request: Request) {
       }
     }
 
+    // If you want to implement skipCompleted logic, you'd do so here,
+    // possibly by joining to UserProgress or a similar approach.
+
     // 4) Fetch matching questions + total count
-    //    With an "extensive" include to retrieve related data
     const [questions, totalCount] = await Promise.all([
       prisma.question.findMany({
         skip,
@@ -79,7 +94,6 @@ export async function GET(request: Request) {
         where,
         orderBy: { id: "asc" },
         include: {
-          // As many relations as you want:
           Exam: true,
           Feedback: true,
           Issue: true,
@@ -87,7 +101,7 @@ export async function GET(request: Request) {
           UserAnswer: true,
           UserPerformance: true,
           UserProgress: true,
-          // For a parent question if you have a "Question -> Question" relation:
+          // For a parent question relation (if you have one):
           Question: true,
           // For child questions:
           other_Question: true,
@@ -116,7 +130,10 @@ export async function GET(request: Request) {
     });
   } catch (error) {
     console.error("Error in GET /api/questions:", error);
-    return NextResponse.json({ error: "Failed to fetch questions" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch questions" },
+      { status: 500 }
+    );
   }
 }
 

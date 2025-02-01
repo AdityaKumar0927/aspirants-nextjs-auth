@@ -1,5 +1,4 @@
-// File: /app/mock-exam/exam-setup.tsx
-"use client"
+"use client";
 
 import React, { useEffect, useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -38,6 +37,14 @@ interface ExamSetupProps {
     numQuestions?: number;
     selectedTopics?: string[];
   }) => void;
+
+  /**
+   * Optional props that you may pass from the parent.
+   * If you don't use them in the parent, you can remove them here
+   * or mark them as optional with '?'.
+   */
+  isLoading?: boolean;
+  currentNumQuestions?: number;
 }
 
 const transitionProps = {
@@ -47,7 +54,11 @@ const transitionProps = {
   mass: 0.5,
 };
 
-export default function ExamSetup({ onStartExam }: ExamSetupProps) {
+export default function ExamSetup({
+  onStartExam,
+  isLoading = false,           // default false
+  currentNumQuestions = 0,     // default 0
+}: ExamSetupProps) {
   // Left card data
   const [exams, setExams] = useState<string[]>([]);
   const [years, setYears] = useState<number[]>([]);
@@ -84,7 +95,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
     }
   }, [topics, selectedTopics]);
 
-  // Toggle single
+  // Toggle single topic
   const toggleTopic = useCallback((topicId: number) => {
     setSelectedTopics((prev) =>
       prev.includes(topicId)
@@ -112,7 +123,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
         const r = await fetch("/api/exams-and-years");
         if (!r.ok) throw new Error("Failed to load exams");
         const data = await r.json();
-        // data => { exams:[...], years:[...], shifts:[...] (maybe) }
+        // data => { exams:[...], ... }
         const examList: string[] = data.exams?.sort((a: string, b: string) =>
           a.localeCompare(b)
         ) || [];
@@ -206,7 +217,6 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
   }, [selectedExam, selectedYear]);
 
   // 4) If exam+year => fetch question count => set default numQuestions
-  // (like your existing logic)
   useEffect(() => {
     if (selectedExam === "none" || selectedYear === "none") {
       setNumQuestions(1800);
@@ -218,7 +228,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
         setLoadingCount(true);
         const p = new URLSearchParams({
           exam: selectedExam,
-          year: selectedYear,
+          year: String(selectedYear),
           page: "1",
           pageSize: "1",
         });
@@ -251,7 +261,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
     loadQuestionCount();
   }, [selectedExam, selectedYear, selectedShift, skipCompleted, difficulty]);
 
-  // handle "Generate"
+  // handle "Generate" => calls onStartExam
   function handleGenerate() {
     if (selectedExam === "none") {
       alert("Please pick an exam first.");
@@ -284,6 +294,12 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
   return (
     <div className="container mx-auto p-6 font-light tracking-tight">
       <h1 className="text-3xl font-medium mb-6">Past Papers</h1>
+
+      {/* 
+         Example usage of isLoading/currentNumQuestions (optional):
+         <p>isLoading: {isLoading ? "Yes" : "No"}</p>
+         <p>currentNumQuestions: {currentNumQuestions}</p>
+      */}
 
       <div className="grid gap-6 md:grid-cols-[350px,1fr]">
         {/* LEFT CARD => exam, year, shift, skipCompleted, etc. */}
@@ -389,10 +405,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
           {/* 5) Difficulty */}
           <div className="space-y-2">
             <Label className="text-sm text-neutral-600">Difficulty (optional)</Label>
-            <Select
-              value={difficulty}
-              onValueChange={setDifficulty}
-            >
+            <Select value={difficulty} onValueChange={setDifficulty}>
               <SelectTrigger className="bg-white border-neutral-200">
                 <SelectValue placeholder="Any" />
               </SelectTrigger>
@@ -444,10 +457,10 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
             className="w-full bg-blue-50 hover:bg-blue-100 text-blue-600 border-blue-200 hover:border-blue-300"
             variant="outline"
             onClick={handleGenerate}
-            disabled={isDisabled}
+            disabled={isDisabled || isLoading}
           >
-            Generate
-            <Play className="ml-2 h-4 w-4" />
+            {isLoading ? "Loading..." : "Generate"}
+            {!isLoading && <Play className="ml-2 h-4 w-4" />}
           </Button>
         </Card>
 
