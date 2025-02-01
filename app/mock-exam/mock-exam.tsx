@@ -21,6 +21,9 @@ export default function MockExam() {
   const { toast } = useToast();
   const { data: session } = useSession();
 
+  // -------------------------------------------------------------
+  // 0) State for user selections (exam, year, shift, etc.)
+  // -------------------------------------------------------------
   const [selectedExam, setSelectedExam] = useState("");
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [selectedShift, setSelectedShift] = useState("");
@@ -30,12 +33,15 @@ export default function MockExam() {
   const [numQuestions, setNumQuestions] = useState<number>(1800);
   const [selectedTopics, setSelectedTopics] = useState<string[] | undefined>(undefined);
 
+  // The fetched questions
   const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
 
+  // UI states
   const [isLoading, setIsLoading] = useState(false);
   const [isExamStarted, setIsExamStarted] = useState(false);
   const [isExamFinished, setIsExamFinished] = useState(false);
 
+  // Tracking answers, statuses
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<(string | null)[]>([]);
   const [questionStatuses, setQuestionStatuses] = useState<{ [index: number]: string }>({});
@@ -43,9 +49,12 @@ export default function MockExam() {
   const [examTimeLeft, setExamTimeLeft] = useState(HOUR_IN_SECONDS);
   const [examResults, setExamResults] = useState<ExamResultsType | null>(null);
 
+  // A ref to measure how long user spends on each question
   const questionStartTimeRef = useRef<number>(0);
 
-  // The child calls this => we store the picks => fetch questions
+  // ------------------------------------------------------------------
+  // 1) The child calls onStartExam => store picks => fetch questions
+  // ------------------------------------------------------------------
   async function handleStartExam(params: {
     exam: string;
     year: number;
@@ -67,6 +76,7 @@ export default function MockExam() {
       selectedTopics,
     } = params;
 
+    // store them
     setSelectedExam(exam);
     setSelectedYear(year);
     setSelectedShift(shift || "");
@@ -76,6 +86,7 @@ export default function MockExam() {
     setNumQuestions(numQuestions || 1800);
     setSelectedTopics(selectedTopics);
 
+    // start the exam => fetch questions
     await startExam({ exam, year, shift, time: examTime, skipCompleted });
   }
 
@@ -112,6 +123,7 @@ export default function MockExam() {
 
       setIsLoading(true);
 
+      // build query
       const params = new URLSearchParams();
       params.set("exam", exam);
       params.set("year", String(year));
@@ -119,20 +131,19 @@ export default function MockExam() {
       params.set("pageSize", String(numQuestions || 1800));
 
       if (shift) {
-        // pass shift => yearKey
+        // treat shift as "key" or "yearKey" in the DB
         params.set("shift", shift);
       }
       if (skipCompleted) {
         params.set("skipCompleted", "true");
       }
       if (difficulty) {
-        // your route supports ?difficulty= ?
         params.set("difficulty", difficulty);
       }
 
       const response = await fetch(`/api/questions?${params.toString()}`);
       if (!response.ok) {
-        throw new Error("Failed to fetch questions for the chosen exam/year/shift.");
+        throw new Error("Failed to fetch questions for that exam/year/shift.");
       }
 
       const data = await response.json();
@@ -141,7 +152,7 @@ export default function MockExam() {
       if (!matching || matching.length === 0) {
         toast({
           title: "No Questions Found",
-          description: "No questions matched your selection. Try different options.",
+          description: "No matches found for your selection. Please try different options.",
           variant: "destructive",
         });
         setIsLoading(false);
@@ -150,7 +161,7 @@ export default function MockExam() {
 
       setFilteredQuestions(matching);
 
-      // init statuses, answers, time
+      // Initialize statuses, answers, timeSpent
       const initialStatuses: { [index: number]: string } = {};
       matching.forEach((_: any, i: number) => {
         initialStatuses[i] = "notVisited";
@@ -159,7 +170,6 @@ export default function MockExam() {
       setAnswers(new Array(matching.length).fill(null));
       setTimeSpentPerQuestion(new Array(matching.length).fill(0));
 
-      // set exam time in seconds
       setExamTimeLeft(time * 60);
 
       setIsExamStarted(true);
@@ -180,7 +190,9 @@ export default function MockExam() {
     }
   }
 
-  // 3) Handling answers, statuses, navigation
+  // ------------------------------------------------------------------
+  // 2) Handling answers, statuses, navigation
+  // ------------------------------------------------------------------
   const handleAnswer = useCallback(
     (answerId: string) => {
       setAnswers((prev) => {
@@ -231,7 +243,7 @@ export default function MockExam() {
     }
   }, [currentQuestion, filteredQuestions.length]);
 
-  // 4) Navigation with time
+  // Navigation with time tracking
   function updateTimeSpent() {
     const timeSpent = Math.floor((Date.now() - questionStartTimeRef.current) / 1000);
     setTimeSpentPerQuestion((prev) => {
@@ -268,7 +280,9 @@ export default function MockExam() {
     }
   }
 
-  // 5) Submit exam
+  // ------------------------------------------------------------------
+  // 3) Submitting the exam => build examResults
+  // ------------------------------------------------------------------
   function handleSubmit() {
     if (!filteredQuestions.length) return;
     updateTimeSpent();
@@ -280,7 +294,7 @@ export default function MockExam() {
     const incorrectAnswers = totalQuestions - correctCount;
     const score = (correctCount / totalQuestions) * 100;
 
-    // Example topic performance
+    // For topic performance
     const topicPerformance: Record<string, TopicPerformance> = {};
     const subtopicPerformance: Record<string, TopicPerformance> = {};
     const topicWiseIncorrectAnswers: Record<string, number> = {};
@@ -321,6 +335,7 @@ export default function MockExam() {
       timeSpentPerQuestion.reduce((a, b) => a + b, 0) /
       timeSpentPerQuestion.length;
 
+    // Example skill levels
     const skillLevels: Record<string, number> = {
       "Problem Solving": Math.random() * 100,
       "Critical Thinking": Math.random() * 100,
@@ -328,9 +343,6 @@ export default function MockExam() {
       "Conceptual Understanding": Math.random() * 100,
       "Application of Knowledge": Math.random() * 100,
     };
-
-    // We'll include each question's .explanation in examResults => so we can show it
-    // already in filteredQuestions
 
     setExamResults({
       totalQuestions,
@@ -346,14 +358,16 @@ export default function MockExam() {
       timeSpentPerQuestion,
       averageTimePerQuestion: avgTimePerQ,
       topicWiseIncorrectAnswers,
-      questions: filteredQuestions, // includes explanation
+      questions: filteredQuestions,
       skillLevels,
     });
 
     setIsExamFinished(true);
   }
 
-  // 6) Timer effect
+  // ------------------------------------------------------------------
+  // 4) Timer effect => auto submit
+  // ------------------------------------------------------------------
   useEffect(() => {
     let examTimer: NodeJS.Timeout;
     if (isExamStarted && !isExamFinished) {
@@ -380,9 +394,11 @@ export default function MockExam() {
     }
   }, [currentQuestion, isExamStarted, isExamFinished]);
 
-  // 7) Early exit
+  // ------------------------------------------------------------------
+  // 5) Early exit
+  // ------------------------------------------------------------------
   function exitExam() {
-    if (window.confirm("Are you sure you want to exit the exam?")) {
+    if (window.confirm("Are you sure you want to exit the exam? Your progress will be lost.")) {
       setIsExamStarted(false);
       setIsExamFinished(false);
       setExamResults(null);
@@ -394,6 +410,7 @@ export default function MockExam() {
     setIsExamStarted(false);
     setIsExamFinished(false);
     setExamResults(null);
+    // reset the user picks
     setSelectedExam("");
     setSelectedYear(null);
     setSelectedShift("");
@@ -404,7 +421,60 @@ export default function MockExam() {
     setSelectedTopics(undefined);
   }
 
-  // 8) Loading skeleton if needed
+  // ------------------------------------------------------------------
+  // 6) Saving to DB => after we have examResults
+  // ------------------------------------------------------------------
+  async function handleSaveExamResults() {
+    if (!examResults) return;
+
+    // Check if user is authenticated
+    if (!session || !session.user?.id) {
+      toast({
+        title: "Not Signed In",
+        description: "Please log in to save your exam attempt.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      // POST to /api/mock-exams
+      const body = {
+        exam: selectedExam,
+        year: selectedYear || undefined,
+        shift: selectedShift || undefined,
+        completed: true,
+        results: examResults,
+      };
+
+      const res = await fetch("/api/mock-exams", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to save your exam attempt. Please try again.");
+      }
+
+      const data = await res.json();
+      toast({
+        title: "Exam Saved",
+        description: "Your mock exam attempt was saved to your history.",
+      });
+    } catch (err: any) {
+      console.error("Error saving exam:", err);
+      toast({
+        title: "Save Failed",
+        description: err.message,
+        variant: "destructive",
+      });
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // 7) Loading skeleton if needed
+  // ------------------------------------------------------------------
   if (isLoading && !isExamStarted && !isExamFinished) {
     return (
       <div className="min-h-screen p-4 flex flex-col">
@@ -415,10 +485,12 @@ export default function MockExam() {
     );
   }
 
-  // 9) Render
+  // ------------------------------------------------------------------
+  // 8) Render the 3 states: Setup -> Exam -> Results
+  // ------------------------------------------------------------------
   return (
     <AnimatePresence mode="wait">
-      {/* 1) exam setup */}
+      {/* Setup */}
       {!isExamStarted && !isExamFinished && (
         <motion.div
           key="setup"
@@ -431,7 +503,7 @@ export default function MockExam() {
         </motion.div>
       )}
 
-      {/* 2) exam in progress */}
+      {/* Exam in progress */}
       {isExamStarted && !isExamFinished && (
         <motion.div
           key="exam"
@@ -469,7 +541,7 @@ export default function MockExam() {
         </motion.div>
       )}
 
-      {/* 3) exam results => show explanations */}
+      {/* Exam results => show optional save prompt */}
       {isExamFinished && examResults && (
         <motion.div
           key="results"
@@ -483,6 +555,33 @@ export default function MockExam() {
             onStartNewExam={onStartNewExam}
             onExit={() => setIsExamFinished(false)}
           />
+
+          {/* 
+            Prompt the user if they'd like to save the exam attempt.
+            Could do a "Confirm" or a small inline button. 
+          */}
+          <div className="p-4 flex flex-col items-center">
+            {session?.user?.id ? (
+              <button
+                className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+                onClick={() => {
+                  if (
+                    window.confirm(
+                      "Would you like to save your exam attempt to your history?"
+                    )
+                  ) {
+                    handleSaveExamResults();
+                  }
+                }}
+              >
+                Save Exam Attempt
+              </button>
+            ) : (
+              <p className="text-sm text-red-500 mt-2">
+                Log in to save your exam attempt.
+              </p>
+            )}
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
