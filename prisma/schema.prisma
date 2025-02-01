@@ -88,22 +88,24 @@ model Feedback {
 }
 
 model Issue {
-  id                            String          @id @default(uuid())
-  title                         String
-  description                   String
-  status                        IssueStatus     @default(OPEN)
-  priority                      IssuePriority
-  area                          IssueArea
-  createdAt                     DateTime        @default(now())
-  updatedAt                     DateTime
-  createdById                   String
-  questionId                    String?
-  resolvedById                  String?
-  userNotified                  Boolean         @default(false)
-  User_Issue_createdByIdToUser  User            @relation("Issue_createdByIdToUser", fields: [createdById], references: [id], onDelete: Cascade)
-  Question                      Question?       @relation(fields: [questionId], references: [questionId])
-  User_Issue_resolvedByIdToUser User?           @relation("Issue_resolvedByIdToUser", fields: [resolvedById], references: [id])
-  VolunteerTask                 VolunteerTask[]
+  id          String         @id @default(uuid())
+  title       String
+  description String
+  status      IssueStatus    @default(OPEN)
+  priority    IssuePriority
+  area        IssueArea
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  createdById String
+  questionId  String?
+  resolvedById String?
+  userNotified Boolean       @default(false)
+
+  createdBy  User     @relation("Issue_createdByIdToUser", fields: [createdById], references: [id], onDelete: Cascade)
+  question   Question? @relation(fields: [questionId], references: [questionId])
+  resolvedBy User?    @relation("Issue_resolvedByIdToUser", fields: [resolvedById], references: [id])
+
+  VolunteerTask VolunteerTask[]
 }
 
 model ModeratorLimit {
@@ -115,16 +117,16 @@ model ModeratorLimit {
 }
 
 model Note {
-  id         String    @id @default(uuid())
-  title      String
-  content    String
-  type       NoteType
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime
-  userId     String
+  id        String    @id @default(uuid())
+  title     String
+  content   String
+  type      NoteType
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  userId    String
   questionId String?
-  Question   Question? @relation(fields: [questionId], references: [questionId])
-  User       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Question  Question? @relation(fields: [questionId], references: [questionId])
+  User      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([questionId])
   @@index([userId])
@@ -218,6 +220,7 @@ model Question {
   permalink            String?
   subjectGroup         String?
   topicName            String?
+
   Feedback             Feedback[]
   Issue                Issue[]
   Note                 Note[]

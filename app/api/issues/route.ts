@@ -5,6 +5,7 @@ import { authOptions } from '../auth/[...nextauth]/options'
 
 export async function GET() {
   try {
+    // Now that we've renamed the Issue relations, we can do include: { createdBy: ... }
     const issues = await prisma.issue.findMany({
       include: {
         createdBy: {
@@ -28,11 +29,13 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions)
-    if (!session) {
+    if (!session?.user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     const { title, description, priority, area } = await req.json()
+
+    // We connect the "createdBy" relation by email:
     const newIssue = await prisma.issue.create({
       data: {
         title,
@@ -40,7 +43,9 @@ export async function POST(req: NextRequest) {
         priority,
         area,
         status: 'OPEN',
-        createdBy: { connect: { email: session.user?.email } },
+        // your schema has "createdById String" + "createdBy User?"
+        // So to connect by email, we do:
+        createdBy: { connect: { email: session.user.email } },
       },
       include: {
         createdBy: {
@@ -51,6 +56,7 @@ export async function POST(req: NextRequest) {
         },
       },
     })
+
     return NextResponse.json(newIssue)
   } catch (error) {
     console.error('Error creating issue:', error)

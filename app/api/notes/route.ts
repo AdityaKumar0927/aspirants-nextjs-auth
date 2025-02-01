@@ -6,14 +6,11 @@ import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
 
 const prisma = new PrismaClient()
-
-// Initialize Redis with environment variables
 const redis = new Redis({
   url: process.env.REDIS_URL!,
   token: process.env.REDIS_TOKEN!,
 })
 
-// Create a new ratelimiter
 const ratelimit = new Ratelimit({
   redis,
   limiter: Ratelimit.slidingWindow(10, '10 s'),
@@ -23,20 +20,18 @@ const ratelimit = new Ratelimit({
 export async function GET(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions)
-    if (!session || !session.user) {
+    if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const userId = session.user.id
     const ip = req.ip ?? '127.0.0.1'
     const { success } = await ratelimit.limit(ip)
-    
     if (!success) {
       return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
     }
 
     const notes = await prisma.note.findMany({
-      where: { userId: userId },
+      where: { userId: session.user.id },
       orderBy: { updatedAt: 'desc' },
     })
 
@@ -52,31 +47,30 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions)
-    if (!session || !session.user) {
+    if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const userId = session.user.id
     const ip = req.ip ?? '127.0.0.1'
     const { success } = await ratelimit.limit(ip)
-    
     if (!success) {
       return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
     }
 
     const { title, content, type, questionId } = await req.json()
-
     if (!title || !content || !type) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
+    // Because we set "updatedAt DateTime @updatedAt" in the schema,
+    // we only need to pass the minimal fields for a create.
     const note = await prisma.note.create({
       data: {
         title,
         content,
         type,
-        questionId,
-        userId,
+        questionId: questionId || null,
+        userId: session.user.id,
       },
     })
 
@@ -90,20 +84,17 @@ export async function POST(req: NextRequest) {
 export async function PUT(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions)
-    if (!session || !session.user) {
+    if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const userId = session.user.id
     const ip = req.ip ?? '127.0.0.1'
     const { success } = await ratelimit.limit(ip)
-    
     if (!success) {
       return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
     }
 
     const { id, title, content, type } = await req.json()
-
     if (!id || !title || !content || !type) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
@@ -111,8 +102,7 @@ export async function PUT(req: NextRequest) {
     const note = await prisma.note.findUnique({
       where: { id },
     })
-
-    if (!note || note.userId !== userId) {
+    if (!note || note.userId !== session.user.id) {
       return NextResponse.json({ error: 'Note not found or unauthorized' }, { status: 404 })
     }
 
@@ -131,20 +121,17 @@ export async function PUT(req: NextRequest) {
 export async function DELETE(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions)
-    if (!session || !session.user) {
+    if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const userId = session.user.id
     const ip = req.ip ?? '127.0.0.1'
     const { success } = await ratelimit.limit(ip)
-    
     if (!success) {
       return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
     }
 
     const { id } = await req.json()
-
     if (!id) {
       return NextResponse.json({ error: 'Missing note id' }, { status: 400 })
     }
@@ -152,8 +139,7 @@ export async function DELETE(req: NextRequest) {
     const note = await prisma.note.findUnique({
       where: { id },
     })
-
-    if (!note || note.userId !== userId) {
+    if (!note || note.userId !== session.user.id) {
       return NextResponse.json({ error: 'Note not found or unauthorized' }, { status: 404 })
     }
 
