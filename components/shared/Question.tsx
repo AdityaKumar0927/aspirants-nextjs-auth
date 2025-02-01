@@ -3,11 +3,9 @@
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useSwipeable } from "react-swipeable"
-import { Checkbox } from "@/components/ui/checkbox"
 import MathRenderer from "@/components/layout/MathRenderer"
 import {
-  BookOpen,
-  LucideBot,
+  Check,
   X,
   MessageSquare,
   ThumbsUp,
@@ -18,6 +16,8 @@ import {
   CornerDownRight,
   Flag,
   ChevronDown,
+  Cpu,
+  StickyNote,
 } from "lucide-react"
 import Image from "next/image"
 import Tiptap from "@/components/layout/Tiptap"
@@ -118,6 +118,7 @@ interface QuestionProps {
   selectedOption: string | undefined
   numericalAnswer: string | undefined
   showMarkscheme: boolean | undefined
+
   handleOptionClick: (questionId: string, option: string, correctOption: string) => void
   handleNumericalSubmit: (questionId: string, userAnswer: string, correctAnswer: string) => void
   handleNumericalChange: (questionId: string, value: string) => void
@@ -125,15 +126,19 @@ interface QuestionProps {
   handleMarkForReview: (questionId: string, newVal?: boolean) => void
   handleMarkComplete: (questionId: string, newVal?: boolean) => void
   handleResetQuestion: (questionId: string) => void
+
   isMarkedForReview: boolean
   isMarkedComplete: boolean
   markschemesDisabled: boolean
+
   note: string
   handleNoteChange: (questionId: string, note: string) => void
   handleDeleteNote: (questionId: string) => Promise<void>
   userId: string
+
   onNextQuestion?: () => void
   onPreviousQuestion?: () => void
+
   totalQuestions: number
   currentQuestionIndex: number
   handleQuestionChange: (index: number) => void
@@ -166,21 +171,22 @@ export default function Question({
   handleQuestionChange,
 }: QuestionProps) {
   const displayNumber = currentQuestionIndex + 1
+
   const [pendingOption, setPendingOption] = useState<string | null>(null)
-  const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(
-    selectedOption || null
-  )
+  const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(selectedOption || null)
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false)
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled)
   const [showNotes, setShowNotes] = useState(false)
   const [showAI, setShowAI] = useState(false)
   const [showComments, setShowComments] = useState(false)
+
   const [comments, setComments] = useState<CommentType[]>([])
   const [newComment, setNewComment] = useState("")
   const [replyingTo, setReplyingTo] = useState<string | null>(null)
   const [editingCommentId, setEditingCommentId] = useState<string | null>(null)
   const [editedCommentContent, setEditedCommentContent] = useState("")
   const [commentSort, setCommentSort] = useState<"newest" | "oldest" | "popular">("newest")
+
   const [newTag, setNewTag] = useState("")
   const [localCustomTags, setLocalCustomTags] = useState<string[]>(question.customTags || [])
   const [aiEnabled, setAiEnabled] = useState(true)
@@ -190,8 +196,10 @@ export default function Question({
   const [localDifficultyRating, setLocalDifficultyRating] = useState<number | undefined>(
     question.difficultyRating
   )
+
   const { toast } = useToast()
 
+  // For swiping on mobile
   const handlers = useSwipeable({
     onSwipedLeft: () => onNextQuestion && onNextQuestion(),
     onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
@@ -211,6 +219,7 @@ export default function Question({
   function handleRemoveTag(tag: string) {
     setLocalCustomTags(localCustomTags.filter((t) => t !== tag))
   }
+
   async function toggleComplete(checked: boolean) {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId, checked)
@@ -231,6 +240,7 @@ export default function Question({
       })
     }
   }
+
   async function toggleReview() {
     if (!question.questionId) return
     const newVal = !isMarkedForReview
@@ -252,15 +262,18 @@ export default function Question({
       })
     }
   }
+
   function handleOptionSelect(letter: string) {
     setPendingOption(letter)
   }
+
   async function handleMcqSubmit() {
     if (!pendingOption || !question.questionId) return
     await handleMarkComplete(question.questionId, true)
     handleOptionClick(question.questionId, pendingOption, question.correctOption ?? "N/A")
     setLocalSelectedOption(pendingOption)
   }
+
   async function handleNumericalSubmitLocal() {
     if (!question.questionId) return
     await handleNumericalSubmit(
@@ -269,6 +282,7 @@ export default function Question({
       question.correctOption ?? "N/A"
     )
   }
+
   async function handleDifficultyChange(newRating: number) {
     if (!question.questionId) return
     setLocalDifficultyRating(newRating)
@@ -298,6 +312,7 @@ export default function Question({
       })
     }
   }
+
   async function saveNote() {
     if (!question.questionId) return
     try {
@@ -329,6 +344,7 @@ export default function Question({
       })
     }
   }
+
   async function deleteNote() {
     if (!noteId || !question.questionId) return
     try {
@@ -352,10 +368,16 @@ export default function Question({
       })
     }
   }
+
   function cleanOptionText(option: string): string {
     return option.replace(/^[A-D]:\s?/i, "").trim()
   }
+
+  // We can highlight the border on desktop or bigger screens
+  // but let's allow mobile to ignore it. Typically we can just keep it simpler:
   function getBorderColorClass() {
+    // If you decide not to color the card border on mobile, you can conditionally check screen size
+    // For now, we do the coloring for all screens
     if (isMarkedForReview) {
       return "border-yellow-500 border-2"
     } else if (feedback === "correct") {
@@ -366,19 +388,15 @@ export default function Question({
       return "border-gray-300 dark:border-gray-600 border-2"
     }
   }
+
   return (
     <TooltipProvider>
-      <div {...handlers} className="relative pb-20" id={`question-${question.questionId}`}>
-        <Card
-          className={`
-            w-full overflow-hidden mb-6 dark:bg-gray-800 dark:text-gray-100
-            ${getBorderColorClass()}
-          `}
-        >
+      <div {...handlers} className="relative" id={`question-${question.questionId}`}>
+        <Card className={`w-full overflow-hidden mb-6 dark:bg-gray-800 dark:text-gray-100 ${getBorderColorClass()}`}>
           <CardHeader className="relative">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
-              <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
-                <CardTitle className="font-normal text-2xl sm:text-3xl">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2">
+              <div className="flex flex-col md:flex-row items-start md:items-center gap-2">
+                <CardTitle className="font-normal text-xl sm:text-2xl">
                   Question #{displayNumber}
                 </CardTitle>
                 {question.subject && (
@@ -391,7 +409,7 @@ export default function Question({
                     {question.difficulty}
                   </div>
                 )}
-                {question.year !== undefined && (
+                {typeof question.year === "number" && (
                   <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
                     {question.year}
                   </div>
@@ -438,36 +456,42 @@ export default function Question({
                   </Tooltip>
                 </div>
               </div>
-              <div className="flex items-center space-x-4">
+
+              <div className="flex items-center gap-3 flex-wrap">
+                {/* Mark complete */}
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Checkbox
-                      id={`complete-${question.questionId}`}
-                      checked={isMarkedComplete}
-                      onCheckedChange={(checked) => toggleComplete(!!checked)}
-                      className="dark:bg-gray-800 dark:border-gray-500"
-                    />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    {isMarkedComplete ? "Unmark Complete" : "Mark as Complete"}
-                  </TooltipContent>
-                </Tooltip>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost" size="icon" onClick={toggleReview}>
-                      <Flag
-                        className={
-                          isMarkedForReview
-                            ? "fill-yellow-500 text-yellow-500"
-                            : "text-gray-500"
-                        }
-                      />
+                    <Button
+                      size="icon"
+                      variant={isMarkedComplete ? "default" : "ghost"}
+                      className={`h-8 w-8 ${isMarkedComplete ? "bg-green-600 hover:bg-green-700" : ""}`}
+                      onClick={() => toggleComplete(!isMarkedComplete)}
+                    >
+                      <Check className={`h-4 w-4 ${isMarkedComplete ? "text-white" : ""}`} />
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    {isMarkedForReview ? "Unflag for Review" : "Flag for Review"}
+                    <p>Mark as completed</p>
                   </TooltipContent>
                 </Tooltip>
+
+                {/* Flag */}
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      size="icon"
+                      variant={isMarkedForReview ? "default" : "ghost"}
+                      className={`h-8 w-8 ${isMarkedForReview ? "bg-yellow-500 hover:bg-yellow-600" : ""}`}
+                      onClick={() => toggleReview()}
+                    >
+                      <Flag className={`h-4 w-4 ${isMarkedForReview ? "text-white" : ""}`} />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Flag question</p>
+                  </TooltipContent>
+                </Tooltip>
+
                 <SettingsPopover
                   markschemeEnabled={markschemeEnabled}
                   setMarkschemeEnabled={() => setMarkschemeEnabled(!markschemeEnabled)}
@@ -480,7 +504,9 @@ export default function Question({
               </div>
             </div>
           </CardHeader>
+
           <CardContent>
+            {/* Possibly an image diagram */}
             <div className="mb-6">
               {question.diagramUrl && question.diagramUrl !== "" && (
                 <div className="relative w-full max-w-xl mx-auto mb-4">
@@ -499,6 +525,8 @@ export default function Question({
                 </div>
               )}
             </div>
+
+            {/* Numeric Input */}
             {(question.type === "Numerical" || question.type === "integer") && (
               <div className="mb-4">
                 <Input
@@ -547,8 +575,9 @@ export default function Question({
                         Submit
                       </Button>
                     </TooltipTrigger>
-                    <TooltipContent>Submit your numeric answer</TooltipContent>
+                    <TooltipContent>Submit numeric answer</TooltipContent>
                   </Tooltip>
+
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Button
@@ -563,98 +592,99 @@ export default function Question({
                 </div>
               </div>
             )}
-            {(question.type === "Multiple Choice" || question.type === "mcq") &&
-              question.options &&
-              question.options.length > 0 && (
-                <div className="mb-4">
-                  <div className="space-y-2">
-                    {question.options.map((rawOption, idx) => {
-                      const letter = String.fromCharCode(65 + idx)
-                      const optionText = cleanOptionText(rawOption)
-                      const isPending = pendingOption === letter
-                      const directSelected = localSelectedOption === letter
-                      const isFeedbackActive = directSelected && feedback
-                      return (
-                        <Button
-                          key={idx}
-                          variant="outline"
-                          onClick={() => handleOptionSelect(letter)}
-                          className={`
-                            w-full text-left text-base sm:text-lg p-4 leading-7
-                            flex flex-col items-start space-y-2 whitespace-normal
-                            ${
-                              isFeedbackActive
-                                ? feedback === "correct"
-                                  ? "bg-green-100 hover:bg-green-200 text-green-700 border-green-400"
-                                  : "bg-red-100 hover:bg-red-200 text-red-700 border-red-400"
-                                : isPending
-                                ? "border-blue-400 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-slate-800 dark:text-blue-200"
-                                : "border-gray-300 dark:border-gray-600"
-                            }
-                          `}
-                          style={{ height: "auto", minHeight: "1rem" }}
-                        >
-                          <span className="font-semibold">{letter}.</span>
-                          {optionText.startsWith("http") ? (
-                            <div className="w-full">
-                              <Image
-                                src={optionText}
-                                alt={`Option ${letter}`}
-                                width={800}
-                                height={600}
-                                className="rounded-md w-full h-auto object-contain"
-                              />
-                            </div>
-                          ) : (
-                            <div className="latex-font">
-                              <MathRenderer text={optionText} />
-                            </div>
-                          )}
-                        </Button>
-                      )
-                    })}
-                  </div>
-                  <div className="mt-2 flex gap-2">
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          onClick={handleMcqSubmit}
-                          disabled={!pendingOption}
-                          className="
-                            border
-                            border-blue-400
-                            bg-blue-50
-                            text-blue-800
-                            dark:border-blue-600
-                            dark:bg-slate-800
-                            dark:text-blue-200
-                            px-4 py-1
-                            hover:bg-blue-100
-                            dark:hover:bg-slate-700
-                            rounded-sm
-                          "
-                        >
-                          Submit
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>Submit your MCQ answer</TooltipContent>
-                    </Tooltip>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="outline"
-                          onClick={() =>
-                            question.questionId && handleResetQuestion(question.questionId)
+
+            {/* MCQ */}
+            {(question.type === "Multiple Choice" || question.type === "mcq") && question.options?.length ? (
+              <div className="mb-4">
+                <div className="space-y-2">
+                  {question.options.map((rawOption, idx) => {
+                    const letter = String.fromCharCode(65 + idx)
+                    const optionText = cleanOptionText(rawOption)
+                    const isPending = pendingOption === letter
+                    const directSelected = localSelectedOption === letter
+                    const isFeedbackActive = directSelected && feedback
+                    return (
+                      <Button
+                        key={idx}
+                        variant="outline"
+                        onClick={() => handleOptionSelect(letter)}
+                        className={`
+                          w-full text-left text-base sm:text-lg p-4 leading-7
+                          flex flex-col items-start space-y-2 whitespace-normal
+                          ${
+                            isFeedbackActive
+                              ? feedback === "correct"
+                                ? "bg-green-100 hover:bg-green-200 text-green-700 border-green-400"
+                                : "bg-red-100 hover:bg-red-200 text-red-700 border-red-400"
+                              : isPending
+                              ? "border-blue-400 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-slate-800 dark:text-blue-200"
+                              : "border-gray-300 dark:border-gray-600"
                           }
-                        >
-                          Reset
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>Clear answer & unmark question</TooltipContent>
-                    </Tooltip>
-                  </div>
+                        `}
+                        style={{ height: "auto", minHeight: "1rem" }}
+                      >
+                        <span className="font-semibold">{letter}.</span>
+                        {optionText.startsWith("http") ? (
+                          <div className="w-full">
+                            <Image
+                              src={optionText}
+                              alt={`Option ${letter}`}
+                              width={800}
+                              height={600}
+                              className="rounded-md w-full h-auto object-contain"
+                            />
+                          </div>
+                        ) : (
+                          <div className="latex-font">
+                            <MathRenderer text={optionText} />
+                          </div>
+                        )}
+                      </Button>
+                    )
+                  })}
                 </div>
-              )}
+                <div className="mt-2 flex gap-2">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        onClick={handleMcqSubmit}
+                        disabled={!pendingOption}
+                        className="
+                          border
+                          border-blue-400
+                          bg-blue-50
+                          text-blue-800
+                          dark:border-blue-600
+                          dark:bg-slate-800
+                          dark:text-blue-200
+                          px-4 py-1
+                          hover:bg-blue-100
+                          dark:hover:bg-slate-700
+                          rounded-sm
+                        "
+                      >
+                        Submit
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Submit your MCQ answer</TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="outline"
+                        onClick={() => question.questionId && handleResetQuestion(question.questionId)}
+                      >
+                        Reset
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Clear answer & unmark question</TooltipContent>
+                  </Tooltip>
+                </div>
+              </div>
+            ) : null}
+
+            {/* Feedback Banner */}
             {feedback && (
               <div
                 className={`mt-4 p-2 rounded ${
@@ -666,10 +696,12 @@ export default function Question({
                 {feedback === "correct" ? "Correct!" : "Incorrect, try again."}
               </div>
             )}
-            {((localSelectedOption && markschemeEnabled) ||
-              ((question.type === "Numerical" || question.type === "integer") &&
-                numericalAnswer &&
-                markschemeEnabled)) && (
+
+            {/* Show Markscheme button if selected or numeric answered, plus markschemeEnabled */}
+            {(
+              (localSelectedOption && markschemeEnabled) ||
+              ((question.type === "Numerical" || question.type === "integer") && numericalAnswer && markschemeEnabled)
+            ) && (
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
@@ -686,6 +718,8 @@ export default function Question({
                 <TooltipContent>View the markscheme</TooltipContent>
               </Tooltip>
             )}
+
+            {/* Difficulty dropdown */}
             <div className="flex items-center space-x-2 mt-4">
               <Label className="text-sm text-gray-600 dark:text-gray-300">Difficulty:</Label>
               <Select
@@ -716,11 +750,13 @@ export default function Question({
               </Select>
             </div>
           </CardContent>
-          <CardFooter className="flex justify-end space-x-2">
+
+          {/* Footer row => left-aligned buttons */}
+          <CardFooter className="flex flex-wrap gap-2 justify-start">
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button variant="outline" onClick={() => setShowNotes(!showNotes)}>
-                  <BookOpen className="mr-2 h-4 w-4" />
+                  <StickyNote className="mr-2 h-4 w-4" />
                   {showNotes ? "Hide Notes" : "Take Notes"}
                 </Button>
               </TooltipTrigger>
@@ -728,15 +764,17 @@ export default function Question({
                 {showNotes ? "Hide note-taking interface" : "Open note-taking interface"}
               </TooltipContent>
             </Tooltip>
+
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button variant="outline" onClick={() => setShowAI(!showAI)}>
-                  <LucideBot className="mr-2 h-4 w-4" />
+                  <Cpu className="mr-2 h-4 w-4" />
                   {showAI ? "Hide AI" : "AI Assistance"}
                 </Button>
               </TooltipTrigger>
               <TooltipContent>{showAI ? "Hide AI assistant" : "Get AI help"}</TooltipContent>
             </Tooltip>
+
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button variant="outline" onClick={() => setShowComments(!showComments)}>
@@ -750,11 +788,13 @@ export default function Question({
             </Tooltip>
           </CardFooter>
         </Card>
+
+        {/* Notes Section */}
         {showNotes && (
           <Card className="mb-6 dark:bg-gray-800 dark:text-gray-100">
             <CardHeader>
               <CardTitle>Notes</CardTitle>
-              <CardDescription>Add your notes for this question here.</CardDescription>
+              <CardDescription>Make your notes for this question.</CardDescription>
             </CardHeader>
             <CardContent>
               <Tiptap
@@ -775,6 +815,8 @@ export default function Question({
             </CardFooter>
           </Card>
         )}
+
+        {/* AI Assistant */}
         {showAI && (
           <Card className="mb-6 dark:bg-gray-800 dark:text-gray-100">
             <CardHeader>
@@ -793,6 +835,8 @@ export default function Question({
             </CardContent>
           </Card>
         )}
+
+        {/* Comments */}
         {showComments && (
           <Card className="mb-6 dark:bg-gray-800 dark:text-gray-100">
             <CardHeader>
@@ -805,7 +849,9 @@ export default function Question({
                   <Label htmlFor="comment-sort">Sort by</Label>
                   <Select
                     value={commentSort}
-                    onValueChange={(value: "newest" | "oldest" | "popular") => setCommentSort(value)}
+                    onValueChange={(value: "newest" | "oldest" | "popular") =>
+                      setCommentSort(value)
+                    }
                   >
                     <SelectTrigger className="w-[180px]">
                       <SelectValue placeholder="Sort comments" />
@@ -817,6 +863,7 @@ export default function Question({
                     </SelectContent>
                   </Select>
                 </div>
+
                 <div className="space-y-4">
                   <Textarea
                     id="comment"
@@ -846,6 +893,7 @@ export default function Question({
                     Add Comment
                   </Button>
                 </div>
+
                 <ScrollArea className="h-[300px]">
                   {comments.map((c) => (
                     <CommentItem
@@ -943,6 +991,8 @@ export default function Question({
             </CardContent>
           </Card>
         )}
+
+        {/* Markscheme Modal */}
         <AnimatePresence>
           {showMarkschemeModal && (
             <motion.div
@@ -1040,7 +1090,9 @@ function CommentItem({
               <AvatarImage
                 src={`https://api.dicebear.com/6.x/initials/svg?seed=${comment.username}`}
               />
-              <AvatarFallback>{comment.username.slice(0, 2).toUpperCase()}</AvatarFallback>
+              <AvatarFallback>
+                {comment.username.slice(0, 2).toUpperCase()}
+              </AvatarFallback>
             </Avatar>
             <div>
               <p className="font-semibold">{comment.username}</p>
@@ -1068,6 +1120,7 @@ function CommentItem({
           ) : (
             <p className="mt-2">{comment.content}</p>
           )}
+
           <div className="mt-2 flex items-center space-x-4">
             <Tooltip>
               <TooltipTrigger asChild>
@@ -1081,6 +1134,7 @@ function CommentItem({
               </TooltipTrigger>
               <TooltipContent>Upvote</TooltipContent>
             </Tooltip>
+
             <Tooltip>
               <TooltipTrigger asChild>
                 <button
@@ -1093,6 +1147,7 @@ function CommentItem({
               </TooltipTrigger>
               <TooltipContent>Downvote</TooltipContent>
             </Tooltip>
+
             <Tooltip>
               <TooltipTrigger asChild>
                 <button
@@ -1104,6 +1159,7 @@ function CommentItem({
               </TooltipTrigger>
               <TooltipContent>Reply</TooltipContent>
             </Tooltip>
+
             {comment.userId === userId && (
               <>
                 <Tooltip>
@@ -1120,6 +1176,7 @@ function CommentItem({
                   </TooltipTrigger>
                   <TooltipContent>Edit</TooltipContent>
                 </Tooltip>
+
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <button
@@ -1134,6 +1191,7 @@ function CommentItem({
               </>
             )}
           </div>
+
           {replyingTo === comment.id && (
             <div className="mt-2">
               <Textarea
@@ -1152,6 +1210,7 @@ function CommentItem({
           )}
         </div>
       </div>
+
       {comment.replies.map((r) => (
         <CommentItem
           key={r.id}
