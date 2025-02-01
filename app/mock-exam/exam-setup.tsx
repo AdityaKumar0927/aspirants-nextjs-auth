@@ -1,4 +1,5 @@
-"use client";
+// File: /app/mock-exam/exam-setup.tsx
+"use client"
 
 import React, { useEffect, useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -17,20 +18,20 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 /** If you want typed topics */
 interface Topic {
-  id: string;
+  id: number;
   name: string;
   questions: number;
 }
 
-/** The parent will call onStartExam(...) with final picks. */
 interface ExamSetupProps {
   onStartExam: (params: {
     exam: string;
     year: number;
-    shift?: string; // Actually yearKey in DB
+    shift?: string;
     examTime?: number;
     skipCompleted?: boolean;
     difficulty?: string;
@@ -39,7 +40,6 @@ interface ExamSetupProps {
   }) => void;
 }
 
-/** Used for framer-motion transitions */
 const transitionProps = {
   type: "spring",
   stiffness: 500,
@@ -48,20 +48,17 @@ const transitionProps = {
 };
 
 export default function ExamSetup({ onStartExam }: ExamSetupProps) {
-  // -----------------------------------------------------------------------------
-  // Left Card States
-  // -----------------------------------------------------------------------------
+  // Left card data
   const [exams, setExams] = useState<string[]>([]);
   const [years, setYears] = useState<number[]>([]);
-  const [shifts, setShifts] = useState<string[]>([]); // This is actually "yearKey" in DB
+  const [shifts, setShifts] = useState<string[]>([]);
 
-  // "none" => not chosen
+  // Selections
   const [selectedExam, setSelectedExam] = useState("none");
   const [selectedYear, setSelectedYear] = useState("none");
   const [selectedShift, setSelectedShift] = useState("no-shift");
 
-  // Additional fields
-  const [numQuestions, setNumQuestions] = useState(1800);
+  const [numQuestions, setNumQuestions] = useState<number>(1800);
   const [difficulty, setDifficulty] = useState("any");
   const [skipCompleted, setSkipCompleted] = useState<"yes" | "no">("no");
   const [examTime, setExamTime] = useState(60);
@@ -70,17 +67,15 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
   const [loadingExams, setLoadingExams] = useState(false);
   const [loadingYears, setLoadingYears] = useState(false);
   const [loadingShifts, setLoadingShifts] = useState(false);
-  const [loadingQuestions, setLoadingQuestions] = useState(false);
+  const [loadingCount, setLoadingCount] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  // -----------------------------------------------------------------------------
-  // Right Card: Topics (optional)
-  // -----------------------------------------------------------------------------
+  // Right card: topics
   const [topics, setTopics] = useState<Topic[]>([]);
-  const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
+  const [selectedTopics, setSelectedTopics] = useState<number[]>([]);
   const [loadingTopics, setLoadingTopics] = useState(false);
 
-  // For "Select all / Deselect all" in topics
+  // Toggle all topics
   const handleSelectAll = useCallback(() => {
     if (selectedTopics.length === topics.length) {
       setSelectedTopics([]);
@@ -89,8 +84,8 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
     }
   }, [topics, selectedTopics]);
 
-  // Toggling one topic
-  const toggleTopic = useCallback((topicId: string) => {
+  // Toggle single
+  const toggleTopic = useCallback((topicId: number) => {
     setSelectedTopics((prev) =>
       prev.includes(topicId)
         ? prev.filter((id) => id !== topicId)
@@ -98,9 +93,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
     );
   }, []);
 
-  // -----------------------------------------------------------------------------
   // Helper fetch
-  // -----------------------------------------------------------------------------
   async function fetchJson(url: string) {
     const res = await fetch(url);
     if (!res.ok) {
@@ -109,20 +102,21 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
     return res.json();
   }
 
-  // -----------------------------------------------------------------------------
-  // 1) On mount => load distinct exams (alphabetical)
-  // -----------------------------------------------------------------------------
+  // 1) On mount => load distinct exams
   useEffect(() => {
     async function loadExams() {
       try {
         setLoadingExams(true);
         setErrorMsg(null);
 
-        const data = await fetchJson("/api/exams-and-years");
-        const sortedExams: string[] = data.exams?.sort((a: string, b: string) =>
+        const r = await fetch("/api/exams-and-years");
+        if (!r.ok) throw new Error("Failed to load exams");
+        const data = await r.json();
+        // data => { exams:[...], years:[...], shifts:[...] (maybe) }
+        const examList: string[] = data.exams?.sort((a: string, b: string) =>
           a.localeCompare(b)
         ) || [];
-        setExams(sortedExams);
+        setExams(examList);
       } catch (err: any) {
         setErrorMsg(err.message);
       } finally {
@@ -132,9 +126,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
     loadExams();
   }, []);
 
-  // -----------------------------------------------------------------------------
-  // 2) If exam => load years (descending = newest → oldest)
-  // -----------------------------------------------------------------------------
+  // 2) If exam => load years (descending)
   useEffect(() => {
     if (selectedExam === "none") {
       setYears([]);
@@ -146,15 +138,16 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
       return;
     }
 
-    async function loadYears(exam: string) {
+    async function loadYears(e: string) {
       try {
         setLoadingYears(true);
         setErrorMsg(null);
-
-        const data = await fetchJson(`/api/exams-and-years?exam=${exam}`);
-        const sortedYears: number[] =
-          data.years?.sort((a: number, b: number) => b - a) || [];
-        setYears(sortedYears);
+        const r = await fetch(`/api/exams-and-years?exam=${e}`);
+        if (!r.ok) throw new Error("Failed to fetch years");
+        const d = await r.json();
+        const yrs: number[] =
+          d.years?.sort((a: number, b: number) => b - a) || [];
+        setYears(yrs);
       } catch (err: any) {
         setErrorMsg(err.message);
       } finally {
@@ -164,9 +157,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
     loadYears(selectedExam);
   }, [selectedExam]);
 
-  // -----------------------------------------------------------------------------
-  // 3) If exam+year => load SHIFT (aka yearKey) => alphabetical, and maybe topics
-  // -----------------------------------------------------------------------------
+  // 3) If exam+year => load shifts + topics
   useEffect(() => {
     if (selectedExam === "none" || selectedYear === "none") {
       setShifts([]);
@@ -176,25 +167,34 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
       return;
     }
 
-    async function loadShiftsAndTopics() {
+    async function loadShiftAndTopics() {
       try {
         setLoadingShifts(true);
         setLoadingTopics(true);
         setErrorMsg(null);
 
-        // SHIFT => yearKey
-        const shiftRes = await fetchJson(
+        // Shifts
+        const shiftRes = await fetch(
           `/api/exams-and-years?exam=${selectedExam}&year=${selectedYear}`
         );
-        const sortedShifts: string[] =
-          shiftRes.shifts?.sort((a: string, b: string) => a.localeCompare(b)) ||
+        if (!shiftRes.ok) throw new Error("Failed to load shifts");
+        const shiftData = await shiftRes.json();
+        const shArr: string[] =
+          shiftData.shifts?.sort((a: string, b: string) => a.localeCompare(b)) ||
           [];
-        setShifts(sortedShifts);
+        setShifts(shArr);
         setLoadingShifts(false);
 
-        // If you have /api/topics?exam=...&year=..., do it here
-        // We'll just fake an empty "topics" for demonstration
-        setTopics([]); // or sorted, if you want alphabetical, etc.
+        // Topics
+        const tRes = await fetch(
+          `/api/topics?exam=${selectedExam}&year=${selectedYear}`
+        );
+        if (!tRes.ok) throw new Error("Failed to load topics");
+        const tData = await tRes.json();
+        const tArr: Topic[] = tData.topics || [];
+        // sort by topic name
+        tArr.sort((a, b) => a.name.localeCompare(b.name));
+        setTopics(tArr);
         setLoadingTopics(false);
       } catch (err: any) {
         setErrorMsg(err.message);
@@ -202,12 +202,11 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
         setLoadingTopics(false);
       }
     }
-    loadShiftsAndTopics();
+    loadShiftAndTopics();
   }, [selectedExam, selectedYear]);
 
-  // -----------------------------------------------------------------------------
-  // 4) If exam+year => fetch question count => default numQuestions
-  // -----------------------------------------------------------------------------
+  // 4) If exam+year => fetch question count => set default numQuestions
+  // (like your existing logic)
   useEffect(() => {
     if (selectedExam === "none" || selectedYear === "none") {
       setNumQuestions(1800);
@@ -216,50 +215,43 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
 
     async function loadQuestionCount() {
       try {
-        setLoadingQuestions(true);
-
-        const page = 1;
-        const pageSize = 1;
-        const params = new URLSearchParams({
-          page: String(page),
-          pageSize: String(pageSize),
+        setLoadingCount(true);
+        const p = new URLSearchParams({
+          exam: selectedExam,
+          year: selectedYear,
+          page: "1",
+          pageSize: "1",
         });
-        params.set("exam", selectedExam);
-        params.set("year", selectedYear);
-
         if (selectedShift !== "no-shift") {
-          params.set("shift", selectedShift);
+          p.set("shift", selectedShift);
         }
         if (skipCompleted === "yes") {
-          params.set("skipCompleted", "true");
+          p.set("skipCompleted", "true");
+        }
+        if (difficulty !== "any") {
+          p.set("difficulty", difficulty);
         }
 
-        const res = await fetch(`/api/questions?${params.toString()}`);
-        if (!res.ok) throw new Error("Failed to fetch question count");
-        const data = await res.json();
+        const r = await fetch(`/api/questions?${p.toString()}`);
+        if (!r.ok) throw new Error("Failed to fetch question count");
+        const d = await r.json();
 
         let total = 1800;
-        if (typeof data.totalCount === "number") {
-          total = data.totalCount;
-        } else if (Array.isArray(data)) {
-          total = data.length;
-        } else if (Array.isArray(data.data)) {
-          total = data.data.length;
-        }
+        if (typeof d.totalCount === "number") total = d.totalCount;
+        else if (Array.isArray(d)) total = d.length;
+        else if (Array.isArray(d.data)) total = d.data.length;
         setNumQuestions(total || 1800);
       } catch (err) {
-        console.error("Error fetching question count:", err);
+        console.error(err);
         setNumQuestions(1800);
       } finally {
-        setLoadingQuestions(false);
+        setLoadingCount(false);
       }
     }
     loadQuestionCount();
-  }, [selectedExam, selectedYear, selectedShift, skipCompleted]);
+  }, [selectedExam, selectedYear, selectedShift, skipCompleted, difficulty]);
 
-  // -----------------------------------------------------------------------------
-  // 5) "Generate" => call onStartExam
-  // -----------------------------------------------------------------------------
+  // handle "Generate"
   function handleGenerate() {
     if (selectedExam === "none") {
       alert("Please pick an exam first.");
@@ -278,15 +270,17 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
       skipCompleted: skipCompleted === "yes",
       difficulty: difficulty === "any" ? undefined : difficulty,
       numQuestions,
-      selectedTopics: selectedTopics.length > 0 ? selectedTopics : undefined,
+      selectedTopics:
+        topics.length && selectedTopics.length > 0
+          ? topics
+              .filter((t) => selectedTopics.includes(t.id))
+              .map((t) => t.name)
+          : undefined,
     });
   }
 
-  const isGenerateDisabled = selectedExam === "none" || selectedYear === "none";
+  const isDisabled = selectedExam === "none" || selectedYear === "none";
 
-  // -----------------------------------------------------------------------------
-  // RENDER
-  // -----------------------------------------------------------------------------
   return (
     <div className="container mx-auto p-6 font-light tracking-tight">
       <h1 className="text-3xl font-medium mb-6">Past Papers</h1>
@@ -300,7 +294,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
             </div>
           )}
 
-          {/* 1) Exam (required), alphabetical */}
+          {/* 1) Exam */}
           <div className="space-y-2">
             <Label className="text-sm text-neutral-600">Exam (required)</Label>
             {loadingExams ? (
@@ -315,9 +309,9 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="none">-- No exam selected --</SelectItem>
-                  {exams.map((exam) => (
-                    <SelectItem key={exam} value={exam}>
-                      {exam}
+                  {exams.map((ex) => (
+                    <SelectItem key={ex} value={ex}>
+                      {ex}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -325,7 +319,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
             )}
           </div>
 
-          {/* 2) Year (required), newest → oldest */}
+          {/* 2) Year */}
           <div className="space-y-2">
             <Label className="text-sm text-neutral-600">Year (required)</Label>
             {loadingYears ? (
@@ -336,7 +330,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
                 onValueChange={(val) => setSelectedYear(val)}
                 disabled={selectedExam === "none"}
               >
-                <SelectTrigger className="bg-white border-neutral-200">
+                <SelectTrigger className="bg-white border-neutral-200 disabled:opacity-50">
                   <SelectValue placeholder="Select year" />
                 </SelectTrigger>
                 <SelectContent>
@@ -351,7 +345,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
             )}
           </div>
 
-          {/* 3) Shift => yearKey => alphabetical */}
+          {/* 3) Shift => "no-shift" default */}
           <div className="space-y-2">
             <Label className="text-sm text-neutral-600">Shift (optional)</Label>
             {loadingShifts ? (
@@ -362,7 +356,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
                 onValueChange={(val) => setSelectedShift(val)}
                 disabled={selectedYear === "none"}
               >
-                <SelectTrigger className="bg-white border-neutral-200">
+                <SelectTrigger className="bg-white border-neutral-200 disabled:opacity-50">
                   <SelectValue placeholder="Select shift" />
                 </SelectTrigger>
                 <SelectContent>
@@ -377,10 +371,10 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
             )}
           </div>
 
-          {/* 4) Number of questions */}
+          {/* 4) Number of Q */}
           <div className="space-y-2">
             <Label className="text-sm text-neutral-600">Number of Questions</Label>
-            {loadingQuestions ? (
+            {loadingCount ? (
               <Skeleton height={40} />
             ) : (
               <Input
@@ -400,7 +394,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
               onValueChange={setDifficulty}
             >
               <SelectTrigger className="bg-white border-neutral-200">
-                <SelectValue placeholder="Select difficulty" />
+                <SelectValue placeholder="Any" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="any">Any</SelectItem>
@@ -450,14 +444,14 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
             className="w-full bg-blue-50 hover:bg-blue-100 text-blue-600 border-blue-200 hover:border-blue-300"
             variant="outline"
             onClick={handleGenerate}
-            disabled={isGenerateDisabled}
+            disabled={isDisabled}
           >
             Generate
             <Play className="ml-2 h-4 w-4" />
           </Button>
         </Card>
 
-        {/* RIGHT CARD => optional topics */}
+        {/* RIGHT => topics => from /api/topics */}
         <Card className="p-6 border-neutral-200">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-medium text-neutral-800">All Topics</h2>
@@ -466,9 +460,7 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
               className="text-sm font-light text-blue-600 hover:text-blue-700 hover:bg-blue-50"
               onClick={handleSelectAll}
             >
-              {selectedTopics.length === topics.length
-                ? "Deselect all"
-                : "Select all"}
+              {selectedTopics.length === topics.length ? "Deselect all" : "Select all"}
             </Button>
           </div>
 
@@ -485,67 +477,69 @@ export default function ExamSetup({ onStartExam }: ExamSetupProps) {
                 No topics found for the selected exam/year.
               </p>
             ) : (
-              topics.map((topic) => {
-                const isSelected = selectedTopics.includes(topic.id);
-                return (
-                  <motion.button
-                    key={topic.id}
-                    onClick={() => toggleTopic(topic.id)}
-                    layout
-                    initial={false}
-                    animate={{
-                      backgroundColor: isSelected ? "#e6f7ff" : "transparent",
-                    }}
-                    whileHover={{
-                      backgroundColor: isSelected
-                        ? "#cceeff"
-                        : "rgba(229, 231, 235, 0.5)",
-                    }}
-                    whileTap={{
-                      backgroundColor: isSelected
-                        ? "#b3e6ff"
-                        : "rgba(229, 231, 235, 0.8)",
-                    }}
-                    transition={{
-                      ...transitionProps,
-                      backgroundColor: { duration: 0.1 },
-                    }}
-                    className={`
-                      w-full flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium
-                      tracking-tight transition-colors
-                      ${
-                        isSelected
-                          ? "text-blue-600 ring-1 ring-blue-200"
-                          : "text-gray-700 hover:bg-gray-100"
-                      }
-                    `}
-                  >
-                    <div className="flex items-center space-x-2">
-                      <AnimatePresence>
-                        {isSelected && (
-                          <motion.div
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0, opacity: 0 }}
-                            transition={transitionProps}
-                          >
-                            <div className="w-4 h-4 rounded-full bg-blue-500 flex items-center justify-center">
-                              <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                      <span>{topic.name}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-sm font-light text-gray-500">
-                        {topic.questions} questions
-                      </span>
-                      <ChevronRight className="w-4 h-4 text-gray-400" />
-                    </div>
-                  </motion.button>
-                );
-              })
+              <ScrollArea className="max-h-[500px] pr-1">
+                <div className="space-y-1">
+                  {topics.map((topic) => {
+                    const isSelected = selectedTopics.includes(topic.id);
+                    return (
+                      <motion.button
+                        key={topic.id}
+                        onClick={() => toggleTopic(topic.id)}
+                        layout
+                        initial={false}
+                        animate={{
+                          backgroundColor: isSelected ? "#e6f7ff" : "transparent",
+                        }}
+                        whileHover={{
+                          backgroundColor: isSelected
+                            ? "#cceeff"
+                            : "rgba(229, 231, 235, 0.5)",
+                        }}
+                        whileTap={{
+                          backgroundColor: isSelected
+                            ? "#b3e6ff"
+                            : "rgba(229, 231, 235, 0.8)",
+                        }}
+                        transition={{
+                          ...transitionProps,
+                          backgroundColor: { duration: 0.1 },
+                        }}
+                        className={`
+                          w-full flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium
+                          tracking-tight transition-colors
+                          ${
+                            isSelected
+                              ? "text-blue-600 ring-1 ring-blue-200"
+                              : "text-gray-700 hover:bg-gray-100"
+                          }
+                        `}
+                      >
+                        <div className="flex items-center space-x-2">
+                          {isSelected && (
+                            <motion.div
+                              initial={{ scale: 0, opacity: 0 }}
+                              animate={{ scale: 1, opacity: 1 }}
+                              exit={{ scale: 0, opacity: 0 }}
+                              transition={transitionProps}
+                            >
+                              <div className="w-4 h-4 rounded-full bg-blue-500 flex items-center justify-center mr-1">
+                                <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                              </div>
+                            </motion.div>
+                          )}
+                          <span>{topic.name}</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <span className="text-sm font-light text-gray-500">
+                            {topic.questions} questions
+                          </span>
+                          <ChevronRight className="w-4 h-4 text-gray-400" />
+                        </div>
+                      </motion.button>
+                    );
+                  })}
+                </div>
+              </ScrollArea>
             )}
           </motion.div>
         </Card>

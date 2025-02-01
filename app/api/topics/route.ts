@@ -1,4 +1,4 @@
-// /app/api/topics/route.ts
+// File: /app/api/topics/route.ts
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 
@@ -7,22 +7,23 @@ const prisma = new PrismaClient();
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const exam = searchParams.get("exam");
+    const examParam = searchParams.get("exam");
     const yearStr = searchParams.get("year");
-    if (!exam || !yearStr) {
+
+    if (!examParam || !yearStr) {
       return NextResponse.json({ topics: [] });
     }
+
     const yearNum = parseInt(yearStr, 10);
     if (isNaN(yearNum)) {
       return NextResponse.json({ topics: [] });
     }
 
-    // We'll do a groupBy on "topic"
-    // If "topic" is null, skip it
+    // Example: group by "topic" if not null
     const groupRows = await prisma.question.groupBy({
       by: ["topic"],
       where: {
-        exam,
+        exam: examParam,
         year: yearNum,
         topic: { not: null },
       },
@@ -31,12 +32,11 @@ export async function GET(request: Request) {
       },
     });
 
-    // We map each group to { id, name, questions }
-    // No actual 'id' in DB for topic, so we can generate an artificial one
+    // Build an array of { id, name, questions }
     const topics = groupRows.map((g, i) => ({
-      id: i + 1, // or create a hash from topic name
+      id: i + 1, // or some unique generation
       name: g.topic || "Unnamed Topic",
-      questions: g._count.topic, // # of questions in that topic
+      questions: g._count.topic,
     }));
 
     return NextResponse.json({ topics });

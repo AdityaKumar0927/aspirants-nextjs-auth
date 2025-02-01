@@ -1,3 +1,4 @@
+// File: /app/mock-exam/mock-exam.tsx
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
@@ -12,7 +13,12 @@ import { useToast } from "@/components/ui/use-toast";
 import ExamSetup from "./exam-setup";
 import Exam from "./exam";
 import AdvancedExamResults from "./exam-results";
-import { QuestionType, ExamResultsType, TopicPerformance } from "@/lib/exam-helpers";
+
+import {
+  QuestionType,
+  ExamResultsType,
+  TopicPerformance,
+} from "@/lib/exam-helpers";
 
 const HOUR_IN_SECONDS = 3600;
 
@@ -21,9 +27,7 @@ export default function MockExam() {
   const { toast } = useToast();
   const { data: session } = useSession();
 
-  // -------------------------------------------------------------
-  // 0) State for user selections (exam, year, shift, etc.)
-  // -------------------------------------------------------------
+  // Selections
   const [selectedExam, setSelectedExam] = useState("");
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [selectedShift, setSelectedShift] = useState("");
@@ -33,7 +37,7 @@ export default function MockExam() {
   const [numQuestions, setNumQuestions] = useState<number>(1800);
   const [selectedTopics, setSelectedTopics] = useState<string[] | undefined>(undefined);
 
-  // The fetched questions
+  // Questions
   const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
 
   // UI states
@@ -41,7 +45,7 @@ export default function MockExam() {
   const [isExamStarted, setIsExamStarted] = useState(false);
   const [isExamFinished, setIsExamFinished] = useState(false);
 
-  // Tracking answers, statuses
+  // Answers & statuses
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<(string | null)[]>([]);
   const [questionStatuses, setQuestionStatuses] = useState<{ [index: number]: string }>({});
@@ -49,12 +53,11 @@ export default function MockExam() {
   const [examTimeLeft, setExamTimeLeft] = useState(HOUR_IN_SECONDS);
   const [examResults, setExamResults] = useState<ExamResultsType | null>(null);
 
-  // A ref to measure how long user spends on each question
   const questionStartTimeRef = useRef<number>(0);
 
-  // ------------------------------------------------------------------
-  // 1) The child calls onStartExam => store picks => fetch questions
-  // ------------------------------------------------------------------
+  // ----------------------------------------------------------------
+  // 1) The child calls onStartExam => fetch questions, etc.
+  // ----------------------------------------------------------------
   async function handleStartExam(params: {
     exam: string;
     year: number;
@@ -76,7 +79,7 @@ export default function MockExam() {
       selectedTopics,
     } = params;
 
-    // store them
+    // store
     setSelectedExam(exam);
     setSelectedYear(year);
     setSelectedShift(shift || "");
@@ -86,7 +89,6 @@ export default function MockExam() {
     setNumQuestions(numQuestions || 1800);
     setSelectedTopics(selectedTopics);
 
-    // start the exam => fetch questions
     await startExam({ exam, year, shift, time: examTime, skipCompleted });
   }
 
@@ -107,7 +109,7 @@ export default function MockExam() {
       if (!exam) {
         toast({
           title: "Validation Error",
-          description: "Please select an exam before starting.",
+          description: "Please select an exam first.",
           variant: "destructive",
         });
         return;
@@ -115,7 +117,7 @@ export default function MockExam() {
       if (!year) {
         toast({
           title: "Validation Error",
-          description: "Please select a year before starting.",
+          description: "Please select a year first.",
           variant: "destructive",
         });
         return;
@@ -123,36 +125,32 @@ export default function MockExam() {
 
       setIsLoading(true);
 
-      // build query
-      const params = new URLSearchParams();
-      params.set("exam", exam);
-      params.set("year", String(year));
-      params.set("page", "1");
-      params.set("pageSize", String(numQuestions || 1800));
+      const p = new URLSearchParams();
+      p.set("exam", exam);
+      p.set("year", String(year));
+      p.set("page", "1");
+      p.set("pageSize", String(numQuestions || 1800));
 
       if (shift) {
-        // treat shift as "key" or "yearKey" in the DB
-        params.set("shift", shift);
+        p.set("shift", shift);
       }
       if (skipCompleted) {
-        params.set("skipCompleted", "true");
+        p.set("skipCompleted", "true");
       }
       if (difficulty) {
-        params.set("difficulty", difficulty);
+        p.set("difficulty", difficulty);
       }
 
-      const response = await fetch(`/api/questions?${params.toString()}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch questions for that exam/year/shift.");
-      }
+      const r = await fetch(`/api/questions?${p.toString()}`);
+      if (!r.ok) throw new Error("Failed to fetch questions.");
 
-      const data = await response.json();
+      const data = await r.json();
       const matching = data.data ?? data;
 
       if (!matching || matching.length === 0) {
         toast({
           title: "No Questions Found",
-          description: "No matches found for your selection. Please try different options.",
+          description: "No matches. Please try different filters.",
           variant: "destructive",
         });
         setIsLoading(false);
@@ -161,12 +159,12 @@ export default function MockExam() {
 
       setFilteredQuestions(matching);
 
-      // Initialize statuses, answers, timeSpent
-      const initialStatuses: { [index: number]: string } = {};
+      // init statuses, answers, time
+      const initStatuses: { [index: number]: string } = {};
       matching.forEach((_: any, i: number) => {
-        initialStatuses[i] = "notVisited";
+        initStatuses[i] = "notVisited";
       });
-      setQuestionStatuses(initialStatuses);
+      setQuestionStatuses(initStatuses);
       setAnswers(new Array(matching.length).fill(null));
       setTimeSpentPerQuestion(new Array(matching.length).fill(0));
 
@@ -178,11 +176,11 @@ export default function MockExam() {
       setCurrentQuestion(0);
 
       questionStartTimeRef.current = Date.now();
-    } catch (error) {
-      console.error("Error loading questions:", error);
+    } catch (err: any) {
+      console.error(err);
       toast({
         title: "Error",
-        description: "Failed to load questions. Please try again.",
+        description: err.message,
         variant: "destructive",
       });
     } finally {
@@ -190,9 +188,9 @@ export default function MockExam() {
     }
   }
 
-  // ------------------------------------------------------------------
-  // 2) Handling answers, statuses, navigation
-  // ------------------------------------------------------------------
+  // ----------------------------------------------------------------
+  // 2) Handling answers, statuses, nav
+  // ----------------------------------------------------------------
   const handleAnswer = useCallback(
     (answerId: string) => {
       setAnswers((prev) => {
@@ -201,11 +199,10 @@ export default function MockExam() {
         return newArr;
       });
       setQuestionStatuses((prev) => {
-        const oldStatus = prev[currentQuestion];
+        const st = prev[currentQuestion];
         return {
           ...prev,
-          [currentQuestion]:
-            oldStatus === "markedForReview" ? "markedForReview" : "answered",
+          [currentQuestion]: st === "markedForReview" ? "markedForReview" : "answered",
         };
       });
     },
@@ -243,14 +240,12 @@ export default function MockExam() {
     }
   }, [currentQuestion, filteredQuestions.length]);
 
-  // Navigation with time tracking
   function updateTimeSpent() {
-    const timeSpent = Math.floor((Date.now() - questionStartTimeRef.current) / 1000);
+    const delta = Math.floor((Date.now() - questionStartTimeRef.current) / 1000);
     setTimeSpentPerQuestion((prev) => {
-      const newTimeSpent = [...prev];
-      newTimeSpent[currentQuestion] =
-        (newTimeSpent[currentQuestion] || 0) + timeSpent;
-      return newTimeSpent;
+      const copy = [...prev];
+      copy[currentQuestion] = (copy[currentQuestion] || 0) + delta;
+      return copy;
     });
     questionStartTimeRef.current = Date.now();
   }
@@ -280,9 +275,9 @@ export default function MockExam() {
     }
   }
 
-  // ------------------------------------------------------------------
-  // 3) Submitting the exam => build examResults
-  // ------------------------------------------------------------------
+  // ----------------------------------------------------------------
+  // 3) Submitting => build examResults
+  // ----------------------------------------------------------------
   function handleSubmit() {
     if (!filteredQuestions.length) return;
     updateTimeSpent();
@@ -294,7 +289,7 @@ export default function MockExam() {
     const incorrectAnswers = totalQuestions - correctCount;
     const score = (correctCount / totalQuestions) * 100;
 
-    // For topic performance
+    // topic performance
     const topicPerformance: Record<string, TopicPerformance> = {};
     const subtopicPerformance: Record<string, TopicPerformance> = {};
     const topicWiseIncorrectAnswers: Record<string, number> = {};
@@ -324,16 +319,14 @@ export default function MockExam() {
     });
 
     const topStrengths = Object.entries(topicPerformance)
-      .sort((a, b) => b[1].correct / b[1].total - a[1].correct / a[1].total)
-      .slice(0, 3);
+      .sort((a,b) => b[1].correct/b[1].total - a[1].correct/a[1].total)
+      .slice(0,3);
 
     const topWeaknesses = Object.entries(topicPerformance)
-      .sort((a, b) => a[1].correct / a[1].total - b[1].correct / b[1].total)
-      .slice(0, 3);
+      .sort((a,b) => a[1].correct/a[1].total - b[1].correct/b[1].total)
+      .slice(0,3);
 
-    const avgTimePerQ =
-      timeSpentPerQuestion.reduce((a, b) => a + b, 0) /
-      timeSpentPerQuestion.length;
+    const avgTimePerQ = timeSpentPerQuestion.reduce((a,b)=>a+b,0)/timeSpentPerQuestion.length;
 
     // Example skill levels
     const skillLevels: Record<string, number> = {
@@ -353,8 +346,8 @@ export default function MockExam() {
       subtopicPerformance,
       topStrengths,
       topWeaknesses,
-      userAnswers: answers.map((a) => a || ""),
-      correctAnswers: filteredQuestions.map((q) => q.correctOption),
+      userAnswers: answers.map((a)=>a||""),
+      correctAnswers: filteredQuestions.map((q)=> q.correctOption),
       timeSpentPerQuestion,
       averageTimePerQuestion: avgTimePerQ,
       topicWiseIncorrectAnswers,
@@ -365,40 +358,40 @@ export default function MockExam() {
     setIsExamFinished(true);
   }
 
-  // ------------------------------------------------------------------
-  // 4) Timer effect => auto submit
-  // ------------------------------------------------------------------
-  useEffect(() => {
+  // ----------------------------------------------------------------
+  // 4) Timer => auto submit
+  // ----------------------------------------------------------------
+  useEffect(()=>{
     let examTimer: NodeJS.Timeout;
-    if (isExamStarted && !isExamFinished) {
-      examTimer = setInterval(() => {
-        setExamTimeLeft((prev) => {
-          if (prev <= 1) {
+    if(isExamStarted && !isExamFinished){
+      examTimer = setInterval(()=>{
+        setExamTimeLeft((prev)=>{
+          if(prev<=1){
             clearInterval(examTimer);
             updateTimeSpent();
             handleSubmit();
             return 0;
           }
-          return prev - 1;
+          return prev-1;
         });
-      }, 1000);
+      },1000);
     }
-    return () => {
-      if (examTimer) clearInterval(examTimer);
+    return ()=> {
+      if(examTimer) clearInterval(examTimer);
     };
-  }, [isExamStarted, isExamFinished]);
+  },[isExamStarted,isExamFinished]);
 
-  useEffect(() => {
-    if (isExamStarted && !isExamFinished) {
+  useEffect(()=>{
+    if(isExamStarted && !isExamFinished){
       questionStartTimeRef.current = Date.now();
     }
-  }, [currentQuestion, isExamStarted, isExamFinished]);
+  },[currentQuestion, isExamStarted, isExamFinished]);
 
-  // ------------------------------------------------------------------
+  // ----------------------------------------------------------------
   // 5) Early exit
-  // ------------------------------------------------------------------
-  function exitExam() {
-    if (window.confirm("Are you sure you want to exit the exam? Your progress will be lost.")) {
+  // ----------------------------------------------------------------
+  function exitExam(){
+    if(window.confirm("Are you sure you want to exit the exam? Progress will be lost.")){
       setIsExamStarted(false);
       setIsExamFinished(false);
       setExamResults(null);
@@ -406,11 +399,11 @@ export default function MockExam() {
     }
   }
 
-  function onStartNewExam() {
+  function onStartNewExam(){
     setIsExamStarted(false);
     setIsExamFinished(false);
     setExamResults(null);
-    // reset the user picks
+    // reset
     setSelectedExam("");
     setSelectedYear(null);
     setSelectedShift("");
@@ -421,85 +414,38 @@ export default function MockExam() {
     setSelectedTopics(undefined);
   }
 
-  // ------------------------------------------------------------------
-  // 6) Saving to DB => after we have examResults
-  // ------------------------------------------------------------------
-  async function handleSaveExamResults() {
-    if (!examResults) return;
+  // ----------------------------------------------------------------
+  // 6) Possibly save to DB, omitted or see code snippet if needed
+  // ----------------------------------------------------------------
 
-    // Check if user is authenticated
-    if (!session || !session.user?.id) {
-      toast({
-        title: "Not Signed In",
-        description: "Please log in to save your exam attempt.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    try {
-      // POST to /api/mock-exams
-      const body = {
-        exam: selectedExam,
-        year: selectedYear || undefined,
-        shift: selectedShift || undefined,
-        completed: true,
-        results: examResults,
-      };
-
-      const res = await fetch("/api/mock-exams", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-
-      if (!res.ok) {
-        throw new Error("Failed to save your exam attempt. Please try again.");
-      }
-
-      const data = await res.json();
-      toast({
-        title: "Exam Saved",
-        description: "Your mock exam attempt was saved to your history.",
-      });
-    } catch (err: any) {
-      console.error("Error saving exam:", err);
-      toast({
-        title: "Save Failed",
-        description: err.message,
-        variant: "destructive",
-      });
-    }
-  }
-
-  // ------------------------------------------------------------------
-  // 7) Loading skeleton if needed
-  // ------------------------------------------------------------------
+  // ----------------------------------------------------------------
+  // 7) Skeleton
+  // ----------------------------------------------------------------
   if (isLoading && !isExamStarted && !isExamFinished) {
     return (
       <div className="min-h-screen p-4 flex flex-col">
         <div className="max-w-3xl mx-auto">
-          <Skeleton height={40} count={4} />
+          <Skeleton height={40} count={4}/>
         </div>
       </div>
     );
   }
 
-  // ------------------------------------------------------------------
-  // 8) Render the 3 states: Setup -> Exam -> Results
-  // ------------------------------------------------------------------
+  // ----------------------------------------------------------------
+  // 8) Render states: Setup -> Exam -> Results
+  // ----------------------------------------------------------------
   return (
     <AnimatePresence mode="wait">
       {/* Setup */}
       {!isExamStarted && !isExamFinished && (
         <motion.div
           key="setup"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 }}
+          initial={{opacity:0}}
+          animate={{opacity:1}}
+          exit={{opacity:0}}
+          transition={{duration:0.4}}
         >
-          <ExamSetup onStartExam={handleStartExam} />
+          <ExamSetup onStartExam={handleStartExam}/>
         </motion.div>
       )}
 
@@ -507,10 +453,10 @@ export default function MockExam() {
       {isExamStarted && !isExamFinished && (
         <motion.div
           key="exam"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 }}
+          initial={{opacity:0}}
+          animate={{opacity:1}}
+          exit={{opacity:0}}
+          transition={{duration:0.4}}
           className="fixed inset-0 z-50"
         >
           <Exam
@@ -526,79 +472,51 @@ export default function MockExam() {
             onClear={handleClear}
             onReviewAndNext={handleReviewAndNext}
             onSaveAndNext={handleSaveAndNext}
-            onSubmit={() => {
-              if (window.confirm("Are you sure you want to submit the exam?")) {
+            onSubmit={()=>{
+              if(window.confirm("Are you sure you want to submit the exam?")){
                 handleSubmit();
               }
             }}
             onExit={exitExam}
             onNavigate={handleNavigate}
-            userName={session?.user?.name || "Guest"}
+            userName={session?.user?.name||"Guest"}
             selectedSubject=""
-            selectedYear={String(selectedYear || "")}
+            selectedYear={String(selectedYear||"")}
             selectedLevel=""
           />
         </motion.div>
       )}
 
-      {/* Exam results => show optional save prompt */}
+      {/* Exam results */}
       {isExamFinished && examResults && (
         <motion.div
           key="results"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 }}
+          initial={{opacity:0}}
+          animate={{opacity:1}}
+          exit={{opacity:0}}
+          transition={{duration:0.4}}
         >
           <AdvancedExamResults
             examResults={examResults}
             onStartNewExam={onStartNewExam}
             onExit={() => setIsExamFinished(false)}
           />
-
-          {/* 
-            Prompt the user if they'd like to save the exam attempt.
-            Could do a "Confirm" or a small inline button. 
-          */}
-          <div className="p-4 flex flex-col items-center">
-            {session?.user?.id ? (
-              <button
-                className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
-                onClick={() => {
-                  if (
-                    window.confirm(
-                      "Would you like to save your exam attempt to your history?"
-                    )
-                  ) {
-                    handleSaveExamResults();
-                  }
-                }}
-              >
-                Save Exam Attempt
-              </button>
-            ) : (
-              <p className="text-sm text-red-500 mt-2">
-                Log in to save your exam attempt.
-              </p>
-            )}
-          </div>
         </motion.div>
       )}
     </AnimatePresence>
   );
 }
 
-// Helper to count statuses
-function calcStatusCounts(obj: { [index: number]: string }) {
+function calcStatusCounts(obj: {[index:number]:string}){
   const counts = {
-    notVisited: 0,
-    notAnswered: 0,
-    answered: 0,
-    markedForReview: 0,
+    notVisited:0,
+    notAnswered:0,
+    answered:0,
+    markedForReview:0,
   };
-  for (const status of Object.values(obj)) {
-    if (counts[status as keyof typeof counts] !== undefined) {
-      counts[status as keyof typeof counts]++;
+  for(const st of Object.values(obj)){
+    if(st in counts){
+      counts[st as keyof typeof counts]++;
     }
   }
   return counts;
