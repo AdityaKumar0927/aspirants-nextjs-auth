@@ -3,35 +3,18 @@
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useSwipeable } from "react-swipeable"
-import { Checkbox } from "@/components/ui/checkbox"
 import MathRenderer from "@/components/layout/MathRenderer"
-import {
-  BookOpen,
-  LucideBot,
-  X,
-  MessageSquare,
-  ThumbsUp,
-  ThumbsDown,
-  Edit,
-  Trash2,
-  Reply,
-  CornerDownRight,
-  Flag,
-  ChevronDown,
-} from "lucide-react"
-import Image from "next/image"
-import Tiptap from "@/components/layout/Tiptap"
 import Chat from "@/components/shared/Chat"
-import { ToastAction } from "@/components/ui/toast"
-import { useToast } from "@/components/ui/use-toast"
-import SettingsPopover from "@/components/ui/SettingsPopover"
+import FeedbackPopover from "./FeedbackPopover"
+
 import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
   TooltipProvider,
 } from "@/components/ui/tooltip"
-import FeedbackPopover from "./FeedbackPopover"
+import { ToastAction } from "@/components/ui/toast"
+import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -41,13 +24,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
@@ -55,12 +31,29 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
 
+import {
+  MessageSquare,
+  StickyNote,
+  Check,
+  Flag,
+  CornerDownRight,
+  Edit,
+  Trash2,
+  ThumbsUp,
+  ThumbsDown,
+  Reply,
+  X,
+  ChevronDown,
+} from "lucide-react"
+
+import Tiptap from "@/components/layout/Tiptap"
+import SettingsPopover from "@/components/ui/SettingsPopover"
+
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
   ARCHIVED = "ARCHIVED",
 }
-type QuestionTypeString = "Multiple Choice" | "mcq" | "Numerical" | "integer" | string
 
 interface QuestionType {
   id: number
@@ -74,25 +67,13 @@ interface QuestionType {
   subject?: string
   difficulty?: string
   year?: number
-  type?: QuestionTypeString
+  type?: string
   reviewed?: boolean
   completed?: boolean
   lastAttempted?: string
   status?: QuestionStatus
   customTags?: string[]
-  customTag?: string
-  explanation?: any
-  linkedResources?: any
-  commonMistakes?: any
-  discussionLink?: string
-  parentQuestionId?: number
   difficultyRating?: number
-  peerSolvedPercentage?: number | null
-  updatedBy?: string
-  source?: string
-  updatedTime?: number
-  isOutOfSyllabus?: boolean
-  isBonus?: boolean
   marks?: number
   negMarks?: number
   correctAttempts?: string
@@ -166,32 +147,43 @@ export default function Question({
   handleQuestionChange,
 }: QuestionProps) {
   const displayNumber = currentQuestionIndex + 1
+  const { toast } = useToast()
+
+  // Local states
   const [pendingOption, setPendingOption] = useState<string | null>(null)
-  const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(
-    selectedOption || null
-  )
+  const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(selectedOption || null)
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false)
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled)
+
+  // UI toggles
   const [showNotes, setShowNotes] = useState(false)
   const [showAI, setShowAI] = useState(false)
   const [showComments, setShowComments] = useState(false)
+
+  // Comments
   const [comments, setComments] = useState<CommentType[]>([])
   const [newComment, setNewComment] = useState("")
   const [replyingTo, setReplyingTo] = useState<string | null>(null)
   const [editingCommentId, setEditingCommentId] = useState<string | null>(null)
   const [editedCommentContent, setEditedCommentContent] = useState("")
   const [commentSort, setCommentSort] = useState<"newest" | "oldest" | "popular">("newest")
+
+  // Tagging
   const [newTag, setNewTag] = useState("")
   const [localCustomTags, setLocalCustomTags] = useState<string[]>(question.customTags || [])
+
+  // AI & notes toggles
   const [aiEnabled, setAiEnabled] = useState(true)
   const [notesEnabled, setNotesEnabled] = useState(true)
   const [localNote, setLocalNote] = useState(note)
   const [noteId, setNoteId] = useState<string | null>(null)
+
+  // Difficulty rating
   const [localDifficultyRating, setLocalDifficultyRating] = useState<number | undefined>(
     question.difficultyRating
   )
-  const { toast } = useToast()
 
+  // For swiping left/right on mobile
   const handlers = useSwipeable({
     onSwipedLeft: () => onNextQuestion && onNextQuestion(),
     onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
@@ -202,15 +194,19 @@ export default function Question({
     setLocalSelectedOption(selectedOption || null)
   }, [selectedOption])
 
+  // Add / remove custom tag
   function handleAddTag() {
-    if (newTag && !localCustomTags.includes(newTag)) {
-      setLocalCustomTags([...localCustomTags, newTag])
+    const t = newTag.trim()
+    if (t && !localCustomTags.includes(t)) {
+      setLocalCustomTags([...localCustomTags, t])
       setNewTag("")
     }
   }
   function handleRemoveTag(tag: string) {
-    setLocalCustomTags(localCustomTags.filter((t) => t !== tag))
+    setLocalCustomTags(localCustomTags.filter((x) => x !== tag))
   }
+
+  // Mark complete
   async function toggleComplete(checked: boolean) {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId, checked)
@@ -231,6 +227,8 @@ export default function Question({
       })
     }
   }
+
+  // Flag for review
   async function toggleReview() {
     if (!question.questionId) return
     const newVal = !isMarkedForReview
@@ -252,23 +250,25 @@ export default function Question({
       })
     }
   }
+
+  // MCQ
   function handleOptionSelect(letter: string) {
     setPendingOption(letter)
   }
   async function handleMcqSubmit() {
     if (!pendingOption || !question.questionId) return
     await handleMarkComplete(question.questionId, true)
-    handleOptionClick(question.questionId, pendingOption, question.correctOption ?? "N/A")
+    handleOptionClick(question.questionId, pendingOption, question.correctOption ?? "")
     setLocalSelectedOption(pendingOption)
   }
+
+  // Numeric
   async function handleNumericalSubmitLocal() {
     if (!question.questionId) return
-    await handleNumericalSubmit(
-      question.questionId,
-      numericalAnswer ?? "",
-      question.correctOption ?? "N/A"
-    )
+    await handleNumericalSubmit(question.questionId, numericalAnswer ?? "", question.correctOption ?? "")
   }
+
+  // Difficulty
   async function handleDifficultyChange(newRating: number) {
     if (!question.questionId) return
     setLocalDifficultyRating(newRating)
@@ -298,6 +298,8 @@ export default function Question({
       })
     }
   }
+
+  // Note
   async function saveNote() {
     if (!question.questionId) return
     try {
@@ -329,7 +331,8 @@ export default function Question({
       })
     }
   }
-  async function deleteNote() {
+
+  async function deleteNoteLocal() {
     if (!noteId || !question.questionId) return
     try {
       const response = await fetch(`/api/notes/${noteId}`, {
@@ -352,33 +355,22 @@ export default function Question({
       })
     }
   }
+
+  // Clean up option text
   function cleanOptionText(option: string): string {
     return option.replace(/^[A-D]:\s?/i, "").trim()
   }
-  function getBorderColorClass() {
-    if (isMarkedForReview) {
-      return "border-yellow-500 border-2"
-    } else if (feedback === "correct") {
-      return "border-green-500 border-2"
-    } else if (feedback === "incorrect") {
-      return "border-red-500 border-2"
-    } else {
-      return "border-gray-300 dark:border-gray-600 border-2"
-    }
-  }
+
+  // Instead of color borders, we remove them for mobile. For desktop, you can keep them if you like,
+  // but let's just remove them for a simpler style. If you still want them in desktop, you can conditionally add them.
   return (
     <TooltipProvider>
-      <div {...handlers} className="relative pb-20" id={`question-${question.questionId}`}>
-        <Card
-          className={`
-            w-full overflow-hidden mb-6 dark:bg-gray-800 dark:text-gray-100
-            ${getBorderColorClass()}
-          `}
-        >
-          <CardHeader className="relative">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
-              <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
-                <CardTitle className="font-normal text-2xl sm:text-3xl">
+      <div {...handlers} className="relative pb-4 w-full" id={`question-${question.questionId}`}>
+        <Card className="w-full overflow-hidden mb-6 dark:bg-gray-800 dark:text-gray-100 border border-transparent">
+          <CardHeader>
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex flex-wrap items-center gap-2">
+                <CardTitle className="font-normal text-xl sm:text-2xl">
                   Question #{displayNumber}
                 </CardTitle>
                 {question.subject && (
@@ -406,6 +398,7 @@ export default function Question({
                     {question.exam}
                   </div>
                 )}
+
                 {localCustomTags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="px-2 py-1">
                     {tag}
@@ -419,57 +412,63 @@ export default function Question({
                     </Button>
                   </Badge>
                 ))}
+
                 <div className="flex items-center space-x-2">
                   <Input
                     type="text"
-                    placeholder="Add a new tag"
+                    placeholder="Add tag"
                     value={newTag}
                     onChange={(e) => setNewTag(e.target.value)}
-                    className="w-32"
+                    className="w-28"
                   />
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button variant="outline" onClick={handleAddTag} size="sm">
-                        <ChevronDown className="mr-2 h-4 w-4 rotate-90" />
-                        Add
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Add new tag</TooltipContent>
-                  </Tooltip>
+                  <Button variant="outline" size="sm" onClick={handleAddTag}>
+                    <ChevronDown className="mr-1 h-4 w-4 rotate-90" />
+                    Add
+                  </Button>
                 </div>
               </div>
-              <div className="flex items-center space-x-4">
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Checkbox
-                      id={`complete-${question.questionId}`}
-                      checked={isMarkedComplete}
-                      onCheckedChange={(checked) => toggleComplete(!!checked)}
-                      className="dark:bg-gray-800 dark:border-gray-500"
-                    />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    {isMarkedComplete ? "Unmark Complete" : "Mark as Complete"}
-                  </TooltipContent>
-                </Tooltip>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost" size="icon" onClick={toggleReview}>
-                      <Flag
-                        className={
-                          isMarkedForReview
-                            ? "fill-yellow-500 text-yellow-500"
-                            : "text-gray-500"
-                        }
-                      />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    {isMarkedForReview ? "Unflag for Review" : "Flag for Review"}
-                  </TooltipContent>
-                </Tooltip>
+
+              {/* Mark complete & Flag, new style */}
+              <div className="flex items-center gap-2">
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        size="icon"
+                        variant={isMarkedComplete ? "default" : "ghost"}
+                        className={`h-8 w-8 ${
+                          isMarkedComplete ? "bg-green-600 hover:bg-green-700" : ""
+                        }`}
+                        onClick={() => toggleComplete(!isMarkedComplete)}
+                      >
+                        <Check className={`h-4 w-4 ${isMarkedComplete ? "text-white" : ""}`} />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Mark as completed</p>
+                    </TooltipContent>
+                  </Tooltip>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        size="icon"
+                        variant={isMarkedForReview ? "default" : "ghost"}
+                        className={`h-8 w-8 ${
+                          isMarkedForReview ? "bg-yellow-500 hover:bg-yellow-600" : ""
+                        }`}
+                        onClick={() => toggleReview()}
+                      >
+                        <Flag className={`h-4 w-4 ${isMarkedForReview ? "text-white" : ""}`} />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Flag question</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+
                 <SettingsPopover
-                  markschemeEnabled={markschemeEnabled}
+                  markschemeEnabled={markschemesDisabled ? false : true}
                   setMarkschemeEnabled={() => setMarkschemeEnabled(!markschemeEnabled)}
                   aiEnabled={aiEnabled}
                   setAiEnabled={setAiEnabled}
@@ -480,215 +479,131 @@ export default function Question({
               </div>
             </div>
           </CardHeader>
+
           <CardContent>
-            <div className="mb-6">
-              {question.diagramUrl && question.diagramUrl !== "" && (
+            {/* Diagram & Text */}
+            <div className="mb-4">
+              {question.diagramUrl && (
                 <div className="relative w-full max-w-xl mx-auto mb-4">
-                  <Image
+                  <img
                     src={question.diagramUrl}
                     alt={`Diagram for question #${displayNumber}`}
-                    width={800}
-                    height={600}
                     className="rounded-md w-full h-auto object-contain"
                   />
                 </div>
               )}
               {question.text && (
-                <div className="latex-font text-base sm:text-lg md:text-xl leading-7 mb-4 text-gray-700 dark:text-gray-100">
+                <div className="latex-font text-base sm:text-lg leading-7 mb-4 text-gray-700 dark:text-gray-100">
                   <MathRenderer text={question.text} />
                 </div>
               )}
             </div>
+
+            {/* If numeric */}
             {(question.type === "Numerical" || question.type === "integer") && (
               <div className="mb-4">
                 <Input
                   type="text"
-                  className="
-                    w-full
-                    px-3 py-2
-                    border
-                    border-blue-400
-                    bg-blue-50
-                    text-blue-800
-                    dark:border-blue-600
-                    dark:bg-slate-800
-                    dark:text-blue-200
-                    focus:ring-1
-                    focus:ring-blue-300
-                    rounded-sm
-                  "
                   placeholder="Type your answer..."
                   value={numericalAnswer ?? ""}
-                  onChange={(e) => {
-                    if (question.questionId) {
-                      handleNumericalChange(question.questionId, e.target.value)
-                    }
-                  }}
+                  onChange={(e) =>
+                    question.questionId && handleNumericalChange(question.questionId, e.target.value)
+                  }
+                  className="border border-blue-400 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-slate-800 dark:text-blue-200"
                 />
                 <div className="mt-2 flex gap-2">
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        className="
-                          border
-                          border-blue-400
-                          bg-blue-50
-                          text-blue-800
-                          dark:border-blue-600
-                          dark:bg-slate-800
-                          dark:text-blue-200
-                          px-4 py-1
-                          hover:bg-blue-100
-                          dark:hover:bg-slate-700
-                          rounded-sm
-                        "
-                        onClick={handleNumericalSubmitLocal}
-                      >
-                        Submit
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Submit your numeric answer</TooltipContent>
-                  </Tooltip>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant="outline"
-                        onClick={() => question.questionId && handleResetQuestion(question.questionId)}
-                      >
-                        Reset
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Clear answer & unmark question</TooltipContent>
-                  </Tooltip>
+                  <Button onClick={handleNumericalSubmitLocal}>Submit</Button>
+                  <Button variant="outline" onClick={() => question.questionId && handleResetQuestion(question.questionId)}>
+                    Reset
+                  </Button>
                 </div>
               </div>
             )}
+
+            {/* If MCQ */}
             {(question.type === "Multiple Choice" || question.type === "mcq") &&
-              question.options &&
-              question.options.length > 0 && (
-                <div className="mb-4">
-                  <div className="space-y-2">
-                    {question.options.map((rawOption, idx) => {
-                      const letter = String.fromCharCode(65 + idx)
-                      const optionText = cleanOptionText(rawOption)
-                      const isPending = pendingOption === letter
-                      const directSelected = localSelectedOption === letter
-                      const isFeedbackActive = directSelected && feedback
-                      return (
-                        <Button
-                          key={idx}
-                          variant="outline"
-                          onClick={() => handleOptionSelect(letter)}
-                          className={`
-                            w-full text-left text-base sm:text-lg p-4 leading-7
-                            flex flex-col items-start space-y-2 whitespace-normal
-                            ${
-                              isFeedbackActive
-                                ? feedback === "correct"
-                                  ? "bg-green-100 hover:bg-green-200 text-green-700 border-green-400"
-                                  : "bg-red-100 hover:bg-red-200 text-red-700 border-red-400"
-                                : isPending
-                                ? "border-blue-400 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-slate-800 dark:text-blue-200"
-                                : "border-gray-300 dark:border-gray-600"
-                            }
-                          `}
-                          style={{ height: "auto", minHeight: "1rem" }}
-                        >
-                          <span className="font-semibold">{letter}.</span>
-                          {optionText.startsWith("http") ? (
-                            <div className="w-full">
-                              <Image
-                                src={optionText}
-                                alt={`Option ${letter}`}
-                                width={800}
-                                height={600}
-                                className="rounded-md w-full h-auto object-contain"
-                              />
-                            </div>
-                          ) : (
-                            <div className="latex-font">
-                              <MathRenderer text={optionText} />
-                            </div>
-                          )}
-                        </Button>
-                      )
-                    })}
-                  </div>
+              question.options && question.options.length > 0 && (
+                <div className="mb-4 flex flex-col gap-2">
+                  {question.options.map((rawOption, idx) => {
+                    const letter = String.fromCharCode(65 + idx)
+                    const cleaned = cleanOptionText(rawOption)
+                    const isPending = pendingOption === letter
+                    const directSelected = localSelectedOption === letter
+                    const isFeedbackActive = directSelected && feedback
+
+                    const baseClasses = [
+                      "w-full", "text-left", "p-3", "rounded-md", "border", "transition-colors"
+                    ]
+                    let colorClasses = "border-gray-300 dark:border-gray-600"
+                    if (isFeedbackActive) {
+                      if (feedback === "correct") {
+                        colorClasses = "bg-green-100 text-green-700 border-green-400"
+                      } else {
+                        colorClasses = "bg-red-100 text-red-700 border-red-400"
+                      }
+                    } else if (isPending) {
+                      colorClasses = "border-blue-400 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-slate-800 dark:text-blue-200"
+                    }
+
+                    return (
+                      <Button
+                        key={idx}
+                        variant="outline"
+                        onClick={() => handleOptionSelect(letter)}
+                        className={[...baseClasses, colorClasses].join(" ")}
+                      >
+                        <span className="font-semibold mr-1">{letter}.</span>
+                        {cleaned.startsWith("http") ? (
+                          <img src={cleaned} alt={`Option ${letter}`} />
+                        ) : (
+                          <span className="latex-font">
+                            <MathRenderer text={cleaned} />
+                          </span>
+                        )}
+                      </Button>
+                    )
+                  })}
+
                   <div className="mt-2 flex gap-2">
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          onClick={handleMcqSubmit}
-                          disabled={!pendingOption}
-                          className="
-                            border
-                            border-blue-400
-                            bg-blue-50
-                            text-blue-800
-                            dark:border-blue-600
-                            dark:bg-slate-800
-                            dark:text-blue-200
-                            px-4 py-1
-                            hover:bg-blue-100
-                            dark:hover:bg-slate-700
-                            rounded-sm
-                          "
-                        >
-                          Submit
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>Submit your MCQ answer</TooltipContent>
-                    </Tooltip>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="outline"
-                          onClick={() =>
-                            question.questionId && handleResetQuestion(question.questionId)
-                          }
-                        >
-                          Reset
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>Clear answer & unmark question</TooltipContent>
-                    </Tooltip>
+                    <Button onClick={handleMcqSubmit} disabled={!pendingOption}>
+                      Submit
+                    </Button>
+                    <Button variant="outline" onClick={() => question.questionId && handleResetQuestion(question.questionId)}>
+                      Reset
+                    </Button>
                   </div>
                 </div>
               )}
+
+            {/* Feedback banner */}
             {feedback && (
               <div
                 className={`mt-4 p-2 rounded ${
-                  feedback === "correct"
-                    ? "bg-green-100 text-green-700"
-                    : "bg-red-100 text-red-700"
+                  feedback === "correct" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
                 }`}
               >
                 {feedback === "correct" ? "Correct!" : "Incorrect, try again."}
               </div>
             )}
+
+            {/* Markscheme button */}
             {((localSelectedOption && markschemeEnabled) ||
-              ((question.type === "Numerical" || question.type === "integer") &&
-                numericalAnswer &&
-                markschemeEnabled)) && (
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="mt-4"
-                    onClick={() => {
-                      setShowMarkschemeModal(!showMarkschemeModal)
-                      question.questionId && handleMarkschemeToggle(question.questionId)
-                    }}
-                  >
-                    Show Markscheme
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>View the markscheme</TooltipContent>
-              </Tooltip>
+              (question.type === "Numerical" && numericalAnswer && markschemeEnabled)) && (
+              <Button variant="outline" className="mt-4" onClick={() => {
+                setShowMarkschemeModal(!showMarkschemeModal)
+                if (question.questionId) {
+                  handleMarkschemeToggle(question.questionId)
+                }
+              }}>
+                Show Markscheme
+              </Button>
             )}
+
+            {/* Difficulty */}
             <div className="flex items-center space-x-2 mt-4">
-              <Label className="text-sm text-gray-600 dark:text-gray-300">Difficulty:</Label>
-              <Select
+              <Label className="text-sm">Difficulty:</Label>
+              <select
+                className="border rounded px-2 py-1 text-sm"
                 value={
                   localDifficultyRating === 1
                     ? "easy"
@@ -698,58 +613,38 @@ export default function Question({
                     ? "hard"
                     : ""
                 }
-                onValueChange={(val) => {
+                onChange={(e) => {
                   let rating = 1
-                  if (val === "medium") rating = 2
-                  if (val === "hard") rating = 3
+                  if (e.target.value === "medium") rating = 2
+                  else if (e.target.value === "hard") rating = 3
                   handleDifficultyChange(rating)
                 }}
               >
-                <SelectTrigger className="w-36">
-                  <SelectValue placeholder="Set difficulty" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="easy">Easy</SelectItem>
-                  <SelectItem value="medium">Medium</SelectItem>
-                  <SelectItem value="hard">Hard</SelectItem>
-                </SelectContent>
-              </Select>
+                <option value="">Set difficulty</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
             </div>
           </CardContent>
-          <CardFooter className="flex justify-end space-x-2">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="outline" onClick={() => setShowNotes(!showNotes)}>
-                  <BookOpen className="mr-2 h-4 w-4" />
-                  {showNotes ? "Hide Notes" : "Take Notes"}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                {showNotes ? "Hide note-taking interface" : "Open note-taking interface"}
-              </TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="outline" onClick={() => setShowAI(!showAI)}>
-                  <LucideBot className="mr-2 h-4 w-4" />
-                  {showAI ? "Hide AI" : "AI Assistance"}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>{showAI ? "Hide AI assistant" : "Get AI help"}</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="outline" onClick={() => setShowComments(!showComments)}>
-                  <MessageSquare className="mr-2 h-4 w-4" />
-                  {showComments ? "Hide Comments" : "Show Comments"}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                {showComments ? "Hide comments" : "View and add comments"}
-              </TooltipContent>
-            </Tooltip>
+
+          {/* Three main buttons left-aligned */}
+          <CardFooter className="flex items-center gap-4">
+            <Button variant="outline" onClick={() => setShowNotes(!showNotes)}>
+              <StickyNote className="mr-2 h-4 w-4" />
+              {showNotes ? "Hide Notes" : "Take Notes"}
+            </Button>
+            <Button variant="outline" onClick={() => setShowAI(!showAI)}>
+              {showAI ? "Hide AI" : "AI Assistance"}
+            </Button>
+            <Button variant="outline" onClick={() => setShowComments(!showComments)}>
+              <MessageSquare className="mr-2 h-4 w-4" />
+              {showComments ? "Hide Comments" : "Show Comments"}
+            </Button>
           </CardFooter>
         </Card>
+
+        {/* Notes */}
         {showNotes && (
           <Card className="mb-6 dark:bg-gray-800 dark:text-gray-100">
             <CardHeader>
@@ -761,7 +656,9 @@ export default function Question({
                 content={localNote}
                 onUpdate={(content) => {
                   setLocalNote(content)
-                  question.questionId && handleNoteChange(question.questionId, content)
+                  if (question.questionId) {
+                    handleNoteChange(question.questionId, content)
+                  }
                 }}
               />
             </CardContent>
@@ -769,17 +666,19 @@ export default function Question({
               <Button variant="outline" onClick={saveNote}>
                 Save Note
               </Button>
-              <Button variant="destructive" onClick={deleteNote} disabled={!noteId}>
+              <Button variant="destructive" onClick={deleteNoteLocal} disabled={!noteId}>
                 Delete Note
               </Button>
             </CardFooter>
           </Card>
         )}
+
+        {/* AI */}
         {showAI && (
           <Card className="mb-6 dark:bg-gray-800 dark:text-gray-100">
             <CardHeader>
               <CardTitle>AI Assistant</CardTitle>
-              <CardDescription>Ask for help or clarification on this question.</CardDescription>
+              <CardDescription>Ask for help or clarification.</CardDescription>
             </CardHeader>
             <CardContent>
               {question.questionId && (
@@ -793,6 +692,8 @@ export default function Question({
             </CardContent>
           </Card>
         )}
+
+        {/* Comments */}
         {showComments && (
           <Card className="mb-6 dark:bg-gray-800 dark:text-gray-100">
             <CardHeader>
@@ -802,29 +703,28 @@ export default function Question({
             <CardContent>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <Label htmlFor="comment-sort">Sort by</Label>
-                  <Select
+                  <Label>Sort by</Label>
+                  <select
+                    className="border px-2 py-1 rounded text-sm"
                     value={commentSort}
-                    onValueChange={(value: "newest" | "oldest" | "popular") => setCommentSort(value)}
+                    onChange={(e) => {
+                      const val = e.target.value as "newest" | "oldest" | "popular"
+                      setCommentSort(val)
+                    }}
                   >
-                    <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Sort comments" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="newest">Newest</SelectItem>
-                      <SelectItem value="oldest">Oldest</SelectItem>
-                      <SelectItem value="popular">Most Popular</SelectItem>
-                    </SelectContent>
-                  </Select>
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                    <option value="popular">Most Popular</option>
+                  </select>
                 </div>
-                <div className="space-y-4">
+                <div>
                   <Textarea
-                    id="comment"
                     placeholder="Write a comment..."
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
                   />
                   <Button
+                    className="mt-2"
                     onClick={() => {
                       if (newComment.trim()) {
                         const newC: CommentType = {
@@ -846,6 +746,7 @@ export default function Question({
                     Add Comment
                   </Button>
                 </div>
+
                 <ScrollArea className="h-[300px]">
                   {comments.map((c) => (
                     <CommentItem
@@ -907,6 +808,7 @@ export default function Question({
                       handleDeleteComment={(commentId) => {
                         const updated = comments.filter((com) => {
                           if (com.id === commentId) return false
+                          // remove from replies
                           com.replies = com.replies.filter((r) => r.id !== commentId)
                           return true
                         })
@@ -921,16 +823,17 @@ export default function Question({
                               downvotes: type === "downvote" ? com.downvotes + 1 : com.downvotes,
                             }
                           }
-                          com.replies = com.replies.map((rep) =>
-                            rep.id === commentId
-                              ? {
-                                  ...rep,
-                                  upvotes: type === "upvote" ? rep.upvotes + 1 : rep.upvotes,
-                                  downvotes:
-                                    type === "downvote" ? rep.downvotes + 1 : rep.downvotes,
-                                }
-                              : rep
-                          )
+                          // also check replies
+                          com.replies = com.replies.map((rep) => {
+                            if (rep.id === commentId) {
+                              return {
+                                ...rep,
+                                upvotes: type === "upvote" ? rep.upvotes + 1 : rep.upvotes,
+                                downvotes: type === "downvote" ? rep.downvotes + 1 : rep.downvotes,
+                              }
+                            }
+                            return rep
+                          })
                           return com
                         })
                         setComments(updated)
@@ -943,6 +846,7 @@ export default function Question({
             </CardContent>
           </Card>
         )}
+
         <AnimatePresence>
           {showMarkschemeModal && (
             <motion.div
@@ -960,7 +864,6 @@ export default function Question({
                       <TooltipTrigger asChild>
                         <Button variant="ghost" size="icon" onClick={() => setShowMarkschemeModal(false)}>
                           <X className="h-4 w-4" />
-                          <span className="sr-only">Close markscheme</span>
                         </Button>
                       </TooltipTrigger>
                       <TooltipContent>Close markscheme</TooltipContent>
@@ -971,11 +874,9 @@ export default function Question({
                   <div className="overflow-y-auto max-h-[60vh]">
                     {question.markscheme?.startsWith("http") ? (
                       <div className="relative w-full max-w-lg mx-auto">
-                        <Image
+                        <img
                           src={question.markscheme}
                           alt="Markscheme image"
-                          width={800}
-                          height={600}
                           className="rounded-md w-full h-auto object-contain"
                         />
                       </div>
@@ -997,6 +898,7 @@ export default function Question({
   )
 }
 
+// Nested comment item
 function CommentItem({
   comment,
   userId,
@@ -1049,6 +951,7 @@ function CommentItem({
               </p>
             </div>
           </div>
+
           {editingCommentId === comment.id ? (
             <div className="mt-2">
               <Textarea
@@ -1068,6 +971,7 @@ function CommentItem({
           ) : (
             <p className="mt-2">{comment.content}</p>
           )}
+
           <div className="mt-2 flex items-center space-x-4">
             <Tooltip>
               <TooltipTrigger asChild>
@@ -1081,6 +985,7 @@ function CommentItem({
               </TooltipTrigger>
               <TooltipContent>Upvote</TooltipContent>
             </Tooltip>
+
             <Tooltip>
               <TooltipTrigger asChild>
                 <button
@@ -1093,6 +998,7 @@ function CommentItem({
               </TooltipTrigger>
               <TooltipContent>Downvote</TooltipContent>
             </Tooltip>
+
             <Tooltip>
               <TooltipTrigger asChild>
                 <button
@@ -1104,6 +1010,7 @@ function CommentItem({
               </TooltipTrigger>
               <TooltipContent>Reply</TooltipContent>
             </Tooltip>
+
             {comment.userId === userId && (
               <>
                 <Tooltip>
@@ -1120,6 +1027,7 @@ function CommentItem({
                   </TooltipTrigger>
                   <TooltipContent>Edit</TooltipContent>
                 </Tooltip>
+
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <button
@@ -1134,6 +1042,7 @@ function CommentItem({
               </>
             )}
           </div>
+
           {replyingTo === comment.id && (
             <div className="mt-2">
               <Textarea
@@ -1152,6 +1061,7 @@ function CommentItem({
           )}
         </div>
       </div>
+
       {comment.replies.map((r) => (
         <CommentItem
           key={r.id}
