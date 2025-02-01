@@ -27,7 +27,9 @@ export default function MainContent() {
   const initialQuestions: QuestionType[] = (sampleQuestions as any[]).map((q, i) => ({
     ...q,
     id: i + 1, // numeric ID
+    // If q.year is a string, parse it; otherwise undefined
     year: q.year ? parseInt(q.year, 10) : undefined,
+    // Ensure `options` is strictly string[], filtering out any undefined
     options: q.options
       ? q.options.filter((opt: string | undefined): opt is string => !!opt)
       : undefined,
@@ -107,7 +109,7 @@ export default function MainContent() {
     );
   };
 
-  // (E) Required: handleResetQuestion
+  // (E) Reset question
   // Clears feedback, selected option, numeric answers, etc. and un-flags question.
   const handleResetQuestion = (questionId: string) => {
     setFeedback((prev) => {
@@ -137,11 +139,6 @@ export default function MainContent() {
     );
   };
 
-  // Just a placeholder for note deletion logic
-  const handleDeleteNote = async (questionId: string): Promise<void> => {
-    return Promise.resolve();
-  };
-
   return (
     <div className="w-full h-full overflow-auto">
       <div className="max-w-6xl w-full mx-auto p-4">
@@ -162,8 +159,6 @@ export default function MainContent() {
             handleMarkschemeToggle={handleMarkschemeToggle}
             handleMarkForReview={() => handleMarkForReview(question.questionId ?? "")}
             handleMarkComplete={() => handleMarkComplete(question.questionId ?? "")}
-
-            // The missing prop: handleResetQuestion
             handleResetQuestion={handleResetQuestion}
 
             // Flags
@@ -171,18 +166,11 @@ export default function MainContent() {
             isMarkedComplete={question.completed}
             markschemesDisabled={false}
 
-            // Simple placeholders for notes
-            note=""
-            handleNoteChange={() => {}}
-            handleDeleteNote={handleDeleteNote}
-
-            // Additional props
-            userId="user-id-placeholder"
+            // Pagination-like props (unused)
             totalQuestions={questions.length}
             currentQuestionIndex={index}
             handleQuestionChange={(newIndex) => {
               console.log(`Navigating to question ${newIndex}`);
-              // Add your question navigation logic here if needed
             }}
           />
         ))}

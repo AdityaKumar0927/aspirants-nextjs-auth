@@ -101,11 +101,12 @@ model Issue {
   resolvedById String?
   userNotified Boolean       @default(false)
 
-  createdBy  User     @relation("Issue_createdByIdToUser", fields: [createdById], references: [id], onDelete: Cascade)
-  question   Question? @relation(fields: [questionId], references: [questionId])
-  resolvedBy User?    @relation("Issue_resolvedByIdToUser", fields: [resolvedById], references: [id])
-
+  createdBy   User     @relation("Issue_createdByIdToUser", fields: [createdById], references: [id], onDelete: Cascade)
+  question    Question? @relation(fields: [questionId], references: [questionId])
+  resolvedBy  User?    @relation("Issue_resolvedByIdToUser", fields: [resolvedById], references: [id])
   VolunteerTask VolunteerTask[]
+
+  @@index([questionId])
 }
 
 model ModeratorLimit {
@@ -242,6 +243,26 @@ model Session {
   @@index([userId])
 }
 
+/** NEW MODEL to store mock exam attempts. */
+model UserMockExam {
+  id        String   @id @default(uuid())
+  userId    String
+  exam      String?
+  year      Int?
+  shift     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  completed Boolean  @default(false)
+
+  /** Entire exam results object can go here. */
+  results   Json?
+
+  // Relation to User
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
 model User {
   id                             String                @id @default(uuid())
   name                           String?
@@ -255,6 +276,8 @@ model User {
   subscriptionTier               SubscriptionTier?     @default(MEMBER)
   updatedAt                      DateTime              @default(now())
   verifiedTeacher                Boolean               @default(false)
+
+  /** Relations to other models */
   Account                        Account[]
   AiUsageLog                     AiUsageLog[]
   Application                    Application[]
@@ -272,6 +295,10 @@ model User {
   UserProgress                   UserProgress[]
   UserSettings                   UserSettings?
   VolunteerTask                  VolunteerTask[]
+
+  /** Add this so Prisma recognizes both sides of the relation: */
+  userMockExams                  UserMockExam[]
+
 }
 
 model UserAnswer {
@@ -377,6 +404,9 @@ model VolunteerTask {
   User        User     @relation(fields: [volunteerId], references: [id])
 }
 
+/* ===============================================
+   Enums
+   =============================================== */
 enum AiService {
   GOOGLE_OCR
   GPT_COMPLETION
