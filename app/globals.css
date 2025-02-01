@@ -263,3 +263,19 @@ html {
   font-family: 'KaTeX_Main', serif !important;
   /* fallback "serif" or something similar if KaTeX_Main isn't found */
 }
+
+/* e.g. in globals.css or any global style file */
+.custom-scrollbar {
+  scrollbar-width: thin; /* for Firefox */
+  scrollbar-color: #9ca3af #f3f4f6; /* thumb color, track color */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f3f4f6; /* track color */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #9ca3af; /* thumb color */
+  border-radius: 5px;
+}

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -10,16 +10,26 @@ import { useToast } from "@/components/ui/use-toast"
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
+  CardFooter,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipProvider,
+} from "@/components/ui/tooltip"
 import { Badge } from "@/components/ui/badge"
 import {
   Flag,
@@ -29,9 +39,6 @@ import {
 import SettingsPopover from "@/components/ui/SettingsPopover"
 import FeedbackPopover from "./FeedbackPopover"
 
-/* ------------------------------------------------------------------ */
-/* Interfaces                                                         */
-/* ------------------------------------------------------------------ */
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
@@ -61,9 +68,6 @@ interface QuestionType {
   difficultyRating?: number
 }
 
-/**
- * Props for the question block.
- */
 interface QuestionProps {
   question: QuestionType
   feedback: string | undefined
@@ -83,25 +87,14 @@ interface QuestionProps {
   isMarkedComplete: boolean
   markschemesDisabled: boolean
 
-  /**
-   * Because notes, AI chat, and comments are removed,
-   * these fields/handlers aren't needed any more.
-   * We'll omit them.
-   */
-
-  // Pagination info
   totalQuestions: number
   currentQuestionIndex: number
   handleQuestionChange: (index: number) => void
 
-  // Optional swipe navigation
   onNextQuestion?: () => void
   onPreviousQuestion?: () => void
 }
 
-/* ------------------------------------------------------------------ */
-/* The Question component without notes, comments, or AI chat         */
-/* ------------------------------------------------------------------ */
 export default function Question({
   question,
   feedback,
@@ -126,24 +119,22 @@ export default function Question({
 }: QuestionProps) {
   const displayNumber = currentQuestionIndex + 1
   const [pendingOption, setPendingOption] = useState<string | null>(null)
-  const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(
-    selectedOption || null
-  )
+  const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(selectedOption || null)
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false)
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled)
 
-  // For custom tags
+  // ---------- Custom Tags ----------
   const [newTag, setNewTag] = useState("")
   const [localCustomTags, setLocalCustomTags] = useState<string[]>(question.customTags || [])
 
-  // For difficulty rating
+  // ---------- Difficulty ----------
   const [localDifficultyRating, setLocalDifficultyRating] = useState<number | undefined>(
     question.difficultyRating
   )
 
   const { toast } = useToast()
 
-  // Swipe handlers if you want left/right swipe for next/prev
+  // Swipe handlers
   const handlers = useSwipeable({
     onSwipedLeft: () => onNextQuestion && onNextQuestion(),
     onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
@@ -155,16 +146,60 @@ export default function Question({
   }, [selectedOption])
 
   // ---------------------------------------------------------
-  // Tag logic
+  // Tag logic: add & remove (calls the /api/questions PATCH)
   // ---------------------------------------------------------
-  function handleAddTag() {
-    if (newTag && !localCustomTags.includes(newTag)) {
-      setLocalCustomTags([...localCustomTags, newTag])
-      setNewTag("")
+  async function handleAddTag() {
+    if (!newTag || !question.questionId) return
+    if (localCustomTags.includes(newTag)) {
+      toast({ title: "Tag already added" })
+      return
+    }
+
+    const updatedTags = [...localCustomTags, newTag]
+    setLocalCustomTags(updatedTags)
+    setNewTag("")
+
+    try {
+      await fetch("/api/questions", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          questionId: question.questionId,
+          customTags: updatedTags, // send new customTags array to server
+        }),
+      })
+    } catch (err) {
+      console.error(err)
+      toast({
+        title: "Error",
+        description: "Could not add custom tag. Check logs.",
+        variant: "destructive",
+      })
     }
   }
-  function handleRemoveTag(tag: string) {
-    setLocalCustomTags(localCustomTags.filter((t) => t !== tag))
+
+  async function handleRemoveTag(tag: string) {
+    if (!question.questionId) return
+    const updatedTags = localCustomTags.filter((t) => t !== tag)
+    setLocalCustomTags(updatedTags)
+
+    try {
+      await fetch("/api/questions", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          questionId: question.questionId,
+          customTags: updatedTags,
+        }),
+      })
+    } catch (err) {
+      console.error(err)
+      toast({
+        title: "Error",
+        description: "Could not remove custom tag. Check logs.",
+        variant: "destructive",
+      })
+    }
   }
 
   // ---------------------------------------------------------
@@ -232,6 +267,7 @@ export default function Question({
   }
 
   function cleanOptionText(option: string): string {
+    // Remove "A: " prefix etc
     return option.replace(/^[A-D]:\s?/i, "").trim()
   }
 
@@ -300,9 +336,7 @@ export default function Question({
   return (
     <TooltipProvider>
       <div {...handlers} className="relative pb-20" id={`question-${question.questionId}`}>
-        <Card
-          className={`w-full overflow-hidden mb-6 dark:bg-gray-800 dark:text-gray-100 ${getBorderColorClass()}`}
-        >
+        <Card className={`w-full overflow-hidden mb-6 dark:bg-gray-800 dark:text-gray-100 ${getBorderColorClass()}`}>
           <CardHeader className="relative">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
               {/* Title + Subject + Difficulty + ... */}
@@ -676,7 +710,6 @@ export default function Question({
             </div>
           </CardContent>
 
-          {/* Footer (empty or could hold pagination controls) */}
           <CardFooter />
         </Card>
 
@@ -710,7 +743,7 @@ export default function Question({
                   </TooltipProvider>
                 </CardHeader>
                 <CardContent>
-                  <div className="overflow-y-auto max-h-[60vh]">
+                  <div className="overflow-y-auto max-h-[60vh] custom-scrollbar">
                     {question.markscheme?.startsWith("http") ? (
                       <div className="relative w-full max-w-lg mx-auto">
                         <Image

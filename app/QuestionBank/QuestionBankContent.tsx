@@ -15,6 +15,7 @@ import {
   HelpCircle,
   Flag,
 } from "lucide-react";
+
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -33,12 +34,6 @@ import Popover from "@/components/shared/popover";
 import Question from "@/components/shared/Question";
 
 // -------------------- Enums & Types --------------------
-enum QuestionStatus {
-  ACTIVE = "ACTIVE",
-  DRAFT = "DRAFT",
-  ARCHIVED = "ARCHIVED",
-}
-
 enum ViewMode {
   DESKTOP = "desktop",
   MOBILE = "mobile",
@@ -60,10 +55,12 @@ interface QuestionType {
   completed?: boolean;
   options?: string[];
   correctOption?: string;
-  markscheme?: string;
+  markscheme?: string; // now includes DB's “explanation”
   notes?: string;
   diagramUrl?: string;
   exam?: string;
+  customTags?: string[];   // newly added
+  difficultyRating?: number;
 }
 
 type FilterKey =
@@ -311,30 +308,6 @@ export default function QuestionBankContent() {
   }, []);
 
   // -------------- Data Fetch --------------
-  const fetchSmartFilters = useCallback(async () => {
-    try {
-      const { exams, subjects, topics, subtopics, difficulties, years, types } = state.filters;
-      const arrToComma = (arr: string[]) => arr.join(",");
-      const params = new URLSearchParams();
-      if (exams.length) params.set("exam", arrToComma(exams));
-      if (subjects.length) params.set("subject", arrToComma(subjects));
-      if (topics.length) params.set("topic", arrToComma(topics));
-      if (subtopics.length) params.set("subtopic", arrToComma(subtopics));
-      if (difficulties.length) params.set("difficulty", arrToComma(difficulties));
-      if (years.length) params.set("year", arrToComma(years));
-      if (types.length) params.set("type", arrToComma(types));
-      const url = `/api/filters/smart?${params.toString()}`;
-      const resp = await fetch(url);
-      if (!resp.ok) {
-        throw new Error(`Smart filters fetch failed: ${resp.status}`);
-      }
-      const newOpts = (await resp.json()) as FilterOptionsType;
-      dispatch({ type: "SET_FILTER_OPTIONS", payload: newOpts });
-    } catch (err) {
-      console.error("Error fetchSmartFilters:", err);
-    }
-  }, [state.filters]);
-
   const fetchFilterOptions = useCallback(async () => {
     try {
       const res = await fetch("/api/filters", { cache: "no-store" });
@@ -362,7 +335,7 @@ export default function QuestionBankContent() {
 
   const fetchGlobalStats = useCallback(async () => {
     try {
-      const { exams, subjects, topics, subtopics, difficulties, years, types } = state.filters;
+      const { exams, subjects, topics, subtopics, difficulties, years, types, status } = state.filters;
       const arrToComma = (arr: string[]) => arr.join(",");
       const params = new URLSearchParams();
       if (exams.length) params.set("exam", arrToComma(exams));
@@ -372,6 +345,10 @@ export default function QuestionBankContent() {
       if (difficulties.length) params.set("difficulty", arrToComma(difficulties));
       if (years.length) params.set("year", arrToComma(years));
       if (types.length) params.set("type", arrToComma(types));
+      // Optionally pass 'status' if your API can handle that
+      // (some folks skip it if 'status' is purely local)
+      // params.set("status", status);
+
       const resp = await fetch(`/api/questions/stats?${params.toString()}`, { cache: "no-store" });
       if (!resp.ok) {
         const txt = await resp.text();
@@ -406,6 +383,7 @@ export default function QuestionBankContent() {
       if (types.length) params.set("type", arrToComma(types));
       params.set("page", String(currentPage));
       params.set("pageSize", String(pageSize));
+
       const url = `/api/questions?${params.toString()}`;
       const res = await fetch(url, { cache: "no-store" });
       if (!res.ok) {
@@ -415,6 +393,7 @@ export default function QuestionBankContent() {
       const result = await res.json();
       let data: QuestionType[] = [];
       let totalCount = 0;
+
       if (Array.isArray(result)) {
         data = result;
         totalCount = data.length;
@@ -422,12 +401,24 @@ export default function QuestionBankContent() {
         data = result.data;
         totalCount = result.totalCount;
       }
+
+      // If the DB returns an `explanation` field, map it into `markscheme`
+      data = data.map((q) => {
+        // Some APIs might call it "explanation"
+        // Just transform it to "markscheme"
+        if ((q as any).explanation) {
+          q.markscheme = (q as any).explanation;
+        }
+        return q;
+      });
+
       // Sort by numeric portion of questionId
       data = data.sort((a, b) => {
         const aId = a.questionId?.match(/\d+/)?.[0] || "0";
         const bId = b.questionId?.match(/\d+/)?.[0] || "0";
         return parseInt(aId, 10) - parseInt(bId, 10);
       });
+
       dispatch({ type: "SET_QUESTIONS", payload: data });
       dispatch({ type: "SET_TOTAL_COUNT", payload: totalCount });
     } catch (err) {
@@ -450,10 +441,9 @@ export default function QuestionBankContent() {
 
   // Refresh when filters/page changes
   useEffect(() => {
-    fetchSmartFilters();
     fetchQuestions();
     fetchGlobalStats();
-  }, [state.filters, state.currentPage, fetchSmartFilters, fetchQuestions, fetchGlobalStats]);
+  }, [state.filters, state.currentPage, fetchQuestions, fetchGlobalStats]);
 
   // -------------- Action Handlers --------------
   const handleMarkComplete = useCallback(
@@ -695,7 +685,7 @@ export default function QuestionBankContent() {
                     fixed top-0 left-0 w-screen h-screen
                     sm:w-[500px] sm:max-h-[90vh] sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
                     bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
-                    flex flex-col
+                    flex flex-col custom-scrollbar
                   "
                 >
                   <FiltersDialogMobile
@@ -711,7 +701,7 @@ export default function QuestionBankContent() {
               </span>
             </div>
           </div>
-          {/* Question component */}
+          {/* Single question */}
           <Question
             question={currentQ}
             feedback={state.feedback[currentQ.questionId]}
@@ -829,7 +819,7 @@ export default function QuestionBankContent() {
                   fixed top-0 left-0 w-screen h-screen
                   sm:w-[500px] sm:max-h-[90vh] sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
                   bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
-                  flex flex-col
+                  flex flex-col custom-scrollbar
                 "
               >
                 <FiltersDialogMobile
@@ -854,9 +844,9 @@ export default function QuestionBankContent() {
               </DialogTrigger>
               <DialogContent
                 onCloseAutoFocus={(e) => e.preventDefault()}
-                className="sm:max-w-[80vw] sm:max-h-[80vh] dark:bg-gray-800 dark:text-gray-100"
+                className="sm:max-w-[80vw] sm:max-h-[80vh] dark:bg-gray-800 dark:text-gray-100 custom-scrollbar"
               >
-                <ScrollArea className="h-[60vh]">
+                <ScrollArea className="h-[60vh] custom-scrollbar">
                   <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 p-4">
                     {filteredQuestions.map((q, index) => {
                       const absoluteIndex = (state.currentPage - 1) * state.pageSize + index;
@@ -942,7 +932,7 @@ export default function QuestionBankContent() {
                     dispatch({ type: "SET_DROPDOWN", payload: { tag: filterType, value: !!open } });
                   }}
                   content={
-                    <div className="p-2 w-full sm:w-80 bg-white dark:bg-gray-800 rounded-md">
+                    <div className="p-2 w-full sm:w-80 bg-white dark:bg-gray-800 rounded-md custom-scrollbar">
                       <DesktopFilterSearch
                         filterType={filterType}
                         filterValues={filterValues}
@@ -1193,7 +1183,7 @@ function DesktopFilterSearch({
         onChange={(e) => setSearchTerm(e.target.value)}
         className="mb-2 dark:text-gray-100 dark:bg-gray-700 dark:placeholder-gray-400"
       />
-      <ScrollArea className="max-h-60">
+      <ScrollArea className="max-h-60 custom-scrollbar">
         <motion.div className="flex flex-col gap-2" layout transition={transitionProps}>
           {displayedValues.map((val) => {
             const isSelected = state.filters[filterType].includes(val);
@@ -1294,7 +1284,7 @@ interface CustomFiltersDialogProps {
 }
 
 function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDialogProps) {
-  const [searches, setSearches] = useState<Record<string, string>>({
+  const [searches, setSearches] = useState<Record<FilterKey, string>>({
     exams: "",
     subjects: "",
     topics: "",
@@ -1304,11 +1294,11 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
     types: "",
   });
 
-  const handleSearchChange = (category: string, value: string) => {
+  const handleSearchChange = (category: FilterKey, value: string) => {
     setSearches((prev) => ({ ...prev, [category]: value }));
   };
 
-  const filterItems = (items: string[], category: string) => {
+  const filterItems = (items: string[], category: FilterKey) => {
     const searchVal = searches[category]?.toLowerCase() || "";
     return items.filter((item) => item.toLowerCase().includes(searchVal));
   };
@@ -1355,9 +1345,31 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
             </Button>
           </div>
         </div>
-        <div className="flex-1 overflow-y-auto px-6 py-8 custom-scrollbar">
+        <div className="flex-1 overflow-y-scroll px-6 py-8 custom-scrollbar">
           <div className="max-w-3xl mx-auto space-y-10">
-            <FilterSection
+            {/* Status row */}
+            <div>
+              <p className="text-xl font-medium mb-2 text-gray-800 dark:text-gray-100">Status</p>
+              <div className="flex flex-wrap gap-2">
+                {["all", "complete", "review", "incomplete"].map((st) => (
+                  <Button
+                    key={st}
+                    variant={state.filters.status === st ? "default" : "outline"}
+                    size="sm"
+                    onClick={() =>
+                      dispatch({
+                        type: "SET_FILTERS",
+                        payload: { ...state.filters, status: st },
+                      })
+                    }
+                  >
+                    {st.charAt(0).toUpperCase() + st.slice(1)}
+                  </Button>
+                ))}
+              </div>
+            </div>
+            {/* Now each filter section */}
+            <MobileFilterSection
               title="exams"
               items={state.filterOptions.exams}
               searchValue={searches.exams}
@@ -1366,7 +1378,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
               selectedItems={state.filters.exams}
               toggleItem={(item) => toggleItem("exams", item)}
             />
-            <FilterSection
+            <MobileFilterSection
               title="subjects"
               items={state.filterOptions.subjects}
               searchValue={searches.subjects}
@@ -1375,7 +1387,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
               selectedItems={state.filters.subjects}
               toggleItem={(item) => toggleItem("subjects", item)}
             />
-            <FilterSection
+            <MobileFilterSection
               title="topics"
               items={state.filterOptions.topics}
               searchValue={searches.topics}
@@ -1384,7 +1396,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
               selectedItems={state.filters.topics}
               toggleItem={(item) => toggleItem("topics", item)}
             />
-            <FilterSection
+            <MobileFilterSection
               title="subtopics"
               items={state.filterOptions.subtopics}
               searchValue={searches.subtopics}
@@ -1393,7 +1405,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
               selectedItems={state.filters.subtopics}
               toggleItem={(item) => toggleItem("subtopics", item)}
             />
-            <FilterSection
+            <MobileFilterSection
               title="difficulties"
               items={state.filterOptions.difficulties}
               searchValue={searches.difficulties}
@@ -1402,7 +1414,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
               selectedItems={state.filters.difficulties}
               toggleItem={(item) => toggleItem("difficulties", item)}
             />
-            <FilterSection
+            <MobileFilterSection
               title="years"
               items={state.filterOptions.years}
               searchValue={searches.years}
@@ -1411,7 +1423,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
               selectedItems={state.filters.years}
               toggleItem={(item) => toggleItem("years", item)}
             />
-            <FilterSection
+            <MobileFilterSection
               title="types"
               items={state.filterOptions.types}
               searchValue={searches.types}
@@ -1428,7 +1440,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
 }
 
 // -------------------- Mobile Filter Section --------------------
-interface FilterSectionProps {
+interface MobileFilterSectionProps {
   title: string;
   items: string[];
   searchValue: string;
@@ -1438,7 +1450,7 @@ interface FilterSectionProps {
   toggleItem: (item: string) => void;
 }
 
-function FilterSection({
+function MobileFilterSection({
   title,
   items,
   searchValue,
@@ -1446,10 +1458,7 @@ function FilterSection({
   filterItems,
   selectedItems,
   toggleItem,
-}: FilterSectionProps) {
-  const handleClickItem = (item: string) => {
-    toggleItem(item);
-  };
+}: MobileFilterSectionProps) {
   const displayed = filterItems(items);
 
   return (
@@ -1470,7 +1479,7 @@ function FilterSection({
           return (
             <button
               key={item}
-              onClick={() => handleClickItem(item)}
+              onClick={() => toggleItem(item)}
               className={`
                 inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
                 whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight

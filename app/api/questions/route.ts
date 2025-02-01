@@ -4,8 +4,8 @@ import { PrismaClient, QuestionStatus } from "@prisma/client"
 const prisma = new PrismaClient()
 
 /** 
- * Utility to parse comma-separated query params: 
- *   "JEE,NEET" => ["JEE","NEET"] 
+ * Utility to parse comma-separated query params:
+ *   "JEE,NEET" => ["JEE", "NEET"]
  */
 function parseCommaParam(value: string | null): string[] | undefined {
   if (!value) return undefined
@@ -17,12 +17,15 @@ function parseCommaParam(value: string | null): string[] | undefined {
 
 /**
  * GET /api/questions
- *  ?exam=JEE,NEET
- *  &subject=Physics,Chemistry
- *  &difficulty=Easy,Medium
- *  &year=2021,2022
- *  &page=1
- *  &pageSize=20
+ *
+ * Querystring (optional):
+ *   ?exam=JEE,NEET
+ *   &subject=Physics,Chemistry
+ *   &difficulty=Easy,Medium
+ *   &year=2021,2022
+ *   &type=Multiple Choice,Numerical
+ *   &page=1
+ *   &pageSize=20
  */
 export async function GET(request: Request) {
   try {
@@ -47,49 +50,51 @@ export async function GET(request: Request) {
 
     // 3) Build Prisma WHERE object
     const where: any = {
-      // If you only want active questions, for example:
-      // status: QuestionStatus.ACTIVE
+      // status: QuestionStatus.ACTIVE, // Uncomment if you only want Active
     }
 
-    // exam in [...]
-    if (examArr) {
-      where.exam = { in: examArr }
-    }
-    if (subjectArr) {
-      where.subject = { in: subjectArr }
-    }
-    if (topicArr) {
-      where.topic = { in: topicArr }
-    }
-    if (subtopicArr) {
-      where.subtopic = { in: subtopicArr }
-    }
-    if (difficultyArr) {
-      where.difficulty = { in: difficultyArr }
-    }
-    if (typeArr) {
-      where.type = { in: typeArr }
-    }
+    if (examArr)        where.exam       = { in: examArr }
+    if (subjectArr)     where.subject    = { in: subjectArr }
+    if (topicArr)       where.topic      = { in: topicArr }
+    if (subtopicArr)    where.subtopic   = { in: subtopicArr }
+    if (difficultyArr)  where.difficulty = { in: difficultyArr }
+    if (typeArr)        where.type       = { in: typeArr }
     if (yearStrArr) {
-      const years = yearStrArr.map((y) => parseInt(y, 10)).filter(Boolean)
+      const years = yearStrArr
+        .map((y) => parseInt(y, 10))
+        .filter((n) => !isNaN(n))
       if (years.length) {
         where.year = { in: years }
       }
     }
 
-    // 4) Fetch questions
+    // 4) Fetch matching questions + total count
     const [questions, totalCount] = await Promise.all([
       prisma.question.findMany({
         skip,
         take,
         where,
-        // e.g. orderBy: { id: "asc" }
+        // optional orderBy: { questionId: "asc" }
       }),
       prisma.question.count({ where }),
     ])
 
+    // If you store customTag as comma-separated:
+    // you might want to parse it here to "customTags: string[]" if your client expects that
+    const data = questions.map((q) => {
+      let customTags: string[] = []
+      if (q.customTag) {
+        // e.g. "tag1,tag2"
+        customTags = q.customTag.split(",").map((tag) => tag.trim())
+      }
+      return {
+        ...q,
+        customTags,
+      }
+    })
+
     return NextResponse.json({
-      data: questions,
+      data,
       currentPage: page,
       pageSize,
       totalCount,
@@ -102,15 +107,16 @@ export async function GET(request: Request) {
 
 /**
  * POST /api/questions
- * Creates a new question
  * Body example:
  * {
  *   "questionId": "Q123",
- *   "text": "Which of the following is correct?",
- *   "options": ["A) ...", "B) ...", ...],
+ *   "text": "Which is correct?",
+ *   "options": ["A) ...", "B) ..."],
  *   "correctOption": "A",
  *   "exam": "JEE",
  *   "subject": "Physics",
+ *   "explanation": "This is the markscheme text.",
+ *   "customTags": ["tag1","tag2"],
  *   ...
  * }
  */
@@ -119,11 +125,25 @@ export async function POST(request: Request) {
     const data = await request.json()
     console.log("POST /api/questions => creating question", data)
 
-    // Adjust as needed
+    // If user passes "explanation", store it in "markscheme"
+    if (data.explanation && !data.markscheme) {
+      data.markscheme = data.explanation
+      delete data.explanation
+    }
+
+    // If user passes an array of customTags, store it as CSV in customTag
+    if (Array.isArray(data.customTags)) {
+      data.customTag = data.customTags.join(",")
+      delete data.customTags
+    }
+
+    // default status
+    const status = data.status || QuestionStatus.ACTIVE
+
     const created = await prisma.question.create({
       data: {
         ...data,
-        status: data.status || QuestionStatus.ACTIVE,
+        status,
       },
     })
 
@@ -136,12 +156,14 @@ export async function POST(request: Request) {
 
 /**
  * PATCH /api/questions
- * Updates an existing question by questionId.
  * Body example:
  * {
  *   "questionId": "Q123",
  *   "completed": true,
- *   "reviewed": false
+ *   "reviewed": false,
+ *   "explanation": "New markscheme text",
+ *   "customTags": ["tag1","tag2"],
+ *   "difficultyRating": 2
  * }
  */
 export async function PATCH(request: Request) {
@@ -154,12 +176,34 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ error: "questionId is required" }, { status: 400 })
     }
 
+    // If explanation is given => store in markscheme
+    if (typeof rest.explanation === "string") {
+      rest.markscheme = rest.explanation
+      delete rest.explanation
+    }
+
+    // If array of customTags => store as CSV
+    if (Array.isArray(rest.customTags)) {
+      rest.customTag = rest.customTags.join(",")
+      delete rest.customTags
+    }
+
     const updated = await prisma.question.update({
       where: { questionId },
       data: rest,
     })
 
-    return NextResponse.json(updated)
+    // Return question with customTags re-parsed if needed
+    // so the client sees them as an array
+    let customTags: string[] = []
+    if (updated.customTag) {
+      customTags = updated.customTag.split(",").map((t) => t.trim())
+    }
+
+    return NextResponse.json({
+      ...updated,
+      customTags,
+    })
   } catch (error) {
     console.error("Error updating question:", error)
     return NextResponse.json({ error: "Failed to update question" }, { status: 500 })
