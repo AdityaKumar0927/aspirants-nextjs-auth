@@ -57,7 +57,6 @@ export async function POST(request: Request) {
         experience,
         motivation,
         status: "PENDING",
-        // Here is the fix: Use "User" instead of "user"
         User: {
           connect: {
             email: session.user.email!,

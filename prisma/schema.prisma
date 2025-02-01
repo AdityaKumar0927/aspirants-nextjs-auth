@@ -40,7 +40,7 @@ model AiUsageLog {
 }
 
 model Application {
-  id         String            @id
+  id         String            @id @default(uuid())
   userId     String
   name       String
   email      String
@@ -49,7 +49,7 @@ model Application {
   motivation String
   status     ApplicationStatus @default(PENDING)
   createdAt  DateTime          @default(now())
-  updatedAt  DateTime
+  updatedAt  DateTime          @updatedAt
   User       User              @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([id, userId])
