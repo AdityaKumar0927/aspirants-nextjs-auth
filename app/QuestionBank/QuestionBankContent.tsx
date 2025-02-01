@@ -32,13 +32,19 @@ import { Progress } from "@/components/ui/progress"
 import Popover from "@/components/shared/popover"
 import Question from "@/components/shared/Question"
 
-// View Modes
+enum QuestionStatus {
+  ACTIVE = "ACTIVE",
+  DRAFT = "DRAFT",
+  ARCHIVED = "ARCHIVED",
+}
+
 enum ViewMode {
   DESKTOP = "desktop",
   MOBILE = "mobile",
 }
 
-// Basic question shape
+type QuestionTypeString = "Multiple Choice" | "Numerical" | string
+
 interface QuestionType {
   id: number
   questionId: string
@@ -47,7 +53,7 @@ interface QuestionType {
   topic?: string
   subtopic?: string
   difficulty?: string
-  type?: string
+  type?: QuestionTypeString
   year?: number
   reviewed?: boolean
   completed?: boolean
@@ -59,7 +65,6 @@ interface QuestionType {
   exam?: string
 }
 
-// Filter keys
 type FilterKey =
   | "exams"
   | "subjects"
@@ -69,14 +74,16 @@ type FilterKey =
   | "years"
   | "types"
 
-// The filter state
 type FiltersType = {
   [K in FilterKey]: string[]
 } & {
-  status: string // "all" | "complete" | "review" | "incomplete"
+  status: string
 }
 
-// Distinct options for each filter
+type DropdownsType = {
+  [K in FilterKey]: boolean
+}
+
 interface FilterOptionsType {
   exams: string[]
   subjects: string[]
@@ -94,11 +101,7 @@ interface GlobalStats {
   notAnswered: number
 }
 
-type DropdownsType = {
-  [K in FilterKey]: boolean
-}
-
-interface StateType {
+type StateType = {
   questions: QuestionType[]
   filters: FiltersType
   filterOptions: FilterOptionsType
@@ -140,12 +143,10 @@ function fuzzyContains(haystack: string, needle: string): boolean {
   return haystack.toLowerCase().includes(needle.toLowerCase())
 }
 
-// Convert hyphens to spaces, then uppercase
 function transformFilterText(value: string): string {
-  return value.replace(/-/g, " ").toUpperCase()
+  return value.replace(/-/g, "").toUpperCase()
 }
 
-// The framer-motion transition for chips
 const transitionProps = {
   type: "spring",
   stiffness: 500,
@@ -287,22 +288,42 @@ function Pagination({
 export default function QuestionBankContent() {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { toast } = useToast()
-
-  // For the mobile single-view index
   const [mobileIndex, setMobileIndex] = useState(0)
-
-  // If we open the filters or navigator
   const [filtersOpenMobile, setFiltersOpenMobile] = useState(false)
   const [navigatorOpen, setNavigatorOpen] = useState(false)
 
-  // Decide if mobile or desktop based on screen width
   useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.MOBILE })
     }
   }, [])
 
-  // Fetch filter options
+  const fetchSmartFilters = useCallback(async () => {
+    try {
+      const { exams, subjects, topics, subtopics, difficulties, years, types } = state.filters
+      function arrToComma(arr: string[]) {
+        return arr.join(",")
+      }
+      const params = new URLSearchParams()
+      if (exams.length) params.set("exam", arrToComma(exams))
+      if (subjects.length) params.set("subject", arrToComma(subjects))
+      if (topics.length) params.set("topic", arrToComma(topics))
+      if (subtopics.length) params.set("subtopic", arrToComma(subtopics))
+      if (difficulties.length) params.set("difficulty", arrToComma(difficulties))
+      if (years.length) params.set("year", arrToComma(years))
+      if (types.length) params.set("type", arrToComma(types))
+      const url = `/api/filters/smart?${params.toString()}`
+      const resp = await fetch(url)
+      if (!resp.ok) {
+        throw new Error(`Smart filters fetch failed: ${resp.status}`)
+      }
+      const newOpts = (await resp.json()) as FilterOptionsType
+      dispatch({ type: "SET_FILTER_OPTIONS", payload: newOpts })
+    } catch (err) {
+      console.error("Error fetchSmartFilters:", err)
+    }
+  }, [state.filters])
+
   const fetchFilterOptions = useCallback(async () => {
     try {
       const res = await fetch("/api/filters", { cache: "no-store" })
@@ -328,35 +349,6 @@ export default function QuestionBankContent() {
     }
   }, [toast])
 
-  // Smart subfilter re-fetch
-  const fetchSmartFilters = useCallback(async () => {
-    try {
-      const { exams, subjects, topics, subtopics, difficulties, years, types } = state.filters
-      function arrToComma(arr: string[]) {
-        return arr.join(",")
-      }
-      const params = new URLSearchParams()
-      if (exams.length) params.set("exam", arrToComma(exams))
-      if (subjects.length) params.set("subject", arrToComma(subjects))
-      if (topics.length) params.set("topic", arrToComma(topics))
-      if (subtopics.length) params.set("subtopic", arrToComma(subtopics))
-      if (difficulties.length) params.set("difficulty", arrToComma(difficulties))
-      if (years.length) params.set("year", arrToComma(years))
-      if (types.length) params.set("type", arrToComma(types))
-
-      const url = `/api/filters/smart?${params.toString()}`
-      const resp = await fetch(url)
-      if (!resp.ok) {
-        throw new Error(`Smart filters fetch failed: ${resp.status}`)
-      }
-      const newOpts = (await resp.json()) as FilterOptionsType
-      dispatch({ type: "SET_FILTER_OPTIONS", payload: newOpts })
-    } catch (err) {
-      console.error("Error fetchSmartFilters:", err)
-    }
-  }, [state.filters])
-
-  // Global stats (with filters)
   const fetchGlobalStats = useCallback(async () => {
     try {
       const { exams, subjects, topics, subtopics, difficulties, years, types } = state.filters
@@ -371,7 +363,6 @@ export default function QuestionBankContent() {
       if (difficulties.length) params.set("difficulty", arrToComma(difficulties))
       if (years.length) params.set("year", arrToComma(years))
       if (types.length) params.set("type", arrToComma(types))
-
       const resp = await fetch(`/api/questions/stats?${params.toString()}`, { cache: "no-store" })
       if (!resp.ok) {
         const txt = await resp.text()
@@ -390,13 +381,11 @@ export default function QuestionBankContent() {
     }
   }, [state.filters])
 
-  // Fetch questions
   const fetchQuestions = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true })
     try {
       const { currentPage, pageSize, filters } = state
       const { exams, subjects, topics, subtopics, difficulties, years, types } = filters
-
       function arrToComma(arr: string[]) {
         return arr.join(",")
       }
@@ -408,10 +397,8 @@ export default function QuestionBankContent() {
       if (difficulties.length) params.set("difficulty", arrToComma(difficulties))
       if (years.length) params.set("year", arrToComma(years))
       if (types.length) params.set("type", arrToComma(types))
-
       params.set("page", String(currentPage))
       params.set("pageSize", String(pageSize))
-
       const url = `/api/questions?${params.toString()}`
       const res = await fetch(url, { cache: "no-store" })
       if (!res.ok) {
@@ -419,25 +406,20 @@ export default function QuestionBankContent() {
         throw new Error(`Failed to fetch questions. ${txt}`)
       }
       const result = await res.json()
-
       let data: QuestionType[] = []
       let totalCount = 0
       if (Array.isArray(result)) {
-        // non-paginated
         data = result
         totalCount = data.length
       } else if (result.data) {
         data = result.data
         totalCount = result.totalCount
       }
-
-      // Sort by numeric portion
       data = data.sort((a, b) => {
         const aId = a.questionId?.match(/\d+/)?.[0] || "0"
         const bId = b.questionId?.match(/\d+/)?.[0] || "0"
         return parseInt(aId, 10) - parseInt(bId, 10)
       })
-
       dispatch({ type: "SET_QUESTIONS", payload: data })
       dispatch({ type: "SET_TOTAL_COUNT", payload: totalCount })
     } catch (err) {
@@ -452,20 +434,17 @@ export default function QuestionBankContent() {
     }
   }, [state.filters, state.currentPage, state.pageSize, toast])
 
-  // Initial load
   useEffect(() => {
     fetchFilterOptions()
     fetchGlobalStats()
   }, [fetchFilterOptions, fetchGlobalStats])
 
-  // Each time filters change => update
   useEffect(() => {
     fetchSmartFilters()
     fetchQuestions()
     fetchGlobalStats()
   }, [state.filters, state.currentPage, fetchSmartFilters, fetchQuestions, fetchGlobalStats])
 
-  // Marking questions as complete or for review
   const handleMarkComplete = useCallback(
     async (questionId: string, newVal?: boolean) => {
       dispatch({ type: "SET_ACTION_LOADING", payload: true })
@@ -550,7 +529,6 @@ export default function QuestionBankContent() {
           type: "SET_NUMERICAL_ANSWERS",
           payload: { ...state.numericalAnswers, [questionId]: userAns },
         })
-        // Mark question as complete
         await fetch("/api/questions", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -607,24 +585,20 @@ export default function QuestionBankContent() {
     [state.feedback, state.selectedOptions, state.numericalAnswers, state.questions]
   )
 
-  // Local search + status
   const filteredQuestions = useMemo(() => {
     const s = state.searchQuery.toLowerCase()
     return state.questions.filter((q) => {
       const textFields = [q.text, q.exam, q.subject, q.topic, q.subtopic].filter(Boolean)
       const matchesSearch = textFields.some((f) => f && fuzzyContains(f, s))
-
       let matchesStatus = true
       const st = state.filters.status
       if (st === "review" && !q.reviewed) matchesStatus = false
       else if (st === "complete" && !q.completed) matchesStatus = false
       else if (st === "incomplete" && q.completed) matchesStatus = false
-
       return matchesSearch && matchesStatus
     })
   }, [state.questions, state.filters.status, state.searchQuery])
 
-  // Show skeleton if loading or action in progress
   if (state.loading || state.actionLoading) {
     return (
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -656,7 +630,6 @@ export default function QuestionBankContent() {
     )
   }
 
-  // MOBILE MODE
   if (state.viewMode === ViewMode.MOBILE) {
     if (!filteredQuestions.length) {
       return (
@@ -674,11 +647,9 @@ export default function QuestionBankContent() {
         </div>
       )
     }
-    // Single question at a time
     const currentQ = filteredQuestions[mobileIndex]
     const total = filteredQuestions.length
     const displayNumber = mobileIndex + 1
-
     return (
       <div className="min-h-screen p-4 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900">
         <div className="max-w-3xl mx-auto">
@@ -706,12 +677,8 @@ export default function QuestionBankContent() {
                 <DialogContent
                   className="
                     fixed top-0 left-0 w-screen h-screen
-                    sm:w-[500px] sm:max-h-[90vh]
-                    sm:left-1/2 sm:top-1/2
-                    sm:-translate-x-1/2 sm:-translate-y-1/2
-                    sm:rounded-md
-                    bg-white dark:bg-gray-900
-                    text-gray-900 dark:text-gray-100
+                    sm:w-[500px] sm:max-h-[90vh] sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
+                    bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                     flex flex-col
                   "
                 >
@@ -728,47 +695,45 @@ export default function QuestionBankContent() {
               </span>
             </div>
           </div>
-
-          {/* The question block itself, without outer borders */}
-          <Question
-            question={currentQ}
-            feedback={state.feedback[currentQ.questionId]}
-            selectedOption={state.selectedOptions[currentQ.questionId]}
-            numericalAnswer={state.numericalAnswers[currentQ.questionId]}
-            showMarkscheme={state.showMarkscheme[currentQ.questionId] || false}
-            handleOptionClick={handleOptionClick}
-            handleNumericalSubmit={handleNumericalSubmit}
-            handleNumericalChange={(qId, val) => {
-              dispatch({
-                type: "SET_NUMERICAL_ANSWERS",
-                payload: { ...state.numericalAnswers, [qId]: val },
-              })
-            }}
-            handleMarkschemeToggle={(qId) => {
-              dispatch({
-                type: "SET_SHOW_MARKSCHEME",
-                payload: {
-                  ...state.showMarkscheme,
-                  [qId]: !state.showMarkscheme[qId],
-                },
-              })
-            }}
-            handleMarkForReview={handleMarkForReview}
-            handleMarkComplete={handleMarkComplete}
-            handleResetQuestion={handleResetQuestion}
-            isMarkedForReview={!!currentQ.reviewed}
-            isMarkedComplete={!!currentQ.completed}
-            markschemesDisabled={false}
-            note=""
-            handleNoteChange={() => {}}
-            handleDeleteNote={() => Promise.resolve()}
-            userId="guest"
-            totalQuestions={total}
-            currentQuestionIndex={mobileIndex}
-            handleQuestionChange={() => {}}
-          />
-
-          {/* Nav for next/prev */}
+          <Card className="p-6">
+            <Question
+              question={currentQ}
+              feedback={state.feedback[currentQ.questionId]}
+              selectedOption={state.selectedOptions[currentQ.questionId]}
+              numericalAnswer={state.numericalAnswers[currentQ.questionId]}
+              showMarkscheme={state.showMarkscheme[currentQ.questionId] || false}
+              handleOptionClick={handleOptionClick}
+              handleNumericalSubmit={handleNumericalSubmit}
+              handleNumericalChange={(qId, val) => {
+                dispatch({
+                  type: "SET_NUMERICAL_ANSWERS",
+                  payload: { ...state.numericalAnswers, [qId]: val },
+                })
+              }}
+              handleMarkschemeToggle={(qId) => {
+                dispatch({
+                  type: "SET_SHOW_MARKSCHEME",
+                  payload: {
+                    ...state.showMarkscheme,
+                    [qId]: !state.showMarkscheme[qId],
+                  },
+                })
+              }}
+              handleMarkForReview={handleMarkForReview}
+              handleMarkComplete={handleMarkComplete}
+              handleResetQuestion={handleResetQuestion}
+              isMarkedForReview={!!currentQ.reviewed}
+              isMarkedComplete={!!currentQ.completed}
+              markschemesDisabled={false}
+              note=""
+              handleNoteChange={() => {}}
+              handleDeleteNote={() => Promise.resolve()}
+              userId="guest"
+              totalQuestions={total}
+              currentQuestionIndex={mobileIndex}
+              handleQuestionChange={() => {}}
+            />
+          </Card>
           <div className="flex justify-between mt-6">
             <Button
               variant="outline"
@@ -792,7 +757,6 @@ export default function QuestionBankContent() {
     )
   }
 
-  // DESKTOP MODE
   if (!filteredQuestions.length) {
     return (
       <div className="bg-white dark:bg-gray-900 w-full min-h-screen p-4 sm:p-8 text-gray-900 dark:text-gray-100">
@@ -809,24 +773,16 @@ export default function QuestionBankContent() {
     )
   }
 
-  // The main desktop layout
   return (
     <TooltipProvider>
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full text-gray-900 dark:text-gray-100">
-          {/* Switch to Mobile */}
           <div className="flex justify-end mb-4">
-            <Button
-              variant="outline"
-              onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.MOBILE })}
-            >
+            <Button variant="outline" onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.MOBILE })}>
               Switch to Mobile View
             </Button>
           </div>
-
-          <h1 className="mb-2 text-left text-3xl sm:text-4xl">Question Bank</h1>
-
-          {/* Search + mobile filters + nav */}
+          <h1 className="mb-2 text-left text-3xl sm:text-4xl">Question Bank (Desktop)</h1>
           <div className="mb-6 flex items-center space-x-4">
             <div className="relative flex-grow">
               <Input
@@ -851,12 +807,8 @@ export default function QuestionBankContent() {
               <DialogContent
                 className="
                   fixed top-0 left-0 w-screen h-screen
-                  sm:w-[500px] sm:max-h-[90vh]
-                  sm:left-1/2 sm:top-1/2
-                  sm:-translate-x-1/2 sm:-translate-y-1/2
-                  sm:rounded-md
-                  bg-white dark:bg-gray-900
-                  text-gray-900 dark:text-gray-100
+                  sm:w-[500px] sm:max-h-[90vh] sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
+                  bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                   flex flex-col
                 "
               >
@@ -868,8 +820,6 @@ export default function QuestionBankContent() {
                 />
               </DialogContent>
             </Dialog>
-
-            {/* question nav (desktop) */}
             <Dialog open={navigatorOpen} onOpenChange={setNavigatorOpen}>
               <DialogTrigger asChild>
                 <Button
@@ -920,8 +870,6 @@ export default function QuestionBankContent() {
               </DialogContent>
             </Dialog>
           </div>
-
-          {/* Status row */}
           <div className="hidden sm:flex space-x-4 mb-2">
             {["all","complete","review","incomplete"].map((st) => {
               const isActive = state.filters.status === st
@@ -945,8 +893,6 @@ export default function QuestionBankContent() {
               )
             })}
           </div>
-
-          {/* Filter row popovers (desktop) */}
           <div className="hidden sm:flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
             {(["exams","subjects","topics","subtopics","difficulties","years","types"] as FilterKey[]).map((filterType) => {
               const filterValues = state.filterOptions[filterType] || []
@@ -957,20 +903,99 @@ export default function QuestionBankContent() {
                   align="start"
                   openPopover={isOpen}
                   setOpenPopover={(open) => {
-                    dispatch({
-                      type: "SET_DROPDOWN",
-                      payload: { tag: filterType, value: !!open },
-                    })
+                    dispatch({ type: "SET_DROPDOWN", payload: { tag: filterType, value: !!open } })
                   }}
                   content={
                     <div className="p-2 w-full sm:w-80 bg-white dark:bg-gray-800 rounded-md">
-                      {/* Searching within the popover */}
-                      <SearchableFilterItems
-                        filterType={filterType}
-                        filterValues={filterValues}
-                        state={state}
-                        dispatch={dispatch}
+                      <Input
+                        type="text"
+                        placeholder={`Search ${filterType}...`}
+                        className="mb-2 dark:text-gray-100 dark:bg-gray-700 dark:placeholder-gray-400"
                       />
+                      <ScrollArea className="max-h-60">
+                        <motion.div className="flex flex-wrap gap-2" layout transition={transitionProps}>
+                          {filterValues.map((val) => {
+                            const isSelected = state.filters[filterType].includes(val)
+                            const displayText = transformFilterText(val)
+                            return (
+                              <motion.button
+                                key={val}
+                                layout
+                                initial={false}
+                                onClick={() => {
+                                  let newArr: string[]
+                                  if (isSelected) {
+                                    newArr = state.filters[filterType].filter((x) => x !== val)
+                                  } else {
+                                    newArr = [...state.filters[filterType], val]
+                                  }
+                                  dispatch({
+                                    type: "SET_FILTERS",
+                                    payload: { ...state.filters, [filterType]: newArr },
+                                  })
+                                }}
+                                animate={{
+                                  backgroundColor: isSelected
+                                    ? "#E6F7FF"
+                                    : "rgba(229, 231, 235, 0.5)",
+                                }}
+                                whileHover={{
+                                  backgroundColor: isSelected
+                                    ? "#CCEEFF"
+                                    : "rgba(229, 231, 235, 0.8)",
+                                }}
+                                whileTap={{
+                                  backgroundColor: isSelected
+                                    ? "#B3E6FF"
+                                    : "rgba(229, 231, 235, 0.9)",
+                                }}
+                                transition={{
+                                  ...transitionProps,
+                                  backgroundColor: { duration: 0.1 },
+                                }}
+                                className={`
+                                  inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
+                                  whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
+                                  ${
+                                    isSelected
+                                      ? "text-blue-600 ring-blue-200"
+                                      : "text-gray-600 ring-gray-200"
+                                  }
+                                `}
+                              >
+                                <motion.div
+                                  className="relative flex items-center"
+                                  animate={{
+                                    width: isSelected ? "auto" : "100%",
+                                    paddingRight: isSelected ? "1.25rem" : "0",
+                                  }}
+                                  transition={{
+                                    ease: [0.175, 0.885, 0.32, 1.275],
+                                    duration: 0.3,
+                                  }}
+                                >
+                                  <span>{displayText}</span>
+                                  <AnimatePresence>
+                                    {isSelected && (
+                                      <motion.span
+                                        initial={{ scale: 0, opacity: 0 }}
+                                        animate={{ scale: 1, opacity: 1 }}
+                                        exit={{ scale: 0, opacity: 0 }}
+                                        transition={transitionProps}
+                                        className="absolute right-0"
+                                      >
+                                        <div className="w-3.5 h-3.5 rounded-full bg-blue-500 flex items-center justify-center">
+                                          <Check className="w-2.5 h-2.5 text-white" strokeWidth={2} />
+                                        </div>
+                                      </motion.span>
+                                    )}
+                                  </AnimatePresence>
+                                </motion.div>
+                              </motion.button>
+                            )
+                          })}
+                        </motion.div>
+                      </ScrollArea>
                     </div>
                   }
                 >
@@ -1001,8 +1026,6 @@ export default function QuestionBankContent() {
               )
             })}
           </div>
-
-          {/* Progress Card */}
           <Card
             className="
               bg-gradient-to-br from-gray-200 to-gray-100
@@ -1103,8 +1126,6 @@ export default function QuestionBankContent() {
               </div>
             </CardContent>
           </Card>
-
-          {/* The question list */}
           {state.questions.length > 0 ? (
             <>
               {filteredQuestions.map((q, index) => {
@@ -1161,9 +1182,7 @@ export default function QuestionBankContent() {
               />
             </>
           ) : (
-            <p className="text-red-400 dark:text-red-300">
-              No questions found with these filters.
-            </p>
+            <p className="text-red-400 dark:text-red-300">No questions found with these filters.</p>
           )}
         </div>
       </div>
@@ -1171,132 +1190,6 @@ export default function QuestionBankContent() {
   )
 }
 
-// A small subcomponent for searching & listing filter items in a single column
-function SearchableFilterItems({
-  filterType,
-  filterValues,
-  state,
-  dispatch,
-}: {
-  filterType: FilterKey
-  filterValues: string[]
-  state: StateType
-  dispatch: React.Dispatch<ActionType>
-}) {
-  // We store the search input in local state
-  const [searchTerm, setSearchTerm] = useState("")
-
-  // Combine: if an item is selected, it remains visible even if it doesn't match search
-  const filtered = useMemo(() => {
-    const lower = searchTerm.toLowerCase()
-    return filterValues.filter((item) => {
-      const alreadySelected = state.filters[filterType].includes(item)
-      const matchesSearch = item.toLowerCase().includes(lower)
-      return matchesSearch || alreadySelected
-    })
-  }, [filterValues, searchTerm, state.filters, filterType])
-
-  const toggleItem = (val: string) => {
-    const isSelected = state.filters[filterType].includes(val)
-    let newArr: string[]
-    if (isSelected) {
-      newArr = state.filters[filterType].filter((x) => x !== val)
-    } else {
-      newArr = [...state.filters[filterType], val]
-    }
-    dispatch({
-      type: "SET_FILTERS",
-      payload: { ...state.filters, [filterType]: newArr },
-    })
-  }
-
-  return (
-    <div className="flex flex-col gap-2">
-      <Input
-        type="text"
-        placeholder={`Search ${filterType}...`}
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="mb-2 dark:text-gray-100 dark:bg-gray-700 dark:placeholder-gray-400"
-      />
-      <ScrollArea className="max-h-60">
-        <div className="flex flex-col gap-2">
-          {filtered.map((val) => {
-            const isSelected = state.filters[filterType].includes(val)
-            const displayText = transformFilterText(val)
-            return (
-              <motion.button
-                key={val}
-                layout
-                initial={false}
-                onClick={() => toggleItem(val)}
-                animate={{
-                  backgroundColor: isSelected
-                    ? "#E6F7FF"
-                    : "rgba(229, 231, 235, 0.5)", // light gray
-                }}
-                whileHover={{
-                  backgroundColor: isSelected
-                    ? "#CCEEFF"
-                    : "rgba(229, 231, 235, 0.8)",
-                }}
-                whileTap={{
-                  backgroundColor: isSelected
-                    ? "#B3E6FF"
-                    : "rgba(229, 231, 235, 0.9)",
-                }}
-                transition={{
-                  ...transitionProps,
-                  backgroundColor: { duration: 0.1 },
-                }}
-                className={`
-                  inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
-                  whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
-                  ${
-                    isSelected
-                      ? "text-blue-600 ring-blue-200"
-                      : "text-gray-600 ring-gray-200"
-                  }
-                `}
-              >
-                <motion.div
-                  className="relative flex items-center"
-                  animate={{
-                    width: isSelected ? "auto" : "100%",
-                    paddingRight: isSelected ? "1.25rem" : "0",
-                  }}
-                  transition={{
-                    ease: [0.175, 0.885, 0.32, 1.275],
-                    duration: 0.3,
-                  }}
-                >
-                  <span>{displayText}</span>
-                  <AnimatePresence>
-                    {isSelected && (
-                      <motion.span
-                        initial={{ scale: 0, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0, opacity: 0 }}
-                        transition={transitionProps}
-                        className="absolute right-0"
-                      >
-                        <div className="w-3.5 h-3.5 rounded-full bg-blue-500 flex items-center justify-center">
-                          <Check className="w-2.5 h-2.5 text-white" strokeWidth={2} />
-                        </div>
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              </motion.button>
-            )
-          })}
-        </div>
-      </ScrollArea>
-    </div>
-  )
-}
-
-// Mobile filters wrapper
 function FiltersDialogMobile({
   open,
   onOpenChange,
@@ -1318,7 +1211,6 @@ function FiltersDialogMobile({
   )
 }
 
-// The actual mobile filters UI
 interface CustomFiltersDialogProps {
   open: boolean
   onOpenChange: (open: boolean) => void
@@ -1337,19 +1229,13 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
     types: "",
   })
 
-  // For the mobile approach, show each filter in a "section"
   const handleSearchChange = (category: string, value: string) => {
     setSearches((prev) => ({ ...prev, [category]: value }))
   }
 
-  // Keep selected items visible even if they don't match search
   const filterItems = (items: string[], category: string) => {
     const searchVal = searches[category]?.toLowerCase() || ""
-    return items.filter((item) => {
-      const inSearch = item.toLowerCase().includes(searchVal)
-      const selected = state.filters[category as FilterKey].includes(item)
-      return inSearch || selected
-    })
+    return items.filter((item) => item.toLowerCase().includes(searchVal))
   }
 
   const toggleItem = (category: FilterKey, item: string) => {
@@ -1361,7 +1247,10 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
     } else {
       newArr = [...oldArr, item]
     }
-    dispatch({ type: "SET_FILTERS", payload: { ...state.filters, [category]: newArr } })
+    dispatch({
+      type: "SET_FILTERS",
+      payload: { ...state.filters, [category]: newArr },
+    })
   }
 
   return (
@@ -1373,7 +1262,9 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
             <Button
               variant="default"
               className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-2 flex items-center gap-2 transition-all duration-200 ease-in-out"
-              onClick={() => onOpenChange(false)}
+              onClick={() => {
+                onOpenChange(false)
+              }}
             >
               <Check className="w-4 h-4" />
               Apply Changes
@@ -1470,6 +1361,7 @@ interface FilterSectionProps {
   selectedItems: string[]
   toggleItem: (item: string) => void
 }
+
 function FilterSection({
   title,
   items,
@@ -1479,6 +1371,9 @@ function FilterSection({
   selectedItems,
   toggleItem,
 }: FilterSectionProps) {
+  const handleClickItem = (item: string) => {
+    toggleItem(item)
+  }
   return (
     <div className="space-y-4">
       <h3 className="text-xl font-medium text-gray-800 dark:text-gray-100">{title}</h3>
@@ -1491,13 +1386,13 @@ function FilterSection({
         />
         <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-wrap gap-2">
         {filterItems(items).map((item) => {
           const isSelected = selectedItems.includes(item)
           return (
             <button
               key={item}
-              onClick={() => toggleItem(item)}
+              onClick={() => handleClickItem(item)}
               className={`
                 inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
                 whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
