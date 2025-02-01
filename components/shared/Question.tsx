@@ -3,63 +3,70 @@
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useSwipeable } from "react-swipeable"
-import MathRenderer from "@/components/layout/MathRenderer"
-import {
-  Check,
-  X,
-  MessageSquare,
-  ThumbsUp,
-  ThumbsDown,
-  Edit,
-  Trash2,
-  Reply,
-  CornerDownRight,
-  Flag,
-  ChevronDown,
-  Cpu,
-  StickyNote,
-} from "lucide-react"
-import Image from "next/image"
-import Tiptap from "@/components/layout/Tiptap"
-import Chat from "@/components/shared/Chat"
 import { ToastAction } from "@/components/ui/toast"
 import { useToast } from "@/components/ui/use-toast"
+import MathRenderer from "@/components/layout/MathRenderer"
+import Tiptap from "@/components/layout/Tiptap"
+import Chat from "@/components/shared/Chat"
 import SettingsPopover from "@/components/ui/SettingsPopover"
+import FeedbackPopover from "@/components/shared/FeedbackPopover"
+
 import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card"
+import {
+  TooltipProvider,
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-  TooltipProvider,
 } from "@/components/ui/tooltip"
-import FeedbackPopover from "./FeedbackPopover"
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
+import { Checkbox } from "@/components/ui/checkbox"
+
+// ===== IMPORTANT: bring in all the “Select” bits from your library. =====
+// Adjust the import path to match your codebase, e.g. `@/components/ui/select`
+import {
+  Select,
+  SelectTrigger,
+  SelectContent,
+  SelectItem,
+  SelectValue,
+} from "@/components/ui/select"
+
+import {
+  Check,
+  Flag,
+  BookOpen,
+  MessageSquare,
+  CornerDownRight,
+  Edit,
+  LucideBot,
+  Reply,
+  ThumbsDown,
+  ThumbsUp,
+  Trash2,
+  X,
+  ChevronDown,
+} from "lucide-react"
+import Image from "next/image"
 
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
   ARCHIVED = "ARCHIVED",
 }
+
 type QuestionTypeString = "Multiple Choice" | "mcq" | "Numerical" | "integer" | string
 
 interface QuestionType {
@@ -80,24 +87,7 @@ interface QuestionType {
   lastAttempted?: string
   status?: QuestionStatus
   customTags?: string[]
-  customTag?: string
-  explanation?: any
-  linkedResources?: any
-  commonMistakes?: any
-  discussionLink?: string
-  parentQuestionId?: number
   difficultyRating?: number
-  peerSolvedPercentage?: number | null
-  updatedBy?: string
-  source?: string
-  updatedTime?: number
-  isOutOfSyllabus?: boolean
-  isBonus?: boolean
-  marks?: number
-  negMarks?: number
-  correctAttempts?: string
-  wrongAttempts?: string
-  averageTimeTaken?: string
 }
 
 interface CommentType {
@@ -120,7 +110,11 @@ interface QuestionProps {
   showMarkscheme: boolean | undefined
 
   handleOptionClick: (questionId: string, option: string, correctOption: string) => void
-  handleNumericalSubmit: (questionId: string, userAnswer: string, correctAnswer: string) => void
+  handleNumericalSubmit: (
+    questionId: string,
+    userAnswer: string,
+    correctAnswer: string
+  ) => void
   handleNumericalChange: (questionId: string, value: string) => void
   handleMarkschemeToggle: (questionId: string) => void
   handleMarkForReview: (questionId: string, newVal?: boolean) => void
@@ -170,11 +164,9 @@ export default function Question({
   currentQuestionIndex,
   handleQuestionChange,
 }: QuestionProps) {
-  const displayNumber = currentQuestionIndex + 1
-
   const [pendingOption, setPendingOption] = useState<string | null>(null)
   const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(selectedOption || null)
-  const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false)
+  const [showMarkschemeModal, setShowMarkschemeModal] = useState(false)
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled)
   const [showNotes, setShowNotes] = useState(false)
   const [showAI, setShowAI] = useState(false)
@@ -199,7 +191,6 @@ export default function Question({
 
   const { toast } = useToast()
 
-  // For swiping on mobile
   const handlers = useSwipeable({
     onSwipedLeft: () => onNextQuestion && onNextQuestion(),
     onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
@@ -226,7 +217,7 @@ export default function Question({
     if (checked) {
       toast({
         title: "Question Completed",
-        description: `You have completed question #${displayNumber}.`,
+        description: `You have completed question #${currentQuestionIndex + 1}.`,
         action: (
           <ToastAction onClick={() => toggleComplete(false)} altText="Undo">
             Undo
@@ -236,11 +227,10 @@ export default function Question({
     } else {
       toast({
         title: "Unmarked Complete",
-        description: `Question #${displayNumber} is no longer marked complete.`,
+        description: `Question #${currentQuestionIndex + 1} is no longer marked complete.`,
       })
     }
   }
-
   async function toggleReview() {
     if (!question.questionId) return
     const newVal = !isMarkedForReview
@@ -248,7 +238,7 @@ export default function Question({
     if (newVal) {
       toast({
         title: "Question Flagged",
-        description: `Flagged question #${displayNumber} for review.`,
+        description: `Flagged question #${currentQuestionIndex + 1} for review.`,
         action: (
           <ToastAction onClick={() => toggleReview()} altText="Undo">
             Undo
@@ -258,7 +248,7 @@ export default function Question({
     } else {
       toast({
         title: "Question Unflagged",
-        description: `Removed review flag for question #${displayNumber}.`,
+        description: `Removed review flag for question #${currentQuestionIndex + 1}.`,
       })
     }
   }
@@ -266,29 +256,27 @@ export default function Question({
   function handleOptionSelect(letter: string) {
     setPendingOption(letter)
   }
-
   async function handleMcqSubmit() {
     if (!pendingOption || !question.questionId) return
     await handleMarkComplete(question.questionId, true)
     handleOptionClick(question.questionId, pendingOption, question.correctOption ?? "N/A")
     setLocalSelectedOption(pendingOption)
   }
-
   async function handleNumericalSubmitLocal() {
     if (!question.questionId) return
-    await handleNumericalSubmit(
-      question.questionId,
-      numericalAnswer ?? "",
-      question.correctOption ?? "N/A"
-    )
+    await handleNumericalSubmit(question.questionId, numericalAnswer ?? "", question.correctOption ?? "N/A")
   }
 
-  async function handleDifficultyChange(newRating: number) {
+  async function handleDifficultyChange(val: string) {
+    // fix the “Parameter 'val' implicitly has an 'any' type”
+    // ensure val is typed e.g. as "easy" | "medium" | "hard"
+    // or do a quick parse
+    let newRating = 1
+    if (val === "medium") newRating = 2
+    if (val === "hard") newRating = 3
+
     if (!question.questionId) return
     setLocalDifficultyRating(newRating)
-    let newDifficulty = "easy"
-    if (newRating === 2) newDifficulty = "medium"
-    else if (newRating === 3) newDifficulty = "hard"
     try {
       await fetch("/api/questions", {
         method: "PATCH",
@@ -296,12 +284,12 @@ export default function Question({
         body: JSON.stringify({
           questionId: question.questionId,
           difficultyRating: newRating,
-          difficulty: newDifficulty,
+          difficulty: val,
         }),
       })
       toast({
         title: "Difficulty Updated",
-        description: `Set question #${displayNumber} difficulty to ${newDifficulty}.`,
+        description: `Set question #${currentQuestionIndex + 1} difficulty to ${val}.`,
       })
     } catch (err) {
       console.error(err)
@@ -324,7 +312,7 @@ export default function Question({
         body: JSON.stringify({
           questionId: question.questionId,
           content: localNote,
-          title: `Note for Question #${displayNumber}`,
+          title: `Note for Q#${currentQuestionIndex + 1}`,
           type: "TEXT",
         }),
       })
@@ -344,7 +332,6 @@ export default function Question({
       })
     }
   }
-
   async function deleteNote() {
     if (!noteId || !question.questionId) return
     try {
@@ -354,7 +341,7 @@ export default function Question({
       if (!response.ok) throw new Error("Failed to delete note")
       toast({
         title: "Note Deleted",
-        description: `Deleted note for question #${displayNumber}.`,
+        description: `Deleted note for question #${currentQuestionIndex + 1}.`,
       })
       setLocalNote("")
       setNoteId(null)
@@ -373,31 +360,16 @@ export default function Question({
     return option.replace(/^[A-D]:\s?/i, "").trim()
   }
 
-  // We can highlight the border on desktop or bigger screens
-  // but let's allow mobile to ignore it. Typically we can just keep it simpler:
-  function getBorderColorClass() {
-    // If you decide not to color the card border on mobile, you can conditionally check screen size
-    // For now, we do the coloring for all screens
-    if (isMarkedForReview) {
-      return "border-yellow-500 border-2"
-    } else if (feedback === "correct") {
-      return "border-green-500 border-2"
-    } else if (feedback === "incorrect") {
-      return "border-red-500 border-2"
-    } else {
-      return "border-gray-300 dark:border-gray-600 border-2"
-    }
-  }
-
   return (
     <TooltipProvider>
       <div {...handlers} className="relative" id={`question-${question.questionId}`}>
-        <Card className={`w-full overflow-hidden mb-6 dark:bg-gray-800 dark:text-gray-100 ${getBorderColorClass()}`}>
-          <CardHeader className="relative">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2">
-              <div className="flex flex-col md:flex-row items-start md:items-center gap-2">
-                <CardTitle className="font-normal text-xl sm:text-2xl">
-                  Question #{displayNumber}
+        <Card className="w-full mb-6 dark:bg-gray-800 dark:text-gray-100 border border-gray-300 dark:border-gray-600">
+          <CardHeader>
+            {/* Title & tags */}
+            <div className="flex flex-wrap md:flex-nowrap items-start md:items-center justify-between gap-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <CardTitle className="font-normal text-2xl sm:text-3xl">
+                  Question #{currentQuestionIndex + 1}
                 </CardTitle>
                 {question.subject && (
                   <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
@@ -424,6 +396,7 @@ export default function Question({
                     {question.exam}
                   </div>
                 )}
+                {/* custom tags */}
                 {localCustomTags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="px-2 py-1">
                     {tag}
@@ -443,7 +416,7 @@ export default function Question({
                     placeholder="Add a new tag"
                     value={newTag}
                     onChange={(e) => setNewTag(e.target.value)}
-                    className="w-32"
+                    className="w-28"
                   />
                   <Tooltip>
                     <TooltipTrigger asChild>
@@ -457,8 +430,8 @@ export default function Question({
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 flex-wrap">
-                {/* Mark complete */}
+              {/* Mark complete & Flag */}
+              <div className="flex items-center gap-2">
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
@@ -475,7 +448,6 @@ export default function Question({
                   </TooltipContent>
                 </Tooltip>
 
-                {/* Flag */}
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
@@ -506,13 +478,13 @@ export default function Question({
           </CardHeader>
 
           <CardContent>
-            {/* Possibly an image diagram */}
+            {/* Diagram & text */}
             <div className="mb-6">
-              {question.diagramUrl && question.diagramUrl !== "" && (
+              {question.diagramUrl && (
                 <div className="relative w-full max-w-xl mx-auto mb-4">
                   <Image
                     src={question.diagramUrl}
-                    alt={`Diagram for question #${displayNumber}`}
+                    alt={`Diagram for question #${currentQuestionIndex + 1}`}
                     width={800}
                     height={600}
                     className="rounded-md w-full h-auto object-contain"
@@ -526,58 +498,28 @@ export default function Question({
               )}
             </div>
 
-            {/* Numeric Input */}
+            {/* If numeric */}
             {(question.type === "Numerical" || question.type === "integer") && (
               <div className="mb-4">
                 <Input
                   type="text"
-                  className="
-                    w-full
-                    px-3 py-2
-                    border
-                    border-blue-400
-                    bg-blue-50
-                    text-blue-800
-                    dark:border-blue-600
-                    dark:bg-slate-800
-                    dark:text-blue-200
-                    focus:ring-1
-                    focus:ring-blue-300
-                    rounded-sm
-                  "
                   placeholder="Type your answer..."
                   value={numericalAnswer ?? ""}
-                  onChange={(e) => {
-                    if (question.questionId) {
-                      handleNumericalChange(question.questionId, e.target.value)
-                    }
-                  }}
+                  onChange={(e) => question.questionId && handleNumericalChange(question.questionId, e.target.value)}
+                  className="border border-blue-400 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-slate-800 dark:text-blue-200"
                 />
                 <div className="mt-2 flex gap-2">
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Button
-                        className="
-                          border
-                          border-blue-400
-                          bg-blue-50
-                          text-blue-800
-                          dark:border-blue-600
-                          dark:bg-slate-800
-                          dark:text-blue-200
-                          px-4 py-1
-                          hover:bg-blue-100
-                          dark:hover:bg-slate-700
-                          rounded-sm
-                        "
+                        className="border border-blue-400 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-slate-800 dark:text-blue-200 px-4 py-1"
                         onClick={handleNumericalSubmitLocal}
                       >
                         Submit
                       </Button>
                     </TooltipTrigger>
-                    <TooltipContent>Submit numeric answer</TooltipContent>
+                    <TooltipContent>Submit your numeric answer</TooltipContent>
                   </Tooltip>
-
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Button
@@ -593,98 +535,68 @@ export default function Question({
               </div>
             )}
 
-            {/* MCQ */}
-            {(question.type === "Multiple Choice" || question.type === "mcq") && question.options?.length ? (
-              <div className="mb-4">
-                <div className="space-y-2">
-                  {question.options.map((rawOption, idx) => {
-                    const letter = String.fromCharCode(65 + idx)
-                    const optionText = cleanOptionText(rawOption)
-                    const isPending = pendingOption === letter
-                    const directSelected = localSelectedOption === letter
-                    const isFeedbackActive = directSelected && feedback
-                    return (
-                      <Button
-                        key={idx}
-                        variant="outline"
-                        onClick={() => handleOptionSelect(letter)}
-                        className={`
-                          w-full text-left text-base sm:text-lg p-4 leading-7
-                          flex flex-col items-start space-y-2 whitespace-normal
-                          ${
-                            isFeedbackActive
-                              ? feedback === "correct"
-                                ? "bg-green-100 hover:bg-green-200 text-green-700 border-green-400"
-                                : "bg-red-100 hover:bg-red-200 text-red-700 border-red-400"
-                              : isPending
-                              ? "border-blue-400 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-slate-800 dark:text-blue-200"
-                              : "border-gray-300 dark:border-gray-600"
-                          }
-                        `}
-                        style={{ height: "auto", minHeight: "1rem" }}
-                      >
-                        <span className="font-semibold">{letter}.</span>
-                        {optionText.startsWith("http") ? (
-                          <div className="w-full">
-                            <Image
-                              src={optionText}
-                              alt={`Option ${letter}`}
-                              width={800}
-                              height={600}
-                              className="rounded-md w-full h-auto object-contain"
-                            />
-                          </div>
-                        ) : (
-                          <div className="latex-font">
-                            <MathRenderer text={optionText} />
-                          </div>
-                        )}
-                      </Button>
-                    )
-                  })}
-                </div>
-                <div className="mt-2 flex gap-2">
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        onClick={handleMcqSubmit}
-                        disabled={!pendingOption}
-                        className="
-                          border
-                          border-blue-400
-                          bg-blue-50
-                          text-blue-800
-                          dark:border-blue-600
-                          dark:bg-slate-800
-                          dark:text-blue-200
-                          px-4 py-1
-                          hover:bg-blue-100
-                          dark:hover:bg-slate-700
-                          rounded-sm
-                        "
-                      >
-                        Submit
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Submit your MCQ answer</TooltipContent>
-                  </Tooltip>
+            {/* If MCQ */}
+            {(question.type === "Multiple Choice" || question.type === "mcq") && question.options && (
+              <div className="mb-4 space-y-2">
+                {question.options.map((opt, idx) => {
+                  const letter = String.fromCharCode(65 + idx)
+                  const text = cleanOptionText(opt)
+                  const isPending = pendingOption === letter
+                  const directSelected = localSelectedOption === letter
+                  const isFeedbackActive = directSelected && feedback
 
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant="outline"
-                        onClick={() => question.questionId && handleResetQuestion(question.questionId)}
-                      >
-                        Reset
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Clear answer & unmark question</TooltipContent>
-                  </Tooltip>
+                  return (
+                    <Button
+                      key={idx}
+                      variant="outline"
+                      onClick={() => handleOptionSelect(letter)}
+                      className={`
+                        w-full text-left text-base sm:text-lg p-4 leading-7
+                        ${
+                          isFeedbackActive
+                            ? feedback === "correct"
+                              ? "bg-green-100 border-green-400 text-green-700"
+                              : "bg-red-100 border-red-400 text-red-700"
+                            : isPending
+                            ? "border-blue-400 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-slate-800 dark:text-blue-200"
+                            : "border-gray-300 dark:border-gray-600"
+                        }
+                      `}
+                    >
+                      <span className="font-semibold">{letter}.</span>
+                      {/^https?:\/\/\S+$/.test(text) ? (
+                        <div className="w-full mt-2">
+                          <Image
+                            src={text}
+                            alt={`Option ${letter}`}
+                            width={800}
+                            height={600}
+                            className="rounded-md w-full h-auto object-contain"
+                          />
+                        </div>
+                      ) : (
+                        <span className="latex-font ml-2">
+                          <MathRenderer text={text} />
+                        </span>
+                      )}
+                    </Button>
+                  )
+                })}
+                <div className="mt-2 flex gap-2">
+                  <Button onClick={handleMcqSubmit} disabled={!pendingOption}>
+                    Submit
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => question.questionId && handleResetQuestion(question.questionId)}
+                  >
+                    Reset
+                  </Button>
                 </div>
               </div>
-            ) : null}
+            )}
 
-            {/* Feedback Banner */}
+            {/* feedback */}
             {feedback && (
               <div
                 className={`mt-4 p-2 rounded ${
@@ -697,10 +609,12 @@ export default function Question({
               </div>
             )}
 
-            {/* Show Markscheme button if selected or numeric answered, plus markschemeEnabled */}
+            {/* Markscheme toggle */}
             {(
               (localSelectedOption && markschemeEnabled) ||
-              ((question.type === "Numerical" || question.type === "integer") && numericalAnswer && markschemeEnabled)
+              ((question.type === "Numerical" || question.type === "integer") &&
+                numericalAnswer &&
+                markschemeEnabled)
             ) && (
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -719,10 +633,11 @@ export default function Question({
               </Tooltip>
             )}
 
-            {/* Difficulty dropdown */}
+            {/* Difficulty dropdown with your “Select” component */}
             <div className="flex items-center space-x-2 mt-4">
               <Label className="text-sm text-gray-600 dark:text-gray-300">Difficulty:</Label>
               <Select
+                // let's map the localDifficultyRating => "easy"/"medium"/"hard"
                 value={
                   localDifficultyRating === 1
                     ? "easy"
@@ -732,12 +647,7 @@ export default function Question({
                     ? "hard"
                     : ""
                 }
-                onValueChange={(val) => {
-                  let rating = 1
-                  if (val === "medium") rating = 2
-                  if (val === "hard") rating = 3
-                  handleDifficultyChange(rating)
-                }}
+                onValueChange={(val) => handleDifficultyChange(val)}
               >
                 <SelectTrigger className="w-36">
                   <SelectValue placeholder="Set difficulty" />
@@ -751,50 +661,29 @@ export default function Question({
             </div>
           </CardContent>
 
-          {/* Footer row => left-aligned buttons */}
-          <CardFooter className="flex flex-wrap gap-2 justify-start">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="outline" onClick={() => setShowNotes(!showNotes)}>
-                  <StickyNote className="mr-2 h-4 w-4" />
-                  {showNotes ? "Hide Notes" : "Take Notes"}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                {showNotes ? "Hide note-taking interface" : "Open note-taking interface"}
-              </TooltipContent>
-            </Tooltip>
-
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="outline" onClick={() => setShowAI(!showAI)}>
-                  <Cpu className="mr-2 h-4 w-4" />
-                  {showAI ? "Hide AI" : "AI Assistance"}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>{showAI ? "Hide AI assistant" : "Get AI help"}</TooltipContent>
-            </Tooltip>
-
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="outline" onClick={() => setShowComments(!showComments)}>
-                  <MessageSquare className="mr-2 h-4 w-4" />
-                  {showComments ? "Hide Comments" : "Show Comments"}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                {showComments ? "Hide comments" : "View and add comments"}
-              </TooltipContent>
-            </Tooltip>
+          {/* Footer row: notes / AI / comments */}
+          <CardFooter className="flex flex-col sm:flex-row sm:justify-start items-start sm:items-center gap-2">
+            <Button variant="outline" onClick={() => setShowNotes(!showNotes)}>
+              <Edit className="mr-2 h-4 w-4" />
+              {showNotes ? "Hide Notes" : "Take Notes"}
+            </Button>
+            <Button variant="outline" onClick={() => setShowAI(!showAI)}>
+              <LucideBot className="mr-2 h-4 w-4" />
+              {showAI ? "Hide AI" : "AI Assistance"}
+            </Button>
+            <Button variant="outline" onClick={() => setShowComments(!showComments)}>
+              <MessageSquare className="mr-2 h-4 w-4" />
+              {showComments ? "Hide Comments" : "Show Comments"}
+            </Button>
           </CardFooter>
         </Card>
 
-        {/* Notes Section */}
+        {/* Notes */}
         {showNotes && (
           <Card className="mb-6 dark:bg-gray-800 dark:text-gray-100">
             <CardHeader>
               <CardTitle>Notes</CardTitle>
-              <CardDescription>Make your notes for this question.</CardDescription>
+              <CardDescription>Add your notes for this question here.</CardDescription>
             </CardHeader>
             <CardContent>
               <Tiptap
@@ -816,7 +705,7 @@ export default function Question({
           </Card>
         )}
 
-        {/* AI Assistant */}
+        {/* AI */}
         {showAI && (
           <Card className="mb-6 dark:bg-gray-800 dark:text-gray-100">
             <CardHeader>
@@ -940,6 +829,7 @@ export default function Question({
                           if (com.id === commentId) {
                             return { ...com, content: newContent, edited: true }
                           }
+                          // else maybe check replies
                           return {
                             ...com,
                             replies: com.replies.map((rep) =>
@@ -966,7 +856,8 @@ export default function Question({
                             return {
                               ...com,
                               upvotes: type === "upvote" ? com.upvotes + 1 : com.upvotes,
-                              downvotes: type === "downvote" ? com.downvotes + 1 : com.downvotes,
+                              downvotes:
+                                type === "downvote" ? com.downvotes + 1 : com.downvotes,
                             }
                           }
                           com.replies = com.replies.map((rep) =>
@@ -992,7 +883,7 @@ export default function Question({
           </Card>
         )}
 
-        {/* Markscheme Modal */}
+        {/* Markscheme modal */}
         <AnimatePresence>
           {showMarkschemeModal && (
             <motion.div
@@ -1034,7 +925,7 @@ export default function Question({
                         <MathRenderer text={question.markscheme ?? ""} />
                       </div>
                     ) : (
-                      "No answer available"
+                      "No markscheme available."
                     )}
                   </div>
                 </CardContent>
@@ -1090,9 +981,7 @@ function CommentItem({
               <AvatarImage
                 src={`https://api.dicebear.com/6.x/initials/svg?seed=${comment.username}`}
               />
-              <AvatarFallback>
-                {comment.username.slice(0, 2).toUpperCase()}
-              </AvatarFallback>
+              <AvatarFallback>{comment.username.slice(0, 2).toUpperCase()}</AvatarFallback>
             </Avatar>
             <div>
               <p className="font-semibold">{comment.username}</p>
@@ -1101,6 +990,7 @@ function CommentItem({
               </p>
             </div>
           </div>
+          {/* Editing */}
           {editingCommentId === comment.id ? (
             <div className="mt-2">
               <Textarea
@@ -1192,6 +1082,7 @@ function CommentItem({
             )}
           </div>
 
+          {/* replying */}
           {replyingTo === comment.id && (
             <div className="mt-2">
               <Textarea
@@ -1210,7 +1101,7 @@ function CommentItem({
           )}
         </div>
       </div>
-
+      {/* render replies */}
       {comment.replies.map((r) => (
         <CommentItem
           key={r.id}

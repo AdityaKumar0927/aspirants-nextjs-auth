@@ -1,12 +1,11 @@
 /**
- * seed.ts (TypeScript)
+ * seed.ts
  *
- * 1) Reads all meta JSON files in `!metaid/`.
- * 2) For each <basename>.json, finds `past-papers/<basename>/`.
- * 3) Reads all question JSON in that folder, flattening `results[].questions`.
- * 4) Upserts exam by `exam.key`.
- * 5) Upserts each question individually by `questionId`, linking to `exam.id`.
- * 6) Sets `updatedAt = new Date()` to satisfy your schema's requirement.
+ * Reads all exam meta .json files in `!metaid/`.
+ * For each <basename>.json => finds `past-papers/<basename>` folder => reads question .json => flattens `results[].questions`.
+ * Upserts each Exam by exam.key, then upserts each Question by questionId (one-by-one, chunked).
+ * We include all fields from your Prisma schema, or default to null if not in the JSON.
+ * We also define 'title' and 'subjectGroup' (etc.) in the QuestionJson interface to avoid TS errors.
  */
 
 ///////////////////////////////
@@ -16,7 +15,6 @@ import fs from "fs";
 import path from "path";
 import { PrismaClient, Prisma as PrismaNS, QuestionStatus } from "@prisma/client";
 
-// Instantiate the Prisma client
 const prisma = new PrismaClient();
 
 // Logger helpers
@@ -34,9 +32,13 @@ function logError(msg: string) {
 // 2) Helper Functions
 ///////////////////////////////
 
-/** Return `undefined` so the JSON column is omitted => DB ends up NULL (for `Json?`). */
+/**
+ * If the incoming value is nullish, we can return undefined => the field is omitted.
+ * That means the DB column won't be changed on update. Alternatively, if you want
+ * literal JSON null, you can do `return PrismaNS.JsonNull;`.
+ */
 function toNullableJson(value: unknown): PrismaNS.InputJsonValue | undefined {
-  if (value === null || value === undefined) {
+  if (value == null) {
     return undefined;
   }
   return value as PrismaNS.InputJsonValue;
@@ -60,7 +62,7 @@ function toDateOrNull(value: any): Date | null {
   return isNaN(d.getTime()) ? null : d;
 }
 
-/** Chunk an array to avoid huge single queries or timeouts. */
+/** Chunk array to avoid massive single transactions. */
 function chunkArray<T>(arr: T[], size: number): T[][] {
   const chunks: T[][] = [];
   for (let i = 0; i < arr.length; i += size) {
@@ -70,55 +72,79 @@ function chunkArray<T>(arr: T[], size: number): T[][] {
 }
 
 ///////////////////////////////
-// 3) Types for your data (Optional)
+// 3) Types
 ///////////////////////////////
 
+/**
+ * The "ExamMeta" interface for your exam metadata JSON in `!metaid`.
+ */
 interface ExamMeta {
   metaId: string;
+  key: string;        // upsert by exam.key
+  title: string;
+  examGroup?: string;
   country?: string;
   exam?: string;
-  examGroup?: string;
-  key: string;          // used for upsert in `Exam`
   date?: string;
-  description?: string | null;
+  description?: string;
   isOnline?: boolean;
   isMemoryBased?: boolean;
   languages?: string[];
-  title: string;
   year?: number;
-  // If you have a "Pyq" relation, you'd do it here. But your schema indicated type issues, so we skip it.
 }
 
+/**
+ * The structure of each question in "past-papers" JSON files.
+ * We define optional properties for *all* fields your code references.
+ */
 interface QuestionJson {
-  question_id: string;  // used for upsert in `Question`
-  examGroup?: string | null;
-  exam?: string | null;
-  country?: string | null;
+  question_id: string;          // required unique ID
+
+  // The ones TypeScript complained were missing:
+  title?: string | null;
   subjectGroup?: string | null;
-  subject?: string | null;
-  chapterGroup?: string | null;
-  chapter?: string | null;
-  year?: number | null;
   paperTitle?: string | null;
   timeAllotted?: number | null;
+  yearKey?: string | null;
+  chapter?: string | null;
+  chapterGroup?: string | null;
+  topicName?: string | null;
+
+  // Other fields from your schema or code:
+  examGroup?: string | null;
+  country?: string | null;
+  exam?: string | null;
+  languages?: string[];
+  year?: number | null;
+  difficulty?: string | null;
+  subject?: string | null;
+  topic?: string | null;
+  subtopic?: string | null;
+  type?: string | null;
   marks?: number | null;
   negMarks?: number | null;
-  languages?: string[];
-  difficulty?: string | null;
-  topicName?: string | null;
-  type?: string | null;
-  examDate?: string | null;
-  question?: any;
   updated_time?: number | null;
-  permalink?: string | null;
-  paperId?: string | null;
-  topic?: string | null;
+  examDate?: string | null;
+  isMemoryBased?: boolean | null;
+  isOnline?: boolean | null;
+  description?: string | null;
+  key?: string | null;
+  date?: string | null;
   isOutOfSyllabus?: boolean | null;
   isBonus?: boolean | null;
-  yearKey?: string | null;
-  // Possibly more fields (e.g., 'bookmark', 'section')
+  source?: string | null;
+  paperId?: string | null;
+  permalink?: string | null;
+
+  // For JSON data
+  question?: any; // we'll store in `content`
+  linkedResources?: any;
+  commonMistakes?: any;
 }
 
+/**
+ * The blocks in question files: results[].questions
+ */
 interface QuestionFileBlock {
   _id?: string;
   questions: QuestionJson[];
@@ -131,22 +157,21 @@ async function main() {
   const metaDir = "./!metaid";
   const pastPapersDir = "./past-papers";
 
-  // (A) Read all meta JSON files in `!metaid`
+  // A) Gather all .json in !metaid
   if (!fs.existsSync(metaDir)) {
     logError(`Meta folder does not exist: ${metaDir}`);
     return;
   }
   const metaFiles = fs.readdirSync(metaDir).filter((f) => f.endsWith(".json"));
-  if (metaFiles.length === 0) {
-    logWarn(`No meta JSON files in: ${metaDir}`);
+  if (!metaFiles.length) {
+    logWarn(`No meta .json found in: ${metaDir}`);
     return;
   }
 
-  // (B) For each meta file
+  // B) For each meta file => parse => find matching question folder => parse => upsert
   for (const metaFile of metaFiles) {
     const metaFilePath = path.join(metaDir, metaFile);
 
-    // Parse the array of exam metadata
     let metaArray: ExamMeta[];
     try {
       const raw = fs.readFileSync(metaFilePath, "utf-8");
@@ -160,17 +185,16 @@ async function main() {
       continue;
     }
 
-    // baseName => e.g. "jee_jee-main.json" -> "jee_jee-main"
+    // baseName => e.g. "jee_jee-main.json" => "jee_jee-main"
     const baseName = metaFile.replace(".json", "");
-    // matching folder => e.g. ./past-papers/jee_jee-main
     const questionFolder = path.join(pastPapersDir, baseName);
 
     if (!fs.existsSync(questionFolder)) {
-      logWarn(`No question folder found for ${baseName}: ${questionFolder}`);
+      logWarn(`No question folder: ${questionFolder}`);
       continue;
     }
 
-    // (C) Read all .json in that subfolder => gather questions
+    // C) Flatten all question JSON in that folder
     const questionFiles = fs
       .readdirSync(questionFolder)
       .filter((f) => f.endsWith(".json"));
@@ -183,7 +207,7 @@ async function main() {
         const parsedQ = JSON.parse(rawQ);
         if (parsedQ && Array.isArray(parsedQ.results)) {
           for (const block of parsedQ.results as QuestionFileBlock[]) {
-            if (block.questions && Array.isArray(block.questions)) {
+            if (block?.questions && Array.isArray(block.questions)) {
               allQuestions = allQuestions.concat(block.questions);
             }
           }
@@ -193,13 +217,13 @@ async function main() {
       }
     }
 
-    // If no questions found, skip
+    // D) If no questions, skip
     if (!allQuestions.length) {
-      logWarn(`No questions found in folder: ${questionFolder}`);
+      logWarn(`No questions in folder: ${questionFolder}`);
       continue;
     }
 
-    // (D) For each examMeta in metaArray => upsert exam => upsert questions
+    // E) Upsert each exam in metaArray => upsert matching questions
     for (const examMeta of metaArray) {
       if (!examMeta.metaId) {
         logWarn(`Skipping examMeta with no metaId: ${JSON.stringify(examMeta)}`);
@@ -208,48 +232,49 @@ async function main() {
 
       logInfo(`\n=== Processing metaId=${examMeta.metaId} => ${examMeta.title} ===`);
 
-      // 1) Upsert the exam with an inline typed variable
+      // 1) Upsert Exam
       const exam = await prisma.exam.upsert({
         where: { key: examMeta.key },
         update: {},
         create: {
-          examGroup: examMeta.examGroup || null,
-          country: examMeta.country || null,
-          exam: examMeta.exam || null,
+          examGroup: examMeta.examGroup ?? null,
+          country: examMeta.country ?? null,
+          exam: examMeta.exam ?? null,
           key: examMeta.key,
           date: toDateOrNull(examMeta.date),
           description: examMeta.description ?? null,
           isMemoryBased: examMeta.isMemoryBased ?? false,
           isOnline: examMeta.isOnline ?? false,
-          languages: examMeta.languages || [],
+          languages: examMeta.languages ?? [],
           title: examMeta.title,
           year: examMeta.year ?? null,
-          // If you want to handle Pyq, add here if your schema matches
         },
       });
       logInfo(`Upserted exam => ${exam.title} (id: ${exam.id})`);
 
-      // 2) Filter out invalid question IDs
+      // 2) Filter valid question IDs
       const validQuestions = allQuestions.filter(
         (q) => q.question_id && q.question_id.trim() !== ""
       );
       if (!validQuestions.length) {
-        logWarn(`No valid question_id found in folder for metaId=${examMeta.metaId}`);
+        logWarn(`No valid question_id for metaId=${examMeta.metaId}`);
         continue;
       }
 
-      // 3) Build the data array
-      const questionCreateData = validQuestions.map((q) => {
+      // 3) Build question data
+      const questionRows = validQuestions.map((q) => {
         const questionId = q.question_id.trim();
+
+        // Required text
         const textFromJson =
           q.question?.en?.content?.trim() ||
           q.question?.content?.trim() ||
           "No text available";
 
-        // Flatten options => string[] if needed
-        let optionsArray: string[] = [];
+        // Flatten options => string[]
+        let optionsArr: string[] = [];
         if (q.question?.en?.options && Array.isArray(q.question.en.options)) {
-          optionsArray = q.question.en.options.map((opt: any) => {
+          optionsArr = q.question.en.options.map((opt: any) => {
             if (opt && typeof opt === "object") {
               const identifier = opt.identifier ?? "";
               const content = opt.content ?? "";
@@ -259,69 +284,89 @@ async function main() {
           });
         }
 
-        // Single correct option
-        let correctOption: string | null = null;
+        // Single correct option?
+        let correctOpt: string | null = null;
         if (
           q.question?.en?.correct_options &&
           Array.isArray(q.question.en.correct_options) &&
           q.question.en.correct_options.length > 0
         ) {
-          correctOption = q.question.en.correct_options[0];
+          correctOpt = q.question.en.correct_options[0];
         } else if (q.question?.en?.answer) {
-          correctOption = String(q.question.en.answer);
+          correctOpt = String(q.question.en.answer);
         }
 
+        // For JSON fields that can't accept raw null => either omit or use Prisma.JsonNull.
+        // We'll do a "ternary + toNullableJson" approach here:
+        const linkedRes = q.linkedResources
+          ? toNullableJson(q.linkedResources)
+          : PrismaNS.JsonNull;
+        const commonMistakesVal = q.commonMistakes
+          ? toNullableJson(q.commonMistakes)
+          : PrismaNS.JsonNull;
+
         return {
+          // Fields from your schema
+          updatedAt: new Date(),   // always required
           questionId,
           examId: exam.id,
 
-          examGroup: q.examGroup || null,
-          country: q.country || null,
-          exam: q.exam || null,
-          subjectGroup: q.subjectGroup || null,
-          subject: q.subject || null,
-          chapterGroup: q.chapterGroup || null,
-          chapter: q.chapter || null,
-          topicName: q.topicName || null,
-          topic: q.topic || null,
-          difficulty: q.difficulty || null,
-          type: q.type || null,
-
+          examGroup: q.examGroup ?? null,
+          country: q.country ?? null,
+          exam: q.exam ?? null,
+          key: q.key ?? null,
+          date: toDateOrNull(q.date),
+          description: q.description ?? null,
+          isMemoryBased: q.isMemoryBased ?? null,
+          isOnline: q.isOnline ?? null,
+          languages: q.languages ?? [],
+          title: q.title ?? null,
           year: q.year ?? null,
-          paperTitle: q.paperTitle ?? null,
-          timeAllotted: q.timeAllotted ?? null,
+
+          // etc...
+          text: textFromJson,
+          subject: q.subject ?? null,
+          topic: q.topic ?? null,
+          subtopic: q.subtopic ?? null,
+          difficulty: q.difficulty ?? null,
+          type: q.type ?? null,
           marks: toFloatOrNull(q.marks),
           negMarks: toFloatOrNull(q.negMarks),
+          options: optionsArr,
+          correctOption: correctOpt,
+
+          paperTitle: q.paperTitle ?? null,
+          timeAllotted: toIntOrNull(q.timeAllotted),
           updatedTime: toIntOrNull(q.updated_time),
-          examDate: toDateOrNull(q.examDate),
 
-          isOutOfSyllabus: q.isOutOfSyllabus ?? null,
-          isBonus: q.isBonus ?? null,
+          // JSON fields
+          linkedResources: linkedRes,
+          commonMistakes: commonMistakesVal,
 
-          yearKey: q.yearKey || null,
-          permalink: q.permalink || null,
-          languages: q.languages || [],
-
-          text: textFromJson,
-          options: optionsArray,
-          correctOption,
-
-          // The entire question object, if you want, in `content`
-          content: toNullableJson(q.question),
-
-          // Our schema requires updatedAt
-          updatedAt: new Date(),
+          // Explanation from q.question?.en?.explanation if you have it
+          explanation: toNullableJson(q.question?.en?.explanation),
+          // ...
           status: QuestionStatus.ACTIVE,
 
-          // If your schema has e.g. paperId, add it:
+          // Additional columns from your schema
+          chapter: q.chapter ?? null,
+          chapterGroup: q.chapterGroup ?? null,
+          topicName: q.topicName ?? null,
+          yearKey: q.yearKey ?? null,
+
+          content: toNullableJson(q.question),
+          examDate: toDateOrNull(q.examDate),
+          isBonus: q.isBonus ?? null,
+          isOutOfSyllabus: q.isOutOfSyllabus ?? null,
           paperId: q.paperId ?? null,
-          // etc. ...
+          permalink: q.permalink ?? null,
+          subjectGroup: q.subjectGroup ?? null,
         };
       });
 
-      // 4) Upsert each question in chunks
+      // 4) Upsert in chunks
       const CHUNK_SIZE = 100;
-      const chunks = chunkArray(questionCreateData, CHUNK_SIZE);
+      const chunks = chunkArray(questionRows, CHUNK_SIZE);
 
       let totalUpserted = 0;
       for (const chunk of chunks) {
@@ -331,11 +376,11 @@ async function main() {
               where: { questionId: data.questionId },
               create: {
                 ...data,
-                updatedAt: new Date(), // must set in create
+                updatedAt: new Date(),
               },
               update: {
                 ...data,
-                updatedAt: new Date(), // must set in update
+                updatedAt: new Date(),
               },
             });
             totalUpserted++;
@@ -346,14 +391,14 @@ async function main() {
       }
 
       logInfo(`Upserted ${totalUpserted} questions for exam: ${exam.title}`);
-    } // end for examMeta
-  } // end for metaFiles
+    }
+  }
 
   logInfo("All done. Closing Prisma.");
   await prisma.$disconnect();
 }
 
-// Execute the script
+// Execute
 main()
   .then(() => process.exit(0))
   .catch((err) => {
