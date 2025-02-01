@@ -1,62 +1,54 @@
-"use client";
+"use client"
 
-import React from "react";
-import "katex/dist/katex.min.css";
-import katex from "katex";
+import React from "react"
+import "katex/dist/katex.min.css"
+import katex from "katex"
 
-/**
- * MathRenderer handles multiple LaTeX delimiters:
- * - $$...$$ or \[...\]  => display-mode
- * - $...$ or \(...\)    => inline-mode
- * Also replaces literal "\n" with <br/>
- */
 interface MathRendererProps {
-  text: string;
+  text: string
 }
 
-const MathRenderer: React.FC<MathRendererProps> = ({ text }) => {
-  if (!text) return null;
+export default function MathRenderer({ text }: MathRendererProps) {
+  if (!text) return null
 
-  let rendered = text;
+  let rendered = text
 
-  // 1) Display math: $$...$$
+  // $$...$$ (display)
   rendered = rendered.replace(/\$\$([\s\S]+?)\$\$/g, (match, p1) => {
     const html = katex.renderToString(p1, {
       throwOnError: false,
       displayMode: true,
-    });
-    return `<div class="katex-block">${html}</div>`;
-  });
+    })
+    return `<div class="katex-block">${html}</div>`
+  })
 
-  // 2) Display math: \[...\]
+  // \[...\] (display)
   rendered = rendered.replace(/\\\[([\s\S]+?)\\\]/g, (match, p1) => {
     const html = katex.renderToString(p1, {
       throwOnError: false,
       displayMode: true,
-    });
-    return `<div class="katex-block">${html}</div>`;
-  });
+    })
+    return `<div class="katex-block">${html}</div>`
+  })
 
-  // 3) Inline math: $...$
+  // $...$ (inline)
   rendered = rendered.replace(/\$([\s\S]+?)\$/g, (match, p1) => {
     return katex.renderToString(p1, {
       throwOnError: false,
       displayMode: false,
-    });
-  });
+    })
+  })
 
-  // 4) Inline math: \(...\)
+  // \(...\) (inline)
   rendered = rendered.replace(/\\\(([\s\S]+?)\\\)/g, (match, p1) => {
     return katex.renderToString(p1, {
       throwOnError: false,
       displayMode: false,
-    });
-  });
+    })
+  })
 
-  // 5) Replace literal "\n" with <br/>
-  rendered = rendered.replace(/\\n/g, "<br/>");
+  // \n => <br/>
+  rendered = rendered.replace(/\\n/g, "<br/>")
 
-  return <span dangerouslySetInnerHTML={{ __html: rendered }} />;
-};
-
-export default MathRenderer;
+  return <span dangerouslySetInnerHTML={{ __html: rendered }} />
+}
