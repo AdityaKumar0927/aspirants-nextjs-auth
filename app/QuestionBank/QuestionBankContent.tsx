@@ -55,11 +55,11 @@ interface QuestionType {
   completed?: boolean;
   options?: string[];
   correctOption?: string;
-  markscheme?: string; // now includes DB's “explanation”
+  markscheme?: string;
   notes?: string;
   diagramUrl?: string;
   exam?: string;
-  customTags?: string[];   // newly added
+  customTags?: string[];   
   difficultyRating?: number;
 }
 
@@ -143,9 +143,8 @@ function fuzzyContains(haystack: string, needle: string): boolean {
 }
 
 function transformFilterItem(value: string): string {
-  // 1) Replace hyphens with spaces
+  // Replace hyphens with spaces, then Title Case each word
   const replaced = value.replace(/-/g, " ");
-  // 2) Title Case each word
   return replaced
     .split(" ")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -299,6 +298,8 @@ export default function QuestionBankContent() {
   const [mobileIndex, setMobileIndex] = useState(0);
   const [filtersOpenMobile, setFiltersOpenMobile] = useState(false);
   const [navigatorOpen, setNavigatorOpen] = useState(false);
+  // Add a "progressOpen" for mobile progress card
+  const [progressOpen, setProgressOpen] = useState(false);
 
   // Decide initial view mode
   useEffect(() => {
@@ -335,7 +336,7 @@ export default function QuestionBankContent() {
 
   const fetchGlobalStats = useCallback(async () => {
     try {
-      const { exams, subjects, topics, subtopics, difficulties, years, types, status } = state.filters;
+      const { exams, subjects, topics, subtopics, difficulties, years, types } = state.filters;
       const arrToComma = (arr: string[]) => arr.join(",");
       const params = new URLSearchParams();
       if (exams.length) params.set("exam", arrToComma(exams));
@@ -345,10 +346,6 @@ export default function QuestionBankContent() {
       if (difficulties.length) params.set("difficulty", arrToComma(difficulties));
       if (years.length) params.set("year", arrToComma(years));
       if (types.length) params.set("type", arrToComma(types));
-      // Optionally pass 'status' if your API can handle that
-      // (some folks skip it if 'status' is purely local)
-      // params.set("status", status);
-
       const resp = await fetch(`/api/questions/stats?${params.toString()}`, { cache: "no-store" });
       if (!resp.ok) {
         const txt = await resp.text();
@@ -401,24 +398,12 @@ export default function QuestionBankContent() {
         data = result.data;
         totalCount = result.totalCount;
       }
-
-      // If the DB returns an `explanation` field, map it into `markscheme`
-      data = data.map((q) => {
-        // Some APIs might call it "explanation"
-        // Just transform it to "markscheme"
-        if ((q as any).explanation) {
-          q.markscheme = (q as any).explanation;
-        }
-        return q;
-      });
-
       // Sort by numeric portion of questionId
       data = data.sort((a, b) => {
         const aId = a.questionId?.match(/\d+/)?.[0] || "0";
         const bId = b.questionId?.match(/\d+/)?.[0] || "0";
         return parseInt(aId, 10) - parseInt(bId, 10);
       });
-
       dispatch({ type: "SET_QUESTIONS", payload: data });
       dispatch({ type: "SET_TOTAL_COUNT", payload: totalCount });
     } catch (err) {
@@ -601,6 +586,114 @@ export default function QuestionBankContent() {
     });
   }, [state.questions, state.filters.status, state.searchQuery]);
 
+  // -------------- Mobile Progress View --------------
+  // We'll reuse the same progress card. Let's define a small function:
+  function ProgressCard() {
+    const total = state.globalStats.total;
+    const answered = state.globalStats.completed;
+    const reviewed = state.globalStats.reviewed;
+    const notAnswered = state.globalStats.notAnswered;
+    const progressPct = total > 0 ? Math.round((answered / total) * 100) : 0;
+
+    return (
+      <Card
+        className="
+          bg-gradient-to-br from-gray-200 to-gray-100
+          dark:from-gray-900 dark:to-gray-800
+          text-gray-900 dark:text-gray-100
+          border-gray-200 dark:border-gray-700
+          mb-6
+        "
+      >
+        <CardContent className="p-6">
+          <h2 className="text-2xl font-light tracking-tight text-gray-800 dark:text-gray-200 mb-6">
+            Question Progress
+          </h2>
+          <div className="space-y-6">
+            <div className="flex justify-between items-center">
+              <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
+                Overall Progress
+              </span>
+              <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
+                {progressPct}%
+              </span>
+            </div>
+            <Progress
+              value={progressPct}
+              className="w-full h-1.5 bg-gray-300 dark:bg-gray-700"
+            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* total */}
+              <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
+                <div className="text-blue-400 p-2 rounded-full bg-blue-400/10">
+                  <HelpCircle className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-2xl font-light tracking-tighter text-blue-600 dark:text-blue-300">
+                    {total}
+                  </p>
+                  <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
+                    Total Questions
+                  </p>
+                </div>
+              </div>
+              {/* answered */}
+              <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
+                <div className="text-green-400 p-2 rounded-full bg-green-400/10">
+                  <svg
+                    className="h-5 w-5"
+                    strokeWidth="2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-2xl font-light tracking-tighter text-green-600 dark:text-green-300">
+                    {answered}
+                  </p>
+                  <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
+                    Answered
+                  </p>
+                </div>
+              </div>
+              {/* flagged */}
+              <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
+                <div className="text-yellow-400 p-2 rounded-full bg-yellow-400/10">
+                  <Flag className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-2xl font-light tracking-tighter text-yellow-600 dark:text-yellow-300">
+                    {reviewed}
+                  </p>
+                  <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
+                    For Review
+                  </p>
+                </div>
+              </div>
+              {/* not answered */}
+              <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
+                <div className="text-red-400 p-2 rounded-full bg-red-400/10">
+                  <HelpCircle className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-2xl font-light tracking-tighter text-red-600 dark:text-red-300">
+                    {notAnswered}
+                  </p>
+                  <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
+                    Not Answered
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
   // -------------- Loading Skeleton --------------
   if (state.loading || state.actionLoading) {
     return (
@@ -669,6 +762,7 @@ export default function QuestionBankContent() {
               Desktop View
             </Button>
             <div className="flex items-center gap-2">
+              {/* Mobile Filters */}
               <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
                 <DialogTrigger asChild>
                   <Button
@@ -683,9 +777,10 @@ export default function QuestionBankContent() {
                 <DialogContent
                   className="
                     fixed top-0 left-0 w-screen h-screen
-                    sm:w-[500px] sm:max-h-[90vh] sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
+                    sm:w-[500px] sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
                     bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                     flex flex-col custom-scrollbar
+                    pt-6
                   "
                 >
                   <FiltersDialogMobile
@@ -696,12 +791,46 @@ export default function QuestionBankContent() {
                   />
                 </DialogContent>
               </Dialog>
+
               <span className="text-sm text-gray-500 dark:text-gray-400">
                 {displayNumber} / {total}
               </span>
             </div>
           </div>
-          {/* Single question */}
+
+          {/* Button to show progress in full screen modal */}
+          <Button
+            variant="outline"
+            size="sm"
+            className="mb-4"
+            onClick={() => setProgressOpen(true)}
+          >
+            View Progress
+          </Button>
+
+          {/* Mobile progress dialog */}
+          <Dialog open={progressOpen} onOpenChange={setProgressOpen}>
+            <DialogContent
+              className="
+                fixed top-0 left-0 w-screen h-screen
+                sm:w-[500px] sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
+                bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
+                flex flex-col custom-scrollbar
+                pt-6
+              "
+            >
+              <div className="flex items-center justify-between mb-4 px-4">
+                <h2 className="text-xl font-semibold">Progress</h2>
+                <Button variant="ghost" size="icon" onClick={() => setProgressOpen(false)}>
+                  ✕
+                </Button>
+              </div>
+              <ScrollArea className="px-4 flex-1 custom-scrollbar">
+                <ProgressCard />
+              </ScrollArea>
+            </DialogContent>
+          </Dialog>
+
           <Question
             question={currentQ}
             feedback={state.feedback[currentQ.questionId]}
@@ -820,6 +949,7 @@ export default function QuestionBankContent() {
                   sm:w-[500px] sm:max-h-[90vh] sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
                   bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                   flex flex-col custom-scrollbar
+                  pt-6
                 "
               >
                 <FiltersDialogMobile
@@ -844,7 +974,7 @@ export default function QuestionBankContent() {
               </DialogTrigger>
               <DialogContent
                 onCloseAutoFocus={(e) => e.preventDefault()}
-                className="sm:max-w-[80vw] sm:max-h-[80vh] dark:bg-gray-800 dark:text-gray-100 custom-scrollbar"
+                className="sm:max-w-[80vw] sm:max-h-[80vh] dark:bg-gray-800 dark:text-gray-100 custom-scrollbar pt-6"
               >
                 <ScrollArea className="h-[60vh] custom-scrollbar">
                   <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 p-4">
@@ -881,6 +1011,11 @@ export default function QuestionBankContent() {
                 </ScrollArea>
               </DialogContent>
             </Dialog>
+          </div>
+
+          {/* Progress Card */}
+          <div className="mb-6">
+            <ProgressCard />
           </div>
 
           {/* Status Filter Row */}
@@ -932,7 +1067,7 @@ export default function QuestionBankContent() {
                     dispatch({ type: "SET_DROPDOWN", payload: { tag: filterType, value: !!open } });
                   }}
                   content={
-                    <div className="p-2 w-full sm:w-80 bg-white dark:bg-gray-800 rounded-md custom-scrollbar">
+                    <div className="p-2 w-full sm:w-80 bg-white dark:bg-gray-800 rounded-md custom-scrollbar max-h-60 overflow-auto">
                       <DesktopFilterSearch
                         filterType={filterType}
                         filterValues={filterValues}
@@ -969,110 +1104,6 @@ export default function QuestionBankContent() {
               );
             })}
           </div>
-
-          {/* Progress Card */}
-          <Card
-            className="
-              bg-gradient-to-br from-gray-200 to-gray-100
-              dark:from-gray-900 dark:to-gray-800
-              text-gray-900 dark:text-gray-100
-              border-gray-200 dark:border-gray-700
-              mb-6
-            "
-          >
-            <CardContent className="p-6">
-              <h2 className="text-2xl font-light tracking-tight text-gray-800 dark:text-gray-200 mb-6">
-                Question Progress
-              </h2>
-              <div className="space-y-6">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
-                    Overall Progress
-                  </span>
-                  <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
-                    {state.globalStats.total > 0
-                      ? Math.round((state.globalStats.completed / state.globalStats.total) * 100)
-                      : 0}
-                    %
-                  </span>
-                </div>
-                <Progress
-                  value={
-                    state.globalStats.total > 0
-                      ? (state.globalStats.completed / state.globalStats.total) * 100
-                      : 0
-                  }
-                  className="w-full h-1.5 bg-gray-300 dark:bg-gray-700"
-                />
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {/* total */}
-                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
-                    <div className="text-blue-400 p-2 rounded-full bg-blue-400/10">
-                      <HelpCircle className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-2xl font-light tracking-tighter text-blue-600 dark:text-blue-300">
-                        {state.globalStats.total}
-                      </p>
-                      <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
-                        Total Questions
-                      </p>
-                    </div>
-                  </div>
-                  {/* answered */}
-                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
-                    <div className="text-green-400 p-2 rounded-full bg-green-400/10">
-                      <svg
-                        className="h-5 w-5"
-                        strokeWidth="2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-2xl font-light tracking-tighter text-green-600 dark:text-green-300">
-                        {state.globalStats.completed}
-                      </p>
-                      <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
-                        Answered
-                      </p>
-                    </div>
-                  </div>
-                  {/* flagged */}
-                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
-                    <div className="text-yellow-400 p-2 rounded-full bg-yellow-400/10">
-                      <Flag className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-2xl font-light tracking-tighter text-yellow-600 dark:text-yellow-300">
-                        {state.globalStats.reviewed}
-                      </p>
-                      <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
-                        For Review
-                      </p>
-                    </div>
-                  </div>
-                  {/* not answered */}
-                  <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
-                    <div className="text-red-400 p-2 rounded-full bg-red-400/10">
-                      <HelpCircle className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-2xl font-light tracking-tighter text-red-600 dark:text-red-300">
-                        {state.globalStats.notAnswered}
-                      </p>
-                      <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
-                        Not Answered
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
 
           {state.questions.length > 0 ? (
             <>
@@ -1151,11 +1182,27 @@ function DesktopFilterSearch({
 }) {
   const [searchTerm, setSearchTerm] = useState("");
 
+  // 1) Filter by searchTerm
+  // 2) Sort so that selected items are at the top
   const displayedValues = useMemo(() => {
-    if (!searchTerm) return filterValues;
-    const lower = searchTerm.toLowerCase();
-    return filterValues.filter((val) => val.toLowerCase().includes(lower));
-  }, [filterValues, searchTerm]);
+    let arr = filterValues;
+
+    if (searchTerm) {
+      const lower = searchTerm.toLowerCase();
+      arr = arr.filter((val) => val.toLowerCase().includes(lower));
+    }
+
+    // sort selected items to top
+    arr = arr.sort((a, b) => {
+      const aSel = state.filters[filterType].includes(a);
+      const bSel = state.filters[filterType].includes(b);
+      if (aSel && !bSel) return -1;
+      if (!aSel && bSel) return 1;
+      return 0;
+    });
+
+    return arr;
+  }, [filterValues, searchTerm, state.filters, filterType]);
 
   const toggleItem = useCallback(
     (val: string) => {
@@ -1183,72 +1230,70 @@ function DesktopFilterSearch({
         onChange={(e) => setSearchTerm(e.target.value)}
         className="mb-2 dark:text-gray-100 dark:bg-gray-700 dark:placeholder-gray-400"
       />
-      <ScrollArea className="max-h-60 custom-scrollbar">
-        <motion.div className="flex flex-col gap-2" layout transition={transitionProps}>
-          {displayedValues.map((val) => {
-            const isSelected = state.filters[filterType].includes(val);
-            return (
-              <motion.button
-                key={val}
-                layout
-                initial={false}
-                onClick={() => toggleItem(val)}
+      <motion.div className="flex flex-col gap-2" layout transition={transitionProps}>
+        {displayedValues.map((val) => {
+          const isSelected = state.filters[filterType].includes(val);
+          return (
+            <motion.button
+              key={val}
+              layout
+              initial={false}
+              onClick={() => toggleItem(val)}
+              animate={{
+                backgroundColor: isSelected ? "#E6F7FF" : "rgba(229, 231, 235, 0.5)",
+              }}
+              whileHover={{
+                backgroundColor: isSelected ? "#CCEEFF" : "rgba(229, 231, 235, 0.8)",
+              }}
+              whileTap={{
+                backgroundColor: isSelected ? "#B3E6FF" : "rgba(229, 231, 235, 0.9)",
+              }}
+              transition={{
+                ...transitionProps,
+                backgroundColor: { duration: 0.1 },
+              }}
+              className={`
+                inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
+                whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
+                ${
+                  isSelected
+                    ? "text-blue-600 ring-blue-200"
+                    : "text-gray-600 ring-gray-200"
+                }
+              `}
+            >
+              <motion.div
+                className="relative flex items-center"
                 animate={{
-                  backgroundColor: isSelected ? "#E6F7FF" : "rgba(229, 231, 235, 0.5)",
-                }}
-                whileHover={{
-                  backgroundColor: isSelected ? "#CCEEFF" : "rgba(229, 231, 235, 0.8)",
-                }}
-                whileTap={{
-                  backgroundColor: isSelected ? "#B3E6FF" : "rgba(229, 231, 235, 0.9)",
+                  width: isSelected ? "auto" : "100%",
+                  paddingRight: isSelected ? "1.25rem" : "0",
                 }}
                 transition={{
-                  ...transitionProps,
-                  backgroundColor: { duration: 0.1 },
+                  ease: [0.175, 0.885, 0.32, 1.275],
+                  duration: 0.3,
                 }}
-                className={`
-                  inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
-                  whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
-                  ${
-                    isSelected
-                      ? "text-blue-600 ring-blue-200"
-                      : "text-gray-600 ring-gray-200"
-                  }
-                `}
               >
-                <motion.div
-                  className="relative flex items-center"
-                  animate={{
-                    width: isSelected ? "auto" : "100%",
-                    paddingRight: isSelected ? "1.25rem" : "0",
-                  }}
-                  transition={{
-                    ease: [0.175, 0.885, 0.32, 1.275],
-                    duration: 0.3,
-                  }}
-                >
-                  <span>{transformFilterItem(val)}</span>
-                  <AnimatePresence>
-                    {isSelected && (
-                      <motion.span
-                        initial={{ scale: 0, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0, opacity: 0 }}
-                        transition={transitionProps}
-                        className="absolute right-0"
-                      >
-                        <div className="w-3.5 h-3.5 rounded-full bg-blue-500 flex items-center justify-center">
-                          <Check className="w-2.5 h-2.5 text-white" strokeWidth={2} />
-                        </div>
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              </motion.button>
-            );
-          })}
-        </motion.div>
-      </ScrollArea>
+                <span>{transformFilterItem(val)}</span>
+                <AnimatePresence>
+                  {isSelected && (
+                    <motion.span
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0, opacity: 0 }}
+                      transition={transitionProps}
+                      className="absolute right-0"
+                    >
+                      <div className="w-3.5 h-3.5 rounded-full bg-blue-500 flex items-center justify-center">
+                        <Check className="w-2.5 h-2.5 text-white" strokeWidth={2} />
+                      </div>
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            </motion.button>
+          );
+        })}
+      </motion.div>
     </>
   );
 }
@@ -1298,9 +1343,22 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
     setSearches((prev) => ({ ...prev, [category]: value }));
   };
 
-  const filterItems = (items: string[], category: FilterKey) => {
-    const searchVal = searches[category]?.toLowerCase() || "";
-    return items.filter((item) => item.toLowerCase().includes(searchVal));
+  // same approach: filter & sort selected to top
+  const filterAndSort = (items: string[], cat: FilterKey) => {
+    let arr = items;
+    const st = searches[cat]?.toLowerCase() || "";
+    if (st) {
+      arr = arr.filter((it) => it.toLowerCase().includes(st));
+    }
+    // selected to top
+    arr = arr.sort((a, b) => {
+      const aSel = state.filters[cat].includes(a);
+      const bSel = state.filters[cat].includes(b);
+      if (aSel && !bSel) return -1;
+      if (!aSel && bSel) return 1;
+      return 0;
+    });
+    return arr;
   };
 
   const toggleItem = (category: FilterKey, item: string) => {
@@ -1320,7 +1378,10 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-full w-screen h-screen m-0 p-0 flex flex-col bg-white dark:bg-gray-900">
+      <DialogContent
+        className="max-w-full w-screen h-screen m-0 p-0 flex flex-col bg-white dark:bg-gray-900 custom-scrollbar"
+        style={{ overflowY: "auto" }}
+      >
         <div className="flex items-center justify-between sticky top-0 z-10 px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
           <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">Filters</h2>
           <div className="flex items-center gap-4">
@@ -1345,7 +1406,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
             </Button>
           </div>
         </div>
-        <div className="flex-1 overflow-y-scroll px-6 py-8 custom-scrollbar">
+        <div className="flex-1 px-6 py-8 custom-scrollbar">
           <div className="max-w-3xl mx-auto space-y-10">
             {/* Status row */}
             <div>
@@ -1368,13 +1429,14 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
                 ))}
               </div>
             </div>
-            {/* Now each filter section */}
+
+            {/* Each filter category */}
             <MobileFilterSection
               title="exams"
               items={state.filterOptions.exams}
               searchValue={searches.exams}
               onSearchChange={(val) => handleSearchChange("exams", val)}
-              filterItems={(arr) => filterItems(arr, "exams")}
+              displayedItems={filterAndSort(state.filterOptions.exams, "exams")}
               selectedItems={state.filters.exams}
               toggleItem={(item) => toggleItem("exams", item)}
             />
@@ -1383,7 +1445,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
               items={state.filterOptions.subjects}
               searchValue={searches.subjects}
               onSearchChange={(val) => handleSearchChange("subjects", val)}
-              filterItems={(arr) => filterItems(arr, "subjects")}
+              displayedItems={filterAndSort(state.filterOptions.subjects, "subjects")}
               selectedItems={state.filters.subjects}
               toggleItem={(item) => toggleItem("subjects", item)}
             />
@@ -1392,7 +1454,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
               items={state.filterOptions.topics}
               searchValue={searches.topics}
               onSearchChange={(val) => handleSearchChange("topics", val)}
-              filterItems={(arr) => filterItems(arr, "topics")}
+              displayedItems={filterAndSort(state.filterOptions.topics, "topics")}
               selectedItems={state.filters.topics}
               toggleItem={(item) => toggleItem("topics", item)}
             />
@@ -1401,7 +1463,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
               items={state.filterOptions.subtopics}
               searchValue={searches.subtopics}
               onSearchChange={(val) => handleSearchChange("subtopics", val)}
-              filterItems={(arr) => filterItems(arr, "subtopics")}
+              displayedItems={filterAndSort(state.filterOptions.subtopics, "subtopics")}
               selectedItems={state.filters.subtopics}
               toggleItem={(item) => toggleItem("subtopics", item)}
             />
@@ -1410,7 +1472,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
               items={state.filterOptions.difficulties}
               searchValue={searches.difficulties}
               onSearchChange={(val) => handleSearchChange("difficulties", val)}
-              filterItems={(arr) => filterItems(arr, "difficulties")}
+              displayedItems={filterAndSort(state.filterOptions.difficulties, "difficulties")}
               selectedItems={state.filters.difficulties}
               toggleItem={(item) => toggleItem("difficulties", item)}
             />
@@ -1419,7 +1481,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
               items={state.filterOptions.years}
               searchValue={searches.years}
               onSearchChange={(val) => handleSearchChange("years", val)}
-              filterItems={(arr) => filterItems(arr, "years")}
+              displayedItems={filterAndSort(state.filterOptions.years, "years")}
               selectedItems={state.filters.years}
               toggleItem={(item) => toggleItem("years", item)}
             />
@@ -1428,7 +1490,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
               items={state.filterOptions.types}
               searchValue={searches.types}
               onSearchChange={(val) => handleSearchChange("types", val)}
-              filterItems={(arr) => filterItems(arr, "types")}
+              displayedItems={filterAndSort(state.filterOptions.types, "types")}
               selectedItems={state.filters.types}
               toggleItem={(item) => toggleItem("types", item)}
             />
@@ -1443,24 +1505,21 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
 interface MobileFilterSectionProps {
   title: string;
   items: string[];
+  displayedItems: string[];
   searchValue: string;
   onSearchChange: (value: string) => void;
-  filterItems: (items: string[]) => string[];
   selectedItems: string[];
   toggleItem: (item: string) => void;
 }
 
 function MobileFilterSection({
   title,
-  items,
+  displayedItems,
   searchValue,
   onSearchChange,
-  filterItems,
   selectedItems,
   toggleItem,
 }: MobileFilterSectionProps) {
-  const displayed = filterItems(items);
-
   return (
     <div className="space-y-4">
       <h3 className="text-xl font-medium text-gray-800 dark:text-gray-100">{title}</h3>
@@ -1474,7 +1533,7 @@ function MobileFilterSection({
         <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
       </div>
       <div className="flex flex-col gap-2">
-        {displayed.map((item) => {
+        {displayedItems.map((item) => {
           const isSelected = selectedItems.includes(item);
           return (
             <button
