@@ -57,7 +57,8 @@ interface QuestionType {
   completed?: boolean;
   options?: string[];
   correctOption?: string;
-  markscheme?: string;      // A short field
+  // CHANGED ↓ rename this from markscheme => explanation
+  explanation?: string;      // A short field from DB
   notes?: string;
   diagramUrl?: string;
   exam?: string;
@@ -109,6 +110,7 @@ type StateType = {
   dropdowns: DropdownsType;
   feedback: Record<string, string | undefined>;
   numericalAnswers: Record<string, string | undefined>;
+  // We keep the local UI name "showMarkscheme" but the data field is `explanation`
   showMarkscheme: Record<string, boolean>;
   selectedOptions: Record<string, string | undefined>;
   loading: boolean;
@@ -874,6 +876,8 @@ export default function QuestionBankContent() {
             feedback={state.feedback[currentQ.questionId]}
             selectedOption={state.selectedOptions[currentQ.questionId]}
             numericalAnswer={state.numericalAnswers[currentQ.questionId]}
+            // The local UI calls it "Markscheme", 
+            // but the data field is question.explanation
             showMarkscheme={state.showMarkscheme[currentQ.questionId] || false}
             handleOptionClick={handleOptionClick}
             handleNumericalSubmit={handleNumericalSubmit}

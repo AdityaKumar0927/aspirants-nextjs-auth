@@ -24,12 +24,9 @@ function parseCommaParam(value: string | null): string[] | undefined {
  *   &difficulty=Easy,Medium
  *   &year=2021,2022
  *   &type=Multiple Choice,Numerical
- *   &yearKey=JEE-2023-Shift1 (for example)
+ *   &yearKey=JEE-2023-Shift1
  *   &page=1
  *   &pageSize=20
- *
- * Example:
- *   /api/questions?exam=JEE&year=2023&yearKey=JEE-2023-Shift1&topic=Thermodynamics
  */
 export async function GET(request: Request) {
   try {
@@ -51,15 +48,10 @@ export async function GET(request: Request) {
     const difficultyArr = parseCommaParam(searchParams.get("difficulty"));
     const yearStrArr    = parseCommaParam(searchParams.get("year"));
     const typeArr       = parseCommaParam(searchParams.get("type"));
-
-    // NEW: parse yearKey (similar to how you'd parse shift)
-    // e.g. ?yearKey=JEE-2023-Shift1
     const yearKeyArr    = parseCommaParam(searchParams.get("yearKey"));
 
     // 3) Build Prisma WHERE object
-    const where: any = {
-      // status: QuestionStatus.ACTIVE, // If you only want active questions
-    };
+    const where: any = {};
 
     if (examArr)        where.exam       = { in: examArr };
     if (subjectArr)     where.subject    = { in: subjectArr };
@@ -67,13 +59,8 @@ export async function GET(request: Request) {
     if (subtopicArr)    where.subtopic   = { in: subtopicArr };
     if (difficultyArr)  where.difficulty = { in: difficultyArr };
     if (typeArr)        where.type       = { in: typeArr };
+    if (yearKeyArr)     where.yearKey    = { in: yearKeyArr };
 
-    // Filter by yearKey if provided
-    if (yearKeyArr) {
-      where.yearKey = { in: yearKeyArr };
-    }
-
-    // Filter by numeric year if provided
     if (yearStrArr) {
       const years = yearStrArr
         .map((y) => parseInt(y, 10))
@@ -83,9 +70,6 @@ export async function GET(request: Request) {
       }
     }
 
-    // If you want to implement skipCompleted logic, you'd do so here,
-    // possibly by joining to UserProgress or a similar approach.
-
     // 4) Fetch matching questions + total count
     const [questions, totalCount] = await Promise.all([
       prisma.question.findMany({
@@ -94,6 +78,7 @@ export async function GET(request: Request) {
         where,
         orderBy: { id: "asc" },
         include: {
+          // If you have related tables, include them as needed:
           Exam: true,
           Feedback: true,
           Issue: true,
@@ -101,7 +86,8 @@ export async function GET(request: Request) {
           UserAnswer: true,
           UserPerformance: true,
           UserProgress: true,
-          // For a parent question relation (if you have one):
+
+          // For a parent question relation (if any):
           Question: true,
           // For child questions:
           other_Question: true,
@@ -110,7 +96,7 @@ export async function GET(request: Request) {
       prisma.question.count({ where }),
     ]);
 
-    // 5) Normalize "customTag" into "customTags" array
+    // 5) Convert customTag CSV -> array
     const data = questions.map((q) => {
       let customTags: string[] = [];
       if (q.customTag) {
@@ -119,6 +105,7 @@ export async function GET(request: Request) {
       return {
         ...q,
         customTags,
+        // IMPORTANT: we keep "explanation" as is—no rename to "markscheme"
       };
     });
 
@@ -148,7 +135,7 @@ export async function GET(request: Request) {
  *   "correctOption": "A",
  *   "exam": "JEE",
  *   "subject": "Physics",
- *   "explanation": "Markscheme text",
+ *   "explanation": "Your explanation here!",
  *   "customTags": ["tag1","tag2"],
  *   ...
  * }
@@ -158,19 +145,15 @@ export async function POST(request: Request) {
     const data = await request.json();
     console.log("POST /api/questions => creating question", data);
 
-    // Move 'explanation' -> 'markscheme' if needed
-    if (data.explanation && !data.markscheme) {
-      data.markscheme = data.explanation;
-      delete data.explanation;
-    }
+    // DO NOT rename explanation => markscheme; we just keep data.explanation
 
-    // Convert customTags array -> CSV
+    // Convert customTags array -> CSV if needed
     if (Array.isArray(data.customTags)) {
       data.customTag = data.customTags.join(",");
       delete data.customTags;
     }
 
-    // default status
+    // default status if not provided
     const status = data.status || QuestionStatus.ACTIVE;
 
     const created = await prisma.question.create({
@@ -183,7 +166,10 @@ export async function POST(request: Request) {
     return NextResponse.json(created);
   } catch (error) {
     console.error("Error creating question:", error);
-    return NextResponse.json({ error: "Failed to create question" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to create question" },
+      { status: 500 }
+    );
   }
 }
 
@@ -195,9 +181,8 @@ export async function POST(request: Request) {
  *   "questionId": "Q123",
  *   "completed": true,
  *   "reviewed": false,
- *   "explanation": "New markscheme text",
- *   "customTags": ["tag1","tag2"],
- *   "difficultyRating": 2
+ *   "explanation": "Updated explanation text",
+ *   "customTags": ["tag1","tag2"]
  * }
  */
 export async function PATCH(request: Request) {
@@ -207,14 +192,13 @@ export async function PATCH(request: Request) {
 
     const { questionId, ...rest } = body;
     if (!questionId) {
-      return NextResponse.json({ error: "questionId is required" }, { status: 400 });
+      return NextResponse.json(
+        { error: "questionId is required" },
+        { status: 400 }
+      );
     }
 
-    // If explanation is given => store in markscheme
-    if (typeof rest.explanation === "string") {
-      rest.markscheme = rest.explanation;
-      delete rest.explanation;
-    }
+    // DO NOT rename explanation => markscheme; keep it as rest.explanation
 
     // If array of customTags => store as CSV
     if (Array.isArray(rest.customTags)) {
@@ -227,7 +211,7 @@ export async function PATCH(request: Request) {
       data: rest,
     });
 
-    // Re-parse customTag as customTags array so client sees it
+    // Re-parse customTag => customTags array
     let customTags: string[] = [];
     if (updated.customTag) {
       customTags = updated.customTag.split(",").map((t) => t.trim());
@@ -239,7 +223,10 @@ export async function PATCH(request: Request) {
     });
   } catch (error) {
     console.error("Error updating question:", error);
-    return NextResponse.json({ error: "Failed to update question" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to update question" },
+      { status: 500 }
+    );
   }
 }
 
@@ -258,13 +245,19 @@ export async function DELETE(request: Request) {
 
     const { questionId } = body;
     if (!questionId) {
-      return NextResponse.json({ error: "questionId is required" }, { status: 400 });
+      return NextResponse.json(
+        { error: "questionId is required" },
+        { status: 400 }
+      );
     }
 
     await prisma.question.delete({ where: { questionId } });
     return NextResponse.json({ message: "Question deleted successfully" });
   } catch (error) {
     console.error("Error deleting question:", error);
-    return NextResponse.json({ error: "Failed to delete question" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to delete question" },
+      { status: 500 }
+    );
   }
 }

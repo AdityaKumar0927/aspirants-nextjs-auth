@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -95,6 +95,26 @@ interface QuestionProps {
   onPreviousQuestion?: () => void
 }
 
+// --- New subtle outline function ---
+function getOutlineClass(
+  feedback: string | undefined,
+  isMarkedForReview: boolean
+): string {
+  if (isMarkedForReview) {
+    // Subtle yellow
+    return "outline outline-2 outline-yellow-200"
+  } else if (feedback === "correct") {
+    // Subtle green
+    return "outline outline-2 outline-green-200"
+  } else if (feedback === "incorrect") {
+    // Subtle red
+    return "outline outline-2 outline-red-200"
+  } else {
+    // Default subtle gray
+    return "outline outline-2 outline-gray-200"
+  }
+}
+
 export default function Question({
   question,
   feedback,
@@ -119,7 +139,9 @@ export default function Question({
 }: QuestionProps) {
   const displayNumber = currentQuestionIndex + 1
   const [pendingOption, setPendingOption] = useState<string | null>(null)
-  const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(selectedOption || null)
+  const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(
+    selectedOption || null
+  )
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false)
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled)
 
@@ -319,24 +341,25 @@ export default function Question({
   }
 
   // ---------------------------------------------------------
-  // Markscheme
+  // Markscheme (Modal Toggle)
   // ---------------------------------------------------------
-  function getBorderColorClass() {
-    if (isMarkedForReview) {
-      return "border-yellow-500 border-2"
-    } else if (feedback === "correct") {
-      return "border-green-500 border-2"
-    } else if (feedback === "incorrect") {
-      return "border-red-500 border-2"
-    } else {
-      return "border-gray-300 dark:border-gray-600 border-2"
-    }
-  }
-
   return (
     <TooltipProvider>
       <div {...handlers} className="relative pb-20" id={`question-${question.questionId}`}>
-        <Card className={`w-full overflow-hidden mb-6 dark:bg-gray-800 dark:text-gray-100 ${getBorderColorClass()}`}>
+        {/* 
+          -- Updated Card Classes --
+          1. Subtle base border: "border border-gray-200 dark:border-gray-600 rounded-md"
+          2. Outline for flagged/correct/incorrect: getOutlineClass(feedback, isMarkedForReview)
+        */}
+        <Card
+          className={`
+            w-full overflow-hidden mb-6
+            dark:bg-gray-800 dark:text-gray-100
+            border border-gray-200 dark:border-gray-600
+            rounded-md
+            ${getOutlineClass(feedback, isMarkedForReview)}
+          `}
+        >
           <CardHeader className="relative">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
               {/* Title + Subject + Difficulty + ... */}
@@ -532,7 +555,9 @@ export default function Question({
                     <TooltipTrigger asChild>
                       <Button
                         variant="outline"
-                        onClick={() => question.questionId && handleResetQuestion(question.questionId)}
+                        onClick={() =>
+                          question.questionId && handleResetQuestion(question.questionId)
+                        }
                       >
                         Reset
                       </Button>
@@ -634,7 +659,9 @@ export default function Question({
                       <TooltipTrigger asChild>
                         <Button
                           variant="outline"
-                          onClick={() => question.questionId && handleResetQuestion(question.questionId)}
+                          onClick={() =>
+                            question.questionId && handleResetQuestion(question.questionId)
+                          }
                         >
                           Reset
                         </Button>
