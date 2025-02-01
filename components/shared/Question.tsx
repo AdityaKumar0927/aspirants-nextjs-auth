@@ -118,35 +118,22 @@ interface QuestionProps {
   selectedOption: string | undefined
   numericalAnswer: string | undefined
   showMarkscheme: boolean | undefined
-
-  handleOptionClick: (
-    questionId: string,
-    option: string,
-    correctOption: string
-  ) => void
-  handleNumericalSubmit: (
-    questionId: string,
-    userAnswer: string,
-    correctAnswer: string
-  ) => void
+  handleOptionClick: (questionId: string, option: string, correctOption: string) => void
+  handleNumericalSubmit: (questionId: string, userAnswer: string, correctAnswer: string) => void
   handleNumericalChange: (questionId: string, value: string) => void
   handleMarkschemeToggle: (questionId: string) => void
   handleMarkForReview: (questionId: string, newVal?: boolean) => void
   handleMarkComplete: (questionId: string, newVal?: boolean) => void
   handleResetQuestion: (questionId: string) => void
-
   isMarkedForReview: boolean
   isMarkedComplete: boolean
   markschemesDisabled: boolean
-
   note: string
   handleNoteChange: (questionId: string, note: string) => void
   handleDeleteNote: (questionId: string) => Promise<void>
   userId: string
-
   onNextQuestion?: () => void
   onPreviousQuestion?: () => void
-
   totalQuestions: number
   currentQuestionIndex: number
   handleQuestionChange: (index: number) => void
@@ -188,14 +175,12 @@ export default function Question({
   const [showNotes, setShowNotes] = useState(false)
   const [showAI, setShowAI] = useState(false)
   const [showComments, setShowComments] = useState(false)
-
   const [comments, setComments] = useState<CommentType[]>([])
   const [newComment, setNewComment] = useState("")
   const [replyingTo, setReplyingTo] = useState<string | null>(null)
   const [editingCommentId, setEditingCommentId] = useState<string | null>(null)
   const [editedCommentContent, setEditedCommentContent] = useState("")
   const [commentSort, setCommentSort] = useState<"newest" | "oldest" | "popular">("newest")
-
   const [newTag, setNewTag] = useState("")
   const [localCustomTags, setLocalCustomTags] = useState<string[]>(question.customTags || [])
   const [aiEnabled, setAiEnabled] = useState(true)
@@ -205,7 +190,6 @@ export default function Question({
   const [localDifficultyRating, setLocalDifficultyRating] = useState<number | undefined>(
     question.difficultyRating
   )
-
   const { toast } = useToast()
 
   const handlers = useSwipeable({
@@ -227,7 +211,6 @@ export default function Question({
   function handleRemoveTag(tag: string) {
     setLocalCustomTags(localCustomTags.filter((t) => t !== tag))
   }
-
   async function toggleComplete(checked: boolean) {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId, checked)
@@ -248,7 +231,6 @@ export default function Question({
       })
     }
   }
-
   async function toggleReview() {
     if (!question.questionId) return
     const newVal = !isMarkedForReview
@@ -270,36 +252,29 @@ export default function Question({
       })
     }
   }
-
   function handleOptionSelect(letter: string) {
     setPendingOption(letter)
   }
   async function handleMcqSubmit() {
     if (!pendingOption || !question.questionId) return
-    // Mark as complete
     await handleMarkComplete(question.questionId, true)
-    // Then set local feedback
     handleOptionClick(question.questionId, pendingOption, question.correctOption ?? "N/A")
     setLocalSelectedOption(pendingOption)
   }
-
   async function handleNumericalSubmitLocal() {
     if (!question.questionId) return
-    // This calls the parent's handleNumericalSubmit, which also does a patch to mark complete.
     await handleNumericalSubmit(
       question.questionId,
       numericalAnswer ?? "",
       question.correctOption ?? "N/A"
     )
   }
-
   async function handleDifficultyChange(newRating: number) {
     if (!question.questionId) return
     setLocalDifficultyRating(newRating)
     let newDifficulty = "easy"
     if (newRating === 2) newDifficulty = "medium"
     else if (newRating === 3) newDifficulty = "hard"
-
     try {
       await fetch("/api/questions", {
         method: "PATCH",
@@ -323,7 +298,6 @@ export default function Question({
       })
     }
   }
-
   async function saveNote() {
     if (!question.questionId) return
     try {
@@ -378,11 +352,9 @@ export default function Question({
       })
     }
   }
-
   function cleanOptionText(option: string): string {
     return option.replace(/^[A-D]:\s?/i, "").trim()
   }
-
   function getBorderColorClass() {
     if (isMarkedForReview) {
       return "border-yellow-500 border-2"
@@ -394,7 +366,6 @@ export default function Question({
       return "border-gray-300 dark:border-gray-600 border-2"
     }
   }
-
   return (
     <TooltipProvider>
       <div {...handlers} className="relative pb-20" id={`question-${question.questionId}`}>
@@ -410,7 +381,6 @@ export default function Question({
                 <CardTitle className="font-normal text-2xl sm:text-3xl">
                   Question #{displayNumber}
                 </CardTitle>
-
                 {question.subject && (
                   <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
                     {question.subject}
@@ -436,7 +406,6 @@ export default function Question({
                     {question.exam}
                   </div>
                 )}
-
                 {localCustomTags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="px-2 py-1">
                     {tag}
@@ -469,7 +438,6 @@ export default function Question({
                   </Tooltip>
                 </div>
               </div>
-
               <div className="flex items-center space-x-4">
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -484,7 +452,6 @@ export default function Question({
                     {isMarkedComplete ? "Unmark Complete" : "Mark as Complete"}
                   </TooltipContent>
                 </Tooltip>
-
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button variant="ghost" size="icon" onClick={toggleReview}>
@@ -501,7 +468,6 @@ export default function Question({
                     {isMarkedForReview ? "Unflag for Review" : "Flag for Review"}
                   </TooltipContent>
                 </Tooltip>
-
                 <SettingsPopover
                   markschemeEnabled={markschemeEnabled}
                   setMarkschemeEnabled={() => setMarkschemeEnabled(!markschemeEnabled)}
@@ -514,7 +480,6 @@ export default function Question({
               </div>
             </div>
           </CardHeader>
-
           <CardContent>
             <div className="mb-6">
               {question.diagramUrl && question.diagramUrl !== "" && (
@@ -534,7 +499,6 @@ export default function Question({
                 </div>
               )}
             </div>
-
             {(question.type === "Numerical" || question.type === "integer") && (
               <div className="mb-4">
                 <Input
@@ -585,7 +549,6 @@ export default function Question({
                     </TooltipTrigger>
                     <TooltipContent>Submit your numeric answer</TooltipContent>
                   </Tooltip>
-
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Button
@@ -600,7 +563,6 @@ export default function Question({
                 </div>
               </div>
             )}
-
             {(question.type === "Multiple Choice" || question.type === "mcq") &&
               question.options &&
               question.options.length > 0 && (
@@ -612,7 +574,6 @@ export default function Question({
                       const isPending = pendingOption === letter
                       const directSelected = localSelectedOption === letter
                       const isFeedbackActive = directSelected && feedback
-
                       return (
                         <Button
                           key={idx}
@@ -678,7 +639,6 @@ export default function Question({
                       </TooltipTrigger>
                       <TooltipContent>Submit your MCQ answer</TooltipContent>
                     </Tooltip>
-
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <Button
@@ -695,7 +655,6 @@ export default function Question({
                   </div>
                 </div>
               )}
-
             {feedback && (
               <div
                 className={`mt-4 p-2 rounded ${
@@ -707,7 +666,6 @@ export default function Question({
                 {feedback === "correct" ? "Correct!" : "Incorrect, try again."}
               </div>
             )}
-
             {((localSelectedOption && markschemeEnabled) ||
               ((question.type === "Numerical" || question.type === "integer") &&
                 numericalAnswer &&
@@ -728,7 +686,6 @@ export default function Question({
                 <TooltipContent>View the markscheme</TooltipContent>
               </Tooltip>
             )}
-
             <div className="flex items-center space-x-2 mt-4">
               <Label className="text-sm text-gray-600 dark:text-gray-300">Difficulty:</Label>
               <Select
@@ -759,7 +716,6 @@ export default function Question({
               </Select>
             </div>
           </CardContent>
-
           <CardFooter className="flex justify-end space-x-2">
             <Tooltip>
               <TooltipTrigger asChild>
@@ -772,7 +728,6 @@ export default function Question({
                 {showNotes ? "Hide note-taking interface" : "Open note-taking interface"}
               </TooltipContent>
             </Tooltip>
-
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button variant="outline" onClick={() => setShowAI(!showAI)}>
@@ -782,7 +737,6 @@ export default function Question({
               </TooltipTrigger>
               <TooltipContent>{showAI ? "Hide AI assistant" : "Get AI help"}</TooltipContent>
             </Tooltip>
-
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button variant="outline" onClick={() => setShowComments(!showComments)}>
@@ -796,7 +750,6 @@ export default function Question({
             </Tooltip>
           </CardFooter>
         </Card>
-
         {showNotes && (
           <Card className="mb-6 dark:bg-gray-800 dark:text-gray-100">
             <CardHeader>
@@ -822,7 +775,6 @@ export default function Question({
             </CardFooter>
           </Card>
         )}
-
         {showAI && (
           <Card className="mb-6 dark:bg-gray-800 dark:text-gray-100">
             <CardHeader>
@@ -841,7 +793,6 @@ export default function Question({
             </CardContent>
           </Card>
         )}
-
         {showComments && (
           <Card className="mb-6 dark:bg-gray-800 dark:text-gray-100">
             <CardHeader>
@@ -854,9 +805,7 @@ export default function Question({
                   <Label htmlFor="comment-sort">Sort by</Label>
                   <Select
                     value={commentSort}
-                    onValueChange={(value: "newest" | "oldest" | "popular") =>
-                      setCommentSort(value)
-                    }
+                    onValueChange={(value: "newest" | "oldest" | "popular") => setCommentSort(value)}
                   >
                     <SelectTrigger className="w-[180px]">
                       <SelectValue placeholder="Sort comments" />
@@ -868,7 +817,6 @@ export default function Question({
                     </SelectContent>
                   </Select>
                 </div>
-
                 <div className="space-y-4">
                   <Textarea
                     id="comment"
@@ -898,7 +846,6 @@ export default function Question({
                     Add Comment
                   </Button>
                 </div>
-
                 <ScrollArea className="h-[300px]">
                   {comments.map((c) => (
                     <CommentItem
@@ -996,7 +943,6 @@ export default function Question({
             </CardContent>
           </Card>
         )}
-
         <AnimatePresence>
           {showMarkschemeModal && (
             <motion.div
@@ -1012,11 +958,7 @@ export default function Question({
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => setShowMarkschemeModal(false)}
-                        >
+                        <Button variant="ghost" size="icon" onClick={() => setShowMarkschemeModal(false)}>
                           <X className="h-4 w-4" />
                           <span className="sr-only">Close markscheme</span>
                         </Button>
@@ -1055,7 +997,6 @@ export default function Question({
   )
 }
 
-// Nested comment item
 function CommentItem({
   comment,
   userId,
@@ -1108,7 +1049,6 @@ function CommentItem({
               </p>
             </div>
           </div>
-
           {editingCommentId === comment.id ? (
             <div className="mt-2">
               <Textarea
@@ -1128,7 +1068,6 @@ function CommentItem({
           ) : (
             <p className="mt-2">{comment.content}</p>
           )}
-
           <div className="mt-2 flex items-center space-x-4">
             <Tooltip>
               <TooltipTrigger asChild>
@@ -1142,7 +1081,6 @@ function CommentItem({
               </TooltipTrigger>
               <TooltipContent>Upvote</TooltipContent>
             </Tooltip>
-
             <Tooltip>
               <TooltipTrigger asChild>
                 <button
@@ -1155,7 +1093,6 @@ function CommentItem({
               </TooltipTrigger>
               <TooltipContent>Downvote</TooltipContent>
             </Tooltip>
-
             <Tooltip>
               <TooltipTrigger asChild>
                 <button
@@ -1167,7 +1104,6 @@ function CommentItem({
               </TooltipTrigger>
               <TooltipContent>Reply</TooltipContent>
             </Tooltip>
-
             {comment.userId === userId && (
               <>
                 <Tooltip>
@@ -1184,7 +1120,6 @@ function CommentItem({
                   </TooltipTrigger>
                   <TooltipContent>Edit</TooltipContent>
                 </Tooltip>
-
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <button
@@ -1199,7 +1134,6 @@ function CommentItem({
               </>
             )}
           </div>
-
           {replyingTo === comment.id && (
             <div className="mt-2">
               <Textarea
@@ -1218,7 +1152,6 @@ function CommentItem({
           )}
         </div>
       </div>
-
       {comment.replies.map((r) => (
         <CommentItem
           key={r.id}
