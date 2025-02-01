@@ -801,8 +801,8 @@ export default function QuestionBankContent() {
                     bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                     flex flex-col custom-scrollbar
                     pt-10
+                    sm:w-[500px] sm:h-auto sm:max-h-[90vh] sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
                   "
-                  // Removed sm: for truly full screen on mobile
                 >
                   <FiltersDialogMobile
                     open={filtersOpenMobile}
@@ -833,12 +833,12 @@ export default function QuestionBankContent() {
           <Dialog open={progressOpen} onOpenChange={setProgressOpen}>
             <DialogContent
               className="
-                fixed top-0 left-0 w-screen h-screen
                 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                 flex flex-col custom-scrollbar
                 pt-10
+                w-screen h-screen
+                sm:w-[500px] sm:h-auto sm:max-h-[90vh] sm:left-1/2 sm:top-1/2 sm:fixed sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
               "
-              // Also removing sm: constraints to ensure truly full-screen on mobile
             >
               {/* top bar */}
               <div className="flex items-center justify-between mb-4 px-4">
@@ -1404,15 +1404,36 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
     });
   };
 
+  // Reusable ring style for the status row
+  function mobileStatusStyle(selected: boolean) {
+    return `
+      inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
+      whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
+      transition-all duration-200 ease-in-out
+      ${
+        selected
+          ? "bg-blue-50 text-blue-600 ring-blue-200 hover:bg-blue-100"
+          : "bg-gray-50 text-gray-600 ring-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:ring-gray-700 dark:text-gray-200"
+      }
+    `;
+  }
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="w-screen h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 custom-scrollbar pt-10"
+        className="
+          w-screen h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
+          custom-scrollbar pt-10
+          sm:w-[500px] sm:h-auto sm:max-h-[90vh]
+          sm:left-1/2 sm:top-1/2 sm:fixed sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
+        "
         style={{ overflowY: "auto" }}
       >
         {/* top bar */}
         <div className="flex items-center justify-between px-4 py-3 border-b dark:border-gray-700">
-          <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">Filters</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-gray-800 dark:text-gray-100">
+            Filters
+          </h2>
           <Button
             variant="ghost"
             size="icon"
@@ -1427,23 +1448,27 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
           <div className="max-w-3xl mx-auto space-y-10">
             {/* Status row */}
             <div>
-              <p className="text-xl font-medium mb-2 text-gray-800 dark:text-gray-100">Status</p>
+              <p className="text-2xl font-semibold tracking-tight text-gray-800 dark:text-gray-100 mb-2">
+                Status
+              </p>
               <div className="flex flex-wrap gap-2">
-                {["all", "complete", "review", "incomplete"].map((st) => (
-                  <Button
-                    key={st}
-                    variant={state.filters.status === st ? "default" : "outline"}
-                    size="sm"
-                    onClick={() =>
-                      dispatch({
-                        type: "SET_FILTERS",
-                        payload: { ...state.filters, status: st },
-                      })
-                    }
-                  >
-                    {st.charAt(0).toUpperCase() + st.slice(1)}
-                  </Button>
-                ))}
+                {["all", "complete", "review", "incomplete"].map((st) => {
+                  const selected = state.filters.status === st;
+                  return (
+                    <button
+                      key={st}
+                      className={mobileStatusStyle(selected)}
+                      onClick={() =>
+                        dispatch({
+                          type: "SET_FILTERS",
+                          payload: { ...state.filters, status: st },
+                        })
+                      }
+                    >
+                      {st.charAt(0).toUpperCase() + st.slice(1)}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
@@ -1531,9 +1556,25 @@ function MobileFilterSection({
   selectedItems,
   toggleItem,
 }: MobileFilterSectionProps) {
+  // Same ring style as above for consistency
+  function mobileItemStyle(selected: boolean) {
+    return `
+      inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
+      whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
+      transition-all duration-200 ease-in-out
+      ${
+        selected
+          ? "bg-blue-50 text-blue-600 ring-blue-200 hover:bg-blue-100"
+          : "bg-gray-50 text-gray-600 ring-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:ring-gray-700 dark:text-gray-200"
+      }
+    `;
+  }
+
   return (
     <div className="space-y-4">
-      <h3 className="text-xl font-medium text-gray-800 dark:text-gray-100">{title}</h3>
+      <h3 className="text-2xl font-semibold tracking-tight text-gray-800 dark:text-gray-100">
+        {title}
+      </h3>
       <div className="relative">
         <Input
           placeholder={`Search ${title.toLowerCase()}...`}
@@ -1550,16 +1591,7 @@ function MobileFilterSection({
             <button
               key={item}
               onClick={() => toggleItem(item)}
-              className={`
-                inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
-                whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
-                transition-all duration-200 ease-in-out
-                ${
-                  isSelected
-                    ? "bg-blue-50 text-blue-600 ring-blue-200 hover:bg-blue-100"
-                    : "bg-gray-50 text-gray-600 ring-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:ring-gray-700 dark:text-gray-200"
-                }
-              `}
+              className={mobileItemStyle(isSelected)}
             >
               <span className="mr-1.5">{transformFilterItem(item)}</span>
               {isSelected && (
