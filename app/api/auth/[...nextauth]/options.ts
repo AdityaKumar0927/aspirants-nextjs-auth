@@ -11,26 +11,25 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      allowDangerousEmailAccountLinking: true, // Add this to allow linking accounts with same email
+      allowDangerousEmailAccountLinking: true,
     }),
   ],
   callbacks: {
-    async signIn({ user, account, profile }) {
+    async signIn({ user }) {
       if (!user.email) return false
 
       try {
         const existingUser = await prisma.user.findUnique({
           where: { email: user.email },
-          include: { role: true },
+          include: { UserRole: true },
         })
 
         if (!existingUser) {
-          // Create new user with member role
           const memberRole = await prisma.userRole.upsert({
-            where: { name: 'member' },
+            where: { name: "member" },
             update: {},
             create: {
-              name: 'member',
+              name: "member",
               permissions: {},
             },
           })
@@ -43,13 +42,12 @@ export const authOptions: NextAuthOptions = {
               roleId: memberRole.id,
             },
           })
-        } else if (!existingUser.role) {
-          // Assign member role to existing user if they don't have one
+        } else if (!existingUser.UserRole) {
           const memberRole = await prisma.userRole.upsert({
-            where: { name: 'member' },
+            where: { name: "member" },
             update: {},
             create: {
-              name: 'member',
+              name: "member",
               permissions: {},
             },
           })
@@ -66,19 +64,21 @@ export const authOptions: NextAuthOptions = {
         return false
       }
     },
-    async jwt({ token, user, account }) {
-      if (user) {
+
+    async jwt({ token, user }) {
+      if (user && user.email) {
         const dbUser = await prisma.user.findUnique({
-          where: { email: user.email! },
-          include: { role: true },
+          where: { email: user.email },
+          include: { UserRole: true },
         })
-        if (dbUser && dbUser.role) {
+        if (dbUser && dbUser.UserRole) {
           token.id = dbUser.id
-          token.role = dbUser.role.name
+          token.role = dbUser.UserRole.name
         }
       }
       return token
     },
+
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id as string
@@ -88,13 +88,13 @@ export const authOptions: NextAuthOptions = {
     },
   },
   pages: {
-    signIn: '/',
-    error: '/auth/error',
+    signIn: "/",
+    error: "/auth/error",
   },
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
   },
-  debug: process.env.NODE_ENV === 'development',
+  debug: process.env.NODE_ENV === "development",
 }
 
 export default authOptions

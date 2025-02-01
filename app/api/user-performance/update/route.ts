@@ -1,18 +1,18 @@
-import { PrismaClient } from "@prisma/client";
-import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../../auth/[...nextauth]/options";
+import { PrismaClient } from "@prisma/client"
+import { NextResponse } from "next/server"
+import { getServerSession } from "next-auth"
+import { authOptions } from "../../auth/[...nextauth]/options"
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient()
 
 export async function POST(request: Request) {
   try {
-    const session = await getServerSession(authOptions);
-
+    const session = await getServerSession(authOptions)
     if (!session || !session.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
+    const body = await request.json()
     const {
       questionId,
       correctAnswers,
@@ -32,13 +32,13 @@ export async function POST(request: Request) {
       completed,
       reviewed,
       lastAttempted,
-    } = await request.json();
+    } = body
 
     const existingPerformance = await prisma.userPerformance.findFirst({
       where: { userId: session.user.id, questionId },
-    });
+    })
 
-    let userPerformance;
+    let userPerformance
     if (existingPerformance) {
       userPerformance = await prisma.userPerformance.update({
         where: { id: existingPerformance.id },
@@ -61,7 +61,7 @@ export async function POST(request: Request) {
           reviewed,
           lastAttempted,
         },
-      });
+      })
     } else {
       userPerformance = await prisma.userPerformance.create({
         data: {
@@ -83,14 +83,15 @@ export async function POST(request: Request) {
           engagementLevel: engagementLevel || 0,
           completed: completed || false,
           reviewed: reviewed || false,
-          lastAttempted: lastAttempted || new Date().toISOString(),
+          lastAttempted: lastAttempted ? new Date(lastAttempted) : new Date(),
+          updatedAt: new Date(),
         },
-      });
+      })
     }
 
-    return NextResponse.json(userPerformance);
+    return NextResponse.json(userPerformance)
   } catch (error) {
-    console.error("Error updating user performance:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    console.error("Error updating user performance:", error)
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
   }
 }

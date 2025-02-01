@@ -1,41 +1,37 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/options";
-import prisma from "@/lib/prisma";
+import { NextRequest, NextResponse } from "next/server"
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/app/api/auth/[...nextauth]/options"
+import prisma from "@/lib/prisma"
 
 export async function GET(
   req: NextRequest,
   { params }: { params: { userId: string } }
 ) {
-  const session = await getServerSession(authOptions);
-
+  const session = await getServerSession(authOptions)
   if (!session || session.user.id !== params.userId) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
   const settings = await prisma.userSettings.findUnique({
     where: { userId: params.userId },
-  });
-
+  })
   if (!settings) {
-    return NextResponse.json({ error: "Settings not found" }, { status: 404 });
+    return NextResponse.json({ error: "Settings not found" }, { status: 404 })
   }
 
-  return NextResponse.json(settings);
+  return NextResponse.json(settings)
 }
 
 export async function POST(
   req: NextRequest,
   { params }: { params: { userId: string } }
 ) {
-  const session = await getServerSession(authOptions);
-
+  const session = await getServerSession(authOptions)
   if (!session || session.user.id !== params.userId) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
-  const data = await req.json();
-
+  const data = await req.json()
   const settings = await prisma.userSettings.upsert({
     where: { userId: params.userId },
     update: {
@@ -54,8 +50,9 @@ export async function POST(
       urls: data.urls,
       name: data.name,
       language: data.language,
+      id: crypto.randomUUID(), 
     },
-  });
+  })
 
-  return NextResponse.json(settings);
+  return NextResponse.json(settings)
 }

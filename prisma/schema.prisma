@@ -9,7 +9,7 @@ datasource db {
 }
 
 model Account {
-  id                String  @id
+  id                String  @id @default(uuid())
   userId            String
   type              String
   provider          String
@@ -28,7 +28,7 @@ model Account {
 }
 
 model AiUsageLog {
-  id          String    @id
+  id          String    @id @default(uuid())
   userId      String?
   usedService AiService
   textInput   String?
@@ -73,7 +73,7 @@ model Exam {
 }
 
 model Feedback {
-  id           String       @id
+  id           String       @id @default(uuid())
   content      String
   emoji        String?
   createdAt    DateTime     @default(now())
@@ -88,7 +88,7 @@ model Feedback {
 }
 
 model Issue {
-  id                            String          @id
+  id                            String          @id @default(uuid())
   title                         String
   description                   String
   status                        IssueStatus     @default(OPEN)
@@ -107,7 +107,7 @@ model Issue {
 }
 
 model ModeratorLimit {
-  id              String    @id
+  id              String    @id @default(uuid())
   userId          String    @unique
   changesThisHour Int       @default(0)
   lastChangeHour  DateTime?
@@ -115,7 +115,7 @@ model ModeratorLimit {
 }
 
 model Note {
-  id         String    @id
+  id         String    @id @default(uuid())
   title      String
   content    String
   type       NoteType
@@ -131,7 +131,7 @@ model Note {
 }
 
 model Notification {
-  id                String           @id
+  id                String           @id @default(uuid())
   userId            String?
   title             String
   message           String
@@ -155,8 +155,8 @@ model Pyq {
 }
 
 model Question {
-  id                   Int               @id @default(autoincrement())
-  questionId           String            @unique
+  id                   Int            @id @default(autoincrement())
+  questionId           String         @unique
   examGroup            String?
   country              String?
   exam                 String?
@@ -204,8 +204,8 @@ model Question {
   parentQuestionId     Int?
   difficultyRating     Float?
   yearKey              String?
-  status               QuestionStatus    @default(ACTIVE)
-  createdAt            DateTime          @default(now())
+  status               QuestionStatus @default(ACTIVE)
+  createdAt            DateTime       @default(now())
   updatedAt            DateTime
   chapter              String?
   chapterGroup         String?
@@ -221,16 +221,16 @@ model Question {
   Feedback             Feedback[]
   Issue                Issue[]
   Note                 Note[]
-  Exam                 Exam?             @relation(fields: [examId], references: [id], onDelete: Cascade)
-  Question             Question?         @relation("QuestionToQuestion", fields: [parentQuestionId], references: [id])
-  other_Question       Question[]        @relation("QuestionToQuestion")
+  Exam                 Exam?          @relation(fields: [examId], references: [id], onDelete: Cascade)
+  Question             Question?      @relation("QuestionToQuestion", fields: [parentQuestionId], references: [id])
+  other_Question       Question[]     @relation("QuestionToQuestion")
   UserAnswer           UserAnswer[]
   UserPerformance      UserPerformance[]
   UserProgress         UserProgress[]
 }
 
 model Session {
-  id           String   @id
+  id           String   @id @default(uuid())
   sessionToken String   @unique
   userId       String
   expires      DateTime
@@ -240,7 +240,7 @@ model Session {
 }
 
 model User {
-  id                             String                @id
+  id                             String                @id @default(uuid())
   name                           String?
   email                          String?               @unique
   emailVerified                  DateTime?
@@ -272,7 +272,7 @@ model User {
 }
 
 model UserAnswer {
-  id             String   @id
+  id             String   @id @default(uuid())
   questionId     String
   userId         String
   selectedOption String
@@ -313,7 +313,7 @@ model UserPerformance {
 }
 
 model UserPolicyAgreement {
-  id         String    @id
+  id         String    @id @default(uuid())
   userId     String
   policyName String
   accepted   Boolean   @default(false)
@@ -325,7 +325,7 @@ model UserPolicyAgreement {
 }
 
 model UserProgress {
-  id            String    @id
+  id            String    @id @default(uuid())
   userId        String
   questionId    String
   completed     Boolean   @default(false)
@@ -338,14 +338,14 @@ model UserProgress {
 }
 
 model UserRole {
-  id          String @id
+  id          String @id @default(uuid())
   name        String @unique
   permissions Json
   User        User[]
 }
 
 model UserSettings {
-  id       String @id
+  id       String @id @default(uuid())
   userId   String @unique
   username String
   email    String
@@ -365,7 +365,7 @@ model VerificationToken {
 }
 
 model VolunteerTask {
-  id          String   @id
+  id          String   @id @default(uuid())
   volunteerId String
   issueId     String?
   status      String   @default("PENDING")
