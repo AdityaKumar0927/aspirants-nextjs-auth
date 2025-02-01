@@ -1,24 +1,18 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { useSession } from "next-auth/react";
-import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-// IMPORTANT: Now, the child expects onStartExam(...) to receive ONE object
+import { useSession } from "next-auth/react";
+import { useToast } from "@/components/ui/use-toast";
+
 import ExamSetup from "./exam-setup";
 import Exam from "./exam";
 import AdvancedExamResults from "./exam-results";
-
-// Single source of truth for types
-import {
-  QuestionType,
-  ExamResultsType,
-  TopicPerformance,
-} from "@/lib/exam-helpers";
+import { QuestionType, ExamResultsType, TopicPerformance } from "@/lib/exam-helpers";
 
 const HOUR_IN_SECONDS = 3600;
 
@@ -27,41 +21,31 @@ export default function MockExam() {
   const { toast } = useToast();
   const { data: session } = useSession();
 
-  // ------------------------------------------------------------------
-  // State for selected exam, year, shift (plus optional fields)
-  // We'll fill these once the child calls onStartExam({ ...params })
-  // ------------------------------------------------------------------
   const [selectedExam, setSelectedExam] = useState("");
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [selectedShift, setSelectedShift] = useState("");
-  // Optional fields
   const [examTime, setExamTime] = useState<number>(60);
-  // If you want skipCompleted, difficulty, etc. in the parent, store them here as well.
+  const [skipCompleted, setSkipCompleted] = useState<boolean>(false);
+  const [difficulty, setDifficulty] = useState<string | undefined>(undefined);
+  const [numQuestions, setNumQuestions] = useState<number>(1800);
+  const [selectedTopics, setSelectedTopics] = useState<string[] | undefined>(undefined);
 
-  // Questions once chosen
   const [filteredQuestions, setFilteredQuestions] = useState<QuestionType[]>([]);
 
-  // UI states
   const [isLoading, setIsLoading] = useState(false);
   const [isExamStarted, setIsExamStarted] = useState(false);
   const [isExamFinished, setIsExamFinished] = useState(false);
 
-  // For answering and results
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<(string | null)[]>([]);
-  const [questionStatuses, setQuestionStatuses] = useState<{
-    [index: number]: string;
-  }>({});
+  const [questionStatuses, setQuestionStatuses] = useState<{ [index: number]: string }>({});
   const [timeSpentPerQuestion, setTimeSpentPerQuestion] = useState<number[]>([]);
   const [examTimeLeft, setExamTimeLeft] = useState(HOUR_IN_SECONDS);
   const [examResults, setExamResults] = useState<ExamResultsType | null>(null);
 
   const questionStartTimeRef = useRef<number>(0);
 
-  // ------------------------------------------------------------------
-  // The child calls this once user picks exam/year (and optional fields)
-  // We store them, then fetch questions, set up the exam, etc.
-  // ------------------------------------------------------------------
+  // The child calls this => we store the picks => fetch questions
   async function handleStartExam(params: {
     exam: string;
     year: number;
@@ -70,45 +54,45 @@ export default function MockExam() {
     skipCompleted?: boolean;
     difficulty?: string;
     numQuestions?: number;
-    // ...any additional optional fields
+    selectedTopics?: string[];
   }) {
-    // Destructure
     const {
       exam,
       year,
       shift,
       examTime = 60,
-      skipCompleted,
+      skipCompleted = false,
       difficulty,
       numQuestions,
+      selectedTopics,
     } = params;
 
-    // Store them locally if needed
     setSelectedExam(exam);
     setSelectedYear(year);
     setSelectedShift(shift || "");
     setExamTime(examTime);
+    setSkipCompleted(skipCompleted);
+    setDifficulty(difficulty);
+    setNumQuestions(numQuestions || 1800);
+    setSelectedTopics(selectedTopics);
 
-    // Then start the exam (fetch questions, etc.)
-    await startExam({ exam, year, shift, time: examTime });
+    await startExam({ exam, year, shift, time: examTime, skipCompleted });
   }
 
-  // ------------------------------------------------------------------
-  // Actually do the question fetch logic
-  // ------------------------------------------------------------------
   async function startExam({
     exam,
     year,
     shift,
     time,
+    skipCompleted,
   }: {
     exam: string;
     year: number;
     shift?: string;
     time: number;
+    skipCompleted?: boolean;
   }) {
     try {
-      // Basic validation
       if (!exam) {
         toast({
           title: "Validation Error",
@@ -128,20 +112,27 @@ export default function MockExam() {
 
       setIsLoading(true);
 
-      // Build query
-      const queryParams = new URLSearchParams({
-        exam,
-        year: String(year),
-      });
+      const params = new URLSearchParams();
+      params.set("exam", exam);
+      params.set("year", String(year));
+      params.set("page", "1");
+      params.set("pageSize", String(numQuestions || 1800));
+
       if (shift) {
-        queryParams.append("shift", shift);
+        // pass shift => yearKey
+        params.set("shift", shift);
+      }
+      if (skipCompleted) {
+        params.set("skipCompleted", "true");
+      }
+      if (difficulty) {
+        // your route supports ?difficulty= ?
+        params.set("difficulty", difficulty);
       }
 
-      const response = await fetch(`/api/questions?${queryParams.toString()}`);
+      const response = await fetch(`/api/questions?${params.toString()}`);
       if (!response.ok) {
-        throw new Error(
-          "Failed to fetch questions for the selected exam/year/shift."
-        );
+        throw new Error("Failed to fetch questions for the chosen exam/year/shift.");
       }
 
       const data = await response.json();
@@ -150,8 +141,7 @@ export default function MockExam() {
       if (!matching || matching.length === 0) {
         toast({
           title: "No Questions Found",
-          description:
-            "No questions matched your selection. Please try different options.",
+          description: "No questions matched your selection. Try different options.",
           variant: "destructive",
         });
         setIsLoading(false);
@@ -160,7 +150,7 @@ export default function MockExam() {
 
       setFilteredQuestions(matching);
 
-      // Initialize question statuses, answers, time
+      // init statuses, answers, time
       const initialStatuses: { [index: number]: string } = {};
       matching.forEach((_: any, i: number) => {
         initialStatuses[i] = "notVisited";
@@ -169,7 +159,7 @@ export default function MockExam() {
       setAnswers(new Array(matching.length).fill(null));
       setTimeSpentPerQuestion(new Array(matching.length).fill(0));
 
-      // Convert minutes to seconds
+      // set exam time in seconds
       setExamTimeLeft(time * 60);
 
       setIsExamStarted(true);
@@ -179,7 +169,7 @@ export default function MockExam() {
 
       questionStartTimeRef.current = Date.now();
     } catch (error) {
-      console.error("Error loading exam questions:", error);
+      console.error("Error loading questions:", error);
       toast({
         title: "Error",
         description: "Failed to load questions. Please try again.",
@@ -190,9 +180,7 @@ export default function MockExam() {
     }
   }
 
-  // ------------------------------------------------------------------
   // 3) Handling answers, statuses, navigation
-  // ------------------------------------------------------------------
   const handleAnswer = useCallback(
     (answerId: string) => {
       setAnswers((prev) => {
@@ -243,13 +231,9 @@ export default function MockExam() {
     }
   }, [currentQuestion, filteredQuestions.length]);
 
-  // ------------------------------------------------------------------
-  // 4) Navigation with time tracking
-  // ------------------------------------------------------------------
+  // 4) Navigation with time
   function updateTimeSpent() {
-    const timeSpent = Math.floor(
-      (Date.now() - questionStartTimeRef.current) / 1000
-    );
+    const timeSpent = Math.floor((Date.now() - questionStartTimeRef.current) / 1000);
     setTimeSpentPerQuestion((prev) => {
       const newTimeSpent = [...prev];
       newTimeSpent[currentQuestion] =
@@ -284,9 +268,7 @@ export default function MockExam() {
     }
   }
 
-  // ------------------------------------------------------------------
-  // 5) Submitting the exam
-  // ------------------------------------------------------------------
+  // 5) Submit exam
   function handleSubmit() {
     if (!filteredQuestions.length) return;
     updateTimeSpent();
@@ -298,7 +280,7 @@ export default function MockExam() {
     const incorrectAnswers = totalQuestions - correctCount;
     const score = (correctCount / totalQuestions) * 100;
 
-    // Example topic performance logic
+    // Example topic performance
     const topicPerformance: Record<string, TopicPerformance> = {};
     const subtopicPerformance: Record<string, TopicPerformance> = {};
     const topicWiseIncorrectAnswers: Record<string, number> = {};
@@ -339,7 +321,6 @@ export default function MockExam() {
       timeSpentPerQuestion.reduce((a, b) => a + b, 0) /
       timeSpentPerQuestion.length;
 
-    // Example: random skill levels
     const skillLevels: Record<string, number> = {
       "Problem Solving": Math.random() * 100,
       "Critical Thinking": Math.random() * 100,
@@ -347,6 +328,9 @@ export default function MockExam() {
       "Conceptual Understanding": Math.random() * 100,
       "Application of Knowledge": Math.random() * 100,
     };
+
+    // We'll include each question's .explanation in examResults => so we can show it
+    // already in filteredQuestions
 
     setExamResults({
       totalQuestions,
@@ -362,16 +346,14 @@ export default function MockExam() {
       timeSpentPerQuestion,
       averageTimePerQuestion: avgTimePerQ,
       topicWiseIncorrectAnswers,
-      questions: filteredQuestions,
+      questions: filteredQuestions, // includes explanation
       skillLevels,
     });
 
     setIsExamFinished(true);
   }
 
-  // ------------------------------------------------------------------
-  // 6) Exam timer effect
-  // ------------------------------------------------------------------
+  // 6) Timer effect
   useEffect(() => {
     let examTimer: NodeJS.Timeout;
     if (isExamStarted && !isExamFinished) {
@@ -380,7 +362,7 @@ export default function MockExam() {
           if (prev <= 1) {
             clearInterval(examTimer);
             updateTimeSpent();
-            handleSubmit(); // automatically submit
+            handleSubmit();
             return 0;
           }
           return prev - 1;
@@ -398,15 +380,9 @@ export default function MockExam() {
     }
   }, [currentQuestion, isExamStarted, isExamFinished]);
 
-  // ------------------------------------------------------------------
   // 7) Early exit
-  // ------------------------------------------------------------------
   function exitExam() {
-    if (
-      window.confirm(
-        "Are you sure you want to exit the exam? Your progress will be lost."
-      )
-    ) {
+    if (window.confirm("Are you sure you want to exit the exam?")) {
       setIsExamStarted(false);
       setIsExamFinished(false);
       setExamResults(null);
@@ -418,45 +394,28 @@ export default function MockExam() {
     setIsExamStarted(false);
     setIsExamFinished(false);
     setExamResults(null);
-
-    // Optional: reset selections
     setSelectedExam("");
     setSelectedYear(null);
     setSelectedShift("");
     setExamTime(60);
+    setSkipCompleted(false);
+    setDifficulty(undefined);
+    setNumQuestions(1800);
+    setSelectedTopics(undefined);
   }
 
-  // ------------------------------------------------------------------
-  // 8) Loading skeleton (only for initial load or if you want a spinner)
-  // ------------------------------------------------------------------
+  // 8) Loading skeleton if needed
   if (isLoading && !isExamStarted && !isExamFinished) {
     return (
-      <div className="min-h-screen w-full flex flex-col p-4 md:p-8">
-        <div className="max-w-3xl mx-auto w-full">
-          <div className="flex items-center gap-4 mb-8">
-            <Skeleton circle width={64} height={64} />
-            <Skeleton width={200} height={40} />
-          </div>
-          <Skeleton width={300} height={40} className="mb-4" />
-          <Skeleton height={56} className="mb-4" />
-          <Skeleton height={56} className="mb-4" />
-          <Skeleton height={56} className="mb-4" />
-          <div className="mt-8">
-            <div className="flex items-center gap-4 mb-4">
-              <Skeleton circle width={48} height={48} />
-              <Skeleton width={150} height={32} />
-            </div>
-            <Skeleton count={4} height={24} className="mb-2" />
-            <Skeleton width={150} height={48} className="mt-4" />
-          </div>
+      <div className="min-h-screen p-4 flex flex-col">
+        <div className="max-w-3xl mx-auto">
+          <Skeleton height={40} count={4} />
         </div>
       </div>
     );
   }
 
-  // ------------------------------------------------------------------
-  // 9) Render states (Setup -> Exam -> Results)
-  // ------------------------------------------------------------------
+  // 9) Render
   return (
     <AnimatePresence mode="wait">
       {/* 1) exam setup */}
@@ -466,7 +425,7 @@ export default function MockExam() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
         >
           <ExamSetup onStartExam={handleStartExam} />
         </motion.div>
@@ -479,7 +438,7 @@ export default function MockExam() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
           className="fixed inset-0 z-50"
         >
           <Exam
@@ -502,22 +461,22 @@ export default function MockExam() {
             }}
             onExit={exitExam}
             onNavigate={handleNavigate}
-            userName={session?.user?.name || "Guest User"}
-            selectedSubject={""}
+            userName={session?.user?.name || "Guest"}
+            selectedSubject=""
             selectedYear={String(selectedYear || "")}
-            selectedLevel={""}
+            selectedLevel=""
           />
         </motion.div>
       )}
 
-      {/* 3) exam results */}
+      {/* 3) exam results => show explanations */}
       {isExamFinished && examResults && (
         <motion.div
           key="results"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
         >
           <AdvancedExamResults
             examResults={examResults}
