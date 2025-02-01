@@ -34,22 +34,19 @@ import { Badge } from "@/components/ui/badge"
 import { Flag, ChevronDown, X } from "lucide-react"
 import FeedbackPopover from "./FeedbackPopover"
 
-// --------------------------------------------
-// Enums & Types
-// --------------------------------------------
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
   ARCHIVED = "ARCHIVED",
 }
 
-// Adjust your union to include any question types you need:
 type QuestionTypeString =
-  | "Subjective"
-  | "Mcq"
-  | "Mcqm"
-  | "Integer"
+  | "Multiple Choice"
+  | "mcq"
   | "Numerical"
+  | "integer"
+  | "Subjective"
+  | "Mcqm"      // multiple correct
   | "Fill Blanks"
   | "T/f"
   | string
@@ -58,10 +55,10 @@ interface QuestionType {
   id: number
   questionId?: string
   text?: string
-  options?: string[]        // For MCQ / MCQM / T/f, etc.
-  markscheme?: string       // Old field
-  explanation?: string      // New field for markscheme/explanations
-  correctOption?: string    // For objective questions
+  options?: string[]
+  markscheme?: string
+  explanation?: string   // new field for markscheme/explanation
+  correctOption?: string
   diagramUrl?: string
   exam?: string
   subject?: string
@@ -79,30 +76,23 @@ interface QuestionType {
 interface QuestionProps {
   question: QuestionType
 
-  feedback: string | undefined       // "correct" / "incorrect" / undefined
+  feedback: string | undefined
   selectedOption: string | undefined
   numericalAnswer: string | undefined
   showMarkscheme: boolean | undefined
 
-  // Existing handlers
   handleOptionClick: (questionId: string, option: string, correctOption: string) => void
-  handleNumericalSubmit: (
-    questionId: string,
-    userAnswer: string,
-    correctAnswer: string
-  ) => void
+  handleNumericalSubmit: (questionId: string, userAnswer: string, correctAnswer: string) => void
   handleNumericalChange: (questionId: string, value: string) => void
   handleMarkschemeToggle: (questionId: string) => void
   handleMarkForReview: (questionId: string, newVal?: boolean) => void
   handleMarkComplete: (questionId: string, newVal?: boolean) => void
   handleResetQuestion: (questionId: string) => void
 
-  // Flags & Misc
   isMarkedForReview: boolean
   isMarkedComplete: boolean
   markschemesDisabled: boolean
 
-  // Pagination
   totalQuestions: number
   currentQuestionIndex: number
   handleQuestionChange: (index: number) => void
@@ -110,13 +100,10 @@ interface QuestionProps {
   onPreviousQuestion?: () => void
 }
 
-// --------------------------------------------
+// ----------------------------
 // Outline color logic
-// --------------------------------------------
-function getOutlineClass(
-  feedback: string | undefined,
-  isMarkedForReview: boolean
-): string {
+// ----------------------------
+function getOutlineClass(feedback: string | undefined, isMarkedForReview: boolean): string {
   if (isMarkedForReview) {
     // Subtle yellow
     return "outline outline-2 outline-yellow-200"
@@ -132,9 +119,6 @@ function getOutlineClass(
   }
 }
 
-// --------------------------------------------
-// Main Component
-// --------------------------------------------
 export default function Question({
   question,
   feedback,
@@ -159,14 +143,17 @@ export default function Question({
 }: QuestionProps) {
   const displayNumber = currentQuestionIndex + 1
 
+  // Old UI states
   const [pendingOption, setPendingOption] = useState<string | null>(null)
-  const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(
-    selectedOption || null
-  )
+  const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(selectedOption || null)
 
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false)
-  // We'll still track whether markschemes are allowed via the prop markschemesDisabled
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled)
+
+  // Additional question-type states
+  const [mcqmSelections, setMcqmSelections] = useState<string[]>([]) // for MCQM
+  const [fillBlanksInput, setFillBlanksInput] = useState<string>("") // for Fill Blanks
+  const [subjectiveAnswer, setSubjectiveAnswer] = useState<string>("") // for Subjective
 
   // Tagging
   const [newTag, setNewTag] = useState("")
@@ -180,21 +167,21 @@ export default function Question({
   // Toast
   const { toast } = useToast()
 
-  // Swipe (left/right to next/previous Q)
+  // Swipe (left/right)
   const handlers = useSwipeable({
     onSwipedLeft: () => onNextQuestion && onNextQuestion(),
     onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
     trackMouse: true,
   })
 
-  // If parent changes selectedOption, sync local
+  // Sync localSelectedOption if parent changes
   useEffect(() => {
     setLocalSelectedOption(selectedOption || null)
   }, [selectedOption])
 
-  // ------------------------------------------
+  // ----------------------------
   // Tag logic: add & remove
-  // ------------------------------------------
+  // ----------------------------
   async function handleAddTag() {
     if (!newTag || !question.questionId) return
     if (localCustomTags.includes(newTag)) {
@@ -248,9 +235,9 @@ export default function Question({
     }
   }
 
-  // ------------------------------------------
-  // Mark complete / Flag review
-  // ------------------------------------------
+  // ----------------------------
+  // Mark Complete / Flag
+  // ----------------------------
   async function toggleComplete(checked: boolean) {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId, checked)
@@ -294,64 +281,53 @@ export default function Question({
     }
   }
 
-  // ------------------------------------------
-  // MCQ (single-answer) logic
-  // ------------------------------------------
+  // ----------------------------
+  // Old UI MCQ block
+  // ----------------------------
   function handleOptionSelect(letter: string) {
     setPendingOption(letter)
   }
   async function handleMcqSubmit() {
     if (!pendingOption || !question.questionId) return
-    // Mark question complete on submit
     await handleMarkComplete(question.questionId, true)
-    handleOptionClick(question.questionId, pendingOption, question.correctOption ?? "")
+    handleOptionClick(question.questionId, pendingOption, question.correctOption ?? "N/A")
     setLocalSelectedOption(pendingOption)
   }
   function cleanOptionText(option: string): string {
-    // remove "A: ", "B: " prefixes, etc.
-    return option.replace(/^[A-Za-z]:\s?/, "").trim()
+    // Remove "A: " prefix etc.
+    return option.replace(/^[A-D]:\s?/i, "").trim()
   }
 
-  // ------------------------------------------
-  // MCQM (multi-answer multiple choice)
-  // ------------------------------------------
-  const [mcqmSelections, setMcqmSelections] = useState<string[]>([])
-  function handleMcqmToggle(letter: string) {
-    setMcqmSelections((prev) => {
-      if (prev.includes(letter)) {
-        return prev.filter((x) => x !== letter)
-      } else {
-        return [...prev, letter]
-      }
-    })
-  }
-  async function handleMcqmSubmit() {
-    if (!question.questionId) return
-    // Mark question complete on submit
-    await handleMarkComplete(question.questionId, true)
-    // Pass the user's selections as a JSON string, or any format you prefer
-    handleOptionClick(
-      question.questionId,
-      JSON.stringify(mcqmSelections),
-      question.correctOption ?? ""
-    )
-  }
-
-  // ------------------------------------------
-  // Numerical / Integer logic
-  // ------------------------------------------
+  // ----------------------------
+  // Old UI Numerical block
+  // ----------------------------
   async function handleNumericalSubmitLocal() {
     if (!question.questionId) return
     await handleNumericalSubmit(
       question.questionId,
       numericalAnswer ?? "",
-      question.correctOption ?? ""
+      question.correctOption ?? "N/A"
     )
   }
 
-  // ------------------------------------------
-  // T/f logic
-  // ------------------------------------------
+  // ----------------------------
+  // Additional blocks (T/f, Fill Blanks, Mcqm, Subjective)
+  // ----------------------------
+
+  // MCQM
+  function handleMcqmToggle(letter: string) {
+    setMcqmSelections((prev) => {
+      if (prev.includes(letter)) return prev.filter((x) => x !== letter)
+      return [...prev, letter]
+    })
+  }
+  async function handleMcqmSubmit() {
+    if (!question.questionId) return
+    await handleMarkComplete(question.questionId, true)
+    handleOptionClick(question.questionId, JSON.stringify(mcqmSelections), question.correctOption ?? "")
+  }
+
+  // T/f
   const tfOptions = ["True", "False"]
   async function handleTfSubmit(answer: string) {
     if (!question.questionId) return
@@ -360,31 +336,23 @@ export default function Question({
     setLocalSelectedOption(answer)
   }
 
-  // ------------------------------------------
-  // Fill Blanks logic
-  // ------------------------------------------
-  const [fillBlanksInput, setFillBlanksInput] = useState<string>("")
+  // Fill Blanks
   async function handleFillBlanksSubmit() {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId, true)
-    // Reuse handleNumericalSubmit to pass the fill text
     handleNumericalSubmit(question.questionId, fillBlanksInput, question.correctOption ?? "")
   }
 
-  // ------------------------------------------
-  // Subjective logic
-  // ------------------------------------------
-  const [subjectiveAnswer, setSubjectiveAnswer] = useState<string>("")
+  // Subjective
   async function handleSubjectiveSubmit() {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId, true)
-    // Reuse handleNumericalSubmit, or define your own
     handleNumericalSubmit(question.questionId, subjectiveAnswer, question.correctOption ?? "")
   }
 
-  // ------------------------------------------
-  // Difficulty rating logic
-  // ------------------------------------------
+  // ----------------------------
+  // Difficulty rating
+  // ----------------------------
   async function handleDifficultyChange(newRating: number) {
     if (!question.questionId) return
     setLocalDifficultyRating(newRating)
@@ -417,447 +385,9 @@ export default function Question({
     }
   }
 
-  // ------------------------------------------
-  // Rendering question inputs based on type
-  // ------------------------------------------
-  function renderQuestionBody() {
-    const qType = (question.type ?? "").toLowerCase()
-
-    // Single-answer MCQ
-    if (qType === "mcq" || qType === "multiple choice") {
-      if (!question.options?.length) return null
-      return (
-        <>
-          <div className="space-y-2">
-            {question.options.map((rawOption, idx) => {
-              const letter = String.fromCharCode(65 + idx)
-              const optionText = cleanOptionText(rawOption)
-              const isPending = pendingOption === letter
-              const isSelected = localSelectedOption === letter
-              const isFeedbackActive = isSelected && feedback
-
-              return (
-                <Button
-                  key={idx}
-                  variant="outline"
-                  onClick={() => handleOptionSelect(letter)}
-                  className={`
-                    w-full
-                    text-left
-                    text-base
-                    sm:text-lg
-                    p-4
-                    leading-7
-                    flex flex-col items-start
-                    whitespace-normal
-                    border
-                    ${
-                      isFeedbackActive
-                        ? feedback === "correct"
-                          ? "bg-green-100 hover:bg-green-200 text-green-700 border-green-400"
-                          : "bg-red-100 hover:bg-red-200 text-red-700 border-red-400"
-                        : isPending
-                        ? "border-blue-400 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-slate-800 dark:text-blue-200"
-                        : "border-gray-300 dark:border-gray-600"
-                    }
-                  `}
-                >
-                  <span className="font-semibold">{letter}.</span>
-                  {optionText.startsWith("http") ? (
-                    <div className="w-full">
-                      <Image
-                        src={optionText}
-                        alt={`Option ${letter}`}
-                        width={800}
-                        height={600}
-                        className="rounded-md w-full h-auto object-contain"
-                      />
-                    </div>
-                  ) : (
-                    <div className="latex-font">
-                      <MathRenderer text={optionText} />
-                    </div>
-                  )}
-                </Button>
-              )
-            })}
-          </div>
-          <div className="mt-2 flex gap-2">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  onClick={handleMcqSubmit}
-                  disabled={!pendingOption}
-                  className="
-                    border
-                    border-blue-400
-                    bg-blue-50
-                    text-blue-800
-                    dark:border-blue-600
-                    dark:bg-slate-800
-                    dark:text-blue-200
-                    px-4 py-1
-                    hover:bg-blue-100
-                    dark:hover:bg-slate-700
-                    rounded-sm
-                  "
-                >
-                  Submit
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Submit your MCQ answer</TooltipContent>
-            </Tooltip>
-
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="outline"
-                  onClick={() => question.questionId && handleResetQuestion(question.questionId)}
-                >
-                  Reset
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Clear answer & unmark question</TooltipContent>
-            </Tooltip>
-          </div>
-        </>
-      )
-    }
-
-    // MCQM (multi-answer multiple choice)
-    if (qType === "mcqm") {
-      if (!question.options?.length) return null
-      return (
-        <>
-          <div className="space-y-2">
-            {question.options.map((rawOption, idx) => {
-              const letter = String.fromCharCode(65 + idx)
-              const optionText = cleanOptionText(rawOption)
-              const isChosen = mcqmSelections.includes(letter)
-
-              return (
-                <Button
-                  key={idx}
-                  variant="outline"
-                  onClick={() => handleMcqmToggle(letter)}
-                  className={`
-                    w-full
-                    text-left
-                    text-base
-                    sm:text-lg
-                    p-4
-                    leading-7
-                    flex flex-col items-start
-                    whitespace-normal
-                    border
-                    ${
-                      isChosen
-                        ? "border-blue-400 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-slate-800 dark:text-blue-200"
-                        : "border-gray-300 dark:border-gray-600"
-                    }
-                  `}
-                >
-                  <div className="flex items-center gap-2">
-                    <Checkbox checked={isChosen} onCheckedChange={() => handleMcqmToggle(letter)} />
-                    <span className="font-semibold">{letter}.</span>
-                  </div>
-                  {optionText.startsWith("http") ? (
-                    <div className="w-full">
-                      <Image
-                        src={optionText}
-                        alt={`Option ${letter}`}
-                        width={800}
-                        height={600}
-                        className="rounded-md w-full h-auto object-contain"
-                      />
-                    </div>
-                  ) : (
-                    <div className="latex-font">
-                      <MathRenderer text={optionText} />
-                    </div>
-                  )}
-                </Button>
-              )
-            })}
-          </div>
-          <div className="mt-2 flex gap-2">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  onClick={handleMcqmSubmit}
-                  className="
-                    border
-                    border-blue-400
-                    bg-blue-50
-                    text-blue-800
-                    dark:border-blue-600
-                    dark:bg-slate-800
-                    dark:text-blue-200
-                    px-4 py-1
-                    hover:bg-blue-100
-                    dark:hover:bg-slate-700
-                    rounded-sm
-                  "
-                >
-                  Submit
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Submit your MCQM selections</TooltipContent>
-            </Tooltip>
-
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="outline"
-                  onClick={() => question.questionId && handleResetQuestion(question.questionId)}
-                >
-                  Reset
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Clear selections & unmark question</TooltipContent>
-            </Tooltip>
-          </div>
-        </>
-      )
-    }
-
-    // T/f
-    if (qType === "t/f" || qType === "true/false") {
-      return (
-        <div className="mb-4 flex gap-4">
-          {tfOptions.map((val) => (
-            <Button
-              key={val}
-              variant="outline"
-              onClick={() => handleTfSubmit(val)}
-              className={`
-                px-4 py-2
-                ${
-                  localSelectedOption === val && feedback
-                    ? feedback === "correct"
-                      ? "bg-green-100 hover:bg-green-200 text-green-700 border-green-400"
-                      : "bg-red-100 hover:bg-red-200 text-red-700 border-red-400"
-                    : "border-gray-300 dark:border-gray-600"
-                }
-              `}
-            >
-              {val}
-            </Button>
-          ))}
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="outline"
-                onClick={() => question.questionId && handleResetQuestion(question.questionId)}
-              >
-                Reset
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>Clear T/F answer & unmark question</TooltipContent>
-          </Tooltip>
-        </div>
-      )
-    }
-
-    // Integer or Numerical
-    if (qType === "integer" || qType === "numerical") {
-      return (
-        <div className="mb-4">
-          <Input
-            type="text"
-            className="
-              w-full
-              px-3 py-2
-              border
-              border-blue-400
-              bg-blue-50
-              text-blue-800
-              dark:border-blue-600
-              dark:bg-slate-800
-              dark:text-blue-200
-              focus:ring-1
-              focus:ring-blue-300
-              rounded-sm
-            "
-            placeholder="Type your answer..."
-            value={numericalAnswer ?? ""}
-            onChange={(e) => {
-              if (question.questionId) {
-                handleNumericalChange(question.questionId, e.target.value)
-              }
-            }}
-          />
-          <div className="mt-2 flex gap-2">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  className="
-                    border
-                    border-blue-400
-                    bg-blue-50
-                    text-blue-800
-                    dark:border-blue-600
-                    dark:bg-slate-800
-                    dark:text-blue-200
-                    px-4 py-1
-                    hover:bg-blue-100
-                    dark:hover:bg-slate-700
-                    rounded-sm
-                  "
-                  onClick={handleNumericalSubmitLocal}
-                >
-                  Submit
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Submit your numeric answer</TooltipContent>
-            </Tooltip>
-
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="outline"
-                  onClick={() => question.questionId && handleResetQuestion(question.questionId)}
-                >
-                  Reset
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Clear answer & unmark question</TooltipContent>
-            </Tooltip>
-          </div>
-        </div>
-      )
-    }
-
-    // Fill Blanks
-    if (qType === "fill blanks") {
-      return (
-        <div className="mb-4">
-          <Input
-            type="text"
-            placeholder="Fill in the blank..."
-            value={fillBlanksInput}
-            onChange={(e) => setFillBlanksInput(e.target.value)}
-            className="w-full mb-2"
-          />
-          <div className="mt-2 flex gap-2">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  className="
-                    border
-                    border-blue-400
-                    bg-blue-50
-                    text-blue-800
-                    dark:border-blue-600
-                    dark:bg-slate-800
-                    dark:text-blue-200
-                    px-4 py-1
-                    hover:bg-blue-100
-                    dark:hover:bg-slate-700
-                    rounded-sm
-                  "
-                  onClick={handleFillBlanksSubmit}
-                >
-                  Submit
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Submit your fill-in answer</TooltipContent>
-            </Tooltip>
-
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="outline"
-                  onClick={() => question.questionId && handleResetQuestion(question.questionId)}
-                >
-                  Reset
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Clear answer & unmark question</TooltipContent>
-            </Tooltip>
-          </div>
-        </div>
-      )
-    }
-
-    // Subjective (Short/long answer)
-    if (qType === "subjective") {
-      return (
-        <div className="mb-4">
-          <div className="mb-2">
-            <label className="text-sm font-medium">Your Answer:</label>
-          </div>
-          <textarea
-            className="
-              w-full
-              px-3 py-2
-              border
-              border-blue-400
-              bg-blue-50
-              text-blue-800
-              dark:border-blue-600
-              dark:bg-slate-800
-              dark:text-blue-200
-              rounded-sm
-              focus:ring-1
-              focus:ring-blue-300
-            "
-            rows={4}
-            value={subjectiveAnswer}
-            onChange={(e) => setSubjectiveAnswer(e.target.value)}
-          />
-          <div className="mt-2 flex gap-2">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  className="
-                    border
-                    border-blue-400
-                    bg-blue-50
-                    text-blue-800
-                    dark:border-blue-600
-                    dark:bg-slate-800
-                    dark:text-blue-200
-                    px-4 py-1
-                    hover:bg-blue-100
-                    dark:hover:bg-slate-700
-                    rounded-sm
-                  "
-                  onClick={handleSubjectiveSubmit}
-                >
-                  Submit
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Submit your written answer</TooltipContent>
-            </Tooltip>
-
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="outline"
-                  onClick={() => question.questionId && handleResetQuestion(question.questionId)}
-                >
-                  Reset
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Clear answer & unmark question</TooltipContent>
-            </Tooltip>
-          </div>
-        </div>
-      )
-    }
-
-    // Default fallback if type is unknown
-    return <div>No valid question input for type: {question.type}</div>
-  }
-
-  // ------------------------------------------
-  // Final render
-  // ------------------------------------------
   return (
     <TooltipProvider>
       <div {...handlers} className="relative pb-20" id={`question-${question.questionId}`}>
-        {/* The Card uses subtle base border + dynamic outline */}
         <Card
           className={`
             w-full overflow-hidden mb-6
@@ -867,10 +397,9 @@ export default function Question({
             ${getOutlineClass(feedback, isMarkedForReview)}
           `}
         >
-          {/* Header */}
           <CardHeader className="relative">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
-              {/* Title, Subject, Difficulty, etc. */}
+              {/* Title + Subject + Difficulty + etc. */}
               <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
                 <CardTitle className="font-normal text-2xl sm:text-3xl">
                   Question #{displayNumber}
@@ -902,7 +431,7 @@ export default function Question({
                   </div>
                 )}
 
-                {/* Custom tags */}
+                {/* Custom Tags */}
                 {localCustomTags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="px-2 py-1">
                     {tag}
@@ -970,13 +499,12 @@ export default function Question({
                   </TooltipContent>
                 </Tooltip>
 
-                {/* Feedback */}
+                {/* Feedback popover */}
                 {question.questionId && <FeedbackPopover questionId={question.questionId} />}
               </div>
             </div>
           </CardHeader>
 
-          {/* Content */}
           <CardContent>
             {/* Diagram + Text */}
             <div className="mb-6">
@@ -998,22 +526,452 @@ export default function Question({
               )}
             </div>
 
-            {/* Render dynamic question body based on type */}
-            {renderQuestionBody()}
+            {/* ---------- The Old UI for MCQ ---------- */}
+            {(question.type === "Multiple Choice" || question.type?.toLowerCase() === "mcq") &&
+              question.options &&
+              question.options.length > 0 && (
+                <div className="mb-4">
+                  <div className="space-y-2">
+                    {question.options.map((rawOption, idx) => {
+                      const letter = String.fromCharCode(65 + idx)
+                      const optionText = cleanOptionText(rawOption)
+                      const isPending = pendingOption === letter
+                      const directSelected = localSelectedOption === letter
+                      const isFeedbackActive = directSelected && feedback
 
-            {/* Feedback banner (correct/incorrect) */}
+                      return (
+                        <Button
+                          key={idx}
+                          variant="outline"
+                          onClick={() => handleOptionSelect(letter)}
+                          className={`
+                            w-full
+                            text-left
+                            text-base
+                            sm:text-lg
+                            p-4
+                            leading-7
+                            flex flex-col items-start
+                            space-y-2
+                            whitespace-normal
+                            border
+                            ${
+                              isFeedbackActive
+                                ? feedback === "correct"
+                                  ? "bg-green-100 hover:bg-green-200 text-green-700 border-green-400"
+                                  : "bg-red-100 hover:bg-red-200 text-red-700 border-red-400"
+                                : isPending
+                                ? "border-blue-400 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-slate-800 dark:text-blue-200"
+                                : "border-gray-300 dark:border-gray-600"
+                            }
+                          `}
+                          style={{ height: "auto", minHeight: "1rem" }}
+                        >
+                          <span className="font-semibold">{letter}.</span>
+                          {optionText.startsWith("http") ? (
+                            <div className="w-full">
+                              <Image
+                                src={optionText}
+                                alt={`Option ${letter}`}
+                                width={800}
+                                height={600}
+                                className="rounded-md w-full h-auto object-contain"
+                              />
+                            </div>
+                          ) : (
+                            <div className="latex-font">
+                              <MathRenderer text={optionText} />
+                            </div>
+                          )}
+                        </Button>
+                      )
+                    })}
+                  </div>
+                  <div className="mt-2 flex gap-2">
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button
+                          onClick={handleMcqSubmit}
+                          disabled={!pendingOption}
+                          className="
+                            border
+                            border-blue-400
+                            bg-blue-50
+                            text-blue-800
+                            dark:border-blue-600
+                            dark:bg-slate-800
+                            dark:text-blue-200
+                            px-4 py-1
+                            hover:bg-blue-100
+                            dark:hover:bg-slate-700
+                            rounded-sm
+                          "
+                        >
+                          Submit
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>Submit your MCQ answer</TooltipContent>
+                    </Tooltip>
+
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button
+                          variant="outline"
+                          onClick={() =>
+                            question.questionId && handleResetQuestion(question.questionId)
+                          }
+                        >
+                          Reset
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>Clear answer & unmark question</TooltipContent>
+                    </Tooltip>
+                  </div>
+                </div>
+              )}
+
+            {/* ---------- Old UI for Numerical/Integer ---------- */}
+            {(question.type === "Numerical" ||
+              question.type?.toLowerCase() === "numerical" ||
+              question.type === "integer") && (
+              <div className="mb-4">
+                <Input
+                  type="text"
+                  className="
+                    w-full
+                    px-3 py-2
+                    border
+                    border-blue-400
+                    bg-blue-50
+                    text-blue-800
+                    dark:border-blue-600
+                    dark:bg-slate-800
+                    dark:text-blue-200
+                    focus:ring-1
+                    focus:ring-blue-300
+                    rounded-sm
+                  "
+                  placeholder="Type your answer..."
+                  value={numericalAnswer ?? ""}
+                  onChange={(e) => {
+                    if (question.questionId) {
+                      handleNumericalChange(question.questionId, e.target.value)
+                    }
+                  }}
+                />
+                <div className="mt-2 flex gap-2">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        className="
+                          border
+                          border-blue-400
+                          bg-blue-50
+                          text-blue-800
+                          dark:border-blue-600
+                          dark:bg-slate-800
+                          dark:text-blue-200
+                          px-4 py-1
+                          hover:bg-blue-100
+                          dark:hover:bg-slate-700
+                          rounded-sm
+                        "
+                        onClick={handleNumericalSubmitLocal}
+                      >
+                        Submit
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Submit your numeric answer</TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="outline"
+                        onClick={() =>
+                          question.questionId && handleResetQuestion(question.questionId)
+                        }
+                      >
+                        Reset
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Clear answer & unmark question</TooltipContent>
+                  </Tooltip>
+                </div>
+              </div>
+            )}
+
+            {/* ---------- MCQM (Multiple-correct) ---------- */}
+            {(question.type === "Mcqm" || question.type?.toLowerCase() === "mcqm") &&
+              question.options &&
+              question.options.length > 0 && (
+                <div className="mb-4">
+                  <div className="space-y-2">
+                    {question.options.map((rawOption, idx) => {
+                      const letter = String.fromCharCode(65 + idx)
+                      const optionText = rawOption.trim()
+                      const isChosen = mcqmSelections.includes(letter)
+
+                      return (
+                        <Button
+                          key={idx}
+                          variant="outline"
+                          onClick={() => handleMcqmToggle(letter)}
+                          className={`
+                            w-full
+                            text-left
+                            text-base
+                            sm:text-lg
+                            p-4
+                            leading-7
+                            flex flex-col items-start
+                            whitespace-normal
+                            border
+                            ${
+                              isChosen
+                                ? "border-blue-400 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-slate-800 dark:text-blue-200"
+                                : "border-gray-300 dark:border-gray-600"
+                            }
+                          `}
+                        >
+                          <div className="flex items-center gap-2">
+                            <Checkbox
+                              checked={isChosen}
+                              onCheckedChange={() => handleMcqmToggle(letter)}
+                            />
+                            <span className="font-semibold">{letter}.</span>
+                          </div>
+                          {optionText.startsWith("http") ? (
+                            <div className="w-full">
+                              <Image
+                                src={optionText}
+                                alt={`Option ${letter}`}
+                                width={800}
+                                height={600}
+                                className="rounded-md w-full h-auto object-contain"
+                              />
+                            </div>
+                          ) : (
+                            <div className="latex-font">
+                              <MathRenderer text={optionText} />
+                            </div>
+                          )}
+                        </Button>
+                      )
+                    })}
+                  </div>
+                  <div className="mt-2 flex gap-2">
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button
+                          onClick={handleMcqmSubmit}
+                          className="
+                            border
+                            border-blue-400
+                            bg-blue-50
+                            text-blue-800
+                            dark:border-blue-600
+                            dark:bg-slate-800
+                            dark:text-blue-200
+                            px-4 py-1
+                            hover:bg-blue-100
+                            dark:hover:bg-slate-700
+                            rounded-sm
+                          "
+                        >
+                          Submit
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>Submit your MCQM selections</TooltipContent>
+                    </Tooltip>
+
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button
+                          variant="outline"
+                          onClick={() =>
+                            question.questionId && handleResetQuestion(question.questionId)
+                          }
+                        >
+                          Reset
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>Clear selections & unmark question</TooltipContent>
+                    </Tooltip>
+                  </div>
+                </div>
+              )}
+
+            {/* ---------- T/f ---------- */}
+            {(question.type === "T/f" || question.type?.toLowerCase() === "t/f" ||
+              question.type?.toLowerCase() === "true/false") && (
+              <div className="mb-4 flex gap-4">
+                {tfOptions.map((val) => (
+                  <Button
+                    key={val}
+                    variant="outline"
+                    onClick={() => handleTfSubmit(val)}
+                    className={`
+                      px-4 py-2
+                      ${
+                        localSelectedOption === val && feedback
+                          ? feedback === "correct"
+                            ? "bg-green-100 hover:bg-green-200 text-green-700 border-green-400"
+                            : "bg-red-100 hover:bg-red-200 text-red-700 border-red-400"
+                          : "border-gray-300 dark:border-gray-600"
+                      }
+                    `}
+                  >
+                    {val}
+                  </Button>
+                ))}
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="outline"
+                      onClick={() =>
+                        question.questionId && handleResetQuestion(question.questionId)
+                      }
+                    >
+                      Reset
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Clear T/F answer & unmark question</TooltipContent>
+                </Tooltip>
+              </div>
+            )}
+
+            {/* ---------- Fill Blanks ---------- */}
+            {question.type?.toLowerCase() === "fill blanks" && (
+              <div className="mb-4">
+                <Input
+                  type="text"
+                  placeholder="Fill in the blank..."
+                  value={fillBlanksInput}
+                  onChange={(e) => setFillBlanksInput(e.target.value)}
+                  className="w-full mb-2"
+                />
+                <div className="mt-2 flex gap-2">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        className="
+                          border
+                          border-blue-400
+                          bg-blue-50
+                          text-blue-800
+                          dark:border-blue-600
+                          dark:bg-slate-800
+                          dark:text-blue-200
+                          px-4 py-1
+                          hover:bg-blue-100
+                          dark:hover:bg-slate-700
+                          rounded-sm
+                        "
+                        onClick={handleFillBlanksSubmit}
+                      >
+                        Submit
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Submit your fill-in answer</TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="outline"
+                        onClick={() =>
+                          question.questionId && handleResetQuestion(question.questionId)
+                        }
+                      >
+                        Reset
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Clear answer & unmark question</TooltipContent>
+                  </Tooltip>
+                </div>
+              </div>
+            )}
+
+            {/* ---------- Subjective ---------- */}
+            {question.type?.toLowerCase() === "subjective" && (
+              <div className="mb-4">
+                <div className="mb-2">
+                  <label className="text-sm font-medium">Your Answer:</label>
+                </div>
+                <textarea
+                  className="
+                    w-full
+                    px-3 py-2
+                    border
+                    border-blue-400
+                    bg-blue-50
+                    text-blue-800
+                    dark:border-blue-600
+                    dark:bg-slate-800
+                    dark:text-blue-200
+                    rounded-sm
+                    focus:ring-1
+                    focus:ring-blue-300
+                  "
+                  rows={4}
+                  value={subjectiveAnswer}
+                  onChange={(e) => setSubjectiveAnswer(e.target.value)}
+                />
+                <div className="mt-2 flex gap-2">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        className="
+                          border
+                          border-blue-400
+                          bg-blue-50
+                          text-blue-800
+                          dark:border-blue-600
+                          dark:bg-slate-800
+                          dark:text-blue-200
+                          px-4 py-1
+                          hover:bg-blue-100
+                          dark:hover:bg-slate-700
+                          rounded-sm
+                        "
+                        onClick={handleSubjectiveSubmit}
+                      >
+                        Submit
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Submit your written answer</TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="outline"
+                        onClick={() =>
+                          question.questionId && handleResetQuestion(question.questionId)
+                        }
+                      >
+                        Reset
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Clear answer & unmark question</TooltipContent>
+                  </Tooltip>
+                </div>
+              </div>
+            )}
+
+            {/* ---------- Feedback banner ---------- */}
             {feedback && (
               <div
-                className={`
-                  mt-4 p-2 rounded
-                  ${feedback === "correct" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}
-                `}
+                className={`mt-4 p-2 rounded ${
+                  feedback === "correct" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
+                }`}
               >
                 {feedback === "correct" ? "Correct!" : "Incorrect, try again."}
               </div>
             )}
 
-            {/* Show Markscheme button (if markschemes are enabled) */}
+            {/* ---------- Show Markscheme Button ---------- */}
             {markschemeEnabled && (
               <div className="mt-4">
                 <Tooltip>
@@ -1035,7 +993,7 @@ export default function Question({
               </div>
             )}
 
-            {/* Difficulty dropdown */}
+            {/* ---------- Difficulty Dropdown ---------- */}
             <div className="flex items-center space-x-2 mt-4">
               <label className="text-sm text-gray-600 dark:text-gray-300">Difficulty:</label>
               <Select
@@ -1070,7 +1028,7 @@ export default function Question({
           <CardFooter />
         </Card>
 
-        {/* Markscheme (Explanation) Modal */}
+        {/* ---------- Markscheme (Explanation) Modal ---------- */}
         <AnimatePresence>
           {showMarkschemeModal && (
             <motion.div
@@ -1099,7 +1057,7 @@ export default function Question({
                   <div className="overflow-y-auto max-h-[60vh] custom-scrollbar">
                     {/** 
                      * Prefer question.explanation if it exists; 
-                     * fallback to question.markscheme. 
+                     * fallback to question.markscheme.
                      */}
                     {question.explanation
                       ? question.explanation.startsWith("http") ? (
