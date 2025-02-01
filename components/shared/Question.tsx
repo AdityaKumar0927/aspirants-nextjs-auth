@@ -31,29 +31,37 @@ import {
   TooltipProvider,
 } from "@/components/ui/tooltip"
 import { Badge } from "@/components/ui/badge"
-import {
-  Flag,
-  ChevronDown,
-  X,
-} from "lucide-react"
-import SettingsPopover from "@/components/ui/SettingsPopover"
+import { Flag, ChevronDown, X } from "lucide-react"
 import FeedbackPopover from "./FeedbackPopover"
 
+// --------------------------------------------
+// Enums & Types
+// --------------------------------------------
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
   ARCHIVED = "ARCHIVED",
 }
 
-type QuestionTypeString = "Multiple Choice" | "mcq" | "Numerical" | "integer" | string
+// Adjust your union to include any question types you need:
+type QuestionTypeString =
+  | "Subjective"
+  | "Mcq"
+  | "Mcqm"
+  | "Integer"
+  | "Numerical"
+  | "Fill Blanks"
+  | "T/f"
+  | string
 
 interface QuestionType {
   id: number
   questionId?: string
   text?: string
-  options?: string[]
-  markscheme?: string
-  correctOption?: string
+  options?: string[]        // For MCQ / MCQM / T/f, etc.
+  markscheme?: string       // Old field
+  explanation?: string      // New field for markscheme/explanations
+  correctOption?: string    // For objective questions
   diagramUrl?: string
   exam?: string
   subject?: string
@@ -70,32 +78,41 @@ interface QuestionType {
 
 interface QuestionProps {
   question: QuestionType
-  feedback: string | undefined
+
+  feedback: string | undefined       // "correct" / "incorrect" / undefined
   selectedOption: string | undefined
   numericalAnswer: string | undefined
   showMarkscheme: boolean | undefined
 
+  // Existing handlers
   handleOptionClick: (questionId: string, option: string, correctOption: string) => void
-  handleNumericalSubmit: (questionId: string, userAnswer: string, correctAnswer: string) => void
+  handleNumericalSubmit: (
+    questionId: string,
+    userAnswer: string,
+    correctAnswer: string
+  ) => void
   handleNumericalChange: (questionId: string, value: string) => void
   handleMarkschemeToggle: (questionId: string) => void
   handleMarkForReview: (questionId: string, newVal?: boolean) => void
   handleMarkComplete: (questionId: string, newVal?: boolean) => void
   handleResetQuestion: (questionId: string) => void
 
+  // Flags & Misc
   isMarkedForReview: boolean
   isMarkedComplete: boolean
   markschemesDisabled: boolean
 
+  // Pagination
   totalQuestions: number
   currentQuestionIndex: number
   handleQuestionChange: (index: number) => void
-
   onNextQuestion?: () => void
   onPreviousQuestion?: () => void
 }
 
-// --- New subtle outline function ---
+// --------------------------------------------
+// Outline color logic
+// --------------------------------------------
 function getOutlineClass(
   feedback: string | undefined,
   isMarkedForReview: boolean
@@ -115,6 +132,9 @@ function getOutlineClass(
   }
 }
 
+// --------------------------------------------
+// Main Component
+// --------------------------------------------
 export default function Question({
   question,
   feedback,
@@ -138,47 +158,51 @@ export default function Question({
   onPreviousQuestion,
 }: QuestionProps) {
   const displayNumber = currentQuestionIndex + 1
+
   const [pendingOption, setPendingOption] = useState<string | null>(null)
   const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(
     selectedOption || null
   )
+
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false)
+  // We'll still track whether markschemes are allowed via the prop markschemesDisabled
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled)
 
-  // ---------- Custom Tags ----------
+  // Tagging
   const [newTag, setNewTag] = useState("")
   const [localCustomTags, setLocalCustomTags] = useState<string[]>(question.customTags || [])
 
-  // ---------- Difficulty ----------
+  // Difficulty
   const [localDifficultyRating, setLocalDifficultyRating] = useState<number | undefined>(
     question.difficultyRating
   )
 
+  // Toast
   const { toast } = useToast()
 
-  // Swipe handlers
+  // Swipe (left/right to next/previous Q)
   const handlers = useSwipeable({
     onSwipedLeft: () => onNextQuestion && onNextQuestion(),
     onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
     trackMouse: true,
   })
 
+  // If parent changes selectedOption, sync local
   useEffect(() => {
     setLocalSelectedOption(selectedOption || null)
   }, [selectedOption])
 
-  // ---------------------------------------------------------
-  // Tag logic: add & remove (calls the /api/questions PATCH)
-  // ---------------------------------------------------------
+  // ------------------------------------------
+  // Tag logic: add & remove
+  // ------------------------------------------
   async function handleAddTag() {
     if (!newTag || !question.questionId) return
     if (localCustomTags.includes(newTag)) {
       toast({ title: "Tag already added" })
       return
     }
-
-    const updatedTags = [...localCustomTags, newTag]
-    setLocalCustomTags(updatedTags)
+    const updated = [...localCustomTags, newTag]
+    setLocalCustomTags(updated)
     setNewTag("")
 
     try {
@@ -187,7 +211,7 @@ export default function Question({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           questionId: question.questionId,
-          customTags: updatedTags, // send new customTags array to server
+          customTags: updated,
         }),
       })
     } catch (err) {
@@ -202,8 +226,8 @@ export default function Question({
 
   async function handleRemoveTag(tag: string) {
     if (!question.questionId) return
-    const updatedTags = localCustomTags.filter((t) => t !== tag)
-    setLocalCustomTags(updatedTags)
+    const updated = localCustomTags.filter((t) => t !== tag)
+    setLocalCustomTags(updated)
 
     try {
       await fetch("/api/questions", {
@@ -211,7 +235,7 @@ export default function Question({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           questionId: question.questionId,
-          customTags: updatedTags,
+          customTags: updated,
         }),
       })
     } catch (err) {
@@ -224,13 +248,12 @@ export default function Question({
     }
   }
 
-  // ---------------------------------------------------------
-  // Mark / Unmark complete
-  // ---------------------------------------------------------
+  // ------------------------------------------
+  // Mark complete / Flag review
+  // ------------------------------------------
   async function toggleComplete(checked: boolean) {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId, checked)
-
     if (checked) {
       toast({
         title: "Question Completed",
@@ -249,14 +272,10 @@ export default function Question({
     }
   }
 
-  // ---------------------------------------------------------
-  // Flag / Unflag for review
-  // ---------------------------------------------------------
   async function toggleReview() {
     if (!question.questionId) return
     const newVal = !isMarkedForReview
     await handleMarkForReview(question.questionId, newVal)
-
     if (newVal) {
       toast({
         title: "Question Flagged",
@@ -275,39 +294,97 @@ export default function Question({
     }
   }
 
-  // ---------------------------------------------------------
-  // MCQ logic
-  // ---------------------------------------------------------
+  // ------------------------------------------
+  // MCQ (single-answer) logic
+  // ------------------------------------------
   function handleOptionSelect(letter: string) {
     setPendingOption(letter)
   }
   async function handleMcqSubmit() {
     if (!pendingOption || !question.questionId) return
+    // Mark question complete on submit
     await handleMarkComplete(question.questionId, true)
-    handleOptionClick(question.questionId, pendingOption, question.correctOption ?? "N/A")
+    handleOptionClick(question.questionId, pendingOption, question.correctOption ?? "")
     setLocalSelectedOption(pendingOption)
   }
-
   function cleanOptionText(option: string): string {
-    // Remove "A: " prefix etc
-    return option.replace(/^[A-D]:\s?/i, "").trim()
+    // remove "A: ", "B: " prefixes, etc.
+    return option.replace(/^[A-Za-z]:\s?/, "").trim()
   }
 
-  // ---------------------------------------------------------
-  // Numerical logic
-  // ---------------------------------------------------------
+  // ------------------------------------------
+  // MCQM (multi-answer multiple choice)
+  // ------------------------------------------
+  const [mcqmSelections, setMcqmSelections] = useState<string[]>([])
+  function handleMcqmToggle(letter: string) {
+    setMcqmSelections((prev) => {
+      if (prev.includes(letter)) {
+        return prev.filter((x) => x !== letter)
+      } else {
+        return [...prev, letter]
+      }
+    })
+  }
+  async function handleMcqmSubmit() {
+    if (!question.questionId) return
+    // Mark question complete on submit
+    await handleMarkComplete(question.questionId, true)
+    // Pass the user's selections as a JSON string, or any format you prefer
+    handleOptionClick(
+      question.questionId,
+      JSON.stringify(mcqmSelections),
+      question.correctOption ?? ""
+    )
+  }
+
+  // ------------------------------------------
+  // Numerical / Integer logic
+  // ------------------------------------------
   async function handleNumericalSubmitLocal() {
     if (!question.questionId) return
     await handleNumericalSubmit(
       question.questionId,
       numericalAnswer ?? "",
-      question.correctOption ?? "N/A"
+      question.correctOption ?? ""
     )
   }
 
-  // ---------------------------------------------------------
+  // ------------------------------------------
+  // T/f logic
+  // ------------------------------------------
+  const tfOptions = ["True", "False"]
+  async function handleTfSubmit(answer: string) {
+    if (!question.questionId) return
+    await handleMarkComplete(question.questionId, true)
+    handleOptionClick(question.questionId, answer, question.correctOption ?? "")
+    setLocalSelectedOption(answer)
+  }
+
+  // ------------------------------------------
+  // Fill Blanks logic
+  // ------------------------------------------
+  const [fillBlanksInput, setFillBlanksInput] = useState<string>("")
+  async function handleFillBlanksSubmit() {
+    if (!question.questionId) return
+    await handleMarkComplete(question.questionId, true)
+    // Reuse handleNumericalSubmit to pass the fill text
+    handleNumericalSubmit(question.questionId, fillBlanksInput, question.correctOption ?? "")
+  }
+
+  // ------------------------------------------
+  // Subjective logic
+  // ------------------------------------------
+  const [subjectiveAnswer, setSubjectiveAnswer] = useState<string>("")
+  async function handleSubjectiveSubmit() {
+    if (!question.questionId) return
+    await handleMarkComplete(question.questionId, true)
+    // Reuse handleNumericalSubmit, or define your own
+    handleNumericalSubmit(question.questionId, subjectiveAnswer, question.correctOption ?? "")
+  }
+
+  // ------------------------------------------
   // Difficulty rating logic
-  // ---------------------------------------------------------
+  // ------------------------------------------
   async function handleDifficultyChange(newRating: number) {
     if (!question.questionId) return
     setLocalDifficultyRating(newRating)
@@ -340,17 +417,447 @@ export default function Question({
     }
   }
 
-  // ---------------------------------------------------------
-  // Markscheme (Modal Toggle)
-  // ---------------------------------------------------------
+  // ------------------------------------------
+  // Rendering question inputs based on type
+  // ------------------------------------------
+  function renderQuestionBody() {
+    const qType = (question.type ?? "").toLowerCase()
+
+    // Single-answer MCQ
+    if (qType === "mcq" || qType === "multiple choice") {
+      if (!question.options?.length) return null
+      return (
+        <>
+          <div className="space-y-2">
+            {question.options.map((rawOption, idx) => {
+              const letter = String.fromCharCode(65 + idx)
+              const optionText = cleanOptionText(rawOption)
+              const isPending = pendingOption === letter
+              const isSelected = localSelectedOption === letter
+              const isFeedbackActive = isSelected && feedback
+
+              return (
+                <Button
+                  key={idx}
+                  variant="outline"
+                  onClick={() => handleOptionSelect(letter)}
+                  className={`
+                    w-full
+                    text-left
+                    text-base
+                    sm:text-lg
+                    p-4
+                    leading-7
+                    flex flex-col items-start
+                    whitespace-normal
+                    border
+                    ${
+                      isFeedbackActive
+                        ? feedback === "correct"
+                          ? "bg-green-100 hover:bg-green-200 text-green-700 border-green-400"
+                          : "bg-red-100 hover:bg-red-200 text-red-700 border-red-400"
+                        : isPending
+                        ? "border-blue-400 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-slate-800 dark:text-blue-200"
+                        : "border-gray-300 dark:border-gray-600"
+                    }
+                  `}
+                >
+                  <span className="font-semibold">{letter}.</span>
+                  {optionText.startsWith("http") ? (
+                    <div className="w-full">
+                      <Image
+                        src={optionText}
+                        alt={`Option ${letter}`}
+                        width={800}
+                        height={600}
+                        className="rounded-md w-full h-auto object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <div className="latex-font">
+                      <MathRenderer text={optionText} />
+                    </div>
+                  )}
+                </Button>
+              )
+            })}
+          </div>
+          <div className="mt-2 flex gap-2">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  onClick={handleMcqSubmit}
+                  disabled={!pendingOption}
+                  className="
+                    border
+                    border-blue-400
+                    bg-blue-50
+                    text-blue-800
+                    dark:border-blue-600
+                    dark:bg-slate-800
+                    dark:text-blue-200
+                    px-4 py-1
+                    hover:bg-blue-100
+                    dark:hover:bg-slate-700
+                    rounded-sm
+                  "
+                >
+                  Submit
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Submit your MCQ answer</TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  onClick={() => question.questionId && handleResetQuestion(question.questionId)}
+                >
+                  Reset
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Clear answer & unmark question</TooltipContent>
+            </Tooltip>
+          </div>
+        </>
+      )
+    }
+
+    // MCQM (multi-answer multiple choice)
+    if (qType === "mcqm") {
+      if (!question.options?.length) return null
+      return (
+        <>
+          <div className="space-y-2">
+            {question.options.map((rawOption, idx) => {
+              const letter = String.fromCharCode(65 + idx)
+              const optionText = cleanOptionText(rawOption)
+              const isChosen = mcqmSelections.includes(letter)
+
+              return (
+                <Button
+                  key={idx}
+                  variant="outline"
+                  onClick={() => handleMcqmToggle(letter)}
+                  className={`
+                    w-full
+                    text-left
+                    text-base
+                    sm:text-lg
+                    p-4
+                    leading-7
+                    flex flex-col items-start
+                    whitespace-normal
+                    border
+                    ${
+                      isChosen
+                        ? "border-blue-400 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-slate-800 dark:text-blue-200"
+                        : "border-gray-300 dark:border-gray-600"
+                    }
+                  `}
+                >
+                  <div className="flex items-center gap-2">
+                    <Checkbox checked={isChosen} onCheckedChange={() => handleMcqmToggle(letter)} />
+                    <span className="font-semibold">{letter}.</span>
+                  </div>
+                  {optionText.startsWith("http") ? (
+                    <div className="w-full">
+                      <Image
+                        src={optionText}
+                        alt={`Option ${letter}`}
+                        width={800}
+                        height={600}
+                        className="rounded-md w-full h-auto object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <div className="latex-font">
+                      <MathRenderer text={optionText} />
+                    </div>
+                  )}
+                </Button>
+              )
+            })}
+          </div>
+          <div className="mt-2 flex gap-2">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  onClick={handleMcqmSubmit}
+                  className="
+                    border
+                    border-blue-400
+                    bg-blue-50
+                    text-blue-800
+                    dark:border-blue-600
+                    dark:bg-slate-800
+                    dark:text-blue-200
+                    px-4 py-1
+                    hover:bg-blue-100
+                    dark:hover:bg-slate-700
+                    rounded-sm
+                  "
+                >
+                  Submit
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Submit your MCQM selections</TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  onClick={() => question.questionId && handleResetQuestion(question.questionId)}
+                >
+                  Reset
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Clear selections & unmark question</TooltipContent>
+            </Tooltip>
+          </div>
+        </>
+      )
+    }
+
+    // T/f
+    if (qType === "t/f" || qType === "true/false") {
+      return (
+        <div className="mb-4 flex gap-4">
+          {tfOptions.map((val) => (
+            <Button
+              key={val}
+              variant="outline"
+              onClick={() => handleTfSubmit(val)}
+              className={`
+                px-4 py-2
+                ${
+                  localSelectedOption === val && feedback
+                    ? feedback === "correct"
+                      ? "bg-green-100 hover:bg-green-200 text-green-700 border-green-400"
+                      : "bg-red-100 hover:bg-red-200 text-red-700 border-red-400"
+                    : "border-gray-300 dark:border-gray-600"
+                }
+              `}
+            >
+              {val}
+            </Button>
+          ))}
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="outline"
+                onClick={() => question.questionId && handleResetQuestion(question.questionId)}
+              >
+                Reset
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Clear T/F answer & unmark question</TooltipContent>
+          </Tooltip>
+        </div>
+      )
+    }
+
+    // Integer or Numerical
+    if (qType === "integer" || qType === "numerical") {
+      return (
+        <div className="mb-4">
+          <Input
+            type="text"
+            className="
+              w-full
+              px-3 py-2
+              border
+              border-blue-400
+              bg-blue-50
+              text-blue-800
+              dark:border-blue-600
+              dark:bg-slate-800
+              dark:text-blue-200
+              focus:ring-1
+              focus:ring-blue-300
+              rounded-sm
+            "
+            placeholder="Type your answer..."
+            value={numericalAnswer ?? ""}
+            onChange={(e) => {
+              if (question.questionId) {
+                handleNumericalChange(question.questionId, e.target.value)
+              }
+            }}
+          />
+          <div className="mt-2 flex gap-2">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  className="
+                    border
+                    border-blue-400
+                    bg-blue-50
+                    text-blue-800
+                    dark:border-blue-600
+                    dark:bg-slate-800
+                    dark:text-blue-200
+                    px-4 py-1
+                    hover:bg-blue-100
+                    dark:hover:bg-slate-700
+                    rounded-sm
+                  "
+                  onClick={handleNumericalSubmitLocal}
+                >
+                  Submit
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Submit your numeric answer</TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  onClick={() => question.questionId && handleResetQuestion(question.questionId)}
+                >
+                  Reset
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Clear answer & unmark question</TooltipContent>
+            </Tooltip>
+          </div>
+        </div>
+      )
+    }
+
+    // Fill Blanks
+    if (qType === "fill blanks") {
+      return (
+        <div className="mb-4">
+          <Input
+            type="text"
+            placeholder="Fill in the blank..."
+            value={fillBlanksInput}
+            onChange={(e) => setFillBlanksInput(e.target.value)}
+            className="w-full mb-2"
+          />
+          <div className="mt-2 flex gap-2">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  className="
+                    border
+                    border-blue-400
+                    bg-blue-50
+                    text-blue-800
+                    dark:border-blue-600
+                    dark:bg-slate-800
+                    dark:text-blue-200
+                    px-4 py-1
+                    hover:bg-blue-100
+                    dark:hover:bg-slate-700
+                    rounded-sm
+                  "
+                  onClick={handleFillBlanksSubmit}
+                >
+                  Submit
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Submit your fill-in answer</TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  onClick={() => question.questionId && handleResetQuestion(question.questionId)}
+                >
+                  Reset
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Clear answer & unmark question</TooltipContent>
+            </Tooltip>
+          </div>
+        </div>
+      )
+    }
+
+    // Subjective (Short/long answer)
+    if (qType === "subjective") {
+      return (
+        <div className="mb-4">
+          <div className="mb-2">
+            <label className="text-sm font-medium">Your Answer:</label>
+          </div>
+          <textarea
+            className="
+              w-full
+              px-3 py-2
+              border
+              border-blue-400
+              bg-blue-50
+              text-blue-800
+              dark:border-blue-600
+              dark:bg-slate-800
+              dark:text-blue-200
+              rounded-sm
+              focus:ring-1
+              focus:ring-blue-300
+            "
+            rows={4}
+            value={subjectiveAnswer}
+            onChange={(e) => setSubjectiveAnswer(e.target.value)}
+          />
+          <div className="mt-2 flex gap-2">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  className="
+                    border
+                    border-blue-400
+                    bg-blue-50
+                    text-blue-800
+                    dark:border-blue-600
+                    dark:bg-slate-800
+                    dark:text-blue-200
+                    px-4 py-1
+                    hover:bg-blue-100
+                    dark:hover:bg-slate-700
+                    rounded-sm
+                  "
+                  onClick={handleSubjectiveSubmit}
+                >
+                  Submit
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Submit your written answer</TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  onClick={() => question.questionId && handleResetQuestion(question.questionId)}
+                >
+                  Reset
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Clear answer & unmark question</TooltipContent>
+            </Tooltip>
+          </div>
+        </div>
+      )
+    }
+
+    // Default fallback if type is unknown
+    return <div>No valid question input for type: {question.type}</div>
+  }
+
+  // ------------------------------------------
+  // Final render
+  // ------------------------------------------
   return (
     <TooltipProvider>
       <div {...handlers} className="relative pb-20" id={`question-${question.questionId}`}>
-        {/* 
-          -- Updated Card Classes --
-          1. Subtle base border: "border border-gray-200 dark:border-gray-600 rounded-md"
-          2. Outline for flagged/correct/incorrect: getOutlineClass(feedback, isMarkedForReview)
-        */}
+        {/* The Card uses subtle base border + dynamic outline */}
         <Card
           className={`
             w-full overflow-hidden mb-6
@@ -360,9 +867,10 @@ export default function Question({
             ${getOutlineClass(feedback, isMarkedForReview)}
           `}
         >
+          {/* Header */}
           <CardHeader className="relative">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
-              {/* Title + Subject + Difficulty + ... */}
+              {/* Title, Subject, Difficulty, etc. */}
               <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
                 <CardTitle className="font-normal text-2xl sm:text-3xl">
                   Question #{displayNumber}
@@ -462,22 +970,13 @@ export default function Question({
                   </TooltipContent>
                 </Tooltip>
 
-                {/* Settings */}
-                <SettingsPopover
-                  markschemeEnabled={markschemeEnabled}
-                  setMarkschemeEnabled={() => setMarkschemeEnabled(!markschemeEnabled)}
-                  aiEnabled={false}
-                  setAiEnabled={() => {}}
-                  notesEnabled={false}
-                  setNotesEnabled={() => {}}
-                />
-
                 {/* Feedback */}
                 {question.questionId && <FeedbackPopover questionId={question.questionId} />}
               </div>
             </div>
           </CardHeader>
 
+          {/* Content */}
           <CardContent>
             {/* Diagram + Text */}
             <div className="mb-6">
@@ -499,210 +998,41 @@ export default function Question({
               )}
             </div>
 
-            {/* Numerical */}
-            {(question.type === "Numerical" || question.type === "integer") && (
-              <div className="mb-4">
-                <Input
-                  type="text"
-                  className="
-                    w-full
-                    px-3 py-2
-                    border
-                    border-blue-400
-                    bg-blue-50
-                    text-blue-800
-                    dark:border-blue-600
-                    dark:bg-slate-800
-                    dark:text-blue-200
-                    focus:ring-1
-                    focus:ring-blue-300
-                    rounded-sm
-                  "
-                  placeholder="Type your answer..."
-                  value={numericalAnswer ?? ""}
-                  onChange={(e) => {
-                    if (question.questionId) {
-                      handleNumericalChange(question.questionId, e.target.value)
-                    }
-                  }}
-                />
-                <div className="mt-2 flex gap-2">
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        className="
-                          border
-                          border-blue-400
-                          bg-blue-50
-                          text-blue-800
-                          dark:border-blue-600
-                          dark:bg-slate-800
-                          dark:text-blue-200
-                          px-4 py-1
-                          hover:bg-blue-100
-                          dark:hover:bg-slate-700
-                          rounded-sm
-                        "
-                        onClick={handleNumericalSubmitLocal}
-                      >
-                        Submit
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Submit your numeric answer</TooltipContent>
-                  </Tooltip>
+            {/* Render dynamic question body based on type */}
+            {renderQuestionBody()}
 
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant="outline"
-                        onClick={() =>
-                          question.questionId && handleResetQuestion(question.questionId)
-                        }
-                      >
-                        Reset
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Clear answer & unmark question</TooltipContent>
-                  </Tooltip>
-                </div>
-              </div>
-            )}
-
-            {/* MCQ */}
-            {(question.type === "Multiple Choice" || question.type === "mcq") &&
-              question.options &&
-              question.options.length > 0 && (
-                <div className="mb-4">
-                  <div className="space-y-2">
-                    {question.options.map((rawOption, idx) => {
-                      const letter = String.fromCharCode(65 + idx)
-                      const optionText = cleanOptionText(rawOption)
-                      const isPending = pendingOption === letter
-                      const directSelected = localSelectedOption === letter
-                      const isFeedbackActive = directSelected && feedback
-
-                      return (
-                        <Button
-                          key={idx}
-                          variant="outline"
-                          onClick={() => handleOptionSelect(letter)}
-                          className={`
-                            w-full
-                            text-left
-                            text-base
-                            sm:text-lg
-                            p-4
-                            leading-7
-                            flex flex-col items-start
-                            space-y-2
-                            whitespace-normal
-                            border
-                            ${
-                              isFeedbackActive
-                                ? feedback === "correct"
-                                  ? "bg-green-100 hover:bg-green-200 text-green-700 border-green-400"
-                                  : "bg-red-100 hover:bg-red-200 text-red-700 border-red-400"
-                                : isPending
-                                ? "border-blue-400 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-slate-800 dark:text-blue-200"
-                                : "border-gray-300 dark:border-gray-600"
-                            }
-                          `}
-                          style={{ height: "auto", minHeight: "1rem" }}
-                        >
-                          <span className="font-semibold">{letter}.</span>
-                          {optionText.startsWith("http") ? (
-                            <div className="w-full">
-                              <Image
-                                src={optionText}
-                                alt={`Option ${letter}`}
-                                width={800}
-                                height={600}
-                                className="rounded-md w-full h-auto object-contain"
-                              />
-                            </div>
-                          ) : (
-                            <div className="latex-font">
-                              <MathRenderer text={optionText} />
-                            </div>
-                          )}
-                        </Button>
-                      )
-                    })}
-                  </div>
-                  <div className="mt-2 flex gap-2">
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          onClick={handleMcqSubmit}
-                          disabled={!pendingOption}
-                          className="
-                            border
-                            border-blue-400
-                            bg-blue-50
-                            text-blue-800
-                            dark:border-blue-600
-                            dark:bg-slate-800
-                            dark:text-blue-200
-                            px-4 py-1
-                            hover:bg-blue-100
-                            dark:hover:bg-slate-700
-                            rounded-sm
-                          "
-                        >
-                          Submit
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>Submit your MCQ answer</TooltipContent>
-                    </Tooltip>
-
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="outline"
-                          onClick={() =>
-                            question.questionId && handleResetQuestion(question.questionId)
-                          }
-                        >
-                          Reset
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>Clear answer & unmark question</TooltipContent>
-                    </Tooltip>
-                  </div>
-                </div>
-              )}
-
-            {/* Feedback banner */}
+            {/* Feedback banner (correct/incorrect) */}
             {feedback && (
               <div
-                className={`mt-4 p-2 rounded ${
-                  feedback === "correct" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
-                }`}
+                className={`
+                  mt-4 p-2 rounded
+                  ${feedback === "correct" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}
+                `}
               >
                 {feedback === "correct" ? "Correct!" : "Incorrect, try again."}
               </div>
             )}
 
-            {/* Markscheme button */}
-            {((localSelectedOption && markschemeEnabled) ||
-              ((question.type === "Numerical" || question.type === "integer") &&
-                numericalAnswer &&
-                markschemeEnabled)) && (
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="mt-4"
-                    onClick={() => {
-                      setShowMarkschemeModal(!showMarkschemeModal)
-                      question.questionId && handleMarkschemeToggle(question.questionId)
-                    }}
-                  >
-                    Show Markscheme
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>View the markscheme</TooltipContent>
-              </Tooltip>
+            {/* Show Markscheme button (if markschemes are enabled) */}
+            {markschemeEnabled && (
+              <div className="mt-4">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        setShowMarkschemeModal(!showMarkschemeModal)
+                        if (question.questionId) {
+                          handleMarkschemeToggle(question.questionId)
+                        }
+                      }}
+                    >
+                      Show Markscheme
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>View the markscheme / explanation</TooltipContent>
+                </Tooltip>
+              </div>
             )}
 
             {/* Difficulty dropdown */}
@@ -740,7 +1070,7 @@ export default function Question({
           <CardFooter />
         </Card>
 
-        {/* Markscheme Modal */}
+        {/* Markscheme (Explanation) Modal */}
         <AnimatePresence>
           {showMarkschemeModal && (
             <motion.div
@@ -756,11 +1086,7 @@ export default function Question({
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => setShowMarkschemeModal(false)}
-                        >
+                        <Button variant="ghost" size="icon" onClick={() => setShowMarkschemeModal(false)}>
                           <X className="h-4 w-4" />
                           <span className="sr-only">Close markscheme</span>
                         </Button>
@@ -771,23 +1097,43 @@ export default function Question({
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-y-auto max-h-[60vh] custom-scrollbar">
-                    {question.markscheme?.startsWith("http") ? (
-                      <div className="relative w-full max-w-lg mx-auto">
-                        <Image
-                          src={question.markscheme}
-                          alt="Markscheme image"
-                          width={800}
-                          height={600}
-                          className="rounded-md w-full h-auto object-contain"
-                        />
-                      </div>
-                    ) : question.markscheme ? (
-                      <div className="latex-font">
-                        <MathRenderer text={question.markscheme ?? ""} />
-                      </div>
-                    ) : (
-                      "No answer available"
-                    )}
+                    {/** 
+                     * Prefer question.explanation if it exists; 
+                     * fallback to question.markscheme. 
+                     */}
+                    {question.explanation
+                      ? question.explanation.startsWith("http") ? (
+                          <div className="relative w-full max-w-lg mx-auto">
+                            <Image
+                              src={question.explanation}
+                              alt="Explanation image"
+                              width={800}
+                              height={600}
+                              className="rounded-md w-full h-auto object-contain"
+                            />
+                          </div>
+                        ) : (
+                          <div className="latex-font">
+                            <MathRenderer text={question.explanation} />
+                          </div>
+                        )
+                      : question.markscheme
+                      ? question.markscheme.startsWith("http") ? (
+                          <div className="relative w-full max-w-lg mx-auto">
+                            <Image
+                              src={question.markscheme}
+                              alt="Markscheme image"
+                              width={800}
+                              height={600}
+                              className="rounded-md w-full h-auto object-contain"
+                            />
+                          </div>
+                        ) : (
+                          <div className="latex-font">
+                            <MathRenderer text={question.markscheme} />
+                          </div>
+                        )
+                      : "No explanation available"}
                   </div>
                 </CardContent>
               </Card>
