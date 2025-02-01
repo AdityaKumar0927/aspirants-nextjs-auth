@@ -203,9 +203,6 @@ export default function Page() {
                 High-quality question banks, mock exams, progress tracking, and much more. 
               </p>
             
-              <button className="bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 text-white border border-blue-600 dark:border-blue-500 px-8 py-3 rounded-full text-lg font-medium transition-colors">
-                Become a aspirant
-              </button>
             </div>
           </div>
         </div>

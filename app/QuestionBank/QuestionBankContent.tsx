@@ -33,7 +33,9 @@ import { Progress } from "@/components/ui/progress";
 import Popover from "@/components/shared/popover";
 import Question from "@/components/shared/Question";
 
-// -------------------- Enums & Types --------------------
+/* ------------------------------------------------------------------
+   Enums & Types
+   ------------------------------------------------------------------ */
 enum ViewMode {
   DESKTOP = "desktop",
   MOBILE = "mobile",
@@ -59,7 +61,7 @@ interface QuestionType {
   notes?: string;
   diagramUrl?: string;
   exam?: string;
-  customTags?: string[];   
+  customTags?: string[];
   difficultyRating?: number;
 }
 
@@ -136,7 +138,9 @@ type ActionType =
   | { type: "SET_PAGE_SIZE"; payload: number }
   | { type: "SET_GLOBAL_STATS"; payload: GlobalStats };
 
-// -------------------- Helper Functions --------------------
+/* ------------------------------------------------------------------
+   Helper Functions
+   ------------------------------------------------------------------ */
 function fuzzyContains(haystack: string, needle: string): boolean {
   if (!needle) return true;
   return haystack.toLowerCase().includes(needle.toLowerCase());
@@ -158,7 +162,9 @@ const transitionProps = {
   mass: 0.5,
 };
 
-// -------------------- Initial State & Reducer --------------------
+/* ------------------------------------------------------------------
+   Initial State & Reducer
+   ------------------------------------------------------------------ */
 const initialState: StateType = {
   questions: [],
   filters: {
@@ -253,7 +259,9 @@ function reducer(state: StateType, action: ActionType): StateType {
   }
 }
 
-// -------------------- Pagination --------------------
+/* ------------------------------------------------------------------
+   Pagination
+   ------------------------------------------------------------------ */
 function Pagination({
   currentPage,
   totalCount,
@@ -291,15 +299,16 @@ function Pagination({
   );
 }
 
-// -------------------- Main Component --------------------
+/* ------------------------------------------------------------------
+   Main Component
+   ------------------------------------------------------------------ */
 export default function QuestionBankContent() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { toast } = useToast();
   const [mobileIndex, setMobileIndex] = useState(0);
   const [filtersOpenMobile, setFiltersOpenMobile] = useState(false);
   const [navigatorOpen, setNavigatorOpen] = useState(false);
-  // Add a "progressOpen" for mobile progress card
-  const [progressOpen, setProgressOpen] = useState(false);
+  const [progressOpen, setProgressOpen] = useState(false); // For mobile "View Progress"
 
   // Decide initial view mode
   useEffect(() => {
@@ -308,7 +317,9 @@ export default function QuestionBankContent() {
     }
   }, []);
 
-  // -------------- Data Fetch --------------
+  /* ------------------------------
+     Data Fetch
+     ------------------------------ */
   const fetchFilterOptions = useCallback(async () => {
     try {
       const res = await fetch("/api/filters", { cache: "no-store" });
@@ -398,6 +409,7 @@ export default function QuestionBankContent() {
         data = result.data;
         totalCount = result.totalCount;
       }
+
       // Sort by numeric portion of questionId
       data = data.sort((a, b) => {
         const aId = a.questionId?.match(/\d+/)?.[0] || "0";
@@ -430,7 +442,9 @@ export default function QuestionBankContent() {
     fetchGlobalStats();
   }, [state.filters, state.currentPage, fetchQuestions, fetchGlobalStats]);
 
-  // -------------- Action Handlers --------------
+  /* ------------------------------
+     Action Handlers
+     ------------------------------ */
   const handleMarkComplete = useCallback(
     async (questionId: string, newVal?: boolean) => {
       dispatch({ type: "SET_ACTION_LOADING", payload: true });
@@ -571,7 +585,9 @@ export default function QuestionBankContent() {
     [state.feedback, state.selectedOptions, state.numericalAnswers, state.questions]
   );
 
-  // Filtered questions
+  /* ------------------------------
+     Filtered questions
+     ------------------------------ */
   const filteredQuestions = useMemo(() => {
     const s = state.searchQuery.toLowerCase();
     return state.questions.filter((q) => {
@@ -586,8 +602,9 @@ export default function QuestionBankContent() {
     });
   }, [state.questions, state.filters.status, state.searchQuery]);
 
-  // -------------- Mobile Progress View --------------
-  // We'll reuse the same progress card. Let's define a small function:
+  /* ------------------------------
+     Progress Card
+     ------------------------------ */
   function ProgressCard() {
     const total = state.globalStats.total;
     const answered = state.globalStats.completed;
@@ -694,7 +711,9 @@ export default function QuestionBankContent() {
     );
   }
 
-  // -------------- Loading Skeleton --------------
+  /* ------------------------------
+     Loading Skeleton
+     ------------------------------ */
   if (state.loading || state.actionLoading) {
     return (
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
@@ -726,7 +745,9 @@ export default function QuestionBankContent() {
     );
   }
 
-  // -------------- MOBILE VIEW --------------
+  /* ------------------------------
+     MOBILE VIEW
+     ------------------------------ */
   if (state.viewMode === ViewMode.MOBILE) {
     if (!filteredQuestions.length) {
       return (
@@ -777,11 +798,11 @@ export default function QuestionBankContent() {
                 <DialogContent
                   className="
                     fixed top-0 left-0 w-screen h-screen
-                    sm:w-[500px] sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
                     bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                     flex flex-col custom-scrollbar
-                    pt-6
+                    pt-10
                   "
+                  // Removed sm: for truly full screen on mobile
                 >
                   <FiltersDialogMobile
                     open={filtersOpenMobile}
@@ -813,12 +834,13 @@ export default function QuestionBankContent() {
             <DialogContent
               className="
                 fixed top-0 left-0 w-screen h-screen
-                sm:w-[500px] sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
                 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                 flex flex-col custom-scrollbar
-                pt-6
+                pt-10
               "
+              // Also removing sm: constraints to ensure truly full-screen on mobile
             >
+              {/* top bar */}
               <div className="flex items-center justify-between mb-4 px-4">
                 <h2 className="text-xl font-semibold">Progress</h2>
                 <Button variant="ghost" size="icon" onClick={() => setProgressOpen(false)}>
@@ -887,7 +909,9 @@ export default function QuestionBankContent() {
     );
   }
 
-  // -------------- DESKTOP VIEW --------------
+  /* ------------------------------
+     DESKTOP VIEW
+     ------------------------------ */
   if (!filteredQuestions.length) {
     return (
       <div className="bg-white dark:bg-gray-900 w-full min-h-screen p-4 sm:p-8 text-gray-900 dark:text-gray-100">
@@ -932,7 +956,7 @@ export default function QuestionBankContent() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-300" />
             </div>
 
-            {/* Mobile filters button (hidden in desktop) */}
+            {/* Mobile filters button (hidden on desktop) */}
             <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
               <DialogTrigger asChild>
                 <Button
@@ -949,7 +973,7 @@ export default function QuestionBankContent() {
                   sm:w-[500px] sm:max-h-[90vh] sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
                   bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
                   flex flex-col custom-scrollbar
-                  pt-6
+                  pt-10
                 "
               >
                 <FiltersDialogMobile
@@ -1018,7 +1042,7 @@ export default function QuestionBankContent() {
             <ProgressCard />
           </div>
 
-          {/* Status Filter Row */}
+          {/* Status Filter Row (desktop) */}
           <div className="hidden sm:flex space-x-4 mb-2">
             {["all", "complete", "review", "incomplete"].map((st) => {
               const isActive = state.filters.status === st;
@@ -1105,6 +1129,7 @@ export default function QuestionBankContent() {
             })}
           </div>
 
+          {/* Desktop: Questions List + Pagination */}
           {state.questions.length > 0 ? (
             <>
               {filteredQuestions.map((q, index) => {
@@ -1168,7 +1193,9 @@ export default function QuestionBankContent() {
   );
 }
 
-// -------------------- Desktop Filter Search Sub-component --------------------
+/* ------------------------------------------------------------------
+   Desktop Filter Search Sub-component
+   ------------------------------------------------------------------ */
 function DesktopFilterSearch({
   filterType,
   filterValues,
@@ -1186,13 +1213,11 @@ function DesktopFilterSearch({
   // 2) Sort so that selected items are at the top
   const displayedValues = useMemo(() => {
     let arr = filterValues;
-
     if (searchTerm) {
       const lower = searchTerm.toLowerCase();
       arr = arr.filter((val) => val.toLowerCase().includes(lower));
     }
-
-    // sort selected items to top
+    // Sort selected items first
     arr = arr.sort((a, b) => {
       const aSel = state.filters[filterType].includes(a);
       const bSel = state.filters[filterType].includes(b);
@@ -1200,7 +1225,6 @@ function DesktopFilterSearch({
       if (!aSel && bSel) return 1;
       return 0;
     });
-
     return arr;
   }, [filterValues, searchTerm, state.filters, filterType]);
 
@@ -1298,7 +1322,9 @@ function DesktopFilterSearch({
   );
 }
 
-// -------------------- Mobile Filters Dialog --------------------
+/* ------------------------------------------------------------------
+   Mobile Filters Dialog
+   ------------------------------------------------------------------ */
 function FiltersDialogMobile({
   open,
   onOpenChange,
@@ -1320,7 +1346,9 @@ function FiltersDialogMobile({
   );
 }
 
-// -------------------- Custom Filters Dialog (Mobile Implementation) --------------------
+/* ------------------------------------------------------------------
+   Custom Filters Dialog (Mobile)
+   ------------------------------------------------------------------ */
 interface CustomFiltersDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -1343,14 +1371,14 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
     setSearches((prev) => ({ ...prev, [category]: value }));
   };
 
-  // same approach: filter & sort selected to top
+  // filter & sort selected to top
   const filterAndSort = (items: string[], cat: FilterKey) => {
     let arr = items;
     const st = searches[cat]?.toLowerCase() || "";
     if (st) {
       arr = arr.filter((it) => it.toLowerCase().includes(st));
     }
-    // selected to top
+    // selected => top
     arr = arr.sort((a, b) => {
       const aSel = state.filters[cat].includes(a);
       const bSel = state.filters[cat].includes(b);
@@ -1379,34 +1407,23 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="max-w-full w-screen h-screen m-0 p-0 flex flex-col bg-white dark:bg-gray-900 custom-scrollbar"
+        className="w-screen h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 custom-scrollbar pt-10"
         style={{ overflowY: "auto" }}
       >
-        <div className="flex items-center justify-between sticky top-0 z-10 px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
-          <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">Filters</h2>
-          <div className="flex items-center gap-4">
-            <Button
-              variant="default"
-              className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-2 flex items-center gap-2 transition-all duration-200 ease-in-out"
-              onClick={() => {
-                onOpenChange(false);
-              }}
-            >
-              <Check className="w-4 h-4" />
-              Apply Changes
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-10 w-10 rounded-full text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 ease-in-out"
-              onClick={() => onOpenChange(false)}
-            >
-              <span className="sr-only">Close</span>
-              <Flag className="h-5 w-5 rotate-45" />
-            </Button>
-          </div>
+        {/* top bar */}
+        <div className="flex items-center justify-between px-4 py-3 border-b dark:border-gray-700">
+          <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">Filters</h2>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => onOpenChange(false)}
+            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-all"
+          >
+            ✕
+          </Button>
         </div>
-        <div className="flex-1 px-6 py-8 custom-scrollbar">
+
+        <ScrollArea className="px-4 py-4 flex-1 custom-scrollbar">
           <div className="max-w-3xl mx-auto space-y-10">
             {/* Status row */}
             <div>
@@ -1433,79 +1450,73 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
             {/* Each filter category */}
             <MobileFilterSection
               title="exams"
-              items={state.filterOptions.exams}
+              items={filterAndSort(state.filterOptions.exams, "exams")}
               searchValue={searches.exams}
               onSearchChange={(val) => handleSearchChange("exams", val)}
-              displayedItems={filterAndSort(state.filterOptions.exams, "exams")}
               selectedItems={state.filters.exams}
               toggleItem={(item) => toggleItem("exams", item)}
             />
             <MobileFilterSection
               title="subjects"
-              items={state.filterOptions.subjects}
+              items={filterAndSort(state.filterOptions.subjects, "subjects")}
               searchValue={searches.subjects}
               onSearchChange={(val) => handleSearchChange("subjects", val)}
-              displayedItems={filterAndSort(state.filterOptions.subjects, "subjects")}
               selectedItems={state.filters.subjects}
               toggleItem={(item) => toggleItem("subjects", item)}
             />
             <MobileFilterSection
               title="topics"
-              items={state.filterOptions.topics}
+              items={filterAndSort(state.filterOptions.topics, "topics")}
               searchValue={searches.topics}
               onSearchChange={(val) => handleSearchChange("topics", val)}
-              displayedItems={filterAndSort(state.filterOptions.topics, "topics")}
               selectedItems={state.filters.topics}
               toggleItem={(item) => toggleItem("topics", item)}
             />
             <MobileFilterSection
               title="subtopics"
-              items={state.filterOptions.subtopics}
+              items={filterAndSort(state.filterOptions.subtopics, "subtopics")}
               searchValue={searches.subtopics}
               onSearchChange={(val) => handleSearchChange("subtopics", val)}
-              displayedItems={filterAndSort(state.filterOptions.subtopics, "subtopics")}
               selectedItems={state.filters.subtopics}
               toggleItem={(item) => toggleItem("subtopics", item)}
             />
             <MobileFilterSection
               title="difficulties"
-              items={state.filterOptions.difficulties}
+              items={filterAndSort(state.filterOptions.difficulties, "difficulties")}
               searchValue={searches.difficulties}
               onSearchChange={(val) => handleSearchChange("difficulties", val)}
-              displayedItems={filterAndSort(state.filterOptions.difficulties, "difficulties")}
               selectedItems={state.filters.difficulties}
               toggleItem={(item) => toggleItem("difficulties", item)}
             />
             <MobileFilterSection
               title="years"
-              items={state.filterOptions.years}
+              items={filterAndSort(state.filterOptions.years, "years")}
               searchValue={searches.years}
               onSearchChange={(val) => handleSearchChange("years", val)}
-              displayedItems={filterAndSort(state.filterOptions.years, "years")}
               selectedItems={state.filters.years}
               toggleItem={(item) => toggleItem("years", item)}
             />
             <MobileFilterSection
               title="types"
-              items={state.filterOptions.types}
+              items={filterAndSort(state.filterOptions.types, "types")}
               searchValue={searches.types}
               onSearchChange={(val) => handleSearchChange("types", val)}
-              displayedItems={filterAndSort(state.filterOptions.types, "types")}
               selectedItems={state.filters.types}
               toggleItem={(item) => toggleItem("types", item)}
             />
           </div>
-        </div>
+        </ScrollArea>
       </DialogContent>
     </Dialog>
   );
 }
 
-// -------------------- Mobile Filter Section --------------------
+/* ------------------------------------------------------------------
+   Mobile Filter Section
+   ------------------------------------------------------------------ */
 interface MobileFilterSectionProps {
   title: string;
   items: string[];
-  displayedItems: string[];
   searchValue: string;
   onSearchChange: (value: string) => void;
   selectedItems: string[];
@@ -1514,7 +1525,7 @@ interface MobileFilterSectionProps {
 
 function MobileFilterSection({
   title,
-  displayedItems,
+  items,
   searchValue,
   onSearchChange,
   selectedItems,
@@ -1530,10 +1541,10 @@ function MobileFilterSection({
           onChange={(e) => onSearchChange(e.target.value)}
           className="bg-white dark:bg-gray-900 border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:ring-blue-500 pl-10 py-2 text-gray-800 dark:text-gray-100"
         />
-        <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+        <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
       </div>
       <div className="flex flex-col gap-2">
-        {displayedItems.map((item) => {
+        {items.map((item) => {
           const isSelected = selectedItems.includes(item);
           return (
             <button
