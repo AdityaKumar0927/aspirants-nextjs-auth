@@ -1,36 +1,54 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import { useState, useCallback, useEffect } from "react"
 import { useEditor, EditorContent } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import Placeholder from "@tiptap/extension-placeholder"
 import { formatDistanceToNow } from "date-fns"
 import { Button } from "@/components/ui/button"
-import {
-  Bold,
-  Italic,
-  List,
-  ListOrdered,
-  Code,
-  Heading1,
-  Heading2,
-  Heart,
-} from "lucide-react"
+import { Bold, Italic, List, ListOrdered, Code, Heading1, Heading2, Heart } from "lucide-react"
 
-interface Solution {
+// --------------------
+// Types
+// --------------------
+export interface Solution {
   id: string
   content: string
-  authorId?: string | null
+  author: string
   createdAt: string
   likes: number
-  parentId?: string | null
   replies: Solution[]
+}
+
+// The local data structure if you need to store or show the question info
+interface LocalQuestion {
+  id: string
+  title: string
+  content: string
+  solutions: Solution[]
+}
+
+// Props for the top-level "QuestionSolutions" component
+interface QuestionSolutionsProps {
+  questionId: string // questionId from parent
 }
 
 interface AdvancedEditorProps {
   onSubmit: (content: string) => void
 }
-function AdvancedEditor({ onSubmit }: AdvancedEditorProps) {
+
+// Simple list of disallowed words (for demonstration):
+const PROFANITY_LIST = [
+  "fuck", "shit", "bitch", "asshole", "dick", "cunt", 
+  // Add more if needed
+]
+
+// --------------------
+// AdvancedEditor
+// --------------------
+export function AdvancedEditor({ onSubmit }: AdvancedEditorProps) {
+  const [error, setError] = useState<string>("")
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -40,22 +58,55 @@ function AdvancedEditor({ onSubmit }: AdvancedEditorProps) {
     ],
     editorProps: {
       attributes: {
-        class: "prose prose-sm max-w-none font-light tracking-tight focus:outline-none min-h-[100px] p-2",
+        class:
+          "prose prose-sm max-w-none font-light tracking-tight focus:outline-none min-h-[100px] p-2",
       },
     },
   })
 
-  const handleSubmit = () => {
-    if (editor && editor.getText().trim()) {
-      onSubmit(editor.getHTML())
-      editor.commands.clearContent()
+  // Simple profanity check
+  const checkProfanity = (text: string) => {
+    const lower = text.toLowerCase()
+    for (const badWord of PROFANITY_LIST) {
+      if (lower.includes(badWord)) {
+        return true
+      }
     }
+    return false
   }
 
-  if (!editor) return null
+  const handleSubmit = () => {
+    if (!editor) return
+    const plainText = editor.getText().trim() // plain text from the editor
+
+    if (!plainText) {
+      setError("Please enter some text.")
+      return
+    }
+
+    // Check for profanity
+    if (checkProfanity(plainText)) {
+      setError("Your message contains offensive language, please remove it.")
+      return
+    }
+
+    // If all good, call onSubmit with the HTML
+    onSubmit(editor.getHTML())
+    editor.commands.clearContent()
+    setError("")
+  }
+
+  if (!editor) {
+    return null
+  }
 
   return (
     <div className="space-y-4 border rounded-md p-2">
+      {error && (
+        <p className="text-red-500 text-sm font-light tracking-tight">
+          {error}
+        </p>
+      )}
       <div className="flex flex-wrap items-center gap-2 mb-2">
         <Button
           size="icon"
@@ -114,6 +165,7 @@ function AdvancedEditor({ onSubmit }: AdvancedEditorProps) {
           <Code className="h-4 w-4" />
         </Button>
       </div>
+
       <EditorContent editor={editor} />
 
       <div className="flex justify-end">
@@ -128,7 +180,10 @@ function AdvancedEditor({ onSubmit }: AdvancedEditorProps) {
   )
 }
 
-function SolutionForm({ onSubmit }: { onSubmit: (content: string) => void }) {
+// --------------------
+// SolutionForm
+// --------------------
+export function SolutionForm({ onSubmit }: { onSubmit: (content: string) => void }) {
   return (
     <div className="space-y-2">
       <AdvancedEditor onSubmit={onSubmit} />
@@ -136,7 +191,10 @@ function SolutionForm({ onSubmit }: { onSubmit: (content: string) => void }) {
   )
 }
 
-function SingleSolution({
+// --------------------
+// Single solution block
+// --------------------
+export function Solution({
   solution,
   onReply,
   onLike,
@@ -152,10 +210,7 @@ function SingleSolution({
       <div className="flex items-start space-x-2">
         <div className="flex-grow">
           <div className="flex items-center space-x-2">
-            <span className="font-medium text-sm tracking-tight">
-              {/* If you had user data, else fallback */}
-              {solution.authorId || "Anonymous"}
-            </span>
+            <span className="font-medium text-sm tracking-tight">{solution.author}</span>
             <span className="text-xs text-gray-500 font-light tracking-tight">
               {formatDistanceToNow(new Date(solution.createdAt), { addSuffix: true })}
             </span>
@@ -202,7 +257,7 @@ function SingleSolution({
       {solution.replies.length > 0 && (
         <div className="ml-4 mt-2 space-y-2 border-l border-gray-200 pl-4">
           {solution.replies.map((reply) => (
-            <SingleSolution
+            <Solution
               key={reply.id}
               solution={reply}
               onReply={onReply}
@@ -215,47 +270,35 @@ function SingleSolution({
   )
 }
 
-export default function QuestionSolutions({
-  questionId,
-}: {
-  questionId: string | undefined
-}) {
+// --------------------
+// QuestionSolutions
+// (Fetches from /api/questions/[questionId]/solutions, etc.)
+// --------------------
+export function QuestionSolutions({ questionId }: QuestionSolutionsProps) {
   const [solutions, setSolutions] = useState<Solution[]>([])
-  const [loading, setLoading] = useState(false)
 
-  // -------------
-  // Fetch solutions
-  // -------------
-  async function fetchSolutions() {
-    if (!questionId) return
-    setLoading(true)
+  // For demonstration, we might fetch solutions from your /api route
+  // and store them in local state:
+  const fetchSolutions = useCallback(async () => {
     try {
-      const res = await fetch(`/api/questions/${questionId}/solutions`, {
-        cache: "no-store",
-      })
+      const res = await fetch(`/api/questions/${questionId}/solutions`)
       if (!res.ok) {
-        throw new Error("Failed to load solutions.")
+        console.error("Failed to load solutions")
+        return
       }
       const data = await res.json()
-      setSolutions(data.solutions || [])
+      setSolutions(data)
     } catch (err) {
-      console.error(err)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  useEffect(() => {
-    if (questionId) {
-      fetchSolutions()
+      console.error("Error fetching solutions:", err)
     }
   }, [questionId])
 
-  // -------------
-  // Add solution
-  // -------------
-  async function handleAddSolution(content: string) {
-    if (!questionId) return
+  useEffect(() => {
+    fetchSolutions()
+  }, [fetchSolutions])
+
+  // Add top-level solution
+  const handleAddSolution = async (content: string) => {
     try {
       const res = await fetch(`/api/questions/${questionId}/solutions`, {
         method: "POST",
@@ -263,22 +306,18 @@ export default function QuestionSolutions({
         body: JSON.stringify({ content }),
       })
       if (!res.ok) {
-        throw new Error("Failed to create solution.")
+        console.error("Failed to create solution")
+        return
       }
-      // The newly created solution
-      const newSol = await res.json()
-      // Refresh or push to local state
-      setSolutions((prev) => [newSol, ...prev])
+      // We can refetch or push the new solution locally
+      await fetchSolutions()
     } catch (err) {
-      console.error(err)
+      console.error("Error creating solution:", err)
     }
   }
 
-  // -------------
-  // Reply
-  // -------------
-  async function handleReplySolution(parentId: string, content: string) {
-    if (!questionId) return
+  // Reply to an existing solution
+  const handleReplySolution = async (parentId: string, content: string) => {
     try {
       const res = await fetch(`/api/questions/${questionId}/solutions`, {
         method: "POST",
@@ -286,67 +325,47 @@ export default function QuestionSolutions({
         body: JSON.stringify({ content, parentId }),
       })
       if (!res.ok) {
-        throw new Error("Failed to create reply.")
+        console.error("Failed to create reply")
+        return
       }
-      const reply = await res.json()
-      // Insert the reply into local state
-      setSolutions((prev) => addReplyToList(prev, parentId, reply))
+      // Refetch
+      await fetchSolutions()
     } catch (err) {
-      console.error(err)
+      console.error("Error creating reply:", err)
     }
   }
 
-  function addReplyToList(list: Solution[], parentId: string, reply: Solution): Solution[] {
-    return list.map((sol) => {
-      if (sol.id === parentId) {
-        return { ...sol, replies: [...sol.replies, reply] }
+  // Like a solution
+  const handleLikeSolution = async (solutionId: string) => {
+    try {
+      const res = await fetch(`/api/questions/${questionId}/solutions`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ solutionId, like: true }),
+      })
+      if (!res.ok) {
+        console.error("Failed to like solution")
+        return
       }
-      if (sol.replies.length > 0) {
-        return { ...sol, replies: addReplyToList(sol.replies, parentId, reply) }
-      }
-      return sol
-    })
-  }
-
-  // -------------
-  // Like solution (example: you might do a PATCH)
-  // -------------
-  async function handleLikeSolution(id: string) {
-    // For demonstration, we won't implement a separate route here
-    // We'll just simulate a local "like" increment
-    setSolutions((prev) => incrementLike(prev, id))
-  }
-
-  function incrementLike(list: Solution[], solId: string): Solution[] {
-    return list.map((sol) => {
-      if (sol.id === solId) {
-        return { ...sol, likes: sol.likes + 1 }
-      }
-      if (sol.replies.length > 0) {
-        return { ...sol, replies: incrementLike(sol.replies, solId) }
-      }
-      return sol
-    })
-  }
-
-  if (!questionId) {
-    return <div className="text-sm text-gray-400">No question selected.</div>
+      // Refetch
+      await fetchSolutions()
+    } catch (err) {
+      console.error("Error liking solution:", err)
+    }
   }
 
   return (
-    <div className="space-y-4">
-      <h3 className="text-lg font-medium tracking-tight mb-2">Solutions</h3>
+    <div className="space-y-6">
+      <div>
+        <h2 className="text-lg font-medium tracking-tight mb-2">Solutions</h2>
+        {/* Editor for new top-level solution */}
+        <SolutionForm onSubmit={handleAddSolution} />
+      </div>
 
-      {/* Solution editor */}
-      <SolutionForm onSubmit={handleAddSolution} />
-
-      {/* Loading state */}
-      {loading && <div className="text-sm text-gray-500">Loading solutions...</div>}
-
-      {/* Render solutions */}
-      <div className="space-y-4 mt-4">
+      {/* Render existing solutions */}
+      <div className="space-y-4">
         {solutions.map((sol) => (
-          <SingleSolution
+          <Solution
             key={sol.id}
             solution={sol}
             onReply={handleReplySolution}

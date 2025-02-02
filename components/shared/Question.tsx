@@ -34,9 +34,12 @@ import { Badge } from "@/components/ui/badge"
 import { Flag, ChevronDown, X } from "lucide-react"
 import FeedbackPopover from "./FeedbackPopover"
 
-// Example placeholder import (if you had a discussion component):
-// import { QuestionSolutions } from "@/components/shared/QuestionSolutions"
+// --- Import your Tiptap-based solution discussion component: ---
+import { QuestionSolutions } from "./QuestionSolutions"
 
+// -----------------------------------------
+// Enums & Types
+// -----------------------------------------
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
@@ -49,7 +52,7 @@ type QuestionTypeString =
   | "Numerical"
   | "integer"
   | "Subjective"
-  | "Mcqm"      // multiple correct
+  | "Mcqm"
   | "Fill Blanks"
   | "T/f"
   | string
@@ -60,7 +63,7 @@ interface QuestionType {
   text?: string
   options?: string[]
   markscheme?: string
-  explanation?: string   // new field for markscheme/explanation
+  explanation?: string
   correctOption?: string
   diagramUrl?: string
   exam?: string
@@ -103,9 +106,9 @@ interface QuestionProps {
   onPreviousQuestion?: () => void
 }
 
-// ----------------------------
+// -----------------------------------------
 // Outline color logic
-// ----------------------------
+// -----------------------------------------
 function getOutlineClass(feedback: string | undefined, isMarkedForReview: boolean): string {
   if (isMarkedForReview) {
     // Subtle yellow
@@ -122,6 +125,9 @@ function getOutlineClass(feedback: string | undefined, isMarkedForReview: boolea
   }
 }
 
+// -----------------------------------------
+// Main Question component
+// -----------------------------------------
 export default function Question({
   question,
   feedback,
@@ -146,14 +152,15 @@ export default function Question({
 }: QuestionProps) {
   const displayNumber = currentQuestionIndex + 1
 
-  // Old UI states
+  // MCQ tracking
   const [pendingOption, setPendingOption] = useState<string | null>(null)
   const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(selectedOption || null)
 
+  // For showing the markscheme modal
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false)
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled)
 
-  // Additional question-type states
+  // Additional question-type local states
   const [mcqmSelections, setMcqmSelections] = useState<string[]>([]) // for MCQM
   const [fillBlanksInput, setFillBlanksInput] = useState<string>("") // for Fill Blanks
   const [subjectiveAnswer, setSubjectiveAnswer] = useState<string>("") // for Subjective
@@ -170,24 +177,24 @@ export default function Question({
   // Toast
   const { toast } = useToast()
 
-  // Swipe (left/right)
+  // Swipe handlers
   const handlers = useSwipeable({
     onSwipedLeft: () => onNextQuestion && onNextQuestion(),
     onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
     trackMouse: true,
   })
 
-  // Show/hide discussion state
+  // Expandable discussion
   const [showDiscussion, setShowDiscussion] = useState(false)
 
-  // Sync localSelectedOption if parent changes
+  // Keep localSelectedOption in sync
   useEffect(() => {
     setLocalSelectedOption(selectedOption || null)
   }, [selectedOption])
 
-  // ----------------------------
+  // -----------------------------------------
   // Tag logic: add & remove
-  // ----------------------------
+  // -----------------------------------------
   async function handleAddTag() {
     if (!newTag || !question.questionId) return
     if (localCustomTags.includes(newTag)) {
@@ -216,7 +223,6 @@ export default function Question({
       })
     }
   }
-
   async function handleRemoveTag(tag: string) {
     if (!question.questionId) return
     const updated = localCustomTags.filter((t) => t !== tag)
@@ -241,9 +247,9 @@ export default function Question({
     }
   }
 
-  // ----------------------------
-  // Mark Complete / Flag
-  // ----------------------------
+  // -----------------------------------------
+  // Mark Complete & Flag
+  // -----------------------------------------
   async function toggleComplete(checked: boolean) {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId, checked)
@@ -264,7 +270,6 @@ export default function Question({
       })
     }
   }
-
   async function toggleReview() {
     if (!question.questionId) return
     const newVal = !isMarkedForReview
@@ -287,9 +292,9 @@ export default function Question({
     }
   }
 
-  // ----------------------------
-  // Old UI MCQ block
-  // ----------------------------
+  // -----------------------------------------
+  // MCQ logic
+  // -----------------------------------------
   function handleOptionSelect(letter: string) {
     setPendingOption(letter)
   }
@@ -300,13 +305,12 @@ export default function Question({
     setLocalSelectedOption(pendingOption)
   }
   function cleanOptionText(option: string): string {
-    // Remove "A: " prefix etc.
     return option.replace(/^[A-D]:\s?/i, "").trim()
   }
 
-  // ----------------------------
-  // Old UI Numerical block
-  // ----------------------------
+  // -----------------------------------------
+  // Numerical logic
+  // -----------------------------------------
   async function handleNumericalSubmitLocal() {
     if (!question.questionId) return
     await handleNumericalSubmit(
@@ -316,24 +320,24 @@ export default function Question({
     )
   }
 
-  // ----------------------------
-  // Additional blocks (T/f, Fill Blanks, Mcqm, Subjective)
-  // ----------------------------
-
-  // MCQM
+  // -----------------------------------------
+  // MCQM (multiple correct)
+  // -----------------------------------------
   function handleMcqmToggle(letter: string) {
-    setMcqmSelections((prev) => {
-      if (prev.includes(letter)) return prev.filter((x) => x !== letter)
-      return [...prev, letter]
-    })
+    setMcqmSelections((prev) =>
+      prev.includes(letter) ? prev.filter((x) => x !== letter) : [...prev, letter]
+    )
   }
   async function handleMcqmSubmit() {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId, true)
+    // we store the user’s selections as a JSON string, for instance
     handleOptionClick(question.questionId, JSON.stringify(mcqmSelections), question.correctOption ?? "")
   }
 
-  // T/f
+  // -----------------------------------------
+  // T/f logic
+  // -----------------------------------------
   const tfOptions = ["True", "False"]
   async function handleTfSubmit(answer: string) {
     if (!question.questionId) return
@@ -342,23 +346,27 @@ export default function Question({
     setLocalSelectedOption(answer)
   }
 
-  // Fill Blanks
+  // -----------------------------------------
+  // Fill Blanks logic
+  // -----------------------------------------
   async function handleFillBlanksSubmit() {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId, true)
     handleNumericalSubmit(question.questionId, fillBlanksInput, question.correctOption ?? "")
   }
 
-  // Subjective
+  // -----------------------------------------
+  // Subjective logic
+  // -----------------------------------------
   async function handleSubjectiveSubmit() {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId, true)
     handleNumericalSubmit(question.questionId, subjectiveAnswer, question.correctOption ?? "")
   }
 
-  // ----------------------------
+  // -----------------------------------------
   // Difficulty rating
-  // ----------------------------
+  // -----------------------------------------
   async function handleDifficultyChange(newRating: number) {
     if (!question.questionId) return
     setLocalDifficultyRating(newRating)
@@ -391,6 +399,9 @@ export default function Question({
     }
   }
 
+  // -----------------------------------------
+  // Render
+  // -----------------------------------------
   return (
     <TooltipProvider>
       <div {...handlers} className="relative pb-20" id={`question-${question.questionId}`}>
@@ -437,7 +448,7 @@ export default function Question({
                   </div>
                 )}
 
-                {/* Custom Tags */}
+                {/* Custom tags */}
                 {localCustomTags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="px-2 py-1">
                     {tag}
@@ -707,7 +718,7 @@ export default function Question({
               </div>
             )}
 
-            {/* ---------- MCQM ---------- */}
+            {/* ---------- MCQM (multi-correct) ---------- */}
             {(question.type === "Mcqm" || question.type?.toLowerCase() === "mcqm") &&
               question.options &&
               question.options.length > 0 && (
@@ -809,7 +820,8 @@ export default function Question({
               )}
 
             {/* ---------- T/f ---------- */}
-            {(question.type === "T/f" || question.type?.toLowerCase() === "t/f" ||
+            {(question.type === "T/f" ||
+              question.type?.toLowerCase() === "t/f" ||
               question.type?.toLowerCase() === "true/false") && (
               <div className="mb-4 flex gap-4">
                 {tfOptions.map((val) => (
@@ -966,7 +978,7 @@ export default function Question({
               </div>
             )}
 
-            {/* ---------- Feedback banner ---------- */}
+            {/* Feedback banner */}
             {feedback && (
               <div
                 className={`mt-4 p-2 rounded ${
@@ -977,7 +989,7 @@ export default function Question({
               </div>
             )}
 
-            {/* ---------- Show Markscheme Button ---------- */}
+            {/* Show Markscheme */}
             {markschemeEnabled && (
               <div className="mt-4">
                 <Tooltip>
@@ -999,7 +1011,7 @@ export default function Question({
               </div>
             )}
 
-            {/* ---------- Difficulty Dropdown ---------- */}
+            {/* Difficulty dropdown */}
             <div className="flex items-center space-x-2 mt-4">
               <label className="text-sm text-gray-600 dark:text-gray-300">Difficulty:</label>
               <Select
@@ -1031,17 +1043,14 @@ export default function Question({
             </div>
           </CardContent>
 
-          {/* ---------- CardFooter with Discussion Toggle ---------- */}
+          {/* CardFooter with Discussion Toggle */}
           <CardFooter className="flex items-center justify-end">
-            <Button
-              variant="outline"
-              onClick={() => setShowDiscussion(!showDiscussion)}
-            >
+            <Button variant="outline" onClick={() => setShowDiscussion(!showDiscussion)}>
               {showDiscussion ? "Hide" : "Discussion"}
             </Button>
           </CardFooter>
 
-          {/* ---------- Discussion Section (Expandable) ---------- */}
+          {/* Expandable Discussion Section */}
           <AnimatePresence>
             {showDiscussion && (
               <motion.div
@@ -1055,20 +1064,22 @@ export default function Question({
                     Comment Section
                   </p>
                   {/* 
-                    Insert your comment component here. E.g.:
-                    <QuestionSolutions questionId={question.questionId} />
-                    For now, just a placeholder:
+                    Insert the Tiptap-based discussion here:
                   */}
-                  <div className="text-xs text-gray-500 dark:text-gray-400">
-                    This is where your fully featured comment section & tiptap editor will appear.
-                  </div>
+                  {question.questionId ? (
+                    <QuestionSolutions questionId={question.questionId} />
+                  ) : (
+                    <div className="text-xs text-gray-500 dark:text-gray-400">
+                      No questionId found.
+                    </div>
+                  )}
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
         </Card>
 
-        {/* ---------- Markscheme (Explanation) Modal ---------- */}
+        {/* Markscheme (Explanation) Modal */}
         <AnimatePresence>
           {showMarkschemeModal && (
             <motion.div
@@ -1096,7 +1107,8 @@ export default function Question({
                 <CardContent>
                   <div className="overflow-y-auto max-h-[60vh] custom-scrollbar">
                     {question.explanation
-                      ? typeof question.explanation === "string" && question.explanation.startsWith("http") ? (
+                      ? typeof question.explanation === "string" &&
+                        question.explanation.startsWith("http") ? (
                           <div className="relative w-full max-w-lg mx-auto">
                             <Image
                               src={question.explanation}
@@ -1108,7 +1120,7 @@ export default function Question({
                           </div>
                         ) : (
                           <div className="latex-font">
-                            {/* If question.explanation is JSON or a string */}
+                            {/* If question.explanation is JSON or text */}
                             <MathRenderer text={String(question.explanation || "")} />
                           </div>
                         )
