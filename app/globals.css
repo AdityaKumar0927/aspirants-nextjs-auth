@@ -1,208 +1,246 @@
+/* globals.css */
+
+/* ----------------------------------------------
+   Tailwind base, components, utilities
+---------------------------------------------- */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @import "katex/dist/katex.min.css";
 
+/* Smooth scrolling for anchor links */
 html {
   scroll-behavior: smooth;
 }
 
+/* Example hover group styles */
 .group:hover .group-hover\:text-white {
-    color: white;
-  }
-  
-  .group:hover .group-hover\:-rotate-180 {
-    transform: rotate(-180deg);
-  }
-  
-  .group:hover .group-hover\:mb-0 {
-    margin-bottom: 0;
-  }
-  
-  .group:hover .group-hover\:mr-0 {
-    margin-right: 0;
-  }
-  
-  .pomodoro-timer {
-    background-color: #fff;
-    border: 2px solid #000;
-    border-radius: 12px;
-    padding: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 200px;
-    height: 100px;
-    display: none; /* Hide by default */
-    display: block;
-  }
-  
-  .pomodoro-controls {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
-  }
-  
-  
-  .hover-glow {
-    transition: box-shadow 0.3s ease;
-  }
-  
-  .hover-glow:hover {
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
-  }
-  
-  .glassmorphism {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-  }
-  
-  @layer base {
-    .tiptap {
-      ul, ol {
-        @apply pl-4 my-5;
-        li p {
-          @apply my-1;
-        }
+  color: white;
+}
+
+.group:hover .group-hover\:-rotate-180 {
+  transform: rotate(-180deg);
+}
+
+.group:hover .group-hover\:mb-0 {
+  margin-bottom: 0;
+}
+
+.group:hover .group-hover\:mr-0 {
+  margin-right: 0;
+}
+
+/* Pomodoro timer demo styles */
+.pomodoro-timer {
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 200px;
+  height: 100px;
+  display: none; /* Hide by default */
+  display: block;
+}
+
+.pomodoro-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Hover glow effect */
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+}
+
+/* Glassmorphism example */
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* -------------------------------------------------
+   TipTap editor custom base styles
+--------------------------------------------------- */
+@layer base {
+  .tiptap {
+    ul,
+    ol {
+      @apply pl-4 my-5;
+      li p {
+        @apply my-1;
       }
-      h1, h2, h3, h4, h5, h6 {
-        @apply leading-tight mt-10 break-words;
-      }
-      h1, h2 {
-        @apply mt-14 mb-6;
-      }
-      h1 { 
-        @apply text-xl; 
-      }
-      h2 { 
-        @apply text-lg; 
-      }
-      h3 { 
-        @apply text-base; 
-      }
-      h4, h5, h6 { 
-        @apply text-sm; 
-      }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply leading-tight mt-10 break-words;
+    }
+
+    h1,
+    h2 {
+      @apply mt-14 mb-6;
+    }
+
+    h1 {
+      @apply text-xl;
+    }
+    h2 {
+      @apply text-lg;
+    }
+    h3 {
+      @apply text-base;
+    }
+    h4,
+    h5,
+    h6 {
+      @apply text-sm;
+    }
+
+    code {
+      @apply bg-purple-100 rounded text-black text-xs px-1.5 py-0.5;
+    }
+    pre {
+      @apply bg-black text-white rounded p-3 text-xs my-6;
       code {
-        @apply bg-purple-100 rounded text-black text-xs px-1.5 py-0.5;
-      }
-      pre {
-        @apply bg-black text-white rounded p-3 text-xs my-6;
-        code {
-          @apply bg-none text-white text-xs p-0;
-        }
-      }
-      blockquote {
-        @apply border-l-4 border-gray-300 pl-4 my-6;
-      }
-      hr {
-        @apply border-none border-t border-gray-200 my-8;
+        @apply bg-none text-white text-xs p-0;
       }
     }
+    blockquote {
+      @apply border-l-4 border-gray-300 pl-4 my-6;
+    }
+    hr {
+      @apply border-none border-t border-gray-200 my-8;
+    }
+  }
+}
+
+/* -------------------------------------------------
+   Light & Dark Theme Variables
+   If you want to keep a dark theme but not start
+   in dark mode, comment out or remove the .dark {}
+   block below. This means the site will remain
+   in light mode unless you manually add .dark
+   to <html> or <body>.
+--------------------------------------------------- */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 215 20.2% 65.1%;
+
+    --radius: 0.5rem;
   }
 
-  
-  @layer base {
-    :root {
-      --background: 0 0% 100%;
-      --foreground: 222.2 47.4% 11.2%;
-   
-      --muted: 210 40% 96.1%;
-      --muted-foreground: 215.4 16.3% 46.9%;
-   
-      --popover: 0 0% 100%;
-      --popover-foreground: 222.2 47.4% 11.2%;
-   
-      --border: 214.3 31.8% 91.4%;
-      --input: 214.3 31.8% 91.4%;
-   
-      --card: 0 0% 100%;
-      --card-foreground: 222.2 47.4% 11.2%;
-   
-      --primary: 222.2 47.4% 11.2%;
-      --primary-foreground: 210 40% 98%;
-   
-      --secondary: 210 40% 96.1%;
-      --secondary-foreground: 222.2 47.4% 11.2%;
-   
-      --accent: 210 40% 96.1%;
-      --accent-foreground: 222.2 47.4% 11.2%;
-   
-      --destructive: 0 100% 50%;
-      --destructive-foreground: 210 40% 98%;
-   
-      --ring: 215 20.2% 65.1%;
-   
-      --radius: 0.5rem;
-    }
-   
-    .dark {
-      --background: 224 71% 4%;
-      --foreground: 213 31% 91%;
-   
-      --muted: 223 47% 11%;
-      --muted-foreground: 215.4 16.3% 56.9%;
-   
-      --accent: 216 34% 17%;
-      --accent-foreground: 210 40% 98%;
-   
-      --popover: 224 71% 4%;
-      --popover-foreground: 215 20.2% 65.1%;
-   
-      --border: 216 34% 17%;
-      --input: 216 34% 17%;
-   
-      --card: 224 71% 4%;
-      --card-foreground: 213 31% 91%;
-   
-      --primary: 210 40% 98%;
-      --primary-foreground: 222.2 47.4% 1.2%;
-   
-      --secondary: 222.2 47.4% 11.2%;
-      --secondary-foreground: 210 40% 98%;
-   
-      --destructive: 0 63% 31%;
-      --destructive-foreground: 210 40% 98%;
-   
-      --ring: 216 34% 17%;
-   
-      --radius: 0.5rem;
-    }
+  /*
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 216 34% 17%;
+    --radius: 0.5rem;
   }
-   
-  @layer base {
-    * {
-      @apply border-border;
-    }
-    body {
-      @apply bg-background text-foreground;
-      font-feature-settings: "rlig" 1, "calt" 1;
-    }
+  */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* -------------------------------------------------
+   Additional color variables for charts or theming
+--------------------------------------------------- */
+@layer base {
+  :root {
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
 
-  @layer base {
-    :root {
-      --chart-1: 12 76% 61%;
-      --chart-2: 173 58% 39%;
-      --chart-3: 197 37% 24%;
-      --chart-4: 43 74% 66%;
-      --chart-5: 27 87% 67%;
-    }
-  
-    .dark {
-      --chart-1: 220 70% 50%;
-      --chart-2: 160 60% 45%;
-      --chart-3: 30 80% 55%;
-      --chart-4: 280 65% 60%;
-      --chart-5: 340 75% 55%;
-    }
-  }
-  
-  /* Add this to your global CSS file or adjust your Tailwind configuration */
+  /* .dark {
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  } */
+}
+
+/* -------------------------------------------------
+   Utility classes, overlays, background images
+--------------------------------------------------- */
 .loading-overlay {
   position: fixed;
   inset: 0;
@@ -214,57 +252,49 @@ html {
 }
 
 .bg-background-image {
-  background-image: url('/ventura.jpg');
+  background-image: url("/ventura.jpg");
   background-size: cover;
   background-position: center;
   overflow: hidden;
 }
 
 .bg-background-image2 {
-  background-image: url('/imac.jpg');
+  background-image: url("/imac.jpg");
   background-size: cover;
   background-position: center;
-  border-radius: 2rem; /* Adjust the value as needed */
-  overflow: hidden;
-}
-
-.bg-background-image4 {
-  background-image: url('/beach.jpg');
-  background-size: cover;
-  background-position: center;
-  border-radius: 2rem; /* Adjust the value as needed */
+  border-radius: 2rem;
   overflow: hidden;
 }
 
 .bg-background-image3 {
-  background-image: url('/background.png');
+  background-image: url("/background.png");
   background-size: cover;
   background-position: center;
-  border-radius: 2rem; /* Adjust the value as needed */
+  border-radius: 2rem;
   overflow: hidden;
 }
 
-/* Change the text selection background color to red and the text color to white */
+.bg-background-image4 {
+  background-image: url("/beach.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 2rem;
+  overflow: hidden;
+}
+
+/* Custom text selection styling */
 ::selection {
   background-color: rgb(237, 243, 249);
   color: rgb(100, 100, 237);
 }
 
-
-:root {
-  --color-1: 0 100% 63%;
-  --color-2: 270 100% 63%;
-  --color-3: 210 100% 63%;
-  --color-4: 195 100% 63%;
-  --color-5: 90 100% 63%;
-}
-
+/* KaTeX font override for math rendering */
 .latex-font {
   font-family: 'KaTeX_Main', serif !important;
-  /* fallback "serif" or something similar if KaTeX_Main isn't found */
+  /* fallback if KaTeX_Main isn't found */
 }
 
-/* e.g. in globals.css or any global style file */
+/* Custom scrollbar styling */
 .custom-scrollbar {
   scrollbar-width: thin; /* for Firefox */
   scrollbar-color: #9ca3af #f3f4f6; /* thumb color, track color */
@@ -280,6 +310,7 @@ html {
   border-radius: 5px;
 }
 
+/* Sample toast success styling */
 .toast--success {
   border-left: 4px solid #15803d; /* dark green */
   background-color: #ecfdf5;      /* light green */

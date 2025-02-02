@@ -97,6 +97,13 @@ export default function Page() {
                 className="mx-auto mt-6 flex flex-col sm:flex-row animate-fade-up items-center justify-center space-y-4 sm:space-y-0 sm:space-x-5 opacity-0"
                 style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}
               >
+                <Link className="group flex max-w-fit items-center" href="QuestionBank/guest">
+                  <ShimmerButton className="shadow-2xl">
+                    <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:text-dark-background lg:text-lg">
+                      Try Now
+                    </span>
+                  </ShimmerButton>
+                </Link>
                 <Link className="items-center justify-center space-x-2 hidden" href="BrowseResources">
                   <ShinyButton text="Browse Resources" />
                 </Link>

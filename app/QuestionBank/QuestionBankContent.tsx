@@ -32,6 +32,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Progress } from "@/components/ui/progress";
 import Popover from "@/components/shared/popover";
 import Question from "@/components/shared/Question";
+import { DialogClose } from "@/components/ui/dialog";
 
 /* ------------------------------------------------------------------
    1) Enums & Types
@@ -907,27 +908,47 @@ export default function QuestionBankContent() {
           </Button>
 
           <Dialog open={progressOpen} onOpenChange={setProgressOpen}>
-            <DialogContent
-              className={`
-                bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
-                flex flex-col custom-scrollbar
-                pt-10
-                w-screen h-screen
-                sm:w-[500px] sm:h-auto sm:max-h-[90vh]
-                sm:left-1/2 sm:top-1/2 sm:fixed
-                sm:-translate-x-1/2 sm:-translate-y-1/2
-                sm:rounded-md
-              `}
-            >
-              {/* top bar */}
-              <div className="flex items-center justify-between mb-4 px-4">
-                <h2 className="text-xl font-semibold">Progress</h2>
-              </div>
-              <ScrollArea className="px-4 flex-1 custom-scrollbar">
-                <ProgressCard />
-              </ScrollArea>
-            </DialogContent>
-          </Dialog>
+  <DialogContent
+    className={`
+      fixed inset-0       /* fills mobile screen */
+      sm:fixed sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2
+      w-screen h-screen   /* full for mobile */
+      sm:w-[500px] sm:h-auto sm:max-h-[90vh]
+      bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
+      sm:rounded-md
+      flex flex-col
+    `}
+  >
+    {/* Position close button absolutely */}
+    <DialogClose className="absolute top-4 right-4">
+      <Button variant="ghost" size="icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M10 8.586l3.95-3.95a1 1 0 111.414 1.414L11.414 10l3.95 3.95a1 1 0 01-1.414 1.414L10 11.414l-3.95 3.95a1 1 0 01-1.414-1.414L8.586 10l-3.95-3.95A1 1 0 016.05 4.636L10 8.586z"
+            clipRule="evenodd"
+          />
+        </svg>
+      </Button>
+    </DialogClose>
+
+    {/* Title or top bar */}
+    <div className="px-4 pb-4 pt-10 sm:pt-4 sm:pb-0">
+      <h2 className="text-xl font-semibold">Progress</h2>
+    </div>
+
+    {/* Scrollable body */}
+    <ScrollArea className="px-4 flex-1 custom-scrollbar">
+      <ProgressCard />
+    </ScrollArea>
+  </DialogContent>
+</Dialog>
+
 
           {/* Single question in mobile */}
           <Question
