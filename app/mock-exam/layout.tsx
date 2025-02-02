@@ -14,6 +14,9 @@ import { LoadingProvider } from "@/components/layout/LoadingContext"
 import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext"
 import { ThemeProvider } from "../components/theme-provider"
 
+// ⬇ Import for route checking
+import { usePathname } from "next/navigation"
+
 config.autoAddCss = false
 
 export const metadata = {
@@ -30,18 +33,26 @@ const getUserId = () => {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const userId = getUserId()
 
+  // (A) We read the current pathname
+  const pathname = usePathname()
+  const hideFooter = pathname.startsWith("/mock-exam")
+
   return (
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://rsms.me/" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-        <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script
+          async
+          id="MathJax-script"
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        ></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.MathJax = {
                 tex: {
-                  inlineMath: [['$', '$'], ['\$$', '\$$']],
+                  inlineMath: [['$', '$'], ['\\$\\$', '\\$\\$']],
                   displayMath: [['$$', '$$'], ['\\[', '\\]']],
                 },
                 options: {
@@ -80,18 +91,37 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className={cx(sfPro.variable, inter.variable, "bg-white dark:bg-gray-950")}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+      {/* (B) Use your custom-scrollbar class on the body or main container */}
+      <body
+        className={cx(
+          sfPro.variable,
+          inter.variable,
+          "bg-white dark:bg-gray-950 custom-scrollbar" // custom-scrollbar added here
+        )}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <LoadingProvider>
             <UserPerformanceProvider userId={userId}>
               <TooltipProvider>
-                <div className="fixed inset-0 z-[-10]"></div>
+                <div className="fixed inset-0 z-[-10]" />
                 <Suspense fallback="...">
                   <Nav />
                 </Suspense>
-                <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">{children}</main>
+
+                <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
+                  {children}
+                </main>
+
                 <Bar userId={userId} />
-                <Footer />
+
+                {/* (A) Render Footer only if not on /mock-exam */}
+                {!hideFooter && <Footer />}
+
                 <VercelAnalytics />
               </TooltipProvider>
               <Toaster />
@@ -102,4 +132,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   )
 }
-
