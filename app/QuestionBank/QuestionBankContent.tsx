@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-  useReducer,
-  useEffect,
-  useCallback,
-  useMemo,
-  useState,
-} from "react";
+import React, { useReducer, useEffect, useCallback, useMemo, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { motion, AnimatePresence } from "framer-motion";
@@ -47,7 +41,31 @@ enum ViewMode {
   MOBILE = "mobile",
 }
 
-// Add customTags to FilterKey
+type QuestionTypeString = "Multiple Choice" | "Numerical" | string;
+
+interface QuestionType {
+  id: number;
+  questionId: string;
+  text: string;
+  subject?: string;
+  topic?: string;
+  subtopic?: string;
+  difficulty?: string;
+  type?: QuestionTypeString;
+  year?: number;
+  reviewed?: boolean;
+  completed?: boolean;
+  options?: string[];
+  correctOption?: string;
+  // We keep `explanation` as the DB field for markschemes
+  explanation?: string;
+  notes?: string;
+  diagramUrl?: string;
+  exam?: string;
+  customTags?: string[];  // <--- We also filter by these
+  difficultyRating?: number;
+}
+
 type FilterKey =
   | "exams"
   | "subjects"
@@ -56,7 +74,7 @@ type FilterKey =
   | "difficulties"
   | "years"
   | "types"
-  | "customTags";
+  | "customTags"; // <--- NEW filter key for custom tags
 
 type FiltersType = {
   [K in FilterKey]: string[];
@@ -76,29 +94,7 @@ interface FilterOptionsType {
   difficulties: string[];
   years: string[];
   types: string[];
-  customTags: string[];
-}
-
-interface QuestionType {
-  id: number;
-  questionId: string;
-  text: string;
-  subject?: string;
-  topic?: string;
-  subtopic?: string;
-  difficulty?: string;
-  type?: string;
-  year?: number;
-  reviewed?: boolean;
-  completed?: boolean;
-  options?: string[];
-  correctOption?: string;
-  explanation?: string; // Markscheme in DB
-  notes?: string;
-  diagramUrl?: string;
-  exam?: string;
-  customTags?: string[]; // Filtered
-  difficultyRating?: number;
+  customTags: string[]; // <--- We'll populate these from /api/filters if available
 }
 
 interface GlobalStats {
@@ -118,9 +114,8 @@ type StateType = {
   numericalAnswers: Record<string, string | undefined>;
   showMarkscheme: Record<string, boolean>;
   selectedOptions: Record<string, string | undefined>;
-  loading: boolean;              // for questions
-  actionLoading: boolean;        // for patching
-  filterOptionsLoading: boolean; // for filter options
+  loading: boolean;
+  actionLoading: boolean;
   viewMode: ViewMode;
   currentPage: number;
   totalCount: number;
@@ -129,7 +124,7 @@ type StateType = {
 };
 
 /* ------------------------------------------------------------------
-   2) Actions
+   2) Action
    ------------------------------------------------------------------ */
 type ActionType =
   | { type: "SET_QUESTIONS"; payload: QuestionType[] }
@@ -143,7 +138,6 @@ type ActionType =
   | { type: "SET_SELECTED_OPTIONS"; payload: Record<string, string | undefined> }
   | { type: "SET_LOADING"; payload: boolean }
   | { type: "SET_ACTION_LOADING"; payload: boolean }
-  | { type: "SET_FILTER_OPTIONS_LOADING"; payload: boolean }
   | { type: "SET_VIEW_MODE"; payload: ViewMode }
   | { type: "SET_CURRENT_PAGE"; payload: number }
   | { type: "SET_TOTAL_COUNT"; payload: number }
@@ -159,7 +153,7 @@ function fuzzyContains(haystack: string, needle: string): boolean {
 }
 
 function transformFilterItem(value: string): string {
-  // e.g. "my-tag" => "My Tag"
+  // Replace hyphens with spaces, then Title Case each word
   const replaced = value.replace(/-/g, " ");
   return replaced
     .split(" ")
@@ -187,7 +181,7 @@ const initialState: StateType = {
     difficulties: [],
     years: [],
     types: [],
-    customTags: [],
+    customTags: [], // <--- new
     status: "all",
   },
   filterOptions: {
@@ -198,7 +192,7 @@ const initialState: StateType = {
     difficulties: [],
     years: [],
     types: [],
-    customTags: [],
+    customTags: [], // <--- new
   },
   searchQuery: "",
   dropdowns: {
@@ -209,7 +203,7 @@ const initialState: StateType = {
     difficulties: false,
     years: false,
     types: false,
-    customTags: false,
+    customTags: false, // <--- new
   },
   feedback: {},
   numericalAnswers: {},
@@ -217,7 +211,6 @@ const initialState: StateType = {
   selectedOptions: {},
   loading: true,
   actionLoading: false,
-  filterOptionsLoading: false, // <- for skeleton if filter fetch is ongoing
   viewMode: ViewMode.DESKTOP,
   currentPage: 1,
   totalCount: 0,
@@ -263,8 +256,6 @@ function reducer(state: StateType, action: ActionType): StateType {
       return { ...state, loading: action.payload };
     case "SET_ACTION_LOADING":
       return { ...state, actionLoading: action.payload };
-    case "SET_FILTER_OPTIONS_LOADING":
-      return { ...state, filterOptionsLoading: action.payload };
     case "SET_VIEW_MODE":
       return { ...state, viewMode: action.payload };
     case "SET_CURRENT_PAGE":
@@ -347,12 +338,11 @@ export default function QuestionBankContent() {
      (A) Fetch filter options
      ------------------------------ */
   const fetchFilterOptions = useCallback(async () => {
-    dispatch({ type: "SET_FILTER_OPTIONS_LOADING", payload: true });
     try {
       const res = await fetch("/api/filters", { cache: "no-store" });
       if (!res.ok) throw new Error("Failed to fetch distinct filter fields.");
       const raw = await res.json();
-      // Expect raw.customTags, etc.
+      // We now expect `raw.customTags` for custom tag suggestions if you have them
       const data: FilterOptionsType = {
         exams: raw.exams ?? [],
         subjects: raw.subjects ?? [],
@@ -361,18 +351,17 @@ export default function QuestionBankContent() {
         difficulties: raw.difficulties ?? [],
         years: raw.years ?? [],
         types: raw.types ?? [],
-        customTags: raw.customTags ?? [],
+        customTags: raw.customTags ?? [], // <--- new
       };
       dispatch({ type: "SET_FILTER_OPTIONS", payload: data });
     } catch (err) {
       console.error("Error fetching filter options:", err);
+      // *** Improved toast styling for error
       toast({
         title: "Error",
         description: "Could not load filter fields. Try again later.",
-        variant: "destructive",
+        variant: "destructive", // triggers a red-themed toast
       });
-    } finally {
-      dispatch({ type: "SET_FILTER_OPTIONS_LOADING", payload: false });
     }
   }, [toast]);
 
@@ -392,8 +381,11 @@ export default function QuestionBankContent() {
       if (difficulties.length) params.set("difficulty", arrToComma(difficulties));
       if (years.length) params.set("year", arrToComma(years));
       if (types.length) params.set("type", arrToComma(types));
-      // Use customTag=...
-      if (customTags.length) params.set("customTag", arrToComma(customTags));
+
+      // NEW: customTags
+      if (customTags.length) {
+        params.set("customTags", arrToComma(customTags));
+      }
 
       const statsUrl = `/api/questions/stats?${params.toString()}`;
       const resp = await fetch(statsUrl, { cache: "no-store" });
@@ -411,6 +403,7 @@ export default function QuestionBankContent() {
       dispatch({ type: "SET_GLOBAL_STATS", payload: stats });
     } catch (err) {
       console.error("Error fetching global stats:", err);
+      // We won't toast every stats error, but you could.
     }
   }, [state.filters]);
 
@@ -421,18 +414,24 @@ export default function QuestionBankContent() {
     dispatch({ type: "SET_LOADING", payload: true });
     try {
       const { currentPage, pageSize, filters } = state;
+      const { exams, subjects, topics, subtopics, difficulties, years, types, customTags } =
+        filters;
+
       const arrToComma = (arr: string[]) => arr.join(",");
 
       const params = new URLSearchParams();
-      if (filters.exams.length)      params.set("exam", arrToComma(filters.exams));
-      if (filters.subjects.length)   params.set("subject", arrToComma(filters.subjects));
-      if (filters.topics.length)     params.set("topic", arrToComma(filters.topics));
-      if (filters.subtopics.length)  params.set("subtopic", arrToComma(filters.subtopics));
-      if (filters.difficulties.length) params.set("difficulty", arrToComma(filters.difficulties));
-      if (filters.years.length)      params.set("year", arrToComma(filters.years));
-      if (filters.types.length)      params.set("type", arrToComma(filters.types));
-      // Our new param => customTag
-      if (filters.customTags.length) params.set("customTag", arrToComma(filters.customTags));
+      if (exams.length) params.set("exam", arrToComma(exams));
+      if (subjects.length) params.set("subject", arrToComma(subjects));
+      if (topics.length) params.set("topic", arrToComma(topics));
+      if (subtopics.length) params.set("subtopic", arrToComma(subtopics));
+      if (difficulties.length) params.set("difficulty", arrToComma(difficulties));
+      if (years.length) params.set("year", arrToComma(years));
+      if (types.length) params.set("type", arrToComma(types));
+
+      // NEW: customTags
+      if (customTags.length) {
+        params.set("customTags", arrToComma(customTags));
+      }
 
       params.set("page", String(currentPage));
       params.set("pageSize", String(pageSize));
@@ -449,14 +448,16 @@ export default function QuestionBankContent() {
       let totalCount = 0;
 
       if (Array.isArray(result)) {
+        // If the API returns a plain array
         data = result;
         totalCount = data.length;
       } else if (result.data) {
+        // If the API returns { data, totalCount }
         data = result.data;
         totalCount = result.totalCount;
       }
 
-      // Example: sort by numeric portion of questionId
+      // Sort by numeric portion of questionId
       data = data.sort((a, b) => {
         const aId = a.questionId?.match(/\d+/)?.[0] || "0";
         const bId = b.questionId?.match(/\d+/)?.[0] || "0";
@@ -467,6 +468,7 @@ export default function QuestionBankContent() {
       dispatch({ type: "SET_TOTAL_COUNT", payload: totalCount });
     } catch (err) {
       console.error("Error fetching questions:", err);
+      // *** Improved toast styling for error
       toast({
         title: "Error",
         description: "Failed to load questions. Try again later.",
@@ -477,7 +479,7 @@ export default function QuestionBankContent() {
     }
   }, [state.filters, state.currentPage, state.pageSize, toast]);
 
-  // Initial load
+  // Initial load of filters + stats
   useEffect(() => {
     fetchFilterOptions();
     fetchGlobalStats();
@@ -490,11 +492,8 @@ export default function QuestionBankContent() {
   }, [state.filters, state.currentPage, fetchQuestions, fetchGlobalStats]);
 
   /* ------------------------------
-     8) Action Handlers
+     8) Handlers (mark complete, etc.)
      ------------------------------ */
-  // ... e.g. handleMarkComplete, handleMarkForReview, etc.
-  //  (Same as your original code snippet)
-
   const handleMarkComplete = useCallback(
     async (questionId: string, newVal?: boolean) => {
       dispatch({ type: "SET_ACTION_LOADING", payload: true });
@@ -525,11 +524,141 @@ export default function QuestionBankContent() {
     [state.questions, toast]
   );
 
-  // Similarly handleMarkForReview, handleOptionClick, handleNumericalSubmit, handleResetQuestion
-  // ... unchanged from your snippet
+  const handleMarkForReview = useCallback(
+    async (questionId: string, newVal?: boolean) => {
+      dispatch({ type: "SET_ACTION_LOADING", payload: true });
+      try {
+        const val = newVal ?? true;
+        await fetch("/api/questions", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ questionId, reviewed: val }),
+        });
+        dispatch({
+          type: "SET_QUESTIONS",
+          payload: state.questions.map((q) =>
+            q.questionId === questionId ? { ...q, reviewed: val } : q
+          ),
+        });
+      } catch (err) {
+        console.error("Error marking review:", err);
+        toast({
+          title: "Error",
+          description: "Could not update the review flag.",
+          variant: "destructive",
+        });
+      } finally {
+        dispatch({ type: "SET_ACTION_LOADING", payload: false });
+      }
+    },
+    [state.questions, toast]
+  );
+
+  const handleOptionClick = useCallback(
+    (questionId: string, option: string, correct: string) => {
+      const isCorrect = option === correct;
+      dispatch({
+        type: "SET_FEEDBACK",
+        payload: { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" },
+      });
+      dispatch({
+        type: "SET_SELECTED_OPTIONS",
+        payload: { ...state.selectedOptions, [questionId]: option },
+      });
+      dispatch({
+        type: "SET_QUESTIONS",
+        payload: state.questions.map((q) =>
+          q.questionId === questionId ? { ...q, completed: true } : q
+        ),
+      });
+    },
+    [state.feedback, state.selectedOptions, state.questions]
+  );
+
+  const handleNumericalSubmit = useCallback(
+    async (questionId: string, userAns: string, correctAns: string) => {
+      dispatch({ type: "SET_ACTION_LOADING", payload: true });
+      try {
+        const isCorrect = userAns === correctAns;
+        dispatch({
+          type: "SET_FEEDBACK",
+          payload: { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" },
+        });
+        dispatch({
+          type: "SET_NUMERICAL_ANSWERS",
+          payload: { ...state.numericalAnswers, [questionId]: userAns },
+        });
+
+        await fetch("/api/questions", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ questionId, completed: true }),
+        });
+
+        dispatch({
+          type: "SET_QUESTIONS",
+          payload: state.questions.map((q) =>
+            q.questionId === questionId ? { ...q, completed: true } : q
+          ),
+        });
+      } catch (err) {
+        console.error("Error marking numeric answer:", err);
+        toast({
+          title: "Error",
+          description: "Could not submit numeric answer.",
+          variant: "destructive",
+        });
+      } finally {
+        dispatch({ type: "SET_ACTION_LOADING", payload: false });
+      }
+    },
+    [state.feedback, state.numericalAnswers, state.questions, toast]
+  );
+
+  const handleResetQuestion = useCallback(
+    async (questionId: string) => {
+      dispatch({ type: "SET_ACTION_LOADING", payload: true });
+      try {
+        dispatch({
+          type: "SET_FEEDBACK",
+          payload: { ...state.feedback, [questionId]: undefined },
+        });
+        dispatch({
+          type: "SET_SELECTED_OPTIONS",
+          payload: { ...state.selectedOptions, [questionId]: undefined },
+        });
+        dispatch({
+          type: "SET_NUMERICAL_ANSWERS",
+          payload: { ...state.numericalAnswers, [questionId]: undefined },
+        });
+        dispatch({
+          type: "SET_QUESTIONS",
+          payload: state.questions.map((q) =>
+            q.questionId === questionId ? { ...q, completed: false, reviewed: false } : q
+          ),
+        });
+
+        await fetch("/api/questions", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ questionId, completed: false, reviewed: false }),
+        });
+      } catch (err) {
+        console.error("Error resetting question:", err);
+        toast({
+          title: "Error",
+          description: "Could not reset the question.",
+          variant: "destructive",
+        });
+      } finally {
+        dispatch({ type: "SET_ACTION_LOADING", payload: false });
+      }
+    },
+    [state.feedback, state.selectedOptions, state.numericalAnswers, state.questions, toast]
+  );
 
   /* ------------------------------
-     9) Filtering for display
+     9) Filtered local questions
      ------------------------------ */
   const filteredQuestions = useMemo(() => {
     const s = state.searchQuery.toLowerCase();
@@ -558,7 +687,15 @@ export default function QuestionBankContent() {
     const progressPct = total > 0 ? Math.round((answered / total) * 100) : 0;
 
     return (
-      <Card className="bg-gradient-to-br from-gray-200 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-gray-100 border-gray-200 dark:border-gray-700 mb-6">
+      <Card
+        className="
+          bg-gradient-to-br from-gray-200 to-gray-100
+          dark:from-gray-900 dark:to-gray-800
+          text-gray-900 dark:text-gray-100
+          border-gray-200 dark:border-gray-700
+          mb-6
+        "
+      >
         <CardContent className="p-6">
           <h2 className="text-2xl font-light tracking-tight text-gray-800 dark:text-gray-200 mb-6">
             Question Progress
@@ -649,9 +786,9 @@ export default function QuestionBankContent() {
   }
 
   /* ------------------------------
-     11) Skeleton if ANY loading
+     11) Loading Skeleton
      ------------------------------ */
-  if (state.loading || state.actionLoading || state.filterOptionsLoading) {
+  if (state.loading || state.actionLoading) {
     return (
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full text-gray-900 dark:text-gray-100">
@@ -682,12 +819,9 @@ export default function QuestionBankContent() {
     );
   }
 
-  // ------------------------------------------------------------------
-  // 12) MOBILE vs DESKTOP RENDER
-  // (same as your original code, minus changes to customTags param)
-  // ------------------------------------------------------------------
-
-  // If in MOBILE...
+  /* ------------------------------------------------------------------
+     12) MOBILE VIEW
+     ------------------------------------------------------------------ */
   if (state.viewMode === ViewMode.MOBILE) {
     if (!filteredQuestions.length) {
       return (
@@ -695,9 +829,7 @@ export default function QuestionBankContent() {
           <div className="max-w-3xl mx-auto">
             <Button
               variant="outline"
-              onClick={() =>
-                dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.DESKTOP })
-              }
+              onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.DESKTOP })}
               className="border-gray-300 font-medium text-gray-700 dark:border-gray-600 dark:text-gray-100"
             >
               Desktop View
@@ -708,7 +840,7 @@ export default function QuestionBankContent() {
       );
     }
 
-    // One question at a time
+    // Single question for mobile
     const currentQ = filteredQuestions[mobileIndex];
     const total = filteredQuestions.length;
     const displayNumber = mobileIndex + 1;
@@ -716,15 +848,13 @@ export default function QuestionBankContent() {
     return (
       <div className="min-h-screen p-4 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900">
         <div className="max-w-3xl mx-auto">
-          {/* top bar */}
+          {/* Top bar */}
           <div className="flex justify-between items-center mb-6">
             <Button
               variant="outline"
               size="sm"
               className="border-gray-300 font-medium text-gray-700 dark:border-gray-600 dark:text-gray-100"
-              onClick={() =>
-                dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.DESKTOP })
-              }
+              onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.DESKTOP })}
             >
               Desktop View
             </Button>
@@ -766,7 +896,7 @@ export default function QuestionBankContent() {
             </div>
           </div>
 
-          {/* Mobile progress */}
+          {/* Button for progress modal */}
           <Button
             variant="outline"
             size="sm"
@@ -802,20 +932,33 @@ export default function QuestionBankContent() {
             </DialogContent>
           </Dialog>
 
-          {/* Single question display */}
+          {/* Single question in mobile */}
           <Question
             question={currentQ}
             feedback={state.feedback[currentQ.questionId]}
             selectedOption={state.selectedOptions[currentQ.questionId]}
             numericalAnswer={state.numericalAnswers[currentQ.questionId]}
             showMarkscheme={state.showMarkscheme[currentQ.questionId] || false}
-            handleOptionClick={/* same as your snippet */ () => {}}
-            handleNumericalSubmit={/* ... */ () => {}}
-            handleNumericalChange={/* ... */ () => {}}
-            handleMarkschemeToggle={/* ... */ () => {}}
-            handleMarkForReview={/* ... */ () => {}}
-            handleMarkComplete={/* ... */ () => {}}
-            handleResetQuestion={/* ... */ () => {}}
+            handleOptionClick={handleOptionClick}
+            handleNumericalSubmit={handleNumericalSubmit}
+            handleNumericalChange={(qId, val) => {
+              dispatch({
+                type: "SET_NUMERICAL_ANSWERS",
+                payload: { ...state.numericalAnswers, [qId]: val },
+              });
+            }}
+            handleMarkschemeToggle={(qId) => {
+              dispatch({
+                type: "SET_SHOW_MARKSCHEME",
+                payload: {
+                  ...state.showMarkscheme,
+                  [qId]: !state.showMarkscheme[qId],
+                },
+              });
+            }}
+            handleMarkForReview={handleMarkForReview}
+            handleMarkComplete={handleMarkComplete}
+            handleResetQuestion={handleResetQuestion}
             isMarkedForReview={!!currentQ.reviewed}
             isMarkedComplete={!!currentQ.completed}
             markschemesDisabled={false}
@@ -824,7 +967,7 @@ export default function QuestionBankContent() {
             handleQuestionChange={() => {}}
           />
 
-          {/* Prev/Next mobile */}
+          {/* Next/Prev on mobile */}
           <div className="flex justify-between mt-6">
             <Button
               variant="outline"
@@ -848,9 +991,9 @@ export default function QuestionBankContent() {
     );
   }
 
-  // ------------------------------------------------------------------
-  // 13) DESKTOP VIEW
-  // ------------------------------------------------------------------
+  /* ------------------------------------------------------------------
+     13) DESKTOP VIEW
+     ------------------------------------------------------------------ */
   if (!filteredQuestions.length) {
     return (
       <div className="bg-white dark:bg-gray-900 w-full min-h-screen p-4 sm:p-8 text-gray-900 dark:text-gray-100">
@@ -875,9 +1018,7 @@ export default function QuestionBankContent() {
           <div className="flex justify-end mb-4">
             <Button
               variant="outline"
-              onClick={() =>
-                dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.MOBILE })
-              }
+              onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.MOBILE })}
             >
               Switch to Mobile View
             </Button>
@@ -892,9 +1033,7 @@ export default function QuestionBankContent() {
                 type="text"
                 placeholder="Search questions..."
                 value={state.searchQuery}
-                onChange={(e) =>
-                  dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })
-                }
+                onChange={(e) => dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })}
                 className="pl-10 dark:text-gray-100 dark:bg-gray-800 dark:placeholder-gray-400"
               />
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-300" />
@@ -947,8 +1086,7 @@ export default function QuestionBankContent() {
                 <ScrollArea className="h-[60vh] custom-scrollbar">
                   <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 p-4">
                     {filteredQuestions.map((q, index) => {
-                      const absoluteIndex =
-                        (state.currentPage - 1) * state.pageSize + index;
+                      const absoluteIndex = (state.currentPage - 1) * state.pageSize + index;
                       const displayNum = absoluteIndex + 1;
                       return (
                         <Button
@@ -995,10 +1133,7 @@ export default function QuestionBankContent() {
                 <button
                   key={st}
                   onClick={() =>
-                    dispatch({
-                      type: "SET_FILTERS",
-                      payload: { ...state.filters, status: st },
-                    })
+                    dispatch({ type: "SET_FILTERS", payload: { ...state.filters, status: st } })
                   }
                   className={`
                     px-4 py-2 rounded-md transition-colors
@@ -1015,7 +1150,7 @@ export default function QuestionBankContent() {
             })}
           </div>
 
-          {/* Desktop Filter Popovers (including new "customTags") */}
+          {/* Desktop Filter Popovers, including new "customTags" */}
           <div className="hidden sm:flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
             {(
               [
@@ -1026,7 +1161,7 @@ export default function QuestionBankContent() {
                 "difficulties",
                 "years",
                 "types",
-                "customTags",
+                "customTags", // <--- new
               ] as FilterKey[]
             ).map((filterType) => {
               const filterValues = state.filterOptions[filterType] || [];
@@ -1037,10 +1172,7 @@ export default function QuestionBankContent() {
                   align="start"
                   openPopover={isOpen}
                   setOpenPopover={(open) => {
-                    dispatch({
-                      type: "SET_DROPDOWN",
-                      payload: { tag: filterType, value: !!open },
-                    });
+                    dispatch({ type: "SET_DROPDOWN", payload: { tag: filterType, value: !!open } });
                   }}
                   content={
                     <div className="p-2 w-full sm:w-80 bg-white dark:bg-gray-800 rounded-md custom-scrollbar max-h-60 overflow-auto">
@@ -1081,12 +1213,13 @@ export default function QuestionBankContent() {
             })}
           </div>
 
-          {/* Desktop Questions + Pagination */}
+          {/* Desktop: Questions List + Pagination */}
           {state.questions.length > 0 ? (
             <>
               {filteredQuestions.map((q, index) => {
                 const absoluteIndex = (state.currentPage - 1) * state.pageSize + index;
                 const displayNum = absoluteIndex + 1;
+
                 return (
                   <Question
                     key={q.questionId}
@@ -1095,14 +1228,26 @@ export default function QuestionBankContent() {
                     selectedOption={state.selectedOptions[q.questionId]}
                     numericalAnswer={state.numericalAnswers[q.questionId]}
                     showMarkscheme={state.showMarkscheme[q.questionId] || false}
-                    // The same handlers as your snippet
-                    handleOptionClick={() => {}}
-                    handleNumericalSubmit={() => {}}
-                    handleNumericalChange={() => {}}
-                    handleMarkschemeToggle={() => {}}
-                    handleMarkForReview={() => {}}
-                    handleMarkComplete={() => {}}
-                    handleResetQuestion={() => {}}
+                    handleOptionClick={handleOptionClick}
+                    handleNumericalSubmit={handleNumericalSubmit}
+                    handleNumericalChange={(qid, val) => {
+                      dispatch({
+                        type: "SET_NUMERICAL_ANSWERS",
+                        payload: { ...state.numericalAnswers, [qid]: val },
+                      });
+                    }}
+                    handleMarkschemeToggle={(qid) => {
+                      dispatch({
+                        type: "SET_SHOW_MARKSCHEME",
+                        payload: {
+                          ...state.showMarkscheme,
+                          [qid]: !state.showMarkscheme[qid],
+                        },
+                      });
+                    }}
+                    handleMarkForReview={handleMarkForReview}
+                    handleMarkComplete={handleMarkComplete}
+                    handleResetQuestion={handleResetQuestion}
                     isMarkedForReview={!!q.reviewed}
                     isMarkedComplete={!!q.completed}
                     markschemesDisabled={false}
@@ -1133,7 +1278,7 @@ export default function QuestionBankContent() {
 }
 
 /* ------------------------------------------------------------------
-   14) Desktop Filter Search
+   14) Desktop Filter Search Sub-component
    ------------------------------------------------------------------ */
 function DesktopFilterSearch({
   filterType,
@@ -1148,14 +1293,16 @@ function DesktopFilterSearch({
 }) {
   const [searchTerm, setSearchTerm] = useState("");
 
+  // 1) Filter by searchTerm
+  // 2) Sort so that selected items are at the top
   const displayedValues = useMemo(() => {
-    let arr = [...filterValues];
+    let arr = filterValues;
     if (searchTerm) {
       const lower = searchTerm.toLowerCase();
       arr = arr.filter((val) => val.toLowerCase().includes(lower));
     }
-    // sort selected to top
-    arr.sort((a, b) => {
+    // Sort selected items first
+    arr = arr.sort((a, b) => {
       const aSel = state.filters[filterType].includes(a);
       const bSel = state.filters[filterType].includes(b);
       if (aSel && !bSel) return -1;
@@ -1168,7 +1315,7 @@ function DesktopFilterSearch({
   const toggleItem = useCallback(
     (val: string) => {
       const isSelected = state.filters[filterType].includes(val);
-      let newArr: string[] = [];
+      let newArr: string[];
       if (isSelected) {
         newArr = state.filters[filterType].filter((x) => x !== val);
       } else {
@@ -1179,7 +1326,7 @@ function DesktopFilterSearch({
         payload: { ...state.filters, [filterType]: newArr },
       });
     },
-    [state.filters, filterType, dispatch]
+    [state.filters, dispatch, filterType]
   );
 
   return (
@@ -1204,14 +1351,10 @@ function DesktopFilterSearch({
                 backgroundColor: isSelected ? "#E6F7FF" : "rgba(229, 231, 235, 0.5)",
               }}
               whileHover={{
-                backgroundColor: isSelected
-                  ? "#CCEEFF"
-                  : "rgba(229, 231, 235, 0.8)",
+                backgroundColor: isSelected ? "#CCEEFF" : "rgba(229, 231, 235, 0.8)",
               }}
               whileTap={{
-                backgroundColor: isSelected
-                  ? "#B3E6FF"
-                  : "rgba(229, 231, 235, 0.9)",
+                backgroundColor: isSelected ? "#B3E6FF" : "rgba(229, 231, 235, 0.9)",
               }}
               transition={{
                 ...transitionProps,
@@ -1264,16 +1407,8 @@ function DesktopFilterSearch({
 }
 
 /* ------------------------------------------------------------------
-   15) Mobile Filters
+   15) Mobile Filters Dialog
    ------------------------------------------------------------------ */
-// same as your original code, but searching "customTags" => "customTag" in queries
-interface CustomFiltersDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  state: StateType;
-  dispatch: React.Dispatch<ActionType>;
-}
-
 function FiltersDialogMobile({
   open,
   onOpenChange,
@@ -1295,6 +1430,16 @@ function FiltersDialogMobile({
   );
 }
 
+/* ------------------------------------------------------------------
+   16) Actual Filters Dialog Content (Mobile)
+   ------------------------------------------------------------------ */
+interface CustomFiltersDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  state: StateType;
+  dispatch: React.Dispatch<ActionType>;
+}
+
 function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDialogProps) {
   const [searches, setSearches] = useState<Record<FilterKey, string>>({
     exams: "",
@@ -1304,18 +1449,21 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
     difficulties: "",
     years: "",
     types: "",
-    customTags: "",
+    customTags: "", // new
   });
 
   const handleSearchChange = (category: FilterKey, value: string) => {
     setSearches((prev) => ({ ...prev, [category]: value }));
   };
 
-  function filterAndSort(items: string[], cat: FilterKey) {
-    let arr = items.slice();
+  // filter & sort selected to top
+  const filterAndSort = (items: string[], cat: FilterKey) => {
+    let arr = items;
     const st = searches[cat]?.toLowerCase() || "";
-    if (st) arr = arr.filter((it) => it.toLowerCase().includes(st));
-    // put selected on top
+    if (st) {
+      arr = arr.filter((it) => it.toLowerCase().includes(st));
+    }
+    // selected => top
     arr = arr.sort((a, b) => {
       const aSel = state.filters[cat].includes(a);
       const bSel = state.filters[cat].includes(b);
@@ -1324,15 +1472,16 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
       return 0;
     });
     return arr;
-  }
+  };
 
   const toggleItem = (category: FilterKey, item: string) => {
-    const isSel = state.filters[category].includes(item);
+    const oldArr = state.filters[category];
+    const isSel = oldArr.includes(item);
     let newArr: string[];
     if (isSel) {
-      newArr = state.filters[category].filter((i) => i !== item);
+      newArr = oldArr.filter((i) => i !== item);
     } else {
-      newArr = [...state.filters[category], item];
+      newArr = [...oldArr, item];
     }
     dispatch({
       type: "SET_FILTERS",
@@ -1340,6 +1489,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
     });
   };
 
+  // Reusable ring style for the status row
   function mobileStatusStyle(selected: boolean) {
     return `
       inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
@@ -1364,6 +1514,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
         `}
         style={{ overflowY: "auto" }}
       >
+        {/* top bar */}
         <div className="flex items-center justify-between px-4 py-3 border-b dark:border-gray-700">
           <h2 className="text-2xl font-semibold tracking-tight text-gray-800 dark:text-gray-100">
             Filters
@@ -1406,7 +1557,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
               </div>
             </div>
 
-            {/* Filter sections for each category */}
+            {/* Each filter category, including customTags */}
             <MobileFilterSection
               title="exams"
               items={filterAndSort(state.filterOptions.exams, "exams")}
@@ -1480,6 +1631,9 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
   );
 }
 
+/* ------------------------------------------------------------------
+   17) Mobile Filter Section
+   ------------------------------------------------------------------ */
 interface MobileFilterSectionProps {
   title: string;
   items: string[];
