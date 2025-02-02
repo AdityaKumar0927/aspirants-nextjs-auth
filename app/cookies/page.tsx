@@ -5,14 +5,18 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 
 export default function CookiePolicy() {
   return (
-    <div className="min-h-screen bg-background text-foreground dark:bg-dark-background dark:text-gray-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-background text-foreground dark:bg-gray-900 dark:text-gray-100 py-8 px-4 sm:px-6 lg:px-8 font-sans tracking-tight leading-relaxed">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl sm:text-4xl font-bold mb-2 text-gray-900 dark:text-gray-100">Cookie Policy</h1>
-        <p className="text-sm text-muted-foreground dark:text-gray-400 mb-6">Effective date: 1st September, 2024</p>
+        <h1 className="text-3xl sm:text-4xl font-light tracking-tighter mb-2 text-gray-900 dark:text-gray-100">
+          Cookie Policy
+        </h1>
+        <p className="text-sm font-light tracking-tight text-muted-foreground dark:text-gray-400 mb-6">
+          Effective date: 1st September, 2024
+        </p>
 
         <Card className="mb-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
           <CardContent className="p-4 sm:p-6">
-            <p className="text-sm text-muted-foreground dark:text-gray-300">
+            <p className="text-sm font-light tracking-tight text-muted-foreground dark:text-gray-300">
               This is the cookie policy for Aspirants (&quot;Aspirants&quot;, &quot;we&quot;, &quot;us&quot; or
               &quot;our&quot;). For more information about how we may use personal data, please read our privacy policy
               or contact us at aspirants.contact@gmail.com.
@@ -247,9 +251,9 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   return (
     <Card className="mb-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
       <CardHeader className="pb-3">
-        <CardTitle className="text-xl text-gray-900 dark:text-gray-100">{title}</CardTitle>
+        <CardTitle className="text-xl font-light tracking-tight text-gray-900 dark:text-gray-100">{title}</CardTitle>
       </CardHeader>
-      <CardContent>{children}</CardContent>
+      <CardContent className="text-sm font-light tracking-tight">{children}</CardContent>
     </Card>
   )
 }
@@ -265,22 +269,25 @@ function CookieTable({
 }) {
   return (
     <div className="mt-6">
-      <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">{title}</h3>
-      <p className="text-sm text-muted-foreground dark:text-gray-400 mb-4">{description}</p>
+      <h3 className="text-lg font-light tracking-tight mb-2 text-gray-900 dark:text-gray-100">{title}</h3>
+      <p className="text-sm font-light tracking-tight text-muted-foreground dark:text-gray-400 mb-4">{description}</p>
       <ScrollArea className="h-[300px] rounded-md border border-gray-200 dark:border-gray-700">
         <Table>
           <TableHeader>
-            <TableRow className="bg-gray-100 dark:bg-gray-800">
-              <TableHead className="w-[100px] text-gray-900 dark:text-gray-100">Name</TableHead>
-              <TableHead className="text-gray-900 dark:text-gray-100">Provider</TableHead>
-              <TableHead className="text-gray-900 dark:text-gray-100">Purpose</TableHead>
-              <TableHead className="text-gray-900 dark:text-gray-100">Expiry</TableHead>
-              <TableHead className="text-gray-900 dark:text-gray-100">Type</TableHead>
+            <TableRow className="bg-blue-50 dark:bg-blue-900">
+              <TableHead className="w-[100px] text-blue-800 dark:text-blue-200 font-semibold">Name</TableHead>
+              <TableHead className="text-blue-800 dark:text-blue-200 font-semibold">Provider</TableHead>
+              <TableHead className="text-blue-800 dark:text-blue-200 font-semibold">Purpose</TableHead>
+              <TableHead className="text-blue-800 dark:text-blue-200 font-semibold">Expiry</TableHead>
+              <TableHead className="text-blue-800 dark:text-blue-200 font-semibold">Type</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {cookies.map((cookie) => (
-              <TableRow key={cookie.name} className="border-b border-gray-200 dark:border-gray-700">
+            {cookies.map((cookie, index) => (
+              <TableRow
+                key={cookie.name}
+                className={`${index % 2 === 0 ? "bg-gray-50 dark:bg-gray-800" : "bg-white dark:bg-gray-900"} border-b border-gray-200 dark:border-gray-700`}
+              >
                 <TableCell className="font-medium text-gray-900 dark:text-gray-100">{cookie.name}</TableCell>
                 <TableCell className="text-gray-700 dark:text-gray-300">{cookie.provider}</TableCell>
                 <TableCell className="text-gray-700 dark:text-gray-300">{cookie.purpose}</TableCell>

@@ -88,18 +88,18 @@ model Feedback {
 }
 
 model Issue {
-  id          String         @id @default(uuid())
-  title       String
-  description String
-  status      IssueStatus    @default(OPEN)
-  priority    IssuePriority
-  area        IssueArea
-  createdAt   DateTime       @default(now())
-  updatedAt   DateTime       @updatedAt
-  createdById String
-  questionId  String?
+  id           String         @id @default(uuid())
+  title        String
+  description  String
+  status       IssueStatus    @default(OPEN)
+  priority     IssuePriority
+  area         IssueArea
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  createdById  String
+  questionId   String?
   resolvedById String?
-  userNotified Boolean       @default(false)
+  userNotified Boolean        @default(false)
 
   createdBy   User     @relation("Issue_createdByIdToUser", fields: [createdById], references: [id], onDelete: Cascade)
   question    Question? @relation(fields: [questionId], references: [questionId])
@@ -222,6 +222,7 @@ model Question {
   subjectGroup         String?
   topicName            String?
 
+  // Relations
   Feedback             Feedback[]
   Issue                Issue[]
   Note                 Note[]
@@ -231,6 +232,9 @@ model Question {
   UserAnswer           UserAnswer[]
   UserPerformance      UserPerformance[]
   UserProgress         UserProgress[]
+
+  // NEW: Each question can have multiple solutions
+  solutions            Solution[]
 }
 
 model Session {
@@ -254,10 +258,7 @@ model UserMockExam {
   updatedAt DateTime @updatedAt
   completed Boolean  @default(false)
 
-  /** Entire exam results object can go here. */
   results   Json?
-
-  // Relation to User
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
@@ -277,7 +278,6 @@ model User {
   updatedAt                      DateTime              @default(now())
   verifiedTeacher                Boolean               @default(false)
 
-  /** Relations to other models */
   Account                        Account[]
   AiUsageLog                     AiUsageLog[]
   Application                    Application[]
@@ -295,10 +295,10 @@ model User {
   UserProgress                   UserProgress[]
   UserSettings                   UserSettings?
   VolunteerTask                  VolunteerTask[]
-
-  /** Add this so Prisma recognizes both sides of the relation: */
   userMockExams                  UserMockExam[]
 
+  // NEW: If a user can author solutions
+  solutionsAuthored              Solution[] @relation("UserToSolutionsAuthored")
 }
 
 model UserAnswer {
@@ -481,4 +481,27 @@ enum SubscriptionTier {
   MODERATOR
   ADMIN
   INSTITUTION
+}
+
+/* ===============================================
+   NEW MODEL for "solutions" (comments)
+   =============================================== */
+model Solution {
+  id         String   @id @default(uuid())
+  questionId String
+  parentId   String?
+  authorId   String?
+  content    String
+  createdAt  DateTime @default(now())
+  likes      Int      @default(0)
+
+  // Relationship to Question
+  question Question @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+
+  // Self-relation for replies
+  parent  Solution?   @relation("SolutionReplies", fields: [parentId], references: [id])
+  replies Solution[]  @relation("SolutionReplies")
+
+  // If you want to track the user who wrote the solution
+  author User? @relation("UserToSolutionsAuthored", fields: [authorId], references: [id], onDelete: SetNull)
 }

@@ -34,6 +34,9 @@ import { Badge } from "@/components/ui/badge"
 import { Flag, ChevronDown, X } from "lucide-react"
 import FeedbackPopover from "./FeedbackPopover"
 
+// Example placeholder import (if you had a discussion component):
+// import { QuestionSolutions } from "@/components/shared/QuestionSolutions"
+
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
@@ -173,6 +176,9 @@ export default function Question({
     onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
     trackMouse: true,
   })
+
+  // Show/hide discussion state
+  const [showDiscussion, setShowDiscussion] = useState(false)
 
   // Sync localSelectedOption if parent changes
   useEffect(() => {
@@ -526,7 +532,7 @@ export default function Question({
               )}
             </div>
 
-            {/* ---------- The Old UI for MCQ ---------- */}
+            {/* ---------- MCQ ---------- */}
             {(question.type === "Multiple Choice" || question.type?.toLowerCase() === "mcq") &&
               question.options &&
               question.options.length > 0 && (
@@ -630,7 +636,7 @@ export default function Question({
                 </div>
               )}
 
-            {/* ---------- Old UI for Numerical/Integer ---------- */}
+            {/* ---------- Numerical ---------- */}
             {(question.type === "Numerical" ||
               question.type?.toLowerCase() === "numerical" ||
               question.type === "integer") && (
@@ -701,7 +707,7 @@ export default function Question({
               </div>
             )}
 
-            {/* ---------- MCQM (Multiple-correct) ---------- */}
+            {/* ---------- MCQM ---------- */}
             {(question.type === "Mcqm" || question.type?.toLowerCase() === "mcqm") &&
               question.options &&
               question.options.length > 0 && (
@@ -1025,7 +1031,41 @@ export default function Question({
             </div>
           </CardContent>
 
-          <CardFooter />
+          {/* ---------- CardFooter with Discussion Toggle ---------- */}
+          <CardFooter className="flex items-center justify-end">
+            <Button
+              variant="outline"
+              onClick={() => setShowDiscussion(!showDiscussion)}
+            >
+              {showDiscussion ? "Hide" : "Discussion"}
+            </Button>
+          </CardFooter>
+
+          {/* ---------- Discussion Section (Expandable) ---------- */}
+          <AnimatePresence>
+            {showDiscussion && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="border-t border-gray-300 dark:border-gray-700 p-4 max-h-[400px] overflow-y-auto">
+                  <p className="mb-2 text-sm font-semibold text-gray-800 dark:text-gray-200">
+                    Comment Section
+                  </p>
+                  {/* 
+                    Insert your comment component here. E.g.:
+                    <QuestionSolutions questionId={question.questionId} />
+                    For now, just a placeholder:
+                  */}
+                  <div className="text-xs text-gray-500 dark:text-gray-400">
+                    This is where your fully featured comment section & tiptap editor will appear.
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </Card>
 
         {/* ---------- Markscheme (Explanation) Modal ---------- */}
@@ -1055,12 +1095,8 @@ export default function Question({
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-y-auto max-h-[60vh] custom-scrollbar">
-                    {/** 
-                     * Prefer question.explanation if it exists; 
-                     * fallback to question.markscheme.
-                     */}
                     {question.explanation
-                      ? question.explanation.startsWith("http") ? (
+                      ? typeof question.explanation === "string" && question.explanation.startsWith("http") ? (
                           <div className="relative w-full max-w-lg mx-auto">
                             <Image
                               src={question.explanation}
@@ -1072,7 +1108,8 @@ export default function Question({
                           </div>
                         ) : (
                           <div className="latex-font">
-                            <MathRenderer text={question.explanation} />
+                            {/* If question.explanation is JSON or a string */}
+                            <MathRenderer text={String(question.explanation || "")} />
                           </div>
                         )
                       : question.markscheme
