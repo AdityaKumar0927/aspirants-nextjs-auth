@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
-import React, { useReducer, useEffect, useCallback, useMemo, useState } from "react";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useReducer, useEffect, useCallback, useMemo, useState } from "react"
+import Skeleton from "react-loading-skeleton"
+import "react-loading-skeleton/dist/skeleton.css"
+import { motion, AnimatePresence } from "framer-motion"
 import {
   Check,
   ChevronDown,
@@ -14,25 +14,26 @@ import {
   Filter,
   HelpCircle,
   Flag,
-} from "lucide-react";
+} from "lucide-react"
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Card, CardContent } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { useToast } from "@/components/ui/use-toast";
+} from "@/components/ui/dialog"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { TooltipProvider } from "@/components/ui/tooltip"
+import { useToast } from "@/components/ui/use-toast"
 
-import Popover from "@/components/shared/popover";
-import Question from "@/components/shared/Question";
+import Popover from "@/components/shared/popover"
+// IMPORTANT: This import points to your updated "Question" code:
+import Question from "@/components/shared/Question"
 
 /* ------------------------------------------------------------------
    1) Enums & Types
@@ -42,31 +43,31 @@ enum ViewMode {
   MOBILE = "mobile",
 }
 
-type QuestionTypeString = "Multiple Choice" | "Numerical" | string;
+type QuestionTypeString = "Multiple Choice" | "Numerical" | string
 
 interface QuestionType {
-  id: number;
-  questionId: string;
-  text: string;
-  exam?: string;
-  subject?: string;
-  topic?: string;
-  subtopic?: string;
-  difficulty?: string;
-  year?: number;
-  type?: QuestionTypeString;
-  options?: string[];
-  correctOption?: string;
+  id: number
+  questionId: string
+  text: string
+  exam?: string
+  subject?: string
+  topic?: string
+  subtopic?: string
+  difficulty?: string
+  year?: number
+  type?: QuestionTypeString
+  options?: string[]
+  correctOption?: string
 }
 
 interface FilterOptionsType {
-  exams: string[];
-  subjects: string[];
-  topics: string[];
-  subtopics: string[];
-  difficulties: string[];
-  years: string[];
-  types: string[];
+  exams: string[]
+  subjects: string[]
+  topics: string[]
+  subtopics: string[]
+  difficulties: string[]
+  years: string[]
+  types: string[]
 }
 
 type FilterKey =
@@ -76,54 +77,54 @@ type FilterKey =
   | "subtopics"
   | "difficulties"
   | "years"
-  | "types";
+  | "types"
 
 interface FiltersType {
-  exams: string[];
-  subjects: string[];
-  topics: string[];
-  subtopics: string[];
-  difficulties: string[];
-  years: string[];
-  types: string[];
-  status: "all" | "complete" | "review" | "incomplete";
+  exams: string[]
+  subjects: string[]
+  topics: string[]
+  subtopics: string[]
+  difficulties: string[]
+  years: string[]
+  types: string[]
+  status: "all" | "complete" | "review" | "incomplete"
 }
 
 type DropdownsType = {
-  [K in FilterKey]: boolean;
-};
+  [K in FilterKey]: boolean
+}
 
 interface StateType {
-  loading: boolean;
-  actionLoading: boolean;
-  viewMode: ViewMode;
+  loading: boolean
+  actionLoading: boolean
+  viewMode: ViewMode
 
   // The paginated subset from /api/questions
-  questions: QuestionType[];
+  questions: QuestionType[]
 
   // Distinct filter sets from /api/filters
-  filterOptions: FilterOptionsType;
+  filterOptions: FilterOptionsType
 
   // The user’s chosen filters
-  filters: FiltersType;
+  filters: FiltersType
 
   // Popover open states
-  dropdowns: DropdownsType;
+  dropdowns: DropdownsType
 
   // Search text
-  searchQuery: string;
+  searchQuery: string
 
   // Local progress
-  feedback: Record<string, string | undefined>;        // questionId => "correct"/"incorrect"
-  selectedOptions: Record<string, string | undefined>; // questionId => chosen MCQ letter
-  reviewed: Record<string, boolean>;                   // questionId => flagged
-  completed: Record<string, boolean>;                  // questionId => done
-  showMarkscheme: Record<string, boolean>;             // questionId => show/hide
+  feedback: Record<string, string | undefined>        // questionId => "correct"/"incorrect"
+  selectedOptions: Record<string, string | undefined> // questionId => chosen MCQ letter
+  reviewed: Record<string, boolean>                   // questionId => flagged
+  completed: Record<string, boolean>                  // questionId => done
+  showMarkscheme: Record<string, boolean>             // questionId => show/hide
 
   // Pagination
-  currentPage: number;
-  pageSize: number;
-  totalCount: number;
+  currentPage: number
+  pageSize: number
+  totalCount: number
 }
 
 // Action
@@ -142,23 +143,23 @@ type ActionType =
   | { type: "SET_COMPLETED"; payload: Record<string, boolean> }
   | { type: "SET_SHOW_MARKSCHEME"; payload: Record<string, boolean> }
   | { type: "SET_CURRENT_PAGE"; payload: number }
-  | { type: "SET_TOTAL_COUNT"; payload: number };
+  | { type: "SET_TOTAL_COUNT"; payload: number }
 
 /* ------------------------------------------------------------------
    2) Helpers
    ------------------------------------------------------------------ */
 function fuzzyContains(haystack: string, needle: string): boolean {
-  if (!needle) return true;
-  return haystack.toLowerCase().includes(needle.toLowerCase());
+  if (!needle) return true
+  return haystack.toLowerCase().includes(needle.toLowerCase())
 }
 
 function transformFilterItem(value: string): string {
   // Replace hyphens with spaces, then Title-Case
-  const replaced = value.replace(/-/g, " ");
+  const replaced = value.replace(/-/g, " ")
   return replaced
     .split(" ")
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(" ");
+    .join(" ")
 }
 
 const transitionProps = {
@@ -166,7 +167,7 @@ const transitionProps = {
   stiffness: 500,
   damping: 30,
   mass: 0.5,
-};
+}
 
 /* ------------------------------------------------------------------
    3) Reducer
@@ -174,17 +175,17 @@ const transitionProps = {
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
     case "SET_LOADING":
-      return { ...state, loading: action.payload };
+      return { ...state, loading: action.payload }
     case "SET_ACTION_LOADING":
-      return { ...state, actionLoading: action.payload };
+      return { ...state, actionLoading: action.payload }
     case "SET_VIEW_MODE":
-      return { ...state, viewMode: action.payload };
+      return { ...state, viewMode: action.payload }
     case "SET_QUESTIONS":
-      return { ...state, questions: action.payload };
+      return { ...state, questions: action.payload }
     case "SET_FILTER_OPTIONS":
-      return { ...state, filterOptions: action.payload };
+      return { ...state, filterOptions: action.payload }
     case "SET_FILTERS":
-      return { ...state, filters: action.payload };
+      return { ...state, filters: action.payload }
     case "SET_DROPDOWNS":
       return {
         ...state,
@@ -192,25 +193,25 @@ function reducer(state: StateType, action: ActionType): StateType {
           ...state.dropdowns,
           [action.payload.key]: action.payload.value,
         },
-      };
+      }
     case "SET_SEARCH_QUERY":
-      return { ...state, searchQuery: action.payload };
+      return { ...state, searchQuery: action.payload }
     case "SET_FEEDBACK":
-      return { ...state, feedback: action.payload };
+      return { ...state, feedback: action.payload }
     case "SET_SELECTED_OPTIONS":
-      return { ...state, selectedOptions: action.payload };
+      return { ...state, selectedOptions: action.payload }
     case "SET_REVIEWED":
-      return { ...state, reviewed: action.payload };
+      return { ...state, reviewed: action.payload }
     case "SET_COMPLETED":
-      return { ...state, completed: action.payload };
+      return { ...state, completed: action.payload }
     case "SET_SHOW_MARKSCHEME":
-      return { ...state, showMarkscheme: action.payload };
+      return { ...state, showMarkscheme: action.payload }
     case "SET_CURRENT_PAGE":
-      return { ...state, currentPage: action.payload };
+      return { ...state, currentPage: action.payload }
     case "SET_TOTAL_COUNT":
-      return { ...state, totalCount: action.payload };
+      return { ...state, totalCount: action.payload }
     default:
-      return state;
+      return state
   }
 }
 
@@ -259,7 +260,7 @@ const initialState: StateType = {
   currentPage: 1,
   pageSize: 10,
   totalCount: 0,
-};
+}
 
 /* ------------------------------------------------------------------
    5) Pagination Component
@@ -270,12 +271,12 @@ function Pagination({
   pageSize,
   onPageChange,
 }: {
-  currentPage: number;
-  totalCount: number;
-  pageSize: number;
-  onPageChange: (page: number) => void;
+  currentPage: number
+  totalCount: number
+  pageSize: number
+  onPageChange: (page: number) => void
 }) {
-  const totalPages = Math.ceil(totalCount / pageSize);
+  const totalPages = Math.ceil(totalCount / pageSize)
   return (
     <nav className="flex items-center justify-center mt-6">
       <Button
@@ -298,174 +299,174 @@ function Pagination({
         <ChevronRight className="h-4 w-4" />
       </Button>
     </nav>
-  );
+  )
 }
 
 /* ------------------------------------------------------------------
    6) Main GuestQuestionBank
    ------------------------------------------------------------------ */
 export default function GuestQuestionBank() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const { toast } = useToast();
+  const [state, dispatch] = useReducer(reducer, initialState)
+  const { toast } = useToast()
   // For mobile single-question navigation
-  const [mobileIndex, setMobileIndex] = useState(0);
+  const [mobileIndex, setMobileIndex] = useState(0)
   // For filter & navigator modals
-  const [filtersOpenMobile, setFiltersOpenMobile] = useState(false);
-  const [navigatorOpen, setNavigatorOpen] = useState(false);
+  const [filtersOpenMobile, setFiltersOpenMobile] = useState(false)
+  const [navigatorOpen, setNavigatorOpen] = useState(false)
 
   // Decide initial view mode
   useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
-      dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.MOBILE });
+      dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.MOBILE })
     }
-  }, []);
+  }, [])
 
   /* -------------------------------
      (A) Fetch distinct filter fields
      ------------------------------- */
   const fetchFilterOptions = useCallback(async () => {
     try {
-      const res = await fetch("/api/filters", { cache: "no-store" });
-      if (!res.ok) throw new Error("Failed to fetch filter fields.");
-      const data: FilterOptionsType = await res.json();
-      dispatch({ type: "SET_FILTER_OPTIONS", payload: data });
+      const res = await fetch("/api/filters", { cache: "no-store" })
+      if (!res.ok) throw new Error("Failed to fetch filter fields.")
+      const data: FilterOptionsType = await res.json()
+      dispatch({ type: "SET_FILTER_OPTIONS", payload: data })
     } catch (err) {
-      console.error("Error fetching filter options:", err);
+      console.error("Error fetching filter options:", err)
       toast({
         title: "Error",
         description: "Unable to load filter fields.",
         variant: "destructive",
-      });
+      })
     }
-  }, [toast]);
+  }, [toast])
 
   useEffect(() => {
-    fetchFilterOptions();
-  }, [fetchFilterOptions]);
+    fetchFilterOptions()
+  }, [fetchFilterOptions])
 
   /* -------------------------------
      (B) Fetch questions
      ------------------------------- */
   const fetchQuestions = useCallback(async () => {
-    dispatch({ type: "SET_LOADING", payload: true });
+    dispatch({ type: "SET_LOADING", payload: true })
     try {
-      const { currentPage, pageSize, filters } = state;
-      const { exams, subjects, topics, subtopics, difficulties, years, types } = filters;
+      const { currentPage, pageSize, filters } = state
+      const { exams, subjects, topics, subtopics, difficulties, years, types } = filters
 
       function arrToComma(arr: string[]) {
-        return arr.join(",");
+        return arr.join(",")
       }
-      const params = new URLSearchParams();
-      if (exams.length) params.set("exam", arrToComma(exams));
-      if (subjects.length) params.set("subject", arrToComma(subjects));
-      if (topics.length) params.set("topic", arrToComma(topics));
-      if (subtopics.length) params.set("subtopic", arrToComma(subtopics));
-      if (difficulties.length) params.set("difficulty", arrToComma(difficulties));
-      if (years.length) params.set("year", arrToComma(years));
-      if (types.length) params.set("type", arrToComma(types));
+      const params = new URLSearchParams()
+      if (exams.length) params.set("exam", arrToComma(exams))
+      if (subjects.length) params.set("subject", arrToComma(subjects))
+      if (topics.length) params.set("topic", arrToComma(topics))
+      if (subtopics.length) params.set("subtopic", arrToComma(subtopics))
+      if (difficulties.length) params.set("difficulty", arrToComma(difficulties))
+      if (years.length) params.set("year", arrToComma(years))
+      if (types.length) params.set("type", arrToComma(types))
 
-      params.set("page", String(currentPage));
-      params.set("pageSize", String(pageSize));
+      params.set("page", String(currentPage))
+      params.set("pageSize", String(pageSize))
 
-      const url = `/api/questions?${params.toString()}`;
-      const res = await fetch(url, { cache: "no-store" });
+      const url = `/api/questions?${params.toString()}`
+      const res = await fetch(url, { cache: "no-store" })
       if (!res.ok) {
-        const txt = await res.text();
-        throw new Error("Failed to fetch questions. " + txt);
+        const txt = await res.text()
+        throw new Error("Failed to fetch questions. " + txt)
       }
-      const result = await res.json();
+      const result = await res.json()
 
-      let data: QuestionType[] = [];
-      let totalCount = 0;
+      let data: QuestionType[] = []
+      let totalCount = 0
       if (Array.isArray(result)) {
-        data = result;
-        totalCount = data.length;
+        data = result
+        totalCount = data.length
       } else if (result.data) {
-        data = result.data;
-        totalCount = result.totalCount;
+        data = result.data
+        totalCount = result.totalCount
       }
 
       // Sort ascending by numeric portion of questionId
       data = data.sort((a, b) => {
-        const aId = a.questionId?.match(/\d+/)?.[0] || "0";
-        const bId = b.questionId?.match(/\d+/)?.[0] || "0";
-        return parseInt(aId, 10) - parseInt(bId, 10);
-      });
+        const aId = a.questionId?.match(/\d+/)?.[0] || "0"
+        const bId = b.questionId?.match(/\d+/)?.[0] || "0"
+        return parseInt(aId, 10) - parseInt(bId, 10)
+      })
 
       // Ensure each question has an `id` field for local indexing
-      data = data.map((q, i) => ({ ...q, id: i + 1 }));
+      data = data.map((q, i) => ({ ...q, id: i + 1 }))
 
-      dispatch({ type: "SET_QUESTIONS", payload: data });
-      dispatch({ type: "SET_TOTAL_COUNT", payload: totalCount });
+      dispatch({ type: "SET_QUESTIONS", payload: data })
+      dispatch({ type: "SET_TOTAL_COUNT", payload: totalCount })
     } catch (err) {
-      console.error("Error fetching questions:", err);
+      console.error("Error fetching questions:", err)
       toast({
         title: "Error",
         description: "Could not load questions. Please try again later.",
         variant: "destructive",
-      });
+      })
     } finally {
-      dispatch({ type: "SET_LOADING", payload: false });
+      dispatch({ type: "SET_LOADING", payload: false })
     }
-  }, [state.currentPage, state.pageSize, state.filters, toast]);
+  }, [state.currentPage, state.pageSize, state.filters, toast])
 
   useEffect(() => {
-    fetchQuestions();
-  }, [fetchQuestions]);
+    fetchQuestions()
+  }, [fetchQuestions])
 
   /* -------------------------------
      (C) Filtered local questions
      ------------------------------- */
   const filteredQuestions = useMemo(() => {
-    const s = state.searchQuery.toLowerCase();
+    const s = state.searchQuery.toLowerCase()
     return state.questions.filter((q) => {
-      const textFields = [q.text, q.exam, q.subject, q.topic, q.subtopic, q.type];
-      const matchesSearch = textFields.some((f) => f && fuzzyContains(f, s));
+      const textFields = [q.text, q.exam, q.subject, q.topic, q.subtopic, q.type]
+      const matchesSearch = textFields.some((f) => f && fuzzyContains(f, s))
 
-      const qid = q.questionId;
-      let matchesStatus = true;
+      const qid = q.questionId
+      let matchesStatus = true
       if (state.filters.status === "complete") {
-        if (!state.completed[qid]) matchesStatus = false;
+        if (!state.completed[qid]) matchesStatus = false
       } else if (state.filters.status === "review") {
-        if (!state.reviewed[qid]) matchesStatus = false;
+        if (!state.reviewed[qid]) matchesStatus = false
       } else if (state.filters.status === "incomplete") {
-        if (state.completed[qid]) matchesStatus = false;
+        if (state.completed[qid]) matchesStatus = false
       }
-      return matchesSearch && matchesStatus;
-    });
-  }, [state.questions, state.completed, state.reviewed, state.filters.status, state.searchQuery]);
+      return matchesSearch && matchesStatus
+    })
+  }, [state.questions, state.completed, state.reviewed, state.filters.status, state.searchQuery])
 
   /* -------------------------------
      (D) Local progress stats
      ------------------------------- */
   const localStats = useMemo(() => {
-    const totalDB = state.totalCount;
+    const totalDB = state.totalCount
     // answered => union of "completed" or feedback==="correct"
-    const answeredSet = new Set<string>();
+    const answeredSet = new Set<string>()
     Object.entries(state.completed).forEach(([qid, val]) => {
-      if (val) answeredSet.add(qid);
-    });
+      if (val) answeredSet.add(qid)
+    })
     Object.entries(state.feedback).forEach(([qid, fb]) => {
-      if (fb === "correct") answeredSet.add(qid);
-    });
-    const answered = answeredSet.size;
+      if (fb === "correct") answeredSet.add(qid)
+    })
+    const answered = answeredSet.size
 
     // flagged => reviewed
-    const reviewSet = new Set<string>();
+    const reviewSet = new Set<string>()
     Object.entries(state.reviewed).forEach(([qid, val]) => {
-      if (val) reviewSet.add(qid);
-    });
-    const forReview = reviewSet.size;
+      if (val) reviewSet.add(qid)
+    })
+    const forReview = reviewSet.size
 
-    const progressPct = totalDB > 0 ? (answered / totalDB) * 100 : 0;
-    return { total: totalDB, answered, forReview, progress: progressPct };
-  }, [state.totalCount, state.completed, state.feedback, state.reviewed]);
+    const progressPct = totalDB > 0 ? (answered / totalDB) * 100 : 0
+    return { total: totalDB, answered, forReview, progress: progressPct }
+  }, [state.totalCount, state.completed, state.feedback, state.reviewed])
 
   // Pagination
-  const totalPages = Math.ceil(state.totalCount / state.pageSize);
+  const totalPages = Math.ceil(state.totalCount / state.pageSize)
   const handlePageChange = (newPage: number) => {
-    dispatch({ type: "SET_CURRENT_PAGE", payload: newPage });
-  };
+    dispatch({ type: "SET_CURRENT_PAGE", payload: newPage })
+  }
 
   /* -------------------------------
      (E) Loading Skeleton
@@ -498,7 +499,7 @@ export default function GuestQuestionBank() {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
   /* ------------------------------------------------------------------
@@ -518,12 +519,12 @@ export default function GuestQuestionBank() {
             <p className="mt-6 text-red-300">No questions found with these filters.</p>
           </div>
         </div>
-      );
+      )
     }
 
-    const currentQ = filteredQuestions[mobileIndex];
-    const total = filteredQuestions.length;
-    const displayNumber = mobileIndex + 1;
+    const currentQ = filteredQuestions[mobileIndex]
+    const total = filteredQuestions.length
+    const displayNumber = mobileIndex + 1
 
     return (
       <div className="min-h-screen p-4 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900">
@@ -574,22 +575,22 @@ export default function GuestQuestionBank() {
             question={currentQ}
             feedback={state.feedback[currentQ.questionId]}
             selectedOption={state.selectedOptions[currentQ.questionId]}
-            numericalAnswer={"" /* Not used in this example */}
+            numericalAnswer={"" /* Not used in this example */} 
             showMarkscheme={state.showMarkscheme[currentQ.questionId] || false}
             handleOptionClick={(questionId, option, correctOption) => {
-              const isCorrect = option === correctOption;
+              const isCorrect = option === correctOption
               dispatch({
                 type: "SET_FEEDBACK",
                 payload: { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" },
-              });
+              })
               dispatch({
                 type: "SET_SELECTED_OPTIONS",
                 payload: { ...state.selectedOptions, [questionId]: option },
-              });
+              })
               dispatch({
                 type: "SET_COMPLETED",
                 payload: { ...state.completed, [questionId]: true },
-              });
+              })
             }}
             handleNumericalSubmit={() => {}}
             handleNumericalChange={() => {}}
@@ -597,35 +598,35 @@ export default function GuestQuestionBank() {
               dispatch({
                 type: "SET_SHOW_MARKSCHEME",
                 payload: { ...state.showMarkscheme, [qId]: !state.showMarkscheme[qId] },
-              });
+              })
             }}
             handleMarkForReview={(qId) => {
               dispatch({
                 type: "SET_REVIEWED",
                 payload: { ...state.reviewed, [qId]: !state.reviewed[qId] },
-              });
+              })
             }}
             handleMarkComplete={(qId) => {
               dispatch({
                 type: "SET_COMPLETED",
                 payload: { ...state.completed, [qId]: !state.completed[qId] },
-              });
+              })
             }}
             handleResetQuestion={(qId) => {
-              const fbCopy = { ...state.feedback };
-              delete fbCopy[qId];
-              const selCopy = { ...state.selectedOptions };
-              delete selCopy[qId];
-              dispatch({ type: "SET_FEEDBACK", payload: fbCopy });
-              dispatch({ type: "SET_SELECTED_OPTIONS", payload: selCopy });
+              const fbCopy = { ...state.feedback }
+              delete fbCopy[qId]
+              const selCopy = { ...state.selectedOptions }
+              delete selCopy[qId]
+              dispatch({ type: "SET_FEEDBACK", payload: fbCopy })
+              dispatch({ type: "SET_SELECTED_OPTIONS", payload: selCopy })
               dispatch({
                 type: "SET_REVIEWED",
                 payload: { ...state.reviewed, [qId]: false },
-              });
+              })
               dispatch({
                 type: "SET_COMPLETED",
                 payload: { ...state.completed, [qId]: false },
-              });
+              })
             }}
             isMarkedForReview={!!state.reviewed[currentQ.questionId]}
             isMarkedComplete={!!state.completed[currentQ.questionId]}
@@ -654,7 +655,7 @@ export default function GuestQuestionBank() {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
   /* ------------------------------------------------------------------
@@ -673,7 +674,7 @@ export default function GuestQuestionBank() {
           <p className="mt-6 text-red-300">No questions found with these filters.</p>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -712,7 +713,7 @@ export default function GuestQuestionBank() {
               <DialogTrigger asChild>
                 <Button
                   variant="outline"
-                  className="dark:border-gray-700 dark:hover:border-gray-500 dark:text-gray-100 sm:hidden flex items-center"
+                  className="dark:border-gray-700 dark:text-gray-100 sm:hidden flex items-center"
                 >
                   <Filter className="mr-2 h-4 w-4" />
                   Filters
@@ -750,17 +751,17 @@ export default function GuestQuestionBank() {
                 <ScrollArea className="h-[60vh]">
                   <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 p-4">
                     {filteredQuestions.map((q, index) => {
-                      const displayNum = (state.currentPage - 1) * state.pageSize + index + 1;
-                      const qid = q.questionId;
+                      const displayNum = (state.currentPage - 1) * state.pageSize + index + 1
+                      const qid = q.questionId
                       return (
                         <Button
                           key={qid}
                           variant={state.completed[qid] ? "default" : "outline"}
                           size="sm"
                           onClick={() => {
-                            const el = document.getElementById(`question-${qid}`);
+                            const el = document.getElementById(`question-${qid}`)
                             if (el) {
-                              el.scrollIntoView({ behavior: "smooth", block: "start" });
+                              el.scrollIntoView({ behavior: "smooth", block: "start" })
                             }
                           }}
                           className={`
@@ -776,7 +777,7 @@ export default function GuestQuestionBank() {
                         >
                           {displayNum}
                         </Button>
-                      );
+                      )
                     })}
                   </div>
                 </ScrollArea>
@@ -787,7 +788,7 @@ export default function GuestQuestionBank() {
           {/* Status Filter Row (desktop) */}
           <div className="hidden sm:flex space-x-4 mb-2">
             {["all", "complete", "review", "incomplete"].map((st) => {
-              const isActive = state.filters.status === st;
+              const isActive = state.filters.status === st
               return (
                 <button
                   key={st}
@@ -808,7 +809,7 @@ export default function GuestQuestionBank() {
                 >
                   {st.charAt(0).toUpperCase() + st.slice(1)}
                 </button>
-              );
+              )
             })}
           </div>
 
@@ -825,8 +826,8 @@ export default function GuestQuestionBank() {
                 "types",
               ] as FilterKey[]
             ).map((filterKey) => {
-              const distinctVals = state.filterOptions[filterKey] || [];
-              const open = state.dropdowns[filterKey];
+              const distinctVals = state.filterOptions[filterKey] || []
+              const open = state.dropdowns[filterKey]
               return (
                 <Popover
                   key={filterKey}
@@ -851,7 +852,7 @@ export default function GuestQuestionBank() {
                       dispatch({
                         type: "SET_DROPDOWNS",
                         payload: { key: filterKey, value: !open },
-                      });
+                      })
                     }}
                     className="
                       flex w-full sm:w-36 items-center justify-between
@@ -870,7 +871,7 @@ export default function GuestQuestionBank() {
                     <ChevronDown className="h-4 w-4 text-gray-600 dark:text-gray-300" />
                   </button>
                 </Popover>
-              );
+              )
             })}
           </div>
 
@@ -962,8 +963,8 @@ export default function GuestQuestionBank() {
           {filteredQuestions.length > 0 ? (
             <>
               {filteredQuestions.map((q, idx) => {
-                const displayNum = (state.currentPage - 1) * state.pageSize + idx + 1;
-                const qid = q.questionId;
+                const displayNum = (state.currentPage - 1) * state.pageSize + idx + 1
+                const qid = q.questionId
                 return (
                   <Question
                     key={qid}
@@ -973,55 +974,55 @@ export default function GuestQuestionBank() {
                     numericalAnswer={""}
                     showMarkscheme={state.showMarkscheme[qid] || false}
                     handleOptionClick={(questionId, option, correctOption) => {
-                      const isCorrect = option === correctOption;
+                      const isCorrect = option === correctOption
                       dispatch({
                         type: "SET_FEEDBACK",
                         payload: {
                           ...state.feedback,
                           [questionId]: isCorrect ? "correct" : "incorrect",
                         },
-                      });
+                      })
                       dispatch({
                         type: "SET_SELECTED_OPTIONS",
                         payload: { ...state.selectedOptions, [questionId]: option },
-                      });
+                      })
                       dispatch({
                         type: "SET_COMPLETED",
                         payload: { ...state.completed, [questionId]: true },
-                      });
+                      })
                     }}
                     handleNumericalSubmit={() => {}}
                     handleNumericalChange={() => {}}
                     handleMarkschemeToggle={(questionId) => {
-                      const cp = { ...state.showMarkscheme };
-                      cp[questionId] = !cp[questionId];
-                      dispatch({ type: "SET_SHOW_MARKSCHEME", payload: cp });
+                      const cp = { ...state.showMarkscheme }
+                      cp[questionId] = !cp[questionId]
+                      dispatch({ type: "SET_SHOW_MARKSCHEME", payload: cp })
                     }}
                     handleMarkForReview={(questionId) => {
-                      const rev = { ...state.reviewed };
-                      rev[questionId] = !rev[questionId];
-                      dispatch({ type: "SET_REVIEWED", payload: rev });
+                      const rev = { ...state.reviewed }
+                      rev[questionId] = !rev[questionId]
+                      dispatch({ type: "SET_REVIEWED", payload: rev })
                     }}
                     handleMarkComplete={(questionId) => {
-                      const cmp = { ...state.completed };
-                      cmp[questionId] = !cmp[questionId];
-                      dispatch({ type: "SET_COMPLETED", payload: cmp });
+                      const cmp = { ...state.completed }
+                      cmp[questionId] = !cmp[questionId]
+                      dispatch({ type: "SET_COMPLETED", payload: cmp })
                     }}
                     handleResetQuestion={(questionId) => {
-                      const fbCopy = { ...state.feedback };
-                      delete fbCopy[questionId];
-                      const selCopy = { ...state.selectedOptions };
-                      delete selCopy[questionId];
-                      dispatch({ type: "SET_FEEDBACK", payload: fbCopy });
-                      dispatch({ type: "SET_SELECTED_OPTIONS", payload: selCopy });
+                      const fbCopy = { ...state.feedback }
+                      delete fbCopy[questionId]
+                      const selCopy = { ...state.selectedOptions }
+                      delete selCopy[questionId]
+                      dispatch({ type: "SET_FEEDBACK", payload: fbCopy })
+                      dispatch({ type: "SET_SELECTED_OPTIONS", payload: selCopy })
                       dispatch({
                         type: "SET_REVIEWED",
                         payload: { ...state.reviewed, [questionId]: false },
-                      });
+                      })
                       dispatch({
                         type: "SET_COMPLETED",
                         payload: { ...state.completed, [questionId]: false },
-                      });
+                      })
                     }}
                     isMarkedForReview={!!state.reviewed[qid]}
                     isMarkedComplete={!!state.completed[qid]}
@@ -1030,7 +1031,7 @@ export default function GuestQuestionBank() {
                     currentQuestionIndex={displayNum - 1}
                     handleQuestionChange={() => {}}
                   />
-                );
+                )
               })}
 
               {/* Pagination */}
@@ -1049,7 +1050,7 @@ export default function GuestQuestionBank() {
         </div>
       </div>
     </TooltipProvider>
-  );
+  )
 }
 
 /* ------------------------------------------------------------------
@@ -1061,36 +1062,36 @@ function DesktopFilterSearch({
   state,
   dispatch,
 }: {
-  filterType: FilterKey;
-  filterValues: string[];
-  state: StateType;
-  dispatch: React.Dispatch<ActionType>;
+  filterType: FilterKey
+  filterValues: string[]
+  state: StateType
+  dispatch: React.Dispatch<ActionType>
 }) {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("")
 
   const displayedValues = useMemo(() => {
-    if (!searchTerm) return filterValues;
-    const lower = searchTerm.toLowerCase();
-    return filterValues.filter((val) => val.toLowerCase().includes(lower));
-  }, [filterValues, searchTerm]);
+    if (!searchTerm) return filterValues
+    const lower = searchTerm.toLowerCase()
+    return filterValues.filter((val) => val.toLowerCase().includes(lower))
+  }, [filterValues, searchTerm])
 
   const toggleItem = useCallback(
     (val: string) => {
-      const arr = state.filters[filterType];
-      const isSelected = arr.includes(val);
-      let newArr: string[];
+      const arr = state.filters[filterType]
+      const isSelected = arr.includes(val)
+      let newArr: string[]
       if (isSelected) {
-        newArr = arr.filter((x) => x !== val);
+        newArr = arr.filter((x) => x !== val)
       } else {
-        newArr = [...arr, val];
+        newArr = [...arr, val]
       }
       dispatch({
         type: "SET_FILTERS",
         payload: { ...state.filters, [filterType]: newArr },
-      });
+      })
     },
     [state.filters, filterType, dispatch]
-  );
+  )
 
   return (
     <>
@@ -1104,7 +1105,7 @@ function DesktopFilterSearch({
       <ScrollArea className="max-h-60">
         <motion.div className="flex flex-col gap-2" layout transition={transitionProps}>
           {displayedValues.map((val) => {
-            const isSelected = state.filters[filterType].includes(val);
+            const isSelected = state.filters[filterType].includes(val)
             return (
               <motion.button
                 key={val}
@@ -1155,28 +1156,28 @@ function DesktopFilterSearch({
                   </AnimatePresence>
                 </motion.div>
               </motion.button>
-            );
+            )
           })}
         </motion.div>
       </ScrollArea>
     </>
-  );
+  )
 }
 
 /* ------------------------------------------------------------------
    10) Mobile Filters Dialog
    ------------------------------------------------------------------ */
 interface CustomFiltersDialogProps {
-  open: boolean;
-  onOpenChange: (val: boolean) => void;
-  state: StateType;
-  dispatch: React.Dispatch<ActionType>;
+  open: boolean
+  onOpenChange: (val: boolean) => void
+  state: StateType
+  dispatch: React.Dispatch<ActionType>
 }
 
 function FiltersDialogMobile({ open, onOpenChange, state, dispatch }: CustomFiltersDialogProps) {
   return (
     <FiltersDialog open={open} onOpenChange={onOpenChange} state={state} dispatch={dispatch} />
-  );
+  )
 }
 
 /* ------------------------------------------------------------------
@@ -1191,7 +1192,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
     difficulties: "",
     years: "",
     types: "",
-  });
+  })
 
   const filterKeys: FilterKey[] = [
     "exams",
@@ -1201,26 +1202,26 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
     "difficulties",
     "years",
     "types",
-  ];
+  ]
 
   const handleSearchChange = (category: string, val: string) => {
-    setSearch((prev) => ({ ...prev, [category]: val }));
-  };
+    setSearch((prev) => ({ ...prev, [category]: val }))
+  }
 
   const toggleItem = (fk: FilterKey, val: string) => {
-    const arr = state.filters[fk];
-    const isSelected = arr.includes(val);
-    let newArr;
+    const arr = state.filters[fk]
+    const isSelected = arr.includes(val)
+    let newArr
     if (isSelected) {
-      newArr = arr.filter((x) => x !== val);
+      newArr = arr.filter((x) => x !== val)
     } else {
-      newArr = [...arr, val];
+      newArr = [...arr, val]
     }
     dispatch({
       type: "SET_FILTERS",
       payload: { ...state.filters, [fk]: newArr },
-    });
-  };
+    })
+  }
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -1261,7 +1262,10 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
                     variant={state.filters.status === st ? "default" : "outline"}
                     size="sm"
                     onClick={() =>
-                      dispatch({ type: "SET_FILTERS", payload: { ...state.filters, status: st as any } })
+                      dispatch({
+                        type: "SET_FILTERS",
+                        payload: { ...state.filters, status: st as any },
+                      })
                     }
                   >
                     {st.charAt(0).toUpperCase() + st.slice(1)}
@@ -1272,11 +1276,11 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
 
             {/* Filter categories */}
             {filterKeys.map((fk) => {
-              const distinctVals = state.filterOptions[fk] || [];
-              const term = search[fk] || "";
+              const distinctVals = state.filterOptions[fk] || []
+              const term = search[fk] || ""
               const displayed = !term
                 ? distinctVals
-                : distinctVals.filter((val) => val.toLowerCase().includes(term.toLowerCase()));
+                : distinctVals.filter((val) => val.toLowerCase().includes(term.toLowerCase()))
               return (
                 <div key={fk}>
                   <p className="font-semibold mb-2 capitalize">{fk}</p>
@@ -1288,7 +1292,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
                   />
                   <div className="border p-2 rounded-md max-h-40 overflow-y-auto">
                     {displayed.map((val) => {
-                      const isSel = state.filters[fk].includes(val);
+                      const isSel = state.filters[fk].includes(val)
                       return (
                         <label
                           key={val}
@@ -1302,15 +1306,15 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
                           />
                           <span>{transformFilterItem(val)}</span>
                         </label>
-                      );
+                      )
                     })}
                   </div>
                 </div>
-              );
+              )
             })}
           </div>
         </div>
       </DialogContent>
     </Dialog>
-  );
+  )
 }
