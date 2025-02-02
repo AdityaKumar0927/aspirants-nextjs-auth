@@ -21,7 +21,9 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
-  User              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Renamed from "User" to "user"
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@index([userId])
@@ -101,9 +103,9 @@ model Issue {
   resolvedById String?
   userNotified Boolean        @default(false)
 
-  createdBy   User     @relation("Issue_createdByIdToUser", fields: [createdById], references: [id], onDelete: Cascade)
-  question    Question? @relation(fields: [questionId], references: [questionId])
-  resolvedBy  User?    @relation("Issue_resolvedByIdToUser", fields: [resolvedById], references: [id])
+  createdBy    User     @relation("Issue_createdByIdToUser", fields: [createdById], references: [id], onDelete: Cascade)
+  question     Question? @relation(fields: [questionId], references: [questionId])
+  resolvedBy   User?    @relation("Issue_resolvedByIdToUser", fields: [resolvedById], references: [id])
   VolunteerTask VolunteerTask[]
 
   @@index([questionId])
@@ -118,16 +120,16 @@ model ModeratorLimit {
 }
 
 model Note {
-  id        String    @id @default(uuid())
-  title     String
-  content   String
-  type      NoteType
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  userId    String
+  id         String    @id @default(uuid())
+  title      String
+  content    String
+  type       NoteType
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  userId     String
   questionId String?
-  Question  Question? @relation(fields: [questionId], references: [questionId])
-  User      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Question   Question? @relation(fields: [questionId], references: [questionId])
+  User       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([questionId])
   @@index([userId])
@@ -223,18 +225,18 @@ model Question {
   topicName            String?
 
   // Relations
-  Feedback             Feedback[]
-  Issue                Issue[]
-  Note                 Note[]
-  Exam                 Exam?          @relation(fields: [examId], references: [id], onDelete: Cascade)
-  Question             Question?      @relation("QuestionToQuestion", fields: [parentQuestionId], references: [id])
-  other_Question       Question[]     @relation("QuestionToQuestion")
-  UserAnswer           UserAnswer[]
-  UserPerformance      UserPerformance[]
-  UserProgress         UserProgress[]
+  Feedback        Feedback[]
+  Issue           Issue[]
+  Note            Note[]
+  Exam            Exam?          @relation(fields: [examId], references: [id], onDelete: Cascade)
+  Question        Question?      @relation("QuestionToQuestion", fields: [parentQuestionId], references: [id])
+  other_Question  Question[]     @relation("QuestionToQuestion")
+  UserAnswer      UserAnswer[]
+  UserPerformance UserPerformance[]
+  UserProgress    UserProgress[]
 
-  // NEW: Each question can have multiple solutions
-  solutions            Solution[]
+  // If you have solutions
+  solutions Solution[]
 }
 
 model Session {
@@ -247,7 +249,6 @@ model Session {
   @@index([userId])
 }
 
-/** NEW MODEL to store mock exam attempts. */
 model UserMockExam {
   id        String   @id @default(uuid())
   userId    String
@@ -258,8 +259,8 @@ model UserMockExam {
   updatedAt DateTime @updatedAt
   completed Boolean  @default(false)
 
-  results   Json?
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  results Json?
+  user    User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
 }
@@ -297,8 +298,8 @@ model User {
   VolunteerTask                  VolunteerTask[]
   userMockExams                  UserMockExam[]
 
-  // NEW: If a user can author solutions
-  solutionsAuthored              Solution[] @relation("UserToSolutionsAuthored")
+  // If a user can author solutions
+  solutionsAuthored Solution[] @relation("UserToSolutionsAuthored")
 }
 
 model UserAnswer {
@@ -404,9 +405,6 @@ model VolunteerTask {
   User        User     @relation(fields: [volunteerId], references: [id])
 }
 
-/* ===============================================
-   Enums
-   =============================================== */
 enum AiService {
   GOOGLE_OCR
   GPT_COMPLETION
@@ -483,9 +481,6 @@ enum SubscriptionTier {
   INSTITUTION
 }
 
-/* ===============================================
-   NEW MODEL for "solutions" (comments)
-   =============================================== */
 model Solution {
   id         String   @id @default(uuid())
   questionId String
