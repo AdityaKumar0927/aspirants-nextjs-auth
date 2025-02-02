@@ -1,14 +1,16 @@
-// app/api/auth/[...nextauth]/options.ts
-
 import { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { PrismaClient } from "@prisma/client"
 
+// Initialize Prisma
 const prisma = new PrismaClient()
 
 export const authOptions: NextAuthOptions = {
+  // Connect Prisma + NextAuth
   adapter: PrismaAdapter(prisma),
+
+  // OAuth Provider(s)
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -16,19 +18,24 @@ export const authOptions: NextAuthOptions = {
       allowDangerousEmailAccountLinking: true,
     }),
   ],
+
+  // Callbacks
   callbacks: {
+    // ------------------------------------------------
+    // (A) signIn() callback
+    // ------------------------------------------------
     async signIn({ user }) {
       if (!user.email) return false
 
       try {
+        // 1. Check if user already exists
         const existingUser = await prisma.user.findUnique({
           where: { email: user.email },
-          // NOTE: if your schema field is "UserRole", do this:
-          include: { UserRole: true },
+          include: { UserRole: true }, // "UserRole" must match your schema field
         })
 
         if (!existingUser) {
-          // Create new user with 'member' role
+          // 2. If no user, create a new user with "member" role
           const memberRole = await prisma.userRole.upsert({
             where: { name: "member" },
             update: {},
@@ -44,7 +51,7 @@ export const authOptions: NextAuthOptions = {
             },
           })
         } else if (!existingUser.UserRole) {
-          // existing user, but no role assigned
+          // 3. If user exists but has no role, assign "member"
           const memberRole = await prisma.userRole.upsert({
             where: { name: "member" },
             update: {},
@@ -64,12 +71,13 @@ export const authOptions: NextAuthOptions = {
       }
     },
 
+    // ------------------------------------------------
+    // (B) jwt() callback
+    // ------------------------------------------------
     async jwt({ token, user }) {
-      // If user just signed in
       if (user && user.email) {
         const dbUser = await prisma.user.findUnique({
           where: { email: user.email },
-          // again, matching your actual field:
           include: { UserRole: true },
         })
         if (dbUser && dbUser.UserRole) {
@@ -80,6 +88,9 @@ export const authOptions: NextAuthOptions = {
       return token
     },
 
+    // ------------------------------------------------
+    // (C) session() callback
+    // ------------------------------------------------
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id as string
@@ -88,8 +99,13 @@ export const authOptions: NextAuthOptions = {
       return session
     },
   },
-  // No `pages` in App Router
-  session: { strategy: "jwt" },
+
+  // No `pages` config in the App Router
+  session: {
+    strategy: "jwt",
+  },
+
+  // Enable debug logs in development only
   debug: process.env.NODE_ENV === "development",
 }
 
