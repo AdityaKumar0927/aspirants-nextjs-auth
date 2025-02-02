@@ -28,8 +28,11 @@ import {
   TooltipProvider,
 } from "@/components/ui/tooltip"
 import Image from "next/image"
+
+// KaTeX-based math renderer
 import MathRenderer from "@/components/layout/MathRenderer"
 
+// Single source-of-truth question type from exam-helpers
 import { QuestionType } from "@/lib/exam-helpers"
 
 interface ExamProps {
@@ -59,6 +62,10 @@ interface ExamProps {
   selectedLevel: string
 }
 
+/**
+ * Renders the Exam layout with question content on the left (or top on mobile)
+ * and a status+navigation sidebar on the right (or bottom on mobile).
+ */
 export default function Exam({
   currentQuestion,
   filteredQuestions,
@@ -80,13 +87,14 @@ export default function Exam({
   selectedYear,
   selectedLevel,
 }: ExamProps) {
+  // Format time as mm:ss
   function formatTime(seconds: number) {
     const minutes = Math.floor(seconds / 60)
     const secs = seconds % 60
     return `${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
   }
 
-  // Grab the current question
+  // Current question to display
   const question = filteredQuestions[currentQuestion]
   if (!question) {
     return (
@@ -99,7 +107,7 @@ export default function Exam({
     )
   }
 
-  // If the question has a diagram
+  // Renders a diagram if question.diagramUrl is provided
   function renderDiagram(diagramUrl?: string) {
     if (!diagramUrl) return null
     return (
@@ -115,12 +123,12 @@ export default function Exam({
     )
   }
 
-  // Render the question's body (MCQ or Numeric)
+  // Renders the question body based on the question type (MCQ, numeric, etc.)
   function renderQuestionBody(q: QuestionType) {
-    const lower = (q.type || "").toLowerCase()
+    const lowerType = (q.type || "").toLowerCase()
 
-    if (lower.includes("mcq") || lower === "multiple choice") {
-      // MCQ
+    // Multiple-choice question
+    if (lowerType.includes("mcq") || lowerType === "multiple choice") {
       return (
         <div className="space-y-4 mt-4">
           {Object.entries(q.options).map(([key, optionText]) => {
@@ -139,8 +147,10 @@ export default function Exam({
           })}
         </div>
       )
-    } else if (lower.includes("num") || lower.includes("int")) {
-      // Numeric / Integer
+    }
+
+    // Numeric / integer answers
+    else if (lowerType.includes("num") || lowerType.includes("int")) {
       const val = answers[currentQuestion] || ""
       return (
         <div className="mt-4">
@@ -152,14 +162,14 @@ export default function Exam({
           />
         </div>
       )
-    } else {
-      // fallback
-      return (
-        <p className="text-red-500">
-          Unknown question type: {q.type}. Cannot render.
-        </p>
-      )
     }
+
+    // Fallback if question type is unknown
+    return (
+      <p className="text-red-500">
+        Unknown question type: {q.type}. Cannot render.
+      </p>
+    )
   }
 
   return (
@@ -167,7 +177,7 @@ export default function Exam({
       {/* Header with user info, timer, exit */}
       <header className="sticky top-0 z-10 bg-background border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          {/* left side: user info */}
+          {/* Left side: user info */}
           <div className="flex items-center space-x-4">
             <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
               <User className="w-6 h-6 text-primary-foreground" />
@@ -179,7 +189,8 @@ export default function Exam({
               </p>
             </div>
           </div>
-          {/* right side: timer + exit */}
+
+          {/* Right side: timer + exit */}
           <div className="flex items-center space-x-4">
             <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium flex items-center">
               <Clock className="w-4 h-4 mr-2" />
@@ -192,7 +203,7 @@ export default function Exam({
         </div>
       </header>
 
-      {/* Main area: Use a grid for better control */}
+      {/* Main area: two-column grid (stacked on mobile) */}
       <main className="flex-1 grid grid-cols-1 md:grid-cols-[1fr,auto] md:gap-6 overflow-hidden">
         {/* QUESTION COLUMN */}
         <section className="overflow-y-auto p-4 sm:p-6 lg:p-8">
@@ -276,7 +287,7 @@ export default function Exam({
         {/* SEPARATOR on mobile */}
         <Separator orientation="horizontal" className="block md:hidden" />
 
-        {/* NAVIGATOR SIDEBAR */}
+        {/* NAVIGATOR SIDEBAR (visible on md+), includes question status & question buttons */}
         <aside className="md:w-[280px] bg-background p-4 space-y-6 overflow-y-auto border-l hidden md:block">
           {/* Question Status Card */}
           <Card>
@@ -325,7 +336,7 @@ export default function Exam({
               <CardTitle className="text-lg font-semibold">Question Navigator</CardTitle>
             </CardHeader>
             <CardContent>
-              {/* Wrap in a horizontal scroll if you have many questions */}
+              {/* Wrap in horizontal scroll if many questions */}
               <div className="overflow-x-auto">
                 <div className="grid grid-cols-5 gap-2">
                   {filteredQuestions.map((_, index) => {
@@ -371,7 +382,7 @@ export default function Exam({
           </Card>
         </aside>
 
-        {/* On mobile/tablet, we show the sidebar as a block below using a Separator + block */}
+        {/* On mobile/tablet, show the same sidebar content below the question */}
         <div className="block md:hidden p-4 border-t space-y-6">
           <Card>
             <CardHeader>

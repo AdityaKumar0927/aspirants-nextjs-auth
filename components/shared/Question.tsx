@@ -34,7 +34,7 @@ import { Badge } from "@/components/ui/badge"
 import { Flag, ChevronDown, X } from "lucide-react"
 import FeedbackPopover from "./FeedbackPopover"
 
-// --- Import your Tiptap-based solution discussion component: ---
+// --- If you have your Tiptap-based discussion:
 import { QuestionSolutions } from "./QuestionSolutions"
 
 // -----------------------------------------
@@ -107,21 +107,21 @@ interface QuestionProps {
 }
 
 // -----------------------------------------
-// Outline color logic
+// Border color logic with thicker border, lower opacity
 // -----------------------------------------
-function getOutlineClass(feedback: string | undefined, isMarkedForReview: boolean): string {
+function getBorderClass(feedback: string | undefined, isMarkedForReview: boolean): string {
   if (isMarkedForReview) {
-    // Subtle yellow
-    return "outline outline-2 outline-yellow-200"
+    // Flagged: use #FFEDDB with 70% opacity
+    return "border-[3px] border-[#FFEDDB]/70"
   } else if (feedback === "correct") {
-    // Subtle green
-    return "outline outline-2 outline-green-200"
+    // Subtle green w/ lower opacity
+    return "border-[3px] border-green-300/70"
   } else if (feedback === "incorrect") {
-    // Subtle red
-    return "outline outline-2 outline-red-200"
+    // Subtle red w/ lower opacity
+    return "border-[3px] border-red-300/70"
   } else {
-    // Default subtle gray
-    return "outline outline-2 outline-gray-200"
+    // Default subtle gray w/ lower opacity
+    return "border-[3px] border-gray-300/70"
   }
 }
 
@@ -160,7 +160,7 @@ export default function Question({
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false)
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled)
 
-  // Additional question-type local states
+  // Additional question-type states
   const [mcqmSelections, setMcqmSelections] = useState<string[]>([]) // for MCQM
   const [fillBlanksInput, setFillBlanksInput] = useState<string>("") // for Fill Blanks
   const [subjectiveAnswer, setSubjectiveAnswer] = useState<string>("") // for Subjective
@@ -321,7 +321,7 @@ export default function Question({
   }
 
   // -----------------------------------------
-  // MCQM (multiple correct)
+  // MCQM logic
   // -----------------------------------------
   function handleMcqmToggle(letter: string) {
     setMcqmSelections((prev) =>
@@ -331,7 +331,6 @@ export default function Question({
   async function handleMcqmSubmit() {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId, true)
-    // we store the user’s selections as a JSON string, for instance
     handleOptionClick(question.questionId, JSON.stringify(mcqmSelections), question.correctOption ?? "")
   }
 
@@ -347,7 +346,7 @@ export default function Question({
   }
 
   // -----------------------------------------
-  // Fill Blanks logic
+  // Fill Blanks
   // -----------------------------------------
   async function handleFillBlanksSubmit() {
     if (!question.questionId) return
@@ -356,7 +355,7 @@ export default function Question({
   }
 
   // -----------------------------------------
-  // Subjective logic
+  // Subjective
   // -----------------------------------------
   async function handleSubjectiveSubmit() {
     if (!question.questionId) return
@@ -409,9 +408,8 @@ export default function Question({
           className={`
             w-full overflow-hidden mb-6
             dark:bg-gray-800 dark:text-gray-100
-            border border-gray-200 dark:border-gray-600
             rounded-md
-            ${getOutlineClass(feedback, isMarkedForReview)}
+            ${getBorderClass(feedback, isMarkedForReview)}
           `}
         >
           <CardHeader className="relative">
@@ -1063,9 +1061,6 @@ export default function Question({
                   <p className="mb-2 text-sm font-semibold text-gray-800 dark:text-gray-200">
                     Comment Section
                   </p>
-                  {/* 
-                    Insert the Tiptap-based discussion here:
-                  */}
                   {question.questionId ? (
                     <QuestionSolutions questionId={question.questionId} />
                   ) : (

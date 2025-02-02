@@ -271,7 +271,17 @@ export function QuestionSolutions({ questionId }: QuestionSolutionsProps) {
               <div className="flex justify-end mt-2">
                 <Button
                   onClick={handleSubmitTopLevel}
-                  className="font-light tracking-tight border-blue-800 bg-blue-100 text-blue-600 hover:bg-blue-200"
+                  className="border
+                            border-blue-400
+                            bg-blue-50
+                            text-blue-800
+                            dark:border-blue-600
+                            dark:bg-slate-800
+                            dark:text-blue-200
+                            px-4 py-1
+                            hover:bg-blue-100
+                            dark:hover:bg-slate-700
+                            rounded-sm"
                 >
                   Submit
                 </Button>

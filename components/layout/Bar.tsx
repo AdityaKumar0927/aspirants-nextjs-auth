@@ -63,16 +63,6 @@ export default function Bar({ userId }: BarProps) {
               </TooltipContent>
             </Tooltip>
           </DockIcon>
-          <DockIcon mouseX={mouseX}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <ModeToggle />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Theme</p>
-              </TooltipContent>
-            </Tooltip>
-          </DockIcon>
         </Dock>
       </div>
 
