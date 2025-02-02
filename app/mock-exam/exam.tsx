@@ -1,16 +1,36 @@
 "use client"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { User, Clock, AlertCircle, CheckCircle, Flag, ChevronLeft, ChevronRight, LogOut } from "lucide-react"
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip"
-import Image from "next/image"
 
-// Import your KaTeX-based math renderer
+import React from "react"
+import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Separator } from "@/components/ui/separator"
+import {
+  User,
+  Clock,
+  AlertCircle,
+  CheckCircle,
+  Flag,
+  ChevronLeft,
+  ChevronRight,
+  LogOut,
+} from "lucide-react"
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipProvider,
+} from "@/components/ui/tooltip"
+import Image from "next/image"
 import MathRenderer from "@/components/layout/MathRenderer"
 
-// Single source-of-truth question type from exam-helpers
-import type { QuestionType } from "@/lib/exam-helpers"
+import { QuestionType } from "@/lib/exam-helpers"
 
 interface ExamProps {
   currentQuestion: number
@@ -33,18 +53,12 @@ interface ExamProps {
   onSubmit: () => void
   onExit: () => void
   onNavigate: (index: number) => void
-
   userName: string
   selectedSubject: string
   selectedYear: string
   selectedLevel: string
 }
 
-/**
- * A responsive exam layout:
- * - On mobile (below lg): question on top, navigator below (stacked).
- * - On desktop (lg+): question left, navigator right (two columns).
- */
 export default function Exam({
   currentQuestion,
   filteredQuestions,
@@ -72,12 +86,14 @@ export default function Exam({
     return `${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
   }
 
-  // The current question to display
+  // Grab the current question
   const question = filteredQuestions[currentQuestion]
   if (!question) {
     return (
-      <div className="flex flex-col items-center justify-center h-full">
-        <p className="text-gray-500">No question available. Please restart the exam.</p>
+      <div className="flex flex-col items-center justify-center h-full p-4">
+        <p className="text-gray-500 mb-4 text-center">
+          No question available. Please restart the exam.
+        </p>
         <Button onClick={onExit}>Exit</Button>
       </div>
     )
@@ -87,9 +103,9 @@ export default function Exam({
   function renderDiagram(diagramUrl?: string) {
     if (!diagramUrl) return null
     return (
-      <div className="relative w-full h-64 mb-4">
+      <div className="relative w-full mb-4 max-h-80 overflow-hidden rounded-md">
         <Image
-          src={diagramUrl || "/placeholder.svg"}
+          src={diagramUrl}
           alt="Question diagram"
           fill
           style={{ objectFit: "contain" }}
@@ -99,12 +115,12 @@ export default function Exam({
     )
   }
 
-  // MCQ or Numeric
+  // Render the question's body (MCQ or Numeric)
   function renderQuestionBody(q: QuestionType) {
     const lower = (q.type || "").toLowerCase()
 
-    // if type is "mcq", "mcqm", or "multiple choice"
     if (lower.includes("mcq") || lower === "multiple choice") {
+      // MCQ
       return (
         <div className="space-y-4 mt-4">
           {Object.entries(q.options).map(([key, optionText]) => {
@@ -123,9 +139,8 @@ export default function Exam({
           })}
         </div>
       )
-    }
-    // if type is "numerical", "integer", etc.
-    else if (lower.includes("num") || lower.includes("int")) {
+    } else if (lower.includes("num") || lower.includes("int")) {
+      // Numeric / Integer
       const val = answers[currentQuestion] || ""
       return (
         <div className="mt-4">
@@ -139,58 +154,64 @@ export default function Exam({
       )
     } else {
       // fallback
-      return <p className="text-red-500">Unknown question type: {q.type}. Cannot render.</p>
+      return (
+        <p className="text-red-500">
+          Unknown question type: {q.type}. Cannot render.
+        </p>
+      )
     }
   }
 
   return (
-    <div className="min-h-screen w-full flex flex-col bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen w-full flex flex-col bg-background">
       {/* Header with user info, timer, exit */}
-      <header className="sticky top-0 z-10 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm">
+      <header className="sticky top-0 z-10 bg-background border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           {/* left side: user info */}
           <div className="flex items-center space-x-4">
-            <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
-              <User className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+              <User className="w-6 h-6 text-primary-foreground" />
             </div>
             <div>
-              <h2 className="text-sm font-medium text-gray-900 dark:text-gray-100">{userName}</h2>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
+              <h2 className="text-sm font-medium">{userName}</h2>
+              <p className="text-xs text-muted-foreground">
                 {selectedSubject} ({selectedYear}) - {selectedLevel}
               </p>
             </div>
           </div>
           {/* right side: timer + exit */}
           <div className="flex items-center space-x-4">
-            <div className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium flex items-center">
+            <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium flex items-center">
               <Clock className="w-4 h-4 mr-2" />
               {formatTime(examTimeLeft)}
             </div>
             <Button variant="ghost" size="icon" onClick={onExit}>
-              <LogOut className="h-[1.2rem] w-[1.2rem] text-gray-600 dark:text-gray-300" />
+              <LogOut className="h-[1.2rem] w-[1.2rem]" />
             </Button>
           </div>
         </div>
       </header>
 
-      {/* Main area */}
-      <main className="flex-1 flex flex-col lg:flex-row overflow-hidden">
-        {/* LEFT: question content */}
-        <div className="flex-grow overflow-y-auto p-4 sm:p-6 lg:p-8">
-          <Card className="mb-6 max-w-4xl mx-auto w-full bg-white dark:bg-gray-800 shadow-md">
+      {/* Main area: Use a grid for better control */}
+      <main className="flex-1 grid grid-cols-1 md:grid-cols-[1fr,auto] md:gap-6 overflow-hidden">
+        {/* QUESTION COLUMN */}
+        <section className="overflow-y-auto p-4 sm:p-6 lg:p-8">
+          {/* Card for the question block */}
+          <Card className="mb-6 mx-auto w-full max-w-3xl">
             <CardHeader>
-              <CardTitle className="flex justify-between items-center text-gray-900 dark:text-gray-100">
+              <CardTitle className="flex justify-between items-center">
                 <span>Question {currentQuestion + 1}</span>
-                <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                <span className="text-sm font-normal text-muted-foreground">
                   {currentQuestion + 1} of {filteredQuestions.length}
                 </span>
               </CardTitle>
             </CardHeader>
 
-            <CardContent className="p-6 overflow-y-auto max-h-[60vh]">
+            {/* Question content */}
+            <CardContent className="p-6">
               {renderDiagram(question.diagramUrl)}
 
-              <div className="text-gray-700 dark:text-gray-300 mb-4 text-base sm:text-lg md:text-xl leading-7">
+              <div className="text-gray-700 mb-4 text-base sm:text-lg md:text-xl leading-7">
                 <MathRenderer text={question.text} />
               </div>
 
@@ -198,7 +219,7 @@ export default function Exam({
             </CardContent>
 
             <CardFooter className="flex flex-col gap-4">
-              {/* Nav buttons */}
+              {/* Navigation buttons */}
               <div className="flex flex-wrap gap-3 justify-between w-full">
                 <div className="flex gap-3">
                   <Button
@@ -236,6 +257,7 @@ export default function Exam({
             </CardFooter>
           </Card>
 
+          {/* Submit Exam */}
           <div className="flex justify-center mt-6">
             <Button
               onClick={() => {
@@ -243,52 +265,53 @@ export default function Exam({
                   onSubmit()
                 }
               }}
-              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 py-2 text-lg font-light bg-blue-500 hover:bg-blue-600 text-white"
+              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 py-2 text-lg font-light"
+              variant="outline"
             >
               Submit Exam
             </Button>
           </div>
-        </div>
+        </section>
 
-        {/* RIGHT: question navigator and status */}
-        <div className="w-full lg:w-80 bg-white dark:bg-gray-800 overflow-y-auto p-4 space-y-6 border-t lg:border-t-0 lg:border-l border-gray-200 dark:border-gray-700">
-          <Card className="bg-gray-50 dark:bg-gray-900">
+        {/* SEPARATOR on mobile */}
+        <Separator orientation="horizontal" className="block md:hidden" />
+
+        {/* NAVIGATOR SIDEBAR */}
+        <aside className="md:w-[280px] bg-background p-4 space-y-6 overflow-y-auto border-l hidden md:block">
+          {/* Question Status Card */}
+          <Card>
             <CardHeader>
-              <CardTitle className="text-lg font-semibold text-gray-900 dark:text-gray-100">Question Status</CardTitle>
+              <CardTitle className="text-lg font-semibold">Question Status</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 gap-2">
                 <div className="flex items-center justify-between">
-                  <span className="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                    <AlertCircle className="w-4 h-4 mr-2 text-gray-400" />
+                  <span className="flex items-center text-sm">
+                    <AlertCircle className="w-4 h-4 mr-2 text-muted-foreground" />
                     Not Visited
                   </span>
-                  <span className="font-medium text-gray-900 dark:text-gray-100">
-                    {questionStatusCounts.notVisited}
-                  </span>
+                  <span className="font-medium">{questionStatusCounts.notVisited}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                  <span className="flex items-center text-sm">
                     <AlertCircle className="w-4 h-4 mr-2 text-yellow-500" />
                     Not Answered
                   </span>
-                  <span className="font-medium text-gray-900 dark:text-gray-100">
-                    {questionStatusCounts.notAnswered}
-                  </span>
+                  <span className="font-medium">{questionStatusCounts.notAnswered}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                  <span className="flex items-center text-sm">
                     <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
                     Answered
                   </span>
-                  <span className="font-medium text-gray-900 dark:text-gray-100">{questionStatusCounts.answered}</span>
+                  <span className="font-medium">{questionStatusCounts.answered}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                  <span className="flex items-center text-sm">
                     <Flag className="w-4 h-4 mr-2 text-blue-500" />
                     Marked for Review
                   </span>
-                  <span className="font-medium text-gray-900 dark:text-gray-100">
+                  <span className="font-medium">
                     {questionStatusCounts.markedForReview}
                   </span>
                 </div>
@@ -296,56 +319,145 @@ export default function Exam({
             </CardContent>
           </Card>
 
-          <Card className="bg-gray-50 dark:bg-gray-900">
+          {/* Question Navigator Card */}
+          <Card>
             <CardHeader>
-              <CardTitle className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                Question Navigator
-              </CardTitle>
+              <CardTitle className="text-lg font-semibold">Question Navigator</CardTitle>
             </CardHeader>
-            <CardContent className="overflow-y-auto max-h-[60vh]">
-              <div className="grid grid-cols-5 gap-2">
-                {filteredQuestions.map((_, index) => {
-                  const status = questionStatuses[index] || "notVisited"
-                  const isCurrent = currentQuestion === index
+            <CardContent>
+              {/* Wrap in a horizontal scroll if you have many questions */}
+              <div className="overflow-x-auto">
+                <div className="grid grid-cols-5 gap-2">
+                  {filteredQuestions.map((_, index) => {
+                    const status = questionStatuses[index] || "notVisited"
+                    const isCurrent = currentQuestion === index
 
-                  let buttonClasses = "w-10 h-10 p-0 font-medium"
-                  if (isCurrent) {
-                    buttonClasses +=
-                      " border-blue-500 bg-blue-100 text-blue-700 dark:border-blue-400 dark:bg-blue-900 dark:text-blue-200"
-                  } else if (status === "markedForReview") {
-                    buttonClasses +=
-                      " border-yellow-500 bg-yellow-100 text-yellow-700 dark:border-yellow-400 dark:bg-yellow-900 dark:text-yellow-200"
-                  } else if (status === "notAnswered") {
-                    buttonClasses +=
-                      " border-red-500 bg-red-100 text-red-700 dark:border-red-400 dark:bg-red-900 dark:text-red-200"
-                  } else if (status === "answered") {
-                    buttonClasses +=
-                      " border-green-500 bg-green-100 text-green-700 dark:border-green-400 dark:bg-green-900 dark:text-green-200"
-                  } else {
-                    buttonClasses +=
-                      " border-gray-300 bg-white text-gray-600 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300"
-                  }
+                    let buttonClasses = "w-10 h-10 p-0 font-medium"
+                    if (isCurrent) {
+                      buttonClasses += " border-blue-800 bg-blue-100 text-blue-600"
+                    } else if (status === "markedForReview") {
+                      buttonClasses += " border-blue-600 bg-blue-100 text-blue-600"
+                    } else if (status === "notAnswered") {
+                      buttonClasses += " border-yellow-600 bg-yellow-100 text-yellow-600"
+                    } else if (status === "answered") {
+                      buttonClasses += " border-green-600 bg-green-100 text-green-600"
+                    } else {
+                      buttonClasses += " border-gray-300 bg-white text-gray-600"
+                    }
 
-                  return (
-                    <TooltipProvider key={index}>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            className={buttonClasses}
-                            onClick={() => onNavigate(index)}
-                            aria-label={`Question ${index + 1}: ${status}`}
-                          >
-                            {index + 1}
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>{status}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  )
-                })}
+                    return (
+                      <TooltipProvider key={index}>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant="outline"
+                              className={buttonClasses}
+                              onClick={() => onNavigate(index)}
+                              aria-label={`Question ${index + 1}: ${status}`}
+                            >
+                              {index + 1}
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>{status}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    )
+                  })}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </aside>
+
+        {/* On mobile/tablet, we show the sidebar as a block below using a Separator + block */}
+        <div className="block md:hidden p-4 border-t space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg font-semibold">Question Status</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 gap-2">
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center text-sm">
+                    <AlertCircle className="w-4 h-4 mr-2 text-muted-foreground" />
+                    Not Visited
+                  </span>
+                  <span className="font-medium">{questionStatusCounts.notVisited}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center text-sm">
+                    <AlertCircle className="w-4 h-4 mr-2 text-yellow-500" />
+                    Not Answered
+                  </span>
+                  <span className="font-medium">{questionStatusCounts.notAnswered}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center text-sm">
+                    <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                    Answered
+                  </span>
+                  <span className="font-medium">{questionStatusCounts.answered}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center text-sm">
+                    <Flag className="w-4 h-4 mr-2 text-blue-500" />
+                    Marked for Review
+                  </span>
+                  <span className="font-medium">
+                    {questionStatusCounts.markedForReview}
+                  </span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg font-semibold">Question Navigator</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <div className="grid grid-cols-5 gap-2">
+                  {filteredQuestions.map((_, index) => {
+                    const status = questionStatuses[index] || "notVisited"
+                    const isCurrent = currentQuestion === index
+
+                    let buttonClasses = "w-10 h-10 p-0 font-medium"
+                    if (isCurrent) {
+                      buttonClasses += " border-blue-800 bg-blue-100 text-blue-600"
+                    } else if (status === "markedForReview") {
+                      buttonClasses += " border-blue-600 bg-blue-100 text-blue-600"
+                    } else if (status === "notAnswered") {
+                      buttonClasses += " border-yellow-600 bg-yellow-100 text-yellow-600"
+                    } else if (status === "answered") {
+                      buttonClasses += " border-green-600 bg-green-100 text-green-600"
+                    } else {
+                      buttonClasses += " border-gray-300 bg-white text-gray-600"
+                    }
+
+                    return (
+                      <TooltipProvider key={index}>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant="outline"
+                              className={buttonClasses}
+                              onClick={() => onNavigate(index)}
+                              aria-label={`Question ${index + 1}: ${status}`}
+                            >
+                              {index + 1}
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>{status}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    )
+                  })}
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -354,4 +466,3 @@ export default function Exam({
     </div>
   )
 }
-

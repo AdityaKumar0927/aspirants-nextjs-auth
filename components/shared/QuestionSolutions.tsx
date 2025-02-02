@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useCallback, useEffect } from "react"
+import { useSession, signIn } from "next-auth/react"
 import { useEditor, EditorContent } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import Placeholder from "@tiptap/extension-placeholder"
@@ -8,48 +9,56 @@ import { formatDistanceToNow } from "date-fns"
 import { Button } from "@/components/ui/button"
 import { Bold, Italic, List, ListOrdered, Code, Heading1, Heading2, Heart } from "lucide-react"
 
-// --------------------
-// Types
-// --------------------
-export interface Solution {
+interface QuestionSolutionsProps {
+  questionId: string
+}
+
+// Minimal solution interface from DB
+interface Solution {
   id: string
   content: string
-  author: string
+  authorId: string | null
   createdAt: string
   likes: number
-  replies: Solution[]
+  parentId: string | null
+  replies?: Solution[]
 }
 
-// The local data structure if you need to store or show the question info
-interface LocalQuestion {
-  id: string
-  title: string
-  content: string
-  solutions: Solution[]
+// For local text editor
+function ProfanityExtension() {
+  // Placeholder extension approach or handle in your onSubmit
+  return null
 }
 
-// Props for the top-level "QuestionSolutions" component
-interface QuestionSolutionsProps {
-  questionId: string // questionId from parent
-}
+export function QuestionSolutions({ questionId }: QuestionSolutionsProps) {
+  const { data: session, status } = useSession()
 
-interface AdvancedEditorProps {
-  onSubmit: (content: string) => void
-}
-
-// Simple list of disallowed words (for demonstration):
-const PROFANITY_LIST = [
-  "fuck", "shit", "bitch", "asshole", "dick", "cunt", 
-  // Add more if needed
-]
-
-// --------------------
-// AdvancedEditor
-// --------------------
-export function AdvancedEditor({ onSubmit }: AdvancedEditorProps) {
+  const [solutions, setSolutions] = useState<Solution[]>([])
   const [error, setError] = useState<string>("")
 
-  const editor = useEditor({
+  // 1) Fetch solutions
+  const fetchSolutions = useCallback(async () => {
+    try {
+      const res = await fetch(`/api/questions/${questionId}/solutions`)
+      if (!res.ok) {
+        throw new Error("Failed to load solutions")
+      }
+      const data = await res.json()
+      setSolutions(data)
+    } catch (err) {
+      console.error(err)
+      setError("Unable to load solutions.")
+    }
+  }, [questionId])
+
+  useEffect(() => {
+    fetchSolutions()
+  }, [fetchSolutions])
+
+  // 2) Editor for top-level solutions (only if authenticated)
+  const [editorError, setEditorError] = useState<string>("")
+
+  const topLevelEditor = useEditor({
     extensions: [
       StarterKit,
       Placeholder.configure({
@@ -58,210 +67,330 @@ export function AdvancedEditor({ onSubmit }: AdvancedEditorProps) {
     ],
     editorProps: {
       attributes: {
-        class:
-          "prose prose-sm max-w-none font-light tracking-tight focus:outline-none min-h-[100px] p-2",
+        class: "prose prose-sm max-w-none font-light tracking-tight focus:outline-none min-h-[100px] p-2",
       },
+    },
+    onUpdate: ({ editor }) => {
+      // check profanity here if you'd like
+      setEditorError("")
     },
   })
 
-  // Simple profanity check
-  const checkProfanity = (text: string) => {
-    const lower = text.toLowerCase()
-    for (const badWord of PROFANITY_LIST) {
-      if (lower.includes(badWord)) {
-        return true
+  const handleSubmitTopLevel = async () => {
+    if (!topLevelEditor) return
+    const text = topLevelEditor.getText().trim()
+    if (!text) {
+      setEditorError("Please enter some text.")
+      return
+    }
+
+    // Simple profanity check
+    if (checkForProfanity(text)) {
+      setEditorError("Please remove offensive language.")
+      return
+    }
+
+    const html = topLevelEditor.getHTML()
+    try {
+      const res = await fetch(`/api/questions/${questionId}/solutions`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: html }),
+      })
+      if (!res.ok) {
+        throw new Error("Failed to create solution")
       }
+      topLevelEditor.commands.clearContent()
+      fetchSolutions()
+    } catch (err) {
+      console.error(err)
+      setEditorError("Failed to post solution. Try again.")
     }
-    return false
   }
 
-  const handleSubmit = () => {
-    if (!editor) return
-    const plainText = editor.getText().trim() // plain text from the editor
-
-    if (!plainText) {
-      setError("Please enter some text.")
+  // 3) Like a solution
+  const handleLike = async (solutionId: string) => {
+    if (!session) {
+      alert("You must be logged in to like a solution.")
       return
     }
-
-    // Check for profanity
-    if (checkProfanity(plainText)) {
-      setError("Your message contains offensive language, please remove it.")
-      return
+    try {
+      const res = await fetch(`/api/questions/${questionId}/solutions`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ solutionId, like: true }),
+      })
+      if (!res.ok) {
+        throw new Error("Failed to like solution")
+      }
+      fetchSolutions()
+    } catch (err) {
+      console.error(err)
     }
-
-    // If all good, call onSubmit with the HTML
-    onSubmit(editor.getHTML())
-    editor.commands.clearContent()
-    setError("")
   }
 
-  if (!editor) {
-    return null
+  // 4) Reply logic (only if authenticated)
+  const [replyError, setReplyError] = useState<string>("")
+
+  const handleReply = async (parentId: string, content: string) => {
+    if (!session) {
+      alert("You must be logged in to reply.")
+      return
+    }
+    if (!content.trim()) {
+      setReplyError("Reply cannot be empty.")
+      return
+    }
+    if (checkForProfanity(content)) {
+      setReplyError("Please remove offensive language.")
+      return
+    }
+    try {
+      const res = await fetch(`/api/questions/${questionId}/solutions`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content, parentId }),
+      })
+      if (!res.ok) {
+        throw new Error("Failed to create reply.")
+      }
+      fetchSolutions()
+    } catch (err) {
+      console.error(err)
+      setReplyError("Failed to post reply. Try again.")
+    }
+  }
+
+  // A minimal profanity list
+  const PROFANITY_WORDS = ["fuck", "shit", "bitch", "asshole"]
+  function checkForProfanity(text: string) {
+    const lower = text.toLowerCase()
+    return PROFANITY_WORDS.some((word) => lower.includes(word))
+  }
+
+  // Utility: Render each solution + replies
+  function renderSolution(solution: Solution) {
+    return (
+      <SolutionItem
+        key={solution.id}
+        solution={solution}
+        onLike={() => handleLike(solution.id)}
+        onReply={handleReply}
+      />
+    )
+  }
+
+  // Render
+  if (error) {
+    return <p className="text-red-500 text-sm">{error}</p>
   }
 
   return (
-    <div className="space-y-4 border rounded-md p-2">
-      {error && (
-        <p className="text-red-500 text-sm font-light tracking-tight">
-          {error}
-        </p>
+    <div className="space-y-6">
+      {/* If user not authenticated => just show existing solutions + a login prompt */}
+      {(!session || session === null) && (
+        <div className="text-sm text-gray-600 mb-4">
+          You must be logged in to post new solutions or replies.
+          <Button variant="link" onClick={() => signIn()} className="ml-2 text-blue-600">
+            Log In
+          </Button>
+        </div>
       )}
-      <div className="flex flex-wrap items-center gap-2 mb-2">
-        <Button
-          size="icon"
-          variant="ghost"
-          onClick={() => editor.chain().focus().toggleBold().run()}
-          className={editor.isActive("bold") ? "bg-muted" : ""}
-        >
-          <Bold className="h-4 w-4" />
-        </Button>
-        <Button
-          size="icon"
-          variant="ghost"
-          onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={editor.isActive("italic") ? "bg-muted" : ""}
-        >
-          <Italic className="h-4 w-4" />
-        </Button>
-        <Button
-          size="icon"
-          variant="ghost"
-          onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-          className={editor.isActive("heading", { level: 1 }) ? "bg-muted" : ""}
-        >
-          <Heading1 className="h-4 w-4" />
-        </Button>
-        <Button
-          size="icon"
-          variant="ghost"
-          onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-          className={editor.isActive("heading", { level: 2 }) ? "bg-muted" : ""}
-        >
-          <Heading2 className="h-4 w-4" />
-        </Button>
-        <Button
-          size="icon"
-          variant="ghost"
-          onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={editor.isActive("bulletList") ? "bg-muted" : ""}
-        >
-          <List className="h-4 w-4" />
-        </Button>
-        <Button
-          size="icon"
-          variant="ghost"
-          onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={editor.isActive("orderedList") ? "bg-muted" : ""}
-        >
-          <ListOrdered className="h-4 w-4" />
-        </Button>
-        <Button
-          size="icon"
-          variant="ghost"
-          onClick={() => editor.chain().focus().toggleCode().run()}
-          className={editor.isActive("code") ? "bg-muted" : ""}
-        >
-          <Code className="h-4 w-4" />
-        </Button>
-      </div>
 
-      <EditorContent editor={editor} />
+      {/* If user is logged in => show the editor for top-level solutions */}
+      {session && (
+        <div>
+          <p className="font-medium text-sm mb-2">Share a new solution:</p>
+          {editorError && <p className="text-red-500 text-xs mb-2">{editorError}</p>}
+          {topLevelEditor && (
+            <div className="border rounded-md p-2">
+              {/* Toolbars */}
+              <div className="flex flex-wrap items-center gap-2 mb-2">
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => topLevelEditor.chain().focus().toggleBold().run()}
+                  className={topLevelEditor.isActive("bold") ? "bg-muted" : ""}
+                >
+                  <Bold className="h-4 w-4" />
+                </Button>
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => topLevelEditor.chain().focus().toggleItalic().run()}
+                  className={topLevelEditor.isActive("italic") ? "bg-muted" : ""}
+                >
+                  <Italic className="h-4 w-4" />
+                </Button>
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => topLevelEditor.chain().focus().toggleHeading({ level: 1 }).run()}
+                  className={topLevelEditor.isActive("heading", { level: 1 }) ? "bg-muted" : ""}
+                >
+                  <Heading1 className="h-4 w-4" />
+                </Button>
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => topLevelEditor.chain().focus().toggleHeading({ level: 2 }).run()}
+                  className={topLevelEditor.isActive("heading", { level: 2 }) ? "bg-muted" : ""}
+                >
+                  <Heading2 className="h-4 w-4" />
+                </Button>
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => topLevelEditor.chain().focus().toggleBulletList().run()}
+                  className={topLevelEditor.isActive("bulletList") ? "bg-muted" : ""}
+                >
+                  <List className="h-4 w-4" />
+                </Button>
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => topLevelEditor.chain().focus().toggleOrderedList().run()}
+                  className={topLevelEditor.isActive("orderedList") ? "bg-muted" : ""}
+                >
+                  <ListOrdered className="h-4 w-4" />
+                </Button>
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => topLevelEditor.chain().focus().toggleCode().run()}
+                  className={topLevelEditor.isActive("code") ? "bg-muted" : ""}
+                >
+                  <Code className="h-4 w-4" />
+                </Button>
+              </div>
 
-      <div className="flex justify-end">
-        <Button
-          onClick={handleSubmit}
-          className="font-light tracking-tight border-blue-800 bg-blue-100 text-blue-600 hover:bg-blue-200"
-        >
-          Submit
-        </Button>
+              {/* EditorContent */}
+              <EditorContent editor={topLevelEditor} />
+
+              {/* Submit button */}
+              <div className="flex justify-end mt-2">
+                <Button
+                  onClick={handleSubmitTopLevel}
+                  className="font-light tracking-tight border-blue-800 bg-blue-100 text-blue-600 hover:bg-blue-200"
+                >
+                  Submit
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Show existing solutions */}
+      <div className="space-y-4">
+        {solutions.map((sol) => renderSolution(sol))}
       </div>
     </div>
   )
 }
 
-// --------------------
-// SolutionForm
-// --------------------
-export function SolutionForm({ onSubmit }: { onSubmit: (content: string) => void }) {
-  return (
-    <div className="space-y-2">
-      <AdvancedEditor onSubmit={onSubmit} />
-    </div>
-  )
-}
-
-// --------------------
-// Single solution block
-// --------------------
-export function Solution({
+// A single solution item with nested replies
+function SolutionItem({
   solution,
-  onReply,
   onLike,
+  onReply,
 }: {
   solution: Solution
+  onLike: () => void
   onReply: (parentId: string, content: string) => void
-  onLike: (id: string) => void
 }) {
-  const [isReplying, setIsReplying] = useState(false)
+  const { data: session } = useSession()
+  const [replyOpen, setReplyOpen] = useState(false)
+  const [replyContent, setReplyContent] = useState("")
+  const [replyError, setReplyError] = useState("")
+
+  const handleReplySubmit = () => {
+    if (!session) {
+      alert("You must be logged in to reply.")
+      return
+    }
+    if (!replyContent.trim()) {
+      setReplyError("Cannot post an empty reply.")
+      return
+    }
+    // profanity check
+    if (checkForProfanity(replyContent)) {
+      setReplyError("Please remove offensive language.")
+      return
+    }
+    onReply(solution.id, replyContent)
+    setReplyContent("")
+    setReplyOpen(false)
+    setReplyError("")
+  }
 
   return (
-    <div className="space-y-2">
-      <div className="flex items-start space-x-2">
-        <div className="flex-grow">
-          <div className="flex items-center space-x-2">
-            <span className="font-medium text-sm tracking-tight">{solution.author}</span>
-            <span className="text-xs text-gray-500 font-light tracking-tight">
-              {formatDistanceToNow(new Date(solution.createdAt), { addSuffix: true })}
-            </span>
-          </div>
-          <div
-            className="prose prose-sm max-w-none font-light tracking-tight mt-1"
-            dangerouslySetInnerHTML={{ __html: solution.content }}
-          />
+    <div className="space-y-2 border-b border-gray-100 pb-4">
+      <div className="flex items-center justify-between">
+        {/* Author info if needed */}
+        <div className="flex items-center space-x-2">
+          <span className="text-sm font-medium">
+            {solution.authorId ? `User ${solution.authorId}` : "Guest"}
+          </span>
+          <span className="text-xs text-gray-500">
+            {formatDistanceToNow(new Date(solution.createdAt), { addSuffix: true })}
+          </span>
         </div>
-      </div>
 
-      <div className="flex items-center space-x-4 ml-4">
+        {/* Like button */}
         <button
-          onClick={() => onLike(solution.id)}
-          className="text-xs text-gray-500 hover:text-red-500 flex items-center space-x-1 transition-colors duration-200"
+          onClick={onLike}
+          className="flex items-center space-x-1 text-xs text-gray-500 hover:text-red-500"
         >
           <Heart
             className="w-3 h-3 fill-current"
             color={solution.likes > 0 ? "red" : "currentColor"}
           />
-          <span className="font-light tracking-tight">{solution.likes}</span>
+          <span>{solution.likes}</span>
         </button>
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => setIsReplying(!isReplying)}
-          className="text-xs font-light tracking-tight"
-        >
-          Reply
-        </Button>
       </div>
 
-      {isReplying && (
-        <div className="ml-4 mt-2">
-          <SolutionForm
-            onSubmit={(content) => {
-              onReply(solution.id, content)
-              setIsReplying(false)
-            }}
-          />
+      {/* Content */}
+      <div
+        className="prose prose-sm max-w-none font-light tracking-tight"
+        dangerouslySetInnerHTML={{ __html: solution.content }}
+      />
+
+      {/* Reply button if logged in */}
+      {session && (
+        <div className="mt-1">
+          <Button variant="ghost" size="sm" onClick={() => setReplyOpen(!replyOpen)}>
+            {replyOpen ? "Cancel" : "Reply"}
+          </Button>
+          {replyOpen && (
+            <div className="mt-2">
+              {replyError && <p className="text-red-500 text-xs mb-2">{replyError}</p>}
+              <textarea
+                className="w-full border p-2 text-sm rounded-md"
+                rows={2}
+                placeholder="Write your reply..."
+                value={replyContent}
+                onChange={(e) => setReplyContent(e.target.value)}
+              />
+              <div className="flex justify-end mt-1">
+                <Button variant="outline" size="sm" onClick={handleReplySubmit}>
+                  Post Reply
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
-      {solution.replies.length > 0 && (
+      {/* Show nested replies, if any */}
+      {solution.replies && solution.replies.length > 0 && (
         <div className="ml-4 mt-2 space-y-2 border-l border-gray-200 pl-4">
-          {solution.replies.map((reply) => (
-            <Solution
-              key={reply.id}
-              solution={reply}
+          {solution.replies.map((rep) => (
+            <SolutionItem
+              key={rep.id}
+              solution={rep}
+              onLike={() => null /* or handle a nested like */}
               onReply={onReply}
-              onLike={onLike}
             />
           ))}
         </div>
@@ -270,109 +399,9 @@ export function Solution({
   )
 }
 
-// --------------------
-// QuestionSolutions
-// (Fetches from /api/questions/[questionId]/solutions, etc.)
-// --------------------
-export function QuestionSolutions({ questionId }: QuestionSolutionsProps) {
-  const [solutions, setSolutions] = useState<Solution[]>([])
-
-  // For demonstration, we might fetch solutions from your /api route
-  // and store them in local state:
-  const fetchSolutions = useCallback(async () => {
-    try {
-      const res = await fetch(`/api/questions/${questionId}/solutions`)
-      if (!res.ok) {
-        console.error("Failed to load solutions")
-        return
-      }
-      const data = await res.json()
-      setSolutions(data)
-    } catch (err) {
-      console.error("Error fetching solutions:", err)
-    }
-  }, [questionId])
-
-  useEffect(() => {
-    fetchSolutions()
-  }, [fetchSolutions])
-
-  // Add top-level solution
-  const handleAddSolution = async (content: string) => {
-    try {
-      const res = await fetch(`/api/questions/${questionId}/solutions`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content }),
-      })
-      if (!res.ok) {
-        console.error("Failed to create solution")
-        return
-      }
-      // We can refetch or push the new solution locally
-      await fetchSolutions()
-    } catch (err) {
-      console.error("Error creating solution:", err)
-    }
-  }
-
-  // Reply to an existing solution
-  const handleReplySolution = async (parentId: string, content: string) => {
-    try {
-      const res = await fetch(`/api/questions/${questionId}/solutions`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content, parentId }),
-      })
-      if (!res.ok) {
-        console.error("Failed to create reply")
-        return
-      }
-      // Refetch
-      await fetchSolutions()
-    } catch (err) {
-      console.error("Error creating reply:", err)
-    }
-  }
-
-  // Like a solution
-  const handleLikeSolution = async (solutionId: string) => {
-    try {
-      const res = await fetch(`/api/questions/${questionId}/solutions`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ solutionId, like: true }),
-      })
-      if (!res.ok) {
-        console.error("Failed to like solution")
-        return
-      }
-      // Refetch
-      await fetchSolutions()
-    } catch (err) {
-      console.error("Error liking solution:", err)
-    }
-  }
-
-  return (
-    <div className="space-y-6">
-      <div>
-        <h2 className="text-lg font-medium tracking-tight mb-2">Solutions</h2>
-        {/* Editor for new top-level solution */}
-        <SolutionForm onSubmit={handleAddSolution} />
-      </div>
-
-      {/* Render existing solutions */}
-      <div className="space-y-4">
-        {solutions.map((sol) => (
-          <Solution
-            key={sol.id}
-            solution={sol}
-            onReply={handleReplySolution}
-            onLike={handleLikeSolution}
-          />
-        ))}
-      </div>
-    </div>
-  )
+// small utility
+function checkForProfanity(text: string) {
+  const badWords = ["fuck", "shit", "bitch", "asshole"]
+  const lower = text.toLowerCase()
+  return badWords.some((w) => lower.includes(w))
 }
