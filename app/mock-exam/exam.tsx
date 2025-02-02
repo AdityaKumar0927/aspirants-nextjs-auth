@@ -28,11 +28,7 @@ import {
   TooltipProvider,
 } from "@/components/ui/tooltip"
 import Image from "next/image"
-
-// KaTeX-based math renderer
 import MathRenderer from "@/components/layout/MathRenderer"
-
-// Single source-of-truth question type from exam-helpers
 import { QuestionType } from "@/lib/exam-helpers"
 
 interface ExamProps {
@@ -62,10 +58,6 @@ interface ExamProps {
   selectedLevel: string
 }
 
-/**
- * Renders the Exam layout with question content on the left (or top on mobile)
- * and a status+navigation sidebar on the right (or bottom on mobile).
- */
 export default function Exam({
   currentQuestion,
   filteredQuestions,
@@ -87,14 +79,14 @@ export default function Exam({
   selectedYear,
   selectedLevel,
 }: ExamProps) {
-  // Format time as mm:ss
+  // Convert raw seconds to mm:ss
   function formatTime(seconds: number) {
     const minutes = Math.floor(seconds / 60)
     const secs = seconds % 60
     return `${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
   }
 
-  // Current question to display
+  // The current question to be displayed
   const question = filteredQuestions[currentQuestion]
   if (!question) {
     return (
@@ -107,7 +99,7 @@ export default function Exam({
     )
   }
 
-  // Renders a diagram if question.diagramUrl is provided
+  // Render an image/diagram if provided
   function renderDiagram(diagramUrl?: string) {
     if (!diagramUrl) return null
     return (
@@ -123,11 +115,11 @@ export default function Exam({
     )
   }
 
-  // Renders the question body based on the question type (MCQ, numeric, etc.)
+  // Decide how to render the main question body based on its type
   function renderQuestionBody(q: QuestionType) {
     const lowerType = (q.type || "").toLowerCase()
 
-    // Multiple-choice question
+    // MCQ
     if (lowerType.includes("mcq") || lowerType === "multiple choice") {
       return (
         <div className="space-y-4 mt-4">
@@ -149,7 +141,7 @@ export default function Exam({
       )
     }
 
-    // Numeric / integer answers
+    // Numeric / Integer
     else if (lowerType.includes("num") || lowerType.includes("int")) {
       const val = answers[currentQuestion] || ""
       return (
@@ -164,7 +156,7 @@ export default function Exam({
       )
     }
 
-    // Fallback if question type is unknown
+    // Fallback for unknown question types
     return (
       <p className="text-red-500">
         Unknown question type: {q.type}. Cannot render.
@@ -174,10 +166,10 @@ export default function Exam({
 
   return (
     <div className="min-h-screen w-full flex flex-col bg-background">
-      {/* Header with user info, timer, exit */}
+      {/* HEADER: user info, timer, exit */}
       <header className="sticky top-0 z-10 bg-background border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          {/* Left side: user info */}
+          {/* Left: user info */}
           <div className="flex items-center space-x-4">
             <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
               <User className="w-6 h-6 text-primary-foreground" />
@@ -190,7 +182,7 @@ export default function Exam({
             </div>
           </div>
 
-          {/* Right side: timer + exit */}
+          {/* Right: timer + exit */}
           <div className="flex items-center space-x-4">
             <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium flex items-center">
               <Clock className="w-4 h-4 mr-2" />
@@ -203,11 +195,14 @@ export default function Exam({
         </div>
       </header>
 
-      {/* Main area: two-column grid (stacked on mobile) */}
-      <main className="flex-1 grid grid-cols-1 md:grid-cols-[1fr,auto] md:gap-6 overflow-hidden">
+      {/* MAIN CONTENT */}
+      {/* 
+        Using a grid layout so we can place a sidebar on MD+ screens. 
+        On smaller screens, it's hidden here and shown at the bottom. 
+      */}
+      <main className="flex-1 grid grid-cols-1 md:grid-cols-[1fr,auto] md:gap-6">
         {/* QUESTION COLUMN */}
-        <section className="overflow-y-auto p-4 sm:p-6 lg:p-8">
-          {/* Card for the question block */}
+        <section className="p-4 sm:p-6 lg:p-8">
           <Card className="mb-6 mx-auto w-full max-w-3xl">
             <CardHeader>
               <CardTitle className="flex justify-between items-center">
@@ -218,7 +213,6 @@ export default function Exam({
               </CardTitle>
             </CardHeader>
 
-            {/* Question content */}
             <CardContent className="p-6">
               {renderDiagram(question.diagramUrl)}
 
@@ -230,7 +224,7 @@ export default function Exam({
             </CardContent>
 
             <CardFooter className="flex flex-col gap-4">
-              {/* Navigation buttons */}
+              {/* Nav Buttons */}
               <div className="flex flex-wrap gap-3 justify-between w-full">
                 <div className="flex gap-3">
                   <Button
@@ -252,7 +246,6 @@ export default function Exam({
                     <ChevronRight className="w-4 h-4 ml-2" />
                   </Button>
                 </div>
-                {/* Action buttons */}
                 <div className="flex gap-3">
                   <Button onClick={onClear} variant="outline">
                     Clear
@@ -268,7 +261,7 @@ export default function Exam({
             </CardFooter>
           </Card>
 
-          {/* Submit Exam */}
+          {/* Submit Exam button */}
           <div className="flex justify-center mt-6">
             <Button
               onClick={() => {
@@ -287,9 +280,9 @@ export default function Exam({
         {/* SEPARATOR on mobile */}
         <Separator orientation="horizontal" className="block md:hidden" />
 
-        {/* NAVIGATOR SIDEBAR (visible on md+), includes question status & question buttons */}
-        <aside className="md:w-[280px] bg-background p-4 space-y-6 overflow-y-auto border-l hidden md:block">
-          {/* Question Status Card */}
+        {/* SIDEBAR (visible on md+) */}
+        <aside className="md:w-[280px] bg-background p-4 space-y-6 border-l hidden md:block">
+          {/* Question Status */}
           <Card>
             <CardHeader>
               <CardTitle className="text-lg font-semibold">Question Status</CardTitle>
@@ -330,13 +323,12 @@ export default function Exam({
             </CardContent>
           </Card>
 
-          {/* Question Navigator Card */}
+          {/* Question Navigator */}
           <Card>
             <CardHeader>
               <CardTitle className="text-lg font-semibold">Question Navigator</CardTitle>
             </CardHeader>
             <CardContent>
-              {/* Wrap in horizontal scroll if many questions */}
               <div className="overflow-x-auto">
                 <div className="grid grid-cols-5 gap-2">
                   {filteredQuestions.map((_, index) => {
@@ -364,12 +356,11 @@ export default function Exam({
                               variant="outline"
                               className={buttonClasses}
                               onClick={() => onNavigate(index)}
-                              aria-label={`Question ${index + 1}: ${status}`}
                             >
                               {index + 1}
                             </Button>
                           </TooltipTrigger>
-                          <TooltipContent>
+                          <TooltipContent side="top">
                             <p>{status}</p>
                           </TooltipContent>
                         </Tooltip>
@@ -382,7 +373,7 @@ export default function Exam({
           </Card>
         </aside>
 
-        {/* On mobile/tablet, show the same sidebar content below the question */}
+        {/* On mobile, show sidebar content below the question */}
         <div className="block md:hidden p-4 border-t space-y-6">
           <Card>
             <CardHeader>
@@ -456,12 +447,11 @@ export default function Exam({
                               variant="outline"
                               className={buttonClasses}
                               onClick={() => onNavigate(index)}
-                              aria-label={`Question ${index + 1}: ${status}`}
                             >
                               {index + 1}
                             </Button>
                           </TooltipTrigger>
-                          <TooltipContent>
+                          <TooltipContent side="top">
                             <p>{status}</p>
                           </TooltipContent>
                         </Tooltip>

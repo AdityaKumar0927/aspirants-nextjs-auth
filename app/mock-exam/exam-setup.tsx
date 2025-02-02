@@ -305,7 +305,7 @@ export default function ExamSetup({
   const isDisabled = selectedExam === "none" || selectedYear === "none";
 
   return (
-    <div className="container mx-auto p-6 font-light tracking-tight">
+    <div className="container mx-auto p-16 top-auto font-light tracking-tight">
       <h1 className="text-3xl font-medium mb-6">Past Papers</h1>
 
       <div className="grid gap-6 md:grid-cols-[350px,1fr]">
