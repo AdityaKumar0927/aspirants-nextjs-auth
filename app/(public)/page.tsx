@@ -112,6 +112,7 @@ export default function Page() {
           </div>
         </div>
       </div>
+      
 
       <div className="relative w-11/12 h-[800px] border-4 border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden flex items-center justify-center my-8 mx-auto">
         <div className="absolute inset-0 hidden sm:block">
