@@ -35,6 +35,25 @@ import MathRenderer from "@/components/layout/MathRenderer"
 // Single source-of-truth question type from exam-helpers
 import { QuestionType } from "@/lib/exam-helpers"
 
+/* ------------------------------------------------------------------
+   1) Helper: Determine the thick border color
+   ------------------------------------------------------------------ */
+function getBorderClass(questionStatus: string) {
+  // You can tweak these colors to match your preference
+  if (questionStatus === "markedForReview") {
+    // Flag color
+    return "border-[3px] border-orange-300/70"
+  } else if (questionStatus === "answered") {
+    // Greenish color
+    return "border-[3px] border-green-300/70"
+  } else if (questionStatus === "notAnswered") {
+    // Reddish color
+    return "border-[3px] border-red-300/70"
+  }
+  // Default (e.g. "notVisited" or unknown)
+  return "border-[3px] border-gray-300/70"
+}
+
 interface ExamProps {
   currentQuestion: number
   filteredQuestions: QuestionType[]
@@ -63,11 +82,6 @@ interface ExamProps {
   selectedLevel: string
 }
 
-/**
- * A responsive exam layout:
- * - On mobile (below md): question on top, navigator below (stacked).
- * - On desktop (md+): question left, navigator right (two columns).
- */
 export default function Exam({
   currentQuestion,
   filteredQuestions,
@@ -89,13 +103,14 @@ export default function Exam({
   selectedYear,
   selectedLevel,
 }: ExamProps) {
+  // Format mm:ss
   function formatTime(seconds: number) {
     const minutes = Math.floor(seconds / 60)
     const secs = seconds % 60
     return `${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
   }
 
-  // The current question to display
+  // Grab current question
   const question = filteredQuestions[currentQuestion]
   if (!question) {
     return (
@@ -106,7 +121,7 @@ export default function Exam({
     )
   }
 
-  // If the question has a diagram
+  // If question has a diagram
   function renderDiagram(diagramUrl?: string) {
     if (!diagramUrl) return null
     return (
@@ -122,11 +137,11 @@ export default function Exam({
     )
   }
 
-  // MCQ or Numeric
+  // Render MCQ or Numeric
   function renderQuestionBody(q: QuestionType) {
     const lower = (q.type || "").toLowerCase()
 
-    // if type is "mcq", "mcqm", or "multiple choice"
+    // MCQ
     if (lower.includes("mcq") || lower === "multiple choice") {
       return (
         <div className="space-y-4 mt-4">
@@ -136,7 +151,15 @@ export default function Exam({
               <Button
                 key={key}
                 variant={isSelected ? "secondary" : "outline"}
-                className="w-full justify-start text-left h-auto py-3 px-4"
+                className="
+                  w-full 
+                  justify-start 
+                  text-left 
+                  h-auto 
+                  py-3 px-4
+                  text-base
+                  sm:text-lg
+                "
                 onClick={() => onAnswer(key)}
               >
                 <span className="font-semibold mr-2">{key}.</span>
@@ -147,7 +170,7 @@ export default function Exam({
         </div>
       )
     }
-    // if type is "numerical", "integer", etc.
+    // Numeric / Integer
     else if (lower.includes("num") || lower.includes("int")) {
       const val = answers[currentQuestion] || ""
       return (
@@ -169,6 +192,10 @@ export default function Exam({
       )
     }
   }
+
+  // Determine border style based on question status
+  const status = questionStatuses[currentQuestion] || "notVisited"
+  const cardBorderClass = getBorderClass(status)
 
   return (
     <div className="min-h-screen w-full flex flex-col">
@@ -201,27 +228,43 @@ export default function Exam({
       </header>
 
       {/* Main area */}
-      {/* On mobile: flex-col => question is top, navigator below.
-          On desktop: flex-row => question on left, navigator on right. */}
       <main className="flex-1 flex flex-col md:flex-row overflow-hidden">
         {/* LEFT / top: question content */}
         <div className="flex-grow overflow-y-auto p-4 sm:p-6 lg:p-8 max-h-screen flex flex-col">
-          <Card className="mb-6 max-w-4xl mx-auto w-full">
+          {/* ----- Question Card (similar to Question.tsx) ----- */}
+          <Card
+            className={`
+              mb-6 
+              max-w-4xl 
+              mx-auto 
+              w-full
+              rounded-md
+              dark:bg-gray-800 dark:text-gray-100
+              ${cardBorderClass}
+            `}
+          >
             <CardHeader>
-              <CardTitle className="flex justify-between items-center">
-                <span>Question {currentQuestion + 1}</span>
-                <span className="text-sm font-normal text-muted-foreground">
+              <CardTitle className="flex justify-between items-center w-full">
+                {/* Left side: "Question #X" */}
+                <div className="text-lg sm:text-xl md:text-2xl font-normal">
+                  Question {currentQuestion + 1}
+                </div>
+                {/* Right side: "X of Y" */}
+                <div className="text-sm font-normal text-muted-foreground">
                   {currentQuestion + 1} of {filteredQuestions.length}
-                </span>
+                </div>
               </CardTitle>
             </CardHeader>
 
             <CardContent className="p-6 overflow-y-auto max-h-[60vh]">
+              {/* Diagram + question text */}
               {renderDiagram(question.diagramUrl)}
 
-              <div className="text-gray-700 mb-4 text-base sm:text-lg md:text-xl leading-7">
-                <MathRenderer text={question.text} />
-              </div>
+              {question.text && (
+                <div className="text-gray-700 mb-4 text-base sm:text-lg md:text-xl leading-7">
+                  <MathRenderer text={question.text} />
+                </div>
+              )}
 
               {renderQuestionBody(question)}
             </CardContent>
@@ -265,6 +308,7 @@ export default function Exam({
             </CardFooter>
           </Card>
 
+          {/* Submit button */}
           <div className="flex justify-center mt-6">
             <Button
               onClick={() => {
@@ -280,15 +324,14 @@ export default function Exam({
           </div>
         </div>
 
-        {/* On mobile, show a horizontal line before the navigator. 
-            On desktop, vertical line between columns. */}
+        {/* On mobile: horizontal line before the navigator.
+            On desktop: vertical line between columns. */}
         <Separator orientation="horizontal" className="block md:hidden" />
         <Separator orientation="vertical" className="hidden md:block" />
 
-        {/* RIGHT / bottom: question navigator and status 
-            On mobile, it appears below the question.
-            On desktop, side by side. */}
+        {/* RIGHT / bottom: question navigator and status */}
         <div className="w-full md:w-80 bg-background overflow-y-auto p-4 space-y-6 max-h-screen">
+          {/* Question Status block */}
           <Card>
             <CardHeader>
               <CardTitle className="text-lg font-semibold">Question Status</CardTitle>
@@ -327,6 +370,7 @@ export default function Exam({
             </CardContent>
           </Card>
 
+          {/* Question Navigator */}
           <Card>
             <CardHeader>
               <CardTitle className="text-lg font-semibold">Question Navigator</CardTitle>
@@ -341,12 +385,13 @@ export default function Exam({
                   if (isCurrent) {
                     buttonClasses += " border-blue-800 bg-blue-100 text-blue-600"
                   } else if (status === "markedForReview") {
-                    buttonClasses += " border-blue-600 bg-blue-100 text-blue-600"
+                    buttonClasses += " border-orange-500 bg-orange-100 text-orange-600"
                   } else if (status === "notAnswered") {
-                    buttonClasses += " border-yellow-600 bg-yellow-100 text-yellow-600"
+                    buttonClasses += " border-red-500 bg-red-100 text-red-600"
                   } else if (status === "answered") {
-                    buttonClasses += " border-green-600 bg-green-100 text-green-600"
+                    buttonClasses += " border-green-500 bg-green-100 text-green-600"
                   } else {
+                    // notVisited
                     buttonClasses += " border-gray-300 bg-white text-gray-600"
                   }
 
