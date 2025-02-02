@@ -21,6 +21,27 @@ import {
 
 const HOUR_IN_SECONDS = 3600;
 
+/** A simple skeleton UI for when the exam is loading after Start Exam is clicked. */
+function ExamLoadingSkeleton() {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center p-4">
+      <div className="w-full max-w-3xl space-y-4">
+        <Skeleton height={30} width={"60%"} />
+        <Skeleton height={20} count={2} />
+        <Skeleton height={200} />
+        <Skeleton height={40} />
+      </div>
+
+      <div className="w-full max-w-3xl space-y-2 mt-10">
+        <Skeleton height={30} width={"50%"} />
+        <Skeleton height={40} />
+        <Skeleton height={40} />
+        <Skeleton height={40} />
+      </div>
+    </div>
+  );
+}
+
 export default function MockExam() {
   const router = useRouter();
   const { toast } = useToast();
@@ -31,18 +52,13 @@ export default function MockExam() {
   // ---------------------------
   const [selectedExam, setSelectedExam] = useState("");
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
-
-  // Instead of "shift", we now use "yearKey"
-  const [selectedYearKey, setSelectedYearKey] = useState("");
-
-  // If user picks topics
+  const [selectedYearKey, setSelectedYearKey] = useState(""); // shift or instance
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
-
   const [difficulty, setDifficulty] = useState<string | undefined>(undefined);
   const [skipCompleted, setSkipCompleted] = useState<boolean>(false);
   const [examTime, setExamTime] = useState<number>(60);
 
-  // We'll store how many were fetched for display, if needed
+  // We'll store how many were fetched for display
   const [numQuestions, setNumQuestions] = useState<number>(0);
 
   // ---------------------------
@@ -53,14 +69,16 @@ export default function MockExam() {
   // ---------------------------
   // 3) Exam states
   // ---------------------------
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // fetching data
   const [isExamStarted, setIsExamStarted] = useState(false);
   const [isExamFinished, setIsExamFinished] = useState(false);
 
   // Answers & statuses
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<(string | null)[]>([]);
-  const [questionStatuses, setQuestionStatuses] = useState<{ [index: number]: string }>({});
+  const [questionStatuses, setQuestionStatuses] = useState<{
+    [index: number]: string;
+  }>({});
   const [timeSpentPerQuestion, setTimeSpentPerQuestion] = useState<number[]>([]);
   const [examTimeLeft, setExamTimeLeft] = useState(HOUR_IN_SECONDS);
   const [examResults, setExamResults] = useState<ExamResultsType | null>(null);
@@ -74,7 +92,7 @@ export default function MockExam() {
   async function handleStartExam(params: {
     exam: string;
     year: number;
-    yearKey?: string;
+    yearKey?: string; // shift
     examTime?: number;
     skipCompleted?: boolean;
     difficulty?: string;
@@ -90,44 +108,34 @@ export default function MockExam() {
       selectedTopics = [],
     } = params;
 
-    // Store user selections
-    setSelectedExam(exam);
-    setSelectedYear(year);
-    setSelectedYearKey(yearKey);
-    setExamTime(examTime);
-    setSkipCompleted(skipCompleted);
-    setDifficulty(difficulty);
-    setSelectedTopics(selectedTopics);
+    // Use a loading state to show skeleton
+    setIsLoading(true);
 
-    // We'll do a single fetch with a large pageSize (9999) to get all matching questions
     try {
-      setIsLoading(true);
-
+      // Attempt fetch
       const query = new URLSearchParams();
       query.set("exam", exam);
       query.set("year", String(year));
       query.set("page", "1");
       query.set("pageSize", "9999");
 
-      // If yearKey
       if (yearKey) {
         query.set("yearKey", yearKey);
       }
-      // If topics
       if (selectedTopics.length > 0) {
         query.set("topic", selectedTopics.join(","));
       }
-      // If skipCompleted
       if (skipCompleted) {
         query.set("skipCompleted", "true");
       }
-      // If difficulty
       if (difficulty) {
         query.set("difficulty", difficulty);
       }
 
       const res = await fetch(`/api/questions?${query.toString()}`);
-      if (!res.ok) throw new Error("Failed to fetch questions.");
+      if (!res.ok) {
+        throw new Error("Failed to fetch questions.");
+      }
 
       const data = await res.json();
       const questions: QuestionType[] = data.data;
@@ -141,11 +149,20 @@ export default function MockExam() {
         return;
       }
 
-      // The number of fetched questions
+      // Update local states
+      setSelectedExam(exam);
+      setSelectedYear(year);
+      setSelectedYearKey(yearKey);
+      setExamTime(examTime);
+      setSkipCompleted(skipCompleted);
+      setDifficulty(difficulty);
+      setSelectedTopics(selectedTopics);
+
       setNumQuestions(questions.length);
 
-      // Start the exam with those questions
+      // Now we can "start" the exam
       initializeExam(questions, examTime);
+      setIsExamStarted(true);
     } catch (err: any) {
       console.error(err);
       toast({
@@ -161,7 +178,7 @@ export default function MockExam() {
   function initializeExam(questions: QuestionType[], examTimeInMinutes: number) {
     setFilteredQuestions(questions);
 
-    // statuses = 'notVisited'
+    // Reset statuses
     const initStatuses: { [index: number]: string } = {};
     questions.forEach((_, i) => {
       initStatuses[i] = "notVisited";
@@ -169,10 +186,8 @@ export default function MockExam() {
     setQuestionStatuses(initStatuses);
     setAnswers(new Array(questions.length).fill(null));
     setTimeSpentPerQuestion(new Array(questions.length).fill(0));
-
     setExamTimeLeft(examTimeInMinutes * 60);
 
-    setIsExamStarted(true);
     setIsExamFinished(false);
     setExamResults(null);
     setCurrentQuestion(0);
@@ -192,10 +207,10 @@ export default function MockExam() {
       });
       setQuestionStatuses((prev) => {
         const oldStatus = prev[currentQuestion];
-        // If it was "markedForReview", keep it. Otherwise "answered"
         return {
           ...prev,
-          [currentQuestion]: oldStatus === "markedForReview" ? "markedForReview" : "answered",
+          [currentQuestion]:
+            oldStatus === "markedForReview" ? "markedForReview" : "answered",
         };
       });
     },
@@ -243,7 +258,7 @@ export default function MockExam() {
     updateTimeSpent();
     setCurrentQuestion(index);
 
-    // If it was "notVisited", change to "notAnswered" upon visiting
+    // If "notVisited", set to "notAnswered" on first visit
     setQuestionStatuses((prev) => {
       if (prev[index] === "notVisited") {
         return { ...prev, [index]: "notAnswered" };
@@ -309,15 +324,20 @@ export default function MockExam() {
 
     // sort for top strengths & weaknesses
     const topStrengths = Object.entries(topicPerformance)
-      .sort((a, b) => b[1].correct / b[1].total - a[1].correct / a[1].total)
+      .sort(
+        (a, b) => b[1].correct / b[1].total - a[1].correct / a[1].total
+      )
       .slice(0, 3);
 
     const topWeaknesses = Object.entries(topicPerformance)
-      .sort((a, b) => a[1].correct / a[1].total - b[1].correct / b[1].total)
+      .sort(
+        (a, b) => a[1].correct / a[1].total - b[1].correct / b[1].total
+      )
       .slice(0, 3);
 
     const avgTimePerQ =
-      timeSpentPerQuestion.reduce((a, b) => a + b, 0) / timeSpentPerQuestion.length;
+      timeSpentPerQuestion.reduce((a, b) => a + b, 0) /
+      timeSpentPerQuestion.length;
 
     // Example skill levels (mock data)
     const skillLevels: Record<string, number> = {
@@ -372,7 +392,7 @@ export default function MockExam() {
     };
   }, [isExamStarted, isExamFinished]);
 
-  // Each time we move to a new question, reset the time reference
+  // When moving to a new question, reset the time reference
   useEffect(() => {
     if (isExamStarted && !isExamFinished) {
       questionStartTimeRef.current = Date.now();
@@ -408,24 +428,11 @@ export default function MockExam() {
   }
 
   // ----------------------------------------------------------------
-  // 7) A bit of skeleton for loading
-  // ----------------------------------------------------------------
-  if (isLoading && !isExamStarted && !isExamFinished) {
-    return (
-      <div className="min-h-screen p-4 flex flex-col">
-        <div className="max-w-3xl mx-auto">
-          <Skeleton height={40} count={4} />
-        </div>
-      </div>
-    );
-  }
-
-  // ----------------------------------------------------------------
-  // 8) Render Flow: Setup -> Exam -> Results
+  // 6) Render Flow: Setup -> (Loading?) -> Exam -> Results
   // ----------------------------------------------------------------
   return (
     <AnimatePresence mode="wait">
-      {/* 8a) Exam setup */}
+      {/* -- 6a) Exam setup -- */}
       {!isExamStarted && !isExamFinished && (
         <motion.div
           key="setup"
@@ -442,8 +449,22 @@ export default function MockExam() {
         </motion.div>
       )}
 
-      {/* 8b) Exam in progress */}
-      {isExamStarted && !isExamFinished && (
+      {/* -- 6b) If exam started but data is still loading => show skeleton -- */}
+      {isExamStarted && !isExamFinished && isLoading && (
+        <motion.div
+          key="exam-loading"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.4 }}
+          className="fixed inset-0 z-50 bg-white"
+        >
+          <ExamLoadingSkeleton />
+        </motion.div>
+      )}
+
+      {/* -- 6c) Actual exam in progress (once not loading) -- */}
+      {isExamStarted && !isExamFinished && !isLoading && (
         <motion.div
           key="exam"
           initial={{ opacity: 0 }}
@@ -480,7 +501,7 @@ export default function MockExam() {
         </motion.div>
       )}
 
-      {/* 8c) Exam results */}
+      {/* -- 6d) Exam results -- */}
       {isExamFinished && examResults && (
         <motion.div
           key="results"

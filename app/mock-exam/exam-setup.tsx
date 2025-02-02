@@ -19,7 +19,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-/** If you want typed topics */
 interface Topic {
   id: number;
   name: string;
@@ -30,7 +29,7 @@ interface ExamSetupProps {
   onStartExam: (params: {
     exam: string;
     year: number;
-    shift?: string;
+    yearKey?: string; // We'll pass shift as yearKey
     examTime?: number;
     skipCompleted?: boolean;
     difficulty?: string;
@@ -38,14 +37,12 @@ interface ExamSetupProps {
     selectedTopics?: string[];
   }) => void;
 
-  /**
-   * Optional props that you may pass from the parent.
-   * If you don't use them in the parent, you can remove them here
-   * or mark them as optional with '?'.
-   */
   isLoading?: boolean;
   currentNumQuestions?: number;
 }
+
+// Shift placeholder constant
+const SHIFT_PLACEHOLDER = "select-shift";
 
 const transitionProps = {
   type: "spring",
@@ -56,8 +53,8 @@ const transitionProps = {
 
 export default function ExamSetup({
   onStartExam,
-  isLoading = false,           // default false
-  currentNumQuestions = 0,     // default 0
+  isLoading = false,
+  currentNumQuestions = 0,
 }: ExamSetupProps) {
   // Left card data
   const [exams, setExams] = useState<string[]>([]);
@@ -67,14 +64,16 @@ export default function ExamSetup({
   // Selections
   const [selectedExam, setSelectedExam] = useState("none");
   const [selectedYear, setSelectedYear] = useState("none");
-  const [selectedShift, setSelectedShift] = useState("no-shift");
+  const [selectedShift, setSelectedShift] = useState<string>(SHIFT_PLACEHOLDER);
 
-  const [numQuestions, setNumQuestions] = useState<number>(1800);
+  // We'll store numberOfQuestions as a string so we can keep it blank at first
+  const [numQuestions, setNumQuestions] = useState<string>("");
+
   const [difficulty, setDifficulty] = useState("any");
   const [skipCompleted, setSkipCompleted] = useState<"yes" | "no">("no");
   const [examTime, setExamTime] = useState(60);
 
-  // Loading & error
+  // Loading & error states
   const [loadingExams, setLoadingExams] = useState(false);
   const [loadingYears, setLoadingYears] = useState(false);
   const [loadingShifts, setLoadingShifts] = useState(false);
@@ -104,15 +103,6 @@ export default function ExamSetup({
     );
   }, []);
 
-  // Helper fetch
-  async function fetchJson(url: string) {
-    const res = await fetch(url);
-    if (!res.ok) {
-      throw new Error(`Failed to fetch: ${url}`);
-    }
-    return res.json();
-  }
-
   // 1) On mount => load distinct exams
   useEffect(() => {
     async function loadExams() {
@@ -123,10 +113,10 @@ export default function ExamSetup({
         const r = await fetch("/api/exams-and-years");
         if (!r.ok) throw new Error("Failed to load exams");
         const data = await r.json();
+
         // data => { exams:[...], ... }
-        const examList: string[] = data.exams?.sort((a: string, b: string) =>
-          a.localeCompare(b)
-        ) || [];
+        const examList: string[] =
+          data.exams?.sort((a: string, b: string) => a.localeCompare(b)) || [];
         setExams(examList);
       } catch (err: any) {
         setErrorMsg(err.message);
@@ -143,7 +133,7 @@ export default function ExamSetup({
       setYears([]);
       setSelectedYear("none");
       setShifts([]);
-      setSelectedShift("no-shift");
+      setSelectedShift(SHIFT_PLACEHOLDER);
       setTopics([]);
       setSelectedTopics([]);
       return;
@@ -153,9 +143,11 @@ export default function ExamSetup({
       try {
         setLoadingYears(true);
         setErrorMsg(null);
+
         const r = await fetch(`/api/exams-and-years?exam=${e}`);
         if (!r.ok) throw new Error("Failed to fetch years");
         const d = await r.json();
+
         const yrs: number[] =
           d.years?.sort((a: number, b: number) => b - a) || [];
         setYears(yrs);
@@ -172,7 +164,7 @@ export default function ExamSetup({
   useEffect(() => {
     if (selectedExam === "none" || selectedYear === "none") {
       setShifts([]);
-      setSelectedShift("no-shift");
+      setSelectedShift(SHIFT_PLACEHOLDER);
       setTopics([]);
       setSelectedTopics([]);
       return;
@@ -184,7 +176,7 @@ export default function ExamSetup({
         setLoadingTopics(true);
         setErrorMsg(null);
 
-        // Shifts
+        // 3a) Shifts
         const shiftRes = await fetch(
           `/api/exams-and-years?exam=${selectedExam}&year=${selectedYear}`
         );
@@ -193,10 +185,18 @@ export default function ExamSetup({
         const shArr: string[] =
           shiftData.shifts?.sort((a: string, b: string) => a.localeCompare(b)) ||
           [];
-        setShifts(shArr);
+
+        if (shArr.length === 0) {
+          // No shifts exist => just set "no-shift"
+          setShifts([]);
+          setSelectedShift("no-shift");
+        } else {
+          setShifts(shArr);
+          setSelectedShift(SHIFT_PLACEHOLDER);
+        }
         setLoadingShifts(false);
 
-        // Topics
+        // 3b) Topics
         const tRes = await fetch(
           `/api/topics?exam=${selectedExam}&year=${selectedYear}`
         );
@@ -205,6 +205,7 @@ export default function ExamSetup({
         const tArr: Topic[] = tData.topics || [];
         // sort by topic name
         tArr.sort((a, b) => a.name.localeCompare(b.name));
+
         setTopics(tArr);
         setLoadingTopics(false);
       } catch (err: any) {
@@ -219,21 +220,24 @@ export default function ExamSetup({
   // 4) If exam+year => fetch question count => set default numQuestions
   useEffect(() => {
     if (selectedExam === "none" || selectedYear === "none") {
-      setNumQuestions(1800);
+      setNumQuestions("");
       return;
     }
 
     async function loadQuestionCount() {
+      setLoadingCount(true);
       try {
-        setLoadingCount(true);
         const p = new URLSearchParams({
           exam: selectedExam,
           year: String(selectedYear),
           page: "1",
           pageSize: "1",
         });
-        if (selectedShift !== "no-shift") {
-          p.set("shift", selectedShift);
+        if (
+          selectedShift !== "no-shift" &&
+          selectedShift !== SHIFT_PLACEHOLDER
+        ) {
+          p.set("yearKey", selectedShift); // if shift is selected
         }
         if (skipCompleted === "yes") {
           p.set("skipCompleted", "true");
@@ -246,14 +250,16 @@ export default function ExamSetup({
         if (!r.ok) throw new Error("Failed to fetch question count");
         const d = await r.json();
 
-        let total = 1800;
-        if (typeof d.totalCount === "number") total = d.totalCount;
-        else if (Array.isArray(d)) total = d.length;
-        else if (Array.isArray(d.data)) total = d.data.length;
-        setNumQuestions(total || 1800);
+        let total = 0;
+        if (typeof d.totalCount === "number") {
+          total = d.totalCount;
+        } else if (Array.isArray(d?.data)) {
+          total = d.data.length;
+        }
+        setNumQuestions(String(total));
       } catch (err) {
         console.error(err);
-        setNumQuestions(1800);
+        setNumQuestions("");
       } finally {
         setLoadingCount(false);
       }
@@ -261,7 +267,7 @@ export default function ExamSetup({
     loadQuestionCount();
   }, [selectedExam, selectedYear, selectedShift, skipCompleted, difficulty]);
 
-  // handle "Generate" => calls onStartExam
+  // Called when user clicks the button
   function handleGenerate() {
     if (selectedExam === "none") {
       alert("Please pick an exam first.");
@@ -272,14 +278,21 @@ export default function ExamSetup({
       return;
     }
 
+    // Convert numQuestions string to a number if needed
+    const parsedNumQuestions = parseInt(numQuestions, 10) || 0;
+
     onStartExam({
       exam: selectedExam,
       year: Number(selectedYear),
-      shift: selectedShift === "no-shift" ? undefined : selectedShift,
+      // If shift is not "no-shift" or SHIFT_PLACEHOLDER => use it
+      yearKey:
+        selectedShift !== "no-shift" && selectedShift !== SHIFT_PLACEHOLDER
+          ? selectedShift
+          : undefined,
       examTime,
       skipCompleted: skipCompleted === "yes",
       difficulty: difficulty === "any" ? undefined : difficulty,
-      numQuestions,
+      numQuestions: parsedNumQuestions > 0 ? parsedNumQuestions : undefined,
       selectedTopics:
         topics.length && selectedTopics.length > 0
           ? topics
@@ -294,12 +307,6 @@ export default function ExamSetup({
   return (
     <div className="container mx-auto p-6 font-light tracking-tight">
       <h1 className="text-3xl font-medium mb-6">Past Papers</h1>
-
-      {/* 
-         Example usage of isLoading/currentNumQuestions (optional):
-         <p>isLoading: {isLoading ? "Yes" : "No"}</p>
-         <p>currentNumQuestions: {currentNumQuestions}</p>
-      */}
 
       <div className="grid gap-6 md:grid-cols-[350px,1fr]">
         {/* LEFT CARD => exam, year, shift, skipCompleted, etc. */}
@@ -361,7 +368,7 @@ export default function ExamSetup({
             )}
           </div>
 
-          {/* 3) Shift => "no-shift" default */}
+          {/* 3) Shift => default "Select shift" or "No shift" */}
           <div className="space-y-2">
             <Label className="text-sm text-neutral-600">Shift (optional)</Label>
             {loadingShifts ? (
@@ -373,15 +380,28 @@ export default function ExamSetup({
                 disabled={selectedYear === "none"}
               >
                 <SelectTrigger className="bg-white border-neutral-200 disabled:opacity-50">
-                  <SelectValue placeholder="Select shift" />
+                  <SelectValue
+                    placeholder={
+                      shifts.length === 0 ? "No shift" : "Select shift"
+                    }
+                  />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="no-shift">No shift</SelectItem>
-                  {shifts.map((sh) => (
-                    <SelectItem key={sh} value={sh}>
-                      {sh}
-                    </SelectItem>
-                  ))}
+                  {shifts.length === 0 ? (
+                    // If no shifts, just show "no-shift"
+                    <SelectItem value="no-shift">No shift</SelectItem>
+                  ) : (
+                    <>
+                      <SelectItem value={SHIFT_PLACEHOLDER} disabled>
+                        Select shift
+                      </SelectItem>
+                      {shifts.map((sh) => (
+                        <SelectItem key={sh} value={sh}>
+                          {sh}
+                        </SelectItem>
+                      ))}
+                    </>
+                  )}
                 </SelectContent>
               </Select>
             )}
@@ -397,7 +417,7 @@ export default function ExamSetup({
                 type="number"
                 className="bg-white border-neutral-200"
                 value={numQuestions}
-                onChange={(e) => setNumQuestions(Number(e.target.value) || 1)}
+                onChange={(e) => setNumQuestions(e.target.value)}
               />
             )}
           </div>
@@ -452,14 +472,14 @@ export default function ExamSetup({
             />
           </div>
 
-          {/* 8) Generate button */}
+          {/* 8) Start Exam button */}
           <Button
             className="w-full bg-blue-50 hover:bg-blue-100 text-blue-600 border-blue-200 hover:border-blue-300"
             variant="outline"
             onClick={handleGenerate}
             disabled={isDisabled || isLoading}
           >
-            {isLoading ? "Loading..." : "Generate"}
+            {isLoading ? "Loading..." : "Start Exam"}
             {!isLoading && <Play className="ml-2 h-4 w-4" />}
           </Button>
         </Card>
@@ -473,7 +493,9 @@ export default function ExamSetup({
               className="text-sm font-light text-blue-600 hover:text-blue-700 hover:bg-blue-50"
               onClick={handleSelectAll}
             >
-              {selectedTopics.length === topics.length ? "Deselect all" : "Select all"}
+              {selectedTopics.length === topics.length
+                ? "Deselect all"
+                : "Select all"}
             </Button>
           </div>
 
@@ -536,7 +558,10 @@ export default function ExamSetup({
                               transition={transitionProps}
                             >
                               <div className="w-4 h-4 rounded-full bg-blue-500 flex items-center justify-center mr-1">
-                                <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                                <Check
+                                  className="w-3 h-3 text-white"
+                                  strokeWidth={3}
+                                />
                               </div>
                             </motion.div>
                           )}

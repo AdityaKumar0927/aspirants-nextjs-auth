@@ -1,14 +1,32 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
-import { Bar, BarChart, Line, LineChart, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid, Legend } from "recharts";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Line,
+  LineChart,
+  XAxis,
+  YAxis,
+} from "recharts";
+
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  ChartLegend,
+  ChartLegendContent,
+  type ChartConfig,
+} from "@/components/ui/chart"; // shadcn chart
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 
 /* ------------------------------------------------------
-   Types
+   1) Types
    ------------------------------------------------------ */
 interface UserPerformance {
   id: number;
@@ -19,11 +37,11 @@ interface UserPerformance {
   uniqueQuestions: number;
   questionsAttempted: number;
   timeSpent: number;
-  accuracy: number;            // e.g. 0..100
-  reattemptAccuracy: number;   // e.g. 0..100
-  createdAt: string;           // date string
+  accuracy: number; // e.g. 0..100
+  reattemptAccuracy: number; // e.g. 0..100
+  createdAt: string; // date string
   updatedAt: string;
-  // more fields...
+  // ...
 }
 
 interface UserAnswer {
@@ -46,7 +64,6 @@ interface UserProgress {
 }
 
 interface AggregateData {
-  // Example aggregates
   totalAttempts: number;
   totalCorrect: number;
   totalIncorrect: number;
@@ -54,17 +71,8 @@ interface AggregateData {
   avgReattemptAccuracy: number;
 }
 
-interface StatsRow {
-  // For line/bar charts by day or question
-  date: string; // or questionId if you prefer
-  correct: number;
-  incorrect: number;
-  attempted: number;
-  accuracy: number;
-}
-
 /* ------------------------------------------------------
-   Stats Component
+   2) Stats component
    ------------------------------------------------------ */
 export default function Stats() {
   const { toast } = useToast();
@@ -74,12 +82,10 @@ export default function Stats() {
   const [answers, setAnswers] = useState<UserAnswer[]>([]);
   const [progress, setProgress] = useState<UserProgress[]>([]);
   const [loading, setLoading] = useState(true);
-
-  // Example: combined aggregates
   const [aggregate, setAggregate] = useState<AggregateData | null>(null);
 
   /* ------------------------------
-     1) Fetch userPerformance
+     A) Fetch userPerformance
      ------------------------------ */
   async function fetchUserPerformance() {
     try {
@@ -87,8 +93,8 @@ export default function Stats() {
       if (!res.ok) {
         throw new Error(`Error fetching userPerformance. Status: ${res.status}`);
       }
-      const data: UserPerformance[] = await res.json();
-      setPerfData(data);
+      const data = await res.json();
+      setPerfData(data as UserPerformance[]);
     } catch (err) {
       console.error("fetchUserPerformance error:", err);
       toast({
@@ -100,7 +106,7 @@ export default function Stats() {
   }
 
   /* ------------------------------
-     2) Fetch userAnswers
+     B) Fetch userAnswers
      ------------------------------ */
   async function fetchUserAnswers() {
     try {
@@ -108,8 +114,8 @@ export default function Stats() {
       if (!res.ok) {
         throw new Error(`Error fetching userAnswers. Status: ${res.status}`);
       }
-      const data: UserAnswer[] = await res.json();
-      setAnswers(data);
+      const data = await res.json();
+      setAnswers(data as UserAnswer[]);
     } catch (err) {
       console.error("fetchUserAnswers error:", err);
       toast({
@@ -121,7 +127,7 @@ export default function Stats() {
   }
 
   /* ------------------------------
-     3) Fetch userProgress
+     C) Fetch userProgress
      ------------------------------ */
   async function fetchUserProgress() {
     try {
@@ -129,8 +135,8 @@ export default function Stats() {
       if (!res.ok) {
         throw new Error(`Error fetching userProgress. Status: ${res.status}`);
       }
-      const data: UserProgress[] = await res.json();
-      setProgress(data);
+      const data = await res.json();
+      setProgress(data as UserProgress[]);
     } catch (err) {
       console.error("fetchUserProgress error:", err);
       toast({
@@ -142,7 +148,7 @@ export default function Stats() {
   }
 
   /* ------------------------------
-     4) On mount => fetch all data
+     D) On mount => fetch all data
      ------------------------------ */
   useEffect(() => {
     (async () => {
@@ -153,21 +159,21 @@ export default function Stats() {
   }, []);
 
   /* ------------------------------
-     5) Derive Aggregates
+     E) Derive Aggregates
      ------------------------------ */
   useEffect(() => {
     if (!perfData.length) {
       setAggregate(null);
       return;
     }
-    // Example: total correct across entire dataset
+
     const totalCorrect = perfData.reduce((sum, row) => sum + row.correctAnswers, 0);
     const totalIncorrect = perfData.reduce((sum, row) => sum + row.incorrectAnswers, 0);
     const totalAttempts = perfData.reduce((sum, row) => sum + row.questionsAttempted, 0);
-
-    // average accuracy
-    const avgAccuracy = perfData.reduce((acc, row) => acc + row.accuracy, 0) / perfData.length;
-    const avgReattempt = perfData.reduce((acc, row) => acc + row.reattemptAccuracy, 0) / perfData.length;
+    const avgAccuracy =
+      perfData.reduce((acc, row) => acc + row.accuracy, 0) / perfData.length;
+    const avgReattempt =
+      perfData.reduce((acc, row) => acc + row.reattemptAccuracy, 0) / perfData.length;
 
     setAggregate({
       totalAttempts,
@@ -179,12 +185,13 @@ export default function Stats() {
   }, [perfData]);
 
   /* ------------------------------
-     6) Build chart data
+     F) Build Chart Data
      ------------------------------ */
-  // For example, a day-by-day or questionId-based chart
+  // Example line chart data
   const lineChartData = perfData.map((p) => {
     return {
-      date: new Date(p.createdAt).toLocaleDateString(), // or p.questionId, etc.
+      // e.g. "2023-08-12"
+      date: new Date(p.createdAt).toLocaleDateString(),
       correct: p.correctAnswers,
       incorrect: p.incorrectAnswers,
       attempted: p.questionsAttempted,
@@ -192,157 +199,190 @@ export default function Stats() {
     };
   });
 
-  // For a subject distribution or similar, you might fetch question subject from "userAnswers => question => subject"
-  // We won't do that here unless you have an easy way to join question data. Just an example:
-  // const subjectDistribution = ... ?
+  // 1) Chart config (for shadcn chart)
+  // Maps data keys -> label + color
+  const chartConfig = {
+    correct: {
+      label: "Correct",
+      color: "hsl(var(--chart-1))", // or #22c55e
+    },
+    incorrect: {
+      label: "Incorrect",
+      color: "hsl(var(--chart-2))", // or #ef4444
+    },
+    attempted: {
+      label: "Attempted",
+      color: "hsl(var(--chart-3))",
+    },
+    accuracy: {
+      label: "Accuracy",
+      color: "hsl(var(--chart-4))",
+    },
+  } satisfies ChartConfig;
 
   /* ------------------------------
-     7) Render
+     G) Rendering
      ------------------------------ */
   if (loading) {
     return (
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {[...Array(4)].map((_, i) => (
-          <Skeleton key={i} className="h-[180px] w-full" />
-        ))}
-      </div>
+      <SkeletonTheme baseColor="#F3F4F6" highlightColor="#E5E7EB">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {[...Array(4)].map((_, i) => (
+            <Skeleton key={i} className="h-[180px] w-full" />
+          ))}
+        </div>
+      </SkeletonTheme>
     );
   }
 
   if (!aggregate) {
-    // If perfData is empty, we say "No data"
-    return (
-      <div className="text-gray-500 dark:text-gray-300">
-        No performance data yet. Try answering some questions!
-      </div>
-    );
+    // If no performance data
+    return <p className="text-sm text-gray-500 dark:text-gray-300">No performance data yet.</p>;
   }
 
   return (
-    <div className="space-y-4">
-      {/* Grid of overall stats */}
+    <div className="space-y-6">
+      {/* 1) Stats Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardHeader>
             <CardTitle className="text-sm font-medium">Avg Accuracy</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-semibold">{aggregate.avgAccuracy.toFixed(2)}%</div>
-            <p className="text-xs text-muted-foreground">+2.5% from last week</p>
-            <div className="h-[80px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={lineChartData}>
-                  <Line type="monotone" dataKey="accuracy" stroke="#2563eb" strokeWidth={2} dot={false} />
-                  <Tooltip />
-                </LineChart>
-              </ResponsiveContainer>
+            <div className="text-2xl font-semibold">
+              {aggregate.avgAccuracy.toFixed(2)}%
             </div>
+            <p className="text-xs text-muted-foreground">+2.5% from last week</p>
+            {/* A small line chart for accuracy */}
+            <ChartContainer config={chartConfig} className="min-h-[80px] w-full mt-2">
+              <LineChart data={lineChartData}>
+                <XAxis dataKey="date" hide />
+                <YAxis hide />
+                <Line
+                  type="monotone"
+                  dataKey="accuracy"
+                  stroke="var(--color-accuracy)"
+                  strokeWidth={2}
+                  dot={false}
+                />
+              </LineChart>
+            </ChartContainer>
           </CardContent>
         </Card>
 
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardHeader>
             <CardTitle className="text-sm font-medium">Total Attempts</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-semibold">{aggregate.totalAttempts}</div>
             <p className="text-xs text-muted-foreground">+12 from last week</p>
-            <div className="h-[80px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={lineChartData}>
-                  <Bar dataKey="attempted" fill="#2563eb" radius={[4, 4, 0, 0]} />
-                  <Tooltip />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
+            {/* A small bar chart for attempted */}
+            <ChartContainer config={chartConfig} className="min-h-[80px] w-full mt-2">
+              <BarChart data={lineChartData}>
+                <XAxis dataKey="date" hide />
+                <YAxis hide />
+                <Bar
+                  dataKey="attempted"
+                  fill="var(--color-attempted)"
+                  radius={4}
+                />
+              </BarChart>
+            </ChartContainer>
           </CardContent>
         </Card>
 
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardHeader>
             <CardTitle className="text-sm font-medium">Total Correct</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-semibold">{aggregate.totalCorrect}</div>
             <p className="text-xs text-muted-foreground">+7 from last week</p>
-            <div className="h-[80px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={lineChartData}>
-                  <Line type="monotone" dataKey="correct" stroke="#16a34a" strokeWidth={2} dot={false} />
-                  <Tooltip />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
+            <ChartContainer config={chartConfig} className="min-h-[80px] w-full mt-2">
+              <LineChart data={lineChartData}>
+                <XAxis dataKey="date" hide />
+                <YAxis hide />
+                <Line
+                  type="monotone"
+                  dataKey="correct"
+                  stroke="var(--color-correct)"
+                  strokeWidth={2}
+                  dot={false}
+                />
+              </LineChart>
+            </ChartContainer>
           </CardContent>
         </Card>
 
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardHeader>
             <CardTitle className="text-sm font-medium">Reattempt Accuracy</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-semibold">{aggregate.avgReattemptAccuracy.toFixed(2)}%</div>
-            <p className="text-xs text-muted-foreground">+1.2% from last week</p>
-            <div className="h-[80px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={lineChartData}>
-                  <Line type="monotone" dataKey="reattemptAccuracy" stroke="#ea580c" strokeWidth={2} dot={false} />
-                  <Tooltip />
-                </LineChart>
-              </ResponsiveContainer>
+            <div className="text-2xl font-semibold">
+              {aggregate.avgReattemptAccuracy.toFixed(2)}%
             </div>
+            <p className="text-xs text-muted-foreground">+1.2% from last week</p>
+            <ChartContainer config={chartConfig} className="min-h-[80px] w-full mt-2">
+              <LineChart data={lineChartData}>
+                <XAxis dataKey="date" hide />
+                <YAxis hide />
+                <Line
+                  type="monotone"
+                  dataKey="reattemptAccuracy"
+                  stroke="var(--color-accuracy)"
+                  strokeWidth={2}
+                  dot={false}
+                />
+              </LineChart>
+            </ChartContainer>
           </CardContent>
         </Card>
       </div>
 
-      {/* Example additional chart(s): correct vs. incorrect across time */}
+      {/* 2) Bar chart of correct vs. incorrect */}
       <Card>
         <CardHeader>
           <CardTitle>Correct vs. Incorrect Over Time</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={lineChartData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="correct" fill="#22c55e" name="Correct" />
-                <Bar dataKey="incorrect" fill="#ef4444" name="Incorrect" />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+          <ChartContainer config={chartConfig} className="min-h-[300px] w-full">
+            <BarChart data={lineChartData} accessibilityLayer>
+              <CartesianGrid vertical={false} strokeDasharray="3 3" />
+              <XAxis dataKey="date" />
+              <YAxis />
+              <ChartTooltip content={<ChartTooltipContent />} />
+              <ChartLegend content={<ChartLegendContent />} />
+              <Bar dataKey="correct" fill="var(--color-correct)" radius={4} />
+              <Bar dataKey="incorrect" fill="var(--color-incorrect)" radius={4} />
+            </BarChart>
+          </ChartContainer>
         </CardContent>
       </Card>
 
-      {/* Possibly a Pie chart for distribution of attempts or something */}
+      {/* 3) Another line chart for accuracy */}
       <Card>
         <CardHeader>
-          <CardTitle>Correct vs. Incorrect Pie</CardTitle>
+          <CardTitle>Accuracy Trend</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={[
-                    { name: "Correct", value: aggregate.totalCorrect },
-                    { name: "Incorrect", value: aggregate.totalIncorrect },
-                  ]}
-                  dataKey="value"
-                  nameKey="name"
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={80}
-                  fill="#8884d8"
-                  label
-                />
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
+          <ChartContainer config={chartConfig} className="min-h-[300px] w-full">
+            <LineChart data={lineChartData} accessibilityLayer>
+              <CartesianGrid vertical={false} strokeDasharray="3 3" />
+              <XAxis dataKey="date" />
+              <YAxis />
+              <ChartTooltip content={<ChartTooltipContent />} />
+              <ChartLegend content={<ChartLegendContent />} />
+              <Line
+                type="monotone"
+                dataKey="accuracy"
+                stroke="var(--color-accuracy)"
+                strokeWidth={2}
+                dot={false}
+              />
+            </LineChart>
+          </ChartContainer>
         </CardContent>
       </Card>
     </div>

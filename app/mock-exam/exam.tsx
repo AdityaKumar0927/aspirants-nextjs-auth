@@ -1,52 +1,64 @@
-"use client"
+"use client";
 
-import React from "react"
-import Image from "next/image"
-import { User, Clock, AlertCircle, CheckCircle, Flag, LogOut, ChevronLeft, ChevronRight } from "lucide-react"
+import React from "react";
+import Image from "next/image";
+import {
+  User,
+  Clock,
+  AlertCircle,
+  CheckCircle,
+  Flag,
+  LogOut,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip"
-import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
 
-import MathRenderer from "@/components/layout/MathRenderer"
-import { QuestionType } from "@/lib/exam-helpers"
+import MathRenderer from "@/components/layout/MathRenderer";
+import { QuestionType } from "@/lib/exam-helpers";
 
 interface ExamProps {
-  currentQuestion: number
-  filteredQuestions: QuestionType[]
-  answers: (string | null)[]
-  questionStatuses: { [index: number]: string }
+  currentQuestion: number;
+  filteredQuestions: QuestionType[];
+  answers: (string | null)[];
+  questionStatuses: { [index: number]: string };
   questionStatusCounts: {
-    notVisited: number
-    notAnswered: number
-    answered: number
-    markedForReview: number
-  }
-  examTimeLeft: number
-  onAnswer: (answer: string) => void
-  onNext: () => void
-  onPrevious: () => void
-  onClear: () => void
-  onReviewAndNext: () => void
-  onSaveAndNext: () => void
-  onSubmit: () => void
-  onExit: () => void
-  onNavigate: (index: number) => void
+    notVisited: number;
+    notAnswered: number;
+    answered: number;
+    markedForReview: number;
+  };
+  examTimeLeft: number;
+  onAnswer: (answer: string) => void;
+  onNext: () => void;
+  onPrevious: () => void;
+  onClear: () => void;
+  onReviewAndNext: () => void;
+  onSaveAndNext: () => void;
+  onSubmit: () => void;
+  onExit: () => void;
+  onNavigate: (index: number) => void;
 
-  userName: string
-  selectedSubject: string
-  selectedYear: string
-  selectedLevel: string
+  userName: string;
+  selectedSubject: string;
+  selectedYear: string;
+  selectedLevel: string;
 }
 
 /**
- * Redesigned layout:
- * - Sticky header for user/timer/exit
- * - Main content is a grid:
- *    On mobile => 1 column (Question card → Status card → Navigator card)
- *    On md+    => 2 columns (Question card in left col, status+nav in right col).
+ * A more responsive UI:
+ * - On mobile: single-column layout for question and side cards
+ * - On md+: two columns (question on the left, status+nav on the right)
  */
 export default function Exam({
   currentQuestion,
@@ -73,25 +85,29 @@ export default function Exam({
   // Format the countdown timer
   // ----------------------------------
   function formatTime(seconds: number) {
-    const minutes = Math.floor(seconds / 60)
-    const secs = seconds % 60
-    return `${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
+    const minutes = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${minutes.toString().padStart(2, "0")}:${secs
+      .toString()
+      .padStart(2, "0")}`;
   }
 
-  // Current question (if any)
-  const question = filteredQuestions[currentQuestion]
+  // Current question
+  const question = filteredQuestions[currentQuestion];
   if (!question) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-4">
-        <p className="text-gray-500 mb-4">No question is available. Please restart the exam.</p>
+        <p className="text-gray-500 mb-4">
+          No question is available. Please restart the exam.
+        </p>
         <Button onClick={onExit}>Exit</Button>
       </div>
-    )
+    );
   }
 
-  // If question has a diagram => show
+  // If question has a diagram
   function renderDiagram(diagramUrl?: string) {
-    if (!diagramUrl) return null
+    if (!diagramUrl) return null;
     return (
       <div className="relative w-full h-64 mb-4">
         <Image
@@ -102,37 +118,37 @@ export default function Exam({
           className="rounded-md"
         />
       </div>
-    )
+    );
   }
 
   // Renders either MCQ or numeric
   function renderQuestionBody(q: QuestionType) {
-    const lower = (q.type || "").toLowerCase()
+    const lower = (q.type || "").toLowerCase();
 
     // MCQ
     if (lower.includes("mcq") || lower === "multiple choice") {
       return (
         <div className="space-y-3 mt-4">
           {Object.entries(q.options).map(([key, text]) => {
-            const isSelected = answers[currentQuestion] === key
+            const isSelected = answers[currentQuestion] === key;
             return (
               <Button
                 key={key}
                 variant={isSelected ? "secondary" : "outline"}
-                className="w-full text-left py-3 px-4 h-auto"
+                className="w-full text-left py-3 px-4 h-auto normal-case"
                 onClick={() => onAnswer(key)}
               >
                 <span className="font-semibold mr-2">{key}.</span>
                 <MathRenderer text={text} />
               </Button>
-            )
+            );
           })}
         </div>
-      )
+      );
     }
     // Numeric
     else if (lower.includes("num") || lower.includes("int")) {
-      const val = answers[currentQuestion] || ""
+      const val = answers[currentQuestion] || "";
       return (
         <div className="mt-4 flex gap-2 items-center">
           <Input
@@ -142,18 +158,18 @@ export default function Exam({
             placeholder="Enter numeric answer..."
           />
         </div>
-      )
+      );
     }
     // Fallback
     return (
       <p className="text-red-500">
         Unsupported question type: <strong>{q.type}</strong>
       </p>
-    )
+    );
   }
 
   // ----------------------------------
-  // The main component
+  // Main exam layout
   // ----------------------------------
   return (
     <div className="w-full min-h-screen flex flex-col">
@@ -161,7 +177,7 @@ export default function Exam({
       <header className="sticky top-0 z-50 bg-background border-b shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
           {/* Left: user + exam info */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
               <User className="w-5 h-5 text-primary-foreground" />
             </div>
@@ -188,7 +204,7 @@ export default function Exam({
 
       {/* Main => a grid w/ question on left, status+nav on right at md+ */}
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 grid grid-cols-1 md:grid-cols-[2fr,1fr] gap-4">
-        {/* ----------- Question Card ----------- */}
+        {/* Question panel */}
         <div className="flex flex-col">
           <Card className="w-full mb-4">
             <CardHeader>
@@ -200,12 +216,11 @@ export default function Exam({
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              {/* If diagram */}
               {renderDiagram(question.diagramUrl)}
 
               {/* Question text */}
               {question.text && (
-                <div className="text-gray-700 text-base sm:text-lg md:text-xl leading-7">
+                <div className="text-gray-700 text-base sm:text-lg leading-6">
                   <MathRenderer text={question.text} />
                 </div>
               )}
@@ -216,7 +231,7 @@ export default function Exam({
             <CardFooter className="flex flex-col gap-4">
               <div className="flex flex-wrap gap-3 justify-between w-full">
                 {/* Prev/Next */}
-                <div className="flex gap-3">
+                <div className="flex gap-3 flex-wrap">
                   <Button
                     onClick={onPrevious}
                     variant="outline"
@@ -229,7 +244,9 @@ export default function Exam({
                   <Button
                     onClick={onNext}
                     variant="outline"
-                    disabled={currentQuestion === filteredQuestions.length - 1}
+                    disabled={
+                      currentQuestion === filteredQuestions.length - 1
+                    }
                     className="flex items-center"
                   >
                     Next
@@ -238,28 +255,28 @@ export default function Exam({
                 </div>
 
                 {/* Clear / MarkReview / Save */}
-                <div className="flex gap-3">
+                <div className="flex flex-wrap gap-3">
                   <Button onClick={onClear} variant="outline">
                     Clear
                   </Button>
                   <Button onClick={onReviewAndNext} variant="outline">
-                    Mark for Review & Next
+                    Mark for Review &amp; Next
                   </Button>
                   <Button onClick={onSaveAndNext} variant="outline">
-                    Save & Next
+                    Save &amp; Next
                   </Button>
                 </div>
               </div>
             </CardFooter>
           </Card>
 
-          {/* Big "Submit" button on the bottom */}
+          {/* Big "Submit" button at the bottom */}
           <div className="flex justify-center">
             <Button
               variant="outline"
               className="w-full md:w-auto py-2 text-lg font-light"
-              onClick={()=>{
-                if(window.confirm("Are you sure you want to submit?")){
+              onClick={() => {
+                if (window.confirm("Are you sure you want to submit?")) {
                   onSubmit();
                 }
               }}
@@ -269,7 +286,7 @@ export default function Exam({
           </div>
         </div>
 
-        {/* ----------- Right Column (Status + Navigator) ----------- */}
+        {/* Right Column => Status + Navigator */}
         <div className="flex flex-col gap-4">
           {/* Question Status card */}
           <Card>
@@ -278,32 +295,40 @@ export default function Exam({
             </CardHeader>
             <CardContent className="space-y-2">
               <div className="flex items-center justify-between text-sm">
-                <span className="flex items-center">
-                  <AlertCircle className="w-4 h-4 mr-1 text-gray-400" />
+                <span className="flex items-center gap-1">
+                  <AlertCircle className="w-4 h-4 text-gray-400" />
                   Not Visited
                 </span>
-                <span className="font-medium">{questionStatusCounts.notVisited}</span>
+                <span className="font-medium">
+                  {questionStatusCounts.notVisited}
+                </span>
               </div>
               <div className="flex items-center justify-between text-sm">
-                <span className="flex items-center">
-                  <AlertCircle className="w-4 h-4 mr-1 text-yellow-500" />
+                <span className="flex items-center gap-1">
+                  <AlertCircle className="w-4 h-4 text-yellow-500" />
                   Not Answered
                 </span>
-                <span className="font-medium">{questionStatusCounts.notAnswered}</span>
+                <span className="font-medium">
+                  {questionStatusCounts.notAnswered}
+                </span>
               </div>
               <div className="flex items-center justify-between text-sm">
-                <span className="flex items-center">
-                  <CheckCircle className="w-4 h-4 mr-1 text-green-500" />
+                <span className="flex items-center gap-1">
+                  <CheckCircle className="w-4 h-4 text-green-500" />
                   Answered
                 </span>
-                <span className="font-medium">{questionStatusCounts.answered}</span>
+                <span className="font-medium">
+                  {questionStatusCounts.answered}
+                </span>
               </div>
               <div className="flex items-center justify-between text-sm">
-                <span className="flex items-center">
-                  <Flag className="w-4 h-4 mr-1 text-blue-500" />
+                <span className="flex items-center gap-1">
+                  <Flag className="w-4 h-4 text-blue-500" />
                   Marked for Review
                 </span>
-                <span className="font-medium">{questionStatusCounts.markedForReview}</span>
+                <span className="font-medium">
+                  {questionStatusCounts.markedForReview}
+                </span>
               </div>
             </CardContent>
           </Card>
@@ -316,21 +341,26 @@ export default function Exam({
             <CardContent>
               <div className="grid grid-cols-5 gap-2">
                 {filteredQuestions.map((_, idx) => {
-                  const status = questionStatuses[idx] || "notVisited"
-                  const isCurrent = currentQuestion === idx
+                  const status = questionStatuses[idx] || "notVisited";
+                  const isCurrent = currentQuestion === idx;
 
-                  let buttonClasses = "w-10 h-10 p-0 font-medium"
+                  let buttonClasses = "w-10 h-10 p-0 font-medium";
                   if (isCurrent) {
                     // current question style
-                    buttonClasses += " border-blue-800 bg-blue-100 text-blue-600"
+                    buttonClasses +=
+                      " border-blue-800 bg-blue-100 text-blue-600";
                   } else if (status === "markedForReview") {
-                    buttonClasses += " border-blue-600 bg-blue-100 text-blue-600"
+                    buttonClasses +=
+                      " border-blue-600 bg-blue-100 text-blue-600";
                   } else if (status === "notAnswered") {
-                    buttonClasses += " border-yellow-600 bg-yellow-100 text-yellow-600"
+                    buttonClasses +=
+                      " border-yellow-600 bg-yellow-100 text-yellow-600";
                   } else if (status === "answered") {
-                    buttonClasses += " border-green-600 bg-green-100 text-green-600"
+                    buttonClasses +=
+                      " border-green-600 bg-green-100 text-green-600";
                   } else {
-                    buttonClasses += " border-gray-300 bg-white text-gray-600"
+                    buttonClasses +=
+                      " border-gray-300 bg-white text-gray-600";
                   }
 
                   return (
@@ -351,7 +381,7 @@ export default function Exam({
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
-                  )
+                  );
                 })}
               </div>
             </CardContent>
@@ -359,5 +389,5 @@ export default function Exam({
         </div>
       </main>
     </div>
-  )
+  );
 }
