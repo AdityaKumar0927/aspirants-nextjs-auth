@@ -1,3 +1,5 @@
+// app/api/auth/[...nextauth]/options.ts
+
 import { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
@@ -21,17 +23,16 @@ export const authOptions: NextAuthOptions = {
       try {
         const existingUser = await prisma.user.findUnique({
           where: { email: user.email },
+          // NOTE: if your schema field is "UserRole", do this:
           include: { UserRole: true },
         })
 
         if (!existingUser) {
+          // Create new user with 'member' role
           const memberRole = await prisma.userRole.upsert({
             where: { name: "member" },
             update: {},
-            create: {
-              name: "member",
-              permissions: {},
-            },
+            create: { name: "member", permissions: {} },
           })
 
           await prisma.user.create({
@@ -43,13 +44,11 @@ export const authOptions: NextAuthOptions = {
             },
           })
         } else if (!existingUser.UserRole) {
+          // existing user, but no role assigned
           const memberRole = await prisma.userRole.upsert({
             where: { name: "member" },
             update: {},
-            create: {
-              name: "member",
-              permissions: {},
-            },
+            create: { name: "member", permissions: {} },
           })
 
           await prisma.user.update({
@@ -66,9 +65,11 @@ export const authOptions: NextAuthOptions = {
     },
 
     async jwt({ token, user }) {
+      // If user just signed in
       if (user && user.email) {
         const dbUser = await prisma.user.findUnique({
           where: { email: user.email },
+          // again, matching your actual field:
           include: { UserRole: true },
         })
         if (dbUser && dbUser.UserRole) {
@@ -87,10 +88,9 @@ export const authOptions: NextAuthOptions = {
       return session
     },
   },
-  session: {
-    strategy: "jwt",
-  },
-  debug: process.env.NODE_ENV === "development", // recommended to enable debug locally
+  // No `pages` in App Router
+  session: { strategy: "jwt" },
+  debug: process.env.NODE_ENV === "development",
 }
 
 export default authOptions
