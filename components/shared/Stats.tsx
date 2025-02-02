@@ -27,9 +27,9 @@ import {
   Cell
 } from "recharts";
 
-/* ------------------------------------------------------------------
-   1) Enums & Types
-   ------------------------------------------------------------------ */
+/* 
+   Enums & Types
+*/
 type ViewMode = "desktop" | "mobile";
 
 type FilterKey =
@@ -62,6 +62,16 @@ interface FilterOptionsType {
   types: string[];
 }
 
+interface PerformanceRow {
+  questionId: string;
+  correctAnswers: number;
+  incorrectAnswers: number;
+  questionsAttempted: number;
+  accuracy: number;
+  reattemptAccuracy: number;
+  createdAt: string;
+}
+
 interface StatsState {
   filters: FiltersType;
   filterOptions: FilterOptionsType;
@@ -80,19 +90,26 @@ interface StatsState {
   searchQuery: string;
 }
 
-interface PerformanceRow {
-  questionId: string;
-  correctAnswers: number;
-  incorrectAnswers: number;
-  questionsAttempted: number;
-  accuracy: number;
-  reattemptAccuracy: number;
-  createdAt: string;
-}
+type StatsAction =
+  | { type: "SET_FILTER_OPTIONS"; payload: FilterOptionsType }
+  | { type: "SET_FILTERS"; payload: FiltersType }
+  | { type: "SET_DROPDOWN"; payload: { key: FilterKey; value: boolean } }
+  | { type: "SET_LOADING"; payload: boolean }
+  | { type: "SET_FILTER_OPTIONS_LOADING"; payload: boolean }
+  | { type: "SET_VIEW_MODE"; payload: ViewMode }
+  | { type: "SET_PERFORMANCE"; payload: PerformanceRow[] }
+  | { type: "SET_SEARCH_QUERY"; payload: string }
+  | {
+      type: "SET_AGGREGATES";
+      payload: {
+        totalCorrect: number;
+        totalIncorrect: number;
+        totalAttempts: number;
+        avgAccuracy: number;
+        avgReattempt: number;
+      };
+    };
 
-/* ------------------------------------------------------------------
-   2) The initial state
-   ------------------------------------------------------------------ */
 const initialFilters: FiltersType = {
   exams: [],
   subjects: [],
@@ -139,54 +156,8 @@ const initialState: StatsState = {
 };
 
 /* ------------------------------------------------------------------
-   3) Action definitions
-   ------------------------------------------------------------------ */
-type StatsAction =
-  | { type: "SET_FILTER_OPTIONS"; payload: FilterOptionsType }
-  | { type: "SET_FILTERS"; payload: FiltersType }
-  | { type: "SET_DROPDOWN"; payload: { key: FilterKey; value: boolean } }
-  | { type: "SET_LOADING"; payload: boolean }
-  | { type: "SET_FILTER_OPTIONS_LOADING"; payload: boolean }
-  | { type: "SET_VIEW_MODE"; payload: ViewMode }
-  | { type: "SET_PERFORMANCE"; payload: PerformanceRow[] }
-  | { type: "SET_SEARCH_QUERY"; payload: string }
-  | {
-      type: "SET_AGGREGATES";
-      payload: {
-        totalCorrect: number;
-        totalIncorrect: number;
-        totalAttempts: number;
-        avgAccuracy: number;
-        avgReattempt: number;
-      };
-    };
-
-/* ------------------------------------------------------------------
-   4) Helpers
-   ------------------------------------------------------------------ */
-function fuzzyContains(haystack: string, needle: string): boolean {
-  if (!needle) return true;
-  return haystack.toLowerCase().includes(needle.toLowerCase());
-}
-
-function transformFilterItem(value: string): string {
-  const replaced = value.replace(/-/g, " ");
-  return replaced
-    .split(" ")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-}
-
-const transitionProps = {
-  type: "spring",
-  stiffness: 500,
-  damping: 30,
-  mass: 0.5,
-};
-
-/* ------------------------------------------------------------------
-   5) The reducer
-   ------------------------------------------------------------------ */
+   Reducer
+*/
 function reducer(state: StatsState, action: StatsAction): StatsState {
   switch (action.type) {
     case "SET_FILTER_OPTIONS":
@@ -226,14 +197,38 @@ function reducer(state: StatsState, action: StatsAction): StatsState {
 }
 
 /* ------------------------------------------------------------------
-   6) Stats component
+   Helpers
+*/
+function transformFilterItem(value: string): string {
+  const replaced = value.replace(/-/g, " ");
+  return replaced
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+function fuzzyContains(haystack: string, needle: string): boolean {
+  if (!needle) return true;
+  return haystack.toLowerCase().includes(needle.toLowerCase());
+}
+
+const transitionProps = {
+  type: "spring",
+  stiffness: 500,
+  damping: 30,
+  mass: 0.5,
+};
+
+/* ------------------------------------------------------------------
+   The Stats component
    ------------------------------------------------------------------ */
 export default function Stats() {
-  const { data: session } = useSession();
+  const { data: session } = useSession(); // <--- MUST have <SessionProvider> up the tree
+  const userName = session?.user?.name || "Guest";
   const { toast } = useToast();
+
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
-  // Fix for the mobile filters logic: we must define these states
+  // For mobile filters
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   React.useEffect(() => {
@@ -242,12 +237,12 @@ export default function Stats() {
     }
   }, []);
 
-  /* 6(A) fetch filter options once */
+  /* 1) fetch filter options once */
   const fetchFilterOptions = React.useCallback(async () => {
     dispatch({ type: "SET_FILTER_OPTIONS_LOADING", payload: true });
     try {
       const res = await fetch("/api/filters", { cache: "no-store" });
-      if (!res.ok) throw new Error("Failed to fetch distinct filter fields.");
+      if (!res.ok) throw new Error("Failed to fetch filter fields.");
       const raw = await res.json();
       const data: FilterOptionsType = {
         exams: raw.exams ?? [],
@@ -260,10 +255,10 @@ export default function Stats() {
       };
       dispatch({ type: "SET_FILTER_OPTIONS", payload: data });
     } catch (err) {
-      console.error("fetchFilterOptions error:", err);
+      console.error(err);
       toast({
         title: "Error",
-        description: "Could not load filter fields. Try again later.",
+        description: "Could not load filter fields.",
         variant: "destructive",
       });
     } finally {
@@ -271,36 +266,37 @@ export default function Stats() {
     }
   }, [toast]);
 
-  /* 6(B) fetch user performance with the filters */
+  /* 2) fetch user performance for current filters */
   const fetchPerformance = React.useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true });
     try {
-      const arrToComma = (arr: string[]) => arr.join(",");
       const { filters } = state;
-      const params = new URLSearchParams();
-      if (filters.exams.length)       params.set("exam", arrToComma(filters.exams));
-      if (filters.subjects.length)    params.set("subject", arrToComma(filters.subjects));
-      if (filters.topics.length)      params.set("topic", arrToComma(filters.topics));
-      if (filters.subtopics.length)   params.set("subtopic", arrToComma(filters.subtopics));
-      if (filters.difficulties.length) params.set("difficulty", arrToComma(filters.difficulties));
-      if (filters.years.length)       params.set("year", arrToComma(filters.years));
-      if (filters.types.length)       params.set("type", arrToComma(filters.types));
+      const arrToComma = (arr: string[]) => arr.join(",");
 
-      // If your API supports status param:
+      const params = new URLSearchParams();
+      if (filters.exams.length)        params.set("exam", arrToComma(filters.exams));
+      if (filters.subjects.length)     params.set("subject", arrToComma(filters.subjects));
+      if (filters.topics.length)       params.set("topic", arrToComma(filters.topics));
+      if (filters.subtopics.length)    params.set("subtopic", arrToComma(filters.subtopics));
+      if (filters.difficulties.length) params.set("difficulty", arrToComma(filters.difficulties));
+      if (filters.years.length)        params.set("year", arrToComma(filters.years));
+      if (filters.types.length)        params.set("type", arrToComma(filters.types));
+
+      // status param if your /api route supports it
       if (filters.status && filters.status !== "all") {
         params.set("status", filters.status);
       }
 
       const url = `/api/user-performance/get?${params.toString()}`;
       const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) throw new Error("Failed to fetch user performance data.");
-      const raw = await res.json() as PerformanceRow[];
-      dispatch({ type: "SET_PERFORMANCE", payload: raw });
+      if (!res.ok) throw new Error("Failed to fetch user performance with filters.");
+      const data = await res.json() as PerformanceRow[];
+      dispatch({ type: "SET_PERFORMANCE", payload: data });
     } catch (err) {
-      console.error("fetchPerformance error:", err);
+      console.error("Error fetching performance:", err);
       toast({
         title: "Error",
-        description: "Failed to load performance data. Try again.",
+        description: "Failed to load performance data.",
         variant: "destructive",
       });
     } finally {
@@ -308,22 +304,28 @@ export default function Stats() {
     }
   }, [state.filters, toast]);
 
-  // On mount => fetch filter options
+  /* On mount => fetch filter options */
   React.useEffect(() => {
     fetchFilterOptions();
   }, [fetchFilterOptions]);
 
-  // Whenever filters change => refetch performance
+  /* Whenever filters change => fetch perf data */
   React.useEffect(() => {
     fetchPerformance();
   }, [state.filters, fetchPerformance]);
 
-  /* 6(C) compute aggregates */
+  /* 3) compute aggregates after we have performance data */
   React.useEffect(() => {
     if (!state.performance.length) {
       dispatch({
         type: "SET_AGGREGATES",
-        payload: { totalCorrect: 0, totalIncorrect: 0, totalAttempts: 0, avgAccuracy: 0, avgReattempt: 0 },
+        payload: {
+          totalCorrect: 0,
+          totalIncorrect: 0,
+          totalAttempts: 0,
+          avgAccuracy: 0,
+          avgReattempt: 0,
+        },
       });
       return;
     }
@@ -337,23 +339,20 @@ export default function Stats() {
       sumRe += row.reattemptAccuracy;
     }
     const n = state.performance.length;
-    const avgAcc = n ? sumAcc / n : 0;
-    const avgRe  = n ? sumRe / n : 0;
     dispatch({
       type: "SET_AGGREGATES",
       payload: {
         totalCorrect: sumCorrect,
         totalIncorrect: sumIncorrect,
         totalAttempts: sumAttempts,
-        avgAccuracy: avgAcc,
-        avgReattempt: avgRe,
+        avgAccuracy: n ? sumAcc / n : 0,
+        avgReattempt: n ? sumRe / n : 0,
       },
     });
   }, [state.performance]);
 
-  /* 7) Build chart data from performance */
+  /* 4) Build chart data for Recharts */
   const chartData = React.useMemo(() => {
-    if (!state.performance.length) return [];
     return state.performance.map((row, i) => ({
       index: i,
       correct: row.correctAnswers,
@@ -363,7 +362,7 @@ export default function Stats() {
     }));
   }, [state.performance]);
 
-  // Loading skeleton if needed
+  // if loading => skeleton
   if (state.loading || state.filterOptionsLoading) {
     return (
       <div className="p-4">
@@ -377,22 +376,20 @@ export default function Stats() {
     );
   }
 
-  // If no data
   const hasData = state.performance.length > 0;
-  const userName = (session && session.user?.name) ? session.user.name : "Guest";
 
   return (
     <div className="max-w-6xl mx-auto p-4">
-      {/* Title with user name */}
+      {/* Display user name with your font classes */}
       <h1 className="font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem] mb-6">
         {userName}&apos;s Performance
       </h1>
 
-      {/* Desktop filters + Status row */}
+      {/* -------------- Desktop Filters + Status row -------------- */}
       <div className="flex flex-wrap items-center gap-4 mb-6">
         {/* Status row (like QBC) */}
         <div className="space-x-2 hidden sm:flex">
-          {["all", "complete", "review", "incomplete"].map((st) => {
+          {["all","complete","review","incomplete"].map((st) => {
             const isActive = state.filters.status === st;
             return (
               <button
@@ -403,8 +400,7 @@ export default function Stats() {
                     : "bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-600 hover:border-gray-500"
                 }`}
                 onClick={() => {
-                  const newFilters = { ...state.filters, status: st };
-                  dispatch({ type: "SET_FILTERS", payload: newFilters });
+                  dispatch({ type: "SET_FILTERS", payload: { ...state.filters, status: st }});
                 }}
               >
                 {st.charAt(0).toUpperCase() + st.slice(1)}
@@ -422,12 +418,9 @@ export default function Stats() {
               <div className="relative" key={fKey}>
                 <Button
                   variant="outline"
-                  onClick={() =>
-                    dispatch({
-                      type: "SET_DROPDOWN",
-                      payload: { key: fKey, value: !isOpen },
-                    })
-                  }
+                  onClick={() => {
+                    dispatch({ type: "SET_DROPDOWN", payload: { key: fKey, value: !isOpen }});
+                  }}
                 >
                   {fKey} ({state.filters[fKey].length})
                   <ChevronDown className="ml-1 h-4 w-4" />
@@ -447,7 +440,7 @@ export default function Stats() {
           })}
         </div>
 
-        {/* Mobile filter button (hidden on desktop) */}
+        {/* Mobile filter button */}
         <Button
           variant="outline"
           className="sm:hidden flex items-center"
@@ -458,37 +451,54 @@ export default function Stats() {
         </Button>
       </div>
 
-      {/* If we have data => show aggregates & charts */}
+      {/* If we have data => show aggregator & charts */}
       {hasData ? (
         <>
+          {/* aggregator row */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             <Card>
-              <CardHeader><CardTitle>Avg Accuracy</CardTitle></CardHeader>
+              <CardHeader>
+                <CardTitle>Avg Accuracy</CardTitle>
+              </CardHeader>
               <CardContent>
-                <p className="text-2xl font-semibold">{state.avgAccuracy.toFixed(2)}%</p>
+                <p className="text-2xl font-semibold">
+                  {state.avgAccuracy.toFixed(2)}%
+                </p>
               </CardContent>
             </Card>
             <Card>
-              <CardHeader><CardTitle>Reattempt Accuracy</CardTitle></CardHeader>
+              <CardHeader>
+                <CardTitle>Reattempt Accuracy</CardTitle>
+              </CardHeader>
               <CardContent>
-                <p className="text-2xl font-semibold">{state.avgReattempt.toFixed(2)}%</p>
+                <p className="text-2xl font-semibold">
+                  {state.avgReattempt.toFixed(2)}%
+                </p>
               </CardContent>
             </Card>
             <Card>
-              <CardHeader><CardTitle>Total Correct</CardTitle></CardHeader>
+              <CardHeader>
+                <CardTitle>Total Correct</CardTitle>
+              </CardHeader>
               <CardContent>
-                <p className="text-2xl font-semibold">{state.totalCorrect}</p>
+                <p className="text-2xl font-semibold">
+                  {state.totalCorrect}
+                </p>
               </CardContent>
             </Card>
             <Card>
-              <CardHeader><CardTitle>Total Attempts</CardTitle></CardHeader>
+              <CardHeader>
+                <CardTitle>Total Attempts</CardTitle>
+              </CardHeader>
               <CardContent>
-                <p className="text-2xl font-semibold">{state.totalAttempts}</p>
+                <p className="text-2xl font-semibold">
+                  {state.totalAttempts}
+                </p>
               </CardContent>
             </Card>
           </div>
 
-          {/* BarChart example */}
+          {/* Example: Stacked Bar for correct vs. incorrect */}
           <Card>
             <CardHeader>
               <CardTitle>Correct vs. Incorrect (Stacked)</CardTitle>
@@ -502,8 +512,8 @@ export default function Stats() {
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="correct" fill="#22c55e" name="Correct" stackId="a" />
-                    <Bar dataKey="incorrect" fill="#ef4444" name="Incorrect" stackId="a" />
+                    <Bar dataKey="correct" fill="#22c55e" stackId="a" name="Correct" />
+                    <Bar dataKey="incorrect" fill="#ef4444" stackId="a" name="Incorrect" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -537,7 +547,7 @@ export default function Stats() {
         </p>
       )}
 
-      {/* Mobile Filters Dialog */}
+      {/* Mobile filters dialog */}
       <MobileFiltersDialog
         open={mobileFiltersOpen}
         onOpenChange={setMobileFiltersOpen}
@@ -548,7 +558,7 @@ export default function Stats() {
   );
 }
 
-/* DesktopFilterSearch sub-component */
+/* DesktopFilterSearch subcomponent */
 function DesktopFilterSearch({
   filterType,
   filterValues,
@@ -563,12 +573,11 @@ function DesktopFilterSearch({
   const [searchTerm, setSearchTerm] = useState("");
 
   const displayedValues = useMemo(() => {
-    let arr = [...filterValues];
+    let arr = filterValues.slice();
     if (searchTerm) {
       const lower = searchTerm.toLowerCase();
       arr = arr.filter((val) => val.toLowerCase().includes(lower));
     }
-    // Sort selected items to the top
     arr.sort((a, b) => {
       const aSel = state.filters[filterType].includes(a);
       const bSel = state.filters[filterType].includes(b);
@@ -577,12 +586,12 @@ function DesktopFilterSearch({
       return 0;
     });
     return arr;
-  }, [filterValues, searchTerm, state.filters, filterType]);
+  }, [filterValues, searchTerm, filterType, state.filters]);
 
   const toggleItem = useCallback(
     (val: string) => {
       const isSelected = state.filters[filterType].includes(val);
-      let newArr: string[];
+      let newArr: string[] = [];
       if (isSelected) {
         newArr = state.filters[filterType].filter((x) => x !== val);
       } else {
@@ -669,7 +678,7 @@ function DesktopFilterSearch({
   );
 }
 
-/* MobileFiltersDialog sub-component */
+/* Mobile Filters */
 function MobileFiltersDialog({
   open,
   onOpenChange,
@@ -728,12 +737,12 @@ function MobileFiltersDialog({
             </div>
           </div>
 
-          {/* All other filters (exams, subjects, etc.) */}
-          {(Object.keys(state.filterOptions) as FilterKey[]).map((filterType) => (
+          {/* The rest of the filters (exams, subjects, etc.) */}
+          {(Object.keys(state.filterOptions) as FilterKey[]).map((fKey) => (
             <MobileFilterSection
-              key={filterType}
-              title={filterType}
-              filterType={filterType}
+              key={fKey}
+              title={fKey}
+              filterType={fKey}
               state={state}
               dispatch={dispatch}
             />
@@ -756,7 +765,7 @@ function MobileFilterSection({
   dispatch: React.Dispatch<StatsAction>;
 }) {
   const [search, setSearch] = useState("");
-  const filterValues = state.filterOptions[filterType];
+  const filterValues = state.filterOptions[filterType] || [];
 
   const displayedValues = React.useMemo(() => {
     let arr = filterValues.slice();
@@ -764,8 +773,8 @@ function MobileFilterSection({
       const lower = search.toLowerCase();
       arr = arr.filter((val) => val.toLowerCase().includes(lower));
     }
-    // sort selected
-    arr.sort((a, b) => {
+    // sort selected to top
+    arr.sort((a,b) => {
       const aSel = state.filters[filterType].includes(a);
       const bSel = state.filters[filterType].includes(b);
       if (aSel && !bSel) return -1;
