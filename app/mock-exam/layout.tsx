@@ -1,3 +1,5 @@
+"use client"
+
 import "../globals.css"
 import cx from "classnames"
 import { sfPro, inter } from "../fonts"
@@ -13,8 +15,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { LoadingProvider } from "@/components/layout/LoadingContext"
 import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext"
 import { ThemeProvider } from "../components/theme-provider"
-
-// ⬇ Import for route checking
+// Import Next.js 13’s usePathname:
 import { usePathname } from "next/navigation"
 
 config.autoAddCss = false
@@ -32,9 +33,11 @@ const getUserId = () => {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const userId = getUserId()
-
-  // (A) We read the current pathname
   const pathname = usePathname()
+
+  // If we're on "/mock-exam", hide the footer.
+  // If you need more fine-tuned control (e.g. only hide after starting),
+  // you'd likely use a context value that flips to "true" when the exam starts.
   const hideFooter = pathname.startsWith("/mock-exam")
 
   return (
@@ -52,7 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `
               window.MathJax = {
                 tex: {
-                  inlineMath: [['$', '$'], ['\\$\\$', '\\$\\$']],
+                  inlineMath: [['$', '$'], ['\\$', '\\$']],
                   displayMath: [['$$', '$$'], ['\\[', '\\]']],
                 },
                 options: {
@@ -91,12 +94,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      {/* (B) Use your custom-scrollbar class on the body or main container */}
       <body
         className={cx(
           sfPro.variable,
           inter.variable,
-          "bg-white dark:bg-gray-950 custom-scrollbar" // custom-scrollbar added here
+          "bg-white dark:bg-gray-950"
         )}
       >
         <ThemeProvider
@@ -108,18 +110,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <LoadingProvider>
             <UserPerformanceProvider userId={userId}>
               <TooltipProvider>
-                <div className="fixed inset-0 z-[-10]" />
+                <div className="fixed inset-0 z-[-10]"></div>
                 <Suspense fallback="...">
                   <Nav />
                 </Suspense>
 
+                {/*
+                  The main container:
+                  You can adjust top/bottom padding as needed.
+                */}
                 <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
                   {children}
                 </main>
 
                 <Bar userId={userId} />
 
-                {/* (A) Render Footer only if not on /mock-exam */}
+                {/* Conditionally render the footer */}
                 {!hideFooter && <Footer />}
 
                 <VercelAnalytics />
