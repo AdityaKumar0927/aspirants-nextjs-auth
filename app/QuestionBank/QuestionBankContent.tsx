@@ -922,9 +922,6 @@ export default function QuestionBankContent() {
               {/* top bar */}
               <div className="flex items-center justify-between mb-4 px-4">
                 <h2 className="text-xl font-semibold">Progress</h2>
-                <Button variant="ghost" size="icon" onClick={() => setProgressOpen(false)}>
-                  ✕
-                </Button>
               </div>
               <ScrollArea className="px-4 flex-1 custom-scrollbar">
                 <ProgressCard />
