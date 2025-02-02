@@ -87,14 +87,10 @@ export const authOptions: NextAuthOptions = {
       return session
     },
   },
-  pages: {
-    signIn: "/",
-    error: "/auth/error",
-  },
   session: {
     strategy: "jwt",
   },
-  debug: process.env.NODE_ENV === "production",
+  debug: process.env.NODE_ENV === "development", // recommended to enable debug locally
 }
 
 export default authOptions
