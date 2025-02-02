@@ -1,19 +1,39 @@
 "use client"
 
-import { useState, useCallback, useEffect } from "react"
+import { useEffect, useState, useCallback } from "react"
 import { useSession, signIn } from "next-auth/react"
 import { useEditor, EditorContent } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import Placeholder from "@tiptap/extension-placeholder"
 import { formatDistanceToNow } from "date-fns"
+
+import { toast } from "react-hot-toast"
+import Skeleton from "react-loading-skeleton"
+import "react-loading-skeleton/dist/skeleton.css"
+
+import { Filter } from "bad-words"
+
 import { Button } from "@/components/ui/button"
-import { Bold, Italic, List, ListOrdered, Code, Heading1, Heading2, Heart } from "lucide-react"
+import {
+  Bold,
+  Italic,
+  List,
+  ListOrdered,
+  Code,
+  Heading1,
+  Heading2,
+  Heart,
+  Trash2,
+} from "lucide-react"
+
+// Setup profanity filter (optional)
+const profanityFilter = new Filter()
 
 interface QuestionSolutionsProps {
   questionId: string
 }
 
-// Minimal solution interface from DB
+// DB solution model
 interface Solution {
   id: string
   content: string
@@ -24,22 +44,21 @@ interface Solution {
   replies?: Solution[]
 }
 
-// For local text editor
-function ProfanityExtension() {
-  // Placeholder extension approach or handle in your onSubmit
-  return null
-}
-
 export function QuestionSolutions({ questionId }: QuestionSolutionsProps) {
-  const { data: session, status } = useSession()
+  const { data: session } = useSession()
 
   const [solutions, setSolutions] = useState<Solution[]>([])
   const [error, setError] = useState<string>("")
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
-  // 1) Fetch solutions
+  // Fetch solutions from our Next.js route
   const fetchSolutions = useCallback(async () => {
     try {
-      const res = await fetch(`/api/questions/${questionId}/solutions`)
+      setIsLoading(true)
+      setError("")
+      const res = await fetch(`/api/questions/${questionId}/solutions`, {
+        method: "GET",
+      })
       if (!res.ok) {
         throw new Error("Failed to load solutions")
       }
@@ -48,6 +67,8 @@ export function QuestionSolutions({ questionId }: QuestionSolutionsProps) {
     } catch (err) {
       console.error(err)
       setError("Unable to load solutions.")
+    } finally {
+      setIsLoading(false)
     }
   }, [questionId])
 
@@ -55,7 +76,7 @@ export function QuestionSolutions({ questionId }: QuestionSolutionsProps) {
     fetchSolutions()
   }, [fetchSolutions])
 
-  // 2) Editor for top-level solutions (only if authenticated)
+  // TipTap editor for new top-level solutions
   const [editorError, setEditorError] = useState<string>("")
 
   const topLevelEditor = useEditor({
@@ -70,12 +91,13 @@ export function QuestionSolutions({ questionId }: QuestionSolutionsProps) {
         class: "prose prose-sm max-w-none font-light tracking-tight focus:outline-none min-h-[100px] p-2",
       },
     },
-    onUpdate: ({ editor }) => {
-      // check profanity here if you'd like
-      setEditorError("")
+    onUpdate: () => {
+      // Clear any old errors when editing
+      if (editorError) setEditorError("")
     },
   })
 
+  // Submit a new top-level solution
   const handleSubmitTopLevel = async () => {
     if (!topLevelEditor) return
     const text = topLevelEditor.getText().trim()
@@ -84,36 +106,55 @@ export function QuestionSolutions({ questionId }: QuestionSolutionsProps) {
       return
     }
 
-    // Simple profanity check
-    if (checkForProfanity(text)) {
+    // Profanity check
+    if (profanityFilter.isProfane(text)) {
       setEditorError("Please remove offensive language.")
       return
     }
 
+    // Get the HTML from the editor
     const html = topLevelEditor.getHTML()
+
     try {
+      // Send to our POST route
       const res = await fetch(`/api/questions/${questionId}/solutions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: html }),
+        body: JSON.stringify({
+          content: html,
+          authorId: session?.user?.id || null, // pass the author's ID if needed
+          parentId: null,
+        }),
       })
       if (!res.ok) {
         throw new Error("Failed to create solution")
       }
+      // Clear editor
       topLevelEditor.commands.clearContent()
+      toast.success("Solution posted!")
+      // Re-fetch solutions
       fetchSolutions()
     } catch (err) {
       console.error(err)
       setEditorError("Failed to post solution. Try again.")
+      toast.error("Failed to post solution.")
     }
   }
 
-  // 3) Like a solution
+  // Like a solution (PATCH route)
   const handleLike = async (solutionId: string) => {
     if (!session) {
-      alert("You must be logged in to like a solution.")
+      toast.error("You must be logged in to like a solution.")
       return
     }
+
+    // Optimistic UI update
+    setSolutions((prev) =>
+      prev.map((sol) =>
+        sol.id === solutionId ? { ...sol, likes: sol.likes + 1 } : sol
+      )
+    )
+
     try {
       const res = await fetch(`/api/questions/${questionId}/solutions`, {
         method: "PATCH",
@@ -123,72 +164,89 @@ export function QuestionSolutions({ questionId }: QuestionSolutionsProps) {
       if (!res.ok) {
         throw new Error("Failed to like solution")
       }
-      fetchSolutions()
+      toast.success("Liked!")
     } catch (err) {
       console.error(err)
+      // Revert if error
+      setSolutions((prev) =>
+        prev.map((sol) =>
+          sol.id === solutionId ? { ...sol, likes: sol.likes - 1 } : sol
+        )
+      )
+      toast.error("Failed to like solution.")
     }
   }
 
-  // 4) Reply logic (only if authenticated)
-  const [replyError, setReplyError] = useState<string>("")
+  // Delete a solution (DELETE route)
+  const handleDelete = async (solutionId: string) => {
+    if (!session) {
+      toast.error("You must be logged in to delete a solution.")
+      return
+    }
 
+    // Optimistic UI removal
+    const oldSolutions = [...solutions]
+    setSolutions((prev) => prev.filter((sol) => sol.id !== solutionId))
+
+    try {
+      const res = await fetch(`/api/questions/${questionId}/solutions`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ solutionId }),
+      })
+      if (!res.ok) {
+        throw new Error("Failed to delete solution")
+      }
+      toast.success("Solution deleted!")
+    } catch (err) {
+      console.error(err)
+      toast.error("Failed to delete solution.")
+      // Revert
+      setSolutions(oldSolutions)
+    }
+  }
+
+  // Reply logic
   const handleReply = async (parentId: string, content: string) => {
     if (!session) {
-      alert("You must be logged in to reply.")
+      toast.error("You must be logged in to reply.")
       return
     }
     if (!content.trim()) {
-      setReplyError("Reply cannot be empty.")
+      toast.error("Reply cannot be empty.")
       return
     }
-    if (checkForProfanity(content)) {
-      setReplyError("Please remove offensive language.")
+    if (profanityFilter.isProfane(content)) {
+      toast.error("Please remove offensive language.")
       return
     }
+
     try {
       const res = await fetch(`/api/questions/${questionId}/solutions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content, parentId }),
+        body: JSON.stringify({
+          content,
+          parentId,
+          authorId: session?.user?.id || null,
+        }),
       })
       if (!res.ok) {
         throw new Error("Failed to create reply.")
       }
+      toast.success("Reply posted!")
       fetchSolutions()
     } catch (err) {
       console.error(err)
-      setReplyError("Failed to post reply. Try again.")
+      toast.error("Failed to post reply.")
     }
   }
 
-  // A minimal profanity list
-  const PROFANITY_WORDS = ["fuck", "shit", "bitch", "asshole"]
-  function checkForProfanity(text: string) {
-    const lower = text.toLowerCase()
-    return PROFANITY_WORDS.some((word) => lower.includes(word))
-  }
-
-  // Utility: Render each solution + replies
-  function renderSolution(solution: Solution) {
-    return (
-      <SolutionItem
-        key={solution.id}
-        solution={solution}
-        onLike={() => handleLike(solution.id)}
-        onReply={handleReply}
-      />
-    )
-  }
-
   // Render
-  if (error) {
-    return <p className="text-red-500 text-sm">{error}</p>
-  }
-
   return (
     <div className="space-y-6">
       {/* If user not authenticated => just show existing solutions + a login prompt */}
-      {(!session || session === null) && (
+      {!session && (
         <div className="text-sm text-gray-600 mb-4">
           You must be logged in to post new solutions or replies.
           <Button variant="link" onClick={() => signIn()} className="ml-2 text-blue-600">
@@ -275,12 +333,8 @@ export function QuestionSolutions({ questionId }: QuestionSolutionsProps) {
                             border-blue-400
                             bg-blue-50
                             text-blue-800
-                            dark:border-blue-600
-                            dark:bg-slate-800
-                            dark:text-blue-200
                             px-4 py-1
                             hover:bg-blue-100
-                            dark:hover:bg-slate-700
                             rounded-sm"
                 >
                   Submit
@@ -292,52 +346,74 @@ export function QuestionSolutions({ questionId }: QuestionSolutionsProps) {
       )}
 
       {/* Show existing solutions */}
-      <div className="space-y-4">
-        {solutions.map((sol) => renderSolution(sol))}
-      </div>
+      {error && <p className="text-red-500 text-sm">{error}</p>}
+      {isLoading ? (
+        // Loading skeletons
+        <div className="space-y-4">
+          <Skeleton count={3} height={60} />
+        </div>
+      ) : (
+        <div className="space-y-4">
+          {solutions.map((sol) => (
+            <SolutionItem
+              key={sol.id}
+              solution={sol}
+              onLike={() => handleLike(sol.id)}
+              onReply={handleReply}
+              onDelete={() => handleDelete(sol.id)}
+              currentUserId={session?.user?.id} // used to check if user can delete
+            />
+          ))}
+        </div>
+      )}
     </div>
   )
 }
 
-// A single solution item with nested replies
+/* ------------------------------------------------------------------ */
+
 function SolutionItem({
   solution,
   onLike,
   onReply,
+  onDelete,
+  currentUserId,
 }: {
   solution: Solution
   onLike: () => void
   onReply: (parentId: string, content: string) => void
+  onDelete: () => void
+  currentUserId?: string
 }) {
   const { data: session } = useSession()
   const [replyOpen, setReplyOpen] = useState(false)
   const [replyContent, setReplyContent] = useState("")
-  const [replyError, setReplyError] = useState("")
+
+  // Check if current user is the author (for showing delete button)
+  const canDelete = currentUserId && solution.authorId === currentUserId
 
   const handleReplySubmit = () => {
     if (!session) {
-      alert("You must be logged in to reply.")
+      toast.error("You must be logged in to reply.")
       return
     }
     if (!replyContent.trim()) {
-      setReplyError("Cannot post an empty reply.")
+      toast.error("Cannot post an empty reply.")
       return
     }
-    // profanity check
-    if (checkForProfanity(replyContent)) {
-      setReplyError("Please remove offensive language.")
+    if (profanityFilter.isProfane(replyContent)) {
+      toast.error("Please remove offensive language.")
       return
     }
     onReply(solution.id, replyContent)
     setReplyContent("")
     setReplyOpen(false)
-    setReplyError("")
   }
 
   return (
     <div className="space-y-2 border-b border-gray-100 pb-4">
       <div className="flex items-center justify-between">
-        {/* Author info if needed */}
+        {/* Author info */}
         <div className="flex items-center space-x-2">
           <span className="text-sm font-medium">
             {solution.authorId ? `User ${solution.authorId}` : "Guest"}
@@ -347,17 +423,31 @@ function SolutionItem({
           </span>
         </div>
 
-        {/* Like button */}
-        <button
-          onClick={onLike}
-          className="flex items-center space-x-1 text-xs text-gray-500 hover:text-red-500"
-        >
-          <Heart
-            className="w-3 h-3 fill-current"
-            color={solution.likes > 0 ? "red" : "currentColor"}
-          />
-          <span>{solution.likes}</span>
-        </button>
+        <div className="flex space-x-2">
+          {/* Like button */}
+          <button
+            onClick={onLike}
+            className="flex items-center space-x-1 text-xs text-gray-500 hover:text-red-500"
+          >
+            <Heart
+              className="w-3 h-3"
+              // If likes > 0, fill the heart (your choice of styling)
+              color={solution.likes > 0 ? "red" : "currentColor"}
+              fill={solution.likes > 0 ? "red" : "none"}
+            />
+            <span>{solution.likes}</span>
+          </button>
+
+          {/* Delete button if user can delete */}
+          {canDelete && (
+            <button
+              onClick={onDelete}
+              className="flex items-center space-x-1 text-xs text-gray-500 hover:text-red-500"
+            >
+              <Trash2 className="w-3 h-3" />
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Content */}
@@ -374,7 +464,6 @@ function SolutionItem({
           </Button>
           {replyOpen && (
             <div className="mt-2">
-              {replyError && <p className="text-red-500 text-xs mb-2">{replyError}</p>}
               <textarea
                 className="w-full border p-2 text-sm rounded-md"
                 rows={2}
@@ -392,26 +481,25 @@ function SolutionItem({
         </div>
       )}
 
-      {/* Show nested replies, if any */}
+      {/* Nested replies */}
       {solution.replies && solution.replies.length > 0 && (
         <div className="ml-4 mt-2 space-y-2 border-l border-gray-200 pl-4">
           {solution.replies.map((rep) => (
             <SolutionItem
               key={rep.id}
               solution={rep}
-              onLike={() => null /* or handle a nested like */}
+              onLike={() => {
+                /* For nested replies, handle similarly if you want nested likes */
+              }}
               onReply={onReply}
+              onDelete={() => {
+                /* For nested replies, you'd pass a function or handle it similarly */
+              }}
+              currentUserId={currentUserId}
             />
           ))}
         </div>
       )}
     </div>
   )
-}
-
-// small utility
-function checkForProfanity(text: string) {
-  const badWords = ["fuck", "shit", "bitch", "asshole"]
-  const lower = text.toLowerCase()
-  return badWords.some((w) => lower.includes(w))
 }

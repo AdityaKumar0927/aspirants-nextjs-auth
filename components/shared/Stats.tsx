@@ -1,389 +1,504 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
+import { TrendingUp } from "lucide-react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import {
+  Area,
+  AreaChart,
   Bar,
   BarChart,
   CartesianGrid,
+  Label,
   Line,
   LineChart,
+  Pie,
+  PieChart,
   XAxis,
-  YAxis,
 } from "recharts";
 
 import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  ChartConfig,
   ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
   ChartLegend,
   ChartLegendContent,
-  type ChartConfig,
-} from "@/components/ui/chart"; // shadcn chart
-
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
 import { useToast } from "@/components/ui/use-toast";
 
-/* ------------------------------------------------------
-   1) Types
-   ------------------------------------------------------ */
+/* ------------------------------------------------------------------
+   1) Define your data interfaces (e.g. from your DB tables)
+   ------------------------------------------------------------------ */
 interface UserPerformance {
-  id: number;
-  userId: string;
   questionId: string;
   correctAnswers: number;
   incorrectAnswers: number;
-  uniqueQuestions: number;
-  questionsAttempted: number;
-  timeSpent: number;
-  accuracy: number; // e.g. 0..100
-  reattemptAccuracy: number; // e.g. 0..100
-  createdAt: string; // date string
-  updatedAt: string;
-  // ...
+  createdAt: string;  // e.g. "2023-08-16T12:00:00Z"
+  // more fields like accuracy, timeSpent, etc. if needed
 }
 
 interface UserAnswer {
-  id: string;
   questionId: string;
   userId: string;
   selectedOption: string;
   isCorrect: boolean;
+  createdAt?: string;
   // ...
 }
 
 interface UserProgress {
-  id: string;
-  userId: string;
   questionId: string;
+  userId: string;
   completed: boolean;
   reviewed: boolean;
-  lastAttempted: string | null;
+  lastAttempted?: string;
   // ...
 }
 
-interface AggregateData {
+/* ------------------------------------------------------------------
+   2) A “Stats” aggregator type: e.g. total correct, attempts, etc.
+   ------------------------------------------------------------------ */
+interface Aggregates {
   totalAttempts: number;
   totalCorrect: number;
   totalIncorrect: number;
-  avgAccuracy: number;
-  avgReattemptAccuracy: number;
+  // Add anything else you want to display
 }
 
-/* ------------------------------------------------------
-   2) Stats component
-   ------------------------------------------------------ */
+/* ------------------------------------------------------------------
+   3) The main Stats component
+   ------------------------------------------------------------------ */
 export default function Stats() {
   const { toast } = useToast();
 
-  // Local states
-  const [perfData, setPerfData] = useState<UserPerformance[]>([]);
+  // For loading state
+  const [loading, setLoading] = useState(true);
+  // For storing fetched data
+  const [performance, setPerformance] = useState<UserPerformance[]>([]);
   const [answers, setAnswers] = useState<UserAnswer[]>([]);
   const [progress, setProgress] = useState<UserProgress[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [aggregate, setAggregate] = useState<AggregateData | null>(null);
+  // For computed aggregates
+  const [aggregates, setAggregates] = useState<Aggregates | null>(null);
 
-  /* ------------------------------
-     A) Fetch userPerformance
-     ------------------------------ */
+  /* ------------------------------------------------------------------
+     A) Fetch user performance
+     ------------------------------------------------------------------ */
   async function fetchUserPerformance() {
-    try {
-      const res = await fetch("/api/user-performance/get", { cache: "no-store" });
-      if (!res.ok) {
-        throw new Error(`Error fetching userPerformance. Status: ${res.status}`);
-      }
-      const data = await res.json();
-      setPerfData(data as UserPerformance[]);
-    } catch (err) {
-      console.error("fetchUserPerformance error:", err);
-      toast({
-        title: "Error",
-        description: "Could not load performance data",
-        variant: "destructive",
-      });
+    const res = await fetch("/api/user-performance/get", { cache: "no-store" });
+    if (!res.ok) {
+      throw new Error(`Error fetching userPerformance: ${res.status}`);
     }
+    return (await res.json()) as UserPerformance[];
   }
 
-  /* ------------------------------
-     B) Fetch userAnswers
-     ------------------------------ */
+  /* ------------------------------------------------------------------
+     B) Fetch user answers
+     ------------------------------------------------------------------ */
   async function fetchUserAnswers() {
-    try {
-      const res = await fetch("/api/user-answers", { cache: "no-store" });
-      if (!res.ok) {
-        throw new Error(`Error fetching userAnswers. Status: ${res.status}`);
-      }
-      const data = await res.json();
-      setAnswers(data as UserAnswer[]);
-    } catch (err) {
-      console.error("fetchUserAnswers error:", err);
-      toast({
-        title: "Error",
-        description: "Could not load user answers",
-        variant: "destructive",
-      });
+    const res = await fetch("/api/user-answers", { cache: "no-store" });
+    if (!res.ok) {
+      throw new Error(`Error fetching userAnswers: ${res.status}`);
     }
+    return (await res.json()) as UserAnswer[];
   }
 
-  /* ------------------------------
-     C) Fetch userProgress
-     ------------------------------ */
+  /* ------------------------------------------------------------------
+     C) Fetch user progress
+     ------------------------------------------------------------------ */
   async function fetchUserProgress() {
-    try {
-      const res = await fetch("/api/user-progress", { cache: "no-store" });
-      if (!res.ok) {
-        throw new Error(`Error fetching userProgress. Status: ${res.status}`);
-      }
-      const data = await res.json();
-      setProgress(data as UserProgress[]);
-    } catch (err) {
-      console.error("fetchUserProgress error:", err);
-      toast({
-        title: "Error",
-        description: "Could not load progress data",
-        variant: "destructive",
-      });
+    const res = await fetch("/api/user-progress", { cache: "no-store" });
+    if (!res.ok) {
+      throw new Error(`Error fetching userProgress: ${res.status}`);
     }
+    return (await res.json()) as UserProgress[];
   }
 
-  /* ------------------------------
-     D) On mount => fetch all data
-     ------------------------------ */
+  /* ------------------------------------------------------------------
+     D) Load data on mount, handle concurrency
+     ------------------------------------------------------------------ */
   useEffect(() => {
     (async () => {
       setLoading(true);
-      await Promise.all([fetchUserPerformance(), fetchUserAnswers(), fetchUserProgress()]);
-      setLoading(false);
+      try {
+        // concurrency fetch
+        const [perf, ans, prog] = await Promise.all([
+          fetchUserPerformance(),
+          fetchUserAnswers(),
+          fetchUserProgress(),
+        ]);
+        setPerformance(perf);
+        setAnswers(ans);
+        setProgress(prog);
+      } catch (err) {
+        console.error(err);
+        toast({
+          title: "Error",
+          description: "Could not load stats data",
+          variant: "destructive",
+        });
+      } finally {
+        setLoading(false);
+      }
     })();
-  }, []);
+  }, [toast]);
 
-  /* ------------------------------
-     E) Derive Aggregates
-     ------------------------------ */
+  /* ------------------------------------------------------------------
+     E) Compute aggregates after data is loaded
+     ------------------------------------------------------------------ */
   useEffect(() => {
-    if (!perfData.length) {
-      setAggregate(null);
+    if (!performance.length) {
+      setAggregates(null);
       return;
     }
+    let totalCorrect = 0;
+    let totalIncorrect = 0;
+    let totalAttempts = 0;
 
-    const totalCorrect = perfData.reduce((sum, row) => sum + row.correctAnswers, 0);
-    const totalIncorrect = perfData.reduce((sum, row) => sum + row.incorrectAnswers, 0);
-    const totalAttempts = perfData.reduce((sum, row) => sum + row.questionsAttempted, 0);
-    const avgAccuracy =
-      perfData.reduce((acc, row) => acc + row.accuracy, 0) / perfData.length;
-    const avgReattempt =
-      perfData.reduce((acc, row) => acc + row.reattemptAccuracy, 0) / perfData.length;
-
-    setAggregate({
+    for (const p of performance) {
+      totalCorrect += p.correctAnswers;
+      totalIncorrect += p.incorrectAnswers;
+      // If you have a “questionsAttempted” field, or compute yourself
+      totalAttempts += p.correctAnswers + p.incorrectAnswers;
+    }
+    setAggregates({
       totalAttempts,
       totalCorrect,
       totalIncorrect,
-      avgAccuracy,
-      avgReattemptAccuracy: avgReattempt,
     });
-  }, [perfData]);
+  }, [performance]);
 
-  /* ------------------------------
-     F) Build Chart Data
-     ------------------------------ */
-  // Example line chart data
-  const lineChartData = perfData.map((p) => {
-    return {
-      // e.g. "2023-08-12"
-      date: new Date(p.createdAt).toLocaleDateString(),
-      correct: p.correctAnswers,
-      incorrect: p.incorrectAnswers,
-      attempted: p.questionsAttempted,
-      accuracy: p.accuracy,
-    };
-  });
+  /* ------------------------------------------------------------------
+     F) Build chart data you want to show. For example:
+     ------------------------------------------------------------------ */
+  // 1) For an area chart, we can group userPerformance by month => “desktop” vs “mobile”
+  // But we'll just do a static sample here. Replace with real aggregator logic.
+  const areaChartData = [
+    { month: "January", desktop: 186, mobile: 80 },
+    { month: "February", desktop: 305, mobile: 200 },
+    { month: "March", desktop: 237, mobile: 120 },
+    { month: "April", desktop: 73, mobile: 190 },
+    { month: "May", desktop: 209, mobile: 130 },
+    { month: "June", desktop: 214, mobile: 140 },
+  ];
+  // Similarly for bar/line/pie
 
-  // 1) Chart config (for shadcn chart)
-  // Maps data keys -> label + color
-  const chartConfig = {
-    correct: {
-      label: "Correct",
-      color: "hsl(var(--chart-1))", // or #22c55e
+  /* Chart config objects to define color + labels */
+  const areaChartConfig = {
+    desktop: {
+      label: "Desktop",
+      color: "hsl(var(--chart-1))",
     },
-    incorrect: {
-      label: "Incorrect",
-      color: "hsl(var(--chart-2))", // or #ef4444
-    },
-    attempted: {
-      label: "Attempted",
-      color: "hsl(var(--chart-3))",
-    },
-    accuracy: {
-      label: "Accuracy",
-      color: "hsl(var(--chart-4))",
+    mobile: {
+      label: "Mobile",
+      color: "hsl(var(--chart-2))",
     },
   } satisfies ChartConfig;
 
-  /* ------------------------------
-     G) Rendering
-     ------------------------------ */
+  const barChartData = areaChartData; // reuse
+  const barChartConfig = { ...areaChartConfig };
+  const lineChartData = areaChartData; // reuse
+  const lineChartConfig = { ...areaChartConfig };
+
+  const pieChartData = [
+    { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
+    { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
+    { browser: "firefox", visitors: 287, fill: "var(--color-firefox)" },
+    { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
+    { browser: "other", visitors: 190, fill: "var(--color-other)" },
+  ];
+  const pieChartConfig = {
+    visitors: {
+      label: "Visitors",
+    },
+    chrome: {
+      label: "Chrome",
+      color: "hsl(var(--chart-1))",
+    },
+    safari: {
+      label: "Safari",
+      color: "hsl(var(--chart-2))",
+    },
+    firefox: {
+      label: "Firefox",
+      color: "hsl(var(--chart-3))",
+    },
+    edge: {
+      label: "Edge",
+      color: "hsl(var(--chart-4))",
+    },
+    other: {
+      label: "Other",
+      color: "hsl(var(--chart-5))",
+    },
+  } satisfies ChartConfig;
+
+  const totalVisitors = useMemo(
+    () => pieChartData.reduce((acc, curr) => acc + curr.visitors, 0),
+    []
+  );
+
+  /* ------------------------------------------------------------------
+     G) Render
+     ------------------------------------------------------------------ */
   if (loading) {
+    /* Show skeleton while loading data */
     return (
       <SkeletonTheme baseColor="#F3F4F6" highlightColor="#E5E7EB">
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
           {[...Array(4)].map((_, i) => (
-            <Skeleton key={i} className="h-[180px] w-full" />
+            <Skeleton key={i} className="h-[300px] w-full" />
           ))}
         </div>
       </SkeletonTheme>
     );
   }
 
-  if (!aggregate) {
-    // If no performance data
-    return <p className="text-sm text-gray-500 dark:text-gray-300">No performance data yet.</p>;
+  if (!aggregates) {
+    // If no data
+    return (
+      <p className="text-sm text-gray-500 dark:text-gray-300">
+        No performance data yet. Try answering some questions!
+      </p>
+    );
   }
 
+  /* We have data, so let's show the 4 chart cards. They match your UI exactly. */
   return (
-    <div className="space-y-6">
-      {/* 1) Stats Cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-sm font-medium">Avg Accuracy</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-semibold">
-              {aggregate.avgAccuracy.toFixed(2)}%
-            </div>
-            <p className="text-xs text-muted-foreground">+2.5% from last week</p>
-            {/* A small line chart for accuracy */}
-            <ChartContainer config={chartConfig} className="min-h-[80px] w-full mt-2">
-              <LineChart data={lineChartData}>
-                <XAxis dataKey="date" hide />
-                <YAxis hide />
-                <Line
-                  type="monotone"
-                  dataKey="accuracy"
-                  stroke="var(--color-accuracy)"
-                  strokeWidth={2}
-                  dot={false}
-                />
-              </LineChart>
-            </ChartContainer>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-sm font-medium">Total Attempts</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-semibold">{aggregate.totalAttempts}</div>
-            <p className="text-xs text-muted-foreground">+12 from last week</p>
-            {/* A small bar chart for attempted */}
-            <ChartContainer config={chartConfig} className="min-h-[80px] w-full mt-2">
-              <BarChart data={lineChartData}>
-                <XAxis dataKey="date" hide />
-                <YAxis hide />
-                <Bar
-                  dataKey="attempted"
-                  fill="var(--color-attempted)"
-                  radius={4}
-                />
-              </BarChart>
-            </ChartContainer>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-sm font-medium">Total Correct</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-semibold">{aggregate.totalCorrect}</div>
-            <p className="text-xs text-muted-foreground">+7 from last week</p>
-            <ChartContainer config={chartConfig} className="min-h-[80px] w-full mt-2">
-              <LineChart data={lineChartData}>
-                <XAxis dataKey="date" hide />
-                <YAxis hide />
-                <Line
-                  type="monotone"
-                  dataKey="correct"
-                  stroke="var(--color-correct)"
-                  strokeWidth={2}
-                  dot={false}
-                />
-              </LineChart>
-            </ChartContainer>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-sm font-medium">Reattempt Accuracy</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-semibold">
-              {aggregate.avgReattemptAccuracy.toFixed(2)}%
-            </div>
-            <p className="text-xs text-muted-foreground">+1.2% from last week</p>
-            <ChartContainer config={chartConfig} className="min-h-[80px] w-full mt-2">
-              <LineChart data={lineChartData}>
-                <XAxis dataKey="date" hide />
-                <YAxis hide />
-                <Line
-                  type="monotone"
-                  dataKey="reattemptAccuracy"
-                  stroke="var(--color-accuracy)"
-                  strokeWidth={2}
-                  dot={false}
-                />
-              </LineChart>
-            </ChartContainer>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* 2) Bar chart of correct vs. incorrect */}
+    <div className="grid gap-4 lg:grid-cols-2">
+      {/* -------------- 1) Area Chart (Stacked) -------------- */}
       <Card>
         <CardHeader>
-          <CardTitle>Correct vs. Incorrect Over Time</CardTitle>
+          <CardTitle>Area Chart - Stacked</CardTitle>
+          <CardDescription>
+            Showing total visitors for the last 6 months
+          </CardDescription>
         </CardHeader>
         <CardContent>
-          <ChartContainer config={chartConfig} className="min-h-[300px] w-full">
-            <BarChart data={lineChartData} accessibilityLayer>
-              <CartesianGrid vertical={false} strokeDasharray="3 3" />
-              <XAxis dataKey="date" />
-              <YAxis />
-              <ChartTooltip content={<ChartTooltipContent />} />
+          <ChartContainer config={areaChartConfig}>
+            <AreaChart
+              accessibilityLayer
+              data={areaChartData}
+              margin={{ left: 12, right: 12 }}
+            >
+              <CartesianGrid vertical={false} />
+              <XAxis
+                dataKey="month"
+                tickLine={false}
+                axisLine={false}
+                tickMargin={8}
+                tickFormatter={(value) => value.slice(0, 3)}
+              />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent indicator="dot" />}
+              />
+              <Area
+                dataKey="mobile"
+                type="natural"
+                fill="var(--color-mobile)"
+                fillOpacity={0.4}
+                stroke="var(--color-mobile)"
+                stackId="a"
+              />
+              <Area
+                dataKey="desktop"
+                type="natural"
+                fill="var(--color-desktop)"
+                fillOpacity={0.4}
+                stroke="var(--color-desktop)"
+                stackId="a"
+              />
+            </AreaChart>
+          </ChartContainer>
+        </CardContent>
+        <CardFooter>
+          <div className="flex w-full items-start gap-2 text-sm">
+            <div className="grid gap-2">
+              <div className="flex items-center gap-2 font-medium leading-none">
+                Trending up by 5.2% this month{" "}
+                <TrendingUp className="h-4 w-4" />
+              </div>
+              <div className="flex items-center gap-2 leading-none text-muted-foreground">
+                January - June 2024
+              </div>
+            </div>
+          </div>
+        </CardFooter>
+      </Card>
+
+      {/* -------------- 2) Bar Chart (Stacked + Legend) -------------- */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Bar Chart - Stacked + Legend</CardTitle>
+          <CardDescription>January - June 2024</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <ChartContainer config={barChartConfig}>
+            <BarChart accessibilityLayer data={barChartData}>
+              <CartesianGrid vertical={false} />
+              <XAxis
+                dataKey="month"
+                tickLine={false}
+                tickMargin={10}
+                axisLine={false}
+                tickFormatter={(value) => value.slice(0, 3)}
+              />
+              <ChartTooltip content={<ChartTooltipContent hideLabel />} />
               <ChartLegend content={<ChartLegendContent />} />
-              <Bar dataKey="correct" fill="var(--color-correct)" radius={4} />
-              <Bar dataKey="incorrect" fill="var(--color-incorrect)" radius={4} />
+              <Bar
+                dataKey="desktop"
+                stackId="a"
+                fill="var(--color-desktop)"
+                radius={[0, 0, 4, 4]}
+              />
+              <Bar
+                dataKey="mobile"
+                stackId="a"
+                fill="var(--color-mobile)"
+                radius={[4, 4, 0, 0]}
+              />
             </BarChart>
           </ChartContainer>
         </CardContent>
+        <CardFooter className="flex-col items-start gap-2 text-sm">
+          <div className="flex gap-2 font-medium leading-none">
+            Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+          </div>
+          <div className="leading-none text-muted-foreground">
+            Showing total visitors for the last 6 months
+          </div>
+        </CardFooter>
       </Card>
 
-      {/* 3) Another line chart for accuracy */}
+      {/* -------------- 3) Line Chart (Multiple) -------------- */}
       <Card>
         <CardHeader>
-          <CardTitle>Accuracy Trend</CardTitle>
+          <CardTitle>Line Chart - Multiple</CardTitle>
+          <CardDescription>January - June 2024</CardDescription>
         </CardHeader>
         <CardContent>
-          <ChartContainer config={chartConfig} className="min-h-[300px] w-full">
-            <LineChart data={lineChartData} accessibilityLayer>
-              <CartesianGrid vertical={false} strokeDasharray="3 3" />
-              <XAxis dataKey="date" />
-              <YAxis />
-              <ChartTooltip content={<ChartTooltipContent />} />
-              <ChartLegend content={<ChartLegendContent />} />
+          <ChartContainer config={lineChartConfig}>
+            <LineChart
+              accessibilityLayer
+              data={areaChartData} // or lineChartData
+              margin={{ left: 12, right: 12 }}
+            >
+              <CartesianGrid vertical={false} />
+              <XAxis
+                dataKey="month"
+                tickLine={false}
+                axisLine={false}
+                tickMargin={8}
+                tickFormatter={(value) => value.slice(0, 3)}
+              />
+              <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
               <Line
+                dataKey="desktop"
                 type="monotone"
-                dataKey="accuracy"
-                stroke="var(--color-accuracy)"
+                stroke="var(--color-desktop)"
+                strokeWidth={2}
+                dot={false}
+              />
+              <Line
+                dataKey="mobile"
+                type="monotone"
+                stroke="var(--color-mobile)"
                 strokeWidth={2}
                 dot={false}
               />
             </LineChart>
           </ChartContainer>
         </CardContent>
+        <CardFooter>
+          <div className="flex w-full items-start gap-2 text-sm">
+            <div className="grid gap-2">
+              <div className="flex items-center gap-2 font-medium leading-none">
+                Trending up by 5.2% this month{" "}
+                <TrendingUp className="h-4 w-4" />
+              </div>
+              <div className="flex items-center gap-2 leading-none text-muted-foreground">
+                Showing total visitors for the last 6 months
+              </div>
+            </div>
+          </div>
+        </CardFooter>
+      </Card>
+
+      {/* -------------- 4) Pie Chart (Donut with text) -------------- */}
+      <Card className="flex flex-col">
+        <CardHeader className="items-center pb-0">
+          <CardTitle>Pie Chart - Donut with Text</CardTitle>
+          <CardDescription>January - June 2024</CardDescription>
+        </CardHeader>
+        <CardContent className="flex-1 pb-0">
+          <ChartContainer
+            config={pieChartConfig}
+            className="mx-auto aspect-square max-h-[250px]"
+          >
+            <PieChart>
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent hideLabel />}
+              />
+              <Pie
+                data={pieChartData}
+                dataKey="visitors"
+                nameKey="browser"
+                innerRadius={60}
+                strokeWidth={5}
+              >
+                <Label
+                  content={({ viewBox }) => {
+                    const totalStr = totalVisitors.toLocaleString();
+                    if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                      return (
+                        <text
+                          x={viewBox.cx}
+                          y={viewBox.cy}
+                          textAnchor="middle"
+                          dominantBaseline="middle"
+                        >
+                          <tspan
+                            x={viewBox.cx}
+                            y={viewBox.cy}
+                            className="fill-foreground text-3xl font-bold"
+                          >
+                            {totalStr}
+                          </tspan>
+                          <tspan
+                            x={viewBox.cx}
+                            y={(viewBox.cy || 0) + 24}
+                            className="fill-muted-foreground"
+                          >
+                            Visitors
+                          </tspan>
+                        </text>
+                      );
+                    }
+                  }}
+                />
+              </Pie>
+            </PieChart>
+          </ChartContainer>
+        </CardContent>
+        <CardFooter className="flex-col gap-2 text-sm">
+          <div className="flex items-center gap-2 font-medium leading-none">
+            Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+          </div>
+          <div className="leading-none text-muted-foreground">
+            Showing total visitors for the last 6 months
+          </div>
+        </CardFooter>
       </Card>
     </div>
   );

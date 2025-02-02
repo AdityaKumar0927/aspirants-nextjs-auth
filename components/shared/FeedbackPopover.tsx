@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Checkbox } from "@radix-ui/react-checkbox"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -117,10 +116,12 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
           </CardHeader>
 
           <CardContent className="space-y-4">
+            {/* Feedback Options */}
             <div className="space-y-1">
               <Label className="text-zinc-900">
                 Provide additional feedback on this message. Select all that apply.
               </Label>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                 {feedbackOptions.map((option) => (
                   <div
@@ -131,12 +132,12 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
                         : "border-zinc-200"
                     }`}
                   >
-                    <Checkbox
+                    <input
+                      type="checkbox"
                       id={option.id}
                       checked={selectedFeedback.includes(option.id)}
-                      onCheckedChange={() => toggleFeedback(option.id)}
-                      // Make checkboxes bigger:
-                      className="h-6 w-6 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600"
+                      onChange={() => toggleFeedback(option.id)}
+                      className="h-4 w-4 rounded-sm border-zinc-300 text-blue-600 focus:ring-2 focus:ring-blue-600"
                     />
                     <Label
                       htmlFor={option.id}
@@ -153,6 +154,7 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
               </div>
             </div>
 
+            {/* Feedback Area */}
             <div className="space-y-2">
               <Label className="text-zinc-900">Feedback Area</Label>
               <RadioGroup
@@ -162,11 +164,10 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
               >
                 {["CONTENT", "UI", "BUG", "FEATURE", "OTHER"].map((value) => (
                   <div key={value} className="flex items-center space-x-2">
-                    {/* Make radio circles bigger: */}
                     <RadioGroupItem
                       value={value}
                       id={value}
-                      className="h-6 w-6 border-zinc-300 text-blue-600"
+                      className="h-5 w-5 border-zinc-300 text-blue-600"
                     />
                     <Label htmlFor={value} className="capitalize text-zinc-900">
                       {value.toLowerCase()}
@@ -176,6 +177,7 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
               </RadioGroup>
             </div>
 
+            {/* Priority */}
             <div className="space-y-2">
               <Label className="text-zinc-900">Priority</Label>
               <Select value={priority} onValueChange={setPriority}>
@@ -191,6 +193,7 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
               </Select>
             </div>
 
+            {/* Description */}
             <div className="space-y-2">
               <Label htmlFor="feedback" className="text-zinc-900">
                 How can we improve? (optional)

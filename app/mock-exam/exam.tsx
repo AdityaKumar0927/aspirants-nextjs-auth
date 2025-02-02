@@ -28,7 +28,11 @@ import {
   TooltipProvider,
 } from "@/components/ui/tooltip"
 import Image from "next/image"
+
+// Import your KaTeX-based math renderer
 import MathRenderer from "@/components/layout/MathRenderer"
+
+// Single source-of-truth question type from exam-helpers
 import { QuestionType } from "@/lib/exam-helpers"
 
 interface ExamProps {
@@ -52,12 +56,18 @@ interface ExamProps {
   onSubmit: () => void
   onExit: () => void
   onNavigate: (index: number) => void
+
   userName: string
   selectedSubject: string
   selectedYear: string
   selectedLevel: string
 }
 
+/**
+ * A responsive exam layout:
+ * - On mobile (below md): question on top, navigator below (stacked).
+ * - On desktop (md+): question left, navigator right (two columns).
+ */
 export default function Exam({
   currentQuestion,
   filteredQuestions,
@@ -79,31 +89,28 @@ export default function Exam({
   selectedYear,
   selectedLevel,
 }: ExamProps) {
-  // Convert raw seconds to mm:ss
   function formatTime(seconds: number) {
     const minutes = Math.floor(seconds / 60)
     const secs = seconds % 60
     return `${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
   }
 
-  // The current question to be displayed
+  // The current question to display
   const question = filteredQuestions[currentQuestion]
   if (!question) {
     return (
-      <div className="flex flex-col items-center justify-center h-full p-4">
-        <p className="text-gray-500 mb-4 text-center">
-          No question available. Please restart the exam.
-        </p>
+      <div className="flex flex-col items-center justify-center h-full">
+        <p className="text-gray-500">No question available. Please restart the exam.</p>
         <Button onClick={onExit}>Exit</Button>
       </div>
     )
   }
 
-  // Render an image/diagram if provided
+  // If the question has a diagram
   function renderDiagram(diagramUrl?: string) {
     if (!diagramUrl) return null
     return (
-      <div className="relative w-full mb-4 max-h-80 overflow-hidden rounded-md">
+      <div className="relative w-full h-64 mb-4">
         <Image
           src={diagramUrl}
           alt="Question diagram"
@@ -115,12 +122,12 @@ export default function Exam({
     )
   }
 
-  // Decide how to render the main question body based on its type
+  // MCQ or Numeric
   function renderQuestionBody(q: QuestionType) {
-    const lowerType = (q.type || "").toLowerCase()
+    const lower = (q.type || "").toLowerCase()
 
-    // MCQ
-    if (lowerType.includes("mcq") || lowerType === "multiple choice") {
+    // if type is "mcq", "mcqm", or "multiple choice"
+    if (lower.includes("mcq") || lower === "multiple choice") {
       return (
         <div className="space-y-4 mt-4">
           {Object.entries(q.options).map(([key, optionText]) => {
@@ -140,9 +147,8 @@ export default function Exam({
         </div>
       )
     }
-
-    // Numeric / Integer
-    else if (lowerType.includes("num") || lowerType.includes("int")) {
+    // if type is "numerical", "integer", etc.
+    else if (lower.includes("num") || lower.includes("int")) {
       const val = answers[currentQuestion] || ""
       return (
         <div className="mt-4">
@@ -154,22 +160,22 @@ export default function Exam({
           />
         </div>
       )
+    } else {
+      // fallback
+      return (
+        <p className="text-red-500">
+          Unknown question type: {q.type}. Cannot render.
+        </p>
+      )
     }
-
-    // Fallback for unknown question types
-    return (
-      <p className="text-red-500">
-        Unknown question type: {q.type}. Cannot render.
-      </p>
-    )
   }
 
   return (
-    <div className="min-h-screen w-full flex flex-col bg-background">
-      {/* HEADER: user info, timer, exit */}
+    <div className="min-h-screen w-full flex flex-col">
+      {/* Header with user info, timer, exit */}
       <header className="sticky top-0 z-10 bg-background border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          {/* Left: user info */}
+          {/* left side: user info */}
           <div className="flex items-center space-x-4">
             <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
               <User className="w-6 h-6 text-primary-foreground" />
@@ -181,8 +187,7 @@ export default function Exam({
               </p>
             </div>
           </div>
-
-          {/* Right: timer + exit */}
+          {/* right side: timer + exit */}
           <div className="flex items-center space-x-4">
             <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium flex items-center">
               <Clock className="w-4 h-4 mr-2" />
@@ -195,15 +200,13 @@ export default function Exam({
         </div>
       </header>
 
-      {/* MAIN CONTENT */}
-      {/* 
-        Using a grid layout so we can place a sidebar on MD+ screens. 
-        On smaller screens, it's hidden here and shown at the bottom. 
-      */}
-      <main className="flex-1 grid grid-cols-1 md:grid-cols-[1fr,auto] md:gap-6">
-        {/* QUESTION COLUMN */}
-        <section className="p-4 sm:p-6 lg:p-8">
-          <Card className="mb-6 mx-auto w-full max-w-3xl">
+      {/* Main area */}
+      {/* On mobile: flex-col => question is top, navigator below.
+          On desktop: flex-row => question on left, navigator on right. */}
+      <main className="flex-1 flex flex-col md:flex-row overflow-hidden">
+        {/* LEFT / top: question content */}
+        <div className="flex-grow overflow-y-auto p-4 sm:p-6 lg:p-8 max-h-screen flex flex-col">
+          <Card className="mb-6 max-w-4xl mx-auto w-full">
             <CardHeader>
               <CardTitle className="flex justify-between items-center">
                 <span>Question {currentQuestion + 1}</span>
@@ -213,7 +216,7 @@ export default function Exam({
               </CardTitle>
             </CardHeader>
 
-            <CardContent className="p-6">
+            <CardContent className="p-6 overflow-y-auto max-h-[60vh]">
               {renderDiagram(question.diagramUrl)}
 
               <div className="text-gray-700 mb-4 text-base sm:text-lg md:text-xl leading-7">
@@ -224,7 +227,7 @@ export default function Exam({
             </CardContent>
 
             <CardFooter className="flex flex-col gap-4">
-              {/* Nav Buttons */}
+              {/* Nav buttons */}
               <div className="flex flex-wrap gap-3 justify-between w-full">
                 <div className="flex gap-3">
                   <Button
@@ -246,6 +249,7 @@ export default function Exam({
                     <ChevronRight className="w-4 h-4 ml-2" />
                   </Button>
                 </div>
+                {/* Action buttons */}
                 <div className="flex gap-3">
                   <Button onClick={onClear} variant="outline">
                     Clear
@@ -261,7 +265,6 @@ export default function Exam({
             </CardFooter>
           </Card>
 
-          {/* Submit Exam button */}
           <div className="flex justify-center mt-6">
             <Button
               onClick={() => {
@@ -275,14 +278,17 @@ export default function Exam({
               Submit Exam
             </Button>
           </div>
-        </section>
+        </div>
 
-        {/* SEPARATOR on mobile */}
+        {/* On mobile, show a horizontal line before the navigator. 
+            On desktop, vertical line between columns. */}
         <Separator orientation="horizontal" className="block md:hidden" />
+        <Separator orientation="vertical" className="hidden md:block" />
 
-        {/* SIDEBAR (visible on md+) */}
-        <aside className="md:w-[280px] bg-background p-4 space-y-6 border-l hidden md:block">
-          {/* Question Status */}
+        {/* RIGHT / bottom: question navigator and status 
+            On mobile, it appears below the question.
+            On desktop, side by side. */}
+        <div className="w-full md:w-80 bg-background overflow-y-auto p-4 space-y-6 max-h-screen">
           <Card>
             <CardHeader>
               <CardTitle className="text-lg font-semibold">Question Status</CardTitle>
@@ -315,101 +321,7 @@ export default function Exam({
                     <Flag className="w-4 h-4 mr-2 text-blue-500" />
                     Marked for Review
                   </span>
-                  <span className="font-medium">
-                    {questionStatusCounts.markedForReview}
-                  </span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Question Navigator */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg font-semibold">Question Navigator</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="overflow-x-auto">
-                <div className="grid grid-cols-5 gap-2">
-                  {filteredQuestions.map((_, index) => {
-                    const status = questionStatuses[index] || "notVisited"
-                    const isCurrent = currentQuestion === index
-
-                    let buttonClasses = "w-10 h-10 p-0 font-medium"
-                    if (isCurrent) {
-                      buttonClasses += " border-blue-800 bg-blue-100 text-blue-600"
-                    } else if (status === "markedForReview") {
-                      buttonClasses += " border-blue-600 bg-blue-100 text-blue-600"
-                    } else if (status === "notAnswered") {
-                      buttonClasses += " border-yellow-600 bg-yellow-100 text-yellow-600"
-                    } else if (status === "answered") {
-                      buttonClasses += " border-green-600 bg-green-100 text-green-600"
-                    } else {
-                      buttonClasses += " border-gray-300 bg-white text-gray-600"
-                    }
-
-                    return (
-                      <TooltipProvider key={index}>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Button
-                              variant="outline"
-                              className={buttonClasses}
-                              onClick={() => onNavigate(index)}
-                            >
-                              {index + 1}
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent side="top">
-                            <p>{status}</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                    )
-                  })}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </aside>
-
-        {/* On mobile, show sidebar content below the question */}
-        <div className="block md:hidden p-4 border-t space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg font-semibold">Question Status</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 gap-2">
-                <div className="flex items-center justify-between">
-                  <span className="flex items-center text-sm">
-                    <AlertCircle className="w-4 h-4 mr-2 text-muted-foreground" />
-                    Not Visited
-                  </span>
-                  <span className="font-medium">{questionStatusCounts.notVisited}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="flex items-center text-sm">
-                    <AlertCircle className="w-4 h-4 mr-2 text-yellow-500" />
-                    Not Answered
-                  </span>
-                  <span className="font-medium">{questionStatusCounts.notAnswered}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="flex items-center text-sm">
-                    <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
-                    Answered
-                  </span>
-                  <span className="font-medium">{questionStatusCounts.answered}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="flex items-center text-sm">
-                    <Flag className="w-4 h-4 mr-2 text-blue-500" />
-                    Marked for Review
-                  </span>
-                  <span className="font-medium">
-                    {questionStatusCounts.markedForReview}
-                  </span>
+                  <span className="font-medium">{questionStatusCounts.markedForReview}</span>
                 </div>
               </div>
             </CardContent>
@@ -419,46 +331,45 @@ export default function Exam({
             <CardHeader>
               <CardTitle className="text-lg font-semibold">Question Navigator</CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="overflow-x-auto">
-                <div className="grid grid-cols-5 gap-2">
-                  {filteredQuestions.map((_, index) => {
-                    const status = questionStatuses[index] || "notVisited"
-                    const isCurrent = currentQuestion === index
+            <CardContent className="overflow-y-auto max-h-[60vh]">
+              <div className="grid grid-cols-5 gap-2">
+                {filteredQuestions.map((_, index) => {
+                  const status = questionStatuses[index] || "notVisited"
+                  const isCurrent = currentQuestion === index
 
-                    let buttonClasses = "w-10 h-10 p-0 font-medium"
-                    if (isCurrent) {
-                      buttonClasses += " border-blue-800 bg-blue-100 text-blue-600"
-                    } else if (status === "markedForReview") {
-                      buttonClasses += " border-blue-600 bg-blue-100 text-blue-600"
-                    } else if (status === "notAnswered") {
-                      buttonClasses += " border-yellow-600 bg-yellow-100 text-yellow-600"
-                    } else if (status === "answered") {
-                      buttonClasses += " border-green-600 bg-green-100 text-green-600"
-                    } else {
-                      buttonClasses += " border-gray-300 bg-white text-gray-600"
-                    }
+                  let buttonClasses = "w-10 h-10 p-0 font-medium"
+                  if (isCurrent) {
+                    buttonClasses += " border-blue-800 bg-blue-100 text-blue-600"
+                  } else if (status === "markedForReview") {
+                    buttonClasses += " border-blue-600 bg-blue-100 text-blue-600"
+                  } else if (status === "notAnswered") {
+                    buttonClasses += " border-yellow-600 bg-yellow-100 text-yellow-600"
+                  } else if (status === "answered") {
+                    buttonClasses += " border-green-600 bg-green-100 text-green-600"
+                  } else {
+                    buttonClasses += " border-gray-300 bg-white text-gray-600"
+                  }
 
-                    return (
-                      <TooltipProvider key={index}>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Button
-                              variant="outline"
-                              className={buttonClasses}
-                              onClick={() => onNavigate(index)}
-                            >
-                              {index + 1}
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent side="top">
-                            <p>{status}</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                    )
-                  })}
-                </div>
+                  return (
+                    <TooltipProvider key={index}>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="outline"
+                            className={buttonClasses}
+                            onClick={() => onNavigate(index)}
+                            aria-label={`Question ${index + 1}: ${status}`}
+                          >
+                            {index + 1}
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>{status}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  )
+                })}
               </div>
             </CardContent>
           </Card>
