@@ -584,7 +584,7 @@ export default function Stats() {
     <div className="max-w-6xl mx-auto p-4 text-gray-900 dark:text-gray-100">
       {/* Title with user name */}
       <h1 className="font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem] mb-8 font-light text-gray-800 dark:text-gray-100">
-        {userName}&apos;s Detailed Stats
+        {userName}&apos;s Performance
       </h1>
 
       {/* Filters row */}
