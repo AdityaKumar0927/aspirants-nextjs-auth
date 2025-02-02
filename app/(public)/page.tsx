@@ -73,7 +73,7 @@ export default function Page() {
         <div className="flex flex-col items-center gap-6 pb-8 text-center">
           <Ripple className="hidden sm:block -z-50 bottom-20" />
           <AnimatedGradientText className="bg-white dark:bg-gray-500 dark:text-white text-black font-light flex items-center space-x-2">
-            <span>1000+ questions</span>
+            <span>40k questions</span>
           </AnimatedGradientText>
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl text-center">
@@ -112,7 +112,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-      
+
 
       <div className="relative w-11/12 h-[800px] border-4 border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden flex items-center justify-center my-8 mx-auto">
         <div className="absolute inset-0 hidden sm:block">
