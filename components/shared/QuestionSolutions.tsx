@@ -1,39 +1,36 @@
 "use client"
 
-import { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useEditor, EditorContent } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import Placeholder from "@tiptap/extension-placeholder"
 import { formatDistanceToNow } from "date-fns"
 import { Button } from "@/components/ui/button"
-import { Bold, Italic, List, ListOrdered, Code, Heading1, Heading2, Heart } from "lucide-react"
+import {
+  Bold,
+  Italic,
+  List,
+  ListOrdered,
+  Code,
+  Heading1,
+  Heading2,
+  Heart,
+} from "lucide-react"
 
-// --------------------
-// Types
-// --------------------
-export interface Solution {
+interface Solution {
   id: string
   content: string
-  author: string
+  authorId?: string | null
   createdAt: string
   likes: number
+  parentId?: string | null
   replies: Solution[]
 }
 
-export interface Question {
-  id: string
-  title: string
-  content: string
-  solutions: Solution[]
-}
-
-// --------------------
-// AdvancedEditor
-// --------------------
 interface AdvancedEditorProps {
   onSubmit: (content: string) => void
 }
-export function AdvancedEditor({ onSubmit }: AdvancedEditorProps) {
+function AdvancedEditor({ onSubmit }: AdvancedEditorProps) {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -43,8 +40,7 @@ export function AdvancedEditor({ onSubmit }: AdvancedEditorProps) {
     ],
     editorProps: {
       attributes: {
-        class:
-          "prose prose-sm max-w-none font-light tracking-tight focus:outline-none min-h-[100px] p-2",
+        class: "prose prose-sm max-w-none font-light tracking-tight focus:outline-none min-h-[100px] p-2",
       },
     },
   })
@@ -56,9 +52,7 @@ export function AdvancedEditor({ onSubmit }: AdvancedEditorProps) {
     }
   }
 
-  if (!editor) {
-    return null
-  }
+  if (!editor) return null
 
   return (
     <div className="space-y-4 border rounded-md p-2">
@@ -120,7 +114,6 @@ export function AdvancedEditor({ onSubmit }: AdvancedEditorProps) {
           <Code className="h-4 w-4" />
         </Button>
       </div>
-
       <EditorContent editor={editor} />
 
       <div className="flex justify-end">
@@ -128,14 +121,14 @@ export function AdvancedEditor({ onSubmit }: AdvancedEditorProps) {
           onClick={handleSubmit}
           className="font-light tracking-tight border-blue-800 bg-blue-100 text-blue-600 hover:bg-blue-200"
         >
-          Submit Solution
+          Submit
         </Button>
       </div>
     </div>
   )
 }
 
-export function SolutionForm({ onSubmit }: { onSubmit: (content: string) => void }) {
+function SolutionForm({ onSubmit }: { onSubmit: (content: string) => void }) {
   return (
     <div className="space-y-2">
       <AdvancedEditor onSubmit={onSubmit} />
@@ -143,8 +136,7 @@ export function SolutionForm({ onSubmit }: { onSubmit: (content: string) => void
   )
 }
 
-// A single solution block
-export function Solution({
+function SingleSolution({
   solution,
   onReply,
   onLike,
@@ -160,7 +152,10 @@ export function Solution({
       <div className="flex items-start space-x-2">
         <div className="flex-grow">
           <div className="flex items-center space-x-2">
-            <span className="font-medium text-sm tracking-tight">{solution.author}</span>
+            <span className="font-medium text-sm tracking-tight">
+              {/* If you had user data, else fallback */}
+              {solution.authorId || "Anonymous"}
+            </span>
             <span className="text-xs text-gray-500 font-light tracking-tight">
               {formatDistanceToNow(new Date(solution.createdAt), { addSuffix: true })}
             </span>
@@ -207,7 +202,7 @@ export function Solution({
       {solution.replies.length > 0 && (
         <div className="ml-4 mt-2 space-y-2 border-l border-gray-200 pl-4">
           {solution.replies.map((reply) => (
-            <Solution
+            <SingleSolution
               key={reply.id}
               solution={reply}
               onReply={onReply}
@@ -220,158 +215,145 @@ export function Solution({
   )
 }
 
-// The top-level Question “discussion” block
-export function Question({
-  question,
-  onAddSolution,
-  onReplySolution,
-  onLikeSolution,
+export default function QuestionSolutions({
+  questionId,
 }: {
-  question: Question
-  onAddSolution: (content: string) => void
-  onReplySolution: (parentId: string, content: string) => void
-  onLikeSolution: (id: string) => void
+  questionId: string | undefined
 }) {
-  return (
-    <div className="space-y-4">
-      <div>
-        <h2 className="text-xl font-semibold tracking-tight mb-2">{question.title}</h2>
-        <p className="text-sm font-light tracking-tight">{question.content}</p>
-      </div>
+  const [solutions, setSolutions] = useState<Solution[]>([])
+  const [loading, setLoading] = useState(false)
 
-      <div className="mt-4">
-        <h3 className="text-lg font-medium tracking-tight mb-2">Solutions</h3>
-        <SolutionForm onSubmit={onAddSolution} />
-      </div>
-
-      <div className="space-y-4 mt-4">
-        {question.solutions.map((solution) => (
-          <Solution
-            key={solution.id}
-            solution={solution}
-            onReply={onReplySolution}
-            onLike={onLikeSolution}
-          />
-        ))}
-      </div>
-    </div>
-  )
-}
-
-// Example usage with local state
-const initialQuestion: Question = {
-  id: "1",
-  title: "Implementing an efficient sorting algorithm",
-  content:
-    "What's the most efficient sorting algorithm for large datasets, and how would you implement it in JavaScript?",
-  solutions: [
-    {
-      id: "1",
-      content: `
-        <h2>QuickSort for Large Datasets</h2>
-        <p>For large datasets, QuickSort is often one of the most efficient sorting algorithms. Example:</p>
-        <pre><code>function quickSort(arr) {
-  if (arr.length &lt;= 1) {
-    return arr;
-  }
-  const pivot = arr[Math.floor(arr.length / 2)];
-  const left = arr.filter(x => x &lt; pivot);
-  const middle = arr.filter(x => x === pivot);
-  const right = arr.filter(x => x &gt; pivot);
-  return [...quickSort(left), ...middle, ...quickSort(right)];
-}</code></pre>
-        <p>Average time complexity is O(n log n).</p>
-      `,
-      author: "Algorithm Expert",
-      createdAt: "2024-01-23T12:00:00.000Z",
-      likes: 15,
-      replies: [],
-    },
-  ],
-}
-
-export function QuestionSolutions() {
-  const [question, setQuestion] = useState<Question>(initialQuestion)
-
-  const handleAddSolution = (content: string) => {
-    // For production, call POST /api/questions/[questionId]/solutions
-    const newSolution: Solution = {
-      id: Date.now().toString(),
-      content,
-      author: "You",
-      createdAt: new Date().toISOString(),
-      likes: 0,
-      replies: [],
+  // -------------
+  // Fetch solutions
+  // -------------
+  async function fetchSolutions() {
+    if (!questionId) return
+    setLoading(true)
+    try {
+      const res = await fetch(`/api/questions/${questionId}/solutions`, {
+        cache: "no-store",
+      })
+      if (!res.ok) {
+        throw new Error("Failed to load solutions.")
+      }
+      const data = await res.json()
+      setSolutions(data.solutions || [])
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setLoading(false)
     }
-    setQuestion((prev) => ({
-      ...prev,
-      solutions: [newSolution, ...prev.solutions],
-    }))
   }
 
-  const handleReplySolution = (parentId: string, content: string) => {
-    // For production, call POST with { parentId } to create a nested reply
-    const newReply: Solution = {
-      id: Date.now().toString(),
-      content,
-      author: "You",
-      createdAt: new Date().toISOString(),
-      likes: 0,
-      replies: [],
+  useEffect(() => {
+    if (questionId) {
+      fetchSolutions()
     }
+  }, [questionId])
 
-    setQuestion((prev) => ({
-      ...prev,
-      solutions: addReplyToSolution(prev.solutions, parentId, newReply),
-    }))
+  // -------------
+  // Add solution
+  // -------------
+  async function handleAddSolution(content: string) {
+    if (!questionId) return
+    try {
+      const res = await fetch(`/api/questions/${questionId}/solutions`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content }),
+      })
+      if (!res.ok) {
+        throw new Error("Failed to create solution.")
+      }
+      // The newly created solution
+      const newSol = await res.json()
+      // Refresh or push to local state
+      setSolutions((prev) => [newSol, ...prev])
+    } catch (err) {
+      console.error(err)
+    }
   }
 
-  const handleLikeSolution = (id: string) => {
-    // For production, call PATCH { solutionId: id, like: true }
-    setQuestion((prev) => ({
-      ...prev,
-      solutions: likeSolution(prev.solutions, id),
-    }))
+  // -------------
+  // Reply
+  // -------------
+  async function handleReplySolution(parentId: string, content: string) {
+    if (!questionId) return
+    try {
+      const res = await fetch(`/api/questions/${questionId}/solutions`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content, parentId }),
+      })
+      if (!res.ok) {
+        throw new Error("Failed to create reply.")
+      }
+      const reply = await res.json()
+      // Insert the reply into local state
+      setSolutions((prev) => addReplyToList(prev, parentId, reply))
+    } catch (err) {
+      console.error(err)
+    }
   }
 
-  const addReplyToSolution = (solutions: Solution[], parentId: string, newReply: Solution): Solution[] => {
-    return solutions.map((sol) => {
+  function addReplyToList(list: Solution[], parentId: string, reply: Solution): Solution[] {
+    return list.map((sol) => {
       if (sol.id === parentId) {
-        return {
-          ...sol,
-          replies: [...sol.replies, newReply],
-        }
+        return { ...sol, replies: [...sol.replies, reply] }
       }
       if (sol.replies.length > 0) {
-        return {
-          ...sol,
-          replies: addReplyToSolution(sol.replies, parentId, newReply),
-        }
+        return { ...sol, replies: addReplyToList(sol.replies, parentId, reply) }
       }
       return sol
     })
   }
 
-  const likeSolution = (solutions: Solution[], id: string): Solution[] => {
-    return solutions.map((sol) => {
-      if (sol.id === id) {
+  // -------------
+  // Like solution (example: you might do a PATCH)
+  // -------------
+  async function handleLikeSolution(id: string) {
+    // For demonstration, we won't implement a separate route here
+    // We'll just simulate a local "like" increment
+    setSolutions((prev) => incrementLike(prev, id))
+  }
+
+  function incrementLike(list: Solution[], solId: string): Solution[] {
+    return list.map((sol) => {
+      if (sol.id === solId) {
         return { ...sol, likes: sol.likes + 1 }
       }
       if (sol.replies.length > 0) {
-        return { ...sol, replies: likeSolution(sol.replies, id) }
+        return { ...sol, replies: incrementLike(sol.replies, solId) }
       }
       return sol
     })
   }
 
+  if (!questionId) {
+    return <div className="text-sm text-gray-400">No question selected.</div>
+  }
+
   return (
-    <div className="max-w-3xl mx-auto space-y-8 py-8">
-      <Question
-        question={question}
-        onAddSolution={handleAddSolution}
-        onReplySolution={handleReplySolution}
-        onLikeSolution={handleLikeSolution}
-      />
+    <div className="space-y-4">
+      <h3 className="text-lg font-medium tracking-tight mb-2">Solutions</h3>
+
+      {/* Solution editor */}
+      <SolutionForm onSubmit={handleAddSolution} />
+
+      {/* Loading state */}
+      {loading && <div className="text-sm text-gray-500">Loading solutions...</div>}
+
+      {/* Render solutions */}
+      <div className="space-y-4 mt-4">
+        {solutions.map((sol) => (
+          <SingleSolution
+            key={sol.id}
+            solution={sol}
+            onReply={handleReplySolution}
+            onLike={handleLikeSolution}
+          />
+        ))}
+      </div>
     </div>
   )
 }
