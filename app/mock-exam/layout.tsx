@@ -8,7 +8,6 @@ import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import { config } from "@fortawesome/fontawesome-svg-core"
 import { TooltipProvider } from "@radix-ui/react-tooltip"
-import Bar from "@/components/layout/Bar"
 import { Toaster } from "@/components/ui/toaster"
 import { LoadingProvider } from "@/components/layout/LoadingContext"
 import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext"
@@ -90,8 +89,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <Nav />
                 </Suspense>
                 <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">{children}</main>
-                <Bar userId={userId} />
-                <Footer />
                 <VercelAnalytics />
               </TooltipProvider>
               <Toaster />
