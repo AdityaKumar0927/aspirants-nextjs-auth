@@ -6,7 +6,7 @@ import 'katex/dist/contrib/amscd.css'
 
 // Optional if you need AMS/CD or mhchem expansions:
 import 'katex/dist/contrib/amscd'
-import "katex/contrib/mhchem"
+import "katex/dist/contrib/mhchem";
 
 interface MathRendererProps {
   text: string
