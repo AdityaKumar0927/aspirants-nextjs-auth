@@ -1,31 +1,58 @@
 "use client"
 
 import React, { useState, useMemo } from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import html2pdf from "html2pdf.js"
 import "chart.js/auto"
 
-import { ArrowLeft, ArrowRight, Award, Check, CheckCircle, Download, PieChart, TrendingUp, AlertCircle, XCircle } from "lucide-react"
+import {
+  ArrowLeft,
+  ArrowRight,
+  Award,
+  Check,
+  CheckCircle,
+  Download,
+  PieChart,
+  TrendingUp,
+  AlertCircle,
+  XCircle,
+} from "lucide-react"
 import { Pie, Bar } from "react-chartjs-2"
 
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
-import { Accordion, AccordionTrigger, AccordionContent, AccordionItem } from "@/components/ui/accordion"
+import {
+  Accordion,
+  AccordionTrigger,
+  AccordionContent,
+  AccordionItem,
+} from "@/components/ui/accordion"
 
 import MathRenderer from "@/components/layout/MathRenderer"
 import type { ExamResultsType } from "@/lib/exam-helpers"
 
-// Format seconds into mm:ss
+// -----------------------------
+//   Helper for formatting time
+// -----------------------------
 function formatTime(seconds: number) {
   const minutes = Math.floor(seconds / 60)
   const secs = seconds % 60
   return `${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
 }
 
+/**
+ * The updated `exam-results.tsx`, featuring animated motion buttons
+ * for the "Filter by difficulty" area in the Answer Review section.
+ */
 export default function AdvancedExamResults({
   examResults,
   onStartNewExam,
@@ -35,29 +62,41 @@ export default function AdvancedExamResults({
   onStartNewExam: () => void
   onExit: () => void
 }) {
-  // Difficulty filter for the review tab
-  const [difficultyFilter, setDifficultyFilter] = useState<"All" | "Easy" | "Medium" | "Hard">("All")
+  // 1) We'll track the difficulty filter in state
+  const [difficultyFilter, setDifficultyFilter] =
+    useState<"All" | "Easy" | "Medium" | "Hard">("All")
 
-  // If difficulty != "All", filter
+  // 2) A quick local "theme" for the motion snippet
+  //    If you have a real theme system, you can replace this with
+  //    const { theme } = useTheme() or similar.
+  const theme = "light"
+
+  // 3) If difficulty != "All", filter the questions
   const filteredQuestions = useMemo(() => {
     if (difficultyFilter === "All") return examResults.questions
-    return examResults.questions.filter((q) => (q.difficulty || "") === difficultyFilter)
+    return examResults.questions.filter(
+      (q) => (q.difficulty || "") === difficultyFilter
+    )
   }, [examResults.questions, difficultyFilter])
 
-  // Sort topicPerformance by topic name (A→Z)
+  // 4) Sort topicPerformance by topic name (A→Z)
   const sortedTopicPerformance = useMemo(() => {
-    return Object.entries(examResults.topicPerformance).sort(([a], [b]) => a.localeCompare(b))
+    return Object.entries(examResults.topicPerformance).sort(([a], [b]) =>
+      a.localeCompare(b)
+    )
   }, [examResults.topicPerformance])
 
-  // Sort incorrectAnswers by topic name (A→Z)
+  // 5) Sort incorrectAnswers by topic name (A→Z)
   const sortedTopicWiseIncorrect = useMemo(() => {
-    return Object.entries(examResults.topicWiseIncorrectAnswers).sort(([a], [b]) => a.localeCompare(b))
+    return Object.entries(examResults.topicWiseIncorrectAnswers).sort(([a], [b]) =>
+      a.localeCompare(b)
+    )
   }, [examResults.topicWiseIncorrectAnswers])
 
-  // Create PDF content
+  // 6) PDF generation snippet
   function generatePdfContent() {
+    // Build some HTML
     const content = document.createElement("div")
-
     content.innerHTML = `
       <h1 style="font-size:1.25rem; margin-bottom:1rem;">Exam Results</h1>
       <h2 style="font-size:1rem; margin-bottom:0.5rem;">Summary</h2>
@@ -65,8 +104,9 @@ export default function AdvancedExamResults({
       <p>Correct Answers: ${examResults.correctAnswersCount}</p>
       <p>Incorrect Answers: ${examResults.incorrectAnswers}</p>
       <p>Score: ${examResults.score.toFixed(2)}%</p>
-      <p>Average Time per Question: ${formatTime(Math.round(examResults.averageTimePerQuestion))}</p>
-
+      <p>Average Time per Question: ${formatTime(
+        Math.round(examResults.averageTimePerQuestion)
+      )}</p>
       <h2 style="font-size:1rem; margin:1rem 0 0.5rem;">Topic Performance (A→Z)</h2>
       ${sortedTopicPerformance
         .map(([topic, performance]) => {
@@ -74,7 +114,6 @@ export default function AdvancedExamResults({
           return `<p>${topic}: ${pct.toFixed(2)}% correct</p>`
         })
         .join("")}
-
       <h2 style="font-size:1rem; margin:1rem 0 0.5rem;">Strengths</h2>
       ${examResults.topStrengths
         .map(([topic, performance]) => {
@@ -82,15 +121,13 @@ export default function AdvancedExamResults({
           return `<p>${topic}: ${pct.toFixed(2)}% correct</p>`
         })
         .join("")}
-
-      <h2 style="font-size:1rem; margin:1rem 0 0.5rem;">Areas for Improvement</h2>
+      <h2 style="font-size:1rem; margin:1rem 0 0.5rem;">Weaknesses</h2>
       ${examResults.topWeaknesses
         .map(([topic, performance]) => {
           const pct = (performance.correct / performance.total) * 100
           return `<p>${topic}: ${pct.toFixed(2)}% correct</p>`
         })
         .join("")}
-
       <h2 style="font-size:1rem; margin:1rem 0 0.5rem;">Question Review</h2>
       ${examResults.questions
         .map((q, i) => {
@@ -113,11 +150,9 @@ export default function AdvancedExamResults({
         })
         .join("")}
     `
-
     return content
   }
 
-  // Download PDF
   function handleDownloadPdf() {
     const content = generatePdfContent()
     const options = {
@@ -130,10 +165,9 @@ export default function AdvancedExamResults({
     html2pdf().from(content).set(options).save()
   }
 
-  // ----------------------------------------------------------------------------
-  // UI Components
-  // ----------------------------------------------------------------------------
-  // Summary
+  // ---------------------------
+  // Reusable Summary Card
+  // ---------------------------
   const SummaryCard = () => (
     <Card className="overflow-hidden bg-gradient-to-br from-primary/10 to-primary/5">
       <CardHeader className="border-b border-primary/10">
@@ -147,15 +181,21 @@ export default function AdvancedExamResults({
           <div className="space-y-2">
             <p className="text-sm font-medium">
               Total Questions:{" "}
-              <span className="font-bold text-primary">{examResults.totalQuestions}</span>
+              <span className="font-bold text-primary">
+                {examResults.totalQuestions}
+              </span>
             </p>
             <p className="text-sm font-medium">
               Correct Answers:{" "}
-              <span className="font-bold text-green-600">{examResults.correctAnswersCount}</span>
+              <span className="font-bold text-green-600">
+                {examResults.correctAnswersCount}
+              </span>
             </p>
             <p className="text-sm font-medium">
               Incorrect Answers:{" "}
-              <span className="font-bold text-red-600">{examResults.incorrectAnswers}</span>
+              <span className="font-bold text-red-600">
+                {examResults.incorrectAnswers}
+              </span>
             </p>
           </div>
           <div className="space-y-2">
@@ -181,7 +221,9 @@ export default function AdvancedExamResults({
     </Card>
   )
 
-  // Strengths & Weaknesses
+  // ---------------------------
+  // StrengthsAndWeaknesses
+  // ---------------------------
   const StrengthsAndWeaknesses = () => (
     <div className="grid gap-6 md:grid-cols-2">
       {/* Strengths */}
@@ -240,7 +282,9 @@ export default function AdvancedExamResults({
     </div>
   )
 
+  // ---------------------------
   // TopicPerformance => Pie + list
+  // ---------------------------
   const TopicPerformance = () => (
     <Card>
       <CardHeader className="border-b">
@@ -300,7 +344,9 @@ export default function AdvancedExamResults({
     </Card>
   )
 
-  // Most Incorrect => bar chart
+  // ---------------------------
+  // IncorrectAnswers => bar chart
+  // ---------------------------
   const IncorrectAnswers = () => (
     <Card className="bg-gradient-to-br from-red-100 to-red-50 dark:from-red-900/20 dark:to-red-800/20">
       <CardHeader>
@@ -336,8 +382,17 @@ export default function AdvancedExamResults({
     </Card>
   )
 
-  // Answer Review => using your snippet w/ a better icon for incorrect
-  const renderAnswerReview = (
+  // ---------------------------
+  //  The Answer Review section:
+  //  * Replace the old <Badge> filter with motion buttons.
+  // ---------------------------
+  const transitionProps = {
+    type: "spring",
+    stiffness: 500,
+    damping: 30,
+  }
+
+  const AnswerReview = () => (
     <Card>
       <CardHeader className="border-b">
         <CardTitle className="text-2xl font-semibold tracking-tight flex items-center">
@@ -347,16 +402,100 @@ export default function AdvancedExamResults({
         <CardDescription>
           Filter by difficulty:
           <div className="flex space-x-2 mt-2">
-            {["All", "Easy", "Medium", "Hard"].map((diff) => (
-              <Badge
-                key={diff}
-                variant={difficultyFilter === diff ? "default" : "outline"}
-                className="cursor-pointer"
-                onClick={() => setDifficultyFilter(diff as any)}
-              >
-                {diff}
-              </Badge>
-            ))}
+            {(["All", "Easy", "Medium", "Hard"] as const).map((diff) => {
+              const isSelected = difficultyFilter === diff
+
+              return (
+                <motion.button
+                  key={diff}
+                  onClick={() => setDifficultyFilter(diff)}
+                  layout
+                  initial={false}
+                  animate={{
+                    backgroundColor: isSelected
+                      ? theme === "light"
+                        ? "#e6f7ff"
+                        : "#2a1711"
+                      : theme === "light"
+                        ? "rgba(229, 231, 235, 0.5)"
+                        : "rgba(39, 39, 42, 0.5)",
+                  }}
+                  whileHover={{
+                    backgroundColor: isSelected
+                      ? theme === "light"
+                        ? "#cceeff"
+                        : "#2a1711"
+                      : theme === "light"
+                        ? "rgba(229, 231, 235, 0.8)"
+                        : "rgba(39, 39, 42, 0.8)",
+                  }}
+                  whileTap={{
+                    backgroundColor: isSelected
+                      ? theme === "light"
+                        ? "#b3e6ff"
+                        : "#1f1209"
+                      : theme === "light"
+                        ? "rgba(229, 231, 235, 0.9)"
+                        : "rgba(39, 39, 42, 0.9)",
+                  }}
+                  transition={{
+                    ...transitionProps,
+                    backgroundColor: { duration: 0.1 },
+                  }}
+                  className={`
+                    inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
+                    whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
+                    ${
+                      isSelected
+                        ? theme === "light"
+                          ? "text-blue-600 ring-blue-200"
+                          : "text-[#ff9066] ring-[hsla(0,0%,100%,0.12)]"
+                        : theme === "light"
+                          ? "text-gray-600 ring-gray-200"
+                          : "text-zinc-400 ring-[hsla(0,0%,100%,0.06)]"
+                    }
+                  `}
+                >
+                  <motion.div
+                    className="relative flex items-center"
+                    animate={{
+                      width: isSelected ? "auto" : "100%",
+                      paddingRight: isSelected ? "1.25rem" : "0",
+                    }}
+                    transition={{
+                      ease: [0.175, 0.885, 0.32, 1.275],
+                      duration: 0.3,
+                    }}
+                  >
+                    <span>{diff}</span>
+                    <AnimatePresence>
+                      {isSelected && (
+                        <motion.span
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          exit={{ scale: 0, opacity: 0 }}
+                          transition={transitionProps}
+                          className="absolute right-0"
+                        >
+                          <div
+                            className={`w-3.5 h-3.5 rounded-full ${
+                              theme === "light" ? "bg-blue-500" : "bg-[#ff9066]"
+                            } flex items-center justify-center`}
+                          >
+                            <Check
+                              className={`w-2.5 h-2.5 ${
+                                theme === "light" ? "text-white" : "text-[#2a1711]"
+                              }`}
+                              strokeWidth={2}
+                            />
+                          </div>
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                </motion.button>
+              )
+            })}
           </div>
         </CardDescription>
       </CardHeader>
@@ -366,7 +505,10 @@ export default function AdvancedExamResults({
             {filteredQuestions.map((question, index) => {
               const isCorrect = examResults.userAnswers[index] === question.correctOption
               return (
-                <AccordionItem value={`question-${index}`} key={question.id || index}>
+                <AccordionItem
+                  value={`question-${index}`}
+                  key={question.id || `q-${index}`}
+                >
                   <AccordionTrigger>
                     <div className="flex items-center">
                       <span
@@ -381,16 +523,15 @@ export default function AdvancedExamResults({
                         )}
                       </span>
                       <span>Question {index + 1}</span>
-
                       {question.difficulty && (
-                        <Badge variant="outline" className="ml-2">
+                        <span className="text-xs border px-2 py-0.5 ml-2 rounded-full">
                           {question.difficulty}
-                        </Badge>
+                        </span>
                       )}
                       {question.topic && (
-                        <Badge variant="outline" className="ml-2">
+                        <span className="text-xs border px-2 py-0.5 ml-2 rounded-full">
                           {question.topic}
-                        </Badge>
+                        </span>
                       )}
                     </div>
                   </AccordionTrigger>
@@ -421,7 +562,7 @@ export default function AdvancedExamResults({
                           {formatTime(examResults.timeSpentPerQuestion[index])}
                         </span>
                       </p>
-                      {question.explanation ? (
+                      {question.explanation && (
                         <p className="text-sm text-muted-foreground">
                           {typeof question.explanation === "string" ? (
                             <MathRenderer text={question.explanation} />
@@ -429,7 +570,7 @@ export default function AdvancedExamResults({
                             JSON.stringify(question.explanation)
                           )}
                         </p>
-                      ) : null}
+                      )}
                     </div>
                   </AccordionContent>
                 </AccordionItem>
@@ -441,9 +582,9 @@ export default function AdvancedExamResults({
     </Card>
   )
 
-  // --------------------------------------------------------------------------
-  // Return Layout
-  // --------------------------------------------------------------------------
+  // ----------------------------------------------------------
+  // The main UI render with Tabs + summary/performance/review
+  // ----------------------------------------------------------
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -481,10 +622,7 @@ export default function AdvancedExamResults({
           <Download className="w-4 h-4 mr-2" />
           Download Results PDF
         </Button>
-        <Progress
-          value={examResults.score}
-          className="mt-2 sm:mt-0 w-full sm:w-1/3"
-        />
+        <Progress value={examResults.score} className="mt-2 sm:mt-0 w-full sm:w-1/3" />
       </div>
 
       {/* Tabs => summary / performance / review */}
@@ -508,20 +646,22 @@ export default function AdvancedExamResults({
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.5 }}
         >
-          {/* 1) summary tab */}
+          {/* Summary tab */}
           <TabsContent value="summary" className="space-y-8">
             <SummaryCard />
             <StrengthsAndWeaknesses />
           </TabsContent>
 
-          {/* 2) performance tab */}
+          {/* Performance tab */}
           <TabsContent value="performance" className="space-y-8">
             <TopicPerformance />
             <IncorrectAnswers />
           </TabsContent>
 
-          {/* 3) review tab => your updated snippet */}
-          <TabsContent value="review">{renderAnswerReview}</TabsContent>
+          {/* Review tab => uses our new motion-button snippet */}
+          <TabsContent value="review">
+            <AnswerReview />
+          </TabsContent>
         </motion.div>
       </Tabs>
 
