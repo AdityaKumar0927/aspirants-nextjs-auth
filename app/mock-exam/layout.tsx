@@ -1,5 +1,3 @@
-"use client"
-
 import "../globals.css"
 import cx from "classnames"
 import { sfPro, inter } from "../fonts"
@@ -10,14 +8,19 @@ import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import { config } from "@fortawesome/fontawesome-svg-core"
 import { TooltipProvider } from "@radix-ui/react-tooltip"
+import Bar from "@/components/layout/Bar"
 import { Toaster } from "@/components/ui/toaster"
 import { LoadingProvider } from "@/components/layout/LoadingContext"
 import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext"
 import { ThemeProvider } from "../components/theme-provider"
-// Import Next.js 13’s usePathname:
-import { usePathname } from "next/navigation"
 
 config.autoAddCss = false
+
+export const metadata = {
+  title: "aspirants",
+  description: "",
+  metadataBase: new URL("https://aspirants.tech/"),
+}
 
 const getUserId = () => {
   const userId = null
@@ -26,29 +29,19 @@ const getUserId = () => {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const userId = getUserId()
-  const pathname = usePathname()
-
-  // If we're on "/mock-exam", hide the footer.
-  // If you need more fine-tuned control (e.g. only hide after starting),
-  // you'd likely use a context value that flips to "true" when the exam starts.
-  const hideFooter = pathname.startsWith("/mock-exam")
 
   return (
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://rsms.me/" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-        <script
-          async
-          id="MathJax-script"
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-        ></script>
+        <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.MathJax = {
                 tex: {
-                  inlineMath: [['$', '$'], ['\\$', '\\$']],
+                  inlineMath: [['$', '$'], ['\$$', '\$$']],
                   displayMath: [['$$', '$$'], ['\\[', '\\]']],
                 },
                 options: {
@@ -87,19 +80,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body
-        className={cx(
-          sfPro.variable,
-          inter.variable,
-          "bg-white dark:bg-gray-950"
-        )}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+      <body className={cx(sfPro.variable, inter.variable, "bg-white dark:bg-gray-950")}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <LoadingProvider>
             <UserPerformanceProvider userId={userId}>
               <TooltipProvider>
@@ -107,18 +89,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Suspense fallback="...">
                   <Nav />
                 </Suspense>
-
-                {/*
-                  The main container:
-                  You can adjust top/bottom padding as needed.
-                */}
-                <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
-                  {children}
-                </main>
-
-                {/* Conditionally render the footer */}
-                {!hideFooter && <Footer />}
-
+                <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">{children}</main>
+                <Bar userId={userId} />
+                <Footer />
                 <VercelAnalytics />
               </TooltipProvider>
               <Toaster />
@@ -129,3 +102,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   )
 }
+
