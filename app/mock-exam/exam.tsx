@@ -1,39 +1,16 @@
 "use client"
-
-import React from "react"
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { Separator } from "@/components/ui/separator"
-import {
-  User,
-  Clock,
-  AlertCircle,
-  CheckCircle,
-  Flag,
-  ChevronLeft,
-  ChevronRight,
-  LogOut,
-} from "lucide-react"
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-  TooltipProvider,
-} from "@/components/ui/tooltip"
+import { User, Clock, AlertCircle, CheckCircle, Flag, ChevronLeft, ChevronRight, LogOut } from "lucide-react"
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip"
 import Image from "next/image"
 
 // Import your KaTeX-based math renderer
 import MathRenderer from "@/components/layout/MathRenderer"
 
 // Single source-of-truth question type from exam-helpers
-import { QuestionType } from "@/lib/exam-helpers"
+import type { QuestionType } from "@/lib/exam-helpers"
 
 interface ExamProps {
   currentQuestion: number
@@ -65,8 +42,8 @@ interface ExamProps {
 
 /**
  * A responsive exam layout:
- * - On mobile (below md): question on top, navigator below (stacked).
- * - On desktop (md+): question left, navigator right (two columns).
+ * - On mobile (below lg): question on top, navigator below (stacked).
+ * - On desktop (lg+): question left, navigator right (two columns).
  */
 export default function Exam({
   currentQuestion,
@@ -112,7 +89,7 @@ export default function Exam({
     return (
       <div className="relative w-full h-64 mb-4">
         <Image
-          src={diagramUrl}
+          src={diagramUrl || "/placeholder.svg"}
           alt="Question diagram"
           fill
           style={{ objectFit: "contain" }}
@@ -162,55 +139,49 @@ export default function Exam({
       )
     } else {
       // fallback
-      return (
-        <p className="text-red-500">
-          Unknown question type: {q.type}. Cannot render.
-        </p>
-      )
+      return <p className="text-red-500">Unknown question type: {q.type}. Cannot render.</p>
     }
   }
 
   return (
-    <div className="min-h-screen w-full flex flex-col">
+    <div className="min-h-screen w-full flex flex-col bg-gray-50 dark:bg-gray-900">
       {/* Header with user info, timer, exit */}
-      <header className="sticky top-0 z-10 bg-background border-b">
+      <header className="sticky top-0 z-10 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           {/* left side: user info */}
           <div className="flex items-center space-x-4">
-            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-              <User className="w-6 h-6 text-primary-foreground" />
+            <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+              <User className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h2 className="text-sm font-medium">{userName}</h2>
-              <p className="text-xs text-muted-foreground">
+              <h2 className="text-sm font-medium text-gray-900 dark:text-gray-100">{userName}</h2>
+              <p className="text-xs text-gray-500 dark:text-gray-400">
                 {selectedSubject} ({selectedYear}) - {selectedLevel}
               </p>
             </div>
           </div>
           {/* right side: timer + exit */}
           <div className="flex items-center space-x-4">
-            <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium flex items-center">
+            <div className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium flex items-center">
               <Clock className="w-4 h-4 mr-2" />
               {formatTime(examTimeLeft)}
             </div>
             <Button variant="ghost" size="icon" onClick={onExit}>
-              <LogOut className="h-[1.2rem] w-[1.2rem]" />
+              <LogOut className="h-[1.2rem] w-[1.2rem] text-gray-600 dark:text-gray-300" />
             </Button>
           </div>
         </div>
       </header>
 
       {/* Main area */}
-      {/* On mobile: flex-col => question is top, navigator below.
-          On desktop: flex-row => question on left, navigator on right. */}
-      <main className="flex-1 flex flex-col md:flex-row overflow-hidden">
-        {/* LEFT / top: question content */}
-        <div className="flex-grow overflow-y-auto p-4 sm:p-6 lg:p-8 max-h-screen flex flex-col">
-          <Card className="mb-6 max-w-4xl mx-auto w-full">
+      <main className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+        {/* LEFT: question content */}
+        <div className="flex-grow overflow-y-auto p-4 sm:p-6 lg:p-8">
+          <Card className="mb-6 max-w-4xl mx-auto w-full bg-white dark:bg-gray-800 shadow-md">
             <CardHeader>
-              <CardTitle className="flex justify-between items-center">
+              <CardTitle className="flex justify-between items-center text-gray-900 dark:text-gray-100">
                 <span>Question {currentQuestion + 1}</span>
-                <span className="text-sm font-normal text-muted-foreground">
+                <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
                   {currentQuestion + 1} of {filteredQuestions.length}
                 </span>
               </CardTitle>
@@ -219,7 +190,7 @@ export default function Exam({
             <CardContent className="p-6 overflow-y-auto max-h-[60vh]">
               {renderDiagram(question.diagramUrl)}
 
-              <div className="text-gray-700 mb-4 text-base sm:text-lg md:text-xl leading-7">
+              <div className="text-gray-700 dark:text-gray-300 mb-4 text-base sm:text-lg md:text-xl leading-7">
                 <MathRenderer text={question.text} />
               </div>
 
@@ -272,64 +243,64 @@ export default function Exam({
                   onSubmit()
                 }
               }}
-              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 py-2 text-lg font-light"
-              variant="outline"
+              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 py-2 text-lg font-light bg-blue-500 hover:bg-blue-600 text-white"
             >
               Submit Exam
             </Button>
           </div>
         </div>
 
-        {/* On mobile, show a horizontal line before the navigator. 
-            On desktop, vertical line between columns. */}
-        <Separator orientation="horizontal" className="block md:hidden" />
-        <Separator orientation="vertical" className="hidden md:block" />
-
-        {/* RIGHT / bottom: question navigator and status 
-            On mobile, it appears below the question.
-            On desktop, side by side. */}
-        <div className="w-full md:w-80 bg-background overflow-y-auto p-4 space-y-6 max-h-screen">
-          <Card>
+        {/* RIGHT: question navigator and status */}
+        <div className="w-full lg:w-80 bg-white dark:bg-gray-800 overflow-y-auto p-4 space-y-6 border-t lg:border-t-0 lg:border-l border-gray-200 dark:border-gray-700">
+          <Card className="bg-gray-50 dark:bg-gray-900">
             <CardHeader>
-              <CardTitle className="text-lg font-semibold">Question Status</CardTitle>
+              <CardTitle className="text-lg font-semibold text-gray-900 dark:text-gray-100">Question Status</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 gap-2">
                 <div className="flex items-center justify-between">
-                  <span className="flex items-center text-sm">
-                    <AlertCircle className="w-4 h-4 mr-2 text-muted-foreground" />
+                  <span className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                    <AlertCircle className="w-4 h-4 mr-2 text-gray-400" />
                     Not Visited
                   </span>
-                  <span className="font-medium">{questionStatusCounts.notVisited}</span>
+                  <span className="font-medium text-gray-900 dark:text-gray-100">
+                    {questionStatusCounts.notVisited}
+                  </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="flex items-center text-sm">
+                  <span className="flex items-center text-sm text-gray-600 dark:text-gray-400">
                     <AlertCircle className="w-4 h-4 mr-2 text-yellow-500" />
                     Not Answered
                   </span>
-                  <span className="font-medium">{questionStatusCounts.notAnswered}</span>
+                  <span className="font-medium text-gray-900 dark:text-gray-100">
+                    {questionStatusCounts.notAnswered}
+                  </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="flex items-center text-sm">
+                  <span className="flex items-center text-sm text-gray-600 dark:text-gray-400">
                     <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
                     Answered
                   </span>
-                  <span className="font-medium">{questionStatusCounts.answered}</span>
+                  <span className="font-medium text-gray-900 dark:text-gray-100">{questionStatusCounts.answered}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="flex items-center text-sm">
+                  <span className="flex items-center text-sm text-gray-600 dark:text-gray-400">
                     <Flag className="w-4 h-4 mr-2 text-blue-500" />
                     Marked for Review
                   </span>
-                  <span className="font-medium">{questionStatusCounts.markedForReview}</span>
+                  <span className="font-medium text-gray-900 dark:text-gray-100">
+                    {questionStatusCounts.markedForReview}
+                  </span>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-gray-50 dark:bg-gray-900">
             <CardHeader>
-              <CardTitle className="text-lg font-semibold">Question Navigator</CardTitle>
+              <CardTitle className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                Question Navigator
+              </CardTitle>
             </CardHeader>
             <CardContent className="overflow-y-auto max-h-[60vh]">
               <div className="grid grid-cols-5 gap-2">
@@ -339,15 +310,20 @@ export default function Exam({
 
                   let buttonClasses = "w-10 h-10 p-0 font-medium"
                   if (isCurrent) {
-                    buttonClasses += " border-blue-800 bg-blue-100 text-blue-600"
+                    buttonClasses +=
+                      " border-blue-500 bg-blue-100 text-blue-700 dark:border-blue-400 dark:bg-blue-900 dark:text-blue-200"
                   } else if (status === "markedForReview") {
-                    buttonClasses += " border-blue-600 bg-blue-100 text-blue-600"
+                    buttonClasses +=
+                      " border-yellow-500 bg-yellow-100 text-yellow-700 dark:border-yellow-400 dark:bg-yellow-900 dark:text-yellow-200"
                   } else if (status === "notAnswered") {
-                    buttonClasses += " border-yellow-600 bg-yellow-100 text-yellow-600"
+                    buttonClasses +=
+                      " border-red-500 bg-red-100 text-red-700 dark:border-red-400 dark:bg-red-900 dark:text-red-200"
                   } else if (status === "answered") {
-                    buttonClasses += " border-green-600 bg-green-100 text-green-600"
+                    buttonClasses +=
+                      " border-green-500 bg-green-100 text-green-700 dark:border-green-400 dark:bg-green-900 dark:text-green-200"
                   } else {
-                    buttonClasses += " border-gray-300 bg-white text-gray-600"
+                    buttonClasses +=
+                      " border-gray-300 bg-white text-gray-600 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300"
                   }
 
                   return (
@@ -378,3 +354,4 @@ export default function Exam({
     </div>
   )
 }
+
