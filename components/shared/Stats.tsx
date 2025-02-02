@@ -1,823 +1,461 @@
 "use client";
 
-import React, { useEffect, useReducer, useMemo, useCallback, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useSession } from "next-auth/react";
 import { useToast } from "@/components/ui/use-toast";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { motion, AnimatePresence } from "framer-motion";
-import { Check, ChevronDown, Filter, Search } from "lucide-react";
-import {
-  ResponsiveContainer,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  BarChart,
-  Bar,
-  LineChart,
-  Line,
-  PieChart,
-  Pie,
-  Cell
-} from "recharts";
+import { ResponsiveContainer, LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, Tooltip, Legend, CartesianGrid, XAxis, YAxis } from "recharts";
+import { Button } from "@/components/ui/button";
+import { HelpCircle } from "lucide-react";
 
-/* 
-   Enums & Types
-*/
-type ViewMode = "desktop" | "mobile";
-
-type FilterKey =
-  | "exams"
-  | "subjects"
-  | "topics"
-  | "subtopics"
-  | "difficulties"
-  | "years"
-  | "types";
-
-interface FiltersType {
-  exams: string[];
-  subjects: string[];
-  topics: string[];
-  subtopics: string[];
-  difficulties: string[];
-  years: string[];
-  types: string[];
-  status: string; // "all"|"complete"|"review"|"incomplete"
-}
-
-interface FilterOptionsType {
-  exams: string[];
-  subjects: string[];
-  topics: string[];
-  subtopics: string[];
-  difficulties: string[];
-  years: string[];
-  types: string[];
-}
-
-interface PerformanceRow {
+/* ------------------------------------------------------------------
+   1) Type definitions 
+   ------------------------------------------------------------------ */
+interface UserPerformance {
   questionId: string;
+  userId: string;
   correctAnswers: number;
   incorrectAnswers: number;
   questionsAttempted: number;
-  accuracy: number;
-  reattemptAccuracy: number;
-  createdAt: string;
+  accuracy: number;          // e.g. 0..100
+  reattemptAccuracy: number; // e.g. 0..100
+  createdAt: string;         // date time
+  // ... additional fields if any
 }
 
-interface StatsState {
-  filters: FiltersType;
-  filterOptions: FilterOptionsType;
-  dropdowns: Record<FilterKey, boolean>;
-  loading: boolean;
-  filterOptionsLoading: boolean;
-  viewMode: ViewMode;
-
-  performance: PerformanceRow[];
-  totalCorrect: number;
-  totalIncorrect: number;
-  totalAttempts: number;
-  avgAccuracy: number;
-  avgReattempt: number;
-
-  searchQuery: string;
+interface UserProgress {
+  id: string;
+  userId: string;
+  questionId: string;
+  completed: boolean;
+  reviewed: boolean;
+  lastAttempted: string | null;
 }
 
-type StatsAction =
-  | { type: "SET_FILTER_OPTIONS"; payload: FilterOptionsType }
-  | { type: "SET_FILTERS"; payload: FiltersType }
-  | { type: "SET_DROPDOWN"; payload: { key: FilterKey; value: boolean } }
-  | { type: "SET_LOADING"; payload: boolean }
-  | { type: "SET_FILTER_OPTIONS_LOADING"; payload: boolean }
-  | { type: "SET_VIEW_MODE"; payload: ViewMode }
-  | { type: "SET_PERFORMANCE"; payload: PerformanceRow[] }
-  | { type: "SET_SEARCH_QUERY"; payload: string }
-  | {
-      type: "SET_AGGREGATES";
-      payload: {
-        totalCorrect: number;
-        totalIncorrect: number;
-        totalAttempts: number;
-        avgAccuracy: number;
-        avgReattempt: number;
-      };
-    };
+interface UserAnswer {
+  id: string;
+  userId: string;
+  questionId: string;
+  selectedOption: string;
+  isCorrect: boolean;
+}
 
-const initialFilters: FiltersType = {
-  exams: [],
-  subjects: [],
-  topics: [],
-  subtopics: [],
-  difficulties: [],
-  years: [],
-  types: [],
-  status: "all",
-};
-
-const initialFilterOptions: FilterOptionsType = {
-  exams: [],
-  subjects: [],
-  topics: [],
-  subtopics: [],
-  difficulties: [],
-  years: [],
-  types: [],
-};
-
-const initialState: StatsState = {
-  filters: initialFilters,
-  filterOptions: initialFilterOptions,
-  dropdowns: {
-    exams: false,
-    subjects: false,
-    topics: false,
-    subtopics: false,
-    difficulties: false,
-    years: false,
-    types: false,
-  },
-  loading: false,
-  filterOptionsLoading: false,
-  viewMode: "desktop",
-  performance: [],
-  totalCorrect: 0,
-  totalIncorrect: 0,
-  totalAttempts: 0,
-  avgAccuracy: 0,
-  avgReattempt: 0,
-  searchQuery: "",
-};
-
-/* ------------------------------------------------------------------
-   Reducer
+/* 
+   We'll define aggregator data for each:
+   - userPerformance => daily stats or total stats
+   - userProgress => completed vs. reviewed
+   - userAnswers => total correct vs. incorrect
 */
-function reducer(state: StatsState, action: StatsAction): StatsState {
-  switch (action.type) {
-    case "SET_FILTER_OPTIONS":
-      return { ...state, filterOptions: action.payload };
-    case "SET_FILTERS":
-      return { ...state, filters: action.payload };
-    case "SET_DROPDOWN":
-      return {
-        ...state,
-        dropdowns: {
-          ...state.dropdowns,
-          [action.payload.key]: action.payload.value,
-        },
-      };
-    case "SET_LOADING":
-      return { ...state, loading: action.payload };
-    case "SET_FILTER_OPTIONS_LOADING":
-      return { ...state, filterOptionsLoading: action.payload };
-    case "SET_VIEW_MODE":
-      return { ...state, viewMode: action.payload };
-    case "SET_PERFORMANCE":
-      return { ...state, performance: action.payload };
-    case "SET_SEARCH_QUERY":
-      return { ...state, searchQuery: action.payload };
-    case "SET_AGGREGATES":
-      return {
-        ...state,
-        totalCorrect: action.payload.totalCorrect,
-        totalIncorrect: action.payload.totalIncorrect,
-        totalAttempts: action.payload.totalAttempts,
-        avgAccuracy: action.payload.avgAccuracy,
-        avgReattempt: action.payload.avgReattempt,
-      };
-    default:
-      return state;
-  }
-}
 
 /* ------------------------------------------------------------------
-   Helpers
-*/
-function transformFilterItem(value: string): string {
-  const replaced = value.replace(/-/g, " ");
-  return replaced
-    .split(" ")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-}
-function fuzzyContains(haystack: string, needle: string): boolean {
-  if (!needle) return true;
-  return haystack.toLowerCase().includes(needle.toLowerCase());
-}
-
-const transitionProps = {
-  type: "spring",
-  stiffness: 500,
-  damping: 30,
-  mass: 0.5,
-};
-
-/* ------------------------------------------------------------------
-   The Stats component
+   2) The Stats component 
    ------------------------------------------------------------------ */
 export default function Stats() {
-  const { data: session } = useSession(); // <--- MUST have <SessionProvider> up the tree
-  const userName = session?.user?.name || "Guest";
+  const { data: session } = useSession(); // MUST have <SessionProvider> in the app
   const { toast } = useToast();
 
-  const [state, dispatch] = React.useReducer(reducer, initialState);
+  // Local states
+  const [loading, setLoading] = useState(true);
 
-  // For mobile filters
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [userPerformance, setUserPerformance] = useState<UserPerformance[]>([]);
+  const [userProgress, setUserProgress] = useState<UserProgress[]>([]);
+  const [userAnswers, setUserAnswers] = useState<UserAnswer[]>([]);
 
-  React.useEffect(() => {
-    if (typeof window !== "undefined" && window.innerWidth < 768) {
-      dispatch({ type: "SET_VIEW_MODE", payload: "mobile" });
-    }
-  }, []);
+  // Aggregates
+  const [avgAccuracy, setAvgAccuracy] = useState(0);
+  const [avgReattempt, setAvgReattempt] = useState(0);
+  const [totalAttempts, setTotalAttempts] = useState(0);
 
-  /* 1) fetch filter options once */
-  const fetchFilterOptions = React.useCallback(async () => {
-    dispatch({ type: "SET_FILTER_OPTIONS_LOADING", payload: true });
+  const [progressCounts, setProgressCounts] = useState({
+    total: 0,
+    completed: 0,
+    reviewed: 0,
+    incomplete: 0,
+  });
+
+  const [answersCounts, setAnswersCounts] = useState({
+    totalCorrect: 0,
+    totalIncorrect: 0,
+  });
+
+  // For a daily line chart from userPerformance
+  const [dailyPerf, setDailyPerf] = useState<{ date: string; accuracy: number; attempts: number }[]>([]);
+
+  // For user name
+  const userName = session?.user?.name || "Guest";
+
+  /* ------------------------------------------------------------------
+     3) Fetch all data in parallel 
+     ------------------------------------------------------------------ */
+  async function fetchAllData() {
+    setLoading(true);
     try {
-      const res = await fetch("/api/filters", { cache: "no-store" });
-      if (!res.ok) throw new Error("Failed to fetch filter fields.");
-      const raw = await res.json();
-      const data: FilterOptionsType = {
-        exams: raw.exams ?? [],
-        subjects: raw.subjects ?? [],
-        topics: raw.topics ?? [],
-        subtopics: raw.subtopics ?? [],
-        difficulties: raw.difficulties ?? [],
-        years: raw.years ?? [],
-        types: raw.types ?? [],
-      };
-      dispatch({ type: "SET_FILTER_OPTIONS", payload: data });
-    } catch (err) {
-      console.error(err);
-      toast({
-        title: "Error",
-        description: "Could not load filter fields.",
-        variant: "destructive",
-      });
-    } finally {
-      dispatch({ type: "SET_FILTER_OPTIONS_LOADING", payload: false });
-    }
-  }, [toast]);
+      // Do 3 parallel requests
+      const [perfRes, progRes, ansRes] = await Promise.all([
+        fetch("/api/user-performance/get", { cache: "no-store" }),
+        fetch("/api/user-progress", { cache: "no-store" }),
+        fetch("/api/user-answers", { cache: "no-store" }),
+      ]);
 
-  /* 2) fetch user performance for current filters */
-  const fetchPerformance = React.useCallback(async () => {
-    dispatch({ type: "SET_LOADING", payload: true });
-    try {
-      const { filters } = state;
-      const arrToComma = (arr: string[]) => arr.join(",");
-
-      const params = new URLSearchParams();
-      if (filters.exams.length)        params.set("exam", arrToComma(filters.exams));
-      if (filters.subjects.length)     params.set("subject", arrToComma(filters.subjects));
-      if (filters.topics.length)       params.set("topic", arrToComma(filters.topics));
-      if (filters.subtopics.length)    params.set("subtopic", arrToComma(filters.subtopics));
-      if (filters.difficulties.length) params.set("difficulty", arrToComma(filters.difficulties));
-      if (filters.years.length)        params.set("year", arrToComma(filters.years));
-      if (filters.types.length)        params.set("type", arrToComma(filters.types));
-
-      // status param if your /api route supports it
-      if (filters.status && filters.status !== "all") {
-        params.set("status", filters.status);
+      if (!perfRes.ok) {
+        throw new Error("Failed to fetch userPerformance");
+      }
+      if (!progRes.ok) {
+        throw new Error("Failed to fetch userProgress");
+      }
+      if (!ansRes.ok) {
+        throw new Error("Failed to fetch userAnswers");
       }
 
-      const url = `/api/user-performance/get?${params.toString()}`;
-      const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) throw new Error("Failed to fetch user performance with filters.");
-      const data = await res.json() as PerformanceRow[];
-      dispatch({ type: "SET_PERFORMANCE", payload: data });
+      const [perfData, progData, ansData] = await Promise.all([
+        perfRes.json() as Promise<UserPerformance[]>,
+        progRes.json() as Promise<UserProgress[]>,
+        ansRes.json() as Promise<UserAnswer[]>,
+      ]);
+
+      setUserPerformance(perfData);
+      setUserProgress(progData);
+      setUserAnswers(ansData);
     } catch (err) {
-      console.error("Error fetching performance:", err);
+      console.error("Error fetching data:", err);
       toast({
         title: "Error",
-        description: "Failed to load performance data.",
+        description: "Failed to load stats data. Please try again.",
         variant: "destructive",
       });
     } finally {
-      dispatch({ type: "SET_LOADING", payload: false });
+      setLoading(false);
     }
-  }, [state.filters, toast]);
+  }
 
-  /* On mount => fetch filter options */
-  React.useEffect(() => {
-    fetchFilterOptions();
-  }, [fetchFilterOptions]);
+  // On mount => fetchAllData
+  useEffect(() => {
+    fetchAllData();
+  }, []);
 
-  /* Whenever filters change => fetch perf data */
-  React.useEffect(() => {
-    fetchPerformance();
-  }, [state.filters, fetchPerformance]);
+  /* ------------------------------------------------------------------
+     4) Build aggregator for userPerformance 
+     ------------------------------------------------------------------ */
+  useEffect(() => {
+    if (!userPerformance.length) {
+      setAvgAccuracy(0);
+      setAvgReattempt(0);
+      setTotalAttempts(0);
+      setDailyPerf([]);
+      return;
+    }
 
-  /* 3) compute aggregates after we have performance data */
-  React.useEffect(() => {
-    if (!state.performance.length) {
-      dispatch({
-        type: "SET_AGGREGATES",
-        payload: {
-          totalCorrect: 0,
-          totalIncorrect: 0,
-          totalAttempts: 0,
-          avgAccuracy: 0,
-          avgReattempt: 0,
-        },
+    let sumAcc = 0, sumRe = 0, sumAttempts = 0;
+    // We'll also do a daily grouping
+    const dayMap: Record<string, { sumAcc: number; count: number; attempts: number }> = {};
+
+    userPerformance.forEach((row) => {
+      sumAcc += row.accuracy;
+      sumRe += row.reattemptAccuracy;
+      sumAttempts += row.questionsAttempted;
+
+      // Group by date for daily chart
+      const dayStr = new Date(row.createdAt).toISOString().slice(0, 10);
+      if (!dayMap[dayStr]) {
+        dayMap[dayStr] = { sumAcc: 0, count: 0, attempts: 0 };
+      }
+      dayMap[dayStr].sumAcc += row.accuracy;
+      dayMap[dayStr].count += 1;
+      dayMap[dayStr].attempts += row.questionsAttempted;
+    });
+
+    const n = userPerformance.length;
+    setAvgAccuracy(n ? sumAcc / n : 0);
+    setAvgReattempt(n ? sumRe / n : 0);
+    setTotalAttempts(sumAttempts);
+
+    // Build daily array
+    const dailyArr = Object.entries(dayMap).map(([date, obj]) => {
+      const avgDayAcc = obj.count > 0 ? obj.sumAcc / obj.count : 0;
+      return {
+        date,
+        accuracy: Number(avgDayAcc.toFixed(2)),
+        attempts: obj.attempts,
+      };
+    });
+    // sort by date
+    dailyArr.sort((a,b) => (a.date < b.date ? -1 : 1));
+    setDailyPerf(dailyArr);
+  }, [userPerformance]);
+
+  /* ------------------------------------------------------------------
+     5) Build aggregator from userProgress 
+     ------------------------------------------------------------------ */
+  useEffect(() => {
+    if (!userProgress.length) {
+      setProgressCounts({
+        total: 0,
+        completed: 0,
+        reviewed: 0,
+        incomplete: 0,
       });
       return;
     }
-    let sumCorrect = 0, sumIncorrect = 0, sumAttempts = 0;
-    let sumAcc = 0, sumRe = 0;
-    for (const row of state.performance) {
-      sumCorrect += row.correctAnswers;
-      sumIncorrect += row.incorrectAnswers;
-      sumAttempts += row.questionsAttempted;
-      sumAcc += row.accuracy;
-      sumRe += row.reattemptAccuracy;
-    }
-    const n = state.performance.length;
-    dispatch({
-      type: "SET_AGGREGATES",
-      payload: {
-        totalCorrect: sumCorrect,
-        totalIncorrect: sumIncorrect,
-        totalAttempts: sumAttempts,
-        avgAccuracy: n ? sumAcc / n : 0,
-        avgReattempt: n ? sumRe / n : 0,
-      },
+    const total = userProgress.length;
+    let comp = 0, rev = 0;
+    userProgress.forEach((p) => {
+      if (p.completed) comp++;
+      if (p.reviewed) rev++;
     });
-  }, [state.performance]);
+    const incomplete = total - comp;
+    setProgressCounts({
+      total,
+      completed: comp,
+      reviewed: rev,
+      incomplete,
+    });
+  }, [userProgress]);
 
-  /* 4) Build chart data for Recharts */
-  const chartData = React.useMemo(() => {
-    return state.performance.map((row, i) => ({
-      index: i,
-      correct: row.correctAnswers,
-      incorrect: row.incorrectAnswers,
-      attempts: row.questionsAttempted,
-      accuracy: row.accuracy,
-    }));
-  }, [state.performance]);
+  /* ------------------------------------------------------------------
+     6) Build aggregator from userAnswers => correct vs. incorrect 
+     ------------------------------------------------------------------ */
+  useEffect(() => {
+    if (!userAnswers.length) {
+      setAnswersCounts({
+        totalCorrect: 0,
+        totalIncorrect: 0,
+      });
+      return;
+    }
+    let corr = 0, incorr = 0;
+    userAnswers.forEach((a) => {
+      if (a.isCorrect) corr++;
+      else incorr++;
+    });
+    setAnswersCounts({
+      totalCorrect: corr,
+      totalIncorrect: incorr,
+    });
+  }, [userAnswers]);
 
-  // if loading => skeleton
-  if (state.loading || state.filterOptionsLoading) {
+  /* ------------------------------------------------------------------
+     7) Loading skeleton if needed
+     ------------------------------------------------------------------ */
+  if (loading) {
     return (
-      <div className="p-4">
+      <div className="p-4 max-w-6xl mx-auto">
         <Skeleton className="h-8 w-48 mb-4" />
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[...Array(4)].map((_, i) => (
-            <Skeleton key={i} className="h-36 w-full" />
+            <Skeleton key={i} className="h-24 w-full" />
+          ))}
+        </div>
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[...Array(2)].map((_, i) => (
+            <Skeleton key={i} className="h-64 w-full" />
           ))}
         </div>
       </div>
     );
   }
 
-  const hasData = state.performance.length > 0;
+  /* ------------------------------------------------------------------
+     8) Main Render 
+     ------------------------------------------------------------------ */
+  const totalQuestions = progressCounts.total;
+  const totalCorrect = answersCounts.totalCorrect;
+  const totalIncorrect = answersCounts.totalIncorrect;
+  const totalComp = progressCounts.completed;
+  const totalRev = progressCounts.reviewed;
+  const totalIncomp = progressCounts.incomplete;
+
+  // We'll do a donut for completed vs reviewed vs incomplete
+  const donutData = [
+    { name: "Completed", value: totalComp },
+    { name: "Reviewed", value: totalRev },
+    { name: "Incomplete", value: totalIncomp },
+  ];
+  const donutColors = ["#22c55e", "#facc15", "#ef4444"];
+
+  // We'll do a Pie for correct vs incorrect
+  const pieData = [
+    { name: "Correct", value: totalCorrect },
+    { name: "Incorrect", value: totalIncorrect },
+  ];
+  const pieColors = ["#16a34a", "#dc2626"];
 
   return (
-    <div className="max-w-6xl mx-auto p-4">
-      {/* Display user name with your font classes */}
+    <div className="max-w-6xl mx-auto p-4 text-gray-900 dark:text-gray-100">
+      {/* Title with user name from session */}
       <h1 className="font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem] mb-6">
-        {userName}&apos;s Performance
+        {session?.user?.name || "Guest"}&apos;s Comprehensive Statistics
       </h1>
 
-      {/* -------------- Desktop Filters + Status row -------------- */}
-      <div className="flex flex-wrap items-center gap-4 mb-6">
-        {/* Status row (like QBC) */}
-        <div className="space-x-2 hidden sm:flex">
-          {["all","complete","review","incomplete"].map((st) => {
-            const isActive = state.filters.status === st;
-            return (
-              <button
-                key={st}
-                className={`px-3 py-1.5 rounded-md text-sm ${
-                  isActive
-                    ? "bg-blue-100 text-blue-700 border border-blue-400"
-                    : "bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-600 hover:border-gray-500"
-                }`}
-                onClick={() => {
-                  dispatch({ type: "SET_FILTERS", payload: { ...state.filters, status: st }});
-                }}
-              >
-                {st.charAt(0).toUpperCase() + st.slice(1)}
-              </button>
-            );
-          })}
-        </div>
+      {/* Cards row */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        {/* total attempts from userPerformance */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Total Attempts</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-semibold">{totalAttempts}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              across all questions
+            </p>
+          </CardContent>
+        </Card>
 
-        {/* Desktop filter popovers */}
-        <div className="hidden sm:flex flex-wrap gap-2">
-          {(Object.keys(state.filterOptions) as FilterKey[]).map((fKey) => {
-            const filterValues = state.filterOptions[fKey] || [];
-            const isOpen = state.dropdowns[fKey];
-            return (
-              <div className="relative" key={fKey}>
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    dispatch({ type: "SET_DROPDOWN", payload: { key: fKey, value: !isOpen }});
-                  }}
-                >
-                  {fKey} ({state.filters[fKey].length})
-                  <ChevronDown className="ml-1 h-4 w-4" />
-                </Button>
-                {isOpen && (
-                  <div className="absolute z-50 bg-white dark:bg-gray-800 p-3 rounded-md shadow-md max-h-64 w-64 overflow-auto">
-                    <DesktopFilterSearch
-                      filterType={fKey}
-                      filterValues={filterValues}
-                      state={state}
-                      dispatch={dispatch}
-                    />
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
+        {/* average accuracy from userPerformance */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Avg Accuracy</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-semibold">{avgAccuracy.toFixed(2)}%</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              average correct ratio
+            </p>
+          </CardContent>
+        </Card>
 
-        {/* Mobile filter button */}
-        <Button
-          variant="outline"
-          className="sm:hidden flex items-center"
-          onClick={() => setMobileFiltersOpen(true)}
-        >
-          <Filter className="mr-2 h-4 w-4" />
-          Filters
-        </Button>
+        {/* completed from userProgress */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Completed</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-semibold">{totalComp}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              out of {totalQuestions} total
+            </p>
+          </CardContent>
+        </Card>
+
+        {/* correct from userAnswers */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Total Correct</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-semibold">{totalCorrect}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              vs. {totalIncorrect} incorrect
+            </p>
+          </CardContent>
+        </Card>
       </div>
 
-      {/* If we have data => show aggregator & charts */}
-      {hasData ? (
-        <>
-          {/* aggregator row */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Avg Accuracy</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-2xl font-semibold">
-                  {state.avgAccuracy.toFixed(2)}%
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Reattempt Accuracy</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-2xl font-semibold">
-                  {state.avgReattempt.toFixed(2)}%
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Total Correct</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-2xl font-semibold">
-                  {state.totalCorrect}
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Total Attempts</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-2xl font-semibold">
-                  {state.totalAttempts}
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Example: Stacked Bar for correct vs. incorrect */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Correct vs. Incorrect (Stacked)</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="h-64">
+      {/* Charts row(s) */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* LineChart for daily accuracy from userPerformance */}
+        <Card className="overflow-hidden">
+          <CardHeader>
+            <CardTitle>Daily Accuracy</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {dailyPerf.length > 0 ? (
+              <div className="h-64 w-full">
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={chartData}>
+                  <LineChart data={dailyPerf}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="index" />
+                    <XAxis dataKey="date" />
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="correct" fill="#22c55e" stackId="a" name="Correct" />
-                    <Bar dataKey="incorrect" fill="#ef4444" stackId="a" name="Incorrect" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Another chart: line for accuracy */}
-          <Card className="mt-6">
-            <CardHeader>
-              <CardTitle>Accuracy Over Rows</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={chartData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="index" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line dataKey="accuracy" stroke="#2563eb" name="Accuracy (%)" />
+                    <Line type="monotone" dataKey="accuracy" stroke="#2563eb" strokeWidth={2} name="Accuracy (%)" />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
-            </CardContent>
-          </Card>
-        </>
-      ) : (
-        <p className="text-gray-500 dark:text-gray-300 mt-6">
-          No performance data found with these filters.
-        </p>
-      )}
+            ) : (
+              <p className="text-gray-400 dark:text-gray-500">No daily performance data.</p>
+            )}
+          </CardContent>
+        </Card>
 
-      {/* Mobile filters dialog */}
-      <MobileFiltersDialog
-        open={mobileFiltersOpen}
-        onOpenChange={setMobileFiltersOpen}
-        state={state}
-        dispatch={dispatch}
-      />
-    </div>
-  );
-}
-
-/* DesktopFilterSearch subcomponent */
-function DesktopFilterSearch({
-  filterType,
-  filterValues,
-  state,
-  dispatch,
-}: {
-  filterType: FilterKey;
-  filterValues: string[];
-  state: StatsState;
-  dispatch: React.Dispatch<StatsAction>;
-}) {
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const displayedValues = useMemo(() => {
-    let arr = filterValues.slice();
-    if (searchTerm) {
-      const lower = searchTerm.toLowerCase();
-      arr = arr.filter((val) => val.toLowerCase().includes(lower));
-    }
-    arr.sort((a, b) => {
-      const aSel = state.filters[filterType].includes(a);
-      const bSel = state.filters[filterType].includes(b);
-      if (aSel && !bSel) return -1;
-      if (!aSel && bSel) return 1;
-      return 0;
-    });
-    return arr;
-  }, [filterValues, searchTerm, filterType, state.filters]);
-
-  const toggleItem = useCallback(
-    (val: string) => {
-      const isSelected = state.filters[filterType].includes(val);
-      let newArr: string[] = [];
-      if (isSelected) {
-        newArr = state.filters[filterType].filter((x) => x !== val);
-      } else {
-        newArr = [...state.filters[filterType], val];
-      }
-      dispatch({ type: "SET_FILTERS", payload: { ...state.filters, [filterType]: newArr }});
-    },
-    [state.filters, filterType, dispatch]
-  );
-
-  return (
-    <>
-      <Input
-        placeholder={`Search ${filterType}...`}
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="mb-2"
-      />
-      <motion.div className="flex flex-col gap-2" layout transition={transitionProps}>
-        {displayedValues.map((val) => {
-          const isSelected = state.filters[filterType].includes(val);
-          return (
-            <motion.button
-              key={val}
-              layout
-              initial={false}
-              onClick={() => toggleItem(val)}
-              animate={{
-                backgroundColor: isSelected ? "#E6F7FF" : "rgba(229, 231, 235, 0.5)",
-              }}
-              whileHover={{
-                backgroundColor: isSelected ? "#CCEEFF" : "rgba(229, 231, 235, 0.8)",
-              }}
-              whileTap={{
-                backgroundColor: isSelected ? "#B3E6FF" : "rgba(229, 231, 235, 0.9)",
-              }}
-              transition={{
-                ...transitionProps,
-                backgroundColor: { duration: 0.1 },
-              }}
-              className={`
-                text-left px-3 py-1.5 rounded-full text-sm font-medium
-                whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
-                ${
-                  isSelected
-                    ? "text-blue-600 ring-blue-200"
-                    : "text-gray-600 ring-gray-200"
-                }
-              `}
-            >
-              <motion.div
-                className="relative flex items-center"
-                animate={{
-                  width: isSelected ? "auto" : "100%",
-                  paddingRight: isSelected ? "1.25rem" : "0",
-                }}
-                transition={{
-                  ease: [0.175, 0.885, 0.32, 1.275],
-                  duration: 0.3,
-                }}
-              >
-                <span>{transformFilterItem(val)}</span>
-                <AnimatePresence>
-                  {isSelected && (
-                    <motion.span
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0, opacity: 0 }}
-                      transition={transitionProps}
-                      className="absolute right-0"
-                    >
-                      <div className="w-3.5 h-3.5 rounded-full bg-blue-500 flex items-center justify-center">
-                        <Check className="w-2.5 h-2.5 text-white" strokeWidth={2} />
-                      </div>
-                    </motion.span>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            </motion.button>
-          );
-        })}
-      </motion.div>
-    </>
-  );
-}
-
-/* Mobile Filters */
-function MobileFiltersDialog({
-  open,
-  onOpenChange,
-  state,
-  dispatch,
-}: {
-  open: boolean;
-  onOpenChange: (val: boolean) => void;
-  state: StatsState;
-  dispatch: React.Dispatch<StatsAction>;
-}) {
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent
-        className="
-          fixed top-0 left-0 w-screen h-screen
-          sm:w-[500px] sm:h-auto sm:max-h-[90vh]
-          sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
-          bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
-          pt-10
-        "
-      >
-        <div className="flex items-center justify-between px-4 py-3 border-b dark:border-gray-700">
-          <h2 className="text-2xl font-semibold tracking-tight text-gray-800 dark:text-gray-100">
-            Filters
-          </h2>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => onOpenChange(false)}
-          >
-            ✕
-          </Button>
-        </div>
-        <ScrollArea className="px-4 py-4 flex-1">
-          {/* Status row */}
-          <div className="mb-4">
-            <p className="text-lg font-medium mb-2">Status</p>
-            <div className="flex gap-2">
-              {["all","complete","review","incomplete"].map((st) => {
-                const selected = state.filters.status === st;
-                return (
-                  <Button
-                    key={st}
-                    variant={selected ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => dispatch({
-                      type: "SET_FILTERS",
-                      payload: { ...state.filters, status: st },
-                    })}
+        {/* Donut for userProgress (completed vs reviewed vs incomplete) */}
+        <Card className="overflow-hidden">
+          <CardHeader>
+            <CardTitle>Progress Distribution</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="h-64 w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie 
+                    data={donutData}
+                    dataKey="value"
+                    nameKey="name"
+                    cx="50%" 
+                    cy="50%" 
+                    innerRadius={50} 
+                    outerRadius={80} 
+                    label
                   >
-                    {st.charAt(0).toUpperCase() + st.slice(1)}
-                  </Button>
-                );
-              })}
+                    {donutData.map((entry, index) => (
+                      <Cell key={entry.name} fill={donutColors[index % donutColors.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                  <Legend />
+                </PieChart>
+              </ResponsiveContainer>
             </div>
-          </div>
+          </CardContent>
+        </Card>
+      </div>
 
-          {/* The rest of the filters (exams, subjects, etc.) */}
-          {(Object.keys(state.filterOptions) as FilterKey[]).map((fKey) => (
-            <MobileFilterSection
-              key={fKey}
-              title={fKey}
-              filterType={fKey}
-              state={state}
-              dispatch={dispatch}
-            />
-          ))}
-        </ScrollArea>
-      </DialogContent>
-    </Dialog>
-  );
-}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+        {/* Pie for correct vs. incorrect (userAnswers) */}
+        <Card className="overflow-hidden">
+          <CardHeader>
+            <CardTitle>Correct vs. Incorrect</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="h-64 w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={pieData}
+                    dataKey="value"
+                    nameKey="name"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    label
+                  >
+                    {pieData.map((entry, idx) => (
+                      <Cell key={entry.name} fill={pieColors[idx % pieColors.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                  <Legend />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </CardContent>
+        </Card>
 
-function MobileFilterSection({
-  title,
-  filterType,
-  state,
-  dispatch,
-}: {
-  title: string;
-  filterType: FilterKey;
-  state: StatsState;
-  dispatch: React.Dispatch<StatsAction>;
-}) {
-  const [search, setSearch] = useState("");
-  const filterValues = state.filterOptions[filterType] || [];
-
-  const displayedValues = React.useMemo(() => {
-    let arr = filterValues.slice();
-    if (search) {
-      const lower = search.toLowerCase();
-      arr = arr.filter((val) => val.toLowerCase().includes(lower));
-    }
-    // sort selected to top
-    arr.sort((a,b) => {
-      const aSel = state.filters[filterType].includes(a);
-      const bSel = state.filters[filterType].includes(b);
-      if (aSel && !bSel) return -1;
-      if (!aSel && bSel) return 1;
-      return 0;
-    });
-    return arr;
-  }, [filterValues, search, state.filters, filterType]);
-
-  function toggleItem(val: string) {
-    const isSelected = state.filters[filterType].includes(val);
-    let newArr: string[];
-    if (isSelected) {
-      newArr = state.filters[filterType].filter((x) => x !== val);
-    } else {
-      newArr = [...state.filters[filterType], val];
-    }
-    dispatch({ type: "SET_FILTERS", payload: { ...state.filters, [filterType]: newArr }});
-  }
-
-  return (
-    <div className="mb-6">
-      <h3 className="text-lg font-medium mb-2">{transformFilterItem(title)}</h3>
-      <Input
-        placeholder={`Search ${title}...`}
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="mb-2"
-      />
-      <div className="flex flex-wrap gap-2">
-        {displayedValues.map((val) => {
-          const selected = state.filters[filterType].includes(val);
-          return (
-            <Button
-              key={val}
-              variant={selected ? "default" : "outline"}
-              size="sm"
-              onClick={() => toggleItem(val)}
-            >
-              {transformFilterItem(val)}
-            </Button>
-          );
-        })}
+        {/* Additional bar chart example for daily attempts from userPerformance? */}
+        <Card className="overflow-hidden">
+          <CardHeader>
+            <CardTitle>Daily Attempts</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {dailyPerf.length > 0 ? (
+              <div className="h-64 w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={dailyPerf}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="date" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="attempts" fill="#6366f1" name="Attempts" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            ) : (
+              <p className="text-gray-400 dark:text-gray-500">No daily attempts data.</p>
+            )}
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
