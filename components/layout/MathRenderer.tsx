@@ -2,10 +2,10 @@
 
 import React from "react"
 import katex from "katex"
-import "katex/dist/katex.min.css"
+import 'katex/dist/contrib/amscd.css'
 
 // Optional if you need AMS/CD or mhchem expansions:
-import "katex/contrib/amscd"
+import 'katex/dist/contrib/amscd'
 import "katex/contrib/mhchem"
 
 interface MathRendererProps {
