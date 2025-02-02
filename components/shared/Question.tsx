@@ -34,12 +34,12 @@ import { Badge } from "@/components/ui/badge"
 import { Flag, ChevronDown, X } from "lucide-react"
 import FeedbackPopover from "./FeedbackPopover"
 
-// --- If you have your Tiptap-based discussion:
+// If you have your Tiptap-based discussion
 import { QuestionSolutions } from "./QuestionSolutions"
 
-// -----------------------------------------
-// Enums & Types
-// -----------------------------------------
+/* ------------------------------------------------------------------
+   1) Enums & Types
+   ------------------------------------------------------------------ */
 enum QuestionStatus {
   ACTIVE = "ACTIVE",
   DRAFT = "DRAFT",
@@ -106,28 +106,26 @@ interface QuestionProps {
   onPreviousQuestion?: () => void
 }
 
-// -----------------------------------------
-// Border color logic with thicker border, lower opacity
-// -----------------------------------------
+/* ------------------------------------------------------------------
+   2) Outline color logic
+   ------------------------------------------------------------------ */
 function getBorderClass(feedback: string | undefined, isMarkedForReview: boolean): string {
+  // Thicker border, lower opacity
   if (isMarkedForReview) {
-    // Flagged: use #FFEDDB with 70% opacity
+    // Flag color #FFEDDB with ~70% opacity
     return "border-[3px] border-[#FFEDDB]/70"
   } else if (feedback === "correct") {
-    // Subtle green w/ lower opacity
     return "border-[3px] border-green-300/70"
   } else if (feedback === "incorrect") {
-    // Subtle red w/ lower opacity
     return "border-[3px] border-red-300/70"
   } else {
-    // Default subtle gray w/ lower opacity
     return "border-[3px] border-gray-300/70"
   }
 }
 
-// -----------------------------------------
-// Main Question component
-// -----------------------------------------
+/* ------------------------------------------------------------------
+   3) Main Question component
+   ------------------------------------------------------------------ */
 export default function Question({
   question,
   feedback,
@@ -152,18 +150,18 @@ export default function Question({
 }: QuestionProps) {
   const displayNumber = currentQuestionIndex + 1
 
-  // MCQ tracking
+  // For older MCQ
   const [pendingOption, setPendingOption] = useState<string | null>(null)
   const [localSelectedOption, setLocalSelectedOption] = useState<string | null>(selectedOption || null)
 
-  // For showing the markscheme modal
+  // Markscheme modal
   const [showMarkschemeModal, setShowMarkschemeModal] = useState<boolean>(false)
   const [markschemeEnabled, setMarkschemeEnabled] = useState(!markschemesDisabled)
 
   // Additional question-type states
-  const [mcqmSelections, setMcqmSelections] = useState<string[]>([]) // for MCQM
-  const [fillBlanksInput, setFillBlanksInput] = useState<string>("") // for Fill Blanks
-  const [subjectiveAnswer, setSubjectiveAnswer] = useState<string>("") // for Subjective
+  const [mcqmSelections, setMcqmSelections] = useState<string[]>([])
+  const [fillBlanksInput, setFillBlanksInput] = useState<string>("")
+  const [subjectiveAnswer, setSubjectiveAnswer] = useState<string>("")
 
   // Tagging
   const [newTag, setNewTag] = useState("")
@@ -177,7 +175,7 @@ export default function Question({
   // Toast
   const { toast } = useToast()
 
-  // Swipe handlers
+  // Swipe
   const handlers = useSwipeable({
     onSwipedLeft: () => onNextQuestion && onNextQuestion(),
     onSwipedRight: () => onPreviousQuestion && onPreviousQuestion(),
@@ -192,13 +190,18 @@ export default function Question({
     setLocalSelectedOption(selectedOption || null)
   }, [selectedOption])
 
-  // -----------------------------------------
-  // Tag logic: add & remove
-  // -----------------------------------------
+  /* ------------------------------
+     Tag logic
+     ------------------------------ */
   async function handleAddTag() {
     if (!newTag || !question.questionId) return
     if (localCustomTags.includes(newTag)) {
-      toast({ title: "Tag already added" })
+      // Show success or error? It's "already added," might do an error toast
+      toast({
+        title: "Notice",
+        description: "Tag already added",
+        variant: "destructive", // red-styled
+      })
       return
     }
     const updated = [...localCustomTags, newTag]
@@ -214,6 +217,13 @@ export default function Question({
           customTags: updated,
         }),
       })
+      // Show success toast with green style
+      toast({
+        title: "Tag Added",
+        description: `“${newTag}” was added successfully.`,
+        // We'll do a custom "success" variant, if your toast system supports it:
+        variant: "success", 
+      })
     } catch (err) {
       console.error(err)
       toast({
@@ -223,6 +233,7 @@ export default function Question({
       })
     }
   }
+
   async function handleRemoveTag(tag: string) {
     if (!question.questionId) return
     const updated = localCustomTags.filter((t) => t !== tag)
@@ -237,6 +248,12 @@ export default function Question({
           customTags: updated,
         }),
       })
+      // Another success toast
+      toast({
+        title: "Tag Removed",
+        description: `“${tag}” was removed successfully.`,
+        variant: "success",
+      })
     } catch (err) {
       console.error(err)
       toast({
@@ -247,9 +264,9 @@ export default function Question({
     }
   }
 
-  // -----------------------------------------
-  // Mark Complete & Flag
-  // -----------------------------------------
+  /* ------------------------------
+     Mark Complete & Flag
+     ------------------------------ */
   async function toggleComplete(checked: boolean) {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId, checked)
@@ -257,6 +274,7 @@ export default function Question({
       toast({
         title: "Question Completed",
         description: `You have completed question #${displayNumber}.`,
+        variant: "success",
         action: (
           <ToastAction onClick={() => toggleComplete(false)} altText="Undo">
             Undo
@@ -267,9 +285,11 @@ export default function Question({
       toast({
         title: "Unmarked Complete",
         description: `Question #${displayNumber} is no longer marked complete.`,
+        variant: "success",
       })
     }
   }
+
   async function toggleReview() {
     if (!question.questionId) return
     const newVal = !isMarkedForReview
@@ -278,6 +298,7 @@ export default function Question({
       toast({
         title: "Question Flagged",
         description: `Flagged question #${displayNumber} for review.`,
+        variant: "success",
         action: (
           <ToastAction onClick={() => toggleReview()} altText="Undo">
             Undo
@@ -288,13 +309,14 @@ export default function Question({
       toast({
         title: "Question Unflagged",
         description: `Removed review flag for question #${displayNumber}.`,
+        variant: "success",
       })
     }
   }
 
-  // -----------------------------------------
-  // MCQ logic
-  // -----------------------------------------
+  /* ------------------------------
+     MCQ logic
+     ------------------------------ */
   function handleOptionSelect(letter: string) {
     setPendingOption(letter)
   }
@@ -305,12 +327,13 @@ export default function Question({
     setLocalSelectedOption(pendingOption)
   }
   function cleanOptionText(option: string): string {
+    // Remove "A: " prefix etc.
     return option.replace(/^[A-D]:\s?/i, "").trim()
   }
 
-  // -----------------------------------------
-  // Numerical logic
-  // -----------------------------------------
+  /* ------------------------------
+     Numerical logic
+     ------------------------------ */
   async function handleNumericalSubmitLocal() {
     if (!question.questionId) return
     await handleNumericalSubmit(
@@ -320,9 +343,9 @@ export default function Question({
     )
   }
 
-  // -----------------------------------------
-  // MCQM logic
-  // -----------------------------------------
+  /* ------------------------------
+     MCQM logic
+     ------------------------------ */
   function handleMcqmToggle(letter: string) {
     setMcqmSelections((prev) =>
       prev.includes(letter) ? prev.filter((x) => x !== letter) : [...prev, letter]
@@ -334,9 +357,9 @@ export default function Question({
     handleOptionClick(question.questionId, JSON.stringify(mcqmSelections), question.correctOption ?? "")
   }
 
-  // -----------------------------------------
-  // T/f logic
-  // -----------------------------------------
+  /* ------------------------------
+     T/f logic
+     ------------------------------ */
   const tfOptions = ["True", "False"]
   async function handleTfSubmit(answer: string) {
     if (!question.questionId) return
@@ -345,27 +368,27 @@ export default function Question({
     setLocalSelectedOption(answer)
   }
 
-  // -----------------------------------------
-  // Fill Blanks
-  // -----------------------------------------
+  /* ------------------------------
+     Fill Blanks
+     ------------------------------ */
   async function handleFillBlanksSubmit() {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId, true)
     handleNumericalSubmit(question.questionId, fillBlanksInput, question.correctOption ?? "")
   }
 
-  // -----------------------------------------
-  // Subjective
-  // -----------------------------------------
+  /* ------------------------------
+     Subjective
+     ------------------------------ */
   async function handleSubjectiveSubmit() {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId, true)
     handleNumericalSubmit(question.questionId, subjectiveAnswer, question.correctOption ?? "")
   }
 
-  // -----------------------------------------
-  // Difficulty rating
-  // -----------------------------------------
+  /* ------------------------------
+     Difficulty rating
+     ------------------------------ */
   async function handleDifficultyChange(newRating: number) {
     if (!question.questionId) return
     setLocalDifficultyRating(newRating)
@@ -387,6 +410,7 @@ export default function Question({
       toast({
         title: "Difficulty Updated",
         description: `Set question #${displayNumber} difficulty to ${newDifficulty}.`,
+        variant: "success",
       })
     } catch (err) {
       console.error(err)
@@ -398,9 +422,9 @@ export default function Question({
     }
   }
 
-  // -----------------------------------------
-  // Render
-  // -----------------------------------------
+  /* ------------------------------
+     Render
+     ------------------------------ */
   return (
     <TooltipProvider>
       <div {...handlers} className="relative pb-20" id={`question-${question.questionId}`}>
@@ -446,7 +470,7 @@ export default function Question({
                   </div>
                 )}
 
-                {/* Custom tags */}
+                {/* Custom Tags */}
                 {localCustomTags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="px-2 py-1">
                     {tag}
@@ -541,7 +565,7 @@ export default function Question({
               )}
             </div>
 
-            {/* ---------- MCQ ---------- */}
+            {/* MCQ */}
             {(question.type === "Multiple Choice" || question.type?.toLowerCase() === "mcq") &&
               question.options &&
               question.options.length > 0 && (
@@ -645,7 +669,7 @@ export default function Question({
                 </div>
               )}
 
-            {/* ---------- Numerical ---------- */}
+            {/* Numerical */}
             {(question.type === "Numerical" ||
               question.type?.toLowerCase() === "numerical" ||
               question.type === "integer") && (
@@ -716,7 +740,7 @@ export default function Question({
               </div>
             )}
 
-            {/* ---------- MCQM (multi-correct) ---------- */}
+            {/* MCQM */}
             {(question.type === "Mcqm" || question.type?.toLowerCase() === "mcqm") &&
               question.options &&
               question.options.length > 0 && (
@@ -817,7 +841,7 @@ export default function Question({
                 </div>
               )}
 
-            {/* ---------- T/f ---------- */}
+            {/* T/f */}
             {(question.type === "T/f" ||
               question.type?.toLowerCase() === "t/f" ||
               question.type?.toLowerCase() === "true/false") && (
@@ -857,7 +881,7 @@ export default function Question({
               </div>
             )}
 
-            {/* ---------- Fill Blanks ---------- */}
+            {/* Fill Blanks */}
             {question.type?.toLowerCase() === "fill blanks" && (
               <div className="mb-4">
                 <Input
@@ -909,7 +933,7 @@ export default function Question({
               </div>
             )}
 
-            {/* ---------- Subjective ---------- */}
+            {/* Subjective */}
             {question.type?.toLowerCase() === "subjective" && (
               <div className="mb-4">
                 <div className="mb-2">
@@ -1115,7 +1139,6 @@ export default function Question({
                           </div>
                         ) : (
                           <div className="latex-font">
-                            {/* If question.explanation is JSON or text */}
                             <MathRenderer text={String(question.explanation || "")} />
                           </div>
                         )

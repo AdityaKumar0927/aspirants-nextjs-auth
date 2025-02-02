@@ -34,7 +34,7 @@ import Popover from "@/components/shared/popover";
 import Question from "@/components/shared/Question";
 
 /* ------------------------------------------------------------------
-   Enums & Types
+   1) Enums & Types
    ------------------------------------------------------------------ */
 enum ViewMode {
   DESKTOP = "desktop",
@@ -57,12 +57,12 @@ interface QuestionType {
   completed?: boolean;
   options?: string[];
   correctOption?: string;
-  // CHANGED ↓ rename this from markscheme => explanation
-  explanation?: string;      // A short field from DB
+  // We keep `explanation` as the DB field for markschemes
+  explanation?: string;
   notes?: string;
   diagramUrl?: string;
   exam?: string;
-  customTags?: string[];
+  customTags?: string[];  // <--- We also filter by these
   difficultyRating?: number;
 }
 
@@ -73,7 +73,8 @@ type FilterKey =
   | "subtopics"
   | "difficulties"
   | "years"
-  | "types";
+  | "types"
+  | "customTags"; // <--- NEW filter key for custom tags
 
 type FiltersType = {
   [K in FilterKey]: string[];
@@ -93,6 +94,7 @@ interface FilterOptionsType {
   difficulties: string[];
   years: string[];
   types: string[];
+  customTags: string[]; // <--- We'll populate these from /api/filters if available
 }
 
 interface GlobalStats {
@@ -110,7 +112,6 @@ type StateType = {
   dropdowns: DropdownsType;
   feedback: Record<string, string | undefined>;
   numericalAnswers: Record<string, string | undefined>;
-  // We keep the local UI name "showMarkscheme" but the data field is `explanation`
   showMarkscheme: Record<string, boolean>;
   selectedOptions: Record<string, string | undefined>;
   loading: boolean;
@@ -122,6 +123,9 @@ type StateType = {
   globalStats: GlobalStats;
 };
 
+/* ------------------------------------------------------------------
+   2) Action
+   ------------------------------------------------------------------ */
 type ActionType =
   | { type: "SET_QUESTIONS"; payload: QuestionType[] }
   | { type: "SET_FILTERS"; payload: FiltersType }
@@ -141,7 +145,7 @@ type ActionType =
   | { type: "SET_GLOBAL_STATS"; payload: GlobalStats };
 
 /* ------------------------------------------------------------------
-   Helper Functions
+   3) Helpers
    ------------------------------------------------------------------ */
 function fuzzyContains(haystack: string, needle: string): boolean {
   if (!needle) return true;
@@ -165,7 +169,7 @@ const transitionProps = {
 };
 
 /* ------------------------------------------------------------------
-   Initial State & Reducer
+   4) Initial State
    ------------------------------------------------------------------ */
 const initialState: StateType = {
   questions: [],
@@ -177,6 +181,7 @@ const initialState: StateType = {
     difficulties: [],
     years: [],
     types: [],
+    customTags: [], // <--- new
     status: "all",
   },
   filterOptions: {
@@ -187,6 +192,7 @@ const initialState: StateType = {
     difficulties: [],
     years: [],
     types: [],
+    customTags: [], // <--- new
   },
   searchQuery: "",
   dropdowns: {
@@ -197,6 +203,7 @@ const initialState: StateType = {
     difficulties: false,
     years: false,
     types: false,
+    customTags: false, // <--- new
   },
   feedback: {},
   numericalAnswers: {},
@@ -216,6 +223,9 @@ const initialState: StateType = {
   },
 };
 
+/* ------------------------------------------------------------------
+   5) Reducer
+   ------------------------------------------------------------------ */
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
     case "SET_QUESTIONS":
@@ -262,7 +272,7 @@ function reducer(state: StateType, action: ActionType): StateType {
 }
 
 /* ------------------------------------------------------------------
-   Pagination
+   6) Pagination
    ------------------------------------------------------------------ */
 function Pagination({
   currentPage,
@@ -302,17 +312,22 @@ function Pagination({
 }
 
 /* ------------------------------------------------------------------
-   Main Component
+   7) Main Component: QuestionBankContent
    ------------------------------------------------------------------ */
 export default function QuestionBankContent() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { toast } = useToast();
+
+  // For mobile single-question navigation
   const [mobileIndex, setMobileIndex] = useState(0);
+
+  // For mobile filters & navigator modals
   const [filtersOpenMobile, setFiltersOpenMobile] = useState(false);
   const [navigatorOpen, setNavigatorOpen] = useState(false);
-  const [progressOpen, setProgressOpen] = useState(false); // For mobile "View Progress"
+  // For mobile "View Progress"
+  const [progressOpen, setProgressOpen] = useState(false);
 
-  // Decide initial view mode
+  // Decide initial view mode (mobile vs. desktop)
   useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.MOBILE });
@@ -320,13 +335,14 @@ export default function QuestionBankContent() {
   }, []);
 
   /* ------------------------------
-     Data Fetch
+     (A) Fetch filter options
      ------------------------------ */
   const fetchFilterOptions = useCallback(async () => {
     try {
       const res = await fetch("/api/filters", { cache: "no-store" });
       if (!res.ok) throw new Error("Failed to fetch distinct filter fields.");
       const raw = await res.json();
+      // We now expect `raw.customTags` for custom tag suggestions if you have them
       const data: FilterOptionsType = {
         exams: raw.exams ?? [],
         subjects: raw.subjects ?? [],
@@ -335,21 +351,27 @@ export default function QuestionBankContent() {
         difficulties: raw.difficulties ?? [],
         years: raw.years ?? [],
         types: raw.types ?? [],
+        customTags: raw.customTags ?? [], // <--- new
       };
       dispatch({ type: "SET_FILTER_OPTIONS", payload: data });
     } catch (err) {
       console.error("Error fetching filter options:", err);
+      // *** Improved toast styling for error
       toast({
         title: "Error",
         description: "Could not load filter fields. Try again later.",
-        variant: "destructive",
+        variant: "destructive", // triggers a red-themed toast
       });
     }
   }, [toast]);
 
+  /* ------------------------------
+     (B) Fetch global stats
+     ------------------------------ */
   const fetchGlobalStats = useCallback(async () => {
     try {
-      const { exams, subjects, topics, subtopics, difficulties, years, types } = state.filters;
+      const { exams, subjects, topics, subtopics, difficulties, years, types, customTags } =
+        state.filters;
       const arrToComma = (arr: string[]) => arr.join(",");
       const params = new URLSearchParams();
       if (exams.length) params.set("exam", arrToComma(exams));
@@ -359,6 +381,11 @@ export default function QuestionBankContent() {
       if (difficulties.length) params.set("difficulty", arrToComma(difficulties));
       if (years.length) params.set("year", arrToComma(years));
       if (types.length) params.set("type", arrToComma(types));
+
+      // NEW: customTags
+      if (customTags.length) {
+        params.set("customTags", arrToComma(customTags));
+      }
 
       const statsUrl = `/api/questions/stats?${params.toString()}`;
       const resp = await fetch(statsUrl, { cache: "no-store" });
@@ -376,15 +403,22 @@ export default function QuestionBankContent() {
       dispatch({ type: "SET_GLOBAL_STATS", payload: stats });
     } catch (err) {
       console.error("Error fetching global stats:", err);
+      // We won't toast every stats error, but you could.
     }
   }, [state.filters]);
 
+  /* ------------------------------
+     (C) Fetch questions
+     ------------------------------ */
   const fetchQuestions = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true });
     try {
       const { currentPage, pageSize, filters } = state;
-      const { exams, subjects, topics, subtopics, difficulties, years, types } = filters;
+      const { exams, subjects, topics, subtopics, difficulties, years, types, customTags } =
+        filters;
+
       const arrToComma = (arr: string[]) => arr.join(",");
+
       const params = new URLSearchParams();
       if (exams.length) params.set("exam", arrToComma(exams));
       if (subjects.length) params.set("subject", arrToComma(subjects));
@@ -393,6 +427,12 @@ export default function QuestionBankContent() {
       if (difficulties.length) params.set("difficulty", arrToComma(difficulties));
       if (years.length) params.set("year", arrToComma(years));
       if (types.length) params.set("type", arrToComma(types));
+
+      // NEW: customTags
+      if (customTags.length) {
+        params.set("customTags", arrToComma(customTags));
+      }
+
       params.set("page", String(currentPage));
       params.set("pageSize", String(pageSize));
 
@@ -428,6 +468,7 @@ export default function QuestionBankContent() {
       dispatch({ type: "SET_TOTAL_COUNT", payload: totalCount });
     } catch (err) {
       console.error("Error fetching questions:", err);
+      // *** Improved toast styling for error
       toast({
         title: "Error",
         description: "Failed to load questions. Try again later.",
@@ -438,20 +479,20 @@ export default function QuestionBankContent() {
     }
   }, [state.filters, state.currentPage, state.pageSize, toast]);
 
-  // Initial load
+  // Initial load of filters + stats
   useEffect(() => {
     fetchFilterOptions();
     fetchGlobalStats();
   }, [fetchFilterOptions, fetchGlobalStats]);
 
-  // Refresh whenever filters/page changes
+  // Re-fetch questions & stats whenever filters/page changes
   useEffect(() => {
     fetchQuestions();
     fetchGlobalStats();
   }, [state.filters, state.currentPage, fetchQuestions, fetchGlobalStats]);
 
   /* ------------------------------
-     Action Handlers
+     8) Handlers (mark complete, etc.)
      ------------------------------ */
   const handleMarkComplete = useCallback(
     async (questionId: string, newVal?: boolean) => {
@@ -471,11 +512,16 @@ export default function QuestionBankContent() {
         });
       } catch (err) {
         console.error("Error marking complete:", err);
+        toast({
+          title: "Error",
+          description: "Could not mark question as complete.",
+          variant: "destructive",
+        });
       } finally {
         dispatch({ type: "SET_ACTION_LOADING", payload: false });
       }
     },
-    [state.questions]
+    [state.questions, toast]
   );
 
   const handleMarkForReview = useCallback(
@@ -496,11 +542,16 @@ export default function QuestionBankContent() {
         });
       } catch (err) {
         console.error("Error marking review:", err);
+        toast({
+          title: "Error",
+          description: "Could not update the review flag.",
+          variant: "destructive",
+        });
       } finally {
         dispatch({ type: "SET_ACTION_LOADING", payload: false });
       }
     },
-    [state.questions]
+    [state.questions, toast]
   );
 
   const handleOptionClick = useCallback(
@@ -552,11 +603,16 @@ export default function QuestionBankContent() {
         });
       } catch (err) {
         console.error("Error marking numeric answer:", err);
+        toast({
+          title: "Error",
+          description: "Could not submit numeric answer.",
+          variant: "destructive",
+        });
       } finally {
         dispatch({ type: "SET_ACTION_LOADING", payload: false });
       }
     },
-    [state.feedback, state.numericalAnswers, state.questions]
+    [state.feedback, state.numericalAnswers, state.questions, toast]
   );
 
   const handleResetQuestion = useCallback(
@@ -589,15 +645,20 @@ export default function QuestionBankContent() {
         });
       } catch (err) {
         console.error("Error resetting question:", err);
+        toast({
+          title: "Error",
+          description: "Could not reset the question.",
+          variant: "destructive",
+        });
       } finally {
         dispatch({ type: "SET_ACTION_LOADING", payload: false });
       }
     },
-    [state.feedback, state.selectedOptions, state.numericalAnswers, state.questions]
+    [state.feedback, state.selectedOptions, state.numericalAnswers, state.questions, toast]
   );
 
   /* ------------------------------
-     Filtered questions
+     9) Filtered local questions
      ------------------------------ */
   const filteredQuestions = useMemo(() => {
     const s = state.searchQuery.toLowerCase();
@@ -616,7 +677,7 @@ export default function QuestionBankContent() {
   }, [state.questions, state.filters.status, state.searchQuery]);
 
   /* ------------------------------
-     Progress Card
+     10) Progress Card
      ------------------------------ */
   function ProgressCard() {
     const total = state.globalStats.total;
@@ -725,7 +786,7 @@ export default function QuestionBankContent() {
   }
 
   /* ------------------------------
-     Loading Skeleton
+     11) Loading Skeleton
      ------------------------------ */
   if (state.loading || state.actionLoading) {
     return (
@@ -758,9 +819,9 @@ export default function QuestionBankContent() {
     );
   }
 
-  /* ------------------------------
-     MOBILE VIEW
-     ------------------------------ */
+  /* ------------------------------------------------------------------
+     12) MOBILE VIEW
+     ------------------------------------------------------------------ */
   if (state.viewMode === ViewMode.MOBILE) {
     if (!filteredQuestions.length) {
       return (
@@ -779,6 +840,7 @@ export default function QuestionBankContent() {
       );
     }
 
+    // Single question for mobile
     const currentQ = filteredQuestions[mobileIndex];
     const total = filteredQuestions.length;
     const displayNumber = mobileIndex + 1;
@@ -786,6 +848,7 @@ export default function QuestionBankContent() {
     return (
       <div className="min-h-screen p-4 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900">
         <div className="max-w-3xl mx-auto">
+          {/* Top bar */}
           <div className="flex justify-between items-center mb-6">
             <Button
               variant="outline"
@@ -796,7 +859,6 @@ export default function QuestionBankContent() {
               Desktop View
             </Button>
             <div className="flex items-center gap-2">
-              {/* Mobile Filters */}
               <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
                 <DialogTrigger asChild>
                   <Button
@@ -834,7 +896,7 @@ export default function QuestionBankContent() {
             </div>
           </div>
 
-          {/* Button to show progress in full screen modal */}
+          {/* Button for progress modal */}
           <Button
             variant="outline"
             size="sm"
@@ -844,7 +906,6 @@ export default function QuestionBankContent() {
             View Progress
           </Button>
 
-          {/* Mobile progress dialog */}
           <Dialog open={progressOpen} onOpenChange={setProgressOpen}>
             <DialogContent
               className={`
@@ -871,13 +932,12 @@ export default function QuestionBankContent() {
             </DialogContent>
           </Dialog>
 
+          {/* Single question in mobile */}
           <Question
             question={currentQ}
             feedback={state.feedback[currentQ.questionId]}
             selectedOption={state.selectedOptions[currentQ.questionId]}
             numericalAnswer={state.numericalAnswers[currentQ.questionId]}
-            // The local UI calls it "Markscheme", 
-            // but the data field is question.explanation
             showMarkscheme={state.showMarkscheme[currentQ.questionId] || false}
             handleOptionClick={handleOptionClick}
             handleNumericalSubmit={handleNumericalSubmit}
@@ -906,6 +966,8 @@ export default function QuestionBankContent() {
             currentQuestionIndex={mobileIndex}
             handleQuestionChange={() => {}}
           />
+
+          {/* Next/Prev on mobile */}
           <div className="flex justify-between mt-6">
             <Button
               variant="outline"
@@ -929,9 +991,9 @@ export default function QuestionBankContent() {
     );
   }
 
-  /* ------------------------------
-     DESKTOP VIEW
-     ------------------------------ */
+  /* ------------------------------------------------------------------
+     13) DESKTOP VIEW
+     ------------------------------------------------------------------ */
   if (!filteredQuestions.length) {
     return (
       <div className="bg-white dark:bg-gray-900 w-full min-h-screen p-4 sm:p-8 text-gray-900 dark:text-gray-100">
@@ -952,6 +1014,7 @@ export default function QuestionBankContent() {
     <TooltipProvider>
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full text-gray-900 dark:text-gray-100">
+          {/* Switch to Mobile */}
           <div className="flex justify-end mb-4">
             <Button
               variant="outline"
@@ -1087,7 +1150,7 @@ export default function QuestionBankContent() {
             })}
           </div>
 
-          {/* Desktop Filter Popovers */}
+          {/* Desktop Filter Popovers, including new "customTags" */}
           <div className="hidden sm:flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
             {(
               [
@@ -1098,6 +1161,7 @@ export default function QuestionBankContent() {
                 "difficulties",
                 "years",
                 "types",
+                "customTags", // <--- new
               ] as FilterKey[]
             ).map((filterType) => {
               const filterValues = state.filterOptions[filterType] || [];
@@ -1214,7 +1278,7 @@ export default function QuestionBankContent() {
 }
 
 /* ------------------------------------------------------------------
-   Desktop Filter Search Sub-component
+   14) Desktop Filter Search Sub-component
    ------------------------------------------------------------------ */
 function DesktopFilterSearch({
   filterType,
@@ -1343,7 +1407,7 @@ function DesktopFilterSearch({
 }
 
 /* ------------------------------------------------------------------
-   Mobile Filters Dialog
+   15) Mobile Filters Dialog
    ------------------------------------------------------------------ */
 function FiltersDialogMobile({
   open,
@@ -1367,7 +1431,7 @@ function FiltersDialogMobile({
 }
 
 /* ------------------------------------------------------------------
-   Custom Filters Dialog (Mobile)
+   16) Actual Filters Dialog Content (Mobile)
    ------------------------------------------------------------------ */
 interface CustomFiltersDialogProps {
   open: boolean;
@@ -1385,6 +1449,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
     difficulties: "",
     years: "",
     types: "",
+    customTags: "", // new
   });
 
   const handleSearchChange = (category: FilterKey, value: string) => {
@@ -1492,7 +1557,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
               </div>
             </div>
 
-            {/* Each filter category */}
+            {/* Each filter category, including customTags */}
             <MobileFilterSection
               title="exams"
               items={filterAndSort(state.filterOptions.exams, "exams")}
@@ -1549,6 +1614,16 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
               selectedItems={state.filters.types}
               toggleItem={(item) => toggleItem("types", item)}
             />
+
+            {/* NEW: customTags */}
+            <MobileFilterSection
+              title="customTags"
+              items={filterAndSort(state.filterOptions.customTags, "customTags")}
+              searchValue={searches.customTags}
+              onSearchChange={(val) => handleSearchChange("customTags", val)}
+              selectedItems={state.filters.customTags}
+              toggleItem={(item) => toggleItem("customTags", item)}
+            />
           </div>
         </ScrollArea>
       </DialogContent>
@@ -1557,7 +1632,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
 }
 
 /* ------------------------------------------------------------------
-   Mobile Filter Section
+   17) Mobile Filter Section
    ------------------------------------------------------------------ */
 interface MobileFilterSectionProps {
   title: string;
@@ -1576,7 +1651,6 @@ function MobileFilterSection({
   selectedItems,
   toggleItem,
 }: MobileFilterSectionProps) {
-  // Same ring style as above for consistency
   function mobileItemStyle(selected: boolean) {
     return `
       inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium

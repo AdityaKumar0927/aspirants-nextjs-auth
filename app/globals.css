@@ -279,3 +279,9 @@ html {
   background-color: #9ca3af; /* thumb color */
   border-radius: 5px;
 }
+
+.toast--success {
+  border-left: 4px solid #15803d; /* dark green */
+  background-color: #ecfdf5;      /* light green */
+  color: #166534;                /* medium green text */
+}
