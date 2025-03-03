@@ -570,7 +570,7 @@ export default function OptimizedNoteApp({ questionId }: { questionId?: string }
                     {/* STYLUS (placeholder or your canvas approach) */}
                     <TabsContent value="STYLUS">
                       <p className="text-sm text-muted-foreground">
-                        (Your stylus or Tldraw code could go here)
+                        
                       </p>
                     </TabsContent>
 
