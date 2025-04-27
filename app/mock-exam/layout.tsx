@@ -79,7 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className={cx(sfPro.variable, inter.variable, "bg-white dark:bg-gray-950")}>
+      <body className={cx(sfPro.variable, inter.variable, "bg-white")}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <LoadingProvider>
             <UserPerformanceProvider userId={userId}>

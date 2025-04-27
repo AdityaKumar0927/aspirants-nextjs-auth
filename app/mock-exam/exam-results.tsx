@@ -203,7 +203,7 @@ function QuestionReviewBlock({
   correctAnswer?: string
 }) {
   return (
-    <div className="border rounded p-4 mt-3 bg-white dark:bg-gray-900">
+    <div className="border rounded p-4 mt-3 bg-white">
       {/* Title + meta tags */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-3">
         <h4 className="font-medium text-lg">
@@ -230,19 +230,19 @@ function QuestionReviewBlock({
         question.type?.toLowerCase().includes("int") ? (
         // Numeric or integer type => just show "Your Answer" and "Correct"
         <div className="mt-4">
-          <p className="text-sm text-gray-700 dark:text-gray-300">
+          <p className="text-sm text-gray-700">
             <strong>Your Numeric Answer:</strong>{" "}
             {userAnswer ?? "Not answered"}
           </p>
           {correctAnswer && (
-            <p className="text-sm text-gray-700 dark:text-gray-300">
+            <p className="text-sm text-gray-700">
               <strong>Correct Answer:</strong> {correctAnswer}
             </p>
           )}
         </div>
       ) : (
         // For any other type, just show "Your Answer" & "Correct"
-        <div className="mt-4 text-sm text-gray-700 dark:text-gray-300">
+        <div className="mt-4 text-sm text-gray-700">
           <p>
             <strong>Your Answer:</strong> {userAnswer ?? "Not answered"}
           </p>
@@ -505,9 +505,9 @@ export default function AdvancedExamResults({
             {/* Strengths & Weaknesses (example) */}
             <div className="grid gap-6 md:grid-cols-2">
               {/* Strengths */}
-              <Card className="bg-gradient-to-br from-green-100 to-green-50 dark:from-green-900/20 dark:to-green-800/20">
+              <Card className="bg-gradient-to-br from-green-100 to-green-50">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-green-800 dark:text-green-100">
+                  <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-green-800">
                     <Award className="w-6 h-6 mr-2" />
                     Top Strengths
                   </CardTitle>
@@ -516,7 +516,7 @@ export default function AdvancedExamResults({
                   <ul className="space-y-4">
                     {examResults.topStrengths.map(([topic, performance], idx) => (
                       <li key={topic} className="flex items-center">
-                        <span className="w-8 h-8 rounded-full bg-green-200 dark:bg-green-800 flex items-center justify-center mr-3 text-green-800 dark:text-green-200 font-bold">
+                        <span className="w-8 h-8 rounded-full bg-green-200 flex items-center justify-center mr-3 text-green-800 font-bold">
                           {idx + 1}
                         </span>
                         <div>
@@ -532,9 +532,9 @@ export default function AdvancedExamResults({
               </Card>
 
               {/* Weaknesses */}
-              <Card className="bg-gradient-to-br from-yellow-100 to-yellow-50 dark:from-yellow-900/20 dark:to-yellow-800/20">
+              <Card className="bg-gradient-to-br from-yellow-100 to-yellow-50">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-yellow-800 dark:text-yellow-100">
+                  <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-yellow-800">
                     <TrendingUp className="w-6 h-6 mr-2" />
                     Areas for Improvement
                   </CardTitle>
@@ -543,7 +543,7 @@ export default function AdvancedExamResults({
                   <ul className="space-y-4">
                     {examResults.topWeaknesses.map(([topic, performance], idx) => (
                       <li key={topic} className="flex items-center">
-                        <span className="w-8 h-8 rounded-full bg-yellow-200 dark:bg-yellow-800 flex items-center justify-center mr-3 text-yellow-800 dark:text-yellow-200 font-bold">
+                        <span className="w-8 h-8 rounded-full bg-yellow-200 flex items-center justify-center mr-3 text-yellow-800 font-bold">
                           {idx + 1}
                         </span>
                         <div>
@@ -563,9 +563,9 @@ export default function AdvancedExamResults({
           {/* 2) PERFORMANCE TAB */}
           <TabsContent value="performance" className="space-y-8">
             <TopicPerformance />
-            <Card className="bg-gradient-to-br from-red-100 to-red-50 dark:from-red-900/20 dark:to-red-800/20">
+            <Card className="bg-gradient-to-br from-red-100 to-red-50">
               <CardHeader>
-                <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-red-800 dark:text-red-100">
+                <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-red-800">
                   <AlertCircle className="w-6 h-6 mr-2" />
                   Topics with Most Incorrect Answers
                 </CardTitle>

@@ -311,9 +311,7 @@ export default function Exam({
         </div>
       </header>
 
-      {/* MAIN content */}
       <main className="flex-1 grid grid-cols-1 md:grid-cols-[1fr,auto] md:gap-6">
-        {/* LEFT: question content */}
         <section
           className="
             p-4 sm:p-6 lg:p-8 
@@ -323,15 +321,12 @@ export default function Exam({
             [&::-webkit-scrollbar-track]:bg-gray-100
             [&::-webkit-scrollbar-thumb]:rounded-full
             [&::-webkit-scrollbar-thumb]:bg-gray-300
-            dark:[&::-webkit-scrollbar-track]:bg-neutral-700
-            dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500
           "
         >
-          {/* QUESTION BLOCK, styled similarly to `Question.tsx` */}
           <div
             className={`
               max-w-4xl mx-auto w-full mb-6 p-6 rounded-md 
-              bg-white dark:bg-gray-800
+              bg-white
               ${getQuestionBorderClass(questionStatuses[currentQuestion])}
             `}
           >
