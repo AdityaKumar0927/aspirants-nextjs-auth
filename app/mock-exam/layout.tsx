@@ -11,7 +11,6 @@ import { TooltipProvider } from "@radix-ui/react-tooltip"
 import { Toaster } from "@/components/ui/toaster"
 import { LoadingProvider } from "@/components/layout/LoadingContext"
 import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext"
-import { ThemeProvider } from "../components/theme-provider"
 
 config.autoAddCss = false
 
@@ -80,7 +79,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={cx(sfPro.variable, inter.variable, "bg-white")}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <LoadingProvider>
             <UserPerformanceProvider userId={userId}>
               <TooltipProvider>
@@ -94,7 +92,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Toaster />
             </UserPerformanceProvider>
           </LoadingProvider>
-        </ThemeProvider>
       </body>
     </html>
   )
