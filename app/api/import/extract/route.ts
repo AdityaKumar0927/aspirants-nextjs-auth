@@ -6,6 +6,7 @@ import { Redis } from "@upstash/redis";
 import prisma from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
 import { QUESTION_TYPES } from "@/lib/validations/question";
+import { resolveProviders, type ResolvedProvider } from "@/lib/ai";
 
 export const runtime = "nodejs";
 export const maxDuration = 120;
@@ -203,12 +204,107 @@ const ratelimit =
       })
     : null;
 
+/** Strip a leading/trailing ```json … ``` fence some models wrap around their
+ *  JSON in json_object mode, so JSON.parse doesn't choke on it. */
+function stripJsonFences(s: string): string {
+  const t = s.trim();
+  if (!t.startsWith("```")) return t;
+  return t
+    .replace(/^```(?:json)?\s*/i, "")
+    .replace(/\s*```$/, "")
+    .trim();
+}
+
+/**
+ * Run one extraction attempt against a single provider. Throws on transport
+ * error, truncated/empty response, or output that fails Zod validation — so the
+ * caller can fall back to the next provider in the chain.
+ */
+async function runExtraction(
+  provider: ResolvedProvider,
+  userContent: OpenAI.Chat.Completions.ChatCompletionContentPart[]
+): Promise<{
+  questions: ExtractedQuestion[];
+  pageNotes: string | null;
+  tokensUsed: number;
+}> {
+  // Gemini and Groq are reached through their OpenAI-compatibility endpoints,
+  // so the same client works for every provider — only baseURL/key/model vary.
+  const client = new OpenAI({ apiKey: provider.apiKey, baseURL: provider.baseURL });
+
+  const useStrictSchema = provider.jsonMode === "json_schema";
+
+  // OpenAI accepts a strict json_schema. Gemini/Groq's OpenAI-compat layer does
+  // NOT (it can't model nullable type-arrays / additionalProperties and 400s),
+  // so they get json_object mode with the schema embedded in the prompt. Either
+  // way the output is Zod-validated below.
+  const systemContent = useStrictSchema
+    ? SYSTEM_PROMPT
+    : `${SYSTEM_PROMPT}\n\nReturn ONLY a single JSON object — no markdown code fences, no commentary — conforming EXACTLY to this JSON Schema:\n${JSON.stringify(
+        EXTRACTION_JSON_SCHEMA
+      )}`;
+
+  const responseFormat: OpenAI.Chat.Completions.ChatCompletionCreateParamsNonStreaming["response_format"] =
+    useStrictSchema
+      ? // Typed locally (so the wrapper keys stay checked) then cast through
+        // unknown, since this openai SDK version's types predate json_schema
+        // response_format (the OpenAI API accepts it).
+        ({
+          type: "json_schema",
+          json_schema: {
+            name: "extracted_questions",
+            strict: true,
+            schema: EXTRACTION_JSON_SCHEMA,
+          },
+        } satisfies JsonSchemaResponseFormat as unknown as OpenAI.Chat.Completions.ChatCompletionCreateParamsNonStreaming["response_format"])
+      : { type: "json_object" };
+
+  const completion = await client.chat.completions.create({
+    model: provider.model,
+    temperature: 0,
+    max_tokens: provider.maxOutputTokens,
+    messages: [
+      { role: "system", content: systemContent },
+      { role: "user", content: userContent },
+    ],
+    response_format: responseFormat,
+  });
+
+  const choice = completion.choices[0];
+  if (choice?.finish_reason === "length") {
+    // Hit the output-token ceiling (Gemini 2.5 thinking tokens count here too),
+    // so the JSON is truncated. Fail loudly instead of a cryptic JSON.parse
+    // SyntaxError — this triggers the provider fallback and gives a clear log.
+    throw new Error(
+      `Output truncated at the token limit (${provider.provider}:${provider.model}, max_tokens=${provider.maxOutputTokens}); page batch too dense`
+    );
+  }
+
+  const raw = choice?.message?.content;
+  if (!raw) throw new Error("Model returned an empty response");
+
+  const output = modelOutputSchema.safeParse(JSON.parse(stripJsonFences(raw)));
+  if (!output.success) {
+    throw new Error(
+      "Model returned malformed data: " + JSON.stringify(output.error.flatten())
+    );
+  }
+
+  return {
+    questions: output.data.questions,
+    pageNotes: output.data.pageNotes ?? null,
+    tokensUsed: completion.usage?.total_tokens ?? 0,
+  };
+}
+
 /**
  * POST /api/import/extract  (admin only)
  *
  * Hybrid extraction: takes up to 4 PDF pages (image + text layer + figure
  * descriptors) and returns structured questions (Markdown + LaTeX, typed,
- * with figure associations) from a vision LLM.
+ * with figure associations) from a vision LLM. Runs on the first configured
+ * provider (Gemini free tier by default), falling back through the chain to
+ * OpenAI if a provider errors or returns malformed data.
  */
 export async function POST(request: Request) {
   const { session, response } = await requireAdmin();
@@ -221,12 +317,19 @@ export async function POST(request: Request) {
     }
   }
 
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) {
-    return NextResponse.json(
-      { error: "OPENAI_API_KEY is not configured on the server" },
-      { status: 503 }
-    );
+  // Vision-capable providers, in fallback order (Gemini first by default,
+  // OpenAI last). Groq is excluded automatically — it has no vision model here.
+  const providers = resolveProviders("extraction");
+  if (providers.length === 0) {
+    // Distinguish "no key anywhere" from "AI_PROVIDER is pinned to a provider
+    // that can't do vision" (groq) — otherwise the operator is told to set keys
+    // they may already have.
+    const pin = (process.env.AI_PROVIDER || "auto").trim().toLowerCase();
+    const error =
+      pin === "groq"
+        ? "AI_PROVIDER is set to 'groq', which has no vision model for PDF extraction. Set AI_PROVIDER to auto/gemini/openai, or provide GEMINI_API_KEY/OPENAI_API_KEY."
+        : "No AI provider is configured on the server (set GEMINI_API_KEY or OPENAI_API_KEY).";
+    return NextResponse.json({ error }, { status: 503 });
   }
 
   const parsed = requestSchema.safeParse(await request.json().catch(() => null));
@@ -272,69 +375,60 @@ export async function POST(request: Request) {
     });
   }
 
-  try {
-    const openai = new OpenAI({ apiKey });
-    const model = process.env.OPENAI_EXTRACTION_MODEL || "gpt-4o";
+  let result: Awaited<ReturnType<typeof runExtraction>> | null = null;
+  let usedProvider: ResolvedProvider | null = null;
+  let lastError: unknown = null;
 
-    const completion = await openai.chat.completions.create({
-      model,
-      temperature: 0,
-      max_tokens: 12_000,
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        { role: "user", content: userContent },
-      ],
-      // Typed locally (so the wrapper keys stay checked) then cast through
-      // unknown, since this openai SDK version's types predate json_schema
-      // response_format (the API accepts it).
-      response_format: {
-        type: "json_schema",
-        json_schema: {
-          name: "extracted_questions",
-          strict: true,
-          schema: EXTRACTION_JSON_SCHEMA,
-        },
-      } satisfies JsonSchemaResponseFormat as unknown as OpenAI.Chat.Completions.ChatCompletionCreateParamsNonStreaming["response_format"],
-    });
-
-    const raw = completion.choices[0]?.message?.content;
-    if (!raw) throw new Error("Model returned an empty response");
-
-    const output = modelOutputSchema.safeParse(JSON.parse(raw));
-    if (!output.success) {
-      console.error("Extraction output failed validation:", output.error.flatten());
-      return NextResponse.json(
-        { error: "The model returned malformed data; please retry this batch" },
-        { status: 502 }
+  for (const provider of providers) {
+    try {
+      result = await runExtraction(provider, userContent);
+      usedProvider = provider;
+      break;
+    } catch (error) {
+      lastError = error;
+      const isLast = provider === providers[providers.length - 1];
+      console.error(
+        `Extraction failed on ${provider.provider} (${provider.model}); ` +
+          (isLast ? "no more providers to try" : "falling back to next provider") +
+          ":",
+        error
       );
     }
+  }
 
-    const tokensUsed = completion.usage?.total_tokens ?? 0;
-    await prisma.aiUsageLog
-      .create({
-        data: {
-          userId: session.user.id,
-          usedService: "GPT_COMPLETION",
-          pdfName: hints.fileName ?? null,
-          textInput: `import/extract pages ${pages
-            .map((p) => p.pageNumber)
-            .join(",")} (${model})`,
-          tokensUsed,
-        },
-      })
-      .catch((e) => console.error("Failed to write AiUsageLog:", e));
-
-    return NextResponse.json({
-      questions: output.data.questions,
-      pageNotes: output.data.pageNotes ?? null,
-      tokensUsed,
-    });
-  } catch (error) {
-    console.error("Error in POST /api/import/extract:", error);
-    const message =
-      error instanceof OpenAI.APIError
-        ? `OpenAI error (${error.status}): ${error.message}`
-        : "Failed to extract questions from the provided pages";
+  if (!result || !usedProvider) {
+    let message = "Failed to extract questions from the provided pages";
+    if (lastError instanceof OpenAI.APIError) {
+      // Connection/timeout errors extend APIError but carry status=undefined —
+      // don't interpolate "(undefined)" into the client-facing message.
+      message = lastError.status
+        ? `AI provider error (${lastError.status}): ${lastError.message}`
+        : `AI provider error: ${lastError.message}`;
+    }
     return NextResponse.json({ error: message }, { status: 502 });
   }
+
+  await prisma.aiUsageLog
+    .create({
+      data: {
+        userId: session.user.id,
+        // Coarse bucket — the AiService enum predates multi-provider support and
+        // changing it needs a DB migration. The actual provider:model is in
+        // textInput below.
+        usedService: "GPT_COMPLETION",
+        pdfName: hints.fileName ?? null,
+        textInput: `import/extract pages ${pages
+          .map((p) => p.pageNumber)
+          .join(",")} (${usedProvider.provider}:${usedProvider.model})`,
+        tokensUsed: result.tokensUsed,
+      },
+    })
+    .catch((e) => console.error("Failed to write AiUsageLog:", e));
+
+  return NextResponse.json({
+    questions: result.questions,
+    pageNotes: result.pageNotes,
+    tokensUsed: result.tokensUsed,
+    provider: usedProvider.provider,
+  });
 }

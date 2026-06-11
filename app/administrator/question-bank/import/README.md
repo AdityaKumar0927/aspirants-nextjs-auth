@@ -39,6 +39,12 @@ into `public/`. **Re-copy it whenever pdfjs-dist is upgraded** — bundling it v
 
 ## Env
 
-- `OPENAI_API_KEY` (required), `OPENAI_EXTRACTION_MODEL` (default `gpt-4o`).
+- AI provider is resolved by `lib/ai.ts` (see `.env.example`). Set **one** of:
+  - `GEMINI_API_KEY` (+ optional `GEMINI_EXTRACTION_MODEL`, default
+    `gemini-2.5-flash`) — the default/free path, or
+  - `OPENAI_API_KEY` (+ optional `OPENAI_EXTRACTION_MODEL`, default `gpt-4o`) —
+    used as the automatic fallback.
+  - `AI_PROVIDER` (`auto`|`gemini`|`groq`|`openai`, default `auto`) pins the
+    order. Groq is **not** used for extraction (no vision model).
 - `UPSTASH_REDIS_REST_URL` / `_TOKEN` enable per-admin rate limiting (extract +
   diagram); absent in dev → limiting is skipped.

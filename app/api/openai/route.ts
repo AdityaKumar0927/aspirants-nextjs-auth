@@ -4,13 +4,9 @@ import { OpenAIStream, StreamingTextResponse } from 'ai'
 import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
 import { getToken } from 'next-auth/jwt'
+import { resolveProvider } from '@/lib/ai'
 
 export const runtime = 'edge'
-
-const config = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY
-})
-const openai = new OpenAIApi(config)
 
 const redis = new Redis({
   url: process.env.UPSTASH_REDIS_REST_URL,
@@ -94,9 +90,19 @@ export async function POST(req: NextRequest) {
   try {
     const { question, context, sessionId } = await req.json()
 
-    if (!process.env.OPENAI_API_KEY) {
-      throw new Error('OPENAI_API_KEY is not set')
+    // Resolve the hint provider (Gemini free tier first by default, then Groq,
+    // then OpenAI). All are reached over the OpenAI-compatible wire format, so
+    // the same openai-edge client streams from whichever is configured.
+    const provider = resolveProvider('hint')
+    if (!provider) {
+      return NextResponse.json(
+        { error: 'No AI provider is configured on the server' },
+        { status: 503 }
+      )
     }
+    const openai = new OpenAIApi(
+      new Configuration({ apiKey: provider.apiKey, basePath: provider.baseURL })
+    )
 
     if (!question || !context || !sessionId) {
       return NextResponse.json(
@@ -123,9 +129,9 @@ export async function POST(req: NextRequest) {
     }
 
     const response = await openai.createChatCompletion({
-      model: process.env.OPENAI_HINT_MODEL || 'gpt-4o-mini',
+      model: provider.model,
       messages: chatHistory[historyKey],
-      max_tokens: 1500,
+      max_tokens: provider.maxOutputTokens,
       temperature: 0.7,
       stream: true,
     })
@@ -146,8 +152,10 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     const typedError = error as Error
     console.error('Server Error:', typedError)
+    // Keep the detailed error server-side only; don't echo upstream provider
+    // internals (quota/region/model errors) to the client.
     return NextResponse.json(
-      { error: 'Internal Server Error', details: typedError.message },
+      { error: 'Internal Server Error', details: 'The AI service is temporarily unavailable.' },
       { status: 500 }
     )
   }
