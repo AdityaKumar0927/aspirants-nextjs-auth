@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Configuration, OpenAIApi, ChatCompletionRequestMessage } from 'openai-edge'
-import { OpenAIStream, StreamingTextResponse } from 'ai'
+import { streamText, type ModelMessage } from 'ai'
+import { createOpenAICompatible } from '@ai-sdk/openai-compatible'
 import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
 import { getToken } from 'next-auth/jwt'
@@ -18,9 +18,9 @@ const ratelimit = new Ratelimit({
   limiter: Ratelimit.slidingWindow(5, '1 m'),
 })
 
-const chatHistory: { [sessionId: string]: ChatCompletionRequestMessage[] } = {}
+const chatHistory: { [sessionId: string]: ModelMessage[] } = {}
 
-const systemPrompt: ChatCompletionRequestMessage = {
+const systemPrompt: ModelMessage = {
   role: 'system',
   content: `
 You are an expert in solving STEM (Science, Technology, Engineering, Mathematics) problems, trained to guide students towards finding accurate, formal, and detailed solutions. Your primary task is to receive STEM-related questions and respond with helpful hints and guidance, enabling students to work their way to the answers.
@@ -100,9 +100,13 @@ export async function POST(req: NextRequest) {
         { status: 503 }
       )
     }
-    const openai = new OpenAIApi(
-      new Configuration({ apiKey: provider.apiKey, basePath: provider.baseURL })
-    )
+    // @ai-sdk/openai-compatible reaches Gemini/Groq/OpenAI over one wire format;
+    // it has no built-in default base URL, so fall back to OpenAI's.
+    const model = createOpenAICompatible({
+      name: provider.provider,
+      apiKey: provider.apiKey,
+      baseURL: provider.baseURL ?? 'https://api.openai.com/v1',
+    }).chatModel(provider.model)
 
     if (!question || !context || !sessionId) {
       return NextResponse.json(
@@ -117,38 +121,36 @@ export async function POST(req: NextRequest) {
     if (!chatHistory[historyKey]) {
       chatHistory[historyKey] = [
         systemPrompt,
-        { role: 'system', content: `Context: ${JSON.stringify(context)}` } as ChatCompletionRequestMessage
+        { role: 'system', content: `Context: ${JSON.stringify(context)}` }
       ]
     }
 
-    chatHistory[historyKey].push({ role: 'user', content: question } as ChatCompletionRequestMessage)
+    chatHistory[historyKey].push({ role: 'user', content: question })
 
     // Keep the 2 system messages + the 20 most recent turns (memory + token cap).
     if (chatHistory[historyKey].length > 22) {
       chatHistory[historyKey].splice(2, chatHistory[historyKey].length - 22)
     }
 
-    const response = await openai.createChatCompletion({
-      model: provider.model,
-      messages: chatHistory[historyKey],
-      max_tokens: provider.maxOutputTokens,
-      temperature: 0.7,
-      stream: true,
-    })
-
     // Reserve the assistant slot now, then fill it with the REAL reply once the
     // stream completes (was storing a "[Streaming Response]" placeholder, which
     // broke multi-turn context on the next request).
-    const assistantMsg = { role: 'assistant', content: '' } as ChatCompletionRequestMessage
+    const assistantMsg: ModelMessage = { role: 'assistant', content: '' }
     chatHistory[historyKey].push(assistantMsg)
 
-    const stream = OpenAIStream(response, {
-      onCompletion: (completion: string) => {
-        assistantMsg.content = completion
+    const result = streamText({
+      model,
+      messages: chatHistory[historyKey],
+      temperature: 0.7,
+      maxOutputTokens: provider.maxOutputTokens,
+      onFinish: ({ text }) => {
+        assistantMsg.content = text
       },
     })
 
-    return new StreamingTextResponse(stream)
+    // Raw text token stream (not the AI-SDK data protocol) so the chat client's
+    // TextDecoder reader renders it directly.
+    return result.toTextStreamResponse()
   } catch (error) {
     const typedError = error as Error
     console.error('Server Error:', typedError)

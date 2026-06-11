@@ -1,11 +1,24 @@
 import type { Config } from 'tailwindcss'
-import defaultTheme from 'tailwindcss/defaultTheme'
-import colors from 'tailwindcss/colors'
-import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 import plugin from 'tailwindcss/plugin'
 
+// `tailwindcss/lib/util/flattenColorPalette` was removed in Tailwind v4; inline it.
+function flattenColorPalette(colors: Record<string, any>): Record<string, string> {
+  return Object.assign(
+    {},
+    ...Object.entries(colors ?? {}).flatMap(([color, values]) =>
+      typeof values === 'object' && values !== null
+        ? Object.entries(flattenColorPalette(values as Record<string, any>)).map(
+            ([number, hex]) => ({
+              [color + (number === 'DEFAULT' ? '' : `-${number}`)]: hex,
+            })
+          )
+        : [{ [color]: values as string }]
+    )
+  )
+}
+
 const config: Config = {
-  darkMode: ['class'],
+  darkMode: 'class',
   content: [
     './app/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',

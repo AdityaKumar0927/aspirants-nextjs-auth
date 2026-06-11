@@ -18,11 +18,11 @@ const createSchema = z.object({
  */
 export async function GET(
   request: Request,
-  { params }: { params: { questionId: string } }
+  { params }: { params: Promise<{ questionId: string }> }
 ) {
   try {
     const solutions = await prisma.solution.findMany({
-      where: { questionId: params.questionId, parentId: null },
+      where: { questionId: (await params).questionId, parentId: null },
       orderBy: { createdAt: "desc" },
       take: MAX_TOP_LEVEL,
       include: {
@@ -61,7 +61,7 @@ export async function GET(
  */
 export async function POST(
   request: Request,
-  { params }: { params: { questionId: string } }
+  { params }: { params: Promise<{ questionId: string }> }
 ) {
   const { session, response } = await requireSession();
   if (response) return response;
@@ -89,7 +89,7 @@ export async function POST(
         where: { id: parsed.data.parentId },
         select: { questionId: true },
       });
-      if (!parent || parent.questionId !== params.questionId) {
+      if (!parent || parent.questionId !== (await params).questionId) {
         return NextResponse.json(
           { error: "Parent solution not found for this question" },
           { status: 400 }
@@ -99,7 +99,7 @@ export async function POST(
 
     const newSolution = await prisma.solution.create({
       data: {
-        questionId: params.questionId,
+        questionId: (await params).questionId,
         content,
         parentId: parsed.data.parentId || null,
         authorId: session.user.id,
@@ -124,7 +124,7 @@ export async function POST(
  */
 export async function PATCH(
   request: Request,
-  { params }: { params: { questionId: string } }
+  { params }: { params: Promise<{ questionId: string }> }
 ) {
   const { session, response } = await requireSession();
   if (response) return response;
@@ -143,7 +143,7 @@ export async function PATCH(
       where: { id: solutionId },
       select: { id: true, questionId: true, authorId: true, content: true },
     });
-    if (!existing || existing.questionId !== params.questionId) {
+    if (!existing || existing.questionId !== (await params).questionId) {
       return NextResponse.json({ error: "Solution not found" }, { status: 404 });
     }
 
@@ -203,7 +203,7 @@ export async function PATCH(
  */
 export async function DELETE(
   request: Request,
-  { params }: { params: { questionId: string } }
+  { params }: { params: Promise<{ questionId: string }> }
 ) {
   const { session, response } = await requireSession();
   if (response) return response;
@@ -222,7 +222,7 @@ export async function DELETE(
       where: { id: solutionId },
       select: { id: true, questionId: true, authorId: true },
     });
-    if (!existing || existing.questionId !== params.questionId) {
+    if (!existing || existing.questionId !== (await params).questionId) {
       return NextResponse.json({ error: "Solution not found" }, { status: 404 });
     }
     if (existing.authorId !== session.user.id && !isAdmin(session)) {

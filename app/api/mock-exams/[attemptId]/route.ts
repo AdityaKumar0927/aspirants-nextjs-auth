@@ -6,12 +6,12 @@ import { requireSession } from "@/lib/auth"
  * GET /api/mock-exams/:attemptId
  * Returns the single attempt if it belongs to the logged in user
  */
-export async function GET(request: Request, { params }: { params: { attemptId: string } }) {
+export async function GET(request: Request, { params }: { params: Promise<{ attemptId: string }> }) {
   const { session, response } = await requireSession()
   if (response) return response
   try {
     const userId = session.user.id
-    const attemptId = params.attemptId
+    const attemptId = (await params).attemptId
 
     const attempt = await prisma.userMockExam.findUnique({
       where: { id: attemptId },
@@ -39,12 +39,12 @@ export async function GET(request: Request, { params }: { params: { attemptId: s
  *   "completed": true
  * }
  */
-export async function PATCH(request: Request, { params }: { params: { attemptId: string } }) {
+export async function PATCH(request: Request, { params }: { params: Promise<{ attemptId: string }> }) {
   const { session, response } = await requireSession()
   if (response) return response
   try {
     const userId = session.user.id
-    const attemptId = params.attemptId
+    const attemptId = (await params).attemptId
 
     const attempt = await prisma.userMockExam.findUnique({
       where: { id: attemptId },
@@ -77,12 +77,12 @@ export async function PATCH(request: Request, { params }: { params: { attemptId:
  * DELETE /api/mock-exams/:attemptId
  * Remove a single attempt
  */
-export async function DELETE(request: Request, { params }: { params: { attemptId: string } }) {
+export async function DELETE(request: Request, { params }: { params: Promise<{ attemptId: string }> }) {
   const { session, response } = await requireSession()
   if (response) return response
   try {
     const userId = session.user.id
-    const attemptId = params.attemptId
+    const attemptId = (await params).attemptId
 
     const attempt = await prisma.userMockExam.findUnique({
       where: { id: attemptId },

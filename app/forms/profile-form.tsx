@@ -63,7 +63,7 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
   const router = useRouter()
   const { toast } = useToast()
 
-  const form = useForm<ProfileFormValues>({
+  const form = useForm<z.input<typeof profileFormSchema>, any, z.output<typeof profileFormSchema>>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: initialData,
     mode: "onChange",

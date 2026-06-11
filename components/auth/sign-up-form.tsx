@@ -33,7 +33,7 @@ const profileFormSchema = z.object({
     .min(2, { message: "Username must be at least 2 characters." })
     .max(30, { message: "Username must not be longer than 30 characters." }),
   email: z
-    .string({ required_error: "Please enter your email." })
+    .string({ error: "Please enter your email." })
     .email(),
   bio: z.string().max(160).min(4),
 });
@@ -65,7 +65,11 @@ export default function SignUpForm() {
     },
   });
 
-  const questionBankForm = useForm<QuestionBankValues>({
+  const questionBankForm = useForm<
+    z.input<typeof questionBankSchema>,
+    any,
+    z.output<typeof questionBankSchema>
+  >({
     resolver: zodResolver(questionBankSchema),
     defaultValues: {
       subject: "",
@@ -203,7 +207,7 @@ export default function SignUpForm() {
           >
             {/* Subject Field */}
             <FormField
-              control={questionBankForm.control}
+              control={questionBankForm.control as any}
               name="subject"
               render={({ field }) => (
                 <FormItem>
@@ -229,7 +233,7 @@ export default function SignUpForm() {
             />
             {/* Difficulty Field */}
             <FormField
-              control={questionBankForm.control}
+              control={questionBankForm.control as any}
               name="difficulty"
               render={({ field }) => (
                 <FormItem>
@@ -255,7 +259,7 @@ export default function SignUpForm() {
             />
             {/* Questions Per Day Field */}
             <FormField
-              control={questionBankForm.control}
+              control={questionBankForm.control as any}
               name="questionsPerDay"
               render={({ field }) => (
                 <FormItem>

@@ -5,6 +5,9 @@ declare global {
   interface UserPerformance extends PrismaUserPerformance {}
 }
 
+// katex chemistry extension ships JS without type declarations.
+declare module "katex/contrib/mhchem";
+
 interface MathJax {
   typesetPromise?: () => Promise<void>;
   typeset?: () => void;

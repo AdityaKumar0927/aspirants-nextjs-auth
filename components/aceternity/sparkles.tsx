@@ -1,11 +1,21 @@
 "use client";
 import React from "react";
 import { useEffect, useState } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import type { Container, SingleOrMultiple } from "@tsparticles/engine";
+import Particles from "@tsparticles/react";
+import type { Container, Engine, SingleOrMultiple } from "@tsparticles/engine";
+import { tsParticles } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 import { cn } from "@/lib/utils";
 import { motion, useAnimation } from "framer-motion";
+
+// @tsparticles/react v4 no longer exports `initParticlesEngine`; replicate its
+// behavior by registering plugins against the singleton engine and initializing it.
+const initParticlesEngine = async (
+  cb: (engine: Engine) => Promise<void>
+): Promise<void> => {
+  await cb(tsParticles);
+  await tsParticles.init();
+};
 
 type ParticlesProps = {
   id?: string;
@@ -57,7 +67,7 @@ export const SparklesCore = (props: ParticlesProps) => {
           id={id || "tsparticles"}
           className={cn("h-full w-full")}
           particlesLoaded={particlesLoaded}
-          options={{
+          options={({
             background: {
               color: {
                 value: background || "#0d47a1",
@@ -425,7 +435,7 @@ export const SparklesCore = (props: ParticlesProps) => {
               },
             },
             detectRetina: true,
-          }}
+          }) as any}
         />
       )}
     </motion.div>

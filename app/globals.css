@@ -1,8 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+@import "tailwindcss";
 @import "katex/dist/katex.min.css";
+
+/* Tailwind v4 is CSS-first; bridge to the existing JS config (theme, plugins,
+   darkMode: 'class', content) instead of porting it all into @theme. */
+@config "../tailwind.config.ts";
 
 html {
   scroll-behavior: smooth;

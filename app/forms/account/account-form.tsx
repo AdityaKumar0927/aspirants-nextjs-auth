@@ -52,7 +52,7 @@ const accountFormSchema = z.object({
       message: "Name must not be longer than 30 characters.",
     }),
   language: z.string({
-    required_error: "Please select a language.",
+    error: "Please select a language.",
   }),
 });
 

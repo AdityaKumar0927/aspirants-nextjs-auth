@@ -392,7 +392,6 @@ export default function IssuesPageContent() {
                 mode="single"
                 selected={date}
                 onSelect={setDate}
-                initialFocus
               />
             </PopoverContent>
           </Popover>

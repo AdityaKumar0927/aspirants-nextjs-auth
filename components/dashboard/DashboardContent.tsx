@@ -373,8 +373,6 @@ export default function Dashboard() {
                   fill="var(--color-time)"
                   radius={2}
                   fillOpacity={0.2}
-                  activeIndex={6}
-                  activeBar={<Rectangle fillOpacity={0.8} />}
                 />
                 <XAxis
                   dataKey="date"
@@ -601,8 +599,6 @@ export default function Dashboard() {
                   fill="var(--color-accuracy)"
                   radius={2}
                   fillOpacity={0.2}
-                  activeIndex={6}
-                  activeBar={<Rectangle fillOpacity={0.8} />}
                 />
                 <XAxis
                   dataKey="date"

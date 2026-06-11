@@ -4,7 +4,7 @@
 "use client"
 
 import React, { useEffect, useState, useCallback } from "react"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, motion, type Transition } from "framer-motion"
 import { Play, Check, ChevronRight } from "lucide-react"
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
@@ -49,7 +49,7 @@ interface ExamSetupProps {
 
 const SHIFT_PLACEHOLDER = "select-shift"
 
-const transitionProps = {
+const transitionProps: Transition = {
   type:       "spring",
   stiffness:  500,
   damping:    30,

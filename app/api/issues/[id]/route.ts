@@ -22,14 +22,14 @@ const STAFF_ONLY_FIELDS = ["status", "priority", "area"] as const;
  */
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const { session, response } = await requireSession();
   if (response) return response;
 
   try {
     const issue = await prisma.issue.findUnique({
-      where: { id: params.id },
+      where: { id: (await params).id },
       include: {
         createdBy: { select: { id: true, name: true, image: true } },
         question: { select: { questionId: true, text: true } },
@@ -52,7 +52,7 @@ export async function GET(
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const { session, response } = await requireSession();
   if (response) return response;
@@ -67,7 +67,7 @@ export async function PATCH(
     }
 
     const issue = await prisma.issue.findUnique({
-      where: { id: params.id },
+      where: { id: (await params).id },
       select: { createdById: true },
     });
     if (!issue) {
@@ -91,7 +91,7 @@ export async function PATCH(
     }
 
     const updated = await prisma.issue.update({
-      where: { id: params.id },
+      where: { id: (await params).id },
       data: parsed.data,
     });
     return NextResponse.json(updated);
@@ -103,14 +103,14 @@ export async function PATCH(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const { session, response } = await requireSession();
   if (response) return response;
 
   try {
     const issue = await prisma.issue.findUnique({
-      where: { id: params.id },
+      where: { id: (await params).id },
       select: { createdById: true },
     });
     if (!issue) {
@@ -120,7 +120,7 @@ export async function DELETE(
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
-    await prisma.issue.delete({ where: { id: params.id } });
+    await prisma.issue.delete({ where: { id: (await params).id } });
     return NextResponse.json({ message: "Issue deleted successfully" });
   } catch (error) {
     console.error("Error deleting issue:", error);

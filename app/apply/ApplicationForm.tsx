@@ -34,7 +34,7 @@ import { Progress } from "@/components/ui/progress"
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
-  role: z.enum(["VOLUNTEER", "MODERATOR"], { required_error: "Please select a role." }),
+  role: z.enum(["VOLUNTEER", "MODERATOR"], { error: "Please select a role." }),
   experience: z.string().min(50, { message: "Experience must be at least 50 characters." }),
   motivation: z.string().min(50, { message: "Motivation must be at least 50 characters." }),
   honeypot: z.string().max(0, { message: "This field should be left empty." }),

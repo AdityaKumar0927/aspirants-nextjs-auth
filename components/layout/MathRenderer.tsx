@@ -2,7 +2,7 @@
 
 import React, { useMemo } from "react";
 import katex from "katex";
-import "katex/dist/contrib/mhchem";
+import "katex/contrib/mhchem";
 import { escapeHtml, sanitizeMathHtml } from "@/lib/sanitize";
 
 interface MathRendererProps {

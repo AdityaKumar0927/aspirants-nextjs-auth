@@ -79,7 +79,7 @@ export async function renderAndExtract(
       const canvasContext = canvas.getContext("2d");
       if (!canvasContext) throw new Error("Could not create canvas context");
 
-      await page.render({ canvasContext, viewport }).promise;
+      await page.render({ canvas, canvasContext, viewport }).promise;
 
       const [text, figures] = await Promise.all([
         reconstructText(page),
@@ -99,7 +99,8 @@ export async function renderAndExtract(
 
     return { pages, totalPagesInPdf: doc.numPages };
   } finally {
-    await doc.destroy();
+    // pdfjs v6 dropped destroy() from the PDFDocumentProxy type; call it if present.
+    await (doc as { destroy?: () => Promise<void> }).destroy?.();
   }
 }
 

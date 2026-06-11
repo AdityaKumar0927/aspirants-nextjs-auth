@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Transition } from "framer-motion";
 import {
   Check,
   ChevronDown,
@@ -310,7 +310,7 @@ function fuzzyContains(haystack: string, needle: string): boolean {
   return haystack.toLowerCase().includes(needle.toLowerCase());
 }
 
-const transitionProps = {
+const transitionProps: Transition = {
   type: "spring",
   stiffness: 500,
   damping: 30,

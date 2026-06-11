@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 export function FeatureCard1() {
-  const variant1 = {
+  const variant1: Variants = {
     initial: {
       scale: 0.87,
       transition: {
@@ -23,7 +23,7 @@ export function FeatureCard1() {
       },
     },
   };
-  const variant2 = {
+  const variant2: Variants = {
     initial: {
       y: -27,
       scale: 0.95,
@@ -45,7 +45,7 @@ export function FeatureCard1() {
       },
     },
   };
-  const variant3 = {
+  const variant3: Variants = {
     initial: {
       y: -25,
       opacity: 0,

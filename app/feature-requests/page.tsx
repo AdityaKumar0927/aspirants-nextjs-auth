@@ -142,7 +142,11 @@ export default function FeatureRequestPage() {
   const [sortBy, setSortBy] = useState<'votes' | 'date'>('votes');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<FeatureRequestFormData>({
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<
+    z.input<typeof featureRequestSchema>,
+    any,
+    z.output<typeof featureRequestSchema>
+  >({
     resolver: zodResolver(featureRequestSchema),
   });
 

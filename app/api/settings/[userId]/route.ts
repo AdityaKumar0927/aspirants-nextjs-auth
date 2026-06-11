@@ -22,15 +22,15 @@ const settingsSchema = z.object({
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
   const session = await getServerSession(authOptions)
-  if (!session || session.user.id !== params.userId) {
+  if (!session || session.user.id !== (await params).userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
   const settings = await prisma.userSettings.findUnique({
-    where: { userId: params.userId },
+    where: { userId: (await params).userId },
   })
   if (!settings) {
     return NextResponse.json({ error: "Settings not found" }, { status: 404 })
@@ -41,10 +41,10 @@ export async function GET(
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
   const session = await getServerSession(authOptions)
-  if (!session || session.user.id !== params.userId) {
+  if (!session || session.user.id !== (await params).userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
@@ -58,7 +58,7 @@ export async function POST(
   const { username, email, bio, urls, name, language } = parsed.data
 
   const settings = await prisma.userSettings.upsert({
-    where: { userId: params.userId },
+    where: { userId: (await params).userId },
     // Partial update: only the provided fields change.
     update: {
       username,
@@ -71,7 +71,7 @@ export async function POST(
     // All columns are required, so fall back to empty values on first create.
     create: {
       id: crypto.randomUUID(),
-      userId: params.userId,
+      userId: (await params).userId,
       username: username ?? "",
       email: email ?? "",
       bio: bio ?? "",

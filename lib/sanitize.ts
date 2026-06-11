@@ -10,7 +10,7 @@ import DOMPurify from "isomorphic-dompurify";
  * Allows the formatting the TipTap/rich editors produce; strips scripts,
  * event handlers, iframes, and javascript:/data: URLs.
  */
-const RICH_TEXT_CONFIG: DOMPurify.Config = {
+const RICH_TEXT_CONFIG = {
   ALLOWED_TAGS: [
     "p", "br", "span", "strong", "b", "em", "i", "u", "s", "del", "mark",
     "ul", "ol", "li", "blockquote", "code", "pre",
@@ -38,7 +38,7 @@ export function sanitizeRichText(dirty: string | null | undefined): string {
  * escaped text). Permits the inline SVG/MathML KaTeX emits while still
  * stripping scripts and event handlers.
  */
-const MATH_HTML_CONFIG: DOMPurify.Config = {
+const MATH_HTML_CONFIG = {
   USE_PROFILES: { html: true, svg: true, mathMl: true },
   ADD_TAGS: ["semantics", "annotation", "annotation-xml", "mrow", "mi", "mo", "mn", "msup", "msub"],
   FORBID_TAGS: ["script", "iframe", "object", "embed", "form", "style"],

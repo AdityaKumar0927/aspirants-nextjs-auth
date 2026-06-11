@@ -1,5 +1,5 @@
 "use client";
-import { motion, stagger, animate, useAnimate } from "framer-motion";
+import { motion, stagger, animate, useAnimate, type AnimationSequence } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { IconContainer } from "./icon-container";
 import { cn } from "@/lib/utils";
@@ -62,8 +62,7 @@ export const SkeletonThree = () => {
   ];
 
   useEffect(() => {
-    // @ts-ignore
-    animate(sequence, {
+    animate(sequence as AnimationSequence, {
       repeat: Infinity,
       repeatDelay: 1,
     });

@@ -3,7 +3,7 @@
 import React, { useReducer, useEffect, useCallback, useMemo, useState } from "react"
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, type Transition } from "framer-motion"
 import {
   Check,
   ChevronDown,
@@ -185,7 +185,7 @@ function transformFilterItem(value: string): string {
     .join(" ")
 }
 
-const transitionProps = {
+const transitionProps: Transition = {
   type: "spring",
   stiffness: 500,
   damping: 30,

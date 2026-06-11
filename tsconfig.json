@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "ignoreDeprecations": "6.0",
     "target": "ESNext",
     "lib": [
       "dom",
@@ -31,10 +32,10 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -52,7 +53,8 @@
     "app/api/custom-user-answers",
     "app/api/custom-questions",
     "app/CustomQuestionBank",
-    "prisma/seed.mts"
+    "prisma/seed.mts",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

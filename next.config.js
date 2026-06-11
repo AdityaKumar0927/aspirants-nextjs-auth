@@ -18,7 +18,6 @@ const securityHeaders = [
 
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   images: {
     // Hostnames only — full URLs here were invalid and silently ignored.
     remotePatterns: [

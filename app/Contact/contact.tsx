@@ -26,12 +26,12 @@ import { Button } from "./button";
 const formSchema = z.object({
   name: z
     .string({
-      required_error: "Please enter your name",
+      error: "Please enter your name",
     })
     .min(1, "Please enter your name"),
   email: z
     .string({
-      required_error: "Please enter email",
+      error: "Please enter email",
     })
     .email("Please enter a valid email")
     .min(1, "Please enter email"),
@@ -40,7 +40,7 @@ const formSchema = z.object({
     .optional(), // This makes the company field optional
   message: z
     .string({
-      required_error: "Please enter your message",
+      error: "Please enter your message",
     })
     .min(1, "Please enter your message"),
 });
