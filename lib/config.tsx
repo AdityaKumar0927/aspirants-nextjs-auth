@@ -1,4 +1,4 @@
-import Logos from "@/app/components/sections/logos";
+import Logos from "@/components/landing/sections/logos";
 import { Icons } from "@/components/layout/icons";
 import { FaTwitter } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa6";

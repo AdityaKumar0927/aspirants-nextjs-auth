@@ -40,7 +40,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { cn } from "@/lib/utils"
 import { format } from "date-fns"
 import { Search, HelpCircle, ChevronDown, Plus, RefreshCw, CalendarIcon, MoreHorizontal, Filter } from 'lucide-react'
-import FeedbackPopover from "@/components/shared/FeedbackPopover"
+import FeedbackPopover from "@/components/question-bank/FeedbackPopover"
 
 export type IssueArea = "CONTENT" | "UI" | "BUG" | "FEATURE" | "OTHER"
 export type IssueStatus = "OPEN" | "IN_PROGRESS" | "RESOLVED" | "CLOSED"

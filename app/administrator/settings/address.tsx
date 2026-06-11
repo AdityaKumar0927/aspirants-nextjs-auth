@@ -1,7 +1,7 @@
 'use client'
 
-import { Input } from '@/components/administrator-ui/input'
-import { Listbox, ListboxLabel, ListboxOption } from '@/components/administrator-ui/listbox'
+import { Input } from '@/components/admin/input'
+import { Listbox, ListboxLabel, ListboxOption } from '@/components/admin/listbox'
 import { getCountries } from '../data'
 import { useState } from 'react'
 

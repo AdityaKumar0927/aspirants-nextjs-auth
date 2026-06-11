@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Question from "@/components/shared/Question";
-import sampleQuestions from "@/components/shared/sampleQuestions.json";
+import Question from "@/components/question-bank/Question";
+import sampleQuestions from "@/components/question-bank/sampleQuestions.json";
 
 interface QuestionType {
   id: number;

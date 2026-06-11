@@ -1,6 +1,6 @@
-// @/components/administrator-ui/Stat.tsx
-import { Divider } from '@/components/administrator-ui/divider';
-import { Badge } from '@/components/administrator-ui/badge';
+// @/components/admin/Stat.tsx
+import { Divider } from '@/components/admin/divider';
+import { Badge } from '@/components/admin/badge';
 
 export function Stat({ title, value, change }: { title: string; value: string; change: string }) {
   return (

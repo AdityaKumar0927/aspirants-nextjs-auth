@@ -5,18 +5,18 @@ import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ContainerScroll } from '@/components/ui/container-scroll-animation';
-import Dashboard from '@/components/home/DashboardContent';
-import MainContent from '@/components/home/MainContent';
+import Dashboard from '@/components/dashboard/DashboardContent';
+import MainContent from '@/components/dashboard/MainContent';
 import ShinyButton from '@/components/magicui/shiny-button';
 import ShimmerButton from '@/components/magicui/shimmer-button';
 import { HoverEffect } from '@/components/ui/card-hover-effect';
 import Chat from '@/components/shared/Chat';
 import { AnimatedGradientText } from '@/components/magicui/animated-gradient-text';
-import Ripple from '../components/magicui/ripple';
-import DemoNoteComponent from '@/components/shared/demo-note';
+import Ripple from '@/components/landing/magicui/ripple';
+import DemoNoteComponent from '@/components/question-bank/demo-note';
 import { FAQ } from '@/components/shared/FAQ';
-import QuestionStatistics from '@/components/home/question-statistics';
-import QuestionStatisticsLoading from '@/components/home/question-statistics-loading';
+import QuestionStatistics from '@/components/dashboard/question-statistics';
+import QuestionStatisticsLoading from '@/components/dashboard/question-statistics-loading';
 import { Suspense } from 'react';
 
 const projects = [

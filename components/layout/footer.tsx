@@ -11,7 +11,7 @@ const footerNavs = [
     label: "Company",
     items: [
       { href: "/mission", name: "Our Mission" },
-      { href: "/Contact", name: "Contact" },
+      { href: "/contact", name: "Contact" },
     ],
   },
   {

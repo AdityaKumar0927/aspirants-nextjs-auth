@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
-import React, { useReducer, useEffect, useCallback, useMemo, useState } from "react";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useReducer, useEffect, useCallback, useMemo, useState } from "react"
+import Skeleton from "react-loading-skeleton"
+import "react-loading-skeleton/dist/skeleton.css"
+import { motion, AnimatePresence } from "framer-motion"
 import {
   Check,
   ChevronDown,
@@ -14,26 +14,27 @@ import {
   Filter,
   HelpCircle,
   Flag,
-} from "lucide-react";
+} from "lucide-react"
 
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useToast } from "@/components/ui/use-toast";
-import { Card, CardContent } from "@/components/ui/card";
+import { TooltipProvider } from "@/components/ui/tooltip"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { useToast } from "@/components/ui/use-toast"
+import { Card, CardContent } from "@/components/ui/card"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Progress } from "@/components/ui/progress";
-import Popover from "@/components/shared/popover";
-import Question from "@/components/shared/Question";
-import { DialogClose } from "@/components/ui/dialog";
-import { gradeAnswer, normalizeQuestion } from "@/lib/exam-helpers";
+} from "@/components/ui/dialog"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Progress } from "@/components/ui/progress"
+
+import Popover from "@/components/shared/popover"
+// IMPORTANT: Make sure this points to your newly updated "Question" component
+import Question from "@/components/question-bank/Question"
+import { gradeAnswer, normalizeQuestion } from "@/lib/exam-helpers"
 
 /* ------------------------------------------------------------------
    1) Enums & Types
@@ -43,31 +44,46 @@ enum ViewMode {
   MOBILE = "mobile",
 }
 
-type QuestionTypeString = "Multiple Choice" | "Numerical" | string;
+/**
+ * You had a broader union for question "types" in your original GuestQuestionBank;
+ * keep that union but now also integrate it with the new code's usage.
+ */
+type QuestionTypeString =
+  | "Multiple Choice"
+  | "mcq"
+  | "Numerical"
+  | "integer"
+  | "Subjective"
+  | "Mcqm"
+  | "Fill Blanks"
+  | "T/f"
+  | string
 
 interface QuestionType {
-  id: number;
-  questionId: string;
-  text: string;
-  subject?: string;
-  topic?: string;
-  subtopic?: string;
-  difficulty?: string;
-  type?: QuestionTypeString;
-  year?: number;
-  reviewed?: boolean;
-  completed?: boolean;
-  options?: string[];
-  correctOption?: string;
-  // We keep `explanation` as the DB field for markschemes
-  explanation?: string;
-  notes?: string;
-  diagramUrl?: string;
-  exam?: string;
-  customTags?: string[];  // <--- We also filter by these
-  difficultyRating?: number;
+  id: number
+  questionId: string
+  text: string
+  subject?: string
+  topic?: string
+  subtopic?: string
+  difficulty?: string
+  type?: QuestionTypeString
+  year?: number
+  reviewed?: boolean
+  completed?: boolean
+  options?: string[]
+  correctOption?: string
+  explanation?: string  // The field for your Markscheme
+  notes?: string
+  diagramUrl?: string
+  exam?: string
+  customTags?: string[] // NEW: we also filter by these
+  difficultyRating?: number
 }
 
+/**
+ * We add "customTags" as a new filter key.
+ */
 type FilterKey =
   | "exams"
   | "subjects"
@@ -76,57 +92,63 @@ type FilterKey =
   | "difficulties"
   | "years"
   | "types"
-  | "customTags"; // <--- NEW filter key for custom tags
+  | "customTags"
 
 type FiltersType = {
-  [K in FilterKey]: string[];
+  [K in FilterKey]: string[]
 } & {
-  status: string; // "all" | "complete" | "review" | "incomplete"
-};
+  // In QuestionBankContent, status was a string. We’ll keep it a string,
+  // though you can still only set it to "all" | "complete" | "review" | "incomplete".
+  status: string
+}
 
 type DropdownsType = {
-  [K in FilterKey]: boolean;
-};
+  [K in FilterKey]: boolean
+}
 
 interface FilterOptionsType {
-  exams: string[];
-  subjects: string[];
-  topics: string[];
-  subtopics: string[];
-  difficulties: string[];
-  years: string[];
-  types: string[];
-  customTags: string[]; // <--- We'll populate these from /api/filters if available
+  exams: string[]
+  subjects: string[]
+  topics: string[]
+  subtopics: string[]
+  difficulties: string[]
+  years: string[]
+  types: string[]
+  customTags: string[] // NEW
 }
 
 interface GlobalStats {
-  total: number;
-  completed: number;
-  reviewed: number;
-  notAnswered: number;
+  total: number
+  completed: number
+  reviewed: number
+  notAnswered: number
 }
 
 type StateType = {
-  questions: QuestionType[];
-  filters: FiltersType;
-  filterOptions: FilterOptionsType;
-  searchQuery: string;
-  dropdowns: DropdownsType;
-  feedback: Record<string, string | undefined>;
-  numericalAnswers: Record<string, string | undefined>;
-  showMarkscheme: Record<string, boolean>;
-  selectedOptions: Record<string, string | undefined>;
-  loading: boolean;
-  actionLoading: boolean;
-  viewMode: ViewMode;
-  currentPage: number;
-  totalCount: number;
-  pageSize: number;
-  globalStats: GlobalStats;
-};
+  questions: QuestionType[]
+  filters: FiltersType
+  filterOptions: FilterOptionsType
+  searchQuery: string
+  dropdowns: DropdownsType
+
+  feedback: Record<string, string | undefined>
+  numericalAnswers: Record<string, string | undefined>
+  showMarkscheme: Record<string, boolean>
+  selectedOptions: Record<string, string | undefined>
+
+  loading: boolean
+  actionLoading: boolean
+  viewMode: ViewMode
+
+  currentPage: number
+  totalCount: number
+  pageSize: number
+
+  globalStats: GlobalStats
+}
 
 /* ------------------------------------------------------------------
-   2) Action
+   2) Actions
    ------------------------------------------------------------------ */
 type ActionType =
   | { type: "SET_QUESTIONS"; payload: QuestionType[] }
@@ -144,23 +166,23 @@ type ActionType =
   | { type: "SET_CURRENT_PAGE"; payload: number }
   | { type: "SET_TOTAL_COUNT"; payload: number }
   | { type: "SET_PAGE_SIZE"; payload: number }
-  | { type: "SET_GLOBAL_STATS"; payload: GlobalStats };
+  | { type: "SET_GLOBAL_STATS"; payload: GlobalStats }
 
 /* ------------------------------------------------------------------
    3) Helpers
    ------------------------------------------------------------------ */
 function fuzzyContains(haystack: string, needle: string): boolean {
-  if (!needle) return true;
-  return haystack.toLowerCase().includes(needle.toLowerCase());
+  if (!needle) return true
+  return haystack.toLowerCase().includes(needle.toLowerCase())
 }
 
 function transformFilterItem(value: string): string {
   // Replace hyphens with spaces, then Title Case each word
-  const replaced = value.replace(/-/g, " ");
+  const replaced = value.replace(/-/g, " ")
   return replaced
     .split(" ")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+    .join(" ")
 }
 
 const transitionProps = {
@@ -168,7 +190,7 @@ const transitionProps = {
   stiffness: 500,
   damping: 30,
   mass: 0.5,
-};
+}
 
 /* ------------------------------------------------------------------
    4) Initial State
@@ -183,7 +205,7 @@ const initialState: StateType = {
     difficulties: [],
     years: [],
     types: [],
-    customTags: [], // <--- new
+    customTags: [], // NEW
     status: "all",
   },
   filterOptions: {
@@ -194,7 +216,7 @@ const initialState: StateType = {
     difficulties: [],
     years: [],
     types: [],
-    customTags: [], // <--- new
+    customTags: [], // NEW
   },
   searchQuery: "",
   dropdowns: {
@@ -205,7 +227,7 @@ const initialState: StateType = {
     difficulties: false,
     years: false,
     types: false,
-    customTags: false, // <--- new
+    customTags: false, // NEW
   },
   feedback: {},
   numericalAnswers: {},
@@ -223,7 +245,7 @@ const initialState: StateType = {
     reviewed: 0,
     notAnswered: 0,
   },
-};
+}
 
 /* ------------------------------------------------------------------
    5) Reducer
@@ -231,13 +253,13 @@ const initialState: StateType = {
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
     case "SET_QUESTIONS":
-      return { ...state, questions: action.payload };
+      return { ...state, questions: action.payload }
     case "SET_FILTERS":
-      return { ...state, filters: action.payload };
+      return { ...state, filters: action.payload }
     case "SET_FILTER_OPTIONS":
-      return { ...state, filterOptions: action.payload };
+      return { ...state, filterOptions: action.payload }
     case "SET_SEARCH_QUERY":
-      return { ...state, searchQuery: action.payload };
+      return { ...state, searchQuery: action.payload }
     case "SET_DROPDOWN":
       return {
         ...state,
@@ -245,31 +267,31 @@ function reducer(state: StateType, action: ActionType): StateType {
           ...state.dropdowns,
           [action.payload.tag]: action.payload.value,
         },
-      };
+      }
     case "SET_FEEDBACK":
-      return { ...state, feedback: action.payload };
+      return { ...state, feedback: action.payload }
     case "SET_NUMERICAL_ANSWERS":
-      return { ...state, numericalAnswers: action.payload };
+      return { ...state, numericalAnswers: action.payload }
     case "SET_SHOW_MARKSCHEME":
-      return { ...state, showMarkscheme: action.payload };
+      return { ...state, showMarkscheme: action.payload }
     case "SET_SELECTED_OPTIONS":
-      return { ...state, selectedOptions: action.payload };
+      return { ...state, selectedOptions: action.payload }
     case "SET_LOADING":
-      return { ...state, loading: action.payload };
+      return { ...state, loading: action.payload }
     case "SET_ACTION_LOADING":
-      return { ...state, actionLoading: action.payload };
+      return { ...state, actionLoading: action.payload }
     case "SET_VIEW_MODE":
-      return { ...state, viewMode: action.payload };
+      return { ...state, viewMode: action.payload }
     case "SET_CURRENT_PAGE":
-      return { ...state, currentPage: action.payload };
+      return { ...state, currentPage: action.payload }
     case "SET_TOTAL_COUNT":
-      return { ...state, totalCount: action.payload };
+      return { ...state, totalCount: action.payload }
     case "SET_PAGE_SIZE":
-      return { ...state, pageSize: action.payload };
+      return { ...state, pageSize: action.payload }
     case "SET_GLOBAL_STATS":
-      return { ...state, globalStats: action.payload };
+      return { ...state, globalStats: action.payload }
     default:
-      return state;
+      return state
   }
 }
 
@@ -282,12 +304,12 @@ function Pagination({
   pageSize,
   onPageChange,
 }: {
-  currentPage: number;
-  totalCount: number;
-  pageSize: number;
-  onPageChange: (page: number) => void;
+  currentPage: number
+  totalCount: number
+  pageSize: number
+  onPageChange: (page: number) => void
 }) {
-  const totalPages = Math.ceil(totalCount / pageSize);
+  const totalPages = Math.ceil(totalCount / pageSize)
   return (
     <nav className="flex items-center justify-center mt-6" aria-label="Pagination">
       <Button
@@ -310,41 +332,40 @@ function Pagination({
         <ChevronRight className="h-4 w-4" />
       </Button>
     </nav>
-  );
+  )
 }
 
 /* ------------------------------------------------------------------
-   7) Main Component: QuestionBankContent
+   7) Main Component: GuestQuestionBank
    ------------------------------------------------------------------ */
-export default function QuestionBankContent() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const { toast } = useToast();
+export default function GuestQuestionBank() {
+  const [state, dispatch] = useReducer(reducer, initialState)
+  const { toast } = useToast()
 
   // For mobile single-question navigation
-  const [mobileIndex, setMobileIndex] = useState(0);
+  const [mobileIndex, setMobileIndex] = useState(0)
 
   // For mobile filters & navigator modals
-  const [filtersOpenMobile, setFiltersOpenMobile] = useState(false);
-  const [navigatorOpen, setNavigatorOpen] = useState(false);
-  // For mobile "View Progress"
-  const [progressOpen, setProgressOpen] = useState(false);
+  const [filtersOpenMobile, setFiltersOpenMobile] = useState(false)
+  const [navigatorOpen, setNavigatorOpen] = useState(false)
+  // For mobile "View Progress" (optional, if you want a separate modal)
+  const [progressOpen, setProgressOpen] = useState(false)
 
   // Decide initial view mode (mobile vs. desktop)
   useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
-      dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.MOBILE });
+      dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.MOBILE })
     }
-  }, []);
+  }, [])
 
   /* ------------------------------
      (A) Fetch filter options
      ------------------------------ */
   const fetchFilterOptions = useCallback(async () => {
     try {
-      const res = await fetch("/api/filters", { cache: "no-store" });
-      if (!res.ok) throw new Error("Failed to fetch distinct filter fields.");
-      const raw = await res.json();
-      // We now expect `raw.customTags` for custom tag suggestions if you have them
+      const res = await fetch("/api/filters", { cache: "no-store" })
+      if (!res.ok) throw new Error("Failed to fetch distinct filter fields.")
+      const raw = await res.json()
       const data: FilterOptionsType = {
         exams: raw.exams ?? [],
         subjects: raw.subjects ?? [],
@@ -353,19 +374,18 @@ export default function QuestionBankContent() {
         difficulties: raw.difficulties ?? [],
         years: raw.years ?? [],
         types: raw.types ?? [],
-        customTags: raw.customTags ?? [], // <--- new
-      };
-      dispatch({ type: "SET_FILTER_OPTIONS", payload: data });
+        customTags: raw.customTags ?? [], // NEW
+      }
+      dispatch({ type: "SET_FILTER_OPTIONS", payload: data })
     } catch (err) {
-      console.error("Error fetching filter options:", err);
-      // *** Improved toast styling for error
+      console.error("Error fetching filter options:", err)
       toast({
         title: "Error",
         description: "Could not load filter fields. Try again later.",
-        variant: "destructive", // triggers a red-themed toast
-      });
+        variant: "destructive",
+      })
     }
-  }, [toast]);
+  }, [toast])
 
   /* ------------------------------
      (B) Fetch global stats
@@ -373,331 +393,318 @@ export default function QuestionBankContent() {
   const fetchGlobalStats = useCallback(async () => {
     try {
       const { exams, subjects, topics, subtopics, difficulties, years, types, customTags } =
-        state.filters;
-      const arrToComma = (arr: string[]) => arr.join(",");
-      const params = new URLSearchParams();
-      if (exams.length) params.set("exam", arrToComma(exams));
-      if (subjects.length) params.set("subject", arrToComma(subjects));
-      if (topics.length) params.set("topic", arrToComma(topics));
-      if (subtopics.length) params.set("subtopic", arrToComma(subtopics));
-      if (difficulties.length) params.set("difficulty", arrToComma(difficulties));
-      if (years.length) params.set("year", arrToComma(years));
-      if (types.length) params.set("type", arrToComma(types));
-
-      // NEW: customTags
+        state.filters
+      const arrToComma = (arr: string[]) => arr.join(",")
+      const params = new URLSearchParams()
+      if (exams.length) params.set("exam", arrToComma(exams))
+      if (subjects.length) params.set("subject", arrToComma(subjects))
+      if (topics.length) params.set("topic", arrToComma(topics))
+      if (subtopics.length) params.set("subtopic", arrToComma(subtopics))
+      if (difficulties.length) params.set("difficulty", arrToComma(difficulties))
+      if (years.length) params.set("year", arrToComma(years))
+      if (types.length) params.set("type", arrToComma(types))
       if (customTags.length) {
-        params.set("customTags", arrToComma(customTags));
+        params.set("customTags", arrToComma(customTags))
       }
 
-      const statsUrl = `/api/questions/stats?${params.toString()}`;
-      const resp = await fetch(statsUrl, { cache: "no-store" });
+      const statsUrl = `/api/questions/stats?${params.toString()}`
+      const resp = await fetch(statsUrl, { cache: "no-store" })
       if (!resp.ok) {
-        const txt = await resp.text();
-        throw new Error(`Failed to fetch stats: ${txt}`);
+        const txt = await resp.text()
+        throw new Error(`Failed to fetch stats: ${txt}`)
       }
-      const raw = await resp.json();
+      const raw = await resp.json()
       const stats: GlobalStats = {
         total: raw.total || raw.totalQuestions || 0,
         completed: raw.completed || 0,
         reviewed: raw.reviewed || 0,
         notAnswered: raw.notAnswered || 0,
-      };
-      dispatch({ type: "SET_GLOBAL_STATS", payload: stats });
+      }
+      dispatch({ type: "SET_GLOBAL_STATS", payload: stats })
     } catch (err) {
-      console.error("Error fetching global stats:", err);
-      // We won't toast every stats error, but you could.
+      console.error("Error fetching global stats:", err)
+      // You could optionally toast on error, or keep it silent
     }
-  }, [state.filters]);
+  }, [state.filters])
 
   /* ------------------------------
      (C) Fetch questions
      ------------------------------ */
   const fetchQuestions = useCallback(async () => {
-    dispatch({ type: "SET_LOADING", payload: true });
+    dispatch({ type: "SET_LOADING", payload: true })
     try {
-      const { currentPage, pageSize, filters } = state;
-      const { exams, subjects, topics, subtopics, difficulties, years, types, customTags } =
-        filters;
+      const { currentPage, pageSize, filters } = state
+      const { exams, subjects, topics, subtopics, difficulties, years, types, customTags } = filters
 
-      const arrToComma = (arr: string[]) => arr.join(",");
+      const arrToComma = (arr: string[]) => arr.join(",")
 
-      const params = new URLSearchParams();
-      if (exams.length) params.set("exam", arrToComma(exams));
-      if (subjects.length) params.set("subject", arrToComma(subjects));
-      if (topics.length) params.set("topic", arrToComma(topics));
-      if (subtopics.length) params.set("subtopic", arrToComma(subtopics));
-      if (difficulties.length) params.set("difficulty", arrToComma(difficulties));
-      if (years.length) params.set("year", arrToComma(years));
-      if (types.length) params.set("type", arrToComma(types));
-
-      // NEW: customTags
+      const params = new URLSearchParams()
+      if (exams.length) params.set("exam", arrToComma(exams))
+      if (subjects.length) params.set("subject", arrToComma(subjects))
+      if (topics.length) params.set("topic", arrToComma(topics))
+      if (subtopics.length) params.set("subtopic", arrToComma(subtopics))
+      if (difficulties.length) params.set("difficulty", arrToComma(difficulties))
+      if (years.length) params.set("year", arrToComma(years))
+      if (types.length) params.set("type", arrToComma(types))
       if (customTags.length) {
-        params.set("customTags", arrToComma(customTags));
+        params.set("customTags", arrToComma(customTags))
       }
 
-      params.set("page", String(currentPage));
-      params.set("pageSize", String(pageSize));
+      params.set("page", String(currentPage))
+      params.set("pageSize", String(pageSize))
 
-      const url = `/api/questions?${params.toString()}`;
-      const res = await fetch(url, { cache: "no-store" });
+      const url = `/api/questions?${params.toString()}`
+      const res = await fetch(url, { cache: "no-store" })
       if (!res.ok) {
-        const txt = await res.text();
-        throw new Error(`Failed to fetch questions. ${txt}`);
+        const txt = await res.text()
+        throw new Error(`Failed to fetch questions. ${txt}`)
       }
-      const result = await res.json();
+      const result = await res.json()
 
-      let data: QuestionType[] = [];
-      let totalCount = 0;
+      let data: QuestionType[] = []
+      let totalCount = 0
 
       if (Array.isArray(result)) {
-        // If the API returns a plain array
-        data = result;
-        totalCount = data.length;
+        data = result
+        totalCount = data.length
       } else if (result.data) {
-        // If the API returns { data, totalCount }
-        data = result.data;
-        totalCount = result.totalCount;
+        data = result.data
+        totalCount = result.totalCount
       }
 
       // Sort by numeric portion of questionId
       data = data.sort((a, b) => {
-        const aId = a.questionId?.match(/\d+/)?.[0] || "0";
-        const bId = b.questionId?.match(/\d+/)?.[0] || "0";
-        return parseInt(aId, 10) - parseInt(bId, 10);
-      });
+        const aId = a.questionId?.match(/\d+/)?.[0] || "0"
+        const bId = b.questionId?.match(/\d+/)?.[0] || "0"
+        return parseInt(aId, 10) - parseInt(bId, 10)
+      })
 
-      dispatch({ type: "SET_QUESTIONS", payload: data });
-      dispatch({ type: "SET_TOTAL_COUNT", payload: totalCount });
+      dispatch({ type: "SET_QUESTIONS", payload: data })
+      dispatch({ type: "SET_TOTAL_COUNT", payload: totalCount })
     } catch (err) {
-      console.error("Error fetching questions:", err);
-      // *** Improved toast styling for error
+      console.error("Error fetching questions:", err)
       toast({
         title: "Error",
         description: "Failed to load questions. Try again later.",
         variant: "destructive",
-      });
+      })
     } finally {
-      dispatch({ type: "SET_LOADING", payload: false });
+      dispatch({ type: "SET_LOADING", payload: false })
     }
-  }, [state.filters, state.currentPage, state.pageSize, toast]);
+  }, [state.filters, state.currentPage, state.pageSize, toast])
 
   // Initial load of filters + stats
   useEffect(() => {
-    fetchFilterOptions();
-    fetchGlobalStats();
-  }, [fetchFilterOptions, fetchGlobalStats]);
+    fetchFilterOptions()
+    fetchGlobalStats()
+  }, [fetchFilterOptions, fetchGlobalStats])
 
   // Re-fetch questions & stats whenever filters/page changes
   useEffect(() => {
-    fetchQuestions();
-    fetchGlobalStats();
-  }, [state.filters, state.currentPage, fetchQuestions, fetchGlobalStats]);
+    fetchQuestions()
+    fetchGlobalStats()
+  }, [state.filters, state.currentPage, fetchQuestions, fetchGlobalStats])
 
   /* ------------------------------
      8) Handlers (mark complete, etc.)
      ------------------------------ */
   const handleMarkComplete = useCallback(
     async (questionId: string, newVal?: boolean) => {
-      dispatch({ type: "SET_ACTION_LOADING", payload: true });
+      dispatch({ type: "SET_ACTION_LOADING", payload: true })
       try {
-        const val = newVal ?? true;
+        const val = newVal ?? true
         await fetch("/api/questions", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ questionId, completed: val }),
-        });
+        })
         dispatch({
           type: "SET_QUESTIONS",
           payload: state.questions.map((q) =>
             q.questionId === questionId ? { ...q, completed: val } : q
           ),
-        });
+        })
       } catch (err) {
-        console.error("Error marking complete:", err);
+        console.error("Error marking complete:", err)
         toast({
           title: "Error",
           description: "Could not mark question as complete.",
           variant: "destructive",
-        });
+        })
       } finally {
-        dispatch({ type: "SET_ACTION_LOADING", payload: false });
+        dispatch({ type: "SET_ACTION_LOADING", payload: false })
       }
     },
     [state.questions, toast]
-  );
+  )
 
   const handleMarkForReview = useCallback(
     async (questionId: string, newVal?: boolean) => {
-      dispatch({ type: "SET_ACTION_LOADING", payload: true });
+      dispatch({ type: "SET_ACTION_LOADING", payload: true })
       try {
-        const val = newVal ?? true;
+        const val = newVal ?? true
         await fetch("/api/questions", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ questionId, reviewed: val }),
-        });
+        })
         dispatch({
           type: "SET_QUESTIONS",
           payload: state.questions.map((q) =>
             q.questionId === questionId ? { ...q, reviewed: val } : q
           ),
-        });
+        })
       } catch (err) {
-        console.error("Error marking review:", err);
+        console.error("Error marking review:", err)
         toast({
           title: "Error",
           description: "Could not update the review flag.",
           variant: "destructive",
-        });
+        })
       } finally {
-        dispatch({ type: "SET_ACTION_LOADING", payload: false });
+        dispatch({ type: "SET_ACTION_LOADING", payload: false })
       }
     },
     [state.questions, toast]
-  );
+  )
 
   const handleOptionClick = useCallback(
     (questionId: string, option: string, correct: string) => {
-      // Grade with the shared grader so Multiple Correct (and letter/text
-      // mismatches) score correctly; fall back to a direct compare if the
-      // question isn't found.
-      const q = state.questions.find((x) => x.questionId === questionId);
-      const graded = q ? gradeAnswer(normalizeQuestion(q), option) : option === correct;
-      const isCorrect = graded === true;
+      const q = state.questions.find((x) => x.questionId === questionId)
+      const graded = q ? gradeAnswer(normalizeQuestion(q), option) : option === correct
+      const isCorrect = graded === true
       dispatch({
         type: "SET_FEEDBACK",
         payload: { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" },
-      });
+      })
       dispatch({
         type: "SET_SELECTED_OPTIONS",
         payload: { ...state.selectedOptions, [questionId]: option },
-      });
+      })
       dispatch({
         type: "SET_QUESTIONS",
         payload: state.questions.map((q) =>
           q.questionId === questionId ? { ...q, completed: true } : q
         ),
-      });
+      })
     },
     [state.feedback, state.selectedOptions, state.questions]
-  );
+  )
 
   const handleNumericalSubmit = useCallback(
     async (questionId: string, userAns: string, correctAns: string) => {
-      dispatch({ type: "SET_ACTION_LOADING", payload: true });
+      dispatch({ type: "SET_ACTION_LOADING", payload: true })
       try {
-        const q = state.questions.find((x) => x.questionId === questionId);
-        // null => not auto-gradable (Subjective): record the answer without a
-        // correct/incorrect verdict.
-        const graded = q ? gradeAnswer(normalizeQuestion(q), userAns) : userAns === correctAns;
+        const q = state.questions.find((x) => x.questionId === questionId)
+        const graded = q ? gradeAnswer(normalizeQuestion(q), userAns) : userAns === correctAns
         dispatch({
           type: "SET_FEEDBACK",
           payload: {
             ...state.feedback,
             [questionId]: graded === null ? undefined : graded ? "correct" : "incorrect",
           },
-        });
+        })
         dispatch({
           type: "SET_NUMERICAL_ANSWERS",
           payload: { ...state.numericalAnswers, [questionId]: userAns },
-        });
+        })
 
         await fetch("/api/questions", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ questionId, completed: true }),
-        });
+        })
 
         dispatch({
           type: "SET_QUESTIONS",
           payload: state.questions.map((q) =>
             q.questionId === questionId ? { ...q, completed: true } : q
           ),
-        });
+        })
       } catch (err) {
-        console.error("Error marking numeric answer:", err);
+        console.error("Error marking numeric answer:", err)
         toast({
           title: "Error",
           description: "Could not submit numeric answer.",
           variant: "destructive",
-        });
+        })
       } finally {
-        dispatch({ type: "SET_ACTION_LOADING", payload: false });
+        dispatch({ type: "SET_ACTION_LOADING", payload: false })
       }
     },
     [state.feedback, state.numericalAnswers, state.questions, toast]
-  );
+  )
 
   const handleResetQuestion = useCallback(
     async (questionId: string) => {
-      dispatch({ type: "SET_ACTION_LOADING", payload: true });
+      dispatch({ type: "SET_ACTION_LOADING", payload: true })
       try {
         dispatch({
           type: "SET_FEEDBACK",
           payload: { ...state.feedback, [questionId]: undefined },
-        });
+        })
         dispatch({
           type: "SET_SELECTED_OPTIONS",
           payload: { ...state.selectedOptions, [questionId]: undefined },
-        });
+        })
         dispatch({
           type: "SET_NUMERICAL_ANSWERS",
           payload: { ...state.numericalAnswers, [questionId]: undefined },
-        });
+        })
         dispatch({
           type: "SET_QUESTIONS",
           payload: state.questions.map((q) =>
             q.questionId === questionId ? { ...q, completed: false, reviewed: false } : q
           ),
-        });
+        })
 
         await fetch("/api/questions", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ questionId, completed: false, reviewed: false }),
-        });
+        })
       } catch (err) {
-        console.error("Error resetting question:", err);
+        console.error("Error resetting question:", err)
         toast({
           title: "Error",
           description: "Could not reset the question.",
           variant: "destructive",
-        });
+        })
       } finally {
-        dispatch({ type: "SET_ACTION_LOADING", payload: false });
+        dispatch({ type: "SET_ACTION_LOADING", payload: false })
       }
     },
     [state.feedback, state.selectedOptions, state.numericalAnswers, state.questions, toast]
-  );
+  )
 
   /* ------------------------------
      9) Filtered local questions
      ------------------------------ */
   const filteredQuestions = useMemo(() => {
-    const s = state.searchQuery.toLowerCase();
+    const s = state.searchQuery.toLowerCase()
     return state.questions.filter((q) => {
-      const textFields = [q.text, q.exam, q.subject, q.topic, q.subtopic].filter(Boolean);
-      const matchesSearch = textFields.some((f) => f && fuzzyContains(f, s));
+      const textFields = [q.text, q.exam, q.subject, q.topic, q.subtopic].filter(Boolean)
+      const matchesSearch = textFields.some((f) => f && fuzzyContains(f, s))
 
-      let matchesStatus = true;
-      const st = state.filters.status;
-      if (st === "review" && !q.reviewed) matchesStatus = false;
-      else if (st === "complete" && !q.completed) matchesStatus = false;
-      else if (st === "incomplete" && q.completed) matchesStatus = false;
+      let matchesStatus = true
+      const st = state.filters.status
+      if (st === "review" && !q.reviewed) matchesStatus = false
+      else if (st === "complete" && !q.completed) matchesStatus = false
+      else if (st === "incomplete" && q.completed) matchesStatus = false
 
-      return matchesSearch && matchesStatus;
-    });
-  }, [state.questions, state.filters.status, state.searchQuery]);
+      return matchesSearch && matchesStatus
+    })
+  }, [state.questions, state.filters.status, state.searchQuery])
 
   /* ------------------------------
      10) Progress Card
      ------------------------------ */
   function ProgressCard() {
-    const total = state.globalStats.total;
-    const answered = state.globalStats.completed;
-    const reviewed = state.globalStats.reviewed;
-    const notAnswered = state.globalStats.notAnswered;
-    const progressPct = total > 0 ? Math.round((answered / total) * 100) : 0;
+    const total = state.globalStats.total
+    const answered = state.globalStats.completed
+    const reviewed = state.globalStats.reviewed
+    const notAnswered = state.globalStats.notAnswered
+    const progressPct = total > 0 ? Math.round((answered / total) * 100) : 0
 
     return (
       <Card
@@ -711,7 +718,7 @@ export default function QuestionBankContent() {
       >
         <CardContent className="p-6">
           <h2 className="text-2xl font-light tracking-tight text-gray-800 dark:text-gray-200 mb-6">
-            Question Progress
+            Guest Question Bank Progress
           </h2>
           <div className="space-y-6">
             <div className="flex justify-between items-center">
@@ -763,7 +770,7 @@ export default function QuestionBankContent() {
                   </p>
                 </div>
               </div>
-              {/* flagged */}
+              {/* flagged (review) */}
               <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
                 <div className="text-yellow-400 p-2 rounded-full bg-yellow-400/10">
                   <Flag className="h-5 w-5" />
@@ -795,7 +802,7 @@ export default function QuestionBankContent() {
           </div>
         </CardContent>
       </Card>
-    );
+    )
   }
 
   /* ------------------------------
@@ -805,7 +812,7 @@ export default function QuestionBankContent() {
     return (
       <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full text-gray-900 dark:text-gray-100">
-          <h1 className="mb-2 text-left text-3xl sm:text-4xl">Question Bank</h1>
+          <h1 className="mb-2 text-left text-3xl sm:text-4xl">Guest Question Bank</h1>
           <div className="flex space-x-4 mb-6">
             <Skeleton height={40} width={120} />
             <Skeleton height={40} width={120} />
@@ -829,7 +836,7 @@ export default function QuestionBankContent() {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
   /* ------------------------------------------------------------------
@@ -850,13 +857,13 @@ export default function QuestionBankContent() {
             <p className="mt-6 text-red-300">No questions found with these filters.</p>
           </div>
         </div>
-      );
+      )
     }
 
     // Single question for mobile
-    const currentQ = filteredQuestions[mobileIndex];
-    const total = filteredQuestions.length;
-    const displayNumber = mobileIndex + 1;
+    const currentQ = filteredQuestions[mobileIndex]
+    const total = filteredQuestions.length
+    const displayNumber = mobileIndex + 1
 
     return (
       <div className="min-h-screen p-4 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900">
@@ -909,7 +916,7 @@ export default function QuestionBankContent() {
             </div>
           </div>
 
-          {/* Button for progress modal */}
+          {/* Example: a button to view your progress in a modal (optional). */}
           <Button
             variant="outline"
             size="sm"
@@ -918,49 +925,28 @@ export default function QuestionBankContent() {
           >
             View Progress
           </Button>
-
           <Dialog open={progressOpen} onOpenChange={setProgressOpen}>
-  <DialogContent
-    className={`
-      fixed inset-0       /* fills mobile screen */
-      sm:fixed sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2
-      w-screen h-screen   /* full for mobile */
-      sm:w-[500px] sm:h-auto sm:max-h-[90vh]
-      bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
-      sm:rounded-md
-      flex flex-col
-    `}
-  >
-    {/* Position close button absolutely */}
-    <DialogClose className="absolute top-4 right-4">
-      <Button variant="ghost" size="icon">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fillRule="evenodd"
-            d="M10 8.586l3.95-3.95a1 1 0 111.414 1.414L11.414 10l3.95 3.95a1 1 0 01-1.414 1.414L10 11.414l-3.95 3.95a1 1 0 01-1.414-1.414L8.586 10l-3.95-3.95A1 1 0 016.05 4.636L10 8.586z"
-            clipRule="evenodd"
-          />
-        </svg>
-      </Button>
-    </DialogClose>
-
-    {/* Title or top bar */}
-    <div className="px-4 pb-4 pt-10 sm:pt-4 sm:pb-0">
-      <h2 className="text-xl font-semibold">Progress</h2>
-    </div>
-
-    {/* Scrollable body */}
-    <ScrollArea className="px-4 flex-1 custom-scrollbar">
-      <ProgressCard />
-    </ScrollArea>
-  </DialogContent>
-</Dialog>
-
+            <DialogContent
+              className={`
+                bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
+                flex flex-col custom-scrollbar
+                pt-10
+                w-screen h-screen
+                sm:w-[500px] sm:h-auto sm:max-h-[90vh]
+                sm:left-1/2 sm:top-1/2 sm:fixed
+                sm:-translate-x-1/2 sm:-translate-y-1/2
+                sm:rounded-md
+              `}
+            >
+              {/* top bar */}
+              <div className="flex items-center justify-between mb-4 px-4">
+                <h2 className="text-xl font-semibold">Progress</h2>
+              </div>
+              <ScrollArea className="px-4 flex-1 custom-scrollbar">
+                <ProgressCard />
+              </ScrollArea>
+            </DialogContent>
+          </Dialog>
 
           {/* Single question in mobile */}
           <Question
@@ -975,7 +961,7 @@ export default function QuestionBankContent() {
               dispatch({
                 type: "SET_NUMERICAL_ANSWERS",
                 payload: { ...state.numericalAnswers, [qId]: val },
-              });
+              })
             }}
             handleMarkschemeToggle={(qId) => {
               dispatch({
@@ -984,7 +970,7 @@ export default function QuestionBankContent() {
                   ...state.showMarkscheme,
                   [qId]: !state.showMarkscheme[qId],
                 },
-              });
+              })
             }}
             handleMarkForReview={handleMarkForReview}
             handleMarkComplete={handleMarkComplete}
@@ -1018,7 +1004,7 @@ export default function QuestionBankContent() {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
   /* ------------------------------------------------------------------
@@ -1037,7 +1023,7 @@ export default function QuestionBankContent() {
           <p className="mt-6 text-red-300">No questions found with these filters.</p>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -1054,7 +1040,7 @@ export default function QuestionBankContent() {
             </Button>
           </div>
 
-          <h1 className="mb-2 text-left text-3xl sm:text-4xl">Question Bank</h1>
+          <h1 className="mb-2 text-left text-3xl sm:text-4xl">Guest Question Bank</h1>
 
           {/* Search + mobile filters + navigator */}
           <div className="mb-6 flex items-center space-x-4">
@@ -1116,17 +1102,17 @@ export default function QuestionBankContent() {
                 <ScrollArea className="h-[60vh] custom-scrollbar">
                   <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 p-4">
                     {filteredQuestions.map((q, index) => {
-                      const absoluteIndex = (state.currentPage - 1) * state.pageSize + index;
-                      const displayNum = absoluteIndex + 1;
+                      const absoluteIndex = (state.currentPage - 1) * state.pageSize + index
+                      const displayNum = absoluteIndex + 1
                       return (
                         <Button
                           key={q.questionId}
                           variant={q.completed ? "default" : "outline"}
                           size="sm"
                           onClick={() => {
-                            const el = document.getElementById(`question-${q.questionId}`);
+                            const el = document.getElementById(`question-${q.questionId}`)
                             if (el) {
-                              el.scrollIntoView({ behavior: "smooth", block: "start" });
+                              el.scrollIntoView({ behavior: "smooth", block: "start" })
                             }
                           }}
                           className={`
@@ -1142,7 +1128,7 @@ export default function QuestionBankContent() {
                         >
                           {displayNum}
                         </Button>
-                      );
+                      )
                     })}
                   </div>
                 </ScrollArea>
@@ -1158,7 +1144,7 @@ export default function QuestionBankContent() {
           {/* Status Filter Row (desktop) */}
           <div className="hidden sm:flex space-x-4 mb-2">
             {["all", "complete", "review", "incomplete"].map((st) => {
-              const isActive = state.filters.status === st;
+              const isActive = state.filters.status === st
               return (
                 <button
                   key={st}
@@ -1176,7 +1162,7 @@ export default function QuestionBankContent() {
                 >
                   {st.charAt(0).toUpperCase() + st.slice(1)}
                 </button>
-              );
+              )
             })}
           </div>
 
@@ -1191,18 +1177,18 @@ export default function QuestionBankContent() {
                 "difficulties",
                 "years",
                 "types",
-                "customTags", // <--- new
+                "customTags",
               ] as FilterKey[]
             ).map((filterType) => {
-              const filterValues = state.filterOptions[filterType] || [];
-              const isOpen = state.dropdowns[filterType];
+              const filterValues = state.filterOptions[filterType] || []
+              const isOpen = state.dropdowns[filterType]
               return (
                 <Popover
                   key={filterType}
                   align="start"
                   openPopover={isOpen}
                   setOpenPopover={(open) => {
-                    dispatch({ type: "SET_DROPDOWN", payload: { tag: filterType, value: !!open } });
+                    dispatch({ type: "SET_DROPDOWN", payload: { tag: filterType, value: !!open } })
                   }}
                   content={
                     <div className="p-2 w-full sm:w-80 bg-white dark:bg-gray-800 rounded-md custom-scrollbar max-h-60 overflow-auto">
@@ -1220,7 +1206,7 @@ export default function QuestionBankContent() {
                       dispatch({
                         type: "SET_DROPDOWN",
                         payload: { tag: filterType, value: !isOpen },
-                      });
+                      })
                     }}
                     className={`
                       flex w-full sm:w-36 items-center justify-between
@@ -1239,7 +1225,7 @@ export default function QuestionBankContent() {
                     <ChevronDown className="h-4 w-4 text-gray-600 dark:text-gray-300 transition-all" />
                   </button>
                 </Popover>
-              );
+              )
             })}
           </div>
 
@@ -1247,8 +1233,8 @@ export default function QuestionBankContent() {
           {state.questions.length > 0 ? (
             <>
               {filteredQuestions.map((q, index) => {
-                const absoluteIndex = (state.currentPage - 1) * state.pageSize + index;
-                const displayNum = absoluteIndex + 1;
+                const absoluteIndex = (state.currentPage - 1) * state.pageSize + index
+                const displayNum = absoluteIndex + 1
 
                 return (
                   <Question
@@ -1264,7 +1250,7 @@ export default function QuestionBankContent() {
                       dispatch({
                         type: "SET_NUMERICAL_ANSWERS",
                         payload: { ...state.numericalAnswers, [qid]: val },
-                      });
+                      })
                     }}
                     handleMarkschemeToggle={(qid) => {
                       dispatch({
@@ -1273,7 +1259,7 @@ export default function QuestionBankContent() {
                           ...state.showMarkscheme,
                           [qid]: !state.showMarkscheme[qid],
                         },
-                      });
+                      })
                     }}
                     handleMarkForReview={handleMarkForReview}
                     handleMarkComplete={handleMarkComplete}
@@ -1285,14 +1271,14 @@ export default function QuestionBankContent() {
                     currentQuestionIndex={displayNum - 1}
                     handleQuestionChange={() => {}}
                   />
-                );
+                )
               })}
               <Pagination
                 currentPage={state.currentPage}
                 totalCount={state.totalCount}
                 pageSize={state.pageSize}
                 onPageChange={(p) => {
-                  dispatch({ type: "SET_CURRENT_PAGE", payload: p });
+                  dispatch({ type: "SET_CURRENT_PAGE", payload: p })
                 }}
               />
             </>
@@ -1304,7 +1290,7 @@ export default function QuestionBankContent() {
         </div>
       </div>
     </TooltipProvider>
-  );
+  )
 }
 
 /* ------------------------------------------------------------------
@@ -1316,48 +1302,48 @@ function DesktopFilterSearch({
   state,
   dispatch,
 }: {
-  filterType: FilterKey;
-  filterValues: string[];
-  state: StateType;
-  dispatch: React.Dispatch<ActionType>;
+  filterType: FilterKey
+  filterValues: string[]
+  state: StateType
+  dispatch: React.Dispatch<ActionType>
 }) {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("")
 
   // 1) Filter by searchTerm
   // 2) Sort so that selected items are at the top
   const displayedValues = useMemo(() => {
-    let arr = filterValues;
+    let arr = filterValues
     if (searchTerm) {
-      const lower = searchTerm.toLowerCase();
-      arr = arr.filter((val) => val.toLowerCase().includes(lower));
+      const lower = searchTerm.toLowerCase()
+      arr = arr.filter((val) => val.toLowerCase().includes(lower))
     }
     // Sort selected items first
     arr = arr.sort((a, b) => {
-      const aSel = state.filters[filterType].includes(a);
-      const bSel = state.filters[filterType].includes(b);
-      if (aSel && !bSel) return -1;
-      if (!aSel && bSel) return 1;
-      return 0;
-    });
-    return arr;
-  }, [filterValues, searchTerm, state.filters, filterType]);
+      const aSel = state.filters[filterType].includes(a)
+      const bSel = state.filters[filterType].includes(b)
+      if (aSel && !bSel) return -1
+      if (!aSel && bSel) return 1
+      return 0
+    })
+    return arr
+  }, [filterValues, searchTerm, state.filters, filterType])
 
   const toggleItem = useCallback(
     (val: string) => {
-      const isSelected = state.filters[filterType].includes(val);
-      let newArr: string[];
+      const isSelected = state.filters[filterType].includes(val)
+      let newArr: string[]
       if (isSelected) {
-        newArr = state.filters[filterType].filter((x) => x !== val);
+        newArr = state.filters[filterType].filter((x) => x !== val)
       } else {
-        newArr = [...state.filters[filterType], val];
+        newArr = [...state.filters[filterType], val]
       }
       dispatch({
         type: "SET_FILTERS",
         payload: { ...state.filters, [filterType]: newArr },
-      });
+      })
     },
     [state.filters, dispatch, filterType]
-  );
+  )
 
   return (
     <>
@@ -1370,7 +1356,7 @@ function DesktopFilterSearch({
       />
       <motion.div className="flex flex-col gap-2" layout transition={transitionProps}>
         {displayedValues.map((val) => {
-          const isSelected = state.filters[filterType].includes(val);
+          const isSelected = state.filters[filterType].includes(val)
           return (
             <motion.button
               key={val}
@@ -1429,11 +1415,11 @@ function DesktopFilterSearch({
                 </AnimatePresence>
               </motion.div>
             </motion.button>
-          );
+          )
         })}
       </motion.div>
     </>
-  );
+  )
 }
 
 /* ------------------------------------------------------------------
@@ -1445,10 +1431,10 @@ function FiltersDialogMobile({
   state,
   dispatch,
 }: {
-  open: boolean;
-  onOpenChange: (val: boolean) => void;
-  state: StateType;
-  dispatch: React.Dispatch<ActionType>;
+  open: boolean
+  onOpenChange: (val: boolean) => void
+  state: StateType
+  dispatch: React.Dispatch<ActionType>
 }) {
   return (
     <FiltersDialog
@@ -1457,17 +1443,17 @@ function FiltersDialogMobile({
       state={state}
       dispatch={dispatch}
     />
-  );
+  )
 }
 
 /* ------------------------------------------------------------------
    16) Actual Filters Dialog Content (Mobile)
    ------------------------------------------------------------------ */
 interface CustomFiltersDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  state: StateType;
-  dispatch: React.Dispatch<ActionType>;
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  state: StateType
+  dispatch: React.Dispatch<ActionType>
 }
 
 function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDialogProps) {
@@ -1479,58 +1465,44 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
     difficulties: "",
     years: "",
     types: "",
-    customTags: "", // new
-  });
+    customTags: "",
+  })
 
   const handleSearchChange = (category: FilterKey, value: string) => {
-    setSearches((prev) => ({ ...prev, [category]: value }));
-  };
+    setSearches((prev) => ({ ...prev, [category]: value }))
+  }
 
   // filter & sort selected to top
   const filterAndSort = (items: string[], cat: FilterKey) => {
-    let arr = items;
-    const st = searches[cat]?.toLowerCase() || "";
+    let arr = items
+    const st = searches[cat]?.toLowerCase() || ""
     if (st) {
-      arr = arr.filter((it) => it.toLowerCase().includes(st));
+      arr = arr.filter((it) => it.toLowerCase().includes(st))
     }
     // selected => top
     arr = arr.sort((a, b) => {
-      const aSel = state.filters[cat].includes(a);
-      const bSel = state.filters[cat].includes(b);
-      if (aSel && !bSel) return -1;
-      if (!aSel && bSel) return 1;
-      return 0;
-    });
-    return arr;
-  };
+      const aSel = state.filters[cat].includes(a)
+      const bSel = state.filters[cat].includes(b)
+      if (aSel && !bSel) return -1
+      if (!aSel && bSel) return 1
+      return 0
+    })
+    return arr
+  }
 
   const toggleItem = (category: FilterKey, item: string) => {
-    const oldArr = state.filters[category];
-    const isSel = oldArr.includes(item);
-    let newArr: string[];
+    const oldArr = state.filters[category]
+    const isSel = oldArr.includes(item)
+    let newArr: string[]
     if (isSel) {
-      newArr = oldArr.filter((i) => i !== item);
+      newArr = oldArr.filter((i) => i !== item)
     } else {
-      newArr = [...oldArr, item];
+      newArr = [...oldArr, item]
     }
     dispatch({
       type: "SET_FILTERS",
       payload: { ...state.filters, [category]: newArr },
-    });
-  };
-
-  // Reusable ring style for the status row
-  function mobileStatusStyle(selected: boolean) {
-    return `
-      inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
-      whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
-      transition-all duration-200 ease-in-out
-      ${
-        selected
-          ? "bg-blue-50 text-blue-600 ring-blue-200 hover:bg-blue-100"
-          : "bg-gray-50 text-gray-600 ring-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:ring-gray-700 dark:text-gray-200"
-      }
-    `;
+    })
   }
 
   return (
@@ -1540,7 +1512,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
           w-screen h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
           custom-scrollbar pt-10
           sm:w-[500px] sm:h-auto sm:max-h-[90vh]
-          sm:left-1/2 sm:top-1/2 sm:fixed sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
+          sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
         `}
         style={{ overflowY: "auto" }}
       >
@@ -1568,11 +1540,20 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
               </p>
               <div className="flex flex-wrap gap-2">
                 {["all", "complete", "review", "incomplete"].map((st) => {
-                  const selected = state.filters.status === st;
+                  const selected = state.filters.status === st
                   return (
                     <button
                       key={st}
-                      className={mobileStatusStyle(selected)}
+                      className={`
+                        inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
+                        whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
+                        transition-all duration-200 ease-in-out
+                        ${
+                          selected
+                            ? "bg-blue-50 text-blue-600 ring-blue-200 hover:bg-blue-100"
+                            : "bg-gray-50 text-gray-600 ring-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:ring-gray-700 dark:text-gray-200"
+                        }
+                      `}
                       onClick={() =>
                         dispatch({
                           type: "SET_FILTERS",
@@ -1582,95 +1563,45 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
                     >
                       {st.charAt(0).toUpperCase() + st.slice(1)}
                     </button>
-                  );
+                  )
                 })}
               </div>
             </div>
 
-            {/* Each filter category, including customTags */}
-            <MobileFilterSection
-              title="exams"
-              items={filterAndSort(state.filterOptions.exams, "exams")}
-              searchValue={searches.exams}
-              onSearchChange={(val) => handleSearchChange("exams", val)}
-              selectedItems={state.filters.exams}
-              toggleItem={(item) => toggleItem("exams", item)}
-            />
-            <MobileFilterSection
-              title="subjects"
-              items={filterAndSort(state.filterOptions.subjects, "subjects")}
-              searchValue={searches.subjects}
-              onSearchChange={(val) => handleSearchChange("subjects", val)}
-              selectedItems={state.filters.subjects}
-              toggleItem={(item) => toggleItem("subjects", item)}
-            />
-            <MobileFilterSection
-              title="topics"
-              items={filterAndSort(state.filterOptions.topics, "topics")}
-              searchValue={searches.topics}
-              onSearchChange={(val) => handleSearchChange("topics", val)}
-              selectedItems={state.filters.topics}
-              toggleItem={(item) => toggleItem("topics", item)}
-            />
-            <MobileFilterSection
-              title="subtopics"
-              items={filterAndSort(state.filterOptions.subtopics, "subtopics")}
-              searchValue={searches.subtopics}
-              onSearchChange={(val) => handleSearchChange("subtopics", val)}
-              selectedItems={state.filters.subtopics}
-              toggleItem={(item) => toggleItem("subtopics", item)}
-            />
-            <MobileFilterSection
-              title="difficulties"
-              items={filterAndSort(state.filterOptions.difficulties, "difficulties")}
-              searchValue={searches.difficulties}
-              onSearchChange={(val) => handleSearchChange("difficulties", val)}
-              selectedItems={state.filters.difficulties}
-              toggleItem={(item) => toggleItem("difficulties", item)}
-            />
-            <MobileFilterSection
-              title="years"
-              items={filterAndSort(state.filterOptions.years, "years")}
-              searchValue={searches.years}
-              onSearchChange={(val) => handleSearchChange("years", val)}
-              selectedItems={state.filters.years}
-              toggleItem={(item) => toggleItem("years", item)}
-            />
-            <MobileFilterSection
-              title="types"
-              items={filterAndSort(state.filterOptions.types, "types")}
-              searchValue={searches.types}
-              onSearchChange={(val) => handleSearchChange("types", val)}
-              selectedItems={state.filters.types}
-              toggleItem={(item) => toggleItem("types", item)}
-            />
+            {/* Each filter category (including customTags) */}
+            {(Object.keys(state.filterOptions) as FilterKey[]).map((fk) => {
+              const distinctVals = state.filterOptions[fk] || []
+              const displayed = filterAndSort(distinctVals, fk)
 
-            {/* NEW: customTags */}
-            <MobileFilterSection
-              title="customTags"
-              items={filterAndSort(state.filterOptions.customTags, "customTags")}
-              searchValue={searches.customTags}
-              onSearchChange={(val) => handleSearchChange("customTags", val)}
-              selectedItems={state.filters.customTags}
-              toggleItem={(item) => toggleItem("customTags", item)}
-            />
+              return (
+                <MobileFilterSection
+                  key={fk}
+                  title={fk}
+                  items={displayed}
+                  searchValue={searches[fk]}
+                  onSearchChange={(val) => handleSearchChange(fk, val)}
+                  selectedItems={state.filters[fk]}
+                  toggleItem={(item) => toggleItem(fk, item)}
+                />
+              )
+            })}
           </div>
         </ScrollArea>
       </DialogContent>
     </Dialog>
-  );
+  )
 }
 
 /* ------------------------------------------------------------------
    17) Mobile Filter Section
    ------------------------------------------------------------------ */
 interface MobileFilterSectionProps {
-  title: string;
-  items: string[];
-  searchValue: string;
-  onSearchChange: (value: string) => void;
-  selectedItems: string[];
-  toggleItem: (item: string) => void;
+  title: FilterKey
+  items: string[]
+  searchValue: string
+  onSearchChange: (value: string) => void
+  selectedItems: string[]
+  toggleItem: (item: string) => void
 }
 
 function MobileFilterSection({
@@ -1681,7 +1612,7 @@ function MobileFilterSection({
   selectedItems,
   toggleItem,
 }: MobileFilterSectionProps) {
-  function mobileItemStyle(selected: boolean) {
+  function itemStyle(selected: boolean) {
     return `
       inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
       whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
@@ -1691,12 +1622,12 @@ function MobileFilterSection({
           ? "bg-blue-50 text-blue-600 ring-blue-200 hover:bg-blue-100"
           : "bg-gray-50 text-gray-600 ring-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:ring-gray-700 dark:text-gray-200"
       }
-    `;
+    `
   }
 
   return (
     <div className="space-y-4">
-      <h3 className="text-2xl font-semibold tracking-tight text-gray-800 dark:text-gray-100">
+      <h3 className="text-2xl font-semibold tracking-tight text-gray-800 dark:text-gray-100 capitalize">
         {title}
       </h3>
       <div className="relative">
@@ -1709,15 +1640,11 @@ function MobileFilterSection({
         <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
       </div>
       <div className="flex flex-col gap-2">
-        {items.map((item) => {
-          const isSelected = selectedItems.includes(item);
+        {items.map((val) => {
+          const isSelected = selectedItems.includes(val)
           return (
-            <button
-              key={item}
-              onClick={() => toggleItem(item)}
-              className={mobileItemStyle(isSelected)}
-            >
-              <span className="mr-1.5">{transformFilterItem(item)}</span>
+            <button key={val} onClick={() => toggleItem(val)} className={itemStyle(isSelected)}>
+              <span className="mr-1.5">{transformFilterItem(val)}</span>
               {isSelected && (
                 <span className="flex-shrink-0">
                   <div className="w-3.5 h-3.5 rounded-full bg-blue-500 flex items-center justify-center">
@@ -1726,9 +1653,9 @@ function MobileFilterSection({
                 </span>
               )}
             </button>
-          );
+          )
         })}
       </div>
     </div>
-  );
+  )
 }

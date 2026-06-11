@@ -12,7 +12,7 @@ import Bar from "@/components/layout/Bar"
 import { Toaster } from "@/components/ui/toaster"
 import { LoadingProvider } from "@/components/layout/LoadingContext"
 import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext"
-import { ThemeProvider } from "../components/theme-provider"
+import { ThemeProvider } from "@/components/landing/theme-provider"
 
 config.autoAddCss = false
 

@@ -11,7 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Icons } from "@/app/components/icons"
+import { Icons } from "@/components/landing/icons"
 import { Lock, LogIn } from "lucide-react"
 import { LoadingSpinner } from "../shared/icons"
 

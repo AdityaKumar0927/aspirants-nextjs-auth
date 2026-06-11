@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
-import { Icons } from "@/app/components/icons";
+import { Icons } from "@/components/landing/icons";
 import { Button } from "@/components/ui/button";
 import {
   Card,

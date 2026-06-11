@@ -39,7 +39,7 @@ const supportLinks = [
   },
   {
     title: "Contact",
-    href: "/Contact",
+    href: "/contact",
     description: "Get in touch with us for support.",
   },
 ]
@@ -151,7 +151,7 @@ function DesktopNavLinks() {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <Link href="/QuestionBank/guest" passHref legacyBehavior>
+            <Link href="/question-bank/guest" passHref legacyBehavior>
               <NavigationMenuLink
                 className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
               >
@@ -201,7 +201,7 @@ function MobileNavLinks({ setMenuOpen, setShowSignInModal, supportOpen, toggleSu
   return (
     <nav className="p-4 space-y-4 top-0 left-0 right-0 bg-white dark:bg-dark-background shadow-md z-[100000000]">
       <Link
-        href="/QuestionBank/guest"
+        href="/question-bank/guest"
         className="block w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
         onClick={() => setMenuOpen(false)}
       >

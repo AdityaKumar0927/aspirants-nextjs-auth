@@ -16,7 +16,7 @@ export default function TryNowButton() {
   return (
     <Link 
       className="group flex max-w-fit items-center" 
-      href="/QuestionBank/guest"
+      href="/question-bank/guest"
     >
       <ShimmerButton className="shadow-2xl">
         <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:text-white lg:text-lg">

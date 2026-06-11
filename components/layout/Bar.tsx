@@ -5,7 +5,7 @@ import { Dock, DockIcon } from "@/components/magicui/dock";
 import { buttonVariants } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import AnimatedModal from "@/components/shared/AnimatedModal";
-import NoteApp from "@/components/shared/note";
+import NoteApp from "@/components/question-bank/note";
 import StatsWithSession from "./StatsWithSession";
 import { LucidePencil } from "lucide-react";
 import { GoGraph } from "react-icons/go";

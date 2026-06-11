@@ -40,7 +40,7 @@ export function NavigationMenuDemo() {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <Link href="/QuestionBank" legacyBehavior passHref>
+          <Link href="/question-bank" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               Question Bank
             </NavigationMenuLink>

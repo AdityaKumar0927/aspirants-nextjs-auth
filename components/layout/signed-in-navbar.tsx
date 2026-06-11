@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { cn } from "@/lib/utils"
 import { signOut } from "next-auth/react"
-import { MultiStepLoader } from "@/components/aceternity-ui/multi-step-loader"
+import { MultiStepLoader } from "@/components/aceternity/multi-step-loader"
 import FeedbackPopover from "../layout/feedback"
 import { ToastProvider } from "@/components/ui/toast"
 import { Toaster } from "../ui/toaster"
@@ -47,7 +47,7 @@ const supportLinks = [
   },
   {
     title: "Contact",
-    href: "/Contact",
+    href: "/contact",
     description: "Get in touch with us for support.",
   },
 ]
@@ -185,7 +185,7 @@ function DesktopNavLinks({ session }: { session: Session | null }) {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <Link href={session ? "/QuestionBank" : "/QuestionBank/guest"} passHref legacyBehavior>
+          <Link href={session ? "/question-bank" : "/question-bank/guest"} passHref legacyBehavior>
             <NavigationMenuLink
               className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
             >
@@ -243,7 +243,7 @@ function MobileNavLinks({
   return (
     <nav className="p-4 space-y-4">
       <Link
-        href={session ? "/QuestionBank" : "/QuestionBank/guest"}
+        href={session ? "/question-bank" : "/question-bank/guest"}
         className="block w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
         onClick={() => setMenuOpen(false)}
       >

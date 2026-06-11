@@ -57,6 +57,12 @@ const nextConfig = {
         destination: "https://github.com/steven-tey/precedent",
         permanent: false,
       },
+      // Preserve old PascalCase URLs after the kebab-case route rename.
+      { source: "/QuestionBank/:path*", destination: "/question-bank/:path*", permanent: true },
+      { source: "/Contact", destination: "/contact", permanent: true },
+      { source: "/BrowseResources", destination: "/browse-resources", permanent: true },
+      { source: "/NotesPage", destination: "/notes-page", permanent: true },
+      { source: "/Develop/:path*", destination: "/develop/:path*", permanent: true },
     ];
   },
 };
