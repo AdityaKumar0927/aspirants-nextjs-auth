@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { encodeMultiAnswer } from "@/lib/exam-helpers"
 import { useSwipeable } from "react-swipeable"
 import MathRenderer from "@/components/layout/MathRenderer"
 import Image from "next/image"
@@ -126,7 +127,7 @@ function getBorderClass(feedback: string | undefined, isMarkedForReview: boolean
 /* ------------------------------------------------------------------
    3) Main Question component
    ------------------------------------------------------------------ */
-export default function Question({
+function Question({
   question,
   feedback,
   selectedOption,
@@ -354,7 +355,7 @@ export default function Question({
   async function handleMcqmSubmit() {
     if (!question.questionId) return
     await handleMarkComplete(question.questionId, true)
-    handleOptionClick(question.questionId, JSON.stringify(mcqmSelections), question.correctOption ?? "")
+    handleOptionClick(question.questionId, encodeMultiAnswer(mcqmSelections), question.correctOption ?? "")
   }
 
   /* ------------------------------
@@ -1145,3 +1146,7 @@ export default function Question({
     </TooltipProvider>
   )
 }
+
+// Memoized so unchanged questions in a large list don't re-render (each renders
+// heavy MathRenderer/animation). Relies on the parent passing stable props.
+export default React.memo(Question)

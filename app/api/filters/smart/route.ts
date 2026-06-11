@@ -54,8 +54,14 @@ export async function GET(request: Request) {
     }
 
     // Distinct fields from only the matching set. Cached per filter combination
-    // for 60s so repeated calls don't each trigger 7 full scans.
-    const cacheKey = `filters:smart:${new URL(request.url).searchParams.toString()}`
+    // for 60s. Key off a NORMALIZED (sorted) representation so semantically
+    // equal filter sets (e.g. "JEE,NEET" vs "NEET,JEE") share a cache entry.
+    const norm = (a?: string[]) => (a ? [...a].sort().join(",") : "")
+    const cacheKey =
+      "filters:smart:" +
+      [examArr, subjectArr, topicArr, subtopicArr, difficultyArr, yearStrArr, typeArr]
+        .map(norm)
+        .join("|")
     const [exams, subjects, topics, subtopics, difficulties, years, types] = await cached(
       cacheKey,
       60_000,

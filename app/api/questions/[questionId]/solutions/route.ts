@@ -163,28 +163,29 @@ export async function PATCH(
       return NextResponse.json(updated);
     }
 
-    // Like toggle, recorded per-user via likedSolutions on the session user.
+    // Like toggle via a per-user join row. The like count is DERIVED from the
+    // join table, so concurrent/replayed requests can never inflate it.
     if (body?.like !== undefined) {
-      const user = await prisma.user.findUnique({
-        where: { id: session.user.id },
-        select: { likedSolutionIds: true },
-      });
-      const liked = new Set(user?.likedSolutionIds ?? []);
-      const alreadyLiked = liked.has(solutionId);
-      if (alreadyLiked) liked.delete(solutionId);
-      else liked.add(solutionId);
+      let liked: boolean;
+      try {
+        await prisma.solutionLike.delete({
+          where: { userId_solutionId: { userId: session.user.id, solutionId } },
+        });
+        liked = false; // existed -> now unliked
+      } catch {
+        // Did not exist -> create it (ignore a duplicate-race).
+        await prisma.solutionLike
+          .create({ data: { userId: session.user.id, solutionId } })
+          .catch(() => undefined);
+        liked = true;
+      }
 
-      const [, updated] = await prisma.$transaction([
-        prisma.user.update({
-          where: { id: session.user.id },
-          data: { likedSolutionIds: Array.from(liked) },
-        }),
-        prisma.solution.update({
-          where: { id: solutionId },
-          data: { likes: { increment: alreadyLiked ? -1 : 1 } },
-        }),
-      ]);
-      return NextResponse.json({ ...updated, liked: !alreadyLiked });
+      const likes = await prisma.solutionLike.count({ where: { solutionId } });
+      const updated = await prisma.solution.update({
+        where: { id: solutionId },
+        data: { likes },
+      });
+      return NextResponse.json({ ...updated, liked });
     }
 
     return NextResponse.json({ message: "Nothing to update" });

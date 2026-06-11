@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { getCurrentSession } from "@/lib/auth";
+import { cached } from "@/lib/cache";
 
 function parseCommaParam(value: string | null): string[] | undefined {
   if (!value) return undefined;
@@ -46,19 +47,24 @@ export async function GET(request: Request) {
     const session = await getCurrentSession();
     const userId = session?.user?.id;
 
-    const [total, completed, reviewed] = await Promise.all([
-      prisma.question.count({ where }),
-      userId
-        ? prisma.userProgress.count({
-            where: { userId, completed: true, Question: where },
-          })
-        : Promise.resolve(0),
-      userId
-        ? prisma.userProgress.count({
-            where: { userId, reviewed: true, Question: where },
-          })
-        : Promise.resolve(0),
-    ]);
+    // Cache the three counts for 30s keyed by (user, filters) so repeated
+    // calls (and rapid filter changes) don't each run full COUNT scans.
+    const cacheKey = `stats:${userId ?? "guest"}:${new URL(request.url).searchParams.toString()}`;
+    const [total, completed, reviewed] = await cached(cacheKey, 30_000, () =>
+      Promise.all([
+        prisma.question.count({ where }),
+        userId
+          ? prisma.userProgress.count({
+              where: { userId, completed: true, Question: where },
+            })
+          : Promise.resolve(0),
+        userId
+          ? prisma.userProgress.count({
+              where: { userId, reviewed: true, Question: where },
+            })
+          : Promise.resolve(0),
+      ])
+    );
 
     return NextResponse.json({
       total,

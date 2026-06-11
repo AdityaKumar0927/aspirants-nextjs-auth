@@ -1,7 +1,24 @@
 import { NextRequest, NextResponse } from "next/server"
+import { z } from "zod"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/api/auth/[...nextauth]/options"
 import prisma from "@/lib/prisma"
+
+const settingsSchema = z.object({
+  username: z.string().trim().max(100).optional(),
+  email: z.union([z.string().trim().email().max(254), z.literal("")]).optional(),
+  bio: z.string().max(2_000).optional(),
+  name: z.string().trim().max(200).optional(),
+  language: z.string().trim().max(40).optional(),
+  // urls is a Json column; bound its serialized size.
+  urls: z
+    .unknown()
+    .optional()
+    .refine(
+      (v) => v === undefined || JSON.stringify(v).length <= 5_000,
+      "urls payload too large"
+    ),
+})
 
 export async function GET(
   req: NextRequest,
@@ -31,26 +48,36 @@ export async function POST(
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
-  const data = await req.json()
+  const parsed = settingsSchema.safeParse(await req.json())
+  if (!parsed.success) {
+    return NextResponse.json(
+      { error: "Validation failed", issues: parsed.error.flatten() },
+      { status: 400 }
+    )
+  }
+  const { username, email, bio, urls, name, language } = parsed.data
+
   const settings = await prisma.userSettings.upsert({
     where: { userId: params.userId },
+    // Partial update: only the provided fields change.
     update: {
-      username: data.username,
-      email: data.email,
-      bio: data.bio,
-      urls: data.urls,
-      name: data.name,
-      language: data.language,
+      username,
+      email,
+      bio,
+      urls: urls as object | undefined,
+      name,
+      language,
     },
+    // All columns are required, so fall back to empty values on first create.
     create: {
+      id: crypto.randomUUID(),
       userId: params.userId,
-      username: data.username,
-      email: data.email,
-      bio: data.bio,
-      urls: data.urls,
-      name: data.name,
-      language: data.language,
-      id: crypto.randomUUID(), 
+      username: username ?? "",
+      email: email ?? "",
+      bio: bio ?? "",
+      urls: (urls ?? []) as object,
+      name: name ?? "",
+      language: language ?? "",
     },
   })
 

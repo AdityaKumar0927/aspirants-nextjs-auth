@@ -347,7 +347,8 @@ model User {
   userMockExams                  UserMockExam[]
 
   // If a user can author solutions
-  solutionsAuthored Solution[] @relation("UserToSolutionsAuthored")
+  solutionsAuthored Solution[]     @relation("UserToSolutionsAuthored")
+  solutionLikes     SolutionLike[]
 }
 
 model UserAnswer {
@@ -550,4 +551,20 @@ model Solution {
 
   // If you want to track the user who wrote the solution
   author User? @relation("UserToSolutionsAuthored", fields: [authorId], references: [id], onDelete: SetNull)
+
+  likedBy SolutionLike[]
+}
+
+// One row per (user, solution) like — the like COUNT is derived from this, so
+// it can never be inflated by replayed toggle requests.
+model SolutionLike {
+  id         String   @id @default(uuid())
+  userId     String
+  solutionId String
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  solution   Solution @relation(fields: [solutionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, solutionId])
+  @@index([solutionId])
 }

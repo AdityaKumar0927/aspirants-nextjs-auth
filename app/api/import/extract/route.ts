@@ -89,6 +89,11 @@ export type ExtractedQuestion = z.infer<typeof extractedQuestionSchema>;
 
 // JSON Schema for OpenAI structured outputs (strict: every property required,
 // nullability via type unions).
+interface JsonSchemaResponseFormat {
+  type: "json_schema";
+  json_schema: { name: string; strict: boolean; schema: object };
+}
+
 const EXTRACTION_JSON_SCHEMA = {
   type: "object",
   additionalProperties: false,
@@ -279,6 +284,9 @@ export async function POST(request: Request) {
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: userContent },
       ],
+      // Typed locally (so the wrapper keys stay checked) then cast through
+      // unknown, since this openai SDK version's types predate json_schema
+      // response_format (the API accepts it).
       response_format: {
         type: "json_schema",
         json_schema: {
@@ -286,7 +294,7 @@ export async function POST(request: Request) {
           strict: true,
           schema: EXTRACTION_JSON_SCHEMA,
         },
-      } as never, // older openai SDK typings lack json_schema; API accepts it
+      } satisfies JsonSchemaResponseFormat as unknown as OpenAI.Chat.Completions.ChatCompletionCreateParamsNonStreaming["response_format"],
     });
 
     const raw = completion.choices[0]?.message?.content;

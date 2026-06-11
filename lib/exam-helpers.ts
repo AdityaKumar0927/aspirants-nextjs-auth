@@ -82,11 +82,15 @@ export function canonicalType(raw: unknown, hasOptions: boolean): ExamQuestionTy
  * normalized runtime shape the exam/practice UI consumes.
  */
 export function normalizeQuestion(raw: any): QuestionType {
-  const optionTexts: string[] = Array.isArray(raw?.options)
+  const rawOptions = Array.isArray(raw?.options)
     ? raw.options
     : raw?.options && typeof raw.options === "object"
-    ? Object.values(raw.options as Record<string, string>)
+    ? Object.values(raw.options as Record<string, unknown>)
     : [];
+  // Defensive: a malformed DB row must degrade safely, not crash the renderer.
+  const optionTexts: string[] = (rawOptions as unknown[]).filter(
+    (o): o is string => typeof o === "string"
+  );
 
   const options: { [key: string]: string } = {};
   optionTexts.forEach((text, i) => {

@@ -439,19 +439,17 @@ export default function ImportWizard() {
     setError(null);
 
     try {
-      const questions = [];
-      for (const d of included) {
-        // Upload attached figures first so question rows reference real URLs.
-        const urls: string[] = [];
-        for (const figure of d.figures) {
-          const { url } = await postJson("/api/import/diagram", {
-            image: figure.dataUrl,
-          });
-          urls.push(url);
-        }
-        const payload: ReturnType<typeof toPayload> & {
-          diagramUrl?: string;
-        } = toPayload(d, hints);
+      // Build one draft into a payload, uploading its figures in parallel.
+      const buildPayload = async (d: DraftQuestion) => {
+        const urls = await Promise.all(
+          d.figures.map((figure) =>
+            postJson("/api/import/diagram", { image: figure.dataUrl }).then(
+              (r) => r.url as string
+            )
+          )
+        );
+        const payload: ReturnType<typeof toPayload> & { diagramUrl?: string } =
+          toPayload(d, hints);
         if (urls.length > 0) {
           payload.diagramUrl = urls[0];
           if (urls.length > 1) {
@@ -463,7 +461,32 @@ export default function ImportWizard() {
                 .join("\n\n");
           }
         }
-        questions.push(payload);
+        return payload;
+      };
+
+      // Process drafts with bounded concurrency; isolate per-draft failures so
+      // one bad figure upload doesn't discard the whole batch.
+      const CONCURRENCY = 4;
+      const questions: ReturnType<typeof toPayload>[] = [];
+      let failedDrafts = 0;
+      for (let i = 0; i < included.length; i += CONCURRENCY) {
+        const chunk = included.slice(i, i + CONCURRENCY);
+        const settled = await Promise.all(
+          chunk.map((d) =>
+            buildPayload(d).catch(() => {
+              failedDrafts++;
+              return null;
+            })
+          )
+        );
+        for (const p of settled) if (p) questions.push(p);
+      }
+
+      if (questions.length === 0) {
+        setError(
+          "Every question failed to upload (diagram upload errors). Please try again."
+        );
+        return;
       }
 
       const res = await postJson("/api/questions/bulk", {
@@ -472,6 +495,11 @@ export default function ImportWizard() {
         tokensUsed,
         questions,
       });
+      if (failedDrafts > 0) {
+        setWarning(
+          `${failedDrafts} question${failedDrafts === 1 ? "" : "s"} were skipped due to figure-upload errors.`
+        );
+      }
       setResult({ created: res.created, skipped: res.skipped });
       setStep("done");
     } catch (e) {

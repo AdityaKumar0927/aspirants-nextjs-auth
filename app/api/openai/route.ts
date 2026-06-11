@@ -130,9 +130,17 @@ export async function POST(req: NextRequest) {
       stream: true,
     })
 
-    const stream = OpenAIStream(response)
+    // Reserve the assistant slot now, then fill it with the REAL reply once the
+    // stream completes (was storing a "[Streaming Response]" placeholder, which
+    // broke multi-turn context on the next request).
+    const assistantMsg = { role: 'assistant', content: '' } as ChatCompletionRequestMessage
+    chatHistory[historyKey].push(assistantMsg)
 
-    chatHistory[historyKey].push({ role: 'assistant', content: '[Streaming Response]' } as ChatCompletionRequestMessage)
+    const stream = OpenAIStream(response, {
+      onCompletion: (completion: string) => {
+        assistantMsg.content = completion
+      },
+    })
 
     return new StreamingTextResponse(stream)
   } catch (error) {

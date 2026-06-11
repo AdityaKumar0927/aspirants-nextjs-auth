@@ -491,17 +491,20 @@ export default function QuestionBankContent() {
     }
   }, [state.filters, state.currentPage, state.pageSize, toast]);
 
-  // Initial load of filters + stats
+  // Initial load of filter options (stats handled by the filters effect below)
   useEffect(() => {
     fetchFilterOptions();
-    fetchGlobalStats();
-  }, [fetchFilterOptions, fetchGlobalStats]);
+  }, [fetchFilterOptions]);
 
-  // Re-fetch questions & stats whenever filters/page changes
+  // Re-fetch questions whenever filters/page change
   useEffect(() => {
     fetchQuestions();
+  }, [state.filters, state.currentPage, fetchQuestions]);
+
+  // Stats depend only on filters — don't re-run the COUNT scans on page change.
+  useEffect(() => {
     fetchGlobalStats();
-  }, [state.filters, state.currentPage, fetchQuestions, fetchGlobalStats]);
+  }, [state.filters, fetchGlobalStats]);
 
   /* ------------------------------
      8) Handlers (mark complete, etc.)
